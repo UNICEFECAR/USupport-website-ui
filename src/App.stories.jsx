@@ -3,7 +3,7 @@ import React from "react";
 import App from "./App";
 
 export default {
-  title: "Client UI/App",
+  title: "Website UI/App",
   component: App,
   parameters: {
     layout: "fullscreen",
