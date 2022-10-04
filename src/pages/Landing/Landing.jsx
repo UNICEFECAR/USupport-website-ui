@@ -1,5 +1,5 @@
 import React from "react";
-import FindYourself from "../../blocks/FindYourself/FindYourself";
+import { FindYourself } from "../../blocks/FindYourself";
 import { LandingHero } from "../../blocks/LandingHero";
 
 export default function Landing() {
