@@ -1,15 +1,17 @@
 import React from "react";
-import USupport from "./assets/USupport.svg";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import Root from "./Root";
+
 import "./App.scss";
 
 function App() {
   return (
-    <div className="App">
-      <div>
-        <img src={USupport} className="logo react" alt="React logo" />
-      </div>
-      <p>Website Interface</p>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/*" element={<Root />} />
+      </Routes>
+    </Router>
   );
 }
 

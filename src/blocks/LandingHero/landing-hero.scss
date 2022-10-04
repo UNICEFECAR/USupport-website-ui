@@ -1,0 +1,147 @@
+@import "../../../USupport-components-library/src/styles/variables";
+
+.landing-hero {
+  align-items: center;
+  background-image: url("../../assets/LandingHeroBackground.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-blend-mode: lighten;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+
+  @media screen and (min-width: $screen-lg) {
+    height: 60rem;
+  }
+
+  &__content {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @media screen and (min-width: $screen-md) {
+      align-items: center;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  &__information-container {
+    width: 100%;
+
+    @media screen and (min-width: $screen-md) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 70%;
+      & .landing-hero__heading,
+      .landing-hero__description {
+        width: 65%;
+      }
+    }
+  }
+
+  &__heading {
+    color: $color_blue_3d527b;
+    text-align: start;
+    & > span {
+      color: $color_primary_20809e;
+    }
+  }
+
+  &__description {
+    text-align: start;
+    color: $color_gray_66768d;
+  }
+
+  &__buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 400px;
+    margin-top: $spacing_2_4;
+    margin-bottom: $spacing_1_6;
+
+    & .btn--store {
+      margin-right: $spacing_1_6;
+      &:first-child {
+        margin-bottom: $spacing_1_6;
+      }
+    }
+
+    @media screen and (min-width: $screen-md) {
+      &:first-child {
+        margin-bottom: 0;
+      }
+    }
+
+    @media screen and (min-width: $screen-lg) {
+      flex-direction: row;
+      max-width: unset;
+      & .btn--store {
+        min-width: 27.2rem;
+        display: inline-block;
+        margin-left: auto;
+      }
+    }
+  }
+
+  &__mascot-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-top: $spacing_4_8;
+    margin-bottom: $spacing_2_4;
+    > img {
+      margin-right: -$spacing_1_6;
+      width: 200px;
+
+      @media screen and (min-width: $screen-md) {
+        margin-right: $spacing_1_6;
+        width: 200px;
+      }
+
+      @media screen and (min-width: $screen-lg) {
+        width: 400px;
+        height: 316px;
+      }
+    }
+  }
+
+  & .radial-gradient-purple {
+    width: 250px;
+    height: 300px;
+    background: $radial_gradient_purple;
+    position: absolute;
+    bottom: -20px;
+    left: -80px;
+    opacity: 0.6;
+
+    @media screen and (min-width: $screen-md) {
+      height: 500px;
+      width: 500px;
+      bottom: -120px;
+      z-index: -1;
+    }
+  }
+  & .radial-gradient-blue {
+    width: 250px;
+    height: 300px;
+    background: $radial_gradient_blue;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0.6;
+
+    @media screen and (min-width: $screen-md) {
+      height: 500px;
+      width: 500px;
+      bottom: -120px;
+      z-index: -1;
+    }
+  }
+}
