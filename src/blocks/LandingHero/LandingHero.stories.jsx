@@ -3,7 +3,7 @@ import React from "react";
 import LandingHero from "./LandingHero";
 
 export default {
-  title: "Website UI/Landing",
+  title: "Website UI/Landing/LandingHero",
   component: LandingHero,
 };
 
