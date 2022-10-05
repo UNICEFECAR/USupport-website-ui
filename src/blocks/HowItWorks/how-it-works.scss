@@ -1,0 +1,28 @@
+@import "/USupport-components-library/styles";
+
+.how-it-works {
+  padding-top: $spacing_8_0;
+  padding-bottom: $spacing_8_0;
+  background-image: url("./assets/Background.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-blend-mode: lighten;
+  background-position: left;
+
+  @media screen and (min-width: $screen-lg) {
+    padding-top: $spacing_12_0;
+    padding-bottom: $spacing_24_0;
+  }
+
+  .grid {
+    justify-items: center;
+  }
+
+  .card-number {
+    margin-top: $spacing_8_0;
+
+    @media screen and (min-width: $screen-lg) {
+      margin-top: $spacing_9_0;
+    }
+  }
+}

@@ -1,0 +1,106 @@
+@import "/USupport-components-library/styles";
+
+.hero {
+  background-image: url("./assets/Background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-blend-mode: lighten;
+  background-position: center;
+  text-align: left;
+  padding-bottom: $spacing_2_4;
+  padding-top: $spacing_5_0;
+
+  @media screen and (min-width: $screen-md) {
+    padding-bottom: $spacing_8_0;
+  }
+
+  @media screen and (min-width: $screen-lg) {
+    padding-top: $spacing_10_0;
+    padding-bottom: $spacing_16_0;
+  }
+
+  &__main-grid {
+    justify-items: center;
+  }
+
+  &__content-grid {
+    justify-items: center;
+
+    @media screen and (min-width: $screen-md) {
+      justify-items: start;
+    }
+  }
+
+  &__heading-item {
+    place-self: start;
+
+    span {
+      color: $color_primary_20809e;
+    }
+  }
+
+  &__text-item {
+    padding-top: $spacing_2_4;
+  }
+
+  &__buttons-item {
+    margin-top: $spacing_2_4;
+
+    .btn--store:nth-of-type(2) {
+      margin-top: $spacing_1_6;
+    }
+  }
+
+  &__mascot-item {
+    padding-top: $spacing_2_4;
+    align-self: center;
+
+    @media screen and (min-width: $screen-md) {
+      padding-top: 0;
+      justify-self: end;
+    }
+
+    > img {
+      width: 20rem;
+
+      @media screen and (min-width: $screen-md) {
+        width: 25rem;
+      }
+
+      @media screen and (min-width: $screen-lg) {
+        width: 40rem;
+      }
+    }
+  }
+
+  & .radial-gradient-purple {
+    width: 25rem;
+    height: 30rem;
+    background: $radial_gradient_purple;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    opacity: 0.6;
+    z-index: -1;
+
+    @media screen and (min-width: $screen-md) {
+      height: 50rem;
+      width: 50rem;
+    }
+  }
+  & .radial-gradient-blue {
+    width: 25rem;
+    height: 30rem;
+    background: $radial_gradient_blue;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0.6;
+    z-index: -1;
+
+    @media screen and (min-width: $screen-md) {
+      height: 50rem;
+      width: 50rem;
+    }
+  }
+}
