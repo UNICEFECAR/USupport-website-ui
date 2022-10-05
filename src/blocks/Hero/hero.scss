@@ -1,146 +1,106 @@
 @import "/USupport-components-library/styles";
 
 .hero {
-  align-items: center;
-  background-image: url("../../assets/HeroBackground.png");
+  background-image: url("./assets/Background.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-blend-mode: lighten;
   background-position: center;
-  display: flex;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
+  text-align: left;
+  padding-bottom: $spacing_2_4;
+  padding-top: $spacing_5_0;
+
+  @media screen and (min-width: $screen-md) {
+    padding-bottom: $spacing_8_0;
+  }
 
   @media screen and (min-width: $screen-lg) {
-    height: 60rem;
+    padding-top: $spacing_10_0;
+    padding-bottom: $spacing_16_0;
   }
 
-  &__content {
-    align-items: flex-end;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  &__main-grid {
+    justify-items: center;
+  }
+
+  &__content-grid {
+    justify-items: center;
 
     @media screen and (min-width: $screen-md) {
-      align-items: center;
-      flex-direction: row;
-      justify-content: space-between;
+      justify-items: start;
     }
   }
 
-  &__information-container {
-    width: 100%;
+  &__heading-item {
+    place-self: start;
 
-    @media screen and (min-width: $screen-md) {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 70%;
-      & .hero__heading,
-      .hero__description {
-        width: 65%;
-      }
-    }
-  }
-
-  &__heading {
-    text-align: start;
-    & > span {
+    span {
       color: $color_primary_20809e;
     }
   }
 
-  &__description {
-    text-align: start;
-    color: $color_gray_66768d;
+  &__text-item {
+    padding-top: $spacing_2_4;
   }
 
-  &__buttons-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    max-width: 400px;
+  &__buttons-item {
     margin-top: $spacing_2_4;
-    margin-bottom: $spacing_1_6;
 
-    & .btn--store {
-      margin-right: $spacing_1_6;
-      &:first-child {
-        margin-bottom: $spacing_1_6;
-      }
+    .btn--store:nth-of-type(2) {
+      margin-top: $spacing_1_6;
     }
+  }
+
+  &__mascot-item {
+    padding-top: $spacing_2_4;
+    align-self: center;
 
     @media screen and (min-width: $screen-md) {
-      &:first-child {
-        margin-bottom: 0;
-      }
+      padding-top: 0;
+      justify-self: end;
     }
 
-    @media screen and (min-width: $screen-lg) {
-      flex-direction: row;
-      max-width: unset;
-      & .btn--store {
-        min-width: 27.2rem;
-        display: inline-block;
-        margin-left: auto;
-      }
-    }
-  }
-
-  &__mascot-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end;
-    margin-top: $spacing_4_8;
-    margin-bottom: $spacing_2_4;
     > img {
-      margin-right: -$spacing_1_6;
-      width: 200px;
+      width: 20rem;
 
       @media screen and (min-width: $screen-md) {
-        margin-right: $spacing_1_6;
-        width: 200px;
+        width: 25rem;
       }
 
       @media screen and (min-width: $screen-lg) {
-        width: 400px;
-        height: 316px;
+        width: 40rem;
       }
     }
   }
 
   & .radial-gradient-purple {
-    width: 250px;
-    height: 300px;
+    width: 25rem;
+    height: 30rem;
     background: $radial_gradient_purple;
     position: absolute;
-    bottom: -20px;
-    left: -80px;
+    bottom: 0;
+    left: 0;
     opacity: 0.6;
+    z-index: -1;
 
     @media screen and (min-width: $screen-md) {
-      height: 500px;
-      width: 500px;
-      bottom: -120px;
-      z-index: -1;
+      height: 50rem;
+      width: 50rem;
     }
   }
   & .radial-gradient-blue {
-    width: 250px;
-    height: 300px;
+    width: 25rem;
+    height: 30rem;
     background: $radial_gradient_blue;
     position: absolute;
     top: 0;
     right: 0;
     opacity: 0.6;
+    z-index: -1;
 
     @media screen and (min-width: $screen-md) {
-      height: 500px;
-      width: 500px;
-      bottom: -120px;
-      z-index: -1;
+      height: 50rem;
+      width: 50rem;
     }
   }
 }
