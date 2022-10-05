@@ -1,8 +1,8 @@
-@import "../../../USupport-components-library/src/styles/variables";
+@import "/USupport-components-library/styles";
 
-.landing-hero {
+.hero {
   align-items: center;
-  background-image: url("../../assets/LandingHeroBackground.png");
+  background-image: url("../../assets/HeroBackground.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-blend-mode: lighten;
@@ -37,8 +37,8 @@
       flex-direction: column;
       align-items: center;
       width: 70%;
-      & .landing-hero__heading,
-      .landing-hero__description {
+      & .hero__heading,
+      .hero__description {
         width: 65%;
       }
     }

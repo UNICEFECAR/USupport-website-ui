@@ -1,10 +1,10 @@
 import React from "react";
-import { LandingHero } from "../../blocks/LandingHero";
+import { Hero } from "../../blocks/Hero";
 
-export default function Landing() {
+export function Landing() {
   return (
     <React.Fragment>
-      <LandingHero />
+      <Hero />
     </React.Fragment>
   );
 }
