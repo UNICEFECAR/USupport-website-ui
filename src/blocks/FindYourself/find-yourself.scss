@@ -1,0 +1,83 @@
+@import "/USupport-components-library/styles";
+
+.find-yourself {
+  padding-top: $spacing_3_2;
+  padding-bottom: $spacing_6_5;
+  text-align: left;
+
+  @media screen and (min-width: $screen-md) {
+    padding-top: $spacing_7_2;
+    padding-bottom: $spacing_9_0;
+  }
+  @media screen and (min-width: $screen-lg) {
+    padding-top: $spacing_12_0;
+    padding-bottom: $spacing_12_0;
+  }
+
+  &__grid {
+    justify-items: center;
+  }
+
+  &__text-item {
+    padding-top: $spacing_2_4;
+    max-width: 75rem;
+
+    @media screen and (min-width: $screen-lg) {
+      padding-top: $spacing_3_2;
+    }
+  }
+
+  &__image-item {
+    align-items: center;
+    border-radius: $border_radius_4_0;
+    display: flex;
+    height: 22rem;
+    justify-content: center;
+    position: relative;
+    width: 34.3rem;
+
+    @media screen and (min-width: $screen-lg) {
+      height: 22rem;
+      width: 36.8rem;
+    }
+
+    &.need-help {
+      background-image: url("./assets/NeedHelp.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin-top: $spacing_4_8;
+
+      @media screen and (min-width: $screen-md) {
+        place-self: end;
+      }
+    }
+
+    &.sos-center {
+      background-image: url("./assets/SOSCenter.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin-top: $spacing_3_2;
+
+      @media screen and (min-width: $screen-md) {
+        margin-top: $spacing_4_8;
+        place-self: start;
+      }
+    }
+
+    & > .overlay {
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: $border_radius_4_0;
+      height: inherit;
+      position: absolute;
+      width: inherit;
+      z-index: 1;
+    }
+
+    h3 {
+      color: $color_white_ff;
+      position: relative;
+      text-align: center;
+      z-index: 2;
+    }
+  }
+}

@@ -23,7 +23,7 @@ export const HowItWorks = () => {
           <h2>How it works</h2>
         </GridItem>
         <GridItem md={8} lg={12}>
-          <p className="text">
+          <p className="paragraph">
             We provide anonymous treatment without the need of full
             registration.
           </p>
