@@ -5,9 +5,10 @@ import FindYourself from "./FindYourself";
 export default {
   title: "Website UI/Landing/FindYourself",
   component: FindYourself,
+  argTypes: {},
 };
 
-const Template = (args) => <FindYourself {...args} />;
+const Template = (props) => <FindYourself {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {};

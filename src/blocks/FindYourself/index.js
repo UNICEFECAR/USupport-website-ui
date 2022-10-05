@@ -1,1 +1,1 @@
-export { default as FindYourself } from "./FindYourself.jsx";
+export * from "./FindYourself.jsx";
