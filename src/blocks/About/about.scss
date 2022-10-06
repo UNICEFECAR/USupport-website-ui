@@ -1,0 +1,46 @@
+@import "/USupport-components-library/src/styles/variables";
+
+.about {
+  padding: $spacing_3_2 $spacing_1_6;
+  text-align: left;
+  background-color: rgba(244, 252, 253, 0.62);
+  &__main-grid {
+    justify-items: center;
+  }
+
+  &__description-item {
+    padding-top: $spacing_2_4;
+    place-self: center;
+    &__paragraph {
+      max-width: 60rem;
+    }
+  }
+
+  &__icons-grid {
+    max-width: 40rem;
+    width: 100%;
+    justify-self: end;
+    @media screen and (min-width: $screen-md) {
+      justify-self: center;
+    }
+  }
+
+  &__icon-item {
+    &.first {
+      margin-top: $spacing_4_0;
+      place-self: end;
+    }
+
+    &.second {
+      margin-top: $spacing_2_4;
+      place-self: start;
+    }
+    &.third {
+      place-self: end;
+    }
+  }
+  &__mascot {
+    width: 37.5rem;
+    margin-top: $spacing_3_2;
+  }
+}
