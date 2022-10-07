@@ -1,0 +1,37 @@
+@import "/USupport-components-library/styles";
+
+.faq {
+  background-image: url("./assets/Background.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-blend-mode: lighten;
+  background-position: right;
+  padding-top: $spacing_10_0;
+  padding-bottom: $spacing_5_0;
+
+  &__content-item {
+    margin-top: $spacing_5_0;
+  }
+
+  &__button {
+    margin: 0 auto;
+  }
+
+  &__mascot-item {
+    padding-top: $spacing_2_4;
+    margin: 0 auto;
+
+    @media screen and (min-width: $screen-md) {
+      padding-top: 0;
+      justify-self: end;
+    }
+
+    > img {
+      width: 16.3rem;
+
+      @media screen and (min-width: $screen-lg) {
+        width: 30rem;
+      }
+    }
+  }
+}
