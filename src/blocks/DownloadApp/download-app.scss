@@ -1,0 +1,56 @@
+@import "/USupport-components-library/styles";
+
+.download-app {
+  padding-top: $spacing_3_2;
+
+  @media screen and (min-width: $screen-md) {
+    padding-top: $spacing_4_8;
+  }
+
+  background: linear-gradient(
+    90.14deg,
+    rgba(13, 174, 178, 0.2) -0.27%,
+    rgba(214, 210, 255, 0.0846922) 57.25%,
+    rgba(129, 74, 253, 0.2) 99.5%
+  );
+
+  &__content-grid {
+    justify-items: center;
+  }
+
+  &__heading-item {
+    @media screen and (min-width: $screen-md) {
+      place-self: start;
+    }
+  }
+
+  &__sub-heading {
+    margin: $spacing_0_8 0;
+
+    @media screen and (min-width: $screen-md) {
+      place-self: start;
+    }
+  }
+
+  &__buttons-item {
+    margin-top: $spacing_2_4;
+
+    .btn--store:nth-of-type(2) {
+      margin-top: $spacing_1_6;
+    }
+
+    @media screen and (min-width: $screen-md) {
+      place-self: start;
+    }
+  }
+
+  &__image-item {
+    display: flex;
+  }
+
+  &__image {
+    margin: 0 auto;
+    margin-top: $spacing_4_8;
+    width: 27.2rem;
+  }
+}
