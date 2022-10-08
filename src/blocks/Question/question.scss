@@ -4,6 +4,10 @@
   background: $gradient_block;
   padding: $spacing_4_0 $spacing_1_6 $spacing_5_6 $spacing_1_6;
 
+  .grid {
+    align-items: center;
+  }
+
   &__heading-item {
     place-self: center;
     text-align: center;
