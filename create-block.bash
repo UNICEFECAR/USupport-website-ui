@@ -95,4 +95,4 @@ echo "@import '/USupport-components-library/styles';
 }" >> "src/blocks/$block_name/$block_name_kebab.scss"
 
 # Output to the user's console
-echo "Successfully created $block into src/blocks/$block_group"
+echo "Successfully created $block_name into src/blocks/$block_name"

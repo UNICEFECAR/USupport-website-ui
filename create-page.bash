@@ -59,33 +59,38 @@ import './$page_name_kebab.scss';
 /**
  * $page_name page.
  *
+ * $page_description
+ *
  * @returns {JSX.Element}
  */
 export const $page_name = () => {
     return (
         <React.Fragment>
-
+            $page_name Page
         </React.Fragment>
     );
 }; " >> "src/pages/$page_name/$page_name.jsx"
 
 # Add the page to the storybook file
 echo "import React from 'react';
-import { $page_name } from './$page_name.jsx';
+import { $page_name } from './$page_name';
 
 export default {
-    title: 'Pages/$page_name',
+    title: 'Website UI/pages/$page_name',
     component: $page_name,
     argTypes: {},
 };
 
-const Template = (args) => <$page_name {...args} />;
+const Template = (props) => <$page_name {...props} />;
 
 export const Default = Template.bind({});
 Default.args = {}; " >> "src/pages/$page_name/$page_name.stories.jsx"
 
 # Add the theme to the page styles file 
-echo "/* $page_name styles */" >> "src/pages/$page_name/$page_name_kebab.scss"
+echo "/* $page_name styles */
+@import '/USupport-components-library/styles';
+
+" >> "src/pages/$page_name/$page_name_kebab.scss"
 
 # Outout to the user's console 
-echo "Page created successfully!"
+echo "Successfully created $page_name into src/blocks/$page_name"
