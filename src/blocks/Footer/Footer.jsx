@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Block,
   Grid,
@@ -21,6 +21,7 @@ import { logo } from "/USupport-components-library/assets";
  * @return {jsx}
  */
 export const Footer = ({ lists }) => {
+  const navigateTo = useNavigate();
   const currentYear = new Date().getFullYear();
 
   function handleContactsClick(platform) {
@@ -88,7 +89,14 @@ export const Footer = ({ lists }) => {
     <Block classes="footer">
       <Grid>
         <GridItem xs={4} md={8} lg={4}>
-          <img className="footer__logo" src={logo} alt="logo" />
+          <img
+            className="footer__logo"
+            src={logo}
+            alt="logo"
+            onClick={() => {
+              navigateTo("/");
+            }}
+          />
           <div>
             <Icon
               classes="footer__icon"
