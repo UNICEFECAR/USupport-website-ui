@@ -19,7 +19,7 @@
     }
   }
 
-  &__items-list {
+  &__list-item {
     padding-top: $spacing_4_0;
     display: flex;
     flex-direction: column;
@@ -49,31 +49,22 @@
   &__contact-us {
     align-self: center;
     padding-bottom: $spacing_1_6;
-  }
 
-  &__contact-detail {
-    display: flex;
-    cursor: pointer;
-    &:not(:first-child) {
-      padding-top: $spacing_1_6;
-    }
-    text-align: left;
-
-    &__icon {
-      margin-right: $spacing_1_6;
-    }
-    .paragraph {
-      padding-left: $spacing_2_4;
-    }
-  }
-
-  @media screen and (min-width: $screen-lg) {
-    &__contact-us {
+    @media screen and (min-width: $screen-lg) {
       align-self: flex-start;
     }
   }
 
-  &__copy-right {
+  .icon-with-text {
+    cursor: pointer;
+    text-align: left;
+
+    &:not(:first-child) {
+      padding-top: $spacing_1_6;
+    }
+  }
+
+  &__copy-right-item {
     padding: $spacing_4_0 0;
   }
 }

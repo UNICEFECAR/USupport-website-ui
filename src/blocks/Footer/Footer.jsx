@@ -1,13 +1,17 @@
 import React from "react";
-import { Block } from "/USupport-components-library/src";
-
-import "./footer.scss";
-import { Grid } from "../../../USupport-components-library/src/components/grids/Grid/Grid";
-import { GridItem } from "/USupport-components-library/src";
-import { List } from "../../../USupport-components-library/src/components/lists/List/List";
-import logo from "../../../USupport-components-library/src/assets/logo.png";
-import { Icon } from "../../../USupport-components-library/src/components/icons/Icon/Icon";
 import { Link } from "react-router-dom";
+import {
+  Block,
+  Grid,
+  GridItem,
+  List,
+  Icon,
+  Button,
+  IconWithText,
+} from "/USupport-components-library/src";
+import "./footer.scss";
+
+import { logo } from "/USupport-components-library/assets";
 
 /**
  * Footer
@@ -35,7 +39,6 @@ export const Footer = ({ lists }) => {
       case "phone":
         link = "tel:+359 888 888 888";
         break;
-
       case "mail":
         link = "mailto:usupport@7digit.io";
         break;
@@ -43,7 +46,7 @@ export const Footer = ({ lists }) => {
         break;
     }
 
-    window.open(link, "_blank").focus();
+    if (link !== "") window.open(link, "_blank").focus();
   }
 
   let list1 = [];
@@ -51,7 +54,7 @@ export const Footer = ({ lists }) => {
     list1.push({
       value: (
         <Link to={listItem.url ? listItem.url : "#"}>
-          <p className="paragraph">{listItem.name}</p>
+          <Button type="text" size="lg" label={listItem.name} />
         </Link>
       ),
     });
@@ -62,7 +65,7 @@ export const Footer = ({ lists }) => {
     list2.push({
       value: (
         <Link to={listItem.url ? listItem.url : "#"}>
-          <p className="paragraph">{listItem.name}</p>
+          <Button type="text" size="lg" label={listItem.name} />
         </Link>
       ),
     });
@@ -72,17 +75,11 @@ export const Footer = ({ lists }) => {
   lists.list3.forEach((listItem) => {
     list3.push({
       value: (
-        <div
-          className="footer__contact-detail"
+        <IconWithText
+          iconName={listItem.iconName}
+          text={<p className="text">{listItem.value}</p>}
           onClick={() => handleContactsClick(listItem.onClick)}
-        >
-          <Icon
-            classes="footer__contact-detail__icon"
-            name={listItem.iconName}
-            size="md"
-          />
-          <p className="paragraph">{listItem.value}</p>
-        </div>
+        />
       ),
     });
   });
@@ -113,17 +110,17 @@ export const Footer = ({ lists }) => {
             />
           </div>
         </GridItem>
-        <GridItem classes="footer__items-list" xs={2} md={2} lg={2}>
-          <List items={list1}></List>
+        <GridItem classes="footer__list-item" xs={2} md={2} lg={2}>
+          <List items={list1} />
         </GridItem>
-        <GridItem classes="footer__items-list" xs={2} md={2} lg={2}>
-          <List items={list2}></List>
+        <GridItem classes="footer__list-item" xs={2} md={2} lg={2}>
+          <List items={list2} />
         </GridItem>
-        <GridItem classes="footer__items-list" xs={4} md={4} lg={4}>
+        <GridItem classes="footer__list-item" xs={4} md={4} lg={4}>
           <h4 className="footer__contact-us">Contact Us</h4>
-          <List items={list3}></List>
+          <List items={list3} />
         </GridItem>
-        <GridItem classes="footer__copy-right" xs={4} md={8} lg={12}>
+        <GridItem classes="footer__copy-right-item" xs={4} md={8} lg={12}>
           <p className="small-text">©{currentYear} USupport</p>
         </GridItem>
       </Grid>

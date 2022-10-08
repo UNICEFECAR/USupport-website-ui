@@ -42,18 +42,21 @@ function App() {
       { name: "How it works?", url: "/how-it-works" },
     ],
     list2: [
-      { name: "Terms of Service", url: "/terms-f-of-service", exact: true },
+      { name: "Terms of Service", url: "/terms-of-service", exact: true },
       { name: "Privacy Policy", url: "/privacy-policy" },
       { name: "Cookie Settings", url: "/cookie-settings" },
     ],
     list3: [
-      { value: "+359 888 888 888", iconName: "call-2", onClick: "phone" },
+      { value: "+359 888 888 888", iconName: "call-filled", onClick: "phone" },
       {
         value: `ul. "Oborishte" 5, ет. 3, 1504 Sofia `,
         iconName: "pin",
-        onClick: "",
       },
-      { value: "Info@gigsremote.com", iconName: "mail-2", onClick: "mail" },
+      {
+        value: "usupport@7digit.io",
+        iconName: "mail-filled",
+        onClick: "mail",
+      },
     ],
   };
 
