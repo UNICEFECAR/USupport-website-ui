@@ -9,13 +9,22 @@
   );
   padding: $spacing_4_0 $spacing_1_6 $spacing_5_6 $spacing_1_6;
 
-  &__sub-heading {
-    margin-top: $spacing_0_8;
-    margin-bottom: $spacing_4_0;
+  &__heading-item {
+    place-self: center;
+    text-align: center;
+
+    p {
+      margin-top: $spacing_0_8;
+      margin-bottom: $spacing_4_0;
+
+      @media screen and (min-width: $screen-md) {
+        margin-top: 0;
+        margin-bottom: $spacing_0_8;
+      }
+    }
 
     @media screen and (min-width: $screen-md) {
-      margin-top: 0;
-      margin-bottom: $spacing_0_8;
+      text-align: left;
     }
   }
 

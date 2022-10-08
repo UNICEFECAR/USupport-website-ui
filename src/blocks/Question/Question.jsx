@@ -22,11 +22,9 @@ export const Question = () => {
   return (
     <Block classes="question">
       <Grid>
-        <GridItem md={4} lg={6}>
+        <GridItem md={4} lg={6} classes="question__heading-item">
           <h3>Have a question?</h3>
-          <p className="text question__sub-heading">
-            Don’t hesitate to contact us
-          </p>
+          <p className="text">Don’t hesitate to contact us</p>
         </GridItem>
         <GridItem md={4} lg={6}>
           <Button
