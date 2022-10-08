@@ -19,7 +19,7 @@ import imageSrc from "./assets/StartScreen.png";
  */
 export const DownloadApp = () => {
   return (
-    <Block classes="download-app">
+    <Block classes="download-app" animation="fade-up">
       <Grid>
         <GridItem md={5} lg={6} classes="download-app__content-item">
           <Grid classes="download-app__content-grid">

@@ -43,7 +43,7 @@ export const FAQ = () => {
   ];
 
   return (
-    <Block classes="faq">
+    <Block classes="faq" animation="fade-right">
       <Grid>
         <GridItem md={8} lg={12}>
           <h2>Frequently asked questions</h2>

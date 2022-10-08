@@ -16,7 +16,7 @@ import "./sos-center.scss";
  */
 export const SOSCenter = ({ contacts }) => {
   return (
-    <Block classes="soscenter">
+    <Block classes="soscenter" animation="fade-right">
       <Grid classes="soscenter__grid">
         <GridItem xs={4} md={8} lg={12} classes="soscenter__heading-item">
           <h2>SOS center</h2>

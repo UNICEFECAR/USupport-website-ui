@@ -41,7 +41,7 @@ export const HowItWorks = () => {
   return (
     <Page classes="page__how-it-works">
       <HowItWorksBlock />
-      <Block>
+      <Block animation="fade-right">
         <Grid>
           <GridItem md={8} lg={12}>
             <h2>Frequently asked questions</h2>

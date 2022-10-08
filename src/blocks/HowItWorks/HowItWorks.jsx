@@ -18,7 +18,7 @@ import "./how-it-works.scss";
  */
 export const HowItWorks = ({ summary = false }) => {
   return (
-    <Block classes="how-it-works">
+    <Block classes="how-it-works" animation="fade-left">
       <Grid>
         <GridItem md={8} lg={12}>
           <h2>How it works</h2>

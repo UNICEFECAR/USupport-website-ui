@@ -24,7 +24,7 @@ export const ContactUs = () => {
   const showMascot = width >= 768;
 
   return (
-    <Block classes="contact-us">
+    <Block classes="contact-us" animation="fade-down">
       <Grid classes="contact-us__main-grid">
         <GridItem md={8} lg={12} classes="contact-us__heading-item">
           <h2>Contact Us</h2>
