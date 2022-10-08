@@ -5,16 +5,17 @@ import { HowItWorks } from "../../blocks/HowItWorks";
 import { About } from "../../blocks/About";
 import { FAQ } from "../../blocks/FAQ";
 import { DownloadApp } from "../../blocks/DownloadApp";
+import { Page } from "../../blocks/Page/Page";
 
 export function Landing() {
   return (
-    <React.Fragment>
+    <Page>
       <Hero />
       <FindYourself />
       <About />
       <HowItWorks />
       <FAQ />
       <DownloadApp />
-    </React.Fragment>
+    </Page>
   );
 }
