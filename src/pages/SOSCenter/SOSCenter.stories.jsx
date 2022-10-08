@@ -1,13 +1,13 @@
-import React from 'react';
-import { SOSCenter } from './SOSCenter.jsx';
+import React from "react";
+import { SOSCenter } from "./SOSCenter";
 
 export default {
-    title: 'Pages/SOSCenter',
-    component: SOSCenter,
-    argTypes: {},
+  title: "Website UI/pages/SOSCenter",
+  component: SOSCenter,
+  argTypes: {},
 };
 
-const Template = (args) => <SOSCenter {...args} />;
+const Template = (props) => <SOSCenter {...props} />;
 
 export const Default = Template.bind({});
-Default.args = {}; 
+Default.args = {};

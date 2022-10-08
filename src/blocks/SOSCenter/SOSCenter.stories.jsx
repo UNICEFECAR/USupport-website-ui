@@ -1,9 +1,8 @@
-import React from 'react';
-
-import { SOSCenter } from './SOSCenter';
+import React from "react";
+import { SOSCenter } from "./SOSCenter";
 
 export default {
-  title: 'Website UI/blocks/SOSCenter',
+  title: "Website UI/blocks/SOSCenter",
   component: SOSCenter,
   argTypes: {},
 };
