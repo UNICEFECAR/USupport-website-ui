@@ -36,17 +36,17 @@ function App() {
   ];
 
   const footerLists = {
-    pagesList1: [
+    list1: [
       { name: "About Us", url: "/about-us" },
       { name: "Information portal", url: "/information-portal" },
       { name: "How it works?", url: "/how-it-works" },
     ],
-    pagesList2: [
+    list2: [
       { name: "Terms of Service", url: "/terms-f-of-service", exact: true },
       { name: "Privacy Policy", url: "/privacy-policy" },
       { name: "Cookie Settings", url: "/cookie-settings" },
     ],
-    pagesList3: [
+    list3: [
       { value: "+359 888 888 888", iconName: "call-2", onClick: "phone" },
       {
         value: `ul. "Oborishte" 5, ет. 3, 1504 Sofia `,

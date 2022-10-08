@@ -47,41 +47,41 @@ export const Footer = ({ lists }) => {
   }
 
   let list1 = [];
-  lists.pagesList1.forEach((page) => {
+  lists.list1.forEach((listItem) => {
     list1.push({
       value: (
-        <Link to={page.url ? page.url : "#"}>
-          <p className="paragraph">{page.name}</p>
+        <Link to={listItem.url ? listItem.url : "#"}>
+          <p className="paragraph">{listItem.name}</p>
         </Link>
       ),
     });
   });
 
   let list2 = [];
-  lists.pagesList2.forEach((page) => {
+  lists.list2.forEach((listItem) => {
     list2.push({
       value: (
-        <Link to={page.url ? page.url : "#"}>
-          <p className="paragraph">{page.name}</p>
+        <Link to={listItem.url ? listItem.url : "#"}>
+          <p className="paragraph">{listItem.name}</p>
         </Link>
       ),
     });
   });
 
   let list3 = [];
-  lists.pagesList3.forEach((page) => {
+  lists.list3.forEach((listItem) => {
     list3.push({
       value: (
         <div
           className="footer__contact-detail"
-          onClick={() => handleContactsClick(page.onClick)}
+          onClick={() => handleContactsClick(listItem.onClick)}
         >
           <Icon
             classes="footer__contact-detail__icon"
-            name={page.iconName}
+            name={listItem.iconName}
             size="md"
           />
-          <p className="paragraph">{page.value}</p>
+          <p className="paragraph">{listItem.value}</p>
         </div>
       ),
     });
