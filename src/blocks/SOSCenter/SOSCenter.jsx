@@ -5,7 +5,7 @@ import { IconWithText } from "/USupport-components-library/src";
 import { Grid } from "/USupport-components-library/src";
 import { GridItem } from "/USupport-components-library/src";
 
-import "./soscenter.scss";
+import "./sos-center.scss";
 
 /**
  * SOSCenter

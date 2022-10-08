@@ -1,8 +1,8 @@
 import React from "react";
-
-import "./soscenter.scss";
 import { SOSCenter as SOSCenterBlock } from "../../blocks/SOSCenter/SOSCenter";
 import { Question } from "../../blocks/Question/Question";
+
+import "./sos-center.scss";
 
 /**
  * SOSCenter page.
