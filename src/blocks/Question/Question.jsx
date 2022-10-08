@@ -5,9 +5,9 @@ import {
   GridItem,
   Button,
 } from "/USupport-components-library/src";
+import { useWindowDimensions } from "/USupport-components-library/utils";
 
 import "./question.scss";
-import useWindowDimensions from "../../../USupport-components-library/src/utils/useWindowDimensions";
 
 /**
  * Question
