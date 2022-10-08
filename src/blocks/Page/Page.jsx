@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Navbar, EmergencyButton } from "/USupport-components-library/src";
 import { Footer } from "../Footer/Footer";
+import classNames from "classnames";
 
 import "./page.scss";
 
@@ -12,7 +13,7 @@ import "./page.scss";
  *
  * @return {jsx}
  */
-export const Page = ({ additionalPadding = true, children }) => {
+export const Page = ({ additionalPadding = true, classes, children }) => {
   const navigateTo = useNavigate();
 
   const pages = [
@@ -75,6 +76,7 @@ export const Page = ({ additionalPadding = true, children }) => {
         className={[
           "page",
           `${additionalPadding ? "" : "page--no-additional-top-padding"}`,
+          `${classNames(classes)}`,
         ].join(" ")}
       >
         {children}

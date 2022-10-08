@@ -66,7 +66,7 @@ import './$page_name_kebab.scss';
  */
 export const $page_name = () => {
     return (
-        <Page>
+        <Page classes='page__$page_name_kebab'>
             $page_name Page
         </Page>
     );
@@ -92,6 +92,8 @@ Default.args = {}; " >> "src/pages/$page_name/$page_name.stories.jsx"
 echo "/* $page_name styles */
 @import '/USupport-components-library/styles';
 
+.$page_name_kebab{
+}
 " >> "src/pages/$page_name/$page_name_kebab.scss"
 
 # Outout to the user's console 
