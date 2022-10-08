@@ -1,12 +1,7 @@
 @import "/USupport-components-library/styles";
 
 .question {
-  background: linear-gradient(
-    90.14deg,
-    rgba(13, 174, 178, 0.2) -0.27%,
-    rgba(214, 210, 255, 0.0846922) 57.25%,
-    rgba(129, 74, 253, 0.2) 99.5%
-  );
+  background: $gradient_block;
   padding: $spacing_4_0 $spacing_1_6 $spacing_5_6 $spacing_1_6;
 
   &__heading-item {
