@@ -13,16 +13,19 @@
     margin-top: $spacing_5_0;
   }
 
-  &__button {
-    margin: 0 auto;
+  &__button-item {
+    justify-self: center;
   }
 
   &__mascot-item {
     padding-top: $spacing_2_4;
-    margin: 0 auto;
+    justify-self: center;
 
     @media screen and (min-width: $screen-md) {
       padding-top: 0;
+    }
+
+    @media screen and (min-width: $screen-lg) {
       justify-self: end;
     }
 

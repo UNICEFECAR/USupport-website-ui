@@ -1,12 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Block,
   Grid,
   GridItem,
   CollapsibleFAQ,
   Button,
-  Line,
 } from "/USupport-components-library/src";
+import PropTypes from "prop-types";
 
 import "./faq.scss";
 
@@ -20,6 +21,8 @@ import Mascot from "../../assets/MascotBroken.png";
  * @return {jsx}
  */
 export const FAQ = () => {
+  const navigateTo = useNavigate();
+
   const questions = [
     {
       heading: "Do I need to identify my mental problems by myself?",
@@ -39,17 +42,6 @@ export const FAQ = () => {
     },
   ];
 
-  const renderAllQuestions = () => {
-    return questions.map((question, index) => {
-      return (
-        <>
-          <CollapsibleFAQ question={question} key={index} />
-          <Line />
-        </>
-      );
-    });
-  };
-
   return (
     <Block classes="faq">
       <Grid>
@@ -58,22 +50,24 @@ export const FAQ = () => {
         </GridItem>
         <GridItem md={8} lg={12}>
           <Grid>
-            <GridItem md={5} lg={6}>
+            <GridItem md={6} lg={6}>
               <Grid classes="faq__content-item">
                 <GridItem md={8} lg={12}>
-                  {renderAllQuestions()}
+                  <CollapsibleFAQ questions={questions} />
                 </GridItem>
-                <GridItem md={8} lg={12}>
+                <GridItem md={8} lg={12} classes="faq__button-item">
                   <Button
                     size="lg"
                     type="secondary"
                     label="Learn more"
-                    classes={"faq__button"}
+                    onClick={() => {
+                      navigateTo("/about-us");
+                    }}
                   />
                 </GridItem>
               </Grid>
             </GridItem>
-            <GridItem md={3} lg={6} classes="faq__mascot-item">
+            <GridItem md={2} lg={6} classes="faq__mascot-item">
               <img src={Mascot} />
             </GridItem>
           </Grid>
@@ -81,4 +75,20 @@ export const FAQ = () => {
       </Grid>
     </Block>
   );
+};
+
+FAQ.propTypes = {
+  /**
+   * Array of questions
+   * */
+  questions: PropTypes.arrayOf(
+    PropTypes.shape({
+      heading: PropTypes.string,
+      text: PropTypes.string,
+    })
+  ).isRequired,
+};
+
+FAQ.defaultProps = {
+  questions: [],
 };
