@@ -10,6 +10,6 @@ export default {
   },
 };
 
-const Template = (args) => <App {...args} />;
+const Template = (props) => <App {...props} />;
 
 export const Default = Template.bind({});
