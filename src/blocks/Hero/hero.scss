@@ -8,7 +8,7 @@
   background-position: center;
   text-align: left;
   padding-bottom: $spacing_2_4;
-  padding-top: $spacing_5_0;
+  padding-top: calc($spacing_6_8 + $spacing_5_0);
 
   @media screen and (min-width: $screen-md) {
     padding-bottom: $spacing_8_0;
