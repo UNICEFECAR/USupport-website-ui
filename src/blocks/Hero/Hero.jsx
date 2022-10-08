@@ -6,9 +6,11 @@ import {
   StoreButton,
   RadialCircle,
 } from "/USupport-components-library/src";
-import MascotOrange from "../../assets/MascotOrange.png";
 
 import "./hero.scss";
+
+import MascotOrange from "../../assets/MascotOrange.png";
+
 /**
  * Hero
  *
@@ -16,7 +18,6 @@ import "./hero.scss";
  *
  * @return {jsx}
  */
-
 export const Hero = () => {
   return (
     <Block classes="hero">
@@ -48,7 +49,7 @@ export const Hero = () => {
           <img src={MascotOrange} />
         </GridItem>
       </Grid>
-      <RadialCircle />
+      <RadialCircle color="purple" />
       <RadialCircle color="blue" />
     </Block>
   );
