@@ -4,9 +4,9 @@ import { Page } from "../../blocks/Page/Page";
 import "./not-found.scss";
 
 /**
- * NotFound page.
- *
  * NotFound
+ *
+ * NotFound page.
  *
  * @returns {JSX.Element}
  */
