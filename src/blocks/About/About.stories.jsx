@@ -1,13 +1,13 @@
 import React from "react";
 
-import About from "./About";
+import { About } from "./About";
 
 export default {
-  title: "Website UI/Landing/About",
+  title: "Website UI/blocks/About",
   component: About,
 };
 
-const Template = (args) => <About {...args} />;
+const Template = (props) => <About {...props} />;
 
 export const Default = Template.bind({});
 Default.args = {};

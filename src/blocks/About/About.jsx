@@ -5,10 +5,19 @@ import {
   Grid,
   GridItem,
 } from "/USupport-components-library/src";
-import mascot from "../../assets/MascotBlueClipped.png";
+
 import "./about.scss";
 
-export default function About() {
+import mascot from "../../assets/MascotBlueClipped.png";
+
+/**
+ * About
+ *
+ * The About block
+ *
+ * @returns {JSX.Element}
+ */
+export const About = () => {
   return (
     <Block classes={["about"]}>
       <Grid classes={["about__main-grid"]}>
@@ -25,7 +34,7 @@ export default function About() {
           </p>
         </GridItem>
 
-        <GridItem xs={4} md={8} lg={5} classes="about__icons-grid">
+        <GridItem xs={4} md={6} lg={5} classes="about__icons-grid">
           <Grid>
             <GridItem xs={4} md={8} lg={12} classes="about__icon-item first">
               <CardIconAndLabel
@@ -52,4 +61,4 @@ export default function About() {
       <img src={mascot} className="about__mascot" />
     </Block>
   );
-}
+};

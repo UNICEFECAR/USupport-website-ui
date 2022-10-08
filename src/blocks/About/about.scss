@@ -20,7 +20,8 @@
     max-width: 40rem;
     width: 100%;
     justify-self: end;
-    @media screen and (min-width: $screen-md) {
+
+    @media screen and (min-width: $screen-lg) {
       justify-self: center;
     }
   }
@@ -41,6 +42,14 @@
   }
   &__mascot {
     width: 37.5rem;
-    margin-top: $spacing_3_2;
+
+    @media screen and (min-width: $screen-md) {
+      margin-top: -$spacing_14_6;
+      width: 33rem;
+    }
+
+    @media screen and (min-width: $screen-lg) {
+      width: 37.5rem;
+    }
   }
 }
