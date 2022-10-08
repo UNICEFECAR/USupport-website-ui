@@ -58,7 +58,7 @@ import { Page } from '../../blocks/Page/Page';
 import './$page_name_kebab.scss';
 
 /**
- * $page_name page.
+ * $page_name
  *
  * $page_description
  *
