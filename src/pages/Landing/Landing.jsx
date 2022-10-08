@@ -20,7 +20,7 @@ export function Landing() {
       <Hero />
       <FindYourself />
       <About />
-      <HowItWorks />
+      <HowItWorks summary />
       <FAQ />
       <DownloadApp />
     </Page>

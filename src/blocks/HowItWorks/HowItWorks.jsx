@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {
   Block,
   Grid,
@@ -15,17 +16,18 @@ import "./how-it-works.scss";
  *
  * @return {jsx}
  */
-export const HowItWorks = () => {
+export const HowItWorks = ({ summary = false }) => {
   return (
     <Block classes="how-it-works">
       <Grid>
         <GridItem md={8} lg={12}>
           <h2>How it works</h2>
         </GridItem>
-        <GridItem md={8} lg={12}>
+        <GridItem md={8} lg={12} classes="how-it-works__text-item">
           <p className="paragraph">
-            We provide anonymous treatment without the need of full
-            registration.
+            {summary
+              ? "We provide anonymous treatment without the need of full registration."
+              : "We provide anonymously treatment without the need full registration. We provide anonymously treatment without the need full registration. We provide anonymously treatment without the need full registration. We provide anonymously treatment without the need full registration."}
           </p>
         </GridItem>
         <GridItem lg={3}>
@@ -55,4 +57,12 @@ export const HowItWorks = () => {
       </Grid>
     </Block>
   );
+};
+
+HowItWorks.propTypes = {
+  /**
+   * If true, the block will show a summary text
+   * If false, the block will show a full text
+   * */
+  summary: PropTypes.bool,
 };
