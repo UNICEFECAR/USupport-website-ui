@@ -92,7 +92,7 @@ Default.args = {}; " >> "src/pages/$page_name/$page_name.stories.jsx"
 echo "/* $page_name styles */
 @import '/USupport-components-library/styles';
 
-.$page_name_kebab{
+.page__$page_name_kebab{
 }
 " >> "src/pages/$page_name/$page_name_kebab.scss"
 
