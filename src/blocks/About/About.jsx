@@ -4,6 +4,7 @@ import {
   CardIconAndLabel,
   Grid,
   GridItem,
+  RadialCircle,
 } from "/USupport-components-library/src";
 
 import "./about.scss";
@@ -59,6 +60,7 @@ export const About = () => {
         </GridItem>
       </Grid>
       <img src={mascot} className="about__mascot" />
+      <RadialCircle color="blue" />
     </Block>
   );
 };

@@ -1,9 +1,11 @@
 @import "/USupport-components-library/styles";
 
 .about {
-  padding: $spacing_3_2 $spacing_1_6;
+  padding: $spacing_3_2 $spacing_1_6 0 $spacing_1_6;
   text-align: left;
   background-color: rgba(244, 252, 253, 0.62);
+  position: relative;
+
   &__main-grid {
     justify-items: center;
   }
@@ -42,6 +44,7 @@
   }
   &__mascot {
     width: 37.5rem;
+    margin-bottom: -$spacing_0_7;
 
     @media screen and (min-width: $screen-md) {
       margin-top: -$spacing_14_6;
@@ -50,6 +53,13 @@
 
     @media screen and (min-width: $screen-lg) {
       width: 37.5rem;
+    }
+  }
+
+  .radial-background {
+    @media screen and (min-width: $screen-md) {
+      height: 60rem;
+      width: 60rem;
     }
   }
 }
