@@ -1,0 +1,38 @@
+@import "/USupport-components-library/styles";
+
+.question {
+  background: linear-gradient(
+    90.14deg,
+    rgba(13, 174, 178, 0.2) -0.27%,
+    rgba(214, 210, 255, 0.0846922) 57.25%,
+    rgba(129, 74, 253, 0.2) 99.5%
+  );
+  padding: $spacing_4_0 $spacing_1_6 $spacing_5_6 $spacing_1_6;
+
+  &__heading-item {
+    place-self: center;
+    text-align: center;
+
+    p {
+      margin-top: $spacing_0_8;
+      margin-bottom: $spacing_4_0;
+
+      @media screen and (min-width: $screen-md) {
+        margin-top: 0;
+        margin-bottom: $spacing_0_8;
+      }
+    }
+
+    @media screen and (min-width: $screen-md) {
+      text-align: left;
+    }
+  }
+
+  &__button {
+    margin: 0 auto;
+  }
+
+  @media screen and (min-width: $screen-md) {
+    padding: $spacing_4_8 0;
+  }
+}
