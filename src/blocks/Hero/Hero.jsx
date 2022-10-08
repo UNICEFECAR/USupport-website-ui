@@ -20,7 +20,7 @@ import MascotOrange from "../../assets/MascotOrange.png";
  */
 export const Hero = () => {
   return (
-    <Block classes="hero">
+    <Block classes="hero" animation="fade-right">
       <Grid classes="hero__main-grid">
         <GridItem md={5} lg={6}>
           <Grid classes="hero__content-grid">

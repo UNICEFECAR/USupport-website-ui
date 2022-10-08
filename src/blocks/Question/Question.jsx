@@ -20,7 +20,7 @@ export const Question = () => {
   const { width } = useWindowDimensions();
 
   return (
-    <Block classes="question">
+    <Block classes="question" animation="fade-left">
       <Grid>
         <GridItem md={4} lg={6} classes="question__heading-item">
           <h3>Have a question?</h3>

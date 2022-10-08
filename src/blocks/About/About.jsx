@@ -20,7 +20,7 @@ import mascot from "../../assets/MascotBlueClipped.png";
  */
 export const About = () => {
   return (
-    <Block classes={["about"]}>
+    <Block classes={["about"]} animation="fade-right">
       <Grid classes={["about__main-grid"]}>
         <GridItem md={8} lg={12}>
           <h2 classes="about__heading">About USupport</h2>
