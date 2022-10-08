@@ -20,7 +20,7 @@ export const DownloadApp = () => {
   return (
     <Block classes="download-app">
       <Grid>
-        <GridItem md={5} lg={6}>
+        <GridItem md={5} lg={6} classes="download-app__content-item">
           <Grid classes="download-app__content-grid">
             <GridItem md={8} lg={12} classes="download-app__heading-item">
               <h3>Download our mobile app</h3>

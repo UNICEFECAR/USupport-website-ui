@@ -2,17 +2,16 @@
 
 .download-app {
   padding-top: $spacing_3_2;
+  background: $gradient_block;
 
   @media screen and (min-width: $screen-md) {
-    padding-top: $spacing_4_8;
-  }
+    padding-top: 0;
 
-  background: linear-gradient(
-    90.14deg,
-    rgba(13, 174, 178, 0.2) -0.27%,
-    rgba(214, 210, 255, 0.0846922) 57.25%,
-    rgba(129, 74, 253, 0.2) 99.5%
-  );
+    &__content-item {
+      display: flex;
+      align-items: center;
+    }
+  }
 
   &__content-grid {
     justify-items: center;
@@ -25,8 +24,6 @@
   }
 
   &__sub-heading {
-    margin: $spacing_0_8 0;
-
     @media screen and (min-width: $screen-md) {
       place-self: start;
     }
@@ -45,7 +42,11 @@
   }
 
   &__image-item {
-    display: flex;
+    justify-self: center;
+
+    @media screen and (min-width: $screen-lg) {
+      place-self: end;
+    }
   }
 
   &__image {
