@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
 import { Navbar } from "/USupport-components-library/src";
 import { Landing } from "./pages/Landing";
+import { SOSCenter } from "./pages/SOSCenter";
 
 import "./App.scss";
 
@@ -40,6 +40,7 @@ function App() {
       <Navbar pages={pages} countries={countries} />
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/sos-center" element={<SOSCenter />} />
       </Routes>
     </Router>
   );
