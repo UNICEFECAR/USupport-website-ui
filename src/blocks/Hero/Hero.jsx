@@ -4,6 +4,7 @@ import {
   Grid,
   GridItem,
   StoreButton,
+  RadialCircle,
 } from "/USupport-components-library/src";
 
 import "./hero.scss";
@@ -17,7 +18,6 @@ import MascotOrange from "../../assets/MascotOrange.png";
  *
  * @return {jsx}
  */
-
 export const Hero = () => {
   return (
     <Block classes="hero">
@@ -49,8 +49,8 @@ export const Hero = () => {
           <img src={MascotOrange} />
         </GridItem>
       </Grid>
-      <div className="radial-gradient-purple" />
-      <div className="radial-gradient-blue" />
+      <RadialCircle color="purple" />
+      <RadialCircle color="blue" />
     </Block>
   );
 };

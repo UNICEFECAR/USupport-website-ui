@@ -9,6 +9,7 @@
   text-align: left;
   padding-bottom: $spacing_2_4;
   padding-top: calc($spacing_6_8 + $spacing_5_0);
+  position: relative;
 
   @media screen and (min-width: $screen-md) {
     padding-bottom: $spacing_8_0;
@@ -70,37 +71,6 @@
       @media screen and (min-width: $screen-lg) {
         width: 40rem;
       }
-    }
-  }
-
-  & .radial-gradient-purple {
-    width: 25rem;
-    height: 30rem;
-    background: $radial_gradient_purple;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    opacity: 0.6;
-    z-index: -1;
-
-    @media screen and (min-width: $screen-md) {
-      height: 50rem;
-      width: 50rem;
-    }
-  }
-  & .radial-gradient-blue {
-    width: 25rem;
-    height: 30rem;
-    background: $radial_gradient_blue;
-    position: absolute;
-    top: 0;
-    right: 0;
-    opacity: 0.6;
-    z-index: -1;
-
-    @media screen and (min-width: $screen-md) {
-      height: 50rem;
-      width: 50rem;
     }
   }
 }

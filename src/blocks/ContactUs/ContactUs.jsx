@@ -4,6 +4,7 @@ import {
   ContactForm,
   Grid,
   GridItem,
+  RadialCircle,
 } from "/USupport-components-library/src";
 import { useWindowDimensions } from "/USupport-components-library/src/utils";
 
@@ -44,6 +45,8 @@ export const ContactUs = () => {
           </Grid>
         </GridItem>
       </Grid>
+      <RadialCircle color="purple" />
+      <RadialCircle color="blue" />
     </Block>
   );
 };
