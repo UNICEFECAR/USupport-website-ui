@@ -8,7 +8,7 @@ export default {
   argTypes: {},
 };
 
-const Template = (props) => <FindYourself {...args} />;
+const Template = (props) => <FindYourself {...props} />;
 
 export const Default = Template.bind({});
 Default.args = {};
