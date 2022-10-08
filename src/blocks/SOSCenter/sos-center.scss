@@ -1,6 +1,7 @@
 @import "/USupport-components-library/styles";
 
 .soscenter {
+  padding-top: $spacing_3_2;
   padding-bottom: $spacing_6_4;
 
   @media screen and (min-width: $screen-md) {
@@ -8,6 +9,7 @@
   }
 
   @media screen and (min-width: $screen-lg) {
+    padding-top: $spacing_5_6;
     padding-bottom: $spacing_16_0;
   }
 
