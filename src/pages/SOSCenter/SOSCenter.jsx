@@ -2,17 +2,15 @@ import React from "react";
 import { SOSCenter as SOSCenterBlock } from "../../blocks/SOSCenter/SOSCenter";
 import { Question } from "../../blocks/Question/Question";
 
-import "./sos-center.scss";
-
 /**
  * SOSCenter page.
  *
  * @returns {JSX.Element}
  */
-export const SOSCenter = () => {
+export const SOSCenter = ({ contacts }) => {
   return (
     <React.Fragment>
-      <SOSCenterBlock />
+      <SOSCenterBlock contacts={contacts} />
       <Question />
     </React.Fragment>
   );

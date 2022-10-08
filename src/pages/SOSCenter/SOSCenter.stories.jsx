@@ -7,7 +7,9 @@ export default {
   argTypes: {},
 };
 
-const Template = (props) => <SOSCenter {...props} />;
+const contacts = ["+7 777 777 77 77", "+7 777 777 77 77", "+7 777 777 77 77"];
+
+const Template = () => <SOSCenter contacts={contacts} />;
 
 export const Default = Template.bind({});
 Default.args = {};

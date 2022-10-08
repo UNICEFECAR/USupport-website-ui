@@ -61,12 +61,14 @@ function App() {
     ],
   };
 
+  const contacts = ["+7 777 777 77 77", "+7 777 777 77 77", "+7 777 777 77 77"];
+
   return (
     <Router>
       <Navbar pages={pages} countries={countries} />
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/sos-center" element={<SOSCenter />} />
+        <Route path="/sos-center" element={<SOSCenter contacts={contacts} />} />
       </Routes>
       <Footer lists={footerLists} />
     </Router>
