@@ -1,8 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navbar } from "/USupport-components-library/src";
-import { Landing } from "./pages/Landing";
 import { Footer } from "./blocks/Footer/Footer";
+import { Landing } from "./pages/Landing";
+import { SOSCenter } from "./pages/SOSCenter";
 
 import "./App.scss";
 
@@ -60,11 +61,14 @@ function App() {
     ],
   };
 
+  const contacts = ["+7 777 777 77 77", "+7 777 777 77 77", "+7 777 777 77 77"];
+
   return (
     <Router>
       <Navbar pages={pages} countries={countries} />
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/sos-center" element={<SOSCenter contacts={contacts} />} />
       </Routes>
       <Footer lists={footerLists} />
     </Router>

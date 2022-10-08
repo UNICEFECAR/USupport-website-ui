@@ -1,15 +1,15 @@
 import React from "react";
 
-import App from "./App";
+import { Landing } from "./Landing";
 
 export default {
-  title: "Website UI/App",
-  component: App,
+  title: "Website UI/pages/Landing",
+  component: Landing,
   parameters: {
     layout: "fullscreen",
   },
 };
 
-const Template = (props) => <App {...props} />;
+const Template = () => <Landing />;
 
 export const Default = Template.bind({});
