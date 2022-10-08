@@ -46,3 +46,14 @@ chmod +x create-block.bash
 ```
 
 Then, you will be prompted to provide block name and block description.
+
+## Adding a new page to the USupport Website UI
+
+To create a new page, please use the provided bash script `create-page.bash`. By executing the following command from the root directory of the project:
+
+```
+chmod +x create-page.bash
+./create-page.bash
+```
+
+Then, you will be prompted to provide page name and page description.
