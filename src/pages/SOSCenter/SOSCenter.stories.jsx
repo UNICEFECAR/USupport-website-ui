@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import { SOSCenter } from "./SOSCenter";
 
 export default {
@@ -9,7 +10,11 @@ export default {
 
 const contacts = ["+7 777 777 77 77", "+7 777 777 77 77", "+7 777 777 77 77"];
 
-const Template = () => <SOSCenter contacts={contacts} />;
+const Template = () => (
+  <Router>
+    <SOSCenter contacts={contacts} />
+  </Router>
+);
 
 export const Default = Template.bind({});
 Default.args = {};

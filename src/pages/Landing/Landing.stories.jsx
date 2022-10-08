@@ -1,5 +1,5 @@
 import React from "react";
-
+import { BrowserRouter as Router } from "react-router-dom";
 import { Landing } from "./Landing";
 
 export default {
@@ -10,6 +10,10 @@ export default {
   },
 };
 
-const Template = () => <Landing />;
+const Template = () => (
+  <Router>
+    <Landing />
+  </Router>
+);
 
 export const Default = Template.bind({});

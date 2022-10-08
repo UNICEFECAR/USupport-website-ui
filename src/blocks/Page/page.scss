@@ -1,14 +1,23 @@
 @import "/USupport-components-library/styles";
 
 .page {
-  padding-top: $spacing_4_6;
+  // height of navbar + padding for the page
+  padding-top: calc($spacing_4_6 + $spacing_4_0);
+
+  &--no-additional-top-padding {
+    padding-top: $spacing_4_6;
+  }
 
   @media screen and (min-width: $screen-lg) {
-    padding-top: $spacing_8_0;
+    padding-top: calc($spacing_8_0 + $spacing_5_6);
+
+    &--no-additional-top-padding {
+      padding-top: $spacing_8_0;
+    }
   }
 
   &__emergency-button {
-    bottom: 10vh;
+    bottom: 5vh;
     position: fixed;
     right: $spacing_1_6;
     z-index: $z_index_emergency_button;

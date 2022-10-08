@@ -1,5 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Navbar, EmergencyButton } from "/USupport-components-library/src";
+import { Footer } from "../Footer/Footer";
+
 import "./page.scss";
 
 /**
@@ -9,7 +12,9 @@ import "./page.scss";
  *
  * @return {jsx}
  */
-export const Page = ({ children }) => {
+export const Page = ({ additionalPadding = true, children }) => {
+  const navigateTo = useNavigate();
+
   const pages = [
     { name: "Home", url: "/", exact: true },
     { name: "How it works?", url: "/how-it-works" },
@@ -38,11 +43,47 @@ export const Page = ({ children }) => {
     },
   ];
 
+  const footerLists = {
+    list1: [
+      { name: "About Us", url: "/about-us" },
+      { name: "Information portal", url: "/information-portal" },
+      { name: "How it works?", url: "/how-it-works" },
+    ],
+    list2: [
+      { name: "Terms of Service", url: "/terms-of-service", exact: true },
+      { name: "Privacy Policy", url: "/privacy-policy" },
+      { name: "Cookie Settings", url: "/cookie-settings" },
+    ],
+    list3: [
+      { value: "+359 888 888 888", iconName: "call-filled", onClick: "phone" },
+      {
+        value: `ul. "Oborishte" 5, ет. 3, 1504 Sofia `,
+        iconName: "pin",
+      },
+      {
+        value: "usupport@7digit.io",
+        iconName: "mail-filled",
+        onClick: "mail",
+      },
+    ],
+  };
+
   return (
     <>
       <Navbar pages={pages} countries={countries} />
-      <div className="page">{children}</div>
-      <EmergencyButton classes="page__emergency-button" />
+      <div
+        className={[
+          "page",
+          `${additionalPadding ? "" : "page--no-additional-top-padding"}`,
+        ].join(" ")}
+      >
+        {children}
+      </div>
+      <EmergencyButton
+        classes="page__emergency-button"
+        onClick={() => navigateTo("/sos-center")}
+      />
+      <Footer lists={footerLists} />
     </>
   );
 };

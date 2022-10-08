@@ -53,6 +53,7 @@ echo "export * from './$page_name';" >> "src/pages/index.js"
 
 # Add the page to the main page file
 echo "import React from 'react';
+import { Page } from '../../blocks/Page/Page';
 
 import './$page_name_kebab.scss';
 
@@ -65,14 +66,15 @@ import './$page_name_kebab.scss';
  */
 export const $page_name = () => {
     return (
-        <React.Fragment>
+        <Page>
             $page_name Page
-        </React.Fragment>
+        </Page>
     );
 }; " >> "src/pages/$page_name/$page_name.jsx"
 
 # Add the page to the storybook file
 echo "import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { $page_name } from './$page_name';
 
 export default {
@@ -81,7 +83,7 @@ export default {
     argTypes: {},
 };
 
-const Template = (props) => <$page_name {...props} />;
+const Template = (props) => <Router><$page_name {...props} /></Router>;
 
 export const Default = Template.bind({});
 Default.args = {}; " >> "src/pages/$page_name/$page_name.stories.jsx"
