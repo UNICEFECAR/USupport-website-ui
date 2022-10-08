@@ -48,10 +48,10 @@ export const FAQ = () => {
         <GridItem md={8} lg={12}>
           <h2>Frequently asked questions</h2>
         </GridItem>
-        <GridItem md={8} lg={12}>
+        <GridItem md={8} lg={12} classes="faq__content-item">
           <Grid>
             <GridItem md={6} lg={6}>
-              <Grid classes="faq__content-item">
+              <Grid>
                 <GridItem md={8} lg={12}>
                   <CollapsibleFAQ questions={questions} />
                 </GridItem>
