@@ -1,9 +1,9 @@
 import React from "react";
 
-import FindYourself from "./FindYourself";
+import { FindYourself } from "./FindYourself";
 
 export default {
-  title: "Website UI/Landing/FindYourself",
+  title: "Website UI/blocks/FindYourself",
   component: FindYourself,
   argTypes: {},
 };

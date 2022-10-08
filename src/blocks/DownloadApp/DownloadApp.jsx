@@ -5,9 +5,10 @@ import {
   GridItem,
   StoreButton,
 } from "/USupport-components-library/src";
-import imageSrc from "./assets/StartScreen.png";
 
 import "./download-app.scss";
+
+import imageSrc from "./assets/StartScreen.png";
 
 /**
  * DownloadApp
