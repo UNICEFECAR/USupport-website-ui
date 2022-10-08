@@ -14,9 +14,7 @@ import "./sos-center.scss";
  *
  * @return {jsx}
  */
-export const SOSCenter = () => {
-  const contacts = ["+7 777 777 77 77", "+7 777 777 77 77", "+7 777 777 77 77"];
-
+export const SOSCenter = ({ contacts }) => {
   return (
     <Block classes="soscenter">
       <Grid classes="soscenter__grid">
@@ -25,7 +23,7 @@ export const SOSCenter = () => {
         </GridItem>
         <GridItem xs={4} md={8} lg={12} classes="soscenter__text-item">
           <Box classes="soscenter__box">
-            <h4 className="soscenter__box-heading">Need special help?</h4>
+            <h3 className="soscenter__box-heading">Need special help?</h3>
             <p className="text soscenter__box-paragraph">
               Do you feel like you can’t wait for the registration process and
               you need special and immediate help? Here are some of our hotlines
