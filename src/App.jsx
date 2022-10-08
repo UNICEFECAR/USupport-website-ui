@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Landing } from "./pages/Landing";
 import { SOSCenter } from "./pages/SOSCenter";
+import { ContactUs } from "./pages/ContactUs";
 import { NotFound } from "./pages/NotFound";
 
 import "./App.scss";
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/sos-center" element={<SOSCenter contacts={contacts} />} />
+        <Route path="/contact-us" element={<ContactUs />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

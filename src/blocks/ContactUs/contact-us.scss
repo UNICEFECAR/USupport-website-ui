@@ -11,6 +11,10 @@
   position: relative;
   text-align: left;
 
+  @media screen and (min-width: $screen-lg) {
+    padding-top: $spacing_5_6;
+  }
+
   &__main-grid {
     row-gap: 0;
     place-items: center;
