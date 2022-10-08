@@ -4,12 +4,13 @@ import {
   ContactForm,
   Grid,
   GridItem,
+  RadialCircle,
 } from "/USupport-components-library/src";
+import mascot from "../../assets/MascotBlue.png";
+
 import { useWindowDimensions } from "/USupport-components-library/src/utils";
 
 import "./contact-us.scss";
-
-import mascot from "../../assets/MascotBlue.png";
 
 /**
  * ContactUs
@@ -44,6 +45,8 @@ export const ContactUs = () => {
           </Grid>
         </GridItem>
       </Grid>
+      <RadialCircle />
+      <RadialCircle color="blue" />
     </Block>
   );
 };
