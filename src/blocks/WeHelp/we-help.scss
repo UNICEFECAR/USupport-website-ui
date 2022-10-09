@@ -1,0 +1,70 @@
+@import "/USupport-components-library/styles";
+
+.we-help {
+  padding-top: $spacing_3_2;
+  text-align: left;
+
+  &__heading {
+    place-self: center;
+  }
+
+  &__secondary-grid {
+    place-items: center;
+
+    &__text-one {
+      padding-top: $spacing_2_4;
+      justify-self: left;
+    }
+
+    &__descriptions-item {
+      @media screen and (min-width: $screen-lg) {
+        margin-left: $spacing_8_0;
+      }
+    }
+
+    &__text-two {
+      padding-top: $spacing_2_4;
+      @media screen and (min-width: $screen-lg) {
+        padding-top: $spacing_4_8;
+      }
+    }
+
+    &__text-three {
+      padding-top: $spacing_3_2;
+    }
+  }
+
+  &__content-box {
+    padding: $spacing_2_4;
+    overflow: hidden;
+    @media screen and (min-width: $screen-lg) {
+      margin-top: $spacing_4_0;
+      padding: $spacing_5_6 0 $spacing_9_0 0;
+    }
+  }
+
+  &__mascot-item {
+    padding-top: $spacing_1_6;
+
+    @media screen and (min-width: $screen-md) {
+      justify-self: end;
+      transform: translateX(12rem);
+    }
+
+    @media screen and (min-width: $screen-lg) {
+      justify-self: end;
+      transform: translateX(14rem);
+    }
+
+    &__image {
+      width: 16rem;
+
+      @media screen and (min-width: $screen-md) {
+        width: 25rem;
+      }
+      @media screen and (min-width: $screen-lg) {
+        width: 30rem;
+      }
+    }
+  }
+}
