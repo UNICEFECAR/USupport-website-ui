@@ -28,7 +28,7 @@ export const Page = ({ additionalPadding = true, classes, children }) => {
   // TODO: add the real countries & languages
   const countries = [
     {
-      name: "Kazaakhstan",
+      name: "Kazakhstan",
       flagName: "kazakhstan",
       languages: ["Kazakh", "Russian", "English"],
     },
