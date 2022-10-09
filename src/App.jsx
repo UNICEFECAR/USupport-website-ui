@@ -5,6 +5,7 @@ import { SOSCenter } from "./pages/SOSCenter";
 import { ContactUs } from "./pages/ContactUs";
 import { HowItWorks } from "./pages/HowItWorks";
 import { NotFound } from "./pages/NotFound";
+import { AboutUs } from "./pages/AboutUs/AboutUs";
 
 import "./App.scss";
 
@@ -13,6 +14,7 @@ import "aos/dist/aos.css";
 import AOS from "aos";
 
 function App() {
+  // TODO: add the country specific information about the SOS center
   const contacts = ["+7 777 777 77 77", "+7 777 777 77 77", "+7 777 777 77 77"];
 
   AOS.init({
@@ -29,6 +31,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/how-it-works" element={<HowItWorks />} />
+        <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/sos-center" element={<SOSCenter contacts={contacts} />} />
         <Route path="*" element={<NotFound />} />
