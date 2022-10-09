@@ -17,8 +17,11 @@
     }
 
     &__descriptions-item {
+      @media screen and (min-width: $screen-md) {
+        margin-left: $spacing_2_0;
+      }
       @media screen and (min-width: $screen-lg) {
-        margin-left: $spacing_8_0;
+        margin-left: $spacing_9_6;
       }
     }
 

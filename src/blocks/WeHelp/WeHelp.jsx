@@ -20,7 +20,7 @@ export const WeHelp = () => {
           <h2>About Us</h2>
         </GridItem>
         <GridItem md={8} lg={12}>
-          <Box classes="we-help__content-box">
+          <Box borderSize="lg" classes="we-help__content-box">
             <Grid classes="we-help__secondary-grid">
               <GridItem
                 md={6}
