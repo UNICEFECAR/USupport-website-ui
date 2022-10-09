@@ -11,5 +11,9 @@ import "./not-found.scss";
  * @returns {JSX.Element}
  */
 export const NotFound = () => {
-  return <Page>NotFound Page</Page>;
+  return (
+    <Page>
+      <h1>Work in progress...</h1>
+    </Page>
+  );
 };
