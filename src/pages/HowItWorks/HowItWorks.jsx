@@ -7,7 +7,7 @@ import {
   Block,
   Grid,
   GridItem,
-} from "/USupport-components-library/src";
+} from "usupport-components-library/src";
 
 import "./how-it-works.scss";
 

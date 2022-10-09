@@ -1,9 +1,9 @@
 import React from "react";
-import { Block } from "/USupport-components-library/src";
-import { Box } from "/USupport-components-library/src";
-import { IconWithText } from "/USupport-components-library/src";
-import { Grid } from "/USupport-components-library/src";
-import { GridItem } from "/USupport-components-library/src";
+import { Block } from "usupport-components-library/src";
+import { Box } from "usupport-components-library/src";
+import { IconWithText } from "usupport-components-library/src";
+import { Grid } from "usupport-components-library/src";
+import { GridItem } from "usupport-components-library/src";
 
 import "./sos-center.scss";
 

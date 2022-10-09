@@ -1,5 +1,5 @@
 import React from "react";
-import { Block, Grid, GridItem } from "/USupport-components-library/src";
+import { Block, Grid, GridItem } from "usupport-components-library/src";
 
 import "./find-yourself.scss";
 

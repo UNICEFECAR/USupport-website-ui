@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Navbar, EmergencyButton } from "/USupport-components-library/src";
+import { Navbar, EmergencyButton } from "usupport-components-library/src";
 import { Footer } from "../Footer/Footer";
 import classNames from "classnames";
 

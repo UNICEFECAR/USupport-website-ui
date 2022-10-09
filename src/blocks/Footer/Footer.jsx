@@ -8,10 +8,10 @@ import {
   Icon,
   Button,
   IconWithText,
-} from "/USupport-components-library/src";
+} from "usupport-components-library/src";
 import "./footer.scss";
 
-import { logo } from "/USupport-components-library/assets";
+import { logo } from "usupport-components-library/assets";
 
 /**
  * Footer

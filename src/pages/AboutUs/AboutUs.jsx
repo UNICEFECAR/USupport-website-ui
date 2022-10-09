@@ -2,7 +2,7 @@ import React from "react";
 import { Page } from "../../blocks/Page/Page";
 import { WeHelp } from "../../blocks/WeHelp";
 import { MeetOurSpecialists } from "../../blocks/MeetOurSpecialists";
-import { RadialCircle } from "/USupport-components-library/src";
+import { RadialCircle } from "usupport-components-library/src";
 
 import "./about-us.scss";
 
