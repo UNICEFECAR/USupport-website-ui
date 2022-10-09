@@ -5,11 +5,12 @@ import {
   GridItem,
   StoreButton,
   RadialCircle,
+  Animation,
 } from "/USupport-components-library/src";
 
 import "./hero.scss";
 
-import MascotOrange from "../../assets/MascotOrange.png";
+import MascotAnimation from "./assets/Mascot.json";
 
 /**
  * Hero
@@ -46,7 +47,7 @@ export const Hero = () => {
           </Grid>
         </GridItem>
         <GridItem md={3} lg={6} classes="hero__mascot-item">
-          <img src={MascotOrange} />
+          <Animation json={MascotAnimation} />
         </GridItem>
       </Grid>
       <RadialCircle color="purple" />
