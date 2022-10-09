@@ -6,6 +6,7 @@ import { About } from "../../blocks/About";
 import { FAQ } from "../../blocks/FAQ";
 import { DownloadApp } from "../../blocks/DownloadApp";
 import { Page } from "../../blocks/Page/Page";
+import { MeetOurSpecialists } from "../../blocks/MeetOurSpecialists/MeetOurSpecialists";
 
 /**
  * Landing
@@ -17,6 +18,7 @@ import { Page } from "../../blocks/Page/Page";
 export function Landing() {
   return (
     <Page>
+      <MeetOurSpecialists />
       <Hero />
       <FindYourself />
       <About />
