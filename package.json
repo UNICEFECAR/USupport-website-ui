@@ -11,10 +11,12 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "aos": "^2.3.4",
+    "classnames": "^2.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.1",
-    "usupport-components-library": "^0.1.6"
+    "usupport-components-library": "^0.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
@@ -34,5 +36,12 @@
     "storybook-addon-breakpoints": "^1.0.0",
     "typescript": "^4.8.4",
     "vite": "^3.1.0"
+  },
+  "overrides": {
+    "remark-parse": "9.0.0",
+    "glob-parent": "5.1.2",
+    "trim-newlines": "3.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }

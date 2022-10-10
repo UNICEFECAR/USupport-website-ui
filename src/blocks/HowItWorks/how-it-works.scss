@@ -1,4 +1,4 @@
-@import "/USupport-components-library/styles";
+@import "usupport-components-library/styles";
 
 .how-it-works {
   padding-top: $spacing_8_0;
@@ -12,6 +12,15 @@
   @media screen and (min-width: $screen-lg) {
     padding-top: $spacing_12_0;
     padding-bottom: $spacing_24_0;
+  }
+
+  &__text-item {
+    text-align: left;
+    max-width: 94rem;
+
+    @media screen and (min-width: $screen-lg) {
+      padding-top: $spacing_2_4;
+    }
   }
 
   .grid {

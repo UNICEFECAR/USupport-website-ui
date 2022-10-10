@@ -1,0 +1,13 @@
+/* AboutUs styles */
+@import "usupport-components-library/styles";
+
+.page__about-us {
+  &__radial-circle {
+    position: absolute;
+    right: 0;
+    & > radial-background {
+      width: 50rem;
+      height: 50rem;
+    }
+  }
+}

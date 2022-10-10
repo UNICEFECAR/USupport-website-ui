@@ -1,12 +1,6 @@
-@import "/USupport-components-library/styles";
+@import "usupport-components-library/styles";
 
 #root {
   margin: 0 auto;
   text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: $spacing_1_6;
-  will-change: filter;
 }

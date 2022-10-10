@@ -1,4 +1,4 @@
-@import "/USupport-components-library/styles";
+@import "usupport-components-library/styles";
 
 .find-yourself {
   padding-top: $spacing_3_2;
@@ -65,19 +65,19 @@
     }
 
     & > .overlay {
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(0, 0, 0, 0.3);
       border-radius: $border_radius_4_0;
       height: inherit;
       position: absolute;
       width: inherit;
-      z-index: 1;
+      z-index: $z_index_1;
     }
 
     h3 {
       color: $color_white_ff;
       position: relative;
       text-align: center;
-      z-index: 2;
+      z-index: $z_index_2;
     }
   }
 }

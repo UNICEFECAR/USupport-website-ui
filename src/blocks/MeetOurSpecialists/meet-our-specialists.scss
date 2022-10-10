@@ -1,0 +1,43 @@
+@import "usupport-components-library/styles";
+
+.meet-our-specialists {
+  text-align: left;
+  padding-top: $spacing_6_4;
+  padding-bottom: $spacing_4_0;
+
+  @media screen and (min-width: $screen-lg) {
+    padding-top: $spacing_16_0;
+    padding-bottom: $spacing_9_6;
+  }
+
+  &__main-grid {
+    place-items: center;
+  }
+
+  &__subheading {
+    align-self: center;
+    justify-self: center;
+    max-width: $screen-sm;
+    padding-top: $spacing_3_2;
+    place-self: center;
+    text-align: center;
+
+    @media screen and (min-width: $screen-md) {
+      padding-top: $spacing_2_4;
+    }
+    @media screen and (min-width: $screen-lg) {
+      max-width: unset;
+    }
+  }
+
+  &__specialists-item {
+    padding-top: $spacing_3_2;
+    @media screen and (min-width: $screen-lg) {
+      padding-top: $spacing_7_2;
+    }
+  }
+
+  &__secondary-grid {
+    place-items: center;
+  }
+}

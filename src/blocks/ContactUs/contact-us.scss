@@ -1,0 +1,56 @@
+@import "usupport-components-library/styles";
+
+.contact-us {
+  background-image: url("./assets/Background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-blend-mode: lighten;
+  background-position: center;
+  padding-top: $spacing_3_2;
+  padding-bottom: $spacing_6_4;
+  position: relative;
+  text-align: left;
+
+  @media screen and (min-width: $screen-lg) {
+    padding-top: $spacing_5_6;
+  }
+
+  &__main-grid {
+    row-gap: 0;
+    place-items: center;
+  }
+
+  &__secondary-grid {
+    row-gap: 0;
+  }
+
+  &__heading-item {
+    text-align: center;
+    place-self: center;
+  }
+
+  &__subheading-item {
+    padding-top: $spacing_2_4;
+    max-width: 34.3rem;
+    @media screen and (min-width: $screen-md) {
+      max-width: 36.8rem;
+    }
+  }
+
+  &__form-item {
+    margin-top: $spacing_2_4;
+  }
+
+  &__mascot-item {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    img {
+      width: 25rem;
+      @media screen and (min-width: $screen_lg) {
+        width: 40rem;
+      }
+    }
+  }
+}

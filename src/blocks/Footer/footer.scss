@@ -1,0 +1,71 @@
+@import "usupport-components-library/styles";
+
+.footer {
+  background-color: $color_green_f4f7fe;
+  padding-top: $spacing_4_8;
+
+  @media screen and (min-width: $screen-lg) {
+    padding-top: $spacing_6_4;
+  }
+
+  &__logo {
+    padding-bottom: $spacing_3_2;
+    cursor: pointer;
+  }
+
+  &__icon {
+    cursor: pointer;
+    &:not(:last-child) {
+      margin-right: $spacing_2_4;
+    }
+  }
+
+  &__list-item {
+    padding-top: $spacing_4_0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @media screen and (min-width: $screen-lg) {
+      padding-top: 0;
+      justify-self: end;
+
+      &:nth-child(2),
+      &:nth-child(3) {
+        justify-self: center;
+      }
+    }
+
+    .list__item {
+      padding-bottom: $spacing_1_6;
+      text-align: left;
+
+      @media screen and (min-width: $screen-md) {
+        text-align: center;
+      }
+    }
+  }
+
+  &__contact-us {
+    align-self: center;
+    padding-bottom: $spacing_1_6;
+
+    @media screen and (min-width: $screen-lg) {
+      align-self: flex-start;
+    }
+  }
+
+  .icon-with-text {
+    cursor: pointer;
+    text-align: left;
+
+    &:not(:first-child) {
+      padding-top: $spacing_1_6;
+    }
+  }
+
+  &__copy-right-item {
+    padding: $spacing_4_0 0;
+  }
+}

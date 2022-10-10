@@ -1,5 +1,5 @@
 import React from "react";
-import { Block, Grid, GridItem } from "/USupport-components-library/src";
+import { Block, Grid, GridItem } from "usupport-components-library/src";
 
 import "./find-yourself.scss";
 
@@ -12,7 +12,7 @@ import "./find-yourself.scss";
  */
 export const FindYourself = () => {
   return (
-    <Block classes="find-yourself">
+    <Block classes="find-yourself" animation="fade-up">
       <Grid classes="find-yourself__grid">
         <GridItem md={8} lg={12} classes="find-yourself__heading-item">
           <h2>We help you find yourself</h2>

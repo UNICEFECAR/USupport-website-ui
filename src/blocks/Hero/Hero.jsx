@@ -4,11 +4,13 @@ import {
   Grid,
   GridItem,
   StoreButton,
-} from "/USupport-components-library/src";
+  RadialCircle,
+  Animation,
+} from "usupport-components-library/src";
 
 import "./hero.scss";
 
-import MascotOrange from "../../assets/MascotOrange.png";
+import MascotAnimation from "./assets/Mascot.json";
 
 /**
  * Hero
@@ -17,10 +19,9 @@ import MascotOrange from "../../assets/MascotOrange.png";
  *
  * @return {jsx}
  */
-
 export const Hero = () => {
   return (
-    <Block classes="hero">
+    <Block classes="hero" animation="fade-right">
       <Grid classes="hero__main-grid">
         <GridItem md={5} lg={6}>
           <Grid classes="hero__content-grid">
@@ -46,11 +47,11 @@ export const Hero = () => {
           </Grid>
         </GridItem>
         <GridItem md={3} lg={6} classes="hero__mascot-item">
-          <img src={MascotOrange} />
+          <Animation json={MascotAnimation} />
         </GridItem>
       </Grid>
-      <div className="radial-gradient-purple" />
-      <div className="radial-gradient-blue" />
+      <RadialCircle color="purple" />
+      <RadialCircle color="blue" />
     </Block>
   );
 };
