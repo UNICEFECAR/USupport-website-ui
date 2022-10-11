@@ -6,7 +6,7 @@ import {
   GridItem,
   CollapsibleFAQ,
   Button,
-} from "usupport-components-library/src";
+} from "@USupport-components-library/src";
 import PropTypes from "prop-types";
 
 import "./faq.scss";
