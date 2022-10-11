@@ -6,7 +6,7 @@ import {
   StoreButton,
   RadialCircle,
   Animation,
-} from "usupport-components-library/src";
+} from "@USupport-components-library/src";
 
 import "./hero.scss";
 
