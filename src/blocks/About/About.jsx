@@ -5,7 +5,7 @@ import {
   Grid,
   GridItem,
   RadialCircle,
-} from "usupport-components-library/src";
+} from "@USupport-components-library/src";
 
 import "./about.scss";
 

@@ -1,6 +1,11 @@
 import React from "react";
-import { Block, Grid, GridItem, Button } from "usupport-components-library/src";
-import { useWindowDimensions } from "usupport-components-library/utils";
+import {
+  Block,
+  Grid,
+  GridItem,
+  Button,
+} from "@USupport-components-library/src";
+import { useWindowDimensions } from "@USupport-components-library/utils";
 
 import "./question.scss";
 
