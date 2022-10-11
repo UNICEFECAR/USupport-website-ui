@@ -4,7 +4,7 @@ import {
   Grid,
   GridItem,
   StoreButton,
-} from "usupport-components-library/src";
+} from "@USupport-components-library/src";
 
 import "./download-app.scss";
 

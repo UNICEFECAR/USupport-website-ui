@@ -16,7 +16,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.1",
-    "usupport-components-library": "^0.3.0"
+    "usupport-components-library": "file:USupport-components-library"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
