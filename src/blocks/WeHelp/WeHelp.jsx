@@ -1,5 +1,5 @@
 import React from "react";
-import { Block, Grid, GridItem, Box } from "/USupport-components-library/src";
+import { Block, Grid, GridItem, Box } from "@USupport-components-library/src";
 
 import "./we-help.scss";
 

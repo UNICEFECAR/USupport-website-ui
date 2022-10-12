@@ -4,8 +4,8 @@ import {
   Grid,
   GridItem,
   Button,
-} from "/USupport-components-library/src";
-import { useWindowDimensions } from "/USupport-components-library/utils";
+} from "@USupport-components-library/src";
+import { useWindowDimensions } from "@USupport-components-library/utils";
 
 import "./question.scss";
 

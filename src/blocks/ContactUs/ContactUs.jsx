@@ -5,8 +5,8 @@ import {
   Grid,
   GridItem,
   RadialCircle,
-} from "/USupport-components-library/src";
-import { useWindowDimensions } from "/USupport-components-library/src/utils";
+} from "@USupport-components-library/src";
+import { useWindowDimensions } from "@USupport-components-library/src/utils";
 
 import "./contact-us.scss";
 

@@ -5,7 +5,7 @@ import {
   Grid,
   GridItem,
   CardNumber,
-} from "/USupport-components-library/src";
+} from "@USupport-components-library/src";
 
 import "./how-it-works.scss";
 

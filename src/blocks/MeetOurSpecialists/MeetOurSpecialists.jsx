@@ -4,7 +4,7 @@ import {
   Grid,
   GridItem,
   CardSpecialistSmall,
-} from "/USupport-components-library/src";
+} from "@USupport-components-library/src";
 
 import "./meet-our-specialists.scss";
 
