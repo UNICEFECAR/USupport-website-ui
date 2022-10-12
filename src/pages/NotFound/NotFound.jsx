@@ -1,7 +1,7 @@
 import React from "react";
 import { Page } from "../../blocks/Page/Page";
-
-import "./not-found.scss";
+import { NotFound as NotFoundBlock } from "@USupport-components-library/src";
+import { Question } from "../../blocks/Question/Question";
 
 /**
  * NotFound
@@ -13,7 +13,8 @@ import "./not-found.scss";
 export const NotFound = () => {
   return (
     <Page>
-      <h1>Work in progress...</h1>
+      <NotFoundBlock />
+      <Question />
     </Page>
   );
 };
