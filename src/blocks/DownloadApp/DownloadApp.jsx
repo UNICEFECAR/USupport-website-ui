@@ -9,6 +9,7 @@ import {
 import "./download-app.scss";
 
 import imageSrc from "./assets/StartScreen.png";
+import { useTranslation } from "react-i18next";
 
 /**
  * DownloadApp
@@ -18,16 +19,17 @@ import imageSrc from "./assets/StartScreen.png";
  * @return {jsx}
  */
 export const DownloadApp = () => {
+  const { t } = useTranslation("download-app");
   return (
     <Block classes="download-app" animation="fade-up">
       <Grid>
         <GridItem md={5} lg={6} classes="download-app__content-item">
           <Grid classes="download-app__content-grid">
             <GridItem md={8} lg={12} classes="download-app__heading-item">
-              <h3>Download our mobile app</h3>
+              <h3>{t("heading")}</h3>
             </GridItem>
             <GridItem md={8} lg={12} classes="download-app__sub-heading">
-              <p className="text">Now available for iOS and Android</p>
+              <p className="text">{t("paragraph")}</p>
             </GridItem>
             <GridItem md={4} lg={6} classes="download-app__buttons-item">
               <StoreButton size="lg" store="google-play" />

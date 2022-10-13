@@ -10,6 +10,7 @@ import {
 } from "@USupport-components-library/src";
 
 import "./how-it-works.scss";
+import { useTranslation } from "react-i18next";
 
 /**
  * HowItWorks
@@ -19,6 +20,7 @@ import "./how-it-works.scss";
  * @returns {JSX.Element}
  */
 export const HowItWorks = () => {
+  const { t } = useTranslation("how-it-works");
   const questions = [
     {
       heading: "Do I need to identify my mental problems by myself?",
@@ -44,7 +46,7 @@ export const HowItWorks = () => {
       <Block animation="fade-right">
         <Grid>
           <GridItem md={8} lg={12}>
-            <h2>Frequently asked questions</h2>
+            <h2>{t("heading")}</h2>
           </GridItem>
           <GridItem md={8} lg={12} classes="page__how-it-works__faq-item">
             <CollapsibleFAQ questions={questions} />

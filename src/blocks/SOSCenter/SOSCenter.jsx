@@ -6,6 +6,7 @@ import { Grid } from "@USupport-components-library/src";
 import { GridItem } from "@USupport-components-library/src";
 
 import "./sos-center.scss";
+import { useTranslation } from "react-i18next";
 
 /**
  * SOSCenter
@@ -15,20 +16,17 @@ import "./sos-center.scss";
  * @return {jsx}
  */
 export const SOSCenter = ({ contacts }) => {
+  const { t } = useTranslation("sos-center");
   return (
     <Block classes="soscenter" animation="fade-right">
       <Grid classes="soscenter__grid">
         <GridItem xs={4} md={8} lg={12} classes="soscenter__heading-item">
-          <h2>SOS center</h2>
+          <h2>{t("heading")}</h2>
         </GridItem>
         <GridItem xs={4} md={8} lg={12} classes="soscenter__text-item">
           <Box classes="soscenter__box">
-            <h3 className="soscenter__box-heading">Need special help?</h3>
-            <p className="text soscenter__box-paragraph">
-              Do you feel like you can’t wait for the registration process and
-              you need special and immediate help? Here are some of our hotlines
-              to talk to our specialists. They are available 24/7 to help.
-            </p>
+            <h3 className="soscenter__box-heading">{t("paragraph_1")}</h3>
+            <p className="text soscenter__box-paragraph">{t("paragraph_2")}</p>
 
             {contacts.map((contact, index) => {
               return (

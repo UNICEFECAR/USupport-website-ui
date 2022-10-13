@@ -11,6 +11,7 @@ import { useWindowDimensions } from "@USupport-components-library/src/utils";
 import "./contact-us.scss";
 
 import mascot from "../../assets/MascotBlue.png";
+import { useTranslation } from "react-i18next";
 
 /**
  * ContactUs
@@ -20,6 +21,7 @@ import mascot from "../../assets/MascotBlue.png";
  * @return {jsx}
  */
 export const ContactUs = () => {
+  const { t } = useTranslation("contact-us");
   const { width } = useWindowDimensions();
   const showMascot = width >= 768;
 
@@ -27,12 +29,12 @@ export const ContactUs = () => {
     <Block classes="contact-us" animation="fade-down">
       <Grid classes="contact-us__main-grid">
         <GridItem md={8} lg={12} classes="contact-us__heading-item">
-          <h2>Contact Us</h2>
+          <h2>{t("heading_1")}</h2>
         </GridItem>
         <GridItem md={8} lg={12}>
           <Grid classes="contact-us__secondary-grid">
             <GridItem md={8} classes="contact-us__subheading-item">
-              <h4>Have a question? Don’t hesitate to contact us.</h4>
+              <h4>{t("heading_2")}</h4>
             </GridItem>
             <GridItem classes="contact-us__form-item" md={4} lg={8}>
               <ContactForm />

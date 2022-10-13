@@ -7,6 +7,7 @@ import {
 } from "@USupport-components-library/src";
 
 import "./meet-our-specialists.scss";
+import { useTranslation } from "react-i18next";
 
 // Placeholder data
 const specialistData = [
@@ -26,18 +27,17 @@ const specialistData = [
  * @return {jsx}
  */
 export const MeetOurSpecialists = () => {
-  const [specialists, setSpecialists] = useState(specialistData);
+  const { t } = useTranslation("meet-our-specialists");
+  const [specialists] = useState(specialistData);
+
   return (
     <Block classes="meet-our-specialists">
       <Grid classes="meet-our-specialists__main-grid">
         <GridItem md={8} lg={12}>
-          <h2>Meet our specialists</h2>
+          <h2>{t("heading")}</h2>
         </GridItem>
         <GridItem md={8} lg={12} classes="meet-our-specialists__subheading">
-          <p className="text">
-            We are helping you learn more about the condition you are going
-            through and how to deal with the help of our specialists.
-          </p>
+          <p className="text">{t("paragraph")}</p>
         </GridItem>
 
         <GridItem
