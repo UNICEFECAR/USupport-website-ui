@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Block,
   ContactForm,
@@ -12,7 +12,7 @@ import "./contact-us.scss";
 
 import mascot from "../../assets/MascotBlue.png";
 
-import emailService from "../../services/emailService";
+import email from "../../services/email";
 
 /**
  * ContactUs
@@ -25,11 +25,11 @@ export const ContactUs = () => {
   const { width } = useWindowDimensions();
   const showMascot = width >= 768;
 
-  const onServiceCall = async (data) => {
-    return await emailService.send({
-      subject: "New query",
-      plainText: `Hello,\n\nYou have a new inquiry:\n\nEmail: ${data.email}\nReason: ${data.reason.label}\nmessage: ${data.message}\n\nRegards,\n IT department`,
-      html: `<h3>Hello,</h3><p>You have a new inquiry</p><p>Email: ${data.email}</p><p>Reason: ${data.reason.label}<p><p>message: ${data.message}</p><p>Regards,</p><p>IT department<p>`,
+  const handleSendEmail = async (data) => {
+    return await email.sendAdmin({
+      subject: "New message from Contact Us",
+      title: "New message",
+      text: `Hello,<br></br>You have a new message from user:<br></br>Email: ${data.email}<br></br>Reason: ${data.reason.label}<br></br>message: ${data.message}<br></br>Best Regards,<br></br>USupport Team`,
     });
   };
 
@@ -45,7 +45,7 @@ export const ContactUs = () => {
               <h4>Have a question? Don’t hesitate to contact us.</h4>
             </GridItem>
             <GridItem classes="contact-us__form-item" md={4} lg={8}>
-              <ContactForm onServiceCall={onServiceCall} />
+              <ContactForm sendEmail={handleSendEmail} />
             </GridItem>
             {showMascot && (
               <GridItem md={4} lg={4} classes="contact-us__mascot-item">

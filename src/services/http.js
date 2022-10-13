@@ -1,5 +1,5 @@
 import axios from "axios";
-import { log } from "./logService";
+import { log } from "./log";
 
 // handle unexpected errors received from the api
 axios.interceptors.response.use(null, (error) => {
