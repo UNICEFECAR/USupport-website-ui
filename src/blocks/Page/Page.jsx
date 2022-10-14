@@ -33,11 +33,6 @@ export const Page = ({ additionalPadding = true, classes, children }) => {
       flagName: "kazakhstan",
       languages: ["Kazakh", "Russian", "English"],
     },
-    {
-      name: "Bulgaria",
-      flagName: "bulgaria",
-      languages: ["Bulgarian", "English"],
-    },
     { name: "Germany", flagName: "germany", languages: ["German", "English"] },
     {
       name: "Switzerland",
