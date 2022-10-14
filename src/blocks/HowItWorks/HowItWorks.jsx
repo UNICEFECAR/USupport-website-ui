@@ -40,7 +40,7 @@ export const HowItWorks = ({ summary = false }) => {
         <GridItem lg={3}>
           <CardNumber
             number="2"
-            iconName="consultation"
+            iconName="coaching"
             text="Choose a kind of therapy"
           />
         </GridItem>
