@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Block,
   ContactForm,
@@ -13,6 +13,8 @@ import "./contact-us.scss";
 import mascot from "../../assets/MascotBlue.png";
 import { useTranslation } from "react-i18next";
 
+import email from "../../services/email";
+
 /**
  * ContactUs
  *
@@ -24,6 +26,14 @@ export const ContactUs = () => {
   const { t } = useTranslation("contact-us");
   const { width } = useWindowDimensions();
   const showMascot = width >= 768;
+
+  const handleSendEmail = async (data) => {
+    return await email.sendAdmin({
+      subject: "New message from Contact Us",
+      title: "New message",
+      text: `Hello,<br></br>You have a new message from user:<br></br>Email: ${data.email}<br></br>Reason: ${data.reason.label}<br></br>message: ${data.message}<br></br>Best Regards,<br></br>USupport Team`,
+    });
+  };
 
   return (
     <Block classes="contact-us" animation="fade-down">
@@ -37,7 +47,7 @@ export const ContactUs = () => {
               <h4>{t("heading_2")}</h4>
             </GridItem>
             <GridItem classes="contact-us__form-item" md={4} lg={8}>
-              <ContactForm />
+              <ContactForm sendEmail={handleSendEmail} />
             </GridItem>
             {showMascot && (
               <GridItem md={4} lg={4} classes="contact-us__mascot-item">

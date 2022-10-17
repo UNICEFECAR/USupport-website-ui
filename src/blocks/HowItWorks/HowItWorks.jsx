@@ -34,7 +34,7 @@ export const HowItWorks = ({ summary = false }) => {
           <CardNumber number="1" iconName="community" text={t("card_1")} />
         </GridItem>
         <GridItem lg={3}>
-          <CardNumber number="2" iconName="consultation" text={t("card_2")} />
+          <CardNumber number="2" iconName="coaching" text={t("card_2")} />
         </GridItem>
         <GridItem lg={3}>
           <CardNumber number="3" iconName="therapy" text={t("card_3")} />
