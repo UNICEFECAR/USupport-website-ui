@@ -16,8 +16,11 @@ import {
   faq,
 } from "./blocks/locales.js";
 
+import { howItWorksPage } from "./pages/locales.js";
+
 const resources = {
   en: {
+    // Blocks
     about: about.en,
     "contact-us": contactUs.en,
     "download-app": downloadApp.en,
@@ -30,6 +33,9 @@ const resources = {
     question: question.en,
     "sos-center": sosCenter.en,
     "we-help": weHelp.en,
+
+    // Pages
+    "how-it-works-page": howItWorksPage.en,
   },
 };
 

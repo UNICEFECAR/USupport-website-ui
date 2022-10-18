@@ -20,7 +20,7 @@ import { useTranslation } from "react-i18next";
  * @returns {JSX.Element}
  */
 export const HowItWorks = () => {
-  const { t } = useTranslation("how-it-works");
+  const { t } = useTranslation("how-it-works-page");
   const questions = [
     {
       heading: "Do I need to identify my mental problems by myself?",
