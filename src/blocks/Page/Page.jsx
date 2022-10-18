@@ -81,6 +81,7 @@ export const Page = ({ additionalPadding = true, classes, children }) => {
       <EmergencyButton
         classes="page__emergency-button"
         onClick={() => navigateTo("/sos-center")}
+        label={t("emergency_button")}
       />
       <Footer lists={footerLists} />
     </>
