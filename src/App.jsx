@@ -6,6 +6,8 @@ import { ContactUs } from "./pages/ContactUs";
 import { HowItWorks } from "./pages/HowItWorks";
 import { NotFound } from "./pages/NotFound";
 import { AboutUs } from "./pages/AboutUs/AboutUs";
+import { InformationalPortal } from "./pages/InformationalPortal/InformationalPortal";
+import { ArticleInformation } from "./pages/ArticleInformation/ArticleInformation";
 
 import "./App.scss";
 
@@ -33,6 +35,8 @@ function App() {
         <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/informational-portal" element={<InformationalPortal />} />
+        <Route path="/article/:id" element={<ArticleInformation />} />
         <Route path="/sos-center" element={<SOSCenter contacts={contacts} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
