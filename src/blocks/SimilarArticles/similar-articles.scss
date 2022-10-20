@@ -1,0 +1,14 @@
+@import "@USupport-components-library/styles";
+
+.similar-articles {
+  padding-top: $spacing_4_0;
+  padding-bottom: $spacing_5_6;
+
+  &__main-grid {
+    grid-gap: $spacing_2_4;
+  }
+
+  &__article-card {
+    text-align: left;
+  }
+}
