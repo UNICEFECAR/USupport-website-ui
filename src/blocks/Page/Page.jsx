@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Navbar, EmergencyButton } from "@USupport-components-library/src";
+import { Navbar, CircleIconButton } from "@USupport-components-library/src";
 import { Footer } from "../Footer/Footer";
 import classNames from "classnames";
 
@@ -81,7 +81,7 @@ export const Page = ({ additionalPadding = true, classes, children }) => {
       >
         {children}
       </div>
-      <EmergencyButton
+      <CircleIconButton
         classes="page__emergency-button"
         onClick={() => navigateTo("/sos-center")}
       />
