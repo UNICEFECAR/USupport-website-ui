@@ -1,0 +1,4 @@
+{
+  "CMS_HOST": "http://localhost:1337",
+  "CMS_API_URL": "http://localhost:1337/api"
+}
