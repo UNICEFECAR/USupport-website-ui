@@ -1,0 +1,54 @@
+@import "@USupport-components-library/styles";
+
+.articles {
+  padding-bottom: $spacing_3_2;
+  padding-top: $spacing_5_6;
+  text-align: left;
+
+  &__main-grid {
+    justify-items: center;
+  }
+
+  &__most-important-item {
+    padding-top: $spacing_2_2;
+  }
+
+  &__age-groups-item {
+    padding-top: $spacing_2_8;
+
+    @media screen and (min-width: $screen-lg) {
+      justify-self: flex-start;
+      padding-top: $spacing_15_3;
+    }
+  }
+
+  &__search-item {
+    padding-top: $spacing_2_4;
+
+    @media screen and (min-width: $screen-lg) {
+      padding-top: $spacing_15_3;
+    }
+  }
+
+  &__categories-item {
+    padding-top: $spacing_3_0;
+
+    @media screen and (min-width: $screen-lg) {
+      padding-top: $spacing_5_4;
+    }
+  }
+
+  &__articles-item {
+    padding-top: $spacing_2_4;
+
+    @media screen and (min-width: $screen-lg) {
+      padding-top: $spacing_2_4;
+    }
+  }
+
+  &__loading-item {
+    display: flex;
+    justify-content: center;
+    padding-top: $spacing_4_0;
+  }
+}
