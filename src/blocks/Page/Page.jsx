@@ -20,8 +20,7 @@ export const Page = ({ additionalPadding = true, classes, children }) => {
     { name: "Home", url: "/", exact: true },
     { name: "How it works?", url: "/how-it-works" },
     { name: "About Us", url: "/about-us" },
-    // TODO: bring it back once the informaiton portal is ready
-    // { name: "Information portal", url: "/information-portal" },
+    { name: "Information portal", url: "/informational-portal" },
     { name: "Contact Us", url: "/contact-us" },
   ];
 
