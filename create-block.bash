@@ -30,6 +30,21 @@ if [ -z "$block_description" ]; then
     exit 1
 fi
 
+# Read if the block requires locale files
+echo -n "Does the block require locale files? (y/n): "
+read block_locale
+
+if [ -z "$block_locale" ]; then
+    echo "Block locale is required"
+    exit 1
+fi
+
+# Check whether the block_locale is y or n
+if [ "$block_locale" != "y" ] && [ "$block_locale" != "n" ]; then
+    echo "Block locale must be y or n"
+    exit 1
+fi
+
 # Check if the block directory already exists
 if [ -d "src/blocks/$block_name" ]; then
     echo "Block already exists. Please choose a different block name."
@@ -50,6 +65,19 @@ echo "export * from './$block_name.jsx';" >> "src/blocks/$block_name/index.js"
 
 # Add the block to the block group index file
 echo "export * from './$block_name';" >> "src/blocks/index.js"
+
+# Create the locale file if block_locales is y
+if [ "$block_locale" == "y" ]; then
+    mkdir "src/blocks/$block_name/locales"
+
+    touch "src/blocks/$block_name/locales/en.json"
+    echo "{}" >> "src/blocks/$block_name/locales/en.json"
+
+    touch "src/blocks/$block_name/locales.js"
+    echo "export * as en from './locales/en.json';" >> "src/blocks/$block_name/locales.js"
+
+    echo "export * as $block_name from './$block_name/locales.js';" >> "src/blocks/locales.js"
+fi
 
 # Add the block to the main block file
 echo "import React from 'react';
