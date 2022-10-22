@@ -53,7 +53,7 @@ echo "export * from './$block_name';" >> "src/blocks/index.js"
 
 # Add the block to the main block file
 echo "import React from 'react';
-import { Block } from '/USupport-components-library/src';
+import { Block } from '@USupport-components-library/src';
 
 import './$block_name_kebab.scss';
 
@@ -89,7 +89,7 @@ export const Default = Template.bind({});
 Default.args = {};" >> "src/blocks/$block_name/$block_name.stories.jsx"
 
 # Add the theme to the block styles file
-echo "@import '/USupport-components-library/styles';
+echo "@import '@USupport-components-library/styles';
 
 .$block_name_kebab{
 }" >> "src/blocks/$block_name/$block_name_kebab.scss"
