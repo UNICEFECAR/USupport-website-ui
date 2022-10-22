@@ -5,6 +5,7 @@ import { Footer } from "../Footer/Footer";
 import classNames from "classnames";
 
 import "./page.scss";
+import { useTranslation } from "react-i18next";
 
 /**
  * Page
@@ -15,14 +16,14 @@ import "./page.scss";
  */
 export const Page = ({ additionalPadding = true, classes, children }) => {
   const navigateTo = useNavigate();
-
+  const { t } = useTranslation("page");
   const pages = [
-    { name: "Home", url: "/", exact: true },
-    { name: "How it works?", url: "/how-it-works" },
-    { name: "About Us", url: "/about-us" },
+    { name: t("page_1"), url: "/", exact: true },
+    { name: t("page_2"), url: "/how-it-works" },
+    { name: t("page_3"), url: "/about-us" },
     // TODO: bring it back once the informaiton portal is ready
     // { name: "Information portal", url: "/information-portal" },
-    { name: "Contact Us", url: "/contact-us" },
+    { name: t("page_4"), url: "/contact-us" },
   ];
 
   // TODO: add the real countries & languages
@@ -31,11 +32,6 @@ export const Page = ({ additionalPadding = true, classes, children }) => {
       name: "Kazakhstan",
       flagName: "kazakhstan",
       languages: ["Kazakh", "Russian", "English"],
-    },
-    {
-      name: "Bulgaria",
-      flagName: "bulgaria",
-      languages: ["Bulgarian", "English"],
     },
     { name: "Germany", flagName: "germany", languages: ["German", "English"] },
     {
@@ -47,14 +43,14 @@ export const Page = ({ additionalPadding = true, classes, children }) => {
 
   const footerLists = {
     list1: [
-      { name: "About Us", url: "/about-us" },
-      { name: "Information portal", url: "/information-portal" },
-      { name: "How it works?", url: "/how-it-works" },
+      { name: t("footer_1"), url: "/about-us" },
+      { name: t("footer_2"), url: "/information-portal" },
+      { name: t("footer_3"), url: "/how-it-works" },
     ],
     list2: [
-      { name: "Terms of Service", url: "/terms-of-service", exact: true },
-      { name: "Privacy Policy", url: "/privacy-policy" },
-      { name: "Cookie Settings", url: "/cookie-settings" },
+      { name: t("footer_4"), url: "/terms-of-service", exact: true },
+      { name: t("footer_5"), url: "/privacy-policy" },
+      { name: t("footer_6"), url: "/cookie-settings" },
     ],
     list3: [
       { value: "+359 888 888 888", iconName: "call-filled", onClick: "phone" },
@@ -86,7 +82,7 @@ export const Page = ({ additionalPadding = true, classes, children }) => {
         iconName="phone-emergency"
         classes="page__emergency-button"
         onClick={() => navigateTo("/sos-center")}
-        label="SOS Center"
+        label={t("emergency_button")}
       />
       <Footer lists={footerLists} />
     </>

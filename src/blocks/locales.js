@@ -1,0 +1,13 @@
+export * as about from "./About/locales.js";
+export * as contactUs from "./ContactUs/locales.js";
+export * as downloadApp from "./DownloadApp/locales.js";
+export * as faq from "./FAQ/locales.js";
+export * as findYourself from "./FindYourself/locales.js";
+export * as footer from "./Footer/locales.js";
+export * as hero from "./Hero/locales.js";
+export * as howItWorks from "./HowItWorks/locales.js";
+export * as meetOurSpecialists from "./MeetOurSpecialists/locales.js";
+export * as page from "./Page/locales.js";
+export * as question from "./Question/locales.js";
+export * as sosCenter from "./SOSCenter/locales.js";
+export * as weHelp from "./WeHelp/locales.js";

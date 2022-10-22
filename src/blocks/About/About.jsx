@@ -10,6 +10,7 @@ import {
 import "./about.scss";
 
 import mascot from "../../assets/MascotBlueClipped.png";
+import { useTranslation } from "react-i18next";
 
 /**
  * About
@@ -19,19 +20,16 @@ import mascot from "../../assets/MascotBlueClipped.png";
  * @returns {JSX.Element}
  */
 export const About = () => {
+  const { t } = useTranslation("about");
   return (
     <Block classes={["about"]} animation="fade-right">
       <Grid classes={["about__main-grid"]}>
         <GridItem md={8} lg={12}>
-          <h2 classes="about__heading">About USupport</h2>
+          <h2 classes="about__heading">{t("heading")}</h2>
         </GridItem>
         <GridItem md={8} lg={7} classes="about__description-item">
           <p className="paragraph about__description-item__paragraph">
-            Do you feel like something is happening to you and you can't
-            pinpoint exactly what? We are helping you learn more about the
-            condition you are going through and how to deal with it with the
-            help of the free resources that the platform provides, as well as
-            with the help of our specialists.
+            {t("paragraph")}
           </p>
         </GridItem>
 
@@ -41,7 +39,7 @@ export const About = () => {
               <CardIconAndLabel
                 iconName="self-care"
                 size="lg"
-                label="Self care"
+                label={t("card_text_1")}
               />
             </GridItem>
 
@@ -49,12 +47,16 @@ export const About = () => {
               <CardIconAndLabel
                 iconName="community"
                 size="sm"
-                label="Peer support"
+                label={t("card_text_2")}
               />
             </GridItem>
 
             <GridItem md={8} lg={12} classes="about__icon-item third">
-              <CardIconAndLabel iconName="therapy" size="md" label="Therapy" />
+              <CardIconAndLabel
+                iconName="therapy"
+                size="md"
+                label={t("card_text_3")}
+              />
             </GridItem>
           </Grid>
         </GridItem>
