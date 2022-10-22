@@ -22,5 +22,9 @@
   "footer_5": "Privacy Policy",
   "footer_6": "Cookie Settings",
 
-  "emergency_button": "SOS Center"
+  "emergency_button": "SOS Center",
+
+  "button_text": "Go to app",
+  "dropdown_text": "Country & Language",
+  "contact_us": "Contact Us"
 }

@@ -68,7 +68,12 @@ export const Page = ({ additionalPadding = true, classes, children }) => {
 
   return (
     <>
-      <Navbar pages={pages} countries={countries} />
+      <Navbar
+        pages={pages}
+        countries={countries}
+        dropdownText={t("dropdown_text")}
+        buttonText={t("button_text")}
+      />
       <div
         className={[
           "page",
@@ -84,7 +89,7 @@ export const Page = ({ additionalPadding = true, classes, children }) => {
         onClick={() => navigateTo("/sos-center")}
         label={t("emergency_button")}
       />
-      <Footer lists={footerLists} />
+      <Footer lists={footerLists} contactUsText={t("contact_us")} />
     </>
   );
 };

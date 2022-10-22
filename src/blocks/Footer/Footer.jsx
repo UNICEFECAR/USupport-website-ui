@@ -20,7 +20,7 @@ import { logo } from "@USupport-components-library/assets";
  *
  * @return {jsx}
  */
-export const Footer = ({ lists }) => {
+export const Footer = ({ lists, contactUsText }) => {
   const navigateTo = useNavigate();
   const currentYear = new Date().getFullYear();
 
@@ -125,7 +125,7 @@ export const Footer = ({ lists }) => {
           <List items={list2} />
         </GridItem>
         <GridItem classes="footer__list-item" xs={4} md={4} lg={4}>
-          <h4 className="footer__contact-us">Contact Us</h4>
+          <h4 className="footer__contact-us">{contactUsText}</h4>
           <List items={list3} />
         </GridItem>
         <GridItem classes="footer__copy-right-item" xs={4} md={8} lg={12}>

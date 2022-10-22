@@ -23,7 +23,7 @@ export const HowItWorks = ({ summary = false }) => {
     <Block classes="how-it-works" animation="fade-left">
       <Grid>
         <GridItem md={8} lg={12}>
-          <h2>How it works</h2>
+          <h2>{t("heading")}</h2>
         </GridItem>
         <GridItem md={8} lg={12} classes="how-it-works__text-item">
           <p className="paragraph">

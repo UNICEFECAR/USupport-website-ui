@@ -18,6 +18,7 @@ export const NotFound = () => {
       <NotFoundBlock
         headingText={t("heading")}
         subheadingText={t("subheading")}
+        buttonText={t("button")}
       />
       <Question />
     </Page>

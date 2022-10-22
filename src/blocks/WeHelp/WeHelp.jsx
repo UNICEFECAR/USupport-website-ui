@@ -19,7 +19,7 @@ export const WeHelp = () => {
     <Block classes="we-help">
       <Grid>
         <GridItem md={8} lg={12} classes="we-help__heading">
-          <h2>About Us</h2>
+          <h2>{t("heading_1")}</h2>
         </GridItem>
         <GridItem md={8} lg={12}>
           <Box borderSize="lg" classes="we-help__content-box">
@@ -29,7 +29,7 @@ export const WeHelp = () => {
                 lg={6}
                 classes="we-help__secondary-grid__descriptions-item"
               >
-                <h3>{t("heading")}</h3>
+                <h3>{t("heading_2")}</h3>
 
                 <p className="text we-help__secondary-grid__text-two">
                   {t("paragraph_1")}
