@@ -15,7 +15,28 @@ import AOS from "aos";
 
 function App() {
   // TODO: add the country specific information about the SOS center
-  const contacts = ["+7 777 777 77 77", "+7 777 777 77 77", "+7 777 777 77 77"];
+  const contacts = [
+    {
+      title:
+        "Do you feel like you can’t wait for the registration process and you need special and immediate help? Here are some of our hotlines to talk to our specialists. They are available 24/7 to help.",
+      phone: "+7 888 888 888",
+    },
+    {
+      title:
+        "Do you feel like you can’t wait for the registration process and you need special and immediate help? Here are some of our hotlines to talk to our specialists. They are available 24/7 to help.",
+      link: "https://staging.7digit.io",
+    },
+    {
+      title:
+        "Do you feel like you can’t wait for the registration process and you need special and immediate help? Here are some of our hotlines to talk to our specialists. They are available 24/7 to help.",
+      link: "https://staging.7digit.io",
+    },
+    {
+      title:
+        "Do you feel like you can’t wait for the registration process and you need special and immediate help? Here are some of our hotlines to talk to our specialists. They are available 24/7 to help.",
+      link: "https://staging.7digit.io",
+    },
+  ];
 
   AOS.init({
     offset: 10,
