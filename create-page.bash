@@ -90,7 +90,7 @@ Default.args = {}; " >> "src/pages/$page_name/$page_name.stories.jsx"
 
 # Add the theme to the page styles file 
 echo "/* $page_name styles */
-@import '/USupport-components-library/styles';
+@import '@USupport-components-library/styles';
 
 .page__$page_name_kebab{
 }
