@@ -30,6 +30,21 @@ if [ -z "$page_description" ]; then
     exit 1
 fi
 
+# Read if the page requires locale files
+echo -n "Does the page require locale files? (y/n): "
+read page_locale
+
+if [ -z "$page_locale" ]; then
+    echo "Page locale is required"
+    exit 1
+fi
+
+# Check whether the page_locale is y or n
+if [ "$page_locale" != "y" ] && [ "$page_locale" != "n" ]; then
+    echo "Page locale must be y or n"
+    exit 1
+fi
+
 # Check if the page directory already exists
 if [ -d "src/pages/$page_name" ]; then
     echo "Page already exists. Please choose a different page name."
@@ -50,6 +65,19 @@ echo "export * from './$page_name.jsx';" >> "src/pages/$page_name/index.js"
 
 # Add the page to the page group index file
 echo "export * from './$page_name';" >> "src/pages/index.js"
+
+# Create the page locale files if page_locale is y
+if [ "$page_locale" == "y" ]; then
+    mkdir "src/pages/$page_name/locales"
+
+    touch "src/pages/$page_name/locales/en.json"
+    echo "{}" >> "src/pages/$page_name/locales/en.json"
+
+    touch "src/pages/$page_name/locales.js"
+    echo "export * as en from './locales/en.json';" >> "src/pages/$page_name/locales.js"
+
+    echo "export * as $page_name from './$page_name/locales.js';" >> "src/pages/locales.js"
+fi
 
 # Add the page to the main page file
 echo "import React from 'react';

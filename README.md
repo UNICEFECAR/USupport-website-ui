@@ -45,7 +45,7 @@ chmod +x create-block.bash
 ./create-block.bash
 ```
 
-Then, you will be prompted to provide block name and block description.
+Then, you will be prompted to provide block name, block description, and whether the block requires locale files.
 
 ## Adding a new page to the USupport Website UI
 
@@ -56,4 +56,4 @@ chmod +x create-page.bash
 ./create-page.bash
 ```
 
-Then, you will be prompted to provide page name and page description.
+Then, you will be prompted to provide page name, page description, and whether the page requires locale files.
