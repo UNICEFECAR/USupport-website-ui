@@ -1,7 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Navbar, CircleIconButton } from "@USupport-components-library/src";
-import { Footer } from "../Footer/Footer";
+import {
+  Navbar,
+  CircleIconButton,
+  Footer,
+} from "@USupport-components-library/src";
 import classNames from "classnames";
 
 import "./page.scss";
