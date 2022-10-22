@@ -36,6 +36,7 @@ export const SOSCenter = ({ contacts }) => {
                 >
                   <EmergencyCenter
                     title={contact.title}
+                    text={contact.text}
                     link={contact.link}
                     phone={contact.phone}
                     btnLabel="Contact now"

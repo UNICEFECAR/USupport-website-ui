@@ -17,23 +17,23 @@ function App() {
   // TODO: add the country specific information about the SOS center
   const contacts = [
     {
-      title:
-        "Do you feel like you can’t wait for the registration process and you need special and immediate help? Here are some of our hotlines to talk to our specialists. They are available 24/7 to help.",
+      title: "Emergency center 1",
+      text: "In this emergency center you will receive help and information about what you exactly need.",
       phone: "+7 888 888 888",
     },
     {
-      title:
-        "Do you feel like you can’t wait for the registration process and you need special and immediate help? Here are some of our hotlines to talk to our specialists. They are available 24/7 to help.",
+      title: "Emergency center 2",
+      text: "In this emergency center you will receive help and information about what you exactly need.",
       link: "https://staging.7digit.io",
     },
     {
-      title:
-        "Do you feel like you can’t wait for the registration process and you need special and immediate help? Here are some of our hotlines to talk to our specialists. They are available 24/7 to help.",
+      title: "Emergency center 3",
+      text: "In this emergency center you will receive help and information about what you exactly need.",
       link: "https://staging.7digit.io",
     },
     {
-      title:
-        "Do you feel like you can’t wait for the registration process and you need special and immediate help? Here are some of our hotlines to talk to our specialists. They are available 24/7 to help.",
+      title: "Emergency center 4",
+      text: "In this emergency center you will receive help and information about what you exactly need.",
       link: "https://staging.7digit.io",
     },
   ];
