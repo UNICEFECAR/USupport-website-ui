@@ -2,41 +2,41 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
 import {
-  about,
-  hero,
-  weHelp,
-  findYourself,
-  downloadApp,
-  howItWorks,
-  meetOurSpecialists,
-  page,
-  question,
-  sosCenter,
-  contactUs,
-  faq,
+  About,
+  Hero,
+  WeHelp,
+  FindYourself,
+  DownloadApp,
+  HowItWorks,
+  MeetOurSpecialists,
+  Page,
+  Question,
+  SosCenter,
+  ContactUs,
+  Faq,
 } from "./blocks/locales.js";
 
-import { howItWorksPage, notFoundPage } from "./pages/locales.js";
+import { HowItWorksPage, NotFoundPage } from "./pages/locales.js";
 
 const resources = {
   en: {
     // Blocks
-    about: about.en,
-    "contact-us": contactUs.en,
-    "download-app": downloadApp.en,
-    faq: faq.en,
-    "find-yourself": findYourself.en,
-    hero: hero.en,
-    "how-it-works": howItWorks.en,
-    "meet-our-specialists": meetOurSpecialists.en,
-    page: page.en,
-    question: question.en,
-    "sos-center": sosCenter.en,
-    "we-help": weHelp.en,
+    about: About.en,
+    "contact-us": ContactUs.en,
+    "download-app": DownloadApp.en,
+    faq: Faq.en,
+    "find-yourself": FindYourself.en,
+    hero: Hero.en,
+    "how-it-works": HowItWorks.en,
+    "meet-our-specialists": MeetOurSpecialists.en,
+    page: Page.en,
+    question: Question.en,
+    "sos-center": SosCenter.en,
+    "we-help": WeHelp.en,
 
     // Pages
-    "how-it-works-page": howItWorksPage.en,
-    "not-found-page": notFoundPage.en,
+    "how-it-works-page": HowItWorksPage.en,
+    "not-found-page": NotFoundPage.en,
   },
 };
 

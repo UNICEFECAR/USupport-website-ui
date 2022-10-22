@@ -1,2 +1,2 @@
-export * as howItWorksPage from "./HowItWorks/locales";
-export * as notFoundPage from "./NotFound/locales";
+export * as HowItWorksPage from "./HowItWorks/locales";
+export * as NotFoundPage from "./NotFound/locales";
