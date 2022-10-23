@@ -12,6 +12,7 @@ import PropTypes from "prop-types";
 import "./faq.scss";
 
 import Mascot from "../../assets/MascotBroken.png";
+import { useTranslation } from "react-i18next";
 
 /**
  * FAQ
@@ -21,6 +22,7 @@ import Mascot from "../../assets/MascotBroken.png";
  * @return {jsx}
  */
 export const FAQ = () => {
+  const { t } = useTranslation("faq");
   const navigateTo = useNavigate();
 
   const questions = [
@@ -46,7 +48,7 @@ export const FAQ = () => {
     <Block classes="faq" animation="fade-right">
       <Grid>
         <GridItem md={8} lg={12}>
-          <h2>Frequently asked questions</h2>
+          <h2>{t("heading")}</h2>
         </GridItem>
         <GridItem md={8} lg={12} classes="faq__content-item">
           <Grid>
@@ -59,7 +61,7 @@ export const FAQ = () => {
                   <Button
                     size="lg"
                     type="secondary"
-                    label="Learn more"
+                    label={t("button")}
                     onClick={() => {
                       navigateTo("/about-us");
                     }}

@@ -53,4 +53,11 @@
       padding-bottom: $spacing_5_0;
     }
   }
+
+  &__secondary-grid {
+    row-gap: 2rem;
+    &__item {
+      justify-self: center;
+    }
+  }
 }

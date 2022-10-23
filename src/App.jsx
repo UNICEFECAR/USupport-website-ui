@@ -6,6 +6,8 @@ import { ContactUs } from "./pages/ContactUs";
 import { HowItWorks } from "./pages/HowItWorks";
 import { NotFound } from "./pages/NotFound";
 import { AboutUs } from "./pages/AboutUs/AboutUs";
+import { InformationalPortal } from "./pages/InformationalPortal/InformationalPortal";
+import { ArticleInformation } from "./pages/ArticleInformation/ArticleInformation";
 
 import "./App.scss";
 
@@ -15,7 +17,28 @@ import AOS from "aos";
 
 function App() {
   // TODO: add the country specific information about the SOS center
-  const contacts = ["+7 777 777 77 77", "+7 777 777 77 77", "+7 777 777 77 77"];
+  const contacts = [
+    {
+      title: "Emergency center 1",
+      text: "In this emergency center you will receive help and information about what you exactly need.",
+      phone: "+7 888 888 888",
+    },
+    {
+      title: "Emergency center 2",
+      text: "In this emergency center you will receive help and information about what you exactly need.",
+      link: "https://staging.7digit.io",
+    },
+    {
+      title: "Emergency center 3",
+      text: "In this emergency center you will receive help and information about what you exactly need.",
+      link: "https://staging.7digit.io",
+    },
+    {
+      title: "Emergency center 4",
+      text: "In this emergency center you will receive help and information about what you exactly need.",
+      link: "https://staging.7digit.io",
+    },
+  ];
 
   AOS.init({
     offset: 10,
@@ -33,6 +56,8 @@ function App() {
         <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/information-portal" element={<InformationalPortal />} />
+        <Route path="/article/:id" element={<ArticleInformation />} />
         <Route path="/sos-center" element={<SOSCenter contacts={contacts} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
