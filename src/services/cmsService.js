@@ -1,5 +1,6 @@
 import http from "./http";
-import { CMS_API_URL } from "../config/config.json";
+
+const CMS_API_URL = `${import.meta.env.VITE_CMS_API_URL}`;
 
 const articlesEndpoint = CMS_API_URL + "/articles";
 const ageGroupsEndpoint = CMS_API_URL + "/age-groups";
