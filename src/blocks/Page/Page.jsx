@@ -24,9 +24,8 @@ export const Page = ({ additionalPadding = true, classes, children }) => {
     { name: t("page_1"), url: "/", exact: true },
     { name: t("page_2"), url: "/how-it-works" },
     { name: t("page_3"), url: "/about-us" },
-    // TODO: bring it back once the informaiton portal is ready
-    // { name: "Information portal", url: "/information-portal" },
-    { name: t("page_4"), url: "/contact-us" },
+    { name: t("page_4"), url: "/information-portal" },
+    { name: t("page_5"), url: "/contact-us" },
   ];
 
   // TODO: add the real countries & languages

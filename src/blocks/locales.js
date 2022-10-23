@@ -10,3 +10,5 @@ export * as Page from "./Page/locales.js";
 export * as Question from "./Question/locales.js";
 export * as SosCenter from "./SOSCenter/locales.js";
 export * as WeHelp from "./WeHelp/locales.js";
+export * as MoreArticles from "./MoreArticles/locales.js";
+export * as Articles from "./Articles/locales.js";

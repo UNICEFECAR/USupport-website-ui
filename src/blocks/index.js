@@ -8,3 +8,6 @@ export * from "./SOSCenter";
 export * from "./Page";
 export * from "./WeHelp";
 export * from "./MeetOurSpecialists";
+export * from "./InformationalPortal";
+export * from "./ArticleInformation";
+export * from "./SimilarArticles";
