@@ -11,6 +11,7 @@ import {
 import "./hero.scss";
 
 import MascotAnimation from "./assets/Mascot.json";
+import { useTranslation } from "react-i18next";
 
 /**
  * Hero
@@ -20,6 +21,7 @@ import MascotAnimation from "./assets/Mascot.json";
  * @return {jsx}
  */
 export const Hero = () => {
+  const { t } = useTranslation("hero");
   return (
     <Block classes="hero" animation="fade-right">
       <Grid classes="hero__main-grid">
@@ -27,22 +29,25 @@ export const Hero = () => {
           <Grid classes="hero__content-grid">
             <GridItem md={8} lg={12} classes="hero__heading-item">
               <h1>
-                Make your mental health <span>a priority!</span>
+                {t("heading_1")} <span>{t("heading_1_1")}</span>
               </h1>
             </GridItem>
             <GridItem md={8} lg={12} classes="hero__text-item">
-              <p className="paragraph">
-                USupport is the first platform that provides you with
-                personalized care for your mental health and personal
-                development and provides you with easy access to resources and
-                proven specialists. Start by telling your story!
-              </p>
+              <p className="paragraph">{t("paragraph")}</p>
             </GridItem>
             <GridItem md={4} lg={6} classes="hero__buttons-item">
-              <StoreButton size="lg" store="google-play" />
+              <StoreButton
+                downloadText={t("download_text")}
+                size="lg"
+                store="google-play"
+              />
             </GridItem>
             <GridItem md={4} lg={6} classes="hero__buttons-item">
-              <StoreButton size="lg" store="app-store" />
+              <StoreButton
+                downloadText={t("download_text")}
+                size="lg"
+                store="app-store"
+              />
             </GridItem>
           </Grid>
         </GridItem>

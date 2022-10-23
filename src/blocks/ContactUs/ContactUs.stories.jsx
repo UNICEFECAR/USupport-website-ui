@@ -1,14 +1,19 @@
-import React from 'react';
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 
-import { ContactUs } from './ContactUs';
+import { ContactUs } from "./ContactUs";
 
 export default {
-  title: 'Website UI/blocks/ContactUs',
+  title: "Website UI/blocks/ContactUs",
   component: ContactUs,
   argTypes: {},
 };
 
-const Template = (props) => <ContactUs {...props} />;
+const Template = (props) => (
+  <Router>
+    <ContactUs {...props} />
+  </Router>
+);
 
 export const Default = Template.bind({});
 Default.args = {};

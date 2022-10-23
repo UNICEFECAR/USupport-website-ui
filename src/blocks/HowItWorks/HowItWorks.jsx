@@ -8,6 +8,7 @@ import {
 } from "@USupport-components-library/src";
 
 import "./how-it-works.scss";
+import { useTranslation } from "react-i18next";
 
 /**
  * HowItWorks
@@ -17,42 +18,29 @@ import "./how-it-works.scss";
  * @return {jsx}
  */
 export const HowItWorks = ({ summary = false }) => {
+  const { t } = useTranslation("how-it-works");
   return (
     <Block classes="how-it-works" animation="fade-left">
       <Grid>
         <GridItem md={8} lg={12}>
-          <h2>How it works</h2>
+          <h2>{t("heading")}</h2>
         </GridItem>
         <GridItem md={8} lg={12} classes="how-it-works__text-item">
           <p className="paragraph">
-            {summary
-              ? "We provide anonymous treatment without the need of full registration."
-              : "We provide anonymously treatment without the need full registration. We provide anonymously treatment without the need full registration. We provide anonymously treatment without the need full registration. We provide anonymously treatment without the need full registration."}
+            {summary ? t("paragraph_summary") : t("paragraph_normal")}
           </p>
         </GridItem>
         <GridItem lg={3}>
-          <CardNumber
-            number="1"
-            iconName="community"
-            text="Create your account"
-          />
+          <CardNumber number="1" iconName="community" text={t("card_1")} />
         </GridItem>
         <GridItem lg={3}>
-          <CardNumber
-            number="2"
-            iconName="coaching"
-            text="Choose a kind of therapy"
-          />
+          <CardNumber number="2" iconName="coaching" text={t("card_2")} />
         </GridItem>
         <GridItem lg={3}>
-          <CardNumber number="3" iconName="therapy" text="Choose a provider" />
+          <CardNumber number="3" iconName="therapy" text={t("card_3")} />
         </GridItem>
         <GridItem lg={3}>
-          <CardNumber
-            number="4"
-            iconName="calm"
-            text="Clear your mind and get calm"
-          />
+          <CardNumber number="4" iconName="calm" text={t("card_4")} />
         </GridItem>
       </Grid>
     </Block>

@@ -1,14 +1,19 @@
-import React from 'react';
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 
-import { Page } from './Page';
+import { Page } from "./Page";
 
 export default {
-  title: 'Website UI/blocks/Page',
+  title: "Website UI/blocks/Page",
   component: Page,
   argTypes: {},
 };
 
-const Template = (props) => <Page {...props} />;
+const Template = (props) => (
+  <Router>
+    <Page {...props} />;
+  </Router>
+);
 
 export const Default = Template.bind({});
 Default.args = {};
