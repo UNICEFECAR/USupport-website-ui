@@ -1,4 +1,4 @@
-import http from "./httpService";
+import http from "./http";
 import { CMS_API_URL } from "../config/config.json";
 
 const articlesEndpoint = CMS_API_URL + "/articles";
@@ -68,9 +68,26 @@ async function getArticleById(id) {
  *
  * @returns {object} the articles data
  */
-async function getNewestArticles() {
+async function getNewestArticles(limit) {
   const { data } = await http.get(
-    `${articlesEndpoint}?pagination[limit]=1&sort[0]=createdAt%3Adesc&populate=*`
+    `${articlesEndpoint}?pagination[limit]=${limit}&sort[0]=createdAt%3Adesc&populate=*`
+  );
+
+  return data;
+}
+
+/**
+ * send request to get the similar articles
+ *
+ * @param {string} limit - the number of articles to return
+ * @param {string} categoryId - the caterogy id for which to search articles
+ * @param {string} articleIdToExclude - the id of the article to not be included
+ *
+ * @returns {object} the articles data
+ */
+async function getSimilarArticles(limit, categoryId, articleIdToExclude) {
+  const { data } = await http.get(
+    `${articlesEndpoint}?populate=*&filters[category][id][$in]=${categoryId}&pagination[limit]=${limit}&filters[id][$notIn]=${articleIdToExclude}`
   );
 
   return data;
@@ -104,6 +121,7 @@ const exportedFunctions = {
   getArticlesStartLimit,
   getArticleById,
   getNewestArticles,
+  getSimilarArticles,
   getCategories,
   getAgeGroups,
 };
