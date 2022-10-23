@@ -73,6 +73,7 @@ export const Page = ({ additionalPadding = true, classes, children }) => {
       <Navbar
         pages={pages}
         countries={countries}
+        showCta
         dropdownText={t("dropdown_text")}
         buttonText={t("button_text")}
       />
