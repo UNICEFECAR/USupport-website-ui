@@ -19,6 +19,7 @@ function destructureArticleData(article) {
     CMS_HOST + article.attributes.image.data.attributes.formats.medium.url;
   const articleImageSmall =
     CMS_HOST + article.attributes.image.data.attributes.formats.small.url;
+  const categoryId = articleData.category.data.id;
 
   return {
     id: articleId,
@@ -36,6 +37,7 @@ function destructureArticleData(article) {
       " " +
       articleData.createdBy.data.attributes.lastname,
     readingTime: articleData.reading_time,
+    categoryId: categoryId,
   };
 }
 
