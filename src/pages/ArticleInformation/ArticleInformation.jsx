@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Page } from "../../blocks/Page/Page";
 import { ArticleView } from "../../blocks/ArticleView/ArticleView";
-import { SimilarArticles } from "../../blocks/SimilarArticles/SimilarArticles";
+import { MoreArticles } from "../../blocks/MoreArticles/MoreArticles";
 
 import "./article-information.scss";
 
@@ -16,22 +16,31 @@ export const ArticleInformation = () => {
 
   useEffect(() => {
     cmsService.getArticleById(id).then((res) => {
-      console.log(res.data);
       const destructuredArticleData = destructureArticleData(res.data);
-      console.log(destructuredArticleData);
       setArticelData(destructuredArticleData);
     });
   }, [id]);
 
-  const [similarArticles, setSimilarArticles] = React.useState([1, 2, 3]);
+  const [similarArticles, setSimilarArticles] = React.useState();
+  const [newestArticles, setNewestArticles] = React.useState();
 
-  //TODO: Get similar articles
-  // useEffect(() => {
-  //   cmsService.getArticlesLimit(3).then((res) => {
-  //     setSimilarArticles(res.data);
-  //   });
-  // }, []);
+  useEffect(() => {
+    if (articleData && articleData.categoryId) {
+      cmsService
+        .getSimilarArticles(3, articleData.categoryId, articleData.id)
+        .then((res) => {
+          setSimilarArticles(res.data);
+        });
+    }
+  }, [articleData]);
 
+  useEffect(() => {
+    if (similarArticles && similarArticles.length === 0) {
+      cmsService.getNewestArticles(3).then((res) => {
+        setNewestArticles(res.data);
+      });
+    }
+  }, [similarArticles]);
   return (
     <Page classes="page__article">
       {articleData && (
@@ -47,8 +56,14 @@ export const ArticleInformation = () => {
       {articleData && <ArticleView articleData={articleData} />}
 
       {similarArticles && similarArticles.length > 0 && (
-        <SimilarArticles similarArticlesData={similarArticles} />
+        <MoreArticles articlesData={similarArticles} />
       )}
+
+      {newestArticles &&
+        newestArticles.length > 0 &&
+        similarArticles.length === 0 && (
+          <MoreArticles articlesData={newestArticles} />
+        )}
     </Page>
   );
 };
