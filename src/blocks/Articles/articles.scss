@@ -22,6 +22,16 @@
     }
   }
 
+  &__categories-item {
+    overflow-x: scroll;
+    width: 35rem;
+
+    @media screen and (min-width: $screen-md) {
+      width: auto;
+      margin: auto;
+    }
+  }
+
   &__search-item {
     padding-top: $spacing_2_4;
 
