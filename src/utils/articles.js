@@ -1,4 +1,4 @@
-import { CMS_HOST } from "../config/config.json";
+const CMS_HOST = `${import.meta.env.VITE_CMS_HOST}`;
 
 /**
  *
@@ -13,8 +13,8 @@ function destructureArticleData(article) {
   const articleReadingTime = articleData.reading_time;
   const articleThumbnailImage =
     CMS_HOST + article.attributes.image.data.attributes.formats.thumbnail.url;
-  const articleLargeImage =
-    CMS_HOST + article.attributes.image.data.attributes.formats.large.url;
+  // const articleLargeImage =
+  //   CMS_HOST + article.attributes.image.data.attributes.formats.large.url;
   const articleImageMedium =
     CMS_HOST + article.attributes.image.data.attributes.formats.medium.url;
   const articleImageSmall =
@@ -26,7 +26,7 @@ function destructureArticleData(article) {
     id: articleId,
     title: articleData.title,
     imageThumbnail: articleThumbnailImage,
-    imageLarge: articleLargeImage,
+    // imageLarge: articleLargeImage,
     imageMedium: articleImageMedium,
     imageSmall: articleImageSmall,
     readingTime: articleReadingTime,
