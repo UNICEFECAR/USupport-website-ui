@@ -3,19 +3,21 @@ import { useParams } from "react-router-dom";
 import { Page } from "../../blocks/Page/Page";
 import { ArticleView } from "../../blocks/ArticleView/ArticleView";
 import { MoreArticles } from "../../blocks/MoreArticles/MoreArticles";
+import { destructureArticleData } from "../../utils/articles";
+import cmsService from "../../services/cmsService";
 
 import "./article-information.scss";
 
-import cmsService from "../../services/cmsService";
-import { destructureArticleData } from "../../utils/articles";
-
+import { useTranslation } from "react-i18next";
 export const ArticleInformation = () => {
   const { id } = useParams();
+
+  const { i18n } = useTranslation("articles");
 
   const [articleData, setArticelData] = useState();
 
   useEffect(() => {
-    cmsService.getArticleById(id).then((res) => {
+    cmsService.getArticleById(id, i18n.language).then((res) => {
       const destructuredArticleData = destructureArticleData(res.data);
       setArticelData(destructuredArticleData);
     });
@@ -27,7 +29,12 @@ export const ArticleInformation = () => {
   useEffect(() => {
     if (articleData && articleData.categoryId) {
       cmsService
-        .getSimilarArticles(3, articleData.categoryId, articleData.id)
+        .getSimilarArticles(
+          3,
+          articleData.categoryId,
+          articleData.id,
+          i18n.language
+        )
         .then((res) => {
           setSimilarArticles(res.data);
         });
@@ -36,7 +43,7 @@ export const ArticleInformation = () => {
 
   useEffect(() => {
     if (similarArticles && similarArticles.length === 0) {
-      cmsService.getNewestArticles(3).then((res) => {
+      cmsService.getNewestArticles(3, i18n.language).then((res) => {
         setNewestArticles(res.data);
       });
     }

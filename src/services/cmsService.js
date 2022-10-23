@@ -12,12 +12,19 @@ const categoriesEndpoint = CMS_API_URL + "/categories";
  * @param {string} contains - the string to search for in the title
  * @param {string} ageGroupId - the id of the age group to filter by
  * @param {string} categoryId - the id of the category to filter by
+ * @param {string} locale - the locale for which to retrieve articles
  *
  * @returns {object} the articles data
  */
-async function getArticlesLimit(limit, contains, ageGroupId, categoryId) {
+async function getArticlesLimit(
+  limit,
+  contains,
+  ageGroupId,
+  categoryId,
+  locale
+) {
   const { data } = await http.get(
-    `${articlesEndpoint}?pagination[limit]=${limit}&populate=*&filters[title][$containsi]=${contains}&filters[age_groups][id][$in]=${ageGroupId}&filters[category][id][$in]=${categoryId}`
+    `${articlesEndpoint}?pagination[limit]=${limit}&populate=*&filters[title][$containsi]=${contains}&filters[age_groups][id][$in]=${ageGroupId}&filters[category][id][$in]=${categoryId}&locale=${locale}`
   );
 
   return data;
@@ -31,6 +38,7 @@ async function getArticlesLimit(limit, contains, ageGroupId, categoryId) {
  * @param {string} contains - the string to search for in the title
  * @param {string} ageGroupId - the id of the age group to filter by
  * @param {string} categoryId - the id of the category to filter by
+ * @param {string} locale - the locale for which to retrieve articles
  *
  * @returns {object} the articles data
  */
@@ -39,10 +47,11 @@ async function getArticlesStartLimit(
   limit,
   contains,
   ageGroupId,
-  categoryId
+  categoryId,
+  locale
 ) {
   const { data } = await http.get(
-    `${articlesEndpoint}?pagination[start]=${start}&pagination[limit]=${limit}&populate=*&filters[title][$containsi]=${contains}&filters[age_groups][id][$in]=${ageGroupId}&filters[category][id][$in]=${categoryId}`
+    `${articlesEndpoint}?pagination[start]=${start}&pagination[limit]=${limit}&populate=*&filters[title][$containsi]=${contains}&filters[age_groups][id][$in]=${ageGroupId}&filters[category][id][$in]=${categoryId}&locale=${locale}`
   );
 
   return data;
@@ -52,11 +61,14 @@ async function getArticlesStartLimit(
  * send request to get data for a specific article by id
  *
  * @param {string} id - the id of the article
+ * @param {string} locale - the locale for which to retrieve articles
  *
  * @returns {object} the articles data
  */
-async function getArticleById(id) {
-  const { data } = await http.get(`${articlesEndpoint}/${id}?populate=*`);
+async function getArticleById(id, locale) {
+  const { data } = await http.get(
+    `${articlesEndpoint}/${id}?populate=*&locale=${locale}`
+  );
 
   return data;
 }
@@ -65,12 +77,13 @@ async function getArticleById(id) {
  * send request to get the newest articles
  *
  * @param {string} limit - the number of articles to return
+ * @param {string} locale - the locale for which to retrieve articles
  *
  * @returns {object} the articles data
  */
-async function getNewestArticles(limit) {
+async function getNewestArticles(limit, locale) {
   const { data } = await http.get(
-    `${articlesEndpoint}?pagination[limit]=${limit}&sort[0]=createdAt%3Adesc&populate=*`
+    `${articlesEndpoint}?pagination[limit]=${limit}&sort[0]=createdAt%3Adesc&populate=*&locale=${locale}`
   );
 
   return data;
@@ -82,10 +95,16 @@ async function getNewestArticles(limit) {
  * @param {string} limit - the number of articles to return
  * @param {string} categoryId - the caterogy id for which to search articles
  * @param {string} articleIdToExclude - the id of the article to not be included
+ * @param {string} locale - the locale for which to retrieve articles
  *
  * @returns {object} the articles data
  */
-async function getSimilarArticles(limit, categoryId, articleIdToExclude) {
+async function getSimilarArticles(
+  limit,
+  categoryId,
+  articleIdToExclude,
+  locale
+) {
   const { data } = await http.get(
     `${articlesEndpoint}?populate=*&filters[category][id][$in]=${categoryId}&pagination[limit]=${limit}&filters[id][$notIn]=${articleIdToExclude}`
   );
@@ -96,12 +115,13 @@ async function getSimilarArticles(limit, categoryId, articleIdToExclude) {
 /**
  *
  * send request to get all the categories
+ * @param {string} locale - the locale for which to retrieve categories
  *
  * @returns {object} the categories data
  *
  */
-async function getCategories() {
-  const { data } = await http.get(`${categoriesEndpoint}`);
+async function getCategories(locale) {
+  const { data } = await http.get(`${categoriesEndpoint}?locale=${locale}`);
   return data;
 }
 
@@ -109,10 +129,12 @@ async function getCategories() {
  *
  * send request to get all ageGroups
  *
+ * @param {string} locale - the locale for which to retrieve ageGroups
+ *
  * @returns {object} the ageGroups data
  */
-async function getAgeGroups() {
-  const { data } = await http.get(`${ageGroupsEndpoint}`);
+async function getAgeGroups(locale) {
+  const { data } = await http.get(`${ageGroupsEndpoint}?locale=${locale}`);
   return data;
 }
 

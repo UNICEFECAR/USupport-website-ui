@@ -31,13 +31,12 @@ export const Articles = () => {
   const isNotDescktop = width < 1366;
 
   const { i18n, t } = useTranslation("articles");
-  console.log(i18n.language);
 
   //--------------------- Age Groups ----------------------//
   const [ageGroups, setAgeGroups] = useState();
 
   useEffect(() => {
-    cmsService.getAgeGroups().then((res) => {
+    cmsService.getAgeGroups(i18n.language).then((res) => {
       const ageGroupsData = res.data.map((ageGroup, index) => {
         return {
           label: ageGroup.attributes.name,
@@ -69,7 +68,7 @@ export const Articles = () => {
   const [categories, setCategories] = useState();
 
   useEffect(() => {
-    cmsService.getCategories().then((res) => {
+    cmsService.getCategories(i18n.language).then((res) => {
       const categoriesData = res.data.map((category, index) => {
         return {
           label: category.attributes.name,
@@ -131,7 +130,7 @@ export const Articles = () => {
     }
 
     cmsService
-      .getArticlesLimit(5, searchValue, ageGroupId, categoryId)
+      .getArticlesLimit(5, searchValue, ageGroupId, categoryId, i18n.language)
       .then((res) => {
         setArticles(res.data);
         setNumberOfArticles(res.meta.pagination.total);
@@ -162,7 +161,8 @@ export const Articles = () => {
       5,
       searchValue,
       ageGroupId,
-      categoryId
+      categoryId,
+      i18n.language
     );
     const newArticles = res.data;
 
@@ -173,7 +173,7 @@ export const Articles = () => {
   const [newestArticle, setNewestArticle] = useState();
 
   useEffect(() => {
-    cmsService.getNewestArticles(1).then((res) => {
+    cmsService.getNewestArticles(1, i18n.language).then((res) => {
       const newestArticleData = destructureArticleData(res.data[0]);
       setNewestArticle(newestArticleData);
     });
@@ -211,6 +211,7 @@ export const Articles = () => {
                 labels={newestArticle.labels}
                 creator={newestArticle.creator}
                 readingTime={newestArticle.readingTime}
+                showDescription={true}
                 onClick={() => {
                   navigate(`/article/${newestArticle.id}`);
                 }}
