@@ -14,6 +14,8 @@ import {
   Loading,
 } from "@USupport-components-library/src";
 import useWindowDimensions from "@USupport-components-library/src/utils/useWindowDimensions";
+import { useTranslation } from "react-i18next";
+
 import "./articles.scss";
 
 /**
@@ -27,6 +29,9 @@ export const Articles = () => {
   const navigate = useNavigate();
   const { width } = useWindowDimensions();
   const isNotDescktop = width < 1366;
+
+  const { i18n, t } = useTranslation("articles");
+  console.log(i18n.language);
 
   //--------------------- Age Groups ----------------------//
   const [ageGroups, setAgeGroups] = useState();
@@ -66,7 +71,6 @@ export const Articles = () => {
   useEffect(() => {
     cmsService.getCategories().then((res) => {
       const categoriesData = res.data.map((category, index) => {
-        console.log("caategory", category);
         return {
           label: category.attributes.name,
           value: category.attributes.name,
@@ -74,8 +78,6 @@ export const Articles = () => {
           isSelected: index === 0 ? true : false,
         };
       });
-
-      console.log("categoriesData", categoriesData);
 
       setCategories(categoriesData);
     });
@@ -123,14 +125,10 @@ export const Articles = () => {
     let categoryId = "";
     if (categories) {
       let selectedCategory = categories.find((o) => o.isSelected === true);
-      console.log("Selected category obj: ", selectedCategory);
       // if (selectedCategory) {
       categoryId = selectedCategory.id;
       // }
     }
-
-    console.log("selected age group: ", ageGroupId);
-    console.log("selected categoty: ", categoryId);
 
     cmsService
       .getArticlesLimit(5, searchValue, ageGroupId, categoryId)
@@ -175,7 +173,7 @@ export const Articles = () => {
   const [newestArticle, setNewestArticle] = useState();
 
   useEffect(() => {
-    cmsService.getNewestArticles().then((res) => {
+    cmsService.getNewestArticles(1).then((res) => {
       const newestArticleData = destructureArticleData(res.data[0]);
       setNewestArticle(newestArticleData);
     });
@@ -194,13 +192,13 @@ export const Articles = () => {
         }
         endMessage={
           <div className="articles__loading-item">
-            <p>No more articles</p>
+            {articles.length === 0 && <p>{t("no_results")}</p>}
           </div>
         }
       >
         <Grid classes="articles__main-grid">
           <GridItem md={8} lg={12} classes="articles__heading-item">
-            <h2>Information Portal</h2>
+            <h2>{t("heading")}</h2>
           </GridItem>
           <GridItem md={8} lg={12} classes="articles__most-important-item">
             {newestArticle && (
