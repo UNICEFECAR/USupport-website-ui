@@ -13,30 +13,28 @@ function destructureArticleData(article) {
   const articleReadingTime = articleData.reading_time;
   const articleThumbnailImage =
     CMS_HOST + article.attributes.image.data.attributes.formats.thumbnail.url;
-  // const articleLargeImage =
-  //   CMS_HOST + article.attributes.image.data.attributes.formats.large.url;
   const articleImageMedium =
     CMS_HOST + article.attributes.image.data.attributes.formats.medium.url;
   const articleImageSmall =
     CMS_HOST + article.attributes.image.data.attributes.formats.small.url;
   const categoryId = articleData.category.data.id;
   const description = articleData.description;
+  const creator =
+    articleData.createdBy.data.attributes.firstname +
+    " " +
+    articleData.createdBy.data.attributes.lastname;
 
   return {
     id: articleId,
     title: articleData.title,
     imageThumbnail: articleThumbnailImage,
-    // imageLarge: articleLargeImage,
     imageMedium: articleImageMedium,
     imageSmall: articleImageSmall,
     readingTime: articleReadingTime,
     description: articleData.description,
     body: body,
     labels: articleLabels,
-    creator:
-      articleData.createdBy.data.attributes.firstname +
-      " " +
-      articleData.createdBy.data.attributes.lastname,
+    creator: creator,
     readingTime: articleData.reading_time,
     categoryId: categoryId,
     description: description,
