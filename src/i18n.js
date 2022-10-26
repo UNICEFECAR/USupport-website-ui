@@ -18,7 +18,11 @@ import {
   Articles,
 } from "./blocks/locales.js";
 
-import { HowItWorksPage, NotFoundPage } from "./pages/locales.js";
+import {
+  HowItWorksPage,
+  NotFoundPage,
+  ArticleInformation,
+} from "./pages/locales.js";
 
 const resources = {
   en: {
@@ -41,6 +45,7 @@ const resources = {
     // Pages
     "how-it-works-page": HowItWorksPage.en,
     "not-found-page": NotFoundPage.en,
+    "article-information": ArticleInformation.en,
   },
 };
 
