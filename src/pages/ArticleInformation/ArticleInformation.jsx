@@ -89,7 +89,10 @@ export const ArticleInformation = () => {
               const articleData = destructureArticleData(article);
 
               return (
-                <GridItem classes="more-articles__article-card" key={index}>
+                <GridItem
+                  classes="page__article-information__more-articles-card"
+                  key={index}
+                >
                   <CardMedia
                     type="portrait"
                     size="sm"
