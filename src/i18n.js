@@ -14,11 +14,14 @@ import {
   SosCenter,
   ContactUs,
   Faq,
-  MoreArticles,
   Articles,
 } from "./blocks/locales.js";
 
-import { HowItWorksPage, NotFoundPage } from "./pages/locales.js";
+import {
+  HowItWorksPage,
+  NotFoundPage,
+  ArticleInformation,
+} from "./pages/locales.js";
 
 const resources = {
   en: {
@@ -35,12 +38,12 @@ const resources = {
     question: Question.en,
     "sos-center": SosCenter.en,
     "we-help": WeHelp.en,
-    "more-articles": MoreArticles.en,
     articles: Articles.en,
 
     // Pages
     "how-it-works-page": HowItWorksPage.en,
     "not-found-page": NotFoundPage.en,
+    "article-information": ArticleInformation.en,
   },
 };
 
