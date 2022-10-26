@@ -14,7 +14,6 @@ import {
   SosCenter,
   ContactUs,
   Faq,
-  MoreArticles,
   Articles,
 } from "./blocks/locales.js";
 
@@ -39,7 +38,6 @@ const resources = {
     question: Question.en,
     "sos-center": SosCenter.en,
     "we-help": WeHelp.en,
-    "more-articles": MoreArticles.en,
     articles: Articles.en,
 
     // Pages
