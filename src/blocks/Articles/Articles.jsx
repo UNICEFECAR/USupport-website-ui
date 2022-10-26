@@ -31,6 +31,7 @@ export const Articles = () => {
   const isNotDescktop = width < 1366;
 
   const { i18n, t } = useTranslation("articles");
+  const [loading, setLoading] = useState(false);
 
   //--------------------- Age Groups ----------------------//
   const [ageGroups, setAgeGroups] = useState();
@@ -55,6 +56,8 @@ export const Articles = () => {
     for (let i = 0; i < ageGroupsCopy.length; i++) {
       if (i === index) {
         ageGroupsCopy[i].isSelected = true;
+        setLoading(true);
+        setArticles([]);
       } else {
         ageGroupsCopy[i].isSelected = false;
       }
@@ -88,16 +91,12 @@ export const Articles = () => {
     for (let i = 0; i < categoriesCopy.length; i++) {
       if (i === index) {
         categoriesCopy[i].isSelected = true;
+        setLoading(true);
+        setArticles([]);
       } else {
         categoriesCopy[i].isSelected = false;
       }
     }
-    //TODO: Add this back to facilitatemultiple selections
-    // categoriesCopy.forEach((option) => {
-    //   option.isSelected = false;
-    // });
-
-    // categoriesCopy[index].isSelected = !categoriesCopy[index].isSelected;
 
     setCategories(categoriesCopy);
   };
@@ -109,8 +108,15 @@ export const Articles = () => {
     setSearchValue(newValue);
   };
 
+  useEffect(() => {
+    if (searchValue !== "") {
+      setLoading(true);
+      setArticles([]);
+    }
+  }, [searchValue]);
+
   //--------------------- Articles ----------------------//
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState();
   const [numberOfArticles, setNumberOfArticles] = useState(0);
   const [hasMore, setHasMore] = useState(true);
 
@@ -124,9 +130,11 @@ export const Articles = () => {
     let categoryId = null;
     if (categories) {
       let selectedCategory = categories.find((o) => o.isSelected === true);
-      // if (selectedCategory) {
       categoryId = selectedCategory.id;
-      // }
+    }
+
+    if (loading !== true) {
+      setLoading(true);
     }
 
     cmsService
@@ -138,14 +146,17 @@ export const Articles = () => {
         locale: i18n.language,
         populate: true,
       })
-      .then((res) => {
+      .then(async (res) => {
         setArticles(res.data);
         setNumberOfArticles(res.meta.pagination.total);
+        setLoading(false);
       });
   }, [searchValue, ageGroups, categories]);
 
   useEffect(() => {
-    setHasMore(numberOfArticles > articles.length ? true : false);
+    if (articles) {
+      setHasMore(numberOfArticles > articles.length ? true : false);
+    }
   }, [articles]);
 
   const getMoreArticles = async () => {
@@ -158,9 +169,7 @@ export const Articles = () => {
     let categoryId = "";
     if (categories) {
       let selectedCategory = categories.find((o) => o.isSelected === true);
-      // if (selectedCategory) {
       categoryId = selectedCategory.id;
-      // }
     }
 
     const res = await cmsService.getArticles({
@@ -190,92 +199,102 @@ export const Articles = () => {
 
   return (
     <Block classes="articles">
-      <InfiniteScroll
-        dataLength={articles.length}
-        next={getMoreArticles}
-        hasMore={hasMore}
-        loader={
-          <div className="articles__loading-item">
-            <Loading size="lg" />
-          </div>
-        }
-        endMessage={
-          <div className="articles__loading-item">
-            {articles.length === 0 && <p>{t("no_results")}</p>}
-          </div>
-        }
-      >
-        <Grid classes="articles__main-grid">
-          <GridItem md={8} lg={12} classes="articles__heading-item">
-            <h2>{t("heading")}</h2>
-          </GridItem>
-          <GridItem md={8} lg={12} classes="articles__most-important-item">
-            {newestArticle && (
-              <CardMedia
-                type={isNotDescktop ? "portrait" : "landscape"}
-                size="lg"
-                title={newestArticle.title}
-                image={newestArticle.imageThumbnail}
-                description={newestArticle.description}
-                labels={newestArticle.labels}
-                creator={newestArticle.creator}
-                readingTime={newestArticle.readingTime}
-                showDescription={true}
-                onClick={() => {
-                  navigate(`/article/${newestArticle.id}`);
-                }}
-              />
-            )}
-          </GridItem>
+      {newestArticle &&
+      ageGroups &&
+      ageGroups.length > 0 &&
+      categories &&
+      categories.length > 0 &&
+      articles ? (
+        <InfiniteScroll
+          dataLength={articles.length}
+          next={getMoreArticles}
+          hasMore={hasMore}
+          loader={<Loading size="lg" />}
+          // endMessage={} // Add end message here if required
+        >
+          <Grid classes="articles__main-grid">
+            <GridItem md={8} lg={12} classes="articles__heading-item">
+              <h2>{t("heading")}</h2>
+            </GridItem>
+            <GridItem md={8} lg={12} classes="articles__most-important-item">
+              {newestArticle && (
+                <CardMedia
+                  type={isNotDescktop ? "portrait" : "landscape"}
+                  size="lg"
+                  title={newestArticle.title}
+                  image={newestArticle.imageThumbnail}
+                  description={newestArticle.description}
+                  labels={newestArticle.labels}
+                  creator={newestArticle.creator}
+                  readingTime={newestArticle.readingTime}
+                  showDescription={true}
+                  onClick={() => {
+                    navigate(`/article/${newestArticle.id}`);
+                  }}
+                />
+              )}
+            </GridItem>
 
-          <GridItem md={8} lg={8} classes="articles__age-groups-item">
-            {ageGroups && (
-              <TabsUnderlined
-                options={ageGroups}
-                handleSelect={handleAgeGroupOnPress}
-              />
-            )}
-          </GridItem>
-          <GridItem md={8} lg={4} classes="articles__search-item">
-            <InputSearch onChange={handleInputChange} value={searchValue} />
-          </GridItem>
+            <GridItem md={8} lg={8} classes="articles__age-groups-item">
+              {ageGroups && (
+                <TabsUnderlined
+                  options={ageGroups}
+                  handleSelect={handleAgeGroupOnPress}
+                />
+              )}
+            </GridItem>
+            <GridItem md={8} lg={4} classes="articles__search-item">
+              <InputSearch onChange={handleInputChange} value={searchValue} />
+            </GridItem>
 
-          <GridItem md={8} lg={12} classes="articles__categories-item">
-            {categories && (
-              <Tabs options={categories} handleSelect={handleCategoryOnPress} />
-            )}
-          </GridItem>
+            <GridItem md={8} lg={12} classes="articles__categories-item">
+              {categories && (
+                <Tabs
+                  options={categories}
+                  handleSelect={handleCategoryOnPress}
+                />
+              )}
+            </GridItem>
 
-          <GridItem md={8} lg={12} classes="articles__articles-item">
-            {articles && articles.length > 0 && (
-              <Grid>
-                {articles.map((article, index) => {
-                  const articleData = destructureArticleData(article);
+            <GridItem md={8} lg={12} classes="articles__articles-item">
+              {numberOfArticles > 0 ? (
+                <Grid>
+                  {articles.map((article, index) => {
+                    const articleData = destructureArticleData(article);
 
-                  return (
-                    <GridItem key={index}>
-                      <CardMedia
-                        type="portrait"
-                        size="sm"
-                        style={{ gridColumn: "span 4" }}
-                        title={articleData.title}
-                        image={articleData.imageThumbnail}
-                        description={articleData.description}
-                        labels={articleData.labels}
-                        creator={articleData.creator}
-                        readingTime={articleData.readingTime}
-                        onClick={() => {
-                          navigate(`/article/${articleData.id}`);
-                        }}
-                      />
-                    </GridItem>
-                  );
-                })}
-              </Grid>
-            )}
-          </GridItem>
-        </Grid>
-      </InfiniteScroll>
+                    return (
+                      <GridItem key={index}>
+                        <CardMedia
+                          type="portrait"
+                          size="sm"
+                          style={{ gridColumn: "span 4" }}
+                          title={articleData.title}
+                          image={articleData.imageThumbnail}
+                          description={articleData.description}
+                          labels={articleData.labels}
+                          creator={articleData.creator}
+                          readingTime={articleData.readingTime}
+                          onClick={() => {
+                            navigate(`/article/${articleData.id}`);
+                          }}
+                        />
+                      </GridItem>
+                    );
+                  })}
+                </Grid>
+              ) : loading === false ? (
+                <p>{t("no_results")}</p>
+              ) : (
+                <Loading size="lg" />
+              )}
+            </GridItem>
+          </Grid>
+        </InfiniteScroll>
+      ) : (
+        <div className="articles__page-loading">
+          <Loading size="lg" />
+        </div>
+      )}
     </Block>
   );
 };
