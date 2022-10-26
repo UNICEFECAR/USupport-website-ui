@@ -7,53 +7,80 @@ const ageGroupsEndpoint = CMS_API_URL + "/age-groups";
 const categoriesEndpoint = CMS_API_URL + "/categories";
 
 /**
- * send request to get all articles data with a predefined limit and filtered by age group, category and search string
+ * generate a querry string from an object
  *
- * @param {string} limit - the number of articles to return
- * @param {string} contains - the string to search for in the title
- * @param {string} ageGroupId - the id of the age group to filter by
- * @param {string} categoryId - the id of the category to filter by
- * @param {string} locale - the locale for which to retrieve articles
+ * @param {object} querryObj - the object to generate the querry string from
+ * @param {string} querryObj.limit  - the number of documents to return
+ * @param {number} querryObj.populate - whether to populate the data fully or not
+ * @param {number} querryObj.startFrom - the starting index of the document to return
+ * @param {string} querryObj.contains - the string to search for in the document title
+ * @param {string} querryObj.ageGroupId - the age group id to filter by
+ * @param {string} querryObj.categoryId - the category id to filter by
+ * @param {string} querryObj.locale - the locale to filter by
+ * @param {string} querryObj.sortBy - the field to sort by
+ * @param {string} querryObj.sortOrder - the order to sort by, possible values are "asc" and "desc"
+ * @param {string} querryObj.excludeId - the id to exclude from the results
  *
- * @returns {object} the articles data
  */
-async function getArticlesLimit(
-  limit,
-  contains,
-  ageGroupId,
-  categoryId,
-  locale
-) {
-  const { data } = await http.get(
-    `${articlesEndpoint}?pagination[limit]=${limit}&populate=*&filters[title][$containsi]=${contains}&filters[age_groups][id][$in]=${ageGroupId}&filters[category][id][$in]=${categoryId}&locale=${locale}`
-  );
+function generateQuerryString(querryObj) {
+  let querry = `?locale=${querryObj.locale}`;
 
-  return data;
+  if (querryObj.populate) {
+    querry += "&populate=*";
+  }
+
+  if (querryObj.limit) {
+    querry += `&pagination[limit]=${querryObj.limit}`;
+  }
+
+  if (querryObj.startFrom) {
+    querry += `&pagination[start]=${querryObj.startFrom}`;
+  }
+
+  if (querryObj.contains && querryObj.contains !== "") {
+    querry += `&filters[title][$containsi]=${querryObj.contains}`;
+  }
+
+  if (querryObj.ageGroupId) {
+    querry += `&filters[age_groups][id][$in]=${querryObj.ageGroupId}`;
+  }
+
+  if (querryObj.categoryId) {
+    querry += `&filters[category][id][$in]=${querryObj.categoryId}`;
+  }
+
+  if (querryObj.sortBy && querryObj.sortOrder) {
+    querry += `&sort[0]=${querryObj.sortBy}%3A${querryObj.sortOrder}`;
+  }
+
+  if (querryObj.excludeId) {
+    querry += `&filters[id][$notIn]=${querryObj.excludeId}`;
+  }
+
+  return querry;
 }
 
 /**
- * send request to get artcicles data starting from a specific index within the articles collection, with predefined limit and filtered by age group, category and search string
+ * send request to get multiple articles
  *
- * @param {string} start - the index of the first article to return
- * @param {string} limit - the number of articles to return
- * @param {string} contains - the string to search for in the title
- * @param {string} ageGroupId - the id of the age group to filter by
- * @param {string} categoryId - the id of the category to filter by
- * @param {string} locale - the locale for which to retrieve articles
+ * @param {object} querryObj - the object to generate the querry string from
+ * @param {string} querryObj.limit  - the number of documents to return
+ * @param {number} querryObj.populate - whether to populate the data fully or not
+ * @param {number} querryObj.startFrom - the starting index of the document to return
+ * @param {string} querryObj.contains - the string to search for in the document title
+ * @param {string} querryObj.ageGroupId - the age group id to filter by
+ * @param {string} querryObj.categoryId - the category id to filter by
+ * @param {string} querryObj.locale - the locale to filter by
+ * @param {string} querryObj.sortBy - the field to sort by
+ * @param {string} querryObj.sortOrder - the order to sort by, possible values are "asc" and "desc"
+ * @param {string} querryObj.excludeId - the id to exclude from the results
  *
- * @returns {object} the articles data
  */
-async function getArticlesStartLimit(
-  start,
-  limit,
-  contains,
-  ageGroupId,
-  categoryId,
-  locale
-) {
-  const { data } = await http.get(
-    `${articlesEndpoint}?pagination[start]=${start}&pagination[limit]=${limit}&populate=*&filters[title][$containsi]=${contains}&filters[age_groups][id][$in]=${ageGroupId}&filters[category][id][$in]=${categoryId}&locale=${locale}`
-  );
+
+async function getArticles(querryObj) {
+  const querryString = generateQuerryString(querryObj);
+
+  const { data } = await http.get(`${articlesEndpoint}${querryString}`);
 
   return data;
 }
@@ -64,12 +91,12 @@ async function getArticlesStartLimit(
  * @param {string} id - the id of the article
  * @param {string} locale - the locale for which to retrieve articles
  *
- * @returns {object} the articles data
+ * @returns {object} the article data
  */
 async function getArticleById(id, locale) {
-  const { data } = await http.get(
-    `${articlesEndpoint}/${id}?populate=*&locale=${locale}`
-  );
+  const querryString = generateQuerryString({ locale: locale, populate: true });
+
+  const { data } = await http.get(`${articlesEndpoint}/${id}?${querryString}`);
 
   return data;
 }
@@ -83,9 +110,15 @@ async function getArticleById(id, locale) {
  * @returns {object} the articles data
  */
 async function getNewestArticles(limit, locale) {
-  const { data } = await http.get(
-    `${articlesEndpoint}?pagination[limit]=${limit}&sort[0]=createdAt%3Adesc&populate=*&locale=${locale}`
-  );
+  const querryString = generateQuerryString({
+    limit: limit,
+    locale: locale,
+    sortBy: "createdAt",
+    sortOrder: "desc",
+    populate: true,
+  });
+
+  const { data } = await http.get(`${articlesEndpoint}${querryString}`);
 
   return data;
 }
@@ -100,34 +133,38 @@ async function getNewestArticles(limit, locale) {
  *
  * @returns {object} the articles data
  */
-async function getSimilarArticles(
-  limit,
-  categoryId,
-  articleIdToExclude,
-  locale
-) {
-  const { data } = await http.get(
-    `${articlesEndpoint}?populate=*&filters[category][id][$in]=${categoryId}&pagination[limit]=${limit}&filters[id][$notIn]=${articleIdToExclude}`
-  );
+async function getSimilarArticles(limit, categoryId, excludeId, locale) {
+  const querryString = generateQuerryString({
+    limit: limit,
+    categoryId: categoryId,
+    locale: locale,
+    excludeId: excludeId,
+    populate: true,
+  });
+
+  const { data } = await http.get(`${articlesEndpoint}${querryString}`);
 
   return data;
 }
 
 /**
- *
  * send request to get all the categories
+ *
  * @param {string} locale - the locale for which to retrieve categories
  *
  * @returns {object} the categories data
- *
  */
+
 async function getCategories(locale) {
-  const { data } = await http.get(`${categoriesEndpoint}?locale=${locale}`);
+  const querryString = generateQuerryString({
+    locale: locale,
+  });
+
+  const { data } = await http.get(`${categoriesEndpoint}${querryString}`);
   return data;
 }
 
 /**
- *
  * send request to get all ageGroups
  *
  * @param {string} locale - the locale for which to retrieve ageGroups
@@ -135,13 +172,15 @@ async function getCategories(locale) {
  * @returns {object} the ageGroups data
  */
 async function getAgeGroups(locale) {
-  const { data } = await http.get(`${ageGroupsEndpoint}?locale=${locale}`);
+  const querryString = generateQuerryString({
+    locale: locale,
+  });
+  const { data } = await http.get(`${ageGroupsEndpoint}${querryString}`);
   return data;
 }
 
 const exportedFunctions = {
-  getArticlesLimit,
-  getArticlesStartLimit,
+  getArticles,
   getArticleById,
   getNewestArticles,
   getSimilarArticles,

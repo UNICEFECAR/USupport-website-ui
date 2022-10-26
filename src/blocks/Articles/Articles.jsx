@@ -115,13 +115,13 @@ export const Articles = () => {
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
-    let ageGroupId = "";
+    let ageGroupId = null;
     if (ageGroups) {
       let selectedAgeGroup = ageGroups.find((o) => o.isSelected === true);
       ageGroupId = selectedAgeGroup.id;
     }
 
-    let categoryId = "";
+    let categoryId = null;
     if (categories) {
       let selectedCategory = categories.find((o) => o.isSelected === true);
       // if (selectedCategory) {
@@ -130,7 +130,14 @@ export const Articles = () => {
     }
 
     cmsService
-      .getArticlesLimit(5, searchValue, ageGroupId, categoryId, i18n.language)
+      .getArticles({
+        limit: 5,
+        contains: searchValue,
+        ageGroupId: ageGroupId,
+        categoryId: categoryId,
+        locale: i18n.language,
+        populate: true,
+      })
       .then((res) => {
         setArticles(res.data);
         setNumberOfArticles(res.meta.pagination.total);
@@ -156,14 +163,16 @@ export const Articles = () => {
       // }
     }
 
-    const res = await cmsService.getArticlesStartLimit(
-      articles.length,
-      5,
-      searchValue,
-      ageGroupId,
-      categoryId,
-      i18n.language
-    );
+    const res = await cmsService.getArticles({
+      startFrom: articles.length,
+      limit: 5,
+      contains: searchValue,
+      ageGroupId: ageGroupId,
+      categoryId: categoryId,
+      locale: i18n.language,
+      populate: true,
+    });
+
     const newArticles = res.data;
 
     setArticles((prevArticles) => [...prevArticles, ...newArticles]);
