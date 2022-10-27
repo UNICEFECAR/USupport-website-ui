@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Page } from "../../blocks/Page/Page";
-import { ArticleView } from "../../blocks/ArticleView/ArticleView";
-import { destructureArticleData } from "../../utils/articles";
-import cmsService from "../../services/cmsService";
+import { Page, ArticleView } from "#blocks";
+import { destructureArticleData } from "@USupport-components-library/utils";
 import { useNavigate } from "react-router-dom";
 import {
   Block,
@@ -12,12 +10,15 @@ import {
   CardMedia,
   Loading,
 } from "@USupport-components-library/src";
+import { useTranslation } from "react-i18next";
+
+import cmsSvc from "#services/cms";
 
 import "./article-information.scss";
 
-import { useTranslation } from "react-i18next";
-
 export const ArticleInformation = () => {
+  const CMS_HOST = `${import.meta.env.VITE_CMS_HOST}`;
+
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -26,8 +27,11 @@ export const ArticleInformation = () => {
   const [articleData, setArticleData] = useState(null);
 
   useEffect(() => {
-    cmsService.getArticleById(id, i18n.language).then((res) => {
-      const destructuredArticleData = destructureArticleData(res.data);
+    cmsSvc.getArticleById(id, i18n.language).then((res) => {
+      const destructuredArticleData = destructureArticleData(
+        CMS_HOST,
+        res.data
+      );
       setArticleData(destructuredArticleData);
     });
   }, [id]);
@@ -36,7 +40,7 @@ export const ArticleInformation = () => {
 
   useEffect(() => {
     if (articleData && articleData.categoryId) {
-      cmsService
+      cmsSvc
         .getSimilarArticles(
           3,
           articleData.categoryId,
@@ -45,7 +49,7 @@ export const ArticleInformation = () => {
         )
         .then((res) => {
           if (res.data.length === 0) {
-            cmsService.getNewestArticles(3, i18n.language).then((res) => {
+            cmsSvc.getNewestArticles(3, i18n.language).then((res) => {
               setMoreArticles(res.data);
             });
           } else {
@@ -86,7 +90,7 @@ export const ArticleInformation = () => {
               <h4>{t("heading")}</h4>
             </GridItem>
             {moreArticles.map((article, index) => {
-              const articleData = destructureArticleData(article);
+              const articleData = destructureArticleData(CMS_HOST, article);
 
               return (
                 <GridItem

@@ -6,9 +6,9 @@ import {
   Footer,
 } from "@USupport-components-library/src";
 import classNames from "classnames";
+import { useTranslation } from "react-i18next";
 
 import "./page.scss";
-import { useTranslation } from "react-i18next";
 
 /**
  * Page

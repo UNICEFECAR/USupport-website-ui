@@ -1,16 +1,16 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { Articles } from "./Articles";
+import { ArticleInformation } from "./ArticleInformation";
 
 export default {
-  title: "Website UI/blocks/Articles",
-  component: Articles,
+  title: "Website UI/pages/ArticleInformation",
+  component: ArticleInformation,
   argTypes: {},
 };
 
 const Template = (props) => (
   <Router>
-    <Articles {...props} />
+    <ArticleInformation {...props} />
   </Router>
 );
 

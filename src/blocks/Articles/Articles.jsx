@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import cmsService from "../../services/cmsService";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useNavigate } from "react-router-dom";
-import { destructureArticleData } from "../../utils/articles";
+import {
+  destructureArticleData,
+  useWindowDimensions,
+} from "@USupport-components-library/utils";
 import {
   Grid,
   GridItem,
@@ -13,8 +15,9 @@ import {
   Tabs,
   Loading,
 } from "@USupport-components-library/src";
-import useWindowDimensions from "@USupport-components-library/src/utils/useWindowDimensions";
 import { useTranslation } from "react-i18next";
+
+import cmsSvc from "#services/cms";
 
 import "./articles.scss";
 
@@ -26,6 +29,8 @@ import "./articles.scss";
  * @return {jsx}
  */
 export const Articles = () => {
+  const CMS_HOST = `${import.meta.env.VITE_CMS_HOST}`;
+
   const navigate = useNavigate();
   const { width } = useWindowDimensions();
   const isNotDescktop = width < 1366;
@@ -37,7 +42,7 @@ export const Articles = () => {
   const [ageGroups, setAgeGroups] = useState();
 
   useEffect(() => {
-    cmsService.getAgeGroups(i18n.language).then((res) => {
+    cmsSvc.getAgeGroups(i18n.language).then((res) => {
       const ageGroupsData = res.data.map((ageGroup, index) => {
         return {
           label: ageGroup.attributes.name,
@@ -71,7 +76,7 @@ export const Articles = () => {
   const [categories, setCategories] = useState();
 
   useEffect(() => {
-    cmsService.getCategories(i18n.language).then((res) => {
+    cmsSvc.getCategories(i18n.language).then((res) => {
       const categoriesData = res.data.map((category, index) => {
         return {
           label: category.attributes.name,
@@ -137,7 +142,7 @@ export const Articles = () => {
       setLoading(true);
     }
 
-    cmsService
+    cmsSvc
       .getArticles({
         limit: 5,
         contains: searchValue,
@@ -172,7 +177,7 @@ export const Articles = () => {
       categoryId = selectedCategory.id;
     }
 
-    const res = await cmsService.getArticles({
+    const res = await cmsSvc.getArticles({
       startFrom: articles.length,
       limit: 5,
       contains: searchValue,
@@ -191,8 +196,8 @@ export const Articles = () => {
   const [newestArticle, setNewestArticle] = useState();
 
   useEffect(() => {
-    cmsService.getNewestArticles(1, i18n.language).then((res) => {
-      const newestArticleData = destructureArticleData(res.data[0]);
+    cmsSvc.getNewestArticles(1, i18n.language).then((res) => {
+      const newestArticleData = destructureArticleData(CMS_HOST, res.data[0]);
       setNewestArticle(newestArticleData);
     });
   }, []);
@@ -260,7 +265,10 @@ export const Articles = () => {
               {numberOfArticles > 0 ? (
                 <Grid>
                   {articles.map((article, index) => {
-                    const articleData = destructureArticleData(article);
+                    const articleData = destructureArticleData(
+                      CMS_HOST,
+                      article
+                    );
 
                     return (
                       <GridItem key={index}>
