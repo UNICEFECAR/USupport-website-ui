@@ -7,7 +7,7 @@ import {
   HowItWorks,
   NotFound,
   AboutUs,
-  InformationalPortal,
+  InformationPortal,
   ArticleInformation,
 } from "#pages";
 
@@ -58,7 +58,7 @@ function App() {
         <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact-us" element={<ContactUs />} />
-        <Route path="/information-portal" element={<InformationalPortal />} />
+        <Route path="/information-portal" element={<InformationPortal />} />
         <Route path="/article/:id" element={<ArticleInformation />} />
         <Route path="/sos-center" element={<SOSCenter contacts={contacts} />} />
         <Route path="*" element={<NotFound />} />

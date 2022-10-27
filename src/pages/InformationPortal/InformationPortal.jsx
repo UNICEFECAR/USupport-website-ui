@@ -1,7 +1,7 @@
 import React from "react";
 import { Page, Articles } from "#blocks";
 
-export const InformationalPortal = () => {
+export const InformationPortal = () => {
   return (
     <Page>
       <Articles />
