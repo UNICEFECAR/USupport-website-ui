@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useNavigate } from "react-router-dom";
-import {
-  destructureArticleData,
-  useWindowDimensions,
-} from "@USupport-components-library/utils";
+import { useQuery } from "@tanstack/react-query";
 import {
   Grid,
   GridItem,
@@ -15,9 +12,13 @@ import {
   Tabs,
   Loading,
 } from "@USupport-components-library/src";
+import {
+  destructureArticleData,
+  useWindowDimensions,
+} from "@USupport-components-library/utils";
+import { cmsSvc } from "@USupport-components-library/services";
+import { useDebounce } from "@USupport-components-library/hooks";
 import { useTranslation } from "react-i18next";
-
-import cmsSvc from "#services/cms";
 
 import "./articles.scss";
 
@@ -33,27 +34,37 @@ export const Articles = () => {
 
   const navigate = useNavigate();
   const { width } = useWindowDimensions();
-  const isNotDescktop = width < 1366;
-
   const { i18n, t } = useTranslation("articles");
-  const [loading, setLoading] = useState(false);
+
+  const isNotDescktop = width < 1366;
 
   //--------------------- Age Groups ----------------------//
   const [ageGroups, setAgeGroups] = useState();
+  const [selectedAgeGroup, setSelectedAgeGroup] = useState();
 
-  useEffect(() => {
-    cmsSvc.getAgeGroups(i18n.language).then((res) => {
-      const ageGroupsData = res.data.map((ageGroup, index) => {
-        return {
-          label: ageGroup.attributes.name,
-          id: ageGroup.id,
-          isSelected: index === 0 ? true : false,
-        };
-      });
+  const getAgeGroups = async () => {
+    try {
+      const res = await cmsSvc.getAgeGroups(i18n.language);
+      const ageGroupsData = res.data.map((age, index) => ({
+        label: age.attributes.name,
+        id: age.id,
+        isSelected: index === 0 ? true : false,
+      }));
+      setSelectedAgeGroup(ageGroupsData[0]);
+      return ageGroupsData;
+    } catch (err) {
+      // TODO: Handle the error
+      console.log(err, "err");
+    }
+  };
 
-      setAgeGroups(ageGroupsData);
-    });
-  }, []);
+  useQuery(["ageGroups"], getAgeGroups, {
+    refetchOnWindowFocus: false,
+    refetchOnMount: true,
+    onSuccess: (data) => {
+      setAgeGroups([...data]);
+    },
+  });
 
   const handleAgeGroupOnPress = (index) => {
     const ageGroupsCopy = [...ageGroups];
@@ -61,8 +72,7 @@ export const Articles = () => {
     for (let i = 0; i < ageGroupsCopy.length; i++) {
       if (i === index) {
         ageGroupsCopy[i].isSelected = true;
-        setLoading(true);
-        setArticles([]);
+        setSelectedAgeGroup(ageGroupsCopy[i]);
       } else {
         ageGroupsCopy[i].isSelected = false;
       }
@@ -72,95 +82,101 @@ export const Articles = () => {
   };
 
   //--------------------- Categories ----------------------//
-
   const [categories, setCategories] = useState();
+  const [selectedCategory, setSelectedCategory] = useState();
 
-  useEffect(() => {
-    cmsSvc.getCategories(i18n.language).then((res) => {
-      const categoriesData = res.data.map((category, index) => {
-        return {
+  const getCategories = async () => {
+    try {
+      const res = await cmsSvc.getCategories(i18n.language);
+      let categoriesData = [{ label: "All", value: "all", isSelected: true }];
+      res.data.map((category, index) =>
+        categoriesData.push({
           label: category.attributes.name,
           value: category.attributes.name,
           id: category.id,
-          isSelected: index === 0 ? true : false,
-        };
-      });
+          isSelected: false,
+        })
+      );
 
-      setCategories(categoriesData);
-    });
-  }, []);
+      setSelectedCategory(categoriesData[0]);
+      return categoriesData;
+    } catch (err) {
+      console.log(err, "Error when calling getCategories");
+    }
+  };
+
+  useQuery(["articles-categories"], getCategories, {
+    refetchOnWindowFocus: false,
+    onSuccess: (data) => {
+      setCategories([...data]);
+    },
+  });
 
   const handleCategoryOnPress = (index) => {
     const categoriesCopy = [...categories];
 
     for (let i = 0; i < categoriesCopy.length; i++) {
       if (i === index) {
+        console.log(categoriesCopy[i]);
         categoriesCopy[i].isSelected = true;
-        setLoading(true);
-        setArticles([]);
+        setSelectedCategory(categoriesCopy[i]);
       } else {
         categoriesCopy[i].isSelected = false;
       }
     }
-
     setCategories(categoriesCopy);
   };
 
   //--------------------- Search Input ----------------------//
   const [searchValue, setSearchValue] = useState("");
+  const debouncedSearchValue = useDebounce(searchValue, 500);
 
   const handleInputChange = (newValue) => {
     setSearchValue(newValue);
   };
 
-  useEffect(() => {
-    if (searchValue !== "") {
-      setLoading(true);
-      setArticles([]);
-    }
-  }, [searchValue]);
-
   //--------------------- Articles ----------------------//
-  const [articles, setArticles] = useState();
-  const [numberOfArticles, setNumberOfArticles] = useState(0);
   const [hasMore, setHasMore] = useState(true);
 
-  useEffect(() => {
-    let ageGroupId = null;
-    if (ageGroups) {
-      let selectedAgeGroup = ageGroups.find((o) => o.isSelected === true);
-      ageGroupId = selectedAgeGroup.id;
-    }
-
-    let categoryId = null;
-    if (categories) {
-      let selectedCategory = categories.find((o) => o.isSelected === true);
+  const getArticlesData = async () => {
+    const ageGroupId = ageGroups.find((x) => x.isSelected).id;
+    let categoryId = "";
+    if (selectedCategory.value !== "all") {
       categoryId = selectedCategory.id;
     }
 
-    if (loading !== true) {
-      setLoading(true);
-    }
+    const res = await cmsSvc.getArticles({
+      limit: 6,
+      contains: debouncedSearchValue,
+      ageGroupId,
+      categoryId,
+      locale: i18n.language,
+      populate: true,
+    });
+    const articles = res.data;
+    const numberOfArticles = res.meta.pagination.total;
+    return { articles, numberOfArticles };
+  };
 
-    cmsSvc
-      .getArticles({
-        limit: 5,
-        contains: searchValue,
-        ageGroupId: ageGroupId,
-        categoryId: categoryId,
-        locale: i18n.language,
-        populate: true,
-      })
-      .then(async (res) => {
-        setArticles(res.data);
-        setNumberOfArticles(res.meta.pagination.total);
-        setLoading(false);
-      });
-  }, [searchValue, ageGroups, categories]);
+  const [articles, setArticles] = useState();
+  const [numberOfArticles, setNumberOfArticles] = useState();
+  const { isLoading: loading } = useQuery(
+    ["articles", debouncedSearchValue, selectedAgeGroup, selectedCategory],
+    getArticlesData,
+    {
+      // Run the query when the getCategories and getAgeGroups queries have finished running
+      enabled: categories?.length > 0 && ageGroups?.length > 0,
+      refetchOnWindowFocus: false,
+      onSuccess: (data) => {
+        setArticles([...data.articles]);
+        setNumberOfArticles(data.numberOfArticles);
+      },
+    }
+  );
 
   useEffect(() => {
     if (articles) {
-      setHasMore(numberOfArticles > articles.length ? true : false);
+      setHasMore(numberOfArticles > articles.length);
     }
   }, [articles]);
 
@@ -179,10 +195,10 @@ export const Articles = () => {
 
     const res = await cmsSvc.getArticles({
       startFrom: articles.length,
-      limit: 5,
+      limit: 6,
       contains: searchValue,
       ageGroupId: ageGroupId,
-      categoryId: categoryId,
+      categoryId: null,
       locale: i18n.language,
       populate: true,
     });
@@ -193,14 +209,19 @@ export const Articles = () => {
   };
 
   //--------------------- Newest Article ----------------------//
-  const [newestArticle, setNewestArticle] = useState();
+  const getNewestArticle = async () => {
+    const res = await cmsSvc.getNewestArticles(1, i18n.language);
+    const newestArticleData = destructureArticleData(CMS_HOST, res.data[0]);
+    return newestArticleData;
+  };
 
-  useEffect(() => {
-    cmsSvc.getNewestArticles(1, i18n.language).then((res) => {
-      const newestArticleData = destructureArticleData(CMS_HOST, res.data[0]);
-      setNewestArticle(newestArticleData);
-    });
-  }, []);
+  const { data: newestArticle } = useQuery(
+    ["newestArticle"],
+    getNewestArticle,
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
 
   return (
     <Block classes="articles">
@@ -208,10 +229,9 @@ export const Articles = () => {
       ageGroups &&
       ageGroups.length > 0 &&
       categories &&
-      categories.length > 0 &&
-      articles ? (
+      categories.length > 0 ? (
         <InfiniteScroll
-          dataLength={articles.length}
+          dataLength={articles?.length || 0}
           next={getMoreArticles}
           hasMore={hasMore}
           loader={<Loading size="lg" />}
@@ -222,7 +242,7 @@ export const Articles = () => {
               <h2>{t("heading")}</h2>
             </GridItem>
             <GridItem md={8} lg={12} classes="articles__most-important-item">
-              {newestArticle && (
+              {newestArticle ? (
                 <CardMedia
                   type={isNotDescktop ? "portrait" : "landscape"}
                   size="lg"
@@ -237,6 +257,8 @@ export const Articles = () => {
                     navigate(`/article/${newestArticle.id}`);
                   }}
                 />
+              ) : (
+                <Loading size="lg" />
               )}
             </GridItem>
 
@@ -264,12 +286,11 @@ export const Articles = () => {
             <GridItem md={8} lg={12} classes="articles__articles-item">
               {numberOfArticles > 0 ? (
                 <Grid>
-                  {articles.map((article, index) => {
+                  {articles?.map((article, index) => {
                     const articleData = destructureArticleData(
                       CMS_HOST,
                       article
                     );
-
                     return (
                       <GridItem key={index}>
                         <CardMedia
@@ -290,8 +311,10 @@ export const Articles = () => {
                     );
                   })}
                 </Grid>
-              ) : loading === false ? (
-                <p>{t("no_results")}</p>
+              ) : !loading ? (
+                <div className="articles__no-results-container">
+                  <p>{t("no_results")}</p>
+                </div>
               ) : (
                 <Loading size="lg" />
               )}

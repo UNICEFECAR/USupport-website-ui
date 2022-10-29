@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import { Page, ArticleView } from "#blocks";
 import { destructureArticleData } from "@USupport-components-library/utils";
-import { useNavigate } from "react-router-dom";
 import {
   Block,
   Grid,
@@ -10,9 +11,7 @@ import {
   CardMedia,
   Loading,
 } from "@USupport-components-library/src";
-import { useTranslation } from "react-i18next";
-
-import cmsSvc from "#services/cms";
+import { cmsSvc } from "@USupport-components-library/services";
 
 import "./article-information.scss";
 
@@ -24,49 +23,46 @@ export const ArticleInformation = () => {
 
   const { i18n, t } = useTranslation("article-information");
 
-  const [articleData, setArticleData] = useState(null);
+  const getArticleData = async () => {
+    const { data } = await cmsSvc.getArticleById(id, i18n.language);
+    const finalData = destructureArticleData(CMS_HOST, data);
+    return finalData;
+  };
 
-  useEffect(() => {
-    cmsSvc.getArticleById(id, i18n.language).then((res) => {
-      const destructuredArticleData = destructureArticleData(
-        CMS_HOST,
-        res.data
-      );
-      setArticleData(destructuredArticleData);
-    });
-  }, [id]);
+  const { data: articleData } = useQuery(["article", id], getArticleData, {
+    enabled: !!id,
+  });
 
-  const [moreArticles, setMoreArticles] = React.useState();
-
-  useEffect(() => {
-    if (articleData && articleData.categoryId) {
-      cmsSvc
-        .getSimilarArticles(
-          3,
-          articleData.categoryId,
-          articleData.id,
-          i18n.language
-        )
-        .then((res) => {
-          if (res.data.length === 0) {
-            cmsSvc.getNewestArticles(3, i18n.language).then((res) => {
-              setMoreArticles(res.data);
-            });
-          } else {
-            setMoreArticles(res.data);
-          }
-        });
+  const getSimilarArticles = async () => {
+    const { data } = await cmsSvc.getSimilarArticles(
+      3,
+      articleData.categoryId,
+      articleData.id,
+      i18n.language
+    );
+    if (data.length === 0) {
+      const { data: newest } = await cmsSvc.getNewestArticles(3, i18n.language);
+      return newest;
     }
-  }, [articleData]);
+    return data;
+  };
+
+  const { data: moreArticles } = useQuery(
+    ["more-articles", id],
+    getSimilarArticles,
+    {
+      enabled: articleData && articleData.categoryId ? true : false,
+    }
+  );
 
   const onArticleClick = () => {
-    setArticleData(null);
+    window.scrollTo(0, 0);
     setMoreArticles(null);
   };
 
   return (
     <Page classes="page__article-information">
-      {articleData !== null ? (
+      {articleData ? (
         <>
           <img
             className="page__article-information__image"
