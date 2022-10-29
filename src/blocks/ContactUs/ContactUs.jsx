@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Block,
   ContactForm,
@@ -9,7 +9,7 @@ import {
 import { useWindowDimensions } from "@USupport-components-library/utils";
 import { useTranslation } from "react-i18next";
 
-import emailSvc from "#services/email";
+import { emailSvc } from "@USupport-components-library/services";
 
 import "./contact-us.scss";
 
