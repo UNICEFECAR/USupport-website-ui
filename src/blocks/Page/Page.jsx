@@ -74,6 +74,7 @@ export const Page = ({ additionalPadding = true, classes, children }) => {
         pages={pages}
         countries={countries}
         showCta
+        showCountriesDropdown
         dropdownText={t("dropdown_text")}
         buttonText={t("button_text")}
       />
