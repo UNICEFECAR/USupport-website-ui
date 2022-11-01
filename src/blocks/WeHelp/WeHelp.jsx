@@ -1,10 +1,10 @@
 import React from "react";
 import { Block, Grid, GridItem, Box } from "@USupport-components-library/src";
+import { useTranslation } from "react-i18next";
 
 import "./we-help.scss";
 
-import mascot from "../../assets/MascotBlue.png";
-import { useTranslation } from "react-i18next";
+import { mascotHappyBlue } from "@USupport-components-library/assets";
 
 /**
  * WeHelp
@@ -40,7 +40,10 @@ export const WeHelp = () => {
               </GridItem>
 
               <GridItem md={2} lg={6} classes="we-help__mascot-item">
-                <img src={mascot} className="we-help__mascot-item__image" />
+                <img
+                  src={mascotHappyBlue}
+                  className="we-help__mascot-item__image"
+                />
               </GridItem>
             </Grid>
           </Box>

@@ -7,11 +7,11 @@ import {
   RadialCircle,
   Animation,
 } from "@USupport-components-library/src";
+import { useTranslation } from "react-i18next";
 
 import "./hero.scss";
 
 import MascotAnimation from "./assets/Mascot.json";
-import { useTranslation } from "react-i18next";
 
 /**
  * Hero

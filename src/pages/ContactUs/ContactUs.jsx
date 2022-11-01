@@ -1,6 +1,5 @@
 import React from "react";
-import { Page } from "../../blocks/Page/Page";
-import { ContactUs as ContactUsBlock } from "../../blocks/ContactUs/ContactUs";
+import { Page, ContactUs as ContactUsBlock } from "#blocks";
 
 /**
  * ContactUs

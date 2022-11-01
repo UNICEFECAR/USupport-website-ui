@@ -5,11 +5,11 @@ import {
   GridItem,
   StoreButton,
 } from "@USupport-components-library/src";
+import { useTranslation } from "react-i18next";
 
 import "./download-app.scss";
 
 import imageSrc from "./assets/StartScreen.png";
-import { useTranslation } from "react-i18next";
 
 /**
  * DownloadApp

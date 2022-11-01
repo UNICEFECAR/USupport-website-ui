@@ -15,13 +15,13 @@ import {
   ContactUs,
   Faq,
   Articles,
-} from "./blocks/locales.js";
+} from "#blocks/locales.js";
 
 import {
   HowItWorksPage,
   NotFoundPage,
   ArticleInformation,
-} from "./pages/locales.js";
+} from "#pages/locales.js";
 
 const resources = {
   en: {

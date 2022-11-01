@@ -6,9 +6,9 @@ import {
   GridItem,
   CardNumber,
 } from "@USupport-components-library/src";
+import { useTranslation } from "react-i18next";
 
 import "./how-it-works.scss";
-import { useTranslation } from "react-i18next";
 
 /**
  * HowItWorks

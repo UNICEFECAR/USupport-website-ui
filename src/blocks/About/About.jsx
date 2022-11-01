@@ -6,11 +6,11 @@ import {
   GridItem,
   RadialCircle,
 } from "@USupport-components-library/src";
+import { useTranslation } from "react-i18next";
 
 import "./about.scss";
 
-import mascot from "../../assets/MascotBlueClipped.png";
-import { useTranslation } from "react-i18next";
+import { mascotHappyBlueClipped } from "@USupport-components-library/assets";
 
 /**
  * About
@@ -61,7 +61,7 @@ export const About = () => {
           </Grid>
         </GridItem>
       </Grid>
-      <img src={mascot} className="about__mascot" />
+      <img src={mascotHappyBlueClipped} className="about__mascot" />
       <RadialCircle color="blue" />
     </Block>
   );

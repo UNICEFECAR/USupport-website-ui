@@ -7,6 +7,7 @@ import {
   Icon,
   Label,
 } from "@USupport-components-library/src";
+import propTypes from "prop-types";
 
 import "./article-view.scss";
 
@@ -30,7 +31,7 @@ export const ArticleView = ({ articleData }) => {
                 key={index}
               />
             );
-          })}{" "}
+          })}
         </GridItem>
 
         <GridItem md={8} lg={12} classes="article-view__title-item">
@@ -50,4 +51,31 @@ export const ArticleView = ({ articleData }) => {
       </Grid>
     </Block>
   );
+};
+
+ArticleView.propTypes = {
+  /**
+   * Article data
+   * */
+  articleData: propTypes.shape({
+    title: propTypes.string,
+    creator: propTypes.string,
+    readingTime: propTypes.number,
+    body: propTypes.string,
+    labels: propTypes.arrayOf(
+      propTypes.shape({
+        name: propTypes.string,
+      })
+    ),
+  }).isRequired,
+};
+
+ArticleView.defaultProps = {
+  articleData: {
+    labels: [],
+    title: "",
+    creator: "",
+    readingTime: 0,
+    body: "",
+  },
 };

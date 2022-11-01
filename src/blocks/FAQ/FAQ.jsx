@@ -8,11 +8,11 @@ import {
   Button,
 } from "@USupport-components-library/src";
 import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
 
 import "./faq.scss";
 
-import Mascot from "../../assets/MascotBroken.png";
-import { useTranslation } from "react-i18next";
+import { mascotConfusedBlue } from "@USupport-components-library/assets";
 
 /**
  * FAQ
@@ -70,7 +70,7 @@ export const FAQ = () => {
               </Grid>
             </GridItem>
             <GridItem md={2} lg={6} classes="faq__mascot-item">
-              <img src={Mascot} />
+              <img src={mascotConfusedBlue} />
             </GridItem>
           </Grid>
         </GridItem>

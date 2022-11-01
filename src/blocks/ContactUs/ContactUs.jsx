@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Block,
   ContactForm,
@@ -6,14 +6,14 @@ import {
   GridItem,
   RadialCircle,
 } from "@USupport-components-library/src";
-import { useWindowDimensions } from "@USupport-components-library/src/utils";
+import { useWindowDimensions } from "@USupport-components-library/utils";
+import { useTranslation } from "react-i18next";
+
+import { emailSvc } from "@USupport-components-library/services";
 
 import "./contact-us.scss";
 
-import mascot from "../../assets/MascotBlue.png";
-import { useTranslation } from "react-i18next";
-
-import email from "../../services/email";
+import { mascotHappyBlue } from "@USupport-components-library/assets";
 
 /**
  * ContactUs
@@ -28,7 +28,7 @@ export const ContactUs = () => {
   const showMascot = width >= 768;
 
   const handleSendEmail = async (data) => {
-    return await email.sendAdmin({
+    return await emailSvc.sendAdmin({
       subject: "New message from Contact Us",
       title: "New message",
       text: `Hello,<br></br>You have a new message from user:<br></br>Email: ${data.email}<br></br>Reason: ${data.reason.label}<br></br>message: ${data.message}<br></br>Best Regards,<br></br>USupport Team`,
@@ -51,7 +51,7 @@ export const ContactUs = () => {
             </GridItem>
             {showMascot && (
               <GridItem md={4} lg={4} classes="contact-us__mascot-item">
-                <img src={mascot} />
+                <img src={mascotHappyBlue} />
               </GridItem>
             )}
           </Grid>

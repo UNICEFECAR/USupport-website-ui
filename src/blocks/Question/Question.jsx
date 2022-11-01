@@ -6,9 +6,9 @@ import {
   Button,
 } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
+import { useTranslation } from "react-i18next";
 
 import "./question.scss";
-import { useTranslation } from "react-i18next";
 
 /**
  * Question

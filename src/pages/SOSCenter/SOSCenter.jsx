@@ -1,7 +1,5 @@
 import React from "react";
-import { SOSCenter as SOSCenterBlock } from "../../blocks/SOSCenter/SOSCenter";
-import { Question } from "../../blocks/Question/Question";
-import { Page } from "../../blocks/Page/Page";
+import { SOSCenter as SOSCenterBlock, Question, Page } from "#blocks";
 
 /**
  * SOSCenter page.

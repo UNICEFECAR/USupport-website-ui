@@ -5,9 +5,9 @@ import {
   GridItem,
   CardSpecialistSmall,
 } from "@USupport-components-library/src";
+import { useTranslation } from "react-i18next";
 
 import "./meet-our-specialists.scss";
-import { useTranslation } from "react-i18next";
 
 // Placeholder data
 const specialistData = [

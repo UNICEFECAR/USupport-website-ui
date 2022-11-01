@@ -1,16 +1,14 @@
 import React from "react";
-import { Page } from "../../blocks/Page/Page";
-import { HowItWorks as HowItWorksBlock } from "../../blocks/HowItWorks/HowItWorks";
-import { Question } from "../../blocks/Question/Question";
+import { Page, HowItWorks as HowItWorksBlock, Question } from "#blocks";
 import {
   CollapsibleFAQ,
   Block,
   Grid,
   GridItem,
 } from "@USupport-components-library/src";
+import { useTranslation } from "react-i18next";
 
 import "./how-it-works.scss";
-import { useTranslation } from "react-i18next";
 
 /**
  * HowItWorks

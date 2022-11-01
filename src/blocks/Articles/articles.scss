@@ -52,6 +52,7 @@
 
   &__articles-item {
     padding-top: $spacing_2_4;
+    padding-bottom: $spacing_0_8;
 
     @media screen and (min-width: $screen-lg) {
       padding-top: $spacing_2_4;
@@ -69,5 +70,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  &__no-results-container {
+    padding: $spacing_10_0;
   }
 }
