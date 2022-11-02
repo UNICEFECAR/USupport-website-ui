@@ -60,7 +60,7 @@ ArticleView.propTypes = {
   articleData: propTypes.shape({
     title: propTypes.string,
     creator: propTypes.string,
-    readingTime: propTypes.number,
+    readingTime: propTypes.string,
     body: propTypes.string,
     labels: propTypes.arrayOf(
       propTypes.shape({
