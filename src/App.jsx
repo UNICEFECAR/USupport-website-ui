@@ -10,6 +10,7 @@ import {
   AboutUs,
   InformationPortal,
   ArticleInformation,
+  PrivacyPolicy,
 } from "#pages";
 
 // AOS imports
@@ -67,6 +68,7 @@ function App() {
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/information-portal" element={<InformationPortal />} />
           <Route path="/article/:id" element={<ArticleInformation />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route
             path="/sos-center"
             element={<SOSCenter contacts={contacts} />}
