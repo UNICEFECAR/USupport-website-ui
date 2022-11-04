@@ -21,6 +21,7 @@ import {
   HowItWorksPage,
   NotFoundPage,
   ArticleInformation,
+  PrivacyPolicy as PrivacyPolicyPage,
 } from "#pages/locales.js";
 
 const resources = {
@@ -44,6 +45,7 @@ const resources = {
     "how-it-works-page": HowItWorksPage.en,
     "not-found-page": NotFoundPage.en,
     "article-information": ArticleInformation.en,
+    "privacy-policy": PrivacyPolicyPage.en,
   },
 };
 
