@@ -1,4 +1,5 @@
 import React from "react";
+import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import {
   Block,
@@ -6,9 +7,12 @@ import {
   GridItem,
   CollapsibleFAQ,
   Button,
+  Loading,
 } from "@USupport-components-library/src";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
+
+import { cmsSvc } from "@USupport-components-library/services";
 
 import "./faq.scss";
 
@@ -22,27 +26,20 @@ import { mascotConfusedBlue } from "@USupport-components-library/assets";
  * @return {jsx}
  */
 export const FAQ = () => {
-  const { t } = useTranslation("faq");
+  const { i18n, t } = useTranslation("faq");
   const navigateTo = useNavigate();
 
-  const questions = [
-    {
-      heading: "Do I need to identify my mental problems by myself?",
-      text: "Lorem ipsum odor amet, consectetuer adipiscing elit. Ac purus in massa egestas mollis varius dignissim elementum.",
-    },
-    {
-      heading: "Can I pick my own therapists?",
-      text: "Lorem ipsum odor amet, consectetuer adipiscing elit. Ac purus in massa egestas mollis varius dignissim elementum.",
-    },
-    {
-      heading: "Do I need to prepare something before video consultations?",
-      text: "Lorem ipsum odor amet, consectetuer adipiscing elit. Ac purus in massa egestas mollis varius dignissim elementum.",
-    },
-    {
-      heading: "How do I get help?",
-      text: "Download the app in AppStore for iOS or GooglePlay Store for Android.",
-    },
-  ];
+  const getFAQs = async () => {
+    const { data } = await cmsSvc.getFAQs(i18n.language, true);
+
+    return data;
+  };
+
+  const {
+    data: FAQsData,
+    isLoading: FAQsLoading,
+    isFetched: isFAQsFetched,
+  } = useQuery(["FAQs"], getFAQs);
 
   return (
     <Block classes="faq" animation="fade-right">
@@ -55,7 +52,11 @@ export const FAQ = () => {
             <GridItem md={6} lg={6}>
               <Grid>
                 <GridItem md={8} lg={12}>
-                  <CollapsibleFAQ questions={questions} />
+                  {FAQsData && <CollapsibleFAQ data={FAQsData} />}
+                  {!FAQsData && FAQsLoading && <Loading />}
+                  {!FAQsData && !FAQsLoading && isFAQsFetched && (
+                    <h3 className="page__faq__no-results">{t("no_results")}</h3>
+                  )}
                 </GridItem>
                 <GridItem md={8} lg={12} classes="faq__button-item">
                   <Button
