@@ -1,12 +1,16 @@
 import React from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Page, HowItWorks as HowItWorksBlock, Question } from "#blocks";
 import {
   CollapsibleFAQ,
   Block,
   Grid,
   GridItem,
+  Loading,
 } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
+
+import { cmsSvc } from "@USupport-components-library/services";
 
 import "./how-it-works.scss";
 
@@ -18,25 +22,19 @@ import "./how-it-works.scss";
  * @returns {JSX.Element}
  */
 export const HowItWorks = () => {
-  const { t } = useTranslation("how-it-works-page");
-  const questions = [
-    {
-      heading: "Do I need to identify my mental problems by myself?",
-      text: "Lorem ipsum odor amet, consectetuer adipiscing elit. Ac purus in massa egestas mollis varius dignissim elementum.",
-    },
-    {
-      heading: "Can I pick my own therapists?",
-      text: "Lorem ipsum odor amet, consectetuer adipiscing elit. Ac purus in massa egestas mollis varius dignissim elementum.",
-    },
-    {
-      heading: "Do I need to prepare something before video consultations?",
-      text: "Lorem ipsum odor amet, consectetuer adipiscing elit. Ac purus in massa egestas mollis varius dignissim elementum.",
-    },
-    {
-      heading: "How do I get help?",
-      text: "Download the app in AppStore for iOS or GooglePlay Store for Android. Download the app in AppStore for iOS or GooglePlay Store for Android. Download the app in AppStore for iOS or GooglePlay Store for Android. Download the app in AppStore for iOS or GooglePlay Store for Android.",
-    },
-  ];
+  const { i18n, t } = useTranslation("how-it-works-page");
+
+  const getFAQs = async () => {
+    const { data } = await cmsSvc.getFAQs(i18n.language, true);
+
+    return data;
+  };
+
+  const {
+    data: FAQsData,
+    isLoading: FAQsLoading,
+    isFetched: isFAQsFetched,
+  } = useQuery(["FAQs"], getFAQs);
 
   return (
     <Page classes="page__how-it-works">
@@ -47,7 +45,11 @@ export const HowItWorks = () => {
             <h2>{t("heading")}</h2>
           </GridItem>
           <GridItem md={8} lg={12} classes="page__how-it-works__faq-item">
-            <CollapsibleFAQ questions={questions} />
+            {FAQsData && <CollapsibleFAQ data={FAQsData} />}
+            {!FAQsData && FAQsLoading && <Loading />}
+            {!FAQsData && !FAQsLoading && isFAQsFetched && (
+              <h3 className="page__faq__no-results">{t("no_results")}</h3>
+            )}
           </GridItem>
         </Grid>
       </Block>
