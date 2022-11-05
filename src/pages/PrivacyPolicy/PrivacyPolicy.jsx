@@ -27,12 +27,7 @@ export const PrivacyPolicy = () => {
       "website"
     );
 
-    let res = null;
-    if (data.length > 0) {
-      res = data[0].attributes.website;
-    }
-
-    return res;
+    return data;
   };
 
   const {
