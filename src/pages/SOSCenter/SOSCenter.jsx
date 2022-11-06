@@ -6,10 +6,10 @@ import { SOSCenter as SOSCenterBlock, Question, Page } from "#blocks";
  *
  * @returns {JSX.Element}
  */
-export const SOSCenter = ({ contacts }) => {
+export const SOSCenter = () => {
   return (
     <Page>
-      <SOSCenterBlock contacts={contacts} />
+      <SOSCenterBlock />
       <Question />
     </Page>
   );
