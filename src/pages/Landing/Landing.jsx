@@ -23,7 +23,7 @@ export function Landing() {
       <FindYourself />
       <About />
       <HowItWorks summary />
-      <FAQ />
+      <FAQ showLearnMore={true} showMascot={true} />
       <DownloadApp />
     </Page>
   );

@@ -18,11 +18,7 @@ import {
   PrivacyPolicy,
 } from "#blocks/locales.js";
 
-import {
-  HowItWorksPage,
-  NotFoundPage,
-  ArticleInformation,
-} from "#pages/locales.js";
+import { NotFoundPage, ArticleInformation } from "#pages/locales.js";
 
 const resources = {
   en: {
@@ -43,7 +39,6 @@ const resources = {
     "privacy-policy": PrivacyPolicy.en,
 
     // Pages
-    "how-it-works-page": HowItWorksPage.en,
     "not-found-page": NotFoundPage.en,
     "article-information": ArticleInformation.en,
   },
