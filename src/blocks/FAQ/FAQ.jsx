@@ -25,7 +25,7 @@ import { mascotConfusedBlue } from "@USupport-components-library/assets";
  *
  * @return {jsx}
  */
-export const FAQ = () => {
+export const FAQ = ({ showMascot, showLearnMore }) => {
   const { i18n, t } = useTranslation("faq");
   const navigateTo = useNavigate();
 
@@ -49,7 +49,7 @@ export const FAQ = () => {
         </GridItem>
         <GridItem md={8} lg={12} classes="faq__content-item">
           <Grid>
-            <GridItem md={6} lg={6}>
+            <GridItem md={showMascot ? 6 : 8} lg={showMascot ? 6 : 12}>
               <Grid>
                 <GridItem md={8} lg={12}>
                   {FAQsData && <CollapsibleFAQ data={FAQsData} />}
@@ -58,21 +58,25 @@ export const FAQ = () => {
                     <h3 className="page__faq__no-results">{t("no_results")}</h3>
                   )}
                 </GridItem>
-                <GridItem md={8} lg={12} classes="faq__button-item">
-                  <Button
-                    size="lg"
-                    type="secondary"
-                    label={t("button")}
-                    onClick={() => {
-                      navigateTo("/about-us");
-                    }}
-                  />
-                </GridItem>
+                {showLearnMore && (
+                  <GridItem md={8} lg={12} classes="faq__button-item">
+                    <Button
+                      size="lg"
+                      type="secondary"
+                      label={t("button")}
+                      onClick={() => {
+                        navigateTo("/about-us");
+                      }}
+                    />
+                  </GridItem>
+                )}
               </Grid>
             </GridItem>
-            <GridItem md={2} lg={6} classes="faq__mascot-item">
-              <img src={mascotConfusedBlue} />
-            </GridItem>
+            {showMascot && (
+              <GridItem md={2} lg={6} classes="faq__mascot-item">
+                <img src={mascotConfusedBlue} />
+              </GridItem>
+            )}
           </Grid>
         </GridItem>
       </Grid>
@@ -82,16 +86,18 @@ export const FAQ = () => {
 
 FAQ.propTypes = {
   /**
-   * Array of questions
+   * Show mascot
    * */
-  questions: PropTypes.arrayOf(
-    PropTypes.shape({
-      heading: PropTypes.string,
-      text: PropTypes.string,
-    })
-  ).isRequired,
+  showMascot: PropTypes.bool,
+
+  /**
+   * Show learn more button
+   * */
+  showLearnMore: PropTypes.bool,
 };
 
 FAQ.defaultProps = {
   questions: [],
+  showMascot: false,
+  showLearnMore: false,
 };
