@@ -15,13 +15,13 @@ import {
   ContactUs,
   Faq,
   Articles,
+  PrivacyPolicy,
 } from "#blocks/locales.js";
 
 import {
   HowItWorksPage,
   NotFoundPage,
   ArticleInformation,
-  PrivacyPolicy as PrivacyPolicyPage,
 } from "#pages/locales.js";
 
 const resources = {
@@ -40,12 +40,12 @@ const resources = {
     "sos-center": SosCenter.en,
     "we-help": WeHelp.en,
     articles: Articles.en,
+    "privacy-policy": PrivacyPolicy.en,
 
     // Pages
     "how-it-works-page": HowItWorksPage.en,
     "not-found-page": NotFoundPage.en,
     "article-information": ArticleInformation.en,
-    "privacy-policy": PrivacyPolicyPage.en,
   },
 };
 

@@ -9,6 +9,7 @@ export * from "./Hero";
 export * from "./HowItWorks";
 export * from "./MeetOurSpecialists";
 export * from "./Page";
+export * from "./PrivacyPolicy";
 export * from "./Question";
 export * from "./SOSCenter";
 export * from "./WeHelp";
