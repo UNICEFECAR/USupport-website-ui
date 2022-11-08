@@ -19,28 +19,13 @@ import "./page.scss";
  */
 export const Page = ({ additionalPadding = true, classes, children }) => {
   const navigateTo = useNavigate();
-  const { t } = useTranslation("page");
+  const { t, i18n } = useTranslation("page");
   const pages = [
     { name: t("page_1"), url: "/", exact: true },
     { name: t("page_2"), url: "/how-it-works" },
     { name: t("page_3"), url: "/about-us" },
     { name: t("page_4"), url: "/information-portal" },
     { name: t("page_5"), url: "/contact-us" },
-  ];
-
-  // TODO: add the real countries & languages
-  const countries = [
-    {
-      name: "Kazakhstan",
-      flagName: "kazakhstan",
-      languages: ["Kazakh", "Russian", "English"],
-    },
-    { name: "Germany", flagName: "germany", languages: ["German", "English"] },
-    {
-      name: "Switzerland",
-      flagName: "swiss",
-      languages: ["German", "French", "Italian", "Romansh"],
-    },
   ];
 
   const footerLists = {
@@ -72,11 +57,12 @@ export const Page = ({ additionalPadding = true, classes, children }) => {
     <>
       <Navbar
         pages={pages}
-        countries={countries}
         showCta
-        showCountriesDropdown
-        dropdownText={t("dropdown_text")}
+        showCountries
+        languageLabel={t("language_label")}
+        countryLabel={t("country_label")}
         buttonText={t("button_text")}
+        i18n={i18n}
       />
       <div
         className={[

@@ -26,6 +26,7 @@
   "emergency_button": "SOS Center",
 
   "button_text": "Go to app",
-  "dropdown_text": "Country & Language",
+  "language_label": "Language",
+  "country_label": "Country",
   "contact_us": "Contact Us"
 }
