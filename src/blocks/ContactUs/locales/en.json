@@ -1,4 +1,7 @@
 {
   "heading_1": "Contact Us",
-  "heading_2": "Have a question? Don’t hesitate to contact us."
+  "heading_2": "Have a question? Don’t hesitate to contact us.",
+  "email_subject": "New message from Contact Us",
+  "email_title": "New message",
+  "email_text": "Hello,<br></br>You have a new message from user:<br></br>Email: {{email}}<br></br>Reason: {{reason}}<br></br>message: {{message}}<br></br>Best Regards,<br></br>USupport Team"
 }

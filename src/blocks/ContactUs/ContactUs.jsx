@@ -29,9 +29,13 @@ export const ContactUs = () => {
 
   const handleSendEmail = async (data) => {
     return await emailSvc.sendAdmin({
-      subject: "New message from Contact Us",
-      title: "New message",
-      text: `Hello,<br></br>You have a new message from user:<br></br>Email: ${data.email}<br></br>Reason: ${data.reason.label}<br></br>message: ${data.message}<br></br>Best Regards,<br></br>USupport Team`,
+      subject: t("email_subject"),
+      title: t("email_title"),
+      text: t("email_text", {
+        email: data.email,
+        reason: data.reason.label,
+        message: data.message,
+      }),
     });
   };
 
