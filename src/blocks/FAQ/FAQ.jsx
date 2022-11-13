@@ -34,17 +34,20 @@ export const FAQ = ({ showMascot, showLearnMore }) => {
     // Request faq ids from the master DB based for website platform
     const faqIds = await adminSvc.getFAQs("website");
 
-    let { data } = await cmsSvc.getFAQs("all", true, faqIds);
-
-    data = getFilteredData(data, i18n.language);
-
     const faqs = [];
-    data.forEach((faq) => {
-      faqs.push({
-        question: faq.attributes.question,
-        answer: faq.attributes.answer,
+
+    if (faqIds?.length > 0) {
+      let { data } = await cmsSvc.getFAQs("all", true, faqIds);
+
+      data = getFilteredData(data, i18n.language);
+
+      data.forEach((faq) => {
+        faqs.push({
+          question: faq.attributes.question,
+          answer: faq.attributes.answer,
+        });
       });
-    });
+    }
     return faqs;
   };
 
