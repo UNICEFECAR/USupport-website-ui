@@ -8,8 +8,9 @@ import {
   Loading,
 } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
+import { getFilteredData } from "@USupport-components-library/utils";
 
-import { cmsSvc } from "@USupport-components-library/services";
+import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 
 import "./sos-center.scss";
 
@@ -24,16 +25,34 @@ export const SOSCenter = () => {
   const { i18n, t } = useTranslation("sos-center");
 
   const getSOSCenters = async () => {
-    const { data } = await cmsSvc.getSOSCenters(i18n.language, true);
+    // Request SOS Centers ids from the master DB based for website platform
+    const sosCentersIds = await adminSvc.getSOSCenters("website");
+    console.log("sosCentersIds", sosCentersIds);
+    const sosCenters = [];
 
-    return data;
+    if (sosCentersIds.length > 0) {
+      let { data } = await cmsSvc.getSOSCenters("all", true, sosCentersIds);
+
+      data = getFilteredData(data, i18n.language);
+
+      data.forEach((sosCenter) => {
+        sosCenters.push({
+          title: sosCenter.attributes.title,
+          text: sosCenter.attributes.text,
+          phone: sosCenter.attributes.phone,
+          email: sosCenter.attributes.email,
+        });
+      });
+    }
+
+    return sosCenters;
   };
 
   const {
     data: SOSCentersData,
     isLoading: SOSCentersLoading,
     isFetched: isSOSCentersFetched,
-  } = useQuery(["SOSCenters"], getSOSCenters);
+  } = useQuery(["SOSCenters", i18n.language], getSOSCenters);
 
   return (
     <Block classes="soscenter" animation="fade-right">
@@ -44,7 +63,7 @@ export const SOSCenter = () => {
           </GridItem>
           <GridItem xs={4} md={8} lg={12} classes="soscenter__text-item">
             <Grid classes="soscenter__secondary-grid" xs={4} md={8} lg={12}>
-              {SOSCentersData.map((contact, index) => {
+              {SOSCentersData.map((sosCenter, index) => {
                 return (
                   <GridItem
                     classes="soscenter__secondary-grid__item"
@@ -53,10 +72,10 @@ export const SOSCenter = () => {
                     key={index}
                   >
                     <EmergencyCenter
-                      title={contact.title}
-                      text={contact.text}
-                      link={contact.link}
-                      phone={contact.phone}
+                      title={sosCenter.title}
+                      text={sosCenter.text}
+                      link={sosCenter.link}
+                      phone={sosCenter.phone}
                       btnLabel={t("button")}
                     />
                   </GridItem>
@@ -67,7 +86,7 @@ export const SOSCenter = () => {
         </Grid>
       )}
       {!SOSCentersData && SOSCentersLoading && <Loading />}
-      {!SOSCentersData && !SOSCentersLoading && isSOSCentersFetched && (
+      {!SOSCentersData?.length && !SOSCentersLoading && isSOSCentersFetched && (
         <h3 className="soscenter__no-results">{t("no_results")}</h3>
       )}
     </Block>
