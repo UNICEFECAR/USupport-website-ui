@@ -27,7 +27,6 @@ export const SOSCenter = () => {
   const getSOSCenters = async () => {
     // Request SOS Centers ids from the master DB based for website platform
     const sosCentersIds = await adminSvc.getSOSCenters("website");
-    console.log("sosCentersIds", sosCentersIds);
     const sosCenters = [];
 
     if (sosCentersIds.length > 0) {
