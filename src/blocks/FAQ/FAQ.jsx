@@ -11,8 +11,9 @@ import {
 } from "@USupport-components-library/src";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
+import { getFilteredData } from "@USupport-components-library/utils";
 
-import { cmsSvc } from "@USupport-components-library/services";
+import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 
 import "./faq.scss";
 
@@ -30,16 +31,31 @@ export const FAQ = ({ showMascot, showLearnMore }) => {
   const navigateTo = useNavigate();
 
   const getFAQs = async () => {
-    const { data } = await cmsSvc.getFAQs(i18n.language, true);
+    // Request faq ids from the master DB based for website platform
+    const faqIds = await adminSvc.getFAQs("website");
 
-    return data;
+    const faqs = [];
+
+    if (faqIds?.length > 0) {
+      let { data } = await cmsSvc.getFAQs("all", true, faqIds);
+
+      data = getFilteredData(data, i18n.language);
+
+      data.forEach((faq) => {
+        faqs.push({
+          question: faq.attributes.question,
+          answer: faq.attributes.answer,
+        });
+      });
+    }
+    return faqs;
   };
 
   const {
     data: FAQsData,
     isLoading: FAQsLoading,
     isFetched: isFAQsFetched,
-  } = useQuery(["FAQs"], getFAQs);
+  } = useQuery(["FAQs", i18n.language], getFAQs);
 
   return (
     <Block classes="faq" animation="fade-right">
@@ -54,7 +70,7 @@ export const FAQ = ({ showMascot, showLearnMore }) => {
                 <GridItem md={8} lg={12}>
                   {FAQsData && <CollapsibleFAQ data={FAQsData} />}
                   {!FAQsData && FAQsLoading && <Loading />}
-                  {!FAQsData && !FAQsLoading && isFAQsFetched && (
+                  {!FAQsData?.length && !FAQsLoading && isFAQsFetched && (
                     <h3 className="page__faq__no-results">{t("no_results")}</h3>
                   )}
                 </GridItem>
