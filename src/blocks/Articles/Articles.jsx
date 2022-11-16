@@ -177,7 +177,7 @@ export const Articles = () => {
       categoryId = selectedCategory.id;
     }
 
-    let res = await cmsSvc.getArticles({
+    let { data } = await cmsSvc.getArticles({
       limit: 6,
       contains: debouncedSearchValue,
       ageGroupId,
@@ -187,9 +187,9 @@ export const Articles = () => {
       ids: articleIdsQuerry.data,
     });
 
-    const articles = res.data;
+    const articles = data.data;
 
-    const numberOfArticles = res.meta.pagination.total;
+    const numberOfArticles = data.meta.pagination.total;
     return { articles, numberOfArticles };
   };
 
@@ -241,7 +241,7 @@ export const Articles = () => {
       categoryId = selectedCategory.id;
     }
 
-    const res = await cmsSvc.getArticles({
+    const { data } = await cmsSvc.getArticles({
       startFrom: articles?.length,
       limit: 6,
       contains: searchValue,
@@ -252,14 +252,14 @@ export const Articles = () => {
       ids: articleIdsQuerry.data,
     });
 
-    const newArticles = res.data;
+    const newArticles = data.data;
 
     setArticles((prevArticles) => [...prevArticles, ...newArticles]);
   };
 
   //--------------------- Newest Article ----------------------//
   const getNewestArticle = async () => {
-    let res = await cmsSvc.getArticles({
+    let { data } = await cmsSvc.getArticles({
       limit: 1, // Only get the newest article
       sortBy: "createdAt", // Sort by created date
       sortOrder: "desc", // Sort in descending order
@@ -267,7 +267,7 @@ export const Articles = () => {
       populate: true,
       ids: articleIdsQuerry.data,
     });
-    const newestArticleData = destructureArticleData(CMS_HOST, res.data[0]);
+    const newestArticleData = destructureArticleData(CMS_HOST, data.data[0]);
     return newestArticleData;
   };
 
