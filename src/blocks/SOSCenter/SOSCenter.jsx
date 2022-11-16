@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import {
   Block,
@@ -8,9 +8,9 @@ import {
   Loading,
 } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
-import { getFilteredData } from "@USupport-components-library/utils";
-
+// import { getFilteredData } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
+import { useEventListener } from "@USupport-components-library/hooks";
 
 import "./sos-center.scss";
 
@@ -24,25 +24,39 @@ import "./sos-center.scss";
 export const SOSCenter = () => {
   const { i18n, t } = useTranslation("sos-center");
 
+  //--------------------- Country Change Event Listener ----------------------//
+  const [currentCountry, setCurrentCountry] = useState(
+    localStorage.getItem("country")
+  );
+
+  const handler = useCallback(() => {
+    setCurrentCountry(localStorage.getItem("country"));
+  }, []);
+
+  // Add event listener
+  useEventListener("countryChanged", handler);
+
+  //--------------------- SOS Centers ----------------------//
+
+  const getSOSCenterIds = async () => {
+    // Request faq ids from the master DB based for website platform
+    const sosCenterIds = await adminSvc.getSOSCenters();
+
+    return sosCenterIds;
+  };
+
+  const sosCenterIdsQuerry = useQuery(
+    ["sosCenterIds", currentCountry],
+    getSOSCenterIds
+  );
+
   const getSOSCenters = async () => {
-    // Request SOS Centers ids from the master DB based for website platform
-    const sosCentersIds = await adminSvc.getSOSCenters("website");
-    const sosCenters = [];
+    let { data } = await cmsSvc.getSOSCenters({
+      locale: i18n.language,
+      ids: sosCenterIdsQuerry.data,
+    });
 
-    if (sosCentersIds.length > 0) {
-      let { data } = await cmsSvc.getSOSCenters("all", true, sosCentersIds);
-
-      data = getFilteredData(data, i18n.language);
-
-      data.forEach((sosCenter) => {
-        sosCenters.push({
-          title: sosCenter.attributes.title,
-          text: sosCenter.attributes.text,
-          phone: sosCenter.attributes.phone,
-          email: sosCenter.attributes.email,
-        });
-      });
-    }
+    const sosCenters = data.data;
 
     return sosCenters;
   };
@@ -51,7 +65,14 @@ export const SOSCenter = () => {
     data: SOSCentersData,
     isLoading: SOSCentersLoading,
     isFetched: isSOSCentersFetched,
-  } = useQuery(["SOSCenters", i18n.language], getSOSCenters);
+  } = useQuery(
+    ["SOSCenters", sosCenterIdsQuerry.data, i18n.language],
+    getSOSCenters,
+    {
+      enabled:
+        !sosCenterIdsQuerry.isLoading && sosCenterIdsQuerry.data?.length > 0,
+    }
+  );
 
   return (
     <Block classes="soscenter" animation="fade-right">
@@ -71,10 +92,10 @@ export const SOSCenter = () => {
                     key={index}
                   >
                     <EmergencyCenter
-                      title={sosCenter.title}
-                      text={sosCenter.text}
-                      link={sosCenter.link}
-                      phone={sosCenter.phone}
+                      title={sosCenter.attributes.title}
+                      text={sosCenter.attributes.text}
+                      link={sosCenter.attributes.link}
+                      phone={sosCenter.attributes.phone}
                       btnLabel={t("button")}
                     />
                   </GridItem>
@@ -84,10 +105,13 @@ export const SOSCenter = () => {
           </GridItem>
         </Grid>
       )}
-      {!SOSCentersData && SOSCentersLoading && <Loading />}
-      {!SOSCentersData?.length && !SOSCentersLoading && isSOSCentersFetched && (
-        <h3 className="soscenter__no-results">{t("no_results")}</h3>
-      )}
+      {sosCenterIdsQuerry.data?.length > 0 &&
+        !SOSCentersData &&
+        SOSCentersLoading && <Loading />}
+      {(!SOSCentersData?.length && !SOSCentersLoading && isSOSCentersFetched) ||
+        (sosCenterIdsQuerry.data?.length === 0 && (
+          <h3 className="soscenter__no-results">{t("no_results")}</h3>
+        ))}
     </Block>
   );
 };
