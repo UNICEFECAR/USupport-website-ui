@@ -8,7 +8,6 @@ import {
   Loading,
 } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
-// import { getFilteredData } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 import { useEventListener } from "@USupport-components-library/hooks";
 
