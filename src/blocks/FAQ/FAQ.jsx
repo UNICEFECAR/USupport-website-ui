@@ -53,9 +53,6 @@ export const FAQ = ({ showMascot, showLearnMore }) => {
   const faqIdsQuerry = useQuery(["faqIds", currentCountry], getFAQIds);
 
   const getFAQs = async () => {
-    // Request faq ids from the master DB based for website platform
-    const faqIds = await adminSvc.getFAQs("website");
-
     const faqs = [];
 
     let { data } = await cmsSvc.getFAQs({
