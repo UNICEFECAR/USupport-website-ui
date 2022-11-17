@@ -72,9 +72,9 @@ export const ArticleInformation = () => {
         populate: true,
         ids: articleIdsQuerry.data,
       });
-      return newest;
+      return newest.data;
     }
-    return data;
+    return data.data;
   };
 
   const {
