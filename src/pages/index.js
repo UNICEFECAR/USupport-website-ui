@@ -6,4 +6,5 @@ export * from "./InformationPortal";
 export * from "./Landing";
 export * from "./NotFound";
 export * from "./SOSCenter";
-export * from './PrivacyPolicy';
+export * from "./PrivacyPolicy";
+export * from "./CookiePolicy";
