@@ -14,3 +14,4 @@ export * from "./Question";
 export * from "./SOSCenter";
 export * from "./WeHelp";
 export * from "./CookiePolicy";
+export * from "./TermsOfUse";
