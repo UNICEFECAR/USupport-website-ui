@@ -43,7 +43,6 @@ export const PrivacyPolicy = () => {
       "website"
     );
 
-    console.log(data);
     return data;
   };
 
