@@ -16,6 +16,8 @@ import {
   Faq,
   Articles,
   PrivacyPolicy,
+  CookiePolicy,
+  TermsOfUse,
 } from "#blocks/locales.js";
 
 import { NotFoundPage, ArticleInformation } from "#pages/locales.js";
@@ -37,6 +39,8 @@ const resources = {
     "we-help": WeHelp.en,
     articles: Articles.en,
     "privacy-policy": PrivacyPolicy.en,
+    "cookie-policy": CookiePolicy.en,
+    "terms-of-use": TermsOfUse.en,
 
     // Pages
     "not-found-page": NotFoundPage.en,

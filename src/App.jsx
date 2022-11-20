@@ -11,6 +11,8 @@ import {
   InformationPortal,
   ArticleInformation,
   PrivacyPolicy,
+  CookiePolicy,
+  TermsOfUse,
 } from "#pages";
 
 // AOS imports
@@ -46,6 +48,8 @@ function App() {
           <Route path="/article/:id" element={<ArticleInformation />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/sos-center" element={<SOSCenter />} />
+          <Route path="/cookie-policy" element={<CookiePolicy />} />
+          <Route path="/terms-of-use" element={<TermsOfUse />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
