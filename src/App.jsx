@@ -48,7 +48,7 @@ function App() {
           <Route path="/article/:id" element={<ArticleInformation />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/sos-center" element={<SOSCenter />} />
-          <Route path="/cookie" element={<CookiePolicy />} />
+          <Route path="/cookie-policy" element={<CookiePolicy />} />
           <Route path="/terms-of-use" element={<TermsOfUse />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
