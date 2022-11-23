@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { userSvc } from "USupport-components-library/services";
+import { userSvc } from "@USupport-components-library/services";
 
 /**
  * Reuseable hook to get update the user's notification preferences

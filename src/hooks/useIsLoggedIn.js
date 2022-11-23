@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import jwtDecode from "jwt-decode";
 import { useQuery } from "@tanstack/react-query";
-import { userSvc } from "USupport-components-library/services";
+import { userSvc } from "@USupport-components-library/services";
 
 export const useIsLoggedIn = () => {
   const [result, setResult] = useState("loading");
