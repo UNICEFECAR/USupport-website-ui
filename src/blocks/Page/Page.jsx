@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
   Navbar,
@@ -64,6 +64,7 @@ export const Page = ({ additionalPadding = true, classes, children }) => {
         buttonText={t("button_text")}
         i18n={i18n}
         navigate={navigateTo}
+        NavLink={NavLink}
       />
       <div
         className={[
@@ -84,6 +85,7 @@ export const Page = ({ additionalPadding = true, classes, children }) => {
         lists={footerLists}
         contactUsText={t("contact_us")}
         navigate={navigateTo}
+        Link={Link}
       />
     </>
   );
