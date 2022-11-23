@@ -1,12 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import {
   Navbar,
   CircleIconButton,
   Footer,
 } from "@USupport-components-library/src";
 import classNames from "classnames";
-import { useTranslation } from "react-i18next";
 
 import "./page.scss";
 
@@ -63,6 +63,7 @@ export const Page = ({ additionalPadding = true, classes, children }) => {
         countryLabel={t("country_label")}
         buttonText={t("button_text")}
         i18n={i18n}
+        navigate={navigateTo}
       />
       <div
         className={[
@@ -79,7 +80,11 @@ export const Page = ({ additionalPadding = true, classes, children }) => {
         onClick={() => navigateTo("/sos-center")}
         label={t("emergency_button")}
       />
-      <Footer lists={footerLists} contactUsText={t("contact_us")} />
+      <Footer
+        lists={footerLists}
+        contactUsText={t("contact_us")}
+        navigate={navigateTo}
+      />
     </>
   );
 };
