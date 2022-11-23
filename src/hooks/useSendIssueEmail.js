@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { emailSvc } from "USupport-components-library/services";
+import { emailSvc } from "@USupport-components-library/services";
 import { useError } from "../hooks";
 
 export default function useSendIssueEmail(onSuccess, onError) {

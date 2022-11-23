@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { userSvc } from "USupport-components-library/services";
+import { userSvc } from "@USupport-components-library/services";
 
 /**
  * Reuseable hook to get and transform the client data in a desired format

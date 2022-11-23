@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { languageSvc, countrySvc } from "USupport-components-library/services";
+import { languageSvc, countrySvc } from "@USupport-components-library/services";
 
 export default function useGetCountryAndLanguages() {
   const fetchLanguagesAndCountries = async () => {

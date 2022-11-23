@@ -1,6 +1,6 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { providerSvc } from "USupport-components-library/services";
+import { providerSvc } from "@USupport-components-library/services";
 
 /**
  * Reuseable hook to get and transform the provider data in a desired format
