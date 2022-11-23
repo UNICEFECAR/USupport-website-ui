@@ -17,10 +17,7 @@ import {
   useWindowDimensions,
 } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
-import {
-  useDebounce,
-  useEventListener,
-} from "@USupport-components-library/hooks";
+import { useDebounce, useEventListener } from "#hooks";
 import { useTranslation } from "react-i18next";
 
 import "./articles.scss";

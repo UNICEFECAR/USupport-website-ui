@@ -11,7 +11,7 @@ import {
 } from "@USupport-components-library/src";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
-import { useEventListener } from "@USupport-components-library/hooks";
+import { useEventListener } from "#hooks";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 
 import "./faq.scss";
