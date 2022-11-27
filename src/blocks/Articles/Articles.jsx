@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import {
   Grid,
@@ -18,7 +19,6 @@ import {
 } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 import { useDebounce, useEventListener } from "#hooks";
-import { useTranslation } from "react-i18next";
 
 import "./articles.scss";
 
@@ -38,13 +38,21 @@ export const Articles = () => {
 
   const isNotDescktop = width < 1366;
 
+  const [usersLanguage, setUsersLanguage] = useState(i18n.language);
+
+  useEffect(() => {
+    if (i18n.language !== usersLanguage) {
+      setUsersLanguage(i18n.language);
+    }
+  }, [i18n.language]);
+
   //--------------------- Age Groups ----------------------//
   const [ageGroups, setAgeGroups] = useState();
   const [selectedAgeGroup, setSelectedAgeGroup] = useState();
 
   const getAgeGroups = async () => {
     try {
-      const res = await cmsSvc.getAgeGroups(i18n.language);
+      const res = await cmsSvc.getAgeGroups(usersLanguage);
       const ageGroupsData = res.data.map((age, index) => ({
         label: age.attributes.name,
         id: age.id,
@@ -58,7 +66,7 @@ export const Articles = () => {
     }
   };
 
-  const ageGroupsQuery = useQuery(["ageGroups", i18n.language], getAgeGroups, {
+  const ageGroupsQuery = useQuery(["ageGroups", usersLanguage], getAgeGroups, {
     refetchOnWindowFocus: false,
     refetchOnMount: true,
     onSuccess: (data) => {
@@ -87,7 +95,7 @@ export const Articles = () => {
 
   const getCategories = async () => {
     try {
-      const res = await cmsSvc.getCategories(i18n.language);
+      const res = await cmsSvc.getCategories(usersLanguage);
       let categoriesData = [{ label: "All", value: "all", isSelected: true }];
       res.data.map((category, index) =>
         categoriesData.push({
@@ -105,8 +113,8 @@ export const Articles = () => {
     }
   };
 
-  const categoriesQuerry = useQuery(
-    ["articles-categories", i18n.language],
+  const categoriesQuery = useQuery(
+    ["articles-categories", usersLanguage],
     getCategories,
     {
       refetchOnWindowFocus: false,
@@ -144,8 +152,11 @@ export const Articles = () => {
   );
 
   const handler = useCallback(() => {
-    setCurrentCountry(localStorage.getItem("country"));
-  }, []);
+    const country = localStorage.getItem("country");
+    if (country !== currentCountry) {
+      setCurrentCountry(country);
+    }
+  }, [currentCountry]);
 
   // Add event listener
   useEventListener("countryChanged", handler);
@@ -159,7 +170,7 @@ export const Articles = () => {
     return articlesIds;
   };
 
-  const articleIdsQuerry = useQuery(
+  const articleIdsQuery = useQuery(
     ["articleIds", currentCountry],
     getArticlesIds
   );
@@ -179,9 +190,9 @@ export const Articles = () => {
       contains: debouncedSearchValue,
       ageGroupId,
       categoryId,
-      locale: i18n.language,
+      locale: usersLanguage,
       populate: true,
-      ids: articleIdsQuerry.data,
+      ids: articleIdsQuery.data,
     });
 
     const articles = data.data;
@@ -192,25 +203,32 @@ export const Articles = () => {
 
   const [articles, setArticles] = useState();
   const [numberOfArticles, setNumberOfArticles] = useState();
-  const { isLoading: loading } = useQuery(
+  const {
+    isLoading: isArticlesLoading,
+    isFetching: isArticlesFetching,
+    isFetched: isArticlesFetched,
+    fetchStatus: articlesFetchStatus,
+    data: articlesQueryData,
+  } = useQuery(
     [
       "articles",
       debouncedSearchValue,
       selectedAgeGroup,
       selectedCategory,
-      articleIdsQuerry.data,
+      articleIdsQuery.data,
+      usersLanguage,
     ],
     getArticlesData,
     {
-      // Run the query when the getCategories and getAgeGroups queries have finished running
       enabled:
-        !articleIdsQuerry.isLoading &&
+        !articleIdsQuery.isLoading &&
         !ageGroupsQuery.isLoading &&
-        !categoriesQuerry.isLoading &&
-        categories?.length > 0 &&
-        ageGroups?.length > 0 &&
-        articleIdsQuerry.data?.length > 0,
-
+        !categoriesQuery.isLoading &&
+        categoriesQuery.data?.length > 0 &&
+        ageGroupsQuery.data?.length > 0 &&
+        articleIdsQuery.data?.length > 0 &&
+        selectedCategory !== null &&
+        selectedAgeGroup !== null,
       refetchOnWindowFocus: false,
       onSuccess: (data) => {
         setArticles([...data.articles]);
@@ -244,9 +262,9 @@ export const Articles = () => {
       contains: searchValue,
       ageGroupId: ageGroupId,
       categoryId: null,
-      locale: i18n.language,
+      locale: usersLanguage,
       populate: true,
-      ids: articleIdsQuerry.data,
+      ids: articleIdsQuery.data,
     });
 
     const newArticles = data.data;
@@ -260,32 +278,34 @@ export const Articles = () => {
       limit: 1, // Only get the newest article
       sortBy: "createdAt", // Sort by created date
       sortOrder: "desc", // Sort in descending order
-      locale: i18n.language,
+      locale: usersLanguage,
       populate: true,
-      ids: articleIdsQuerry.data,
+      ids: articleIdsQuery.data,
     });
+    if (!data || !data.data[0]) return null;
     const newestArticleData = destructureArticleData(CMS_HOST, data.data[0]);
     return newestArticleData;
   };
 
-  const { data: newestArticle } = useQuery(
-    ["newestArticle", i18n.language, articleIdsQuerry.data],
+  const {
+    data: newestArticle,
+    isLoading: isNewestArticleLoading,
+    isFetching: isNewestArticleFetching,
+    isFetched: isNewestArticleFetched,
+    fetchStatus: newestArticleFetchStatus,
+  } = useQuery(
+    ["newestArticle", usersLanguage, currentCountry],
     getNewestArticle,
     {
       // Run the query when the getCategories and getAgeGroups queries have finished running
-      enabled: !articleIdsQuerry.isLoading && articleIdsQuerry.data?.length > 0,
-
+      enabled: !articleIdsQuery.isLoading && articleIdsQuery.data?.length > 0,
       refetchOnWindowFocus: false,
     }
   );
 
   return (
     <Block classes="articles">
-      {newestArticle &&
-      ageGroups &&
-      ageGroups.length > 0 &&
-      categories &&
-      categories.length > 0 ? (
+      {newestArticle && ageGroups?.length > 0 && categories?.length > 0 && (
         <InfiniteScroll
           dataLength={articles?.length || 0}
           next={getMoreArticles}
@@ -298,22 +318,21 @@ export const Articles = () => {
               <h2>{t("heading")}</h2>
             </GridItem>
             <GridItem md={8} lg={12} classes="articles__most-important-item">
-              {newestArticle ? (
-                <CardMedia
-                  type={isNotDescktop ? "portrait" : "landscape"}
-                  size="lg"
-                  title={newestArticle.title}
-                  image={newestArticle.imageThumbnail}
-                  description={newestArticle.description}
-                  labels={newestArticle.labels}
-                  creator={newestArticle.creator}
-                  readingTime={newestArticle.readingTime}
-                  showDescription={true}
-                  onClick={() => {
-                    navigate(`/article/${newestArticle.id}`);
-                  }}
-                />
-              ) : (
+              <CardMedia
+                type={isNotDescktop ? "portrait" : "landscape"}
+                size="lg"
+                title={newestArticle.title}
+                image={newestArticle.imageThumbnail}
+                description={newestArticle.description}
+                labels={newestArticle.labels}
+                creator={newestArticle.creator}
+                readingTime={newestArticle.readingTime}
+                showDescription={true}
+                onClick={() => {
+                  navigate(`/article/${newestArticle.id}`);
+                }}
+              />
+              {!newestArticle && isNewestArticleLoading && (
                 <Loading size="lg" />
               )}
             </GridItem>
@@ -340,48 +359,69 @@ export const Articles = () => {
             </GridItem>
 
             <GridItem md={8} lg={12} classes="articles__articles-item">
-              {numberOfArticles > 0 ? (
-                <Grid>
-                  {articles?.map((article, index) => {
-                    const articleData = destructureArticleData(
-                      CMS_HOST,
-                      article
-                    );
-                    return (
-                      <GridItem key={index}>
-                        <CardMedia
-                          type="portrait"
-                          size="sm"
-                          style={{ gridColumn: "span 4" }}
-                          title={articleData.title}
-                          image={articleData.imageThumbnail}
-                          description={articleData.description}
-                          labels={articleData.labels}
-                          creator={articleData.creator}
-                          readingTime={articleData.readingTime}
-                          onClick={() => {
-                            navigate(`/article/${articleData.id}`);
-                          }}
-                        />
-                      </GridItem>
-                    );
-                  })}
-                </Grid>
-              ) : !loading ? (
+              {articles?.length > 0 &&
+                !isArticlesLoading &&
+                !isArticlesFetching && (
+                  <Grid>
+                    {articles?.map((article, index) => {
+                      const articleData = destructureArticleData(
+                        CMS_HOST,
+                        article
+                      );
+                      return (
+                        <GridItem key={index}>
+                          <CardMedia
+                            type="portrait"
+                            size="sm"
+                            style={{ gridColumn: "span 4" }}
+                            title={articleData.title}
+                            image={articleData.imageThumbnail}
+                            description={articleData.description}
+                            labels={articleData.labels}
+                            creator={articleData.creator}
+                            readingTime={articleData.readingTime}
+                            onClick={() => {
+                              navigate(`/article/${articleData.id}`);
+                            }}
+                          />
+                        </GridItem>
+                      );
+                    })}
+                  </Grid>
+                )}
+              {!articles?.length && !isArticlesLoading && !isArticlesFetching && (
                 <div className="articles__no-results-container">
                   <p>{t("no_results")}</p>
                 </div>
-              ) : (
-                <Loading size="lg" />
               )}
             </GridItem>
           </Grid>
         </InfiniteScroll>
-      ) : (
-        <div className="articles__page-loading">
-          <Loading size="lg" />
-        </div>
       )}
+
+      {isArticlesFetching ||
+      articleIdsQuery.isLoading ||
+      articleIdsQuery.isFetching ||
+      isNewestArticleFetching ||
+      (isNewestArticleLoading && newestArticleFetchStatus !== "idle") ? (
+        <Loading />
+      ) : null}
+
+      {(articleIdsQuery.isFetched &&
+        articleIdsQuery.data?.length === 0 &&
+        (isArticlesFetched || articlesFetchStatus === "idle") &&
+        isNewestArticleFetched) ||
+      (!newestArticle &&
+        !isNewestArticleFetching &&
+        (isArticlesFetched || articlesFetchStatus === "idle") &&
+        !articleIdsQuery.isFetching &&
+        (!articlesQueryData ||
+          !articlesQueryData.articles ||
+          articlesQueryData.articles.length === 0)) ? (
+        <div className="articles__no-results-container">
+          <h3>{t("could_not_load_content")}</h3>
+        </div>
+      ) : null}
     </Block>
   );
 };

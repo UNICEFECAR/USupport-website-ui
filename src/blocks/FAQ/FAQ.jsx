@@ -94,12 +94,9 @@ export const FAQ = ({ showMascot, showLearnMore }) => {
                   {faqIdsQuerry.data?.length > 0 &&
                     !FAQsData &&
                     FAQsLoading && <Loading />}
-                  {(!FAQsData?.length && !FAQsLoading && isFAQsFetched) ||
-                    (faqIdsQuerry.data?.length === 0 && (
-                      <h3 className="page__faq__no-results">
-                        {t("no_results")}
-                      </h3>
-                    ))}
+                  {!FAQsData?.length && !FAQsLoading && isFAQsFetched && (
+                    <h3 className="page__faq__no-results">{t("no_results")}</h3>
+                  )}
                 </GridItem>
                 {showLearnMore && (
                   <GridItem md={8} lg={12} classes="faq__button-item">

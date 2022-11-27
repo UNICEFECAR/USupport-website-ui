@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Landing,
@@ -53,6 +54,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
+      <ReactQueryDevtools initialOpen />
     </QueryClientProvider>
   );
 }
