@@ -107,10 +107,9 @@ export const SOSCenter = () => {
       {sosCenterIdsQuerry.data?.length > 0 &&
         !SOSCentersData &&
         SOSCentersLoading && <Loading />}
-      {(!SOSCentersData?.length && !SOSCentersLoading && isSOSCentersFetched) ||
-        (sosCenterIdsQuerry.data?.length === 0 && (
-          <h3 className="soscenter__no-results">{t("no_results")}</h3>
-        ))}
+      {!SOSCentersData?.length && !SOSCentersLoading && isSOSCentersFetched && (
+        <h3 className="soscenter__no-results">{t("no_results")}</h3>
+      )}
     </Block>
   );
 };
