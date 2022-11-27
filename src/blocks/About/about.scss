@@ -18,6 +18,18 @@
     }
   }
 
+  &__description-item-2 {
+    padding-top: $spacing_2_4;
+    place-self: end;
+    &__paragraph {
+      max-width: 60rem;
+    }
+
+    @media screen and (min-width: $screen-lg) {
+      justify-self: center;
+    }
+  }
+
   &__icons-grid {
     max-width: 40rem;
     width: 100%;
@@ -29,6 +41,7 @@
   }
 
   &__icon-item {
+    text-align: center;
     &.first {
       margin-top: $spacing_4_0;
       place-self: end;
@@ -40,6 +53,10 @@
     }
     &.third {
       place-self: end;
+    }
+
+    &.forth {
+      place-self: start;
     }
   }
   &__mascot {
