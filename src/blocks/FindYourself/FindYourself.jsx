@@ -22,13 +22,21 @@ export const FindYourself = () => {
         <GridItem md={8} lg={12} classes="find-yourself__text-item">
           <p className="paragraph">{t("paragraph")}</p>
         </GridItem>
-        <GridItem md={4} lg={6} classes="find-yourself__image-item need-help">
+        <GridItem md={4} lg={6} classes="find-yourself__image-item box box-1">
           <div className="overlay" />
           <h3>{t("card_text_1")}</h3>
         </GridItem>
-        <GridItem md={4} lg={6} classes="find-yourself__image-item sos-center">
+        <GridItem md={4} lg={6} classes="find-yourself__image-item box box-2">
           <div className="overlay" />
           <h3>{t("card_text_2")}</h3>
+        </GridItem>
+        <GridItem md={4} lg={6} classes="find-yourself__image-item box box-3">
+          <div className="overlay" />
+          <h3>{t("card_text_3")}</h3>
+        </GridItem>
+        <GridItem md={4} lg={6} classes="find-yourself__image-item box box-4">
+          <div className="overlay" />
+          <h3>{t("card_text_4")}</h3>
         </GridItem>
       </Grid>
     </Block>
