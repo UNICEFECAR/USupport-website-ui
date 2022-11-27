@@ -7,6 +7,7 @@ import {
   FAQ,
   DownloadApp,
   Page,
+  InformationPortal,
 } from "#blocks";
 
 /**
@@ -23,6 +24,7 @@ export function Landing() {
       <FindYourself />
       <About />
       <HowItWorks summary />
+      <InformationPortal />
       <FAQ showLearnMore={true} showMascot={true} />
       <DownloadApp />
     </Page>
