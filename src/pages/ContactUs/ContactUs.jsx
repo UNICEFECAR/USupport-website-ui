@@ -4,7 +4,7 @@ import { Page, ContactUs as ContactUsBlock } from "#blocks";
 /**
  * ContactUs
  *
- * Contact Us page
+ * Contact us page
  *
  * @returns {JSX.Element}
  */
