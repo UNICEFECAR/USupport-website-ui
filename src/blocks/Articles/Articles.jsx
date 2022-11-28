@@ -30,8 +30,6 @@ import "./articles.scss";
  * @return {jsx}
  */
 export const Articles = () => {
-  const CMS_HOST = `${import.meta.env.VITE_CMS_HOST}`;
-
   const navigate = useNavigate();
   const { width } = useWindowDimensions();
   const { i18n, t } = useTranslation("articles");
@@ -283,7 +281,7 @@ export const Articles = () => {
       ids: articleIdsQuery.data,
     });
     if (!data || !data.data[0]) return null;
-    const newestArticleData = destructureArticleData(CMS_HOST, data.data[0]);
+    const newestArticleData = destructureArticleData(data.data[0]);
     return newestArticleData;
   };
 
@@ -364,10 +362,7 @@ export const Articles = () => {
                 !isArticlesFetching && (
                   <Grid>
                     {articles?.map((article, index) => {
-                      const articleData = destructureArticleData(
-                        CMS_HOST,
-                        article
-                      );
+                      const articleData = destructureArticleData(article);
                       return (
                         <GridItem key={index}>
                           <CardMedia

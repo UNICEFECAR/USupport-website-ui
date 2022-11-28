@@ -33,7 +33,9 @@ export const Hero = () => {
               </h1>
             </GridItem>
             <GridItem md={8} lg={12} classes="hero__text-item">
-              <p className="paragraph">{t("paragraph")}</p>
+              <p className="paragraph">{t("paragraph_1")}</p>
+              <br />
+              <p className="paragraph">{t("paragraph_1_1")}</p>
             </GridItem>
             <GridItem md={4} lg={6} classes="hero__buttons-item">
               <StoreButton

@@ -15,3 +15,4 @@ export * from "./SOSCenter";
 export * from "./WeHelp";
 export * from "./CookiePolicy";
 export * from "./TermsOfUse";
+export * from './InformationPortal';

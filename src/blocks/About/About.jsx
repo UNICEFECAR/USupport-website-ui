@@ -58,7 +58,20 @@ export const About = () => {
                 label={t("card_text_3")}
               />
             </GridItem>
+            <GridItem md={8} lg={12} classes="about__icon-item forth">
+              <CardIconAndLabel
+                iconName="therapy"
+                size="md"
+                label={t("card_text_4")}
+              />
+            </GridItem>
           </Grid>
+        </GridItem>
+
+        <GridItem md={8} lg={12} classes="about__description-item-2">
+          <p className="paragraph about__description-item__paragraph">
+            {t("paragraph_2")}
+          </p>
         </GridItem>
       </Grid>
       <img src={mascotHappyBlueClipped} className="about__mascot" />

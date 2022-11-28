@@ -14,3 +14,4 @@ export * as Articles from "./Articles/locales.js";
 export * as PrivacyPolicy from "./PrivacyPolicy/locales.js";
 export * as CookiePolicy from "./CookiePolicy/locales.js";
 export * as TermsOfUse from "./TermsOfUse/locales.js";
+export * as InformationPortal from './InformationPortal/locales.js';

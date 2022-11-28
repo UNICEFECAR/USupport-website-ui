@@ -18,6 +18,7 @@ import {
   PrivacyPolicy,
   CookiePolicy,
   TermsOfUse,
+  InformationPortal,
 } from "#blocks/locales.js";
 
 import { NotFoundPage, ArticleInformation } from "#pages/locales.js";
@@ -41,6 +42,7 @@ const resources = {
     "privacy-policy": PrivacyPolicy.en,
     "cookie-policy": CookiePolicy.en,
     "terms-of-use": TermsOfUse.en,
+    "information-portal": InformationPortal.en,
 
     // Pages
     "not-found-page": NotFoundPage.en,
