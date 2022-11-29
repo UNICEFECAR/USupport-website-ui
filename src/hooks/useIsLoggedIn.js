@@ -44,7 +44,7 @@ export const useIsLoggedIn = () => {
   };
 
   /**
-   * used to get the data for the current user, specialist, or admin
+   * used to get the data for the current user, provider, or admin
    *
    * @returns {boolean} the user data or null if jwt token does not exists in the local storage
    */
