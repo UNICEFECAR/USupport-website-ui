@@ -1,5 +1,5 @@
 import React from "react";
-import { Page, WeHelp, MeetOurSpecialists } from "#blocks";
+import { Page, WeHelp, MeetOurProviders } from "#blocks";
 import { RadialCircle } from "@USupport-components-library/src";
 
 import "./about-us.scss";
@@ -18,7 +18,7 @@ export const AboutUs = () => {
       <div className="page__about-us__radial-circle">
         <RadialCircle color="blue" />
       </div>
-      <MeetOurSpecialists />
+      <MeetOurProviders />
     </Page>
   );
 };
