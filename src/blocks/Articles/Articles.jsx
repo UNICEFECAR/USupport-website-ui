@@ -320,7 +320,7 @@ export const Articles = () => {
                 type={isNotDescktop ? "portrait" : "landscape"}
                 size="lg"
                 title={newestArticle.title}
-                image={newestArticle.imageThumbnail}
+                image={newestArticle.imageMedium}
                 description={newestArticle.description}
                 labels={newestArticle.labels}
                 creator={newestArticle.creator}
@@ -370,7 +370,7 @@ export const Articles = () => {
                             size="sm"
                             style={{ gridColumn: "span 4" }}
                             title={articleData.title}
-                            image={articleData.imageThumbnail}
+                            image={articleData.imageMedium}
                             description={articleData.description}
                             labels={articleData.labels}
                             creator={articleData.creator}
