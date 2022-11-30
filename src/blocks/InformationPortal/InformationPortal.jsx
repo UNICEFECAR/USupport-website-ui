@@ -121,7 +121,7 @@ export const InformationPortal = () => {
                     size="lg"
                     style={{ gridColumn: "span 4" }}
                     title={mostReadArticlesQuerry.data[0].title}
-                    image={mostReadArticlesQuerry.data[0].imageThumbnail}
+                    image={mostReadArticlesQuerry.data[0].imageMedium}
                     description={mostReadArticlesQuerry.data[0].description}
                     labels={mostReadArticlesQuerry.data[0].labels}
                     creator={mostReadArticlesQuerry.data[0].creator}
@@ -156,7 +156,7 @@ export const InformationPortal = () => {
                                 size="sm"
                                 style={{ gridColumn: "span 4" }}
                                 title={article.title}
-                                image={article.imageThumbnail}
+                                image={article.imageSmall}
                                 description={article.description}
                                 labels={article.labels}
                                 creator={article.creator}
