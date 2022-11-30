@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Block,
   ContactForm,
@@ -23,6 +24,7 @@ import { mascotHappyBlue } from "@USupport-components-library/assets";
  * @return {jsx}
  */
 export const ContactUs = () => {
+  const navigate = useNavigate();
   const { t } = useTranslation("contact-us");
   const { width } = useWindowDimensions();
   const showMascot = width >= 768;
@@ -51,7 +53,7 @@ export const ContactUs = () => {
               <h4>{t("heading_2")}</h4>
             </GridItem>
             <GridItem classes="contact-us__form-item" md={4} lg={8}>
-              <ContactForm sendEmail={handleSendEmail} />
+              <ContactForm sendEmail={handleSendEmail} navigate={navigate} />
             </GridItem>
             {showMascot && (
               <GridItem md={4} lg={4} classes="contact-us__mascot-item">
