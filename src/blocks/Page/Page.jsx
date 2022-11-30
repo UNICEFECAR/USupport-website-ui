@@ -6,12 +6,14 @@ import {
   Navbar,
   CircleIconButton,
   Footer,
+  Icon,
 } from "@USupport-components-library/src";
 import { languageSvc, countrySvc } from "@USupport-components-library/services";
 import { getCountryFromTimezone } from "@USupport-components-library/utils";
 import classNames from "classnames";
 
 import "./page.scss";
+import { useEffect } from "react";
 
 const kazakhstanCountry = {
   value: "KZ",
@@ -26,9 +28,20 @@ const kazakhstanCountry = {
  *
  * @return {jsx}
  */
-export const Page = ({ additionalPadding = true, classes, children }) => {
+export const Page = ({
+  additionalPadding = true,
+  showGoBackArrow = false,
+  heading,
+  headingButton,
+  classes,
+  children,
+}) => {
   const navigateTo = useNavigate();
   const { t, i18n } = useTranslation("page");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const localStorageCountry = localStorage.getItem("country");
   const localStorageLanguage = localStorage.getItem("language");
@@ -128,6 +141,8 @@ export const Page = ({ additionalPadding = true, classes, children }) => {
     ],
   };
 
+  const handleGoBack = () => navigateTo(-1);
+
   return (
     <>
       <Navbar
@@ -152,6 +167,21 @@ export const Page = ({ additionalPadding = true, classes, children }) => {
           `${classNames(classes)}`,
         ].join(" ")}
       >
+        {(heading || showGoBackArrow || headingButton) && (
+          <div className="page__header">
+            {showGoBackArrow && (
+              <Icon
+                classes="page__header-icon"
+                name="arrow-chevron-back"
+                size="md"
+                color="#20809E"
+                onClick={handleGoBack}
+              />
+            )}
+            {heading && <h3 className="page__header-heading">{heading}</h3>}
+            {headingButton && headingButton}
+          </div>
+        )}
         {children}
       </div>
       <CircleIconButton
