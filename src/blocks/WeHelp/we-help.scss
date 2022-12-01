@@ -4,6 +4,10 @@
   padding-top: $spacing_3_2;
   text-align: left;
 
+  @media screen and (min-width: $screen-md) {
+    padding-bottom: $spacing_7_2;
+  }
+
   &__heading {
     place-self: center;
   }
