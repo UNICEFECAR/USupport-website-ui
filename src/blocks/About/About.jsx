@@ -60,7 +60,7 @@ export const About = () => {
             </GridItem>
             <GridItem md={8} lg={12} classes="about__icon-item forth">
               <CardIconAndLabel
-                iconName="therapy"
+                iconName="dedicated-space"
                 size="md"
                 label={t("card_text_4")}
               />
