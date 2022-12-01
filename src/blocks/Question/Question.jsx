@@ -1,4 +1,6 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import {
   Block,
   Grid,
@@ -6,7 +8,6 @@ import {
   Button,
 } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
-import { useTranslation } from "react-i18next";
 
 import "./question.scss";
 
@@ -21,6 +22,8 @@ export const Question = () => {
   const { t } = useTranslation("question");
   const { width } = useWindowDimensions();
 
+  const navigate = useNavigate();
+
   return (
     <Block classes="question" animation="fade-left">
       <Grid>
@@ -34,6 +37,7 @@ export const Question = () => {
             size={width > 768 ? "sm" : "lg"}
             web={width > 768}
             classes="question__button"
+            onClick={() => navigate("/contact-us")}
           />
         </GridItem>
       </Grid>
