@@ -55,6 +55,14 @@ const resources = {
     "article-information": ArticleInformation.en,
     "provider-overview-page": ProviderOverviewPage.en,
   },
+  kk: {
+    // Blocks
+    articles: Articles.kk,
+  },
+  ru: {
+    // Blocks
+    articles: Articles.ru,
+  },
 };
 
 i18n.use(initReactI18next).init({
