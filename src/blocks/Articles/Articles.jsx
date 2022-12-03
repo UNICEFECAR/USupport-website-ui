@@ -327,7 +327,7 @@ export const Articles = () => {
                 readingTime={newestArticle.readingTime}
                 showDescription={true}
                 onClick={() => {
-                  navigate(`/article/${newestArticle.id}`);
+                  navigate(`/information-portal/article/${newestArticle.id}`);
                 }}
               />
               {!newestArticle && isNewestArticleLoading && (
@@ -376,7 +376,9 @@ export const Articles = () => {
                             creator={articleData.creator}
                             readingTime={articleData.readingTime}
                             onClick={() => {
-                              navigate(`/article/${articleData.id}`);
+                              navigate(
+                                `/information-portal/article/${articleData.id}`
+                              );
                             }}
                           />
                         </GridItem>

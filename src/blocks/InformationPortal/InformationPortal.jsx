@@ -127,7 +127,9 @@ export const InformationPortal = () => {
                     creator={mostReadArticlesQuerry.data[0].creator}
                     readingTime={mostReadArticlesQuerry.data[0].readingTime}
                     onClick={() => {
-                      navigate(`/article/${mostReadArticlesQuerry.data[0].id}`);
+                      navigate(
+                        `/information-portal/article/${mostReadArticlesQuerry.data[0].id}`
+                      );
                     }}
                   />
                 </GridItem>
@@ -163,7 +165,9 @@ export const InformationPortal = () => {
                                 readingTime={article.readingTime}
                                 showLabels={false}
                                 onClick={() => {
-                                  navigate(`/article/${article.id}`);
+                                  navigate(
+                                    `/information-portal/article/${article.id}`
+                                  );
                                 }}
                               />
                             </GridItem>
