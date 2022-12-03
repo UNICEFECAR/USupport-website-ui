@@ -1,6 +1,7 @@
 @import "@USupport-components-library/styles";
 
 .provider-profile {
+  @include full-height-page-navbar;
   &__grid {
     padding-top: $spacing_2_4;
     place-items: center;

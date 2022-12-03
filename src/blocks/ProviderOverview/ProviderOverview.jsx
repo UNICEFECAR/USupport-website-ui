@@ -1,13 +1,8 @@
-import React, { useState, useCallback } from "react";
-import OutsideClickHandler from "react-outside-click-handler";
+import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 import {
   Avatar,
   Block,
-  Box,
-  Button,
-  ButtonWithIcon,
   Grid,
   GridItem,
   Icon,

@@ -43,9 +43,9 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/provider" element={<ProviderOverview />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/about-us/provider" element={<ProviderOverview />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/information-portal" element={<InformationPortal />} />
           <Route

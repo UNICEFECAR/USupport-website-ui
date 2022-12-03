@@ -26,7 +26,7 @@ export const MeetOurProviders = () => {
   const providersQuery = useGetProvidersData()[0];
 
   const redirectToDetails = (id) => {
-    navigate(`/provider?id=${id}`);
+    navigate(`/about-us/provider?id=${id}`);
   };
   return (
     <Block classes="meet-our-providers">
@@ -46,11 +46,15 @@ export const MeetOurProviders = () => {
               </GridItem>
             ) : (
               providersQuery.data?.map((provider, index) => {
+                const specializations = Array.isArray(provider.specializations)
+                  ? provider.specializations.map((x) => t(x)).join(", ")
+                  : "";
+
                 return (
                   <GridItem md={4} lg={4} key={index}>
                     <CardProviderSmall
                       providerName={`${provider.name} ${provider.patronym} ${provider.surname}`}
-                      description={provider.description}
+                      description={specializations}
                       image={provider.image}
                       onClick={() =>
                         redirectToDetails(provider.providerDetailId)
