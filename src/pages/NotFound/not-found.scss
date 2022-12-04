@@ -1,0 +1,11 @@
+/* ProviderOverview styles */
+@import "@USupport-components-library/styles";
+
+.not-found-page {
+  &__content-block {
+    @include full-height-page-navbar;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}

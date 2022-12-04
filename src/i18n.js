@@ -8,7 +8,7 @@ import {
   FindYourself,
   DownloadApp,
   HowItWorks,
-  MeetOurSpecialists,
+  MeetOurProviders,
   Page,
   Question,
   SosCenter,
@@ -19,9 +19,14 @@ import {
   CookiePolicy,
   TermsOfUse,
   InformationPortal,
+  ProviderOverview,
 } from "#blocks/locales.js";
 
-import { NotFoundPage, ArticleInformation } from "#pages/locales.js";
+import {
+  NotFoundPage,
+  ArticleInformation,
+  ProviderOverview as ProviderOverviewPage,
+} from "#pages/locales.js";
 
 const resources = {
   en: {
@@ -33,7 +38,7 @@ const resources = {
     "find-yourself": FindYourself.en,
     hero: Hero.en,
     "how-it-works": HowItWorks.en,
-    "meet-our-specialists": MeetOurSpecialists.en,
+    "meet-our-providers": MeetOurProviders.en,
     page: Page.en,
     question: Question.en,
     "sos-center": SosCenter.en,
@@ -43,10 +48,20 @@ const resources = {
     "cookie-policy": CookiePolicy.en,
     "terms-of-use": TermsOfUse.en,
     "information-portal": InformationPortal.en,
+    "provider-overview": ProviderOverview.en,
 
     // Pages
     "not-found-page": NotFoundPage.en,
     "article-information": ArticleInformation.en,
+    "provider-overview-page": ProviderOverviewPage.en,
+  },
+  kk: {
+    // Blocks
+    articles: Articles.kk,
+  },
+  ru: {
+    // Blocks
+    articles: Articles.ru,
   },
 };
 

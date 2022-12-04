@@ -1,6 +1,8 @@
 @import "@USupport-components-library/styles";
 
 .information-portal {
+  padding-bottom: $spacing_0_8;
+
   &__paragraphs {
     text-align: left;
   }

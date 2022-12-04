@@ -1,6 +1,8 @@
 @import "@USupport-components-library/styles";
 
 .contact-us {
+  @include full-height-page-navbar;
+
   background-image: url("./assets/Background.png");
   background-size: cover;
   background-repeat: no-repeat;

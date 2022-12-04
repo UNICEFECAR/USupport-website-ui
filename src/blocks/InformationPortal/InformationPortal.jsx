@@ -121,13 +121,15 @@ export const InformationPortal = () => {
                     size="lg"
                     style={{ gridColumn: "span 4" }}
                     title={mostReadArticlesQuerry.data[0].title}
-                    image={mostReadArticlesQuerry.data[0].imageThumbnail}
+                    image={mostReadArticlesQuerry.data[0].imageMedium}
                     description={mostReadArticlesQuerry.data[0].description}
                     labels={mostReadArticlesQuerry.data[0].labels}
                     creator={mostReadArticlesQuerry.data[0].creator}
                     readingTime={mostReadArticlesQuerry.data[0].readingTime}
                     onClick={() => {
-                      navigate(`/article/${mostReadArticlesQuerry.data[0].id}`);
+                      navigate(
+                        `/information-portal/article/${mostReadArticlesQuerry.data[0].id}`
+                      );
                     }}
                   />
                 </GridItem>
@@ -156,14 +158,16 @@ export const InformationPortal = () => {
                                 size="sm"
                                 style={{ gridColumn: "span 4" }}
                                 title={article.title}
-                                image={article.imageThumbnail}
+                                image={article.imageSmall}
                                 description={article.description}
                                 labels={article.labels}
                                 creator={article.creator}
                                 readingTime={article.readingTime}
                                 showLabels={false}
                                 onClick={() => {
-                                  navigate(`/article/${article.id}`);
+                                  navigate(
+                                    `/information-portal/article/${article.id}`
+                                  );
                                 }}
                               />
                             </GridItem>

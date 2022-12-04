@@ -42,13 +42,13 @@ export const ArticleInformation = () => {
     return finalData;
   };
 
-  const { data: articleData, isFetching: isFetchingArticleData } = useQuery(
-    ["article", i18n.language, id],
-    getArticleData,
-    {
-      enabled: !!id,
-    }
-  );
+  const {
+    data: articleData,
+    isLoading: isArticlesLoading,
+    isFetching: isFetchingArticleData,
+  } = useQuery(["article", i18n.language, id], getArticleData, {
+    enabled: !!id,
+  });
 
   const getSimilarArticles = async () => {
     let { data } = await cmsSvc.getArticles({
@@ -120,13 +120,13 @@ export const ArticleInformation = () => {
                     size="sm"
                     style={{ gridColumn: "span 4" }}
                     title={articleData.title}
-                    image={articleData.imageThumbnail}
+                    image={articleData.imageMedium}
                     description={articleData.description}
                     labels={articleData.labels}
                     creator={articleData.creator}
                     readingTime={articleData.readingTime}
                     onClick={() => {
-                      navigate(`/article/${articleData.id}`);
+                      navigate(`/information-portal/article/${articleData.id}`);
                       onArticleClick();
                     }}
                   />
@@ -136,7 +136,9 @@ export const ArticleInformation = () => {
           </Grid>
         </Block>
       )}
-      {!moreArticles && isMoreArticlesLoading && <Loading size="lg" />}
+      {!moreArticles && isMoreArticlesLoading && !isArticlesLoading && (
+        <Loading size="lg" />
+      )}
       {!moreArticles?.length &&
         !isMoreArticlesLoading &&
         isMoreArticlesFetched && (

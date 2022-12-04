@@ -1,0 +1,31 @@
+/* ProviderOverview styles */
+@import "@USupport-components-library/styles";
+
+.page__provider-overview {
+  padding-bottom: $spacing_12_0;
+
+  &__button-container {
+    padding: $spacing_2_0 0;
+    padding-bottom: calc(5vh + 1rem);
+    position: fixed;
+    bottom: 0;
+    background: $gradient_transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    z-index: $z_index_emergency_button;
+  }
+
+  & > .radial-background {
+    top: 5%;
+    left: -20%;
+  }
+
+  @media screen and (max-width: $screen-md) {
+    background-image: url(../assets/background-spiral.png);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    margin-bottom: 50px;
+  }
+}

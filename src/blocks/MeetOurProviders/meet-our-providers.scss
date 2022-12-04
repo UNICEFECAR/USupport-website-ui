@@ -1,12 +1,12 @@
 @import "@USupport-components-library/styles";
 
-.meet-our-specialists {
+.meet-our-providers {
   text-align: left;
   padding-top: $spacing_6_4;
   padding-bottom: $spacing_4_0;
 
   @media screen and (min-width: $screen-lg) {
-    padding-top: $spacing_16_0;
+    padding-top: $spacing_10_0;
     padding-bottom: $spacing_9_6;
   }
 
@@ -30,7 +30,7 @@
     }
   }
 
-  &__specialists-item {
+  &__providers-item {
     padding-top: $spacing_3_2;
     @media screen and (min-width: $screen-lg) {
       padding-top: $spacing_7_2;

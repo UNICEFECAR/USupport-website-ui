@@ -25,7 +25,7 @@ import { mascotConfusedBlue } from "@USupport-components-library/assets";
  *
  * @return {jsx}
  */
-export const FAQ = ({ showMascot, showLearnMore }) => {
+export const FAQ = ({ showMascot, showLearnMore, showAll = true }) => {
   const { i18n, t } = useTranslation("faq");
   const navigateTo = useNavigate();
 
@@ -90,7 +90,11 @@ export const FAQ = ({ showMascot, showLearnMore }) => {
             <GridItem md={showMascot ? 6 : 8} lg={showMascot ? 6 : 12}>
               <Grid>
                 <GridItem md={8} lg={12}>
-                  {FAQsData && <CollapsibleFAQ data={FAQsData} />}
+                  {FAQsData && (
+                    <CollapsibleFAQ
+                      data={showAll ? FAQsData : FAQsData.slice(0, 5)}
+                    />
+                  )}
                   {faqIdsQuerry.data?.length > 0 &&
                     !FAQsData &&
                     FAQsLoading && <Loading />}
@@ -105,7 +109,7 @@ export const FAQ = ({ showMascot, showLearnMore }) => {
                       type="secondary"
                       label={t("button")}
                       onClick={() => {
-                        navigateTo("/about-us");
+                        navigateTo("/how-it-works");
                       }}
                     />
                   </GridItem>
@@ -134,6 +138,11 @@ FAQ.propTypes = {
    * Show learn more button
    * */
   showLearnMore: PropTypes.bool,
+
+  /**
+   * Should show all FAQ's
+   */
+  showAll: PropTypes.bool,
 };
 
 FAQ.defaultProps = {

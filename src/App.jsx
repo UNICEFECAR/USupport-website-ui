@@ -14,6 +14,7 @@ import {
   PrivacyPolicy,
   CookiePolicy,
   TermsOfUse,
+  ProviderOverview,
 } from "#pages";
 
 // AOS imports
@@ -44,9 +45,13 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/about-us/provider" element={<ProviderOverview />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/information-portal" element={<InformationPortal />} />
-          <Route path="/article/:id" element={<ArticleInformation />} />
+          <Route
+            path="/information-portal/article/:id"
+            element={<ArticleInformation />}
+          />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/sos-center" element={<SOSCenter />} />
           <Route path="/cookie-policy" element={<CookiePolicy />} />

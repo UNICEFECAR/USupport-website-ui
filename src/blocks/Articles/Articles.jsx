@@ -58,10 +58,7 @@ export const Articles = () => {
       }));
       setSelectedAgeGroup(ageGroupsData[0]);
       return ageGroupsData;
-    } catch (err) {
-      // TODO: Handle the error
-      console.log(err, "err");
-    }
+    } catch {}
   };
 
   const ageGroupsQuery = useQuery(["ageGroups", usersLanguage], getAgeGroups, {
@@ -94,7 +91,9 @@ export const Articles = () => {
   const getCategories = async () => {
     try {
       const res = await cmsSvc.getCategories(usersLanguage);
-      let categoriesData = [{ label: "All", value: "all", isSelected: true }];
+      let categoriesData = [
+        { label: t("all"), value: "all", isSelected: true },
+      ];
       res.data.map((category, index) =>
         categoriesData.push({
           label: category.attributes.name,
@@ -320,14 +319,14 @@ export const Articles = () => {
                 type={isNotDescktop ? "portrait" : "landscape"}
                 size="lg"
                 title={newestArticle.title}
-                image={newestArticle.imageThumbnail}
+                image={newestArticle.imageMedium}
                 description={newestArticle.description}
                 labels={newestArticle.labels}
                 creator={newestArticle.creator}
                 readingTime={newestArticle.readingTime}
                 showDescription={true}
                 onClick={() => {
-                  navigate(`/article/${newestArticle.id}`);
+                  navigate(`/information-portal/article/${newestArticle.id}`);
                 }}
               />
               {!newestArticle && isNewestArticleLoading && (
@@ -370,13 +369,15 @@ export const Articles = () => {
                             size="sm"
                             style={{ gridColumn: "span 4" }}
                             title={articleData.title}
-                            image={articleData.imageThumbnail}
+                            image={articleData.imageMedium}
                             description={articleData.description}
                             labels={articleData.labels}
                             creator={articleData.creator}
                             readingTime={articleData.readingTime}
                             onClick={() => {
-                              navigate(`/article/${articleData.id}`);
+                              navigate(
+                                `/information-portal/article/${articleData.id}`
+                              );
                             }}
                           />
                         </GridItem>

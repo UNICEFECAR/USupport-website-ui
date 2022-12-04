@@ -25,7 +25,7 @@ export function Landing() {
       <About />
       <HowItWorks summary />
       <InformationPortal />
-      <FAQ showLearnMore={true} showMascot={true} />
+      <FAQ showLearnMore={true} showMascot={true} showAll={false} />
       <DownloadApp />
     </Page>
   );

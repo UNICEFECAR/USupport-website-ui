@@ -93,9 +93,10 @@ export const SOSCenter = () => {
                     <EmergencyCenter
                       title={sosCenter.attributes.title}
                       text={sosCenter.attributes.text}
-                      link={sosCenter.attributes.link}
+                      link={sosCenter.attributes.url}
                       phone={sosCenter.attributes.phone}
-                      btnLabel={t("button")}
+                      btnLabelLink={t("button_link")}
+                      btnLabelCall={t("button_call")}
                     />
                   </GridItem>
                 );
@@ -108,7 +109,7 @@ export const SOSCenter = () => {
         !SOSCentersData &&
         SOSCentersLoading && <Loading />}
       {!SOSCentersData?.length && !SOSCentersLoading && isSOSCentersFetched && (
-        <h3 className="soscenter__no-results">{t("no_results")}</h3>
+        <h4 className="soscenter__no-results">{t("no_results")}</h4>
       )}
     </Block>
   );
