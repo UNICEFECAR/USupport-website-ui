@@ -6,9 +6,8 @@
   "email_text": "Hello,<br></br>You have a new message from user:<br></br>Email: {{email}}<br></br>Reason: {{reason}}<br></br>message: {{message}}<br></br>Best Regards,<br></br>USupport Team",
   "contact_reason_placeholder": "Select a reason",
   "contact_reason_1": "Information about USupport",
-  "contact_reason_2": "Unsubscribe from email notifications and newsletters",
-  "contact_reason_3": "Technical problem",
-  "contact_reason_4": "Join the network of providers",
-  "contact_reason_5": "Partnerships",
-  "contact_reason_6": "Other"
+  "contact_reason_2": "Technical problem",
+  "contact_reason_3": "Join the network of providers",
+  "contact_reason_4": "Partnerships",
+  "contact_reason_5": "Other"
 }
