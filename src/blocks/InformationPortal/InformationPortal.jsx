@@ -99,6 +99,7 @@ export const InformationPortal = () => {
             <GridItem md={8} lg={12} classes="information-portal__paragraphs">
               <p>{t("paragraph_1")}</p>
               <p>{t("paragraph_2")}</p>
+              <p>{t("paragraph_3")}</p>
             </GridItem>
             {mostReadArticlesQuerry.isLoading ? (
               <GridItem

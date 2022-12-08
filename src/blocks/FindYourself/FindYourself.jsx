@@ -21,6 +21,7 @@ export const FindYourself = () => {
         </GridItem>
         <GridItem md={8} lg={12} classes="find-yourself__text-item">
           <p className="paragraph">{t("paragraph")}</p>
+          <p className="paragraph">{t("paragraph_2")}</p>
         </GridItem>
         <GridItem md={4} lg={6} classes="find-yourself__image-item box box-1">
           <div className="overlay" />
