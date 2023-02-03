@@ -1,9 +1,15 @@
 @import "@USupport-components-library/styles";
 
 .how-it-works {
+  .no-webp & {
+    background-image: url("./assets/Background.png");
+  }
+  .webp & {
+    background-image: url("./assets/Background.webp");
+  }
+
   padding-top: $spacing_8_0;
   padding-bottom: $spacing_8_0;
-  background-image: url("./assets/Background.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-blend-mode: lighten;

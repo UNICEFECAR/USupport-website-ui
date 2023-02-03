@@ -4,12 +4,14 @@ import {
   Grid,
   GridItem,
   StoreButton,
+  StaticImage,
 } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
 
 import "./download-app.scss";
 
 import imageSrc from "./assets/StartScreen.png";
+import imageSrcWebp from "./assets/StartScreen.webp";
 
 /**
  * DownloadApp
@@ -48,7 +50,12 @@ export const DownloadApp = () => {
           </Grid>
         </GridItem>
         <GridItem md={3} lg={6} classes="download-app__image-item">
-          <img src={imageSrc} className="download-app__image" />
+          <StaticImage
+            png={imageSrc}
+            webp={imageSrcWebp}
+            imageClasses="download-app__image"
+            alt="mobile-app"
+          />
         </GridItem>
       </Grid>
     </Block>

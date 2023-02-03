@@ -1,7 +1,12 @@
 @import "@USupport-components-library/styles";
 
 .hero {
-  background-image: url("./assets/Background.png");
+  .no-webp & {
+    background-image: url("./assets/Background.png");
+  }
+  .webp & {
+    background-image: url("./assets/Background.webp");
+  }
   background-size: cover;
   background-repeat: no-repeat;
   background-blend-mode: lighten;
