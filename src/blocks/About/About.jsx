@@ -5,12 +5,16 @@ import {
   Grid,
   GridItem,
   RadialCircle,
+  StaticImage,
 } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
 
 import "./about.scss";
 
-import { mascotHappyBlueClipped } from "@USupport-components-library/assets";
+import {
+  mascotHappyBlueClipped,
+  mascotHappyBlueClippedWebp,
+} from "@USupport-components-library/assets";
 
 /**
  * About
@@ -69,12 +73,17 @@ export const About = () => {
         </GridItem>
 
         <GridItem md={8} lg={12} classes="about__description-item-2">
-          <p className="paragraph about__description-item__paragraph">
+          <p className="paragraph about__description-item-2__paragraph">
             {t("paragraph_2")}
           </p>
         </GridItem>
       </Grid>
-      <img src={mascotHappyBlueClipped} className="about__mascot" />
+      <StaticImage
+        webp={mascotHappyBlueClippedWebp}
+        png={mascotHappyBlueClipped}
+        imageClasses="about__mascot"
+        alt={"mascot"}
+      />
       <RadialCircle color="blue" />
     </Block>
   );

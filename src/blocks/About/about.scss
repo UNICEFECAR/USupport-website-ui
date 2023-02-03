@@ -61,15 +61,18 @@
   }
   &__mascot {
     width: 37.5rem;
+    height: 15.33rem;
     margin-bottom: -$spacing_0_7;
 
     @media screen and (min-width: $screen-md) {
       margin-top: -$spacing_14_6;
-      width: 33rem;
+      width: 31rem;
+      height: 12.7rem;
     }
 
     @media screen and (min-width: $screen-lg) {
       width: 37.5rem;
+      height: 15.33rem;
     }
   }
 

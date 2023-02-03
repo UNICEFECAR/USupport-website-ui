@@ -1,7 +1,13 @@
 @import "@USupport-components-library/styles";
 
 .faq {
-  background-image: url("./assets/Background.png");
+  .no-webp & {
+    background-image: url("./assets/Background.png");
+  }
+  .webp & {
+    background-image: url("./assets/Background.webp");
+  }
+
   background-size: contain;
   background-repeat: no-repeat;
   background-blend-mode: lighten;
@@ -30,11 +36,13 @@
       justify-self: end;
     }
 
-    > img {
+    .image {
       width: 16.3rem;
+      height: 25rem;
 
       @media screen and (min-width: $screen-lg) {
         width: 30rem;
+        height: 45.9rem;
       }
     }
   }

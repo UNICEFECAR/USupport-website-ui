@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useWebPSupportCheck } from "react-use-webp-support-check";
 import {
   Landing,
   SOSCenter,
@@ -29,6 +30,9 @@ const queryClient = new QueryClient({
 });
 
 function App() {
+  const supportsWebP = useWebPSupportCheck();
+  document.body.classList.add(`${supportsWebP ? "webp" : "no-webp"}`);
+
   AOS.init({
     offset: 10,
     duration: 1000,
