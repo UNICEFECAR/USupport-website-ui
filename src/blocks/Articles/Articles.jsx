@@ -312,7 +312,7 @@ export const Articles = () => {
         >
           <Grid classes="articles__main-grid">
             <GridItem md={8} lg={12} classes="articles__heading-item">
-              <h2>{t("heading")}</h2>
+              <h2 className="articles__heading-text">{t("heading")}</h2>
             </GridItem>
             <GridItem md={8} lg={12} classes="articles__most-important-item">
               <CardMedia
@@ -324,6 +324,7 @@ export const Articles = () => {
                 labels={newestArticle.labels}
                 creator={newestArticle.creator}
                 readingTime={newestArticle.readingTime}
+                categoryName={newestArticle.categoryName}
                 showDescription={true}
                 onClick={() => {
                   navigate(`/information-portal/article/${newestArticle.id}`);
@@ -374,6 +375,7 @@ export const Articles = () => {
                             labels={articleData.labels}
                             creator={articleData.creator}
                             readingTime={articleData.readingTime}
+                            categoryName={articleData.categoryName}
                             onClick={() => {
                               navigate(
                                 `/information-portal/article/${articleData.id}`
