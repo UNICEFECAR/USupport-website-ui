@@ -1,6 +1,8 @@
 import React from "react";
 import { Page, ContactUs as ContactUsBlock } from "#blocks";
 
+import "./contact-us.scss";
+
 /**
  * ContactUs
  *
@@ -10,7 +12,7 @@ import { Page, ContactUs as ContactUsBlock } from "#blocks";
  */
 export const ContactUs = () => {
   return (
-    <Page>
+    <Page classes="page__contact-us">
       <ContactUsBlock />
     </Page>
   );

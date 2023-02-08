@@ -20,15 +20,24 @@
   &__main-grid {
     row-gap: 0;
     place-items: center;
+    padding-top: $spacing_20_0;
+    @media screen and (min-width: $screen-md) {
+      padding-top: $spacing_5_0;
+    }
   }
 
   &__secondary-grid {
     row-gap: 0;
+    padding-top: $spacing_5_0;
   }
 
   &__heading-item {
     text-align: center;
     place-self: center;
+  }
+
+  &__heading {
+    color: $color_white_ff;
   }
 
   &__subheading-item {
@@ -41,18 +50,38 @@
 
   &__form-item {
     margin-top: $spacing_2_4;
+
+    @media screen and (min-width: $screen-md) {
+      width: calc(100% + 8rem);
+      margin-right: $spacing_12_0;
+    }
+
+    .contact-us__form {
+      background-color: $color_white_ff;
+      border-radius: $border_radius_3_2;
+      padding: $spacing_3_2 $spacing_2_4 $spacing_1_6 $spacing_2_4;
+      box-shadow: $shadow_1;
+
+      @media screen and (min-width: $screen-md) {
+        padding: $spacing_2_4 $spacing_4_0 $spacing_2_0 $spacing_4_0;
+      }
+    }
   }
 
   &__mascot-item {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    max-width: 24rem;
+    margin-left: auto;
+    margin-top: $spacing_24_0;
 
-    img {
-      width: 25rem;
-      @media screen and (min-width: $screen_lg) {
-        width: 40rem;
-      }
+    @media screen and (min-width: $screen_md) {
+      max-width: 34rem;
+    }
+
+    @media screen and (min-width: $screen_lg) {
+      max-width: 40rem;
     }
   }
 }
