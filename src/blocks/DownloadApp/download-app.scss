@@ -44,7 +44,7 @@
   &__image-item {
     justify-self: center;
 
-    @media screen and (min-width: $screen-lg) {
+    @media screen and (min-width: $screen-md) {
       place-self: end;
     }
   }
@@ -55,5 +55,17 @@
     width: 27.2rem;
     height: 24.6rem;
     margin-bottom: -$spacing_0_8;
+
+    @media screen and (min-width: $screen-md) {
+      margin-top: 0;
+      width: auto;
+      height: 20.6rem;
+      margin-right: -3.6rem;
+    }
+
+    @media screen and (min-width: 1000px) {
+      height: 36rem;
+      margin-right: -11.5rem;
+    }
   }
 }

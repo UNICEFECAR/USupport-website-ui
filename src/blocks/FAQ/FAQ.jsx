@@ -8,7 +8,7 @@ import {
   CollapsibleFAQ,
   Button,
   Loading,
-  StaticImage,
+  Animation,
 } from "@USupport-components-library/src";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
@@ -16,11 +16,6 @@ import { useEventListener } from "#hooks";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 
 import "./faq.scss";
-
-import {
-  mascotConfusedBlue,
-  mascotConfusedBlueWebp,
-} from "@USupport-components-library/assets";
 
 /**
  * FAQ
@@ -122,11 +117,7 @@ export const FAQ = ({ showMascot, showLearnMore, showAll = true }) => {
             </GridItem>
             {showMascot && (
               <GridItem md={2} lg={6} classes="faq__mascot-item">
-                <StaticImage
-                  png={mascotConfusedBlue}
-                  webp={mascotConfusedBlueWebp}
-                  alt="mascot-confused"
-                />
+                <Animation name="MascotBlueQuestions" />
               </GridItem>
             )}
           </Grid>

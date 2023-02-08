@@ -5,10 +5,15 @@ import {
   Grid,
   GridItem,
   CardNumber,
+  StaticImage,
 } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
+import { useWindowDimensions } from "@USupport-components-library/utils";
 
 import "./how-it-works.scss";
+
+import imageSrc from "./assets/HowItWorks.png";
+import imageSrcWebp from "./assets/HowItWorks.webp";
 
 /**
  * HowItWorks
@@ -19,6 +24,8 @@ import "./how-it-works.scss";
  */
 export const HowItWorks = ({ summary = false }) => {
   const { t } = useTranslation("how-it-works");
+  const { width } = useWindowDimensions();
+
   return (
     <Block classes="how-it-works" animation="fade-left">
       <Grid>
@@ -42,7 +49,25 @@ export const HowItWorks = ({ summary = false }) => {
         <GridItem lg={3}>
           <CardNumber number="4" iconName="calm" text={t("card_4")} />
         </GridItem>
+        {width >= 1366 && (
+          <GridItem lg={6} classes="how-it-works__image-collage-item">
+            <StaticImage
+              png={imageSrc}
+              webp={imageSrcWebp}
+              alt="happy-people-collage"
+            />
+          </GridItem>
+        )}
       </Grid>
+      {width > 768 && width < 1366 && (
+        <div className="how-it-works__tablet-image-container">
+          <StaticImage
+            png={imageSrc}
+            webp={imageSrcWebp}
+            alt="happy-people-collage"
+          />
+        </div>
+      )}
     </Block>
   );
 };

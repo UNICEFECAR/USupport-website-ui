@@ -29,6 +29,24 @@
     }
   }
 
+  &__image-collage-item {
+    grid-row-start: 3;
+    grid-row-end: 5;
+    place-self: center;
+
+    img {
+      width: 46.1rem;
+    }
+  }
+
+  &__tablet-image-container {
+    padding-top: $spacing_5_4;
+
+    img {
+      width: 46.1rem;
+    }
+  }
+
   .grid {
     justify-items: center;
   }
