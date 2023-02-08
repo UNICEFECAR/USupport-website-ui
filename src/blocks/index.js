@@ -17,3 +17,4 @@ export * from "./CookiePolicy";
 export * from "./TermsOfUse";
 export * from "./InformationPortal";
 export * from "./ProviderOverview";
+export * from './MeetOurProvidersOverview';

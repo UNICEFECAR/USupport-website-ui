@@ -1,0 +1,39 @@
+@import "@USupport-components-library/styles";
+
+.meet-our-providers-overview {
+  background-color: rgba(244, 252, 253, 0.62);
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+
+  @media screen and (min-width: $screen-lg) {
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+  }
+
+  &__grid {
+    place-items: center;
+    grid-gap: 4rem;
+
+    @media screen and (min-width: $screen-lg) {
+      grid-gap: 5.6rem;
+    }
+  }
+
+  &__content-grid {
+    place-items: center;
+  }
+
+  &__text {
+    text-align: left;
+    margin-top: $spacing_2_4;
+
+    @media screen and (min-width: $screen-lg) {
+      margin-top: 6.4rem;
+    }
+  }
+
+  &__card {
+    margin: 0 auto;
+    margin-top: $spacing_1_6;
+  }
+}
