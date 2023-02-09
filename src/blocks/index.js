@@ -18,3 +18,4 @@ export * from "./TermsOfUse";
 export * from "./InformationPortal";
 export * from "./ProviderOverview";
 export * from './MeetOurProvidersOverview';
+export * from './OurPartners';
