@@ -22,20 +22,26 @@ import imageSrcWebp from "./assets/HowItWorks.webp";
  *
  * @return {jsx}
  */
-export const HowItWorks = ({ summary = false }) => {
+export const HowItWorks = ({
+  summary = false,
+  showSummaryBellow = false,
+  onPage = false,
+}) => {
   const { t } = useTranslation("how-it-works");
   const { width } = useWindowDimensions();
 
   return (
     <Block classes="how-it-works" animation="fade-left">
-      <Grid>
-        <GridItem md={8} lg={12}>
-          <h2>{t("heading")}</h2>
+      <Grid classes={onPage && "how-it-works__grid"}>
+        <GridItem classes="how-it-works__heading" md={8} lg={12}>
+          <h2 className="how-it-works__heading-text">{t("heading")}</h2>
         </GridItem>
         <GridItem md={8} lg={12} classes="how-it-works__text-item">
-          <p className="paragraph">
-            {summary ? t("paragraph_summary") : t("paragraph_normal")}
-          </p>
+          {!showSummaryBellow && (
+            <p className="paragraph">
+              {summary ? t("paragraph_summary") : t("paragraph_normal")}
+            </p>
+          )}
         </GridItem>
         <GridItem lg={3}>
           <CardNumber number="1" iconName="community" text={t("card_1")} />
@@ -68,6 +74,14 @@ export const HowItWorks = ({ summary = false }) => {
           />
         </div>
       )}
+
+      <div>
+        {showSummaryBellow && (
+          <p className="paragraph how-it-works__summary-text-bellow">
+            {summary ? t("paragraph_summary") : t("paragraph_normal")}
+          </p>
+        )}
+      </div>
     </Block>
   );
 };
@@ -78,4 +92,16 @@ HowItWorks.propTypes = {
    * If false, the block will show a full text
    * */
   summary: PropTypes.bool,
+
+  /**
+   * If true, the summary text will be shown bellow the cards
+   * If false, the summary text will be shown above the cards
+   * */
+  showSummaryBellow: PropTypes.bool,
+
+  /**
+   * If true, the block will be displayed on a page
+   * If false, the block will be displayed on the home page
+   * */
+  onPage: PropTypes.bool,
 };

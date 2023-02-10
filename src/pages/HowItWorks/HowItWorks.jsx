@@ -1,5 +1,11 @@
 import React from "react";
-import { Page, HowItWorks as HowItWorksBlock, Question, FAQ } from "#blocks";
+import {
+  Page,
+  HowItWorks as HowItWorksBlock,
+  MeetOurProviders,
+  Question,
+  FAQ,
+} from "#blocks";
 
 import "./how-it-works.scss";
 
@@ -13,7 +19,8 @@ import "./how-it-works.scss";
 export const HowItWorks = () => {
   return (
     <Page classes="page__how-it-works">
-      <HowItWorksBlock />
+      <HowItWorksBlock showSummaryBellow={true} onPage={true} />
+      <MeetOurProviders />
       <FAQ showLearnMore={false} showMascot={false} />
       <Question />
     </Page>
