@@ -14,8 +14,6 @@ import { emailSvc } from "@USupport-components-library/services";
 
 import "./contact-us.scss";
 
-import MascotAnimation from "./assets/Mascot.json";
-
 /**
  * ContactUs
  *
@@ -57,7 +55,7 @@ export const ContactUs = () => {
             </GridItem>
 
             <GridItem md={4} lg={6} classes="contact-us__mascot-item">
-              <Animation json={MascotAnimation} />
+              <Animation name="MascotBlueQuestions" />
             </GridItem>
           </Grid>
         </GridItem>
