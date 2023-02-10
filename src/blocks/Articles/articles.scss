@@ -4,20 +4,24 @@
   @include full-height-page-navbar;
 
   padding-bottom: $spacing_3_2;
-  padding-top: $spacing_5_6;
+  padding-top: $spacing_25_0;
   text-align: left;
+
+  @media screen and (min-width: $screen-md) {
+    padding-top: $spacing_10_0;
+  }
 
   &__main-grid {
     justify-items: center;
   }
 
-  &__most-important-item {
-    padding-top: $spacing_2_2;
-    padding-bottom: $spacing_4_0;
+  &__heading-text {
+    color: $color_white_ff;
+  }
 
-    @media screen and (min-width: $screen-lg) {
-      padding-bottom: $spacing_15_3;
-    }
+  &__most-important-item {
+    padding-top: $spacing_10_0;
+    padding-bottom: $spacing_4_0;
   }
 
   &__age-groups-item {

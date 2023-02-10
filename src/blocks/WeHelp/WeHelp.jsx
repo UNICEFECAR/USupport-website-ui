@@ -19,7 +19,7 @@ export const WeHelp = () => {
     <Block classes="we-help">
       <Grid>
         <GridItem md={8} lg={12} classes="we-help__heading">
-          <h2>{t("heading_1")}</h2>
+          <h2 className="we-help__heading-text">{t("heading_1")}</h2>
         </GridItem>
         <GridItem md={8} lg={12}>
           <Box borderSize="lg" classes="we-help__content-box">

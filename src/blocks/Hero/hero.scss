@@ -57,7 +57,7 @@
     }
   }
 
-  &__mascot-item {
+  &__collage-item {
     padding-top: $spacing_2_4;
     align-self: center;
 
@@ -66,15 +66,20 @@
       justify-self: end;
     }
 
-    > img {
-      width: 20rem;
+    img {
+      width: 24rem;
+      height: auto;
 
       @media screen and (min-width: $screen-md) {
-        width: 25rem;
+        width: 30rem;
+      }
+
+      @media screen and (min-width: 1000px) {
+        width: 36rem;
       }
 
       @media screen and (min-width: $screen-lg) {
-        width: 40rem;
+        width: 53.6rem;
       }
     }
   }

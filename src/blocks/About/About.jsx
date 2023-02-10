@@ -5,16 +5,11 @@ import {
   Grid,
   GridItem,
   RadialCircle,
-  StaticImage,
+  Animation,
 } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
 
 import "./about.scss";
-
-import {
-  mascotHappyBlueClipped,
-  mascotHappyBlueClippedWebp,
-} from "@USupport-components-library/assets";
 
 /**
  * About
@@ -78,12 +73,7 @@ export const About = () => {
           </p>
         </GridItem>
       </Grid>
-      <StaticImage
-        webp={mascotHappyBlueClippedWebp}
-        png={mascotHappyBlueClipped}
-        imageClasses="about__mascot"
-        alt={"mascot"}
-      />
+      <Animation name="MascotBlueWavingCutOff" classes="about__mascot" />
       <RadialCircle color="blue" />
     </Block>
   );

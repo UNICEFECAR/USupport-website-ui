@@ -16,3 +16,5 @@ export * as CookiePolicy from "./CookiePolicy/locales.js";
 export * as TermsOfUse from "./TermsOfUse/locales.js";
 export * as InformationPortal from "./InformationPortal/locales.js";
 export * as ProviderOverview from "./ProviderOverview/locales.js";
+export * as MeetOurProvidersOverview from './MeetOurProvidersOverview/locales.js';
+export * as OurPartners from './OurPartners/locales.js';

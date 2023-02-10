@@ -1,25 +1,77 @@
 @import "@USupport-components-library/styles";
 
 .find-yourself {
-  padding-top: $spacing_3_2;
+  padding-top: 0;
   padding-bottom: $spacing_6_5;
   text-align: left;
 
   @media screen and (min-width: $screen-md) {
-    padding-top: $spacing_7_2;
     padding-bottom: $spacing_9_0;
   }
   @media screen and (min-width: $screen-lg) {
-    padding-top: $spacing_12_0;
     padding-bottom: $spacing_12_0;
   }
 
   &__grid {
-    justify-items: center;
+    justify-content: center;
+  }
+
+  &__heading-item {
+    width: 100vw;
+    background-repeat: no-repeat;
+    height: 26rem;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-width: 40.7rem;
+
+    .no-webp & {
+      background-image: url("./assets/BeYourBestSelf.png");
+    }
+    .webp & {
+      background-image: url("./assets/BeYourBestSelf.webp");
+    }
+
+    @media screen and (min-width: $screen-md) {
+      height: 41.9rem;
+
+      .no-webp & {
+        background-image: url("./assets/BeYourBestSelfDesktop.png");
+      }
+      .webp & {
+        background-image: url("./assets/BeYourBestSelfDesktop.webp");
+      }
+    }
+
+    h2,
+    p {
+      color: $color_white_ff;
+    }
   }
 
   &__text-item {
-    padding-top: $spacing_2_4;
+    width: 100vw;
+    background-color: $color_purple_200e2f;
+    margin-top: -$spacing_0_8;
+    padding: $spacing_2_6 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 40.7rem;
+
+    h2,
+    p {
+      color: $color_white_ff;
+    }
+  }
+
+  &__text {
+    padding: $spacing_2_4 $spacing_2_4 0;
     max-width: 75rem;
 
     @media screen and (min-width: $screen-lg) {
@@ -61,10 +113,10 @@
 
     &.box-2 {
       .no-webp & {
-        background-image: url("./assets/SOSCenter.png");
+        background-image: url("./assets/OnlineConsultations.png");
       }
       .webp & {
-        background-image: url("./assets/SOSCenter.webp");
+        background-image: url("./assets/OnlineConsultations.webp");
       }
       margin-top: $spacing_3_2;
       @media screen and (min-width: $screen-md) {
@@ -102,7 +154,7 @@
     }
 
     & > .overlay {
-      background-color: $overlay_66768D;
+      background-color: $overlay_010101;
       border-radius: $border_radius_4_0;
       height: inherit;
       position: absolute;

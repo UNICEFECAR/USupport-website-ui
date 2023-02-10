@@ -20,6 +20,8 @@ import {
   TermsOfUse,
   InformationPortal,
   ProviderOverview,
+  MeetOurProvidersOverview,
+  OurPartners,
 } from "#blocks/locales.js";
 
 import {
@@ -49,6 +51,8 @@ const resources = {
     "terms-of-use": TermsOfUse.en,
     "information-portal": InformationPortal.en,
     "provider-overview": ProviderOverview.en,
+    "meet-our-providers-overview": MeetOurProvidersOverview.en,
+    "our-partners": OurPartners.en,
 
     // Pages
     "not-found-page": NotFoundPage.en,

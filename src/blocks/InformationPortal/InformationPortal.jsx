@@ -127,6 +127,7 @@ export const InformationPortal = () => {
                     labels={mostReadArticlesQuerry.data[0].labels}
                     creator={mostReadArticlesQuerry.data[0].creator}
                     readingTime={mostReadArticlesQuerry.data[0].readingTime}
+                    categoryName={mostReadArticlesQuerry.data[0].categoryName}
                     onClick={() => {
                       navigate(
                         `/information-portal/article/${mostReadArticlesQuerry.data[0].id}`
@@ -164,6 +165,7 @@ export const InformationPortal = () => {
                                 labels={article.labels}
                                 creator={article.creator}
                                 readingTime={article.readingTime}
+                                categoryName={article.categoryName}
                                 showLabels={false}
                                 onClick={() => {
                                   navigate(

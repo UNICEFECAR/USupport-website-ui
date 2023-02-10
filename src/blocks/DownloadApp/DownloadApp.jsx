@@ -7,11 +7,15 @@ import {
   StaticImage,
 } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
+import { useWindowDimensions } from "@USupport-components-library/utils";
 
 import "./download-app.scss";
 
 import imageSrc from "./assets/StartScreen.png";
 import imageSrcWebp from "./assets/StartScreen.webp";
+
+import imageDesktopSrc from "./assets/StartScreenDesktop.png";
+import imageDesktopSrcWebp from "./assets/StartScreenDesktop.webp";
 
 /**
  * DownloadApp
@@ -22,6 +26,8 @@ import imageSrcWebp from "./assets/StartScreen.webp";
  */
 export const DownloadApp = () => {
   const { t } = useTranslation("download-app");
+  const { width } = useWindowDimensions();
+
   return (
     <Block classes="download-app" animation="fade-up">
       <Grid>
@@ -50,12 +56,21 @@ export const DownloadApp = () => {
           </Grid>
         </GridItem>
         <GridItem md={3} lg={6} classes="download-app__image-item">
-          <StaticImage
-            png={imageSrc}
-            webp={imageSrcWebp}
-            imageClasses="download-app__image"
-            alt="mobile-app"
-          />
+          {width < 768 ? (
+            <StaticImage
+              png={imageSrc}
+              webp={imageSrcWebp}
+              imageClasses="download-app__image"
+              alt="mobile-app"
+            />
+          ) : (
+            <StaticImage
+              png={imageDesktopSrc}
+              webp={imageDesktopSrcWebp}
+              imageClasses="download-app__image"
+              alt="mobile-app"
+            />
+          )}
         </GridItem>
       </Grid>
     </Block>

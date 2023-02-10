@@ -1,0 +1,16 @@
+@import "@USupport-components-library/styles";
+
+.our-partners {
+  justify-content: center;
+
+  &__paragraph {
+    padding-bottom: $spacing_2_4;
+    @media screen and (min-width: $screen-lg) {
+      padding-bottom: $spacing_3_2 0;
+    }
+  }
+
+  &__grid {
+    padding-bottom: $spacing_4_0;
+  }
+}

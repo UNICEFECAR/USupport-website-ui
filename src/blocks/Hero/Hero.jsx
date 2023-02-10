@@ -5,13 +5,14 @@ import {
   GridItem,
   StoreButton,
   RadialCircle,
-  Animation,
+  StaticImage,
 } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
 
 import "./hero.scss";
 
-import MascotAnimation from "./assets/Mascot.json";
+import imageSrc from "./assets/PeopleCollage.png";
+import imageSrcWebp from "./assets/PeopleCollage.webp";
 
 /**
  * Hero
@@ -53,8 +54,8 @@ export const Hero = () => {
             </GridItem>
           </Grid>
         </GridItem>
-        <GridItem md={3} lg={6} classes="hero__mascot-item">
-          <Animation json={MascotAnimation} />
+        <GridItem md={3} lg={6} classes="hero__collage-item">
+          <StaticImage png={imageSrc} webp={imageSrcWebp} alt="happy-people" />
         </GridItem>
       </Grid>
       <RadialCircle color="purple" />
