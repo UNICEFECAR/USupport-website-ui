@@ -23,7 +23,7 @@ export const MeetOurProviders = () => {
   const navigate = useNavigate();
   const { t } = useTranslation("meet-our-providers");
 
-  const providersQuery = useGetProvidersData()[0];
+  const providersQuery = useGetProvidersData(true, 3)[0];
 
   const redirectToDetails = (id) => {
     navigate(`/about-us/provider?id=${id}`);
