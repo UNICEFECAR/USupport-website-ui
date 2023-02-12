@@ -7,8 +7,8 @@ import {
 } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
 
-import ministryEducationKZ from "./assets/ministry-education-kz.png";
-import ministryHealthKZ from "./assets/ministry-health-kz.png";
+import ministryEducationKZ from "../../assets/ministry-education-kz.png";
+import ministryHealthKZ from "../../assets/ministry-health-kz.png";
 
 import "./our-partners.scss";
 

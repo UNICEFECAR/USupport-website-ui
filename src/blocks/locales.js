@@ -18,3 +18,4 @@ export * as InformationPortal from "./InformationPortal/locales.js";
 export * as ProviderOverview from "./ProviderOverview/locales.js";
 export * as MeetOurProvidersOverview from './MeetOurProvidersOverview/locales.js';
 export * as OurPartners from './OurPartners/locales.js';
+export * as OurPartnersOverview from './OurPartnersOverview/locales.js';

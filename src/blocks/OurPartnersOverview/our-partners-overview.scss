@@ -1,0 +1,42 @@
+@import "@USupport-components-library/styles";
+
+.our-partners-overview {
+  padding-top: $spacing_4_0;
+  padding-bottom: $spacing_4_0;
+
+  @media screen and (min-width: $screen-lg) {
+    padding-top: $spacing_8_0;
+    padding-bottom: $spacing_8_0;
+  }
+
+  &__grid {
+    grid-gap: $spacing_3_4;
+    place-items: center;
+
+    @media screen and (min-width: $screen-lg) {
+      grid-gap: $spacing_7_0;
+    }
+
+    &__partners-item {
+      width: 80%;
+      place-content: center;
+      place-self: center;
+    }
+  }
+
+  &__partners-grid {
+  }
+
+  &__partner-overview {
+    &__partner-logo {
+      width: 13.7rem;
+      height: 13.7rem;
+      object-fit: contain;
+    }
+
+    &__text {
+      margin-top: $spacing_0_8;
+      cursor: pointer;
+    }
+  }
+}
