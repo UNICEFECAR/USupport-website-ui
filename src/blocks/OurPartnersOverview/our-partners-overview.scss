@@ -18,9 +18,13 @@
     }
 
     &__partners-item {
-      width: 80%;
+      width: 100%;
       place-content: center;
       place-self: center;
+
+      @media screen and (min-width: $screen-md) {
+        width: 80%;
+      }
     }
   }
 
