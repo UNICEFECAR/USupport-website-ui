@@ -7,6 +7,9 @@ import {
 } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
 
+import ministryEducationKZ from "./assets/ministry-education-kz.png";
+import ministryHealthKZ from "./assets/ministry-health-kz.png";
+
 import "./our-partners.scss";
 
 /**
@@ -18,7 +21,7 @@ import "./our-partners.scss";
  */
 export const OurPartners = () => {
   const { t } = useTranslation("our-partners");
-  const goToLink = "https://www.unicef.org/";
+
   return (
     <Block classes="our-partners">
       <Grid classes="our-partners__grid">
@@ -34,24 +37,18 @@ export const OurPartners = () => {
           <CardPartner
             title={t("partner_1_title")}
             description={t("partner_1_description")}
-            link={goToLink}
+            link={t("partner_1_link")}
             linkPlaceholder={t("partner_1_link_placeholder")}
+            image={ministryEducationKZ}
           />
         </GridItem>
         <GridItem md={8} lg={12}>
           <CardPartner
-            title={t("partner_1_title")}
-            description={t("partner_1_description")}
-            link={goToLink}
-            linkPlaceholder={t("partner_1_link_placeholder")}
-          />
-        </GridItem>
-        <GridItem md={8} lg={12}>
-          <CardPartner
-            title={t("partner_1_title")}
-            description={t("partner_1_description")}
-            link={goToLink}
-            linkPlaceholder={t("partner_1_link_placeholder")}
+            title={t("partner_2_title")}
+            description={t("partner_2_description")}
+            link={t("partner_2_link")}
+            linkPlaceholder={t("partner_2_link_placeholder")}
+            image={ministryHealthKZ}
           />
         </GridItem>
       </Grid>

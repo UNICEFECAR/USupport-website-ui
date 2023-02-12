@@ -13,6 +13,8 @@ import "./hero.scss";
 
 import imageSrc from "./assets/PeopleCollage.png";
 import imageSrcWebp from "./assets/PeopleCollage.webp";
+// import unicefRoundLogoSrc from "./assets/UnicefRoundLogo.png";
+// import unicefRoundLogoSrcWebp from "./assets/UnicefRoundLogo.webp";
 
 /**
  * Hero
@@ -58,6 +60,11 @@ export const Hero = () => {
           <StaticImage png={imageSrc} webp={imageSrcWebp} alt="happy-people" />
         </GridItem>
       </Grid>
+      {/* <StaticImage
+        png={unicefRoundLogoSrc}
+        webp={unicefRoundLogoSrcWebp}
+        alt="unicef-round-logo"
+      /> */}
       <RadialCircle color="purple" />
       <RadialCircle color="blue" />
     </Block>

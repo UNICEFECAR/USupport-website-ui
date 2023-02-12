@@ -32,7 +32,7 @@ export const HowItWorks = ({
 
   return (
     <Block classes="how-it-works" animation="fade-left">
-      <Grid classes={onPage && "how-it-works__grid"}>
+      <Grid classes={onPage ? "how-it-works__grid" : ""}>
         <GridItem classes="how-it-works__heading" md={8} lg={12}>
           <h2 className="how-it-works__heading-text">{t("heading")}</h2>
         </GridItem>
