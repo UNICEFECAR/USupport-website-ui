@@ -1,15 +1,21 @@
 @import "@USupport-components-library/styles";
 
 .we-help {
-  padding-top: $spacing_3_2;
+  padding-top: 28rem;
+  padding-bottom: $spacing_1_0;
   text-align: left;
 
   @media screen and (min-width: $screen-md) {
-    padding-bottom: $spacing_7_2;
+    padding-top: 10rem;
   }
 
   &__heading {
     place-self: center;
+  }
+
+  &__heading-text {
+    color: $color_white_ff;
+    padding-bottom: $spacing_7_2;
   }
 
   &__secondary-grid {
@@ -55,22 +61,16 @@
 
     @media screen and (min-width: $screen-md) {
       justify-self: end;
-      transform: translateX(12rem);
     }
 
-    @media screen and (min-width: $screen-lg) {
-      justify-self: end;
-      transform: translateX(14rem);
-    }
-
-    &__image {
-      width: 16rem;
+    &__animation {
+      width: 33rem;
 
       @media screen and (min-width: $screen-md) {
         width: 25rem;
       }
       @media screen and (min-width: $screen-lg) {
-        width: 30rem;
+        width: 35rem;
       }
     }
   }

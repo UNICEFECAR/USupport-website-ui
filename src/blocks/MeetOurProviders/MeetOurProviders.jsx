@@ -23,13 +23,13 @@ export const MeetOurProviders = () => {
   const navigate = useNavigate();
   const { t } = useTranslation("meet-our-providers");
 
-  const providersQuery = useGetProvidersData()[0];
+  const providersQuery = useGetProvidersData(true, 3)[0];
 
   const redirectToDetails = (id) => {
     navigate(`/about-us/provider?id=${id}`);
   };
   return (
-    <Block classes="meet-our-providers">
+    <Block classes="meet-our-providers" id="meet-our-providers">
       <Grid classes="meet-our-providers__main-grid">
         <GridItem md={8} lg={12}>
           <h2>{t("heading")}</h2>

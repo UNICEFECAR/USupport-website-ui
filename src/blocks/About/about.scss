@@ -42,13 +42,12 @@
 
   &__icon-item {
     text-align: center;
+
     &.first {
-      margin-top: $spacing_4_0;
       place-self: end;
     }
 
     &.second {
-      margin-top: $spacing_2_4;
       place-self: start;
     }
     &.third {
@@ -60,7 +59,7 @@
     }
   }
   &__mascot {
-    width: 50rem;
+    width: 38rem;
     height: auto;
     margin-bottom: -$spacing_0_7;
 

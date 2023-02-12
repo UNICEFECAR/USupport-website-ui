@@ -2,6 +2,15 @@
 @import "@USupport-components-library/styles";
 
 .page__how-it-works {
+  background-image: url("./assets/how-it-works-small.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-y: $spacing_7_0;
+  min-width: 40.7rem;
+
+  @media screen and (min-width: $screen-md) {
+    background-image: url("./assets/how-it-works-big.png");
+  }
   &__faq-item {
     padding-top: $spacing_5_6;
     padding-bottom: $spacing_6_4;

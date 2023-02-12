@@ -72,16 +72,17 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    max-width: 24rem;
+    max-width: 38rem;
     margin-left: auto;
-    margin-top: $spacing_24_0;
+    margin-top: $spacing_3_0;
 
     @media screen and (min-width: $screen_md) {
       max-width: 34rem;
+      margin-top: $spacing_24_0;
     }
 
     @media screen and (min-width: $screen_lg) {
-      max-width: 40rem;
+      max-width: 56rem;
     }
   }
 }

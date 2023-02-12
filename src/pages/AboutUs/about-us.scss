@@ -2,6 +2,15 @@
 @import "@USupport-components-library/styles";
 
 .page__about-us {
+  background-image: url("./assets/about-us-small.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-y: $spacing_7_0;
+  min-width: 40.7rem;
+
+  @media screen and (min-width: $screen-md) {
+    background-image: url("./assets/about-us-big.png");
+  }
   &__radial-circle {
     position: absolute;
     right: 0;

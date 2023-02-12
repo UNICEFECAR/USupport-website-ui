@@ -117,7 +117,7 @@ export const FAQ = ({ showMascot, showLearnMore, showAll = true }) => {
             </GridItem>
             {showMascot && (
               <GridItem md={2} lg={6} classes="faq__mascot-item">
-                <Animation name="MascotBlueQuestions" />
+                <Animation name="MascotBlueConfused" />
               </GridItem>
             )}
           </Grid>

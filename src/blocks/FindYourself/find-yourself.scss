@@ -13,13 +13,12 @@
   }
 
   &__grid {
-    justify-items: center;
+    justify-content: center;
   }
 
   &__heading-item {
     width: 100vw;
     background-repeat: no-repeat;
-    margin-left: -$spacing_1_6;
     height: 26rem;
     background-position: center;
     background-size: cover;
@@ -38,7 +37,6 @@
     }
 
     @media screen and (min-width: $screen-md) {
-      margin-left: -$spacing_3_6;
       height: 41.9rem;
 
       .no-webp & {
@@ -47,10 +45,6 @@
       .webp & {
         background-image: url("./assets/BeYourBestSelfDesktop.webp");
       }
-    }
-
-    @media screen and (min-width: $screen-lg) {
-      margin-left: -$spacing_11_5;
     }
 
     h2,
@@ -62,7 +56,6 @@
   &__text-item {
     width: 100vw;
     background-color: $color_purple_200e2f;
-    margin-left: -$spacing_1_6;
     margin-top: -$spacing_0_8;
     padding: $spacing_2_6 0;
     display: flex;
@@ -103,6 +96,7 @@
     &.box {
       background-repeat: no-repeat;
       background-size: cover;
+      justify-self: center;
     }
 
     &.box-1 {

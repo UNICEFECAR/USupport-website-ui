@@ -21,6 +21,7 @@ import {
   InformationPortal,
   ProviderOverview,
   MeetOurProvidersOverview,
+  OurPartners,
 } from "#blocks/locales.js";
 
 import {
@@ -51,6 +52,7 @@ const resources = {
     "information-portal": InformationPortal.en,
     "provider-overview": ProviderOverview.en,
     "meet-our-providers-overview": MeetOurProvidersOverview.en,
+    "our-partners": OurPartners.en,
 
     // Pages
     "not-found-page": NotFoundPage.en,
