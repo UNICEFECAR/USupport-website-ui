@@ -9,6 +9,7 @@ import {
   Page,
   InformationPortal,
   MeetOurProvidersOverview,
+  OurPartnersOverview,
 } from "#blocks";
 
 /**
@@ -24,8 +25,9 @@ export function Landing() {
       <Hero />
       <FindYourself />
       <About />
-      <HowItWorks summary />
+      <HowItWorks summary isTitleWhite={false} />
       <MeetOurProvidersOverview />
+      <OurPartnersOverview />
       <InformationPortal />
       <FAQ showLearnMore={true} showMascot={true} showAll={false} />
       <DownloadApp />

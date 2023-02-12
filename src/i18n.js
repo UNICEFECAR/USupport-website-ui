@@ -22,6 +22,7 @@ import {
   ProviderOverview,
   MeetOurProvidersOverview,
   OurPartners,
+  OurPartnersOverview,
 } from "#blocks/locales.js";
 
 import {
@@ -53,6 +54,7 @@ const resources = {
     "provider-overview": ProviderOverview.en,
     "meet-our-providers-overview": MeetOurProvidersOverview.en,
     "our-partners": OurPartners.en,
+    "our-partners-overview": OurPartnersOverview.en,
 
     // Pages
     "not-found-page": NotFoundPage.en,

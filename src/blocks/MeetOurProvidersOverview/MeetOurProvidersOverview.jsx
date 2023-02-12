@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 import {
   Block,
@@ -23,6 +24,7 @@ import "./meet-our-providers-overview.scss";
  */
 export const MeetOurProvidersOverview = () => {
   const { t } = useTranslation("meet-our-providers-overview");
+  const navigate = useNavigate();
 
   const providersQuery = useGetProvidersData()[0];
 
@@ -36,9 +38,9 @@ export const MeetOurProvidersOverview = () => {
         <GridItem md={8} lg={12}>
           <Grid classes="meet-our-providers-overview__content-grid">
             <GridItem md={8} lg={6}>
-              <div class="meet-our-providers-overview__content-grid__text-container">
+              <div className="meet-our-providers-overview__content-grid__text-container">
                 <h2>{t("heading")}</h2>
-                <p class="meet-our-providers-overview__text">{t("text")}</p>
+                <p className="meet-our-providers-overview__text">{t("text")}</p>
               </div>
             </GridItem>
             <GridItem md={8} lg={6}>
@@ -63,6 +65,7 @@ export const MeetOurProvidersOverview = () => {
                           redirectToDetails(provider.providerDetailId)
                         }
                         classes="meet-our-providers-overview__card"
+                        key={index}
                       />
                     );
                   }
@@ -76,7 +79,12 @@ export const MeetOurProvidersOverview = () => {
           lg={12}
           classes="meet-our-providers-overview__button-item"
         >
-          <Button label={t("button_label")} size="lg" type="secondary" />
+          <Button
+            label={t("button_label")}
+            size="lg"
+            type="secondary"
+            onClick={() => navigate(`/about-us`)}
+          />
         </GridItem>
       </Grid>
     </Block>
