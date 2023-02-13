@@ -29,7 +29,11 @@ export const Hero = () => {
     <Block classes="hero" animation="fade-right">
       <Grid classes="hero__main-grid">
         <GridItem md={5} lg={6}>
-          <Grid classes="hero__content-grid">
+          <Grid
+            classes="hero__content-grid"
+            role="contentinfo"
+            arial-lable="Hero section"
+          >
             <GridItem md={8} lg={12} classes="hero__heading-item">
               <h1>
                 {t("heading_1")} <span>{t("heading_1_1")}</span>
