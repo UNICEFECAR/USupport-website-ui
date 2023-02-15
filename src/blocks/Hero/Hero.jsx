@@ -32,7 +32,7 @@ export const Hero = () => {
           <Grid
             classes="hero__content-grid"
             role="contentinfo"
-            arial-lable="Hero section"
+            arial-label="Hero section"
           >
             <GridItem md={8} lg={12} classes="hero__heading-item">
               <h1>
