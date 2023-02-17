@@ -14,7 +14,6 @@ export default function useGetProvidersData(random = false, limit = 3) {
     } else {
       response = await providerSvc.getRandomProviders(limit);
     }
-    console.log(response);
     const { data } = response;
     const formattedData = [];
     for (let i = 0; i < data.length; i++) {
