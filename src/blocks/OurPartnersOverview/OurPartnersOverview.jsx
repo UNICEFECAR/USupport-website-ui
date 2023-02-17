@@ -41,7 +41,7 @@ export const OurPartnersOverview = () => {
   const renderAllPartners = () => {
     return partners.map((partner, index) => {
       return (
-        <GridItem xs={2} md={4} lg={6}>
+        <GridItem xs={2} md={4} lg={6} key={index}>
           <PartnerOverview
             name={partner.name}
             link={partner.link}

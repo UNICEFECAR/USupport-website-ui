@@ -11,10 +11,10 @@ import { useTranslation } from "react-i18next";
 
 import "./hero.scss";
 
-import imageSrc from "./assets/PeopleCollage.png";
-import imageSrcWebp from "./assets/PeopleCollage.webp";
-// import unicefRoundLogoSrc from "./assets/UnicefRoundLogo.png";
-// import unicefRoundLogoSrcWebp from "./assets/UnicefRoundLogo.webp";
+import imageSrc from "./assets/PeopleCollage2.png";
+import imageSrcWebp from "./assets/PeopleCollage2.webp";
+import unicefRoundLogoSrc from "./assets/UnicefRoundLogo.png";
+import unicefRoundLogoSrcWebp from "./assets/UnicefRoundLogo.webp";
 
 /**
  * Hero
@@ -32,7 +32,7 @@ export const Hero = () => {
           <Grid
             classes="hero__content-grid"
             role="contentinfo"
-            arial-lable="Hero section"
+            arial-label="Hero section"
           >
             <GridItem md={8} lg={12} classes="hero__heading-item">
               <h1>
@@ -64,11 +64,12 @@ export const Hero = () => {
           <StaticImage png={imageSrc} webp={imageSrcWebp} alt="happy-people" />
         </GridItem>
       </Grid>
-      {/* <StaticImage
+      <StaticImage
         png={unicefRoundLogoSrc}
         webp={unicefRoundLogoSrcWebp}
+        imageClasses="hero__unicef-round-logo"
         alt="unicef-round-logo"
-      /> */}
+      />
       <RadialCircle color="purple" />
       <RadialCircle color="blue" />
     </Block>
