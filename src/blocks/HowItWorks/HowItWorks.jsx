@@ -26,15 +26,23 @@ export const HowItWorks = ({
   summary = false,
   showSummaryBellow = false,
   onPage = false,
+  isTitleWhite = true,
 }) => {
   const { t } = useTranslation("how-it-works");
   const { width } = useWindowDimensions();
 
   return (
     <Block classes="how-it-works" animation="fade-left">
-      <Grid classes={onPage && "how-it-works__grid"}>
+      <Grid classes={onPage ? "how-it-works__grid" : ""}>
         <GridItem classes="how-it-works__heading" md={8} lg={12}>
-          <h2 className="how-it-works__heading-text">{t("heading")}</h2>
+          <h2
+            className={[
+              "how-it-works__heading-text",
+              isTitleWhite && "how-it-works__heading-text--white",
+            ].join(" ")}
+          >
+            {t("heading")}
+          </h2>
         </GridItem>
         <GridItem md={8} lg={12} classes="how-it-works__text-item">
           {!showSummaryBellow && (

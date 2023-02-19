@@ -5,10 +5,16 @@ import { providerSvc } from "@USupport-components-library/services";
 /**
  * Reuseable hook to get and transform the client data in a desired format
  */
-export default function useGetProvidersData() {
+export default function useGetProvidersData(random = false, limit = 3) {
   const [providersData, setProvidersData] = useState();
   const fetchProvidersData = async () => {
-    const { data } = await providerSvc.getAllProviders();
+    let response;
+    if (random) {
+      response = await providerSvc.getAllProviders();
+    } else {
+      response = await providerSvc.getRandomProviders(limit);
+    }
+    const { data } = response;
     const formattedData = [];
     for (let i = 0; i < data.length; i++) {
       const providerData = data[i];
