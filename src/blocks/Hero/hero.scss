@@ -72,10 +72,12 @@
 
       @media screen and (min-width: $screen-md) {
         width: 30rem;
+        margin-left: -31rem;
       }
 
       @media screen and (min-width: 1000px) {
         width: 36rem;
+        margin-left: -39rem;
       }
 
       @media screen and (min-width: $screen-lg) {
@@ -84,11 +86,30 @@
     }
   }
 
-  &__unicef-round-logo {
-    position: absolute;
+  &__unicef-logo-container {
+    display: flex;
+    justify-content: center;
+
+    @media screen and (min-width: $screen-md) {
+      position: block;
+    }
+  }
+
+  &__unicef-logo {
     width: 14rem;
     height: auto;
-    right: -7rem;
-    top: -8rem;
+
+    @media screen and (min-width: $screen-md) {
+      width: 10rem;
+      position: absolute;
+      right: -3rem;
+      top: -3rem;
+    }
+
+    @media screen and (min-width: $screen-lg) {
+      width: 14rem;
+      right: -7rem;
+      top: -8rem;
+    }
   }
 }
