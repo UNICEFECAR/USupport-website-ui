@@ -1,0 +1,28 @@
+{
+  "earliest_slot_label": "Консультация алу үшін жақын арадағы бос уақыт",
+  "languages_label": "Жұмыс тілі",
+  "education_label": "Білім",
+  "work_with_label": "Келесімен жұмыс істеу",
+  "specializations_label": "Мамандану салалары",
+  "done_consultations_label": "Өткізілген консультациялар саны",
+  "description_label": "Сипаттама",
+  "edit_details": "Мәліметтерді өзгерту",
+  "change_password": "Кілтсөзді өзгерту",
+  "delete_account": "Аккаунтты жою",
+  "no_available_slot": "Бос слот жоқ",
+
+  "psychologist": "Тәуелділік",
+  "psychiatrist": "Психиатр",
+  "psychotherapist": "Психотерапевт",
+
+  "addiction": "Addiction",
+  "stress": "Стресс",
+  "burnout": "Күю (жану)",
+  "eating_disorder": "Тамақтану мінез-құлқының бұзылуы",
+  "depression": "Депрессия",
+  "anxiety": "Үрейлілік",
+  "panic_attack": "Паникалық шабуыл",
+  "relationship": "Қарым-қатынас",
+  "personal_development": "Жеке даму",
+  "hour_consultation": "for 1 hour consultation"
+}

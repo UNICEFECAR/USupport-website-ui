@@ -1,0 +1,28 @@
+{
+  "heading_1": "Бізге хабарласыңыз",
+  "contact_form_heading": "Сұрақ бар ма? Бізге ұялмай хабарласыңыз.",
+  "email_subject": "Бізге хабарласыңыз бөлімінен жаңа хабарлама",
+  "email_title": "Жаңа хабарлама",
+  "email_text": "Сәлеметсіз бе, <br></br>, Сізге <br></br>атты пайдаланушыдан, электронды поштасы: {{email}}<br></br>, жаңа хабарлама келді. Себебі: {{себеп}}<br>< / br>хабарлама: {{message}}<br></br>Ізгі ниетпен,<br></br>Usupport Қолдау тобы",
+  "contact_reason_placeholder": "Себебін таңдаңыз",
+  "contact_reason_1": "Usupport туралы ақпарат",
+  "contact_reason_2": "Техникалық мәселе",
+  "contact_reason_3": "Консультанттар желісіне қосылыңыз",
+  "contact_reason_4": "Серіктестік",
+  "contact_reason_5": "Басқа",
+
+  "email_label": "Электронды пошта",
+  "reason_label": "Reason for contacting us KK",
+  "message_label": "Хабарлама",
+  "email_error": "Электронды поштаңызды енгізуді өтінеміз",
+  "reason_error": "Please select a reason KK",
+  "message_error": "Please enter your message KK",
+  "message_placeholder": "Сіздің бізге арналған хабарламаңыз",
+  "send_button": "Жіберу",
+
+  "modal_title": "Хабарлама сәтті жіберілді",
+  "modal_text": "Біз Сізге жақын арада хабарласамыз",
+  "modal_cta_label": "Бас бетке оралу",
+
+  "paragraph": "We will reply to your email in 24 hours. Make sure you enter your email address correctlyKK"
+}
