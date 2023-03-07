@@ -9,5 +9,20 @@
   "contact_reason_2": "Technical problem",
   "contact_reason_3": "Join the network of providers",
   "contact_reason_4": "Partnerships",
-  "contact_reason_5": "Other"
+  "contact_reason_5": "Other",
+
+  "email_label": "Email",
+  "reason_label": "Reason for contacting us",
+  "message_label": "Message",
+  "email_error": "Please enter your email address",
+  "reason_error": "Please select a reason",
+  "message_error": "Please enter your message",
+  "message_placeholder": "Your message to us",
+  "send_button": "Send",
+
+  "modal_title": "Your message was successfully sent",
+  "modal_text": "We will get back to you as soon as possible",
+  "modal_cta_label": "Go back to Home", 
+
+  "paragraph": "We will reply to your email in 24 hours. Make sure you enter your email address correctly"
 }
