@@ -1,0 +1,28 @@
+{
+  "earliest_slot_label": "Самый ранний доступный слот свободного времени для консультации",
+  "languages_label": "Язык работы",
+  "education_label": "Образование",
+  "work_with_label": "Работа с",
+  "specializations_label": "Специализации",
+  "done_consultations_label": "Всего проведено консультаций",
+  "description_label": "Описание",
+  "edit_details": "Редактировать детали",
+  "change_password": "Изменить пароль",
+  "delete_account": "Удалить аккаунт",
+  "no_available_slot": "Нет свободного слота",
+
+  "psychologist": "Психолог",
+  "psychiatrist": "Психиатр",
+  "psychotherapist": "Психотерапевт",
+
+  "addiction": "Зависимость",
+  "stress": "Стресс",
+  "burnout": "Выгорание",
+  "eating_disorder": "Расстройство пищевого поведения",
+  "depression": "Депрессия",
+  "anxiety": "Беспокойство",
+  "panic_attack": "Паническая атака",
+  "relationship": "Отношения",
+  "personal_development": "Личное развитие",
+  "hour_consultation": "for 1 hour consultation"
+}

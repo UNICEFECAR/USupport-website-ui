@@ -326,6 +326,7 @@ export const Articles = () => {
                 readingTime={newestArticle.readingTime}
                 categoryName={newestArticle.categoryName}
                 showDescription={true}
+                t={t}
                 onClick={() => {
                   navigate(`/information-portal/article/${newestArticle.id}`);
                 }}
@@ -375,6 +376,7 @@ export const Articles = () => {
                             labels={articleData.labels}
                             creator={articleData.creator}
                             readingTime={articleData.readingTime}
+                            t={t}
                             categoryName={articleData.categoryName}
                             onClick={() => {
                               navigate(
