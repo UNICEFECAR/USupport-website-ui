@@ -2,5 +2,6 @@
   "heading": "Больше статей",
   "no_results": "На выбранном языке нет похожих статей.",
   "read_more_button": "Read moreRU",
-  "min_read": "min readRU"
+  "min_read": "min readRU",
+  "by": "by {{creator}}"
 }
