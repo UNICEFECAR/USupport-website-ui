@@ -83,7 +83,7 @@ export const MeetOurProvidersOverview = () => {
             label={t("button_label")}
             size="lg"
             type="secondary"
-            onClick={() => navigate(`/about-us`)}
+            onClick={() => navigate(`/how-it-works`)}
           />
         </GridItem>
       </Grid>
