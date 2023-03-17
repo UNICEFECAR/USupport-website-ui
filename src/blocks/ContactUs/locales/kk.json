@@ -12,11 +12,11 @@
   "contact_reason_5": "Басқа",
 
   "email_label": "Электронды пошта",
-  "reason_label": "Reason for contacting us KK",
+  "reason_label": "Бізге хабарласудың себебі",
   "message_label": "Хабарлама",
   "email_error": "Электронды поштаңызды енгізуді өтінеміз",
-  "reason_error": "Please select a reason KK",
-  "message_error": "Please enter your message KK",
+  "reason_error": "Себебін таңдауды өтінеміз",
+  "message_error": "Хабарламаңызды енгізуді өтінеміз",
   "message_placeholder": "Сіздің бізге арналған хабарламаңыз",
   "send_button": "Жіберу",
 
@@ -24,5 +24,5 @@
   "modal_text": "Біз Сізге жақын арада хабарласамыз",
   "modal_cta_label": "Бас бетке оралу",
 
-  "paragraph": "We will reply to your email in 24 hours. Make sure you enter your email address correctlyKK"
+  "paragraph": "Біз Сіздің электрондық хабарлауыңызға 24 сағат ішінде жауап береміз. Электрондық поштаны дұрыс енгізгеніңізге назар аударыңыз"
 }

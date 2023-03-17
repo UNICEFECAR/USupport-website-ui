@@ -12,11 +12,11 @@
   "contact_reason_5": "Другое",
 
   "email_label":"Электронная почта",
-  "reason_label": "Reason for contacting us RU",
+  "reason_label": "Причина обращения к нам",
   "message_label": "Сообщение",
   "email_error": "Пожалуйста, введите свою электронную почту",
-  "reason_error": "Please select a reason RU",
-  "message_error": "Please enter your message RU",
+  "reason_error": "Пожалуйста, выберите причину",
+  "message_error": "Пожалуйста, введите свое сообщение",
   "message_placeholder": "Ваше сообщение для нас",
   "send_button": "Послать",
 
@@ -24,5 +24,5 @@
   "modal_text": "Мы свяжемся с Вами в самое ближайшее время",
   "modal_cta_label": "Вернуться на главную страницу",
 
-  "paragraph": "We will reply to your email in 24 hours. Make sure you enter your email address correctlyRU"
+  "paragraph": "Мы ответим на Ваше электронное письмо в течение 24 часов. Убедитесь, что Вы правильно ввели свой адрес электронной почты"
 }
