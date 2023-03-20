@@ -32,10 +32,12 @@ export const FindYourself = () => {
         </GridItem>
         {width <= 768 && (
           <GridItem xs={4} md={8} lg={12} classes="find-yourself__text-item">
-            <h2>{t("heading")}</h2>
             <div className="find-yourself__text">
-              <p className="paragraph">{t("paragraph")}</p>
-              <p className="paragraph">{t("paragraph_2")}</p>
+              <h2>{t("heading")}</h2>
+              <div className="find-yourself__text__content">
+                <p className="paragraph">{t("paragraph")}</p>
+                <p className="paragraph">{t("paragraph_2")}</p>
+              </div>
             </div>
           </GridItem>
         )}
