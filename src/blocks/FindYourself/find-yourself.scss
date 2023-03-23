@@ -71,11 +71,15 @@
   }
 
   &__text {
-    padding: $spacing_2_4 $spacing_2_4 0;
+    padding: 0 $spacing_2_4;
     max-width: 75rem;
 
     @media screen and (min-width: $screen-lg) {
       padding-top: $spacing_3_2;
+    }
+
+    &__content {
+      padding-top: $spacing_2_4;
     }
   }
 

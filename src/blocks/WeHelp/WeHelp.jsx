@@ -29,7 +29,7 @@ export const WeHelp = () => {
           <Box borderSize="lg" classes="we-help__content-box">
             <Grid classes="we-help__secondary-grid">
               <GridItem
-                md={6}
+                md={7}
                 lg={6}
                 classes="we-help__secondary-grid__descriptions-item"
               >
@@ -43,7 +43,7 @@ export const WeHelp = () => {
                 </p>
               </GridItem>
 
-              <GridItem md={2} lg={6} classes="we-help__mascot-item">
+              <GridItem md={1} lg={6} classes="we-help__mascot-item">
                 <Animation
                   name="MascotPurpleInformation"
                   classes="we-help__mascot-item__animation"

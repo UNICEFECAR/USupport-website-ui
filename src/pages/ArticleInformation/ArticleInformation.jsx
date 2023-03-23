@@ -138,16 +138,18 @@ export const ArticleInformation = () => {
           </Grid>
         </Block>
       )}
-      {!moreArticles && isMoreArticlesLoading && !isArticlesLoading && (
-        <Loading size="lg" />
-      )}
-      {!moreArticles?.length &&
-        !isMoreArticlesLoading &&
-        isMoreArticlesFetched && (
-          <h3 className="page__article-information__no-results">
-            {t("no_results")}
-          </h3>
+      <Block>
+        {!moreArticles && isMoreArticlesLoading && !isArticlesLoading && (
+          <Loading size="lg" />
         )}
+        {!moreArticles?.length &&
+          !isMoreArticlesLoading &&
+          isMoreArticlesFetched && (
+            <h3 className="page__article-information__no-results">
+              {t("no_results")}
+            </h3>
+          )}
+      </Block>
     </Page>
   );
 };

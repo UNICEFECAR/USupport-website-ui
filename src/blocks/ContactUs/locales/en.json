@@ -22,7 +22,8 @@
 
   "modal_title": "Your message was successfully sent",
   "modal_text": "We will get back to you as soon as possible",
-  "modal_cta_label": "Go back to Home", 
+  "modal_cta_label": "Go back to Home",
 
-  "paragraph": "We will reply to your email in 24 hours. Make sure you enter your email address correctly"
+  "paragraph": "We will reply to your email in 24 hours. Make sure you enter your email address correctly",
+  "contact_form": "Contact form"
 }
