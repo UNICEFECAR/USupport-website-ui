@@ -11,18 +11,19 @@ export default function useSendIssueEmail(onSuccess, onError) {
   const sendIssueEmail = async (payload) => {
     const emailPromise = emailSvc.sendAdmin({
       subject: payload.subjectLabel,
-      title,
-      text,
+      title: payload.title,
+      text: payload.text,
     });
 
     const addFormPromise = userSvc.addContactForm({
       subject: payload.subjectValue,
       email: payload.email,
-      text: payload.message,
+      message: payload.text,
+      sentFrom: "website",
     });
 
-    const [email, addForm] = await Promise.all([emailPromise, addFormPromise]);
-    return res;
+    await Promise.all([emailPromise, addFormPromise]);
+    return true;
   };
 
   const sendIssueEmailMutation = useMutation(sendIssueEmail, {

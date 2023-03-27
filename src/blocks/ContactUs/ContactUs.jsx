@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 import {
   Block,
   ContactForm,
@@ -8,9 +10,10 @@ import {
   RadialCircle,
   Animation,
 } from "@USupport-components-library/src";
-import { useTranslation } from "react-i18next";
 
 import { emailSvc } from "@USupport-components-library/services";
+
+import { useSendIssueEmail } from "#hooks";
 
 import "./contact-us.scss";
 
@@ -24,17 +27,22 @@ import "./contact-us.scss";
 export const ContactUs = () => {
   const navigate = useNavigate();
   const { t } = useTranslation("contact-us");
+  const [submitError, setSubmitError] = useState("");
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+
+  const onSendEmailSuccess = () => {
+    setIsSuccessModalOpen(true);
+  };
+  const onSendEmailError = (error) => {
+    setSubmitError(error);
+  };
+  const sendIssueEmailMutation = useSendIssueEmail(
+    onSendEmailSuccess,
+    onSendEmailError
+  );
 
   const handleSendEmail = async (data) => {
-    return await emailSvc.sendAdmin({
-      subject: t("email_subject"),
-      title: t("email_title"),
-      text: t("email_text", {
-        email: data.email,
-        reason: data.reason,
-        message: data.message,
-      }),
-    });
+    sendIssueEmailMutation.mutate(data);
   };
 
   return (
@@ -50,6 +58,10 @@ export const ContactUs = () => {
                 classes="contact-us__form"
                 sendEmail={handleSendEmail}
                 navigate={navigate}
+                submitError={submitError}
+                isMutating={sendIssueEmailMutation.isLoading}
+                isSuccessModalOpen={isSuccessModalOpen}
+                closeSuccessModal={() => setIsSuccessModalOpen(false)}
                 t={t}
               />
             </GridItem>
