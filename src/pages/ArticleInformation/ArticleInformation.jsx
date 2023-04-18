@@ -126,6 +126,7 @@ export const ArticleInformation = () => {
                     creator={articleData.creator}
                     readingTime={articleData.readingTime}
                     categoryName={articleData.categoryName}
+                    t={t}
                     onClick={() => {
                       navigate(`/information-portal/article/${articleData.id}`);
                       onArticleClick();
@@ -137,16 +138,18 @@ export const ArticleInformation = () => {
           </Grid>
         </Block>
       )}
-      {!moreArticles && isMoreArticlesLoading && !isArticlesLoading && (
-        <Loading size="lg" />
-      )}
-      {!moreArticles?.length &&
-        !isMoreArticlesLoading &&
-        isMoreArticlesFetched && (
-          <h3 className="page__article-information__no-results">
-            {t("no_results")}
-          </h3>
+      <Block>
+        {!moreArticles && isMoreArticlesLoading && !isArticlesLoading && (
+          <Loading size="lg" />
         )}
+        {!moreArticles?.length &&
+          !isMoreArticlesLoading &&
+          isMoreArticlesFetched && (
+            <h3 className="page__article-information__no-results">
+              {t("no_results")}
+            </h3>
+          )}
+      </Block>
     </Page>
   );
 };

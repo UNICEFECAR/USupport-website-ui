@@ -31,7 +31,7 @@
   }
 
   &__categories-item {
-    overflow-x: scroll;
+    overflow-x: auto;
     width: 35rem;
 
     @media screen and (min-width: $screen-md) {

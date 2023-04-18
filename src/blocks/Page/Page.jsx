@@ -69,6 +69,7 @@ export const Page = ({
         if (validCountry?.alpha2 === x.alpha2) {
           hasSetDefaultCountry = true;
           localStorage.setItem("country", x.alpha2);
+          window.dispatchEvent(new Event("countryChanged"));
           setSelectedCountry(countryObject);
         }
       }
@@ -82,6 +83,7 @@ export const Page = ({
         "country_id",
         countries.find((x) => x.value === kazakhstanCountry.value).countryID
       );
+      window.dispatchEvent(new Event("countryChanged"));
     }
 
     return countries;

@@ -1,0 +1,32 @@
+{
+  "page_1": "Главная",
+  "page_2": "Как работает?",
+  "page_3": "О нас",
+  "page_4": "Инфопортал",
+  "page_5": "Контакты",
+
+  "country_1": "",
+  "country_2": "",
+  "country_3": "",
+
+  "language_1": "",
+  "language_2": "",
+  "language_3": "",
+  "language_4": "",
+  "language_5": "",
+  "language_6": "",
+
+  "footer_1": "О нас",
+  "footer_2": "Информационный портал",
+  "footer_3": "Как это работает?",
+  "footer_4": "Условия использования",
+  "footer_5": "Политика конфиденциальности",
+  "footer_6": "Политика Cookie",
+
+  "emergency_button": "SOS-центр",
+
+  "button_text": "Перейти к приложению",
+  "language_label": "Язык",
+  "country_label": "Страна",
+  "contact_us": "Свяжитесь с нами"
+}

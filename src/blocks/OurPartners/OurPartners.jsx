@@ -39,7 +39,7 @@ export const OurPartners = () => {
             description={t("partner_1_description")}
             link={t("partner_1_link")}
             linkPlaceholder={t("partner_1_link_placeholder")}
-            image={ministryEducationKZ}
+            image={ministryHealthKZ}
           />
         </GridItem>
         <GridItem md={8} lg={12}>
@@ -48,7 +48,7 @@ export const OurPartners = () => {
             description={t("partner_2_description")}
             link={t("partner_2_link")}
             linkPlaceholder={t("partner_2_link_placeholder")}
-            image={ministryHealthKZ}
+            image={ministryEducationKZ}
           />
         </GridItem>
       </Grid>
