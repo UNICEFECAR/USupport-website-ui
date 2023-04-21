@@ -29,12 +29,12 @@ export const OurPartnersOverview = () => {
     {
       name: t("partner_1_title"),
       link: t("partner_1_link"),
-      image: ministryEducationKZ,
+      image: ministryHealthKZ,
     },
     {
       name: t("partner_2_title"),
       link: t("partner_2_link"),
-      image: ministryHealthKZ,
+      image: ministryEducationKZ,
     },
   ];
 
