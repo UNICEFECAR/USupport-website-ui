@@ -1,0 +1,68 @@
+@import "@USupport-components-library/styles";
+
+.my-qa-landing {
+  padding-top: $spacing_3_2;
+  padding-bottom: $spacing_2_6;
+  background: rgba(244, 252, 253, 0.62);
+  background-image: url("./assets/Background.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: left;
+  background-position-y: top;
+
+  @media screen and (min-width: $screen-md) {
+    padding-top: $spacing_3_6;
+    padding-bottom: $spacing_4_8;
+    background-position-y: bottom;
+  }
+  @media screen and (min-width: $screen-lg) {
+    padding-top: $spacing_4_8;
+    padding-bottom: $spacing_7_0;
+  }
+
+  &__subheading-text {
+    margin: $spacing_2_0;
+  }
+
+  &__button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    @media screen and (min-width: $screen-md) {
+      align-items: flex-start;
+    }
+  }
+
+  &__ask-anonymous-card {
+    padding: $spacing_1_6 $spacing_1_2;
+    text-align: left;
+
+    & > p {
+      margin-top: $spacing_0_4;
+      color: $color_gray_66768d;
+    }
+  }
+
+  &__button {
+    margin: $spacing_2_0 auto;
+
+    @media screen and (min-width: $screen-md) {
+      margin: $spacing_2_0 0;
+    }
+  }
+
+  &__image {
+    width: 90%;
+
+    @media screen and (min-width: $screen-md) {
+      width: 70%;
+    }
+
+    @media screen and (min-width: $screen-lg) {
+      width: 85%;
+    }
+  }
+}
