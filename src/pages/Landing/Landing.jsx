@@ -10,6 +10,7 @@ import {
   InformationPortal,
   MeetOurProvidersOverview,
   OurPartnersOverview,
+  MyQALanding,
 } from "#blocks";
 
 /**
@@ -29,6 +30,7 @@ export function Landing() {
       <MeetOurProvidersOverview />
       <OurPartnersOverview />
       <InformationPortal />
+      <MyQALanding />
       <FAQ showLearnMore={true} showMascot={true} showAll={false} />
       <DownloadApp />
     </Page>

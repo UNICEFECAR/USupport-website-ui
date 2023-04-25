@@ -16,6 +16,7 @@ import {
   CookiePolicy,
   TermsOfUse,
   ProviderOverview,
+  MyQA,
 } from "#pages";
 
 // AOS imports
@@ -56,6 +57,7 @@ function App() {
             path="/information-portal/article/:id"
             element={<ArticleInformation />}
           />
+          <Route path="/my-qa" element={<MyQA />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/sos-center" element={<SOSCenter />} />
           <Route path="/cookie-policy" element={<CookiePolicy />} />
