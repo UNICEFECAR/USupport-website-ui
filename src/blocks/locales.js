@@ -19,3 +19,6 @@ export * as ProviderOverview from "./ProviderOverview/locales.js";
 export * as MeetOurProvidersOverview from './MeetOurProvidersOverview/locales.js';
 export * as OurPartners from './OurPartners/locales.js';
 export * as OurPartnersOverview from './OurPartnersOverview/locales.js';
+export * as MyQALanding from './MyQALanding/locales.js';
+export * as MascotHeaderMyQA from './MascotHeaderMyQA/locales.js';
+export * as MyQA from './MyQA/locales.js';

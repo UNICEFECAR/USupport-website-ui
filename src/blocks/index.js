@@ -20,3 +20,6 @@ export * from "./ProviderOverview";
 export * from './MeetOurProvidersOverview';
 export * from './OurPartners';
 export * from './OurPartnersOverview';
+export * from './MyQALanding';
+export * from './MascotHeaderMyQA';
+export * from './MyQA';
