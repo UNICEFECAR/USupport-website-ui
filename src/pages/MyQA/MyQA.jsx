@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 import { Page, MascotHeaderMyQA, MyQA as MyQABlock } from "#blocks";
 import { RedirectToLogin, QuestionDetails, HowItWorksMyQA } from "#modals";
@@ -16,6 +17,7 @@ import "./my-qa.scss";
  */
 export const MyQA = () => {
   const { t } = useTranslation("my-qa-page");
+  const navigate = useNavigate();
 
   const [isRedirectToLoginBackdropOpen, setIsRedirectToLoginBackdropOpen] =
     useState(false);
@@ -132,6 +134,7 @@ export const MyQA = () => {
         buttonLabel={t("modal_button_label")}
         isOpen={isRedirectToLoginBackdropOpen}
         onClose={() => setIsRedirectToLoginBackdropOpen(false)}
+        handleLoginRedirect={() => navigate("/client")}
       />
     </Page>
   );
