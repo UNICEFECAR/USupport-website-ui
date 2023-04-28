@@ -94,7 +94,10 @@ export const MyQA = () => {
         buttonLabel={t("modal_button_label")}
         isOpen={isRedirectToLoginBackdropOpen}
         onClose={() => setIsRedirectToLoginBackdropOpen(false)}
-        handleLoginRedirect={() => navigate("/client")}
+        handleLoginRedirect={() => {
+          window.location.href = "/client/login";
+          scrollTop();
+        }}
       />
     </Page>
   );
