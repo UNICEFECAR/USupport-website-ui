@@ -1,7 +1,7 @@
 @import "@USupport-components-library/styles";
 
 .my-qa {
-  padding-top: $spacing_3_2;
+  padding: $spacing_3_2;
 
   &__categories-item {
     overflow-x: auto;
@@ -18,6 +18,10 @@
   &__tabs-grid {
     align-items: center;
     justify-items: stretch;
+  }
+
+  &__questions-item {
+    margin-top: $spacing_1_2;
   }
 
   &__ask-question-button {

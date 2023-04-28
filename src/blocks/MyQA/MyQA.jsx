@@ -54,6 +54,7 @@ export const MyQA = ({
           handleReadMore={() => handleReadMore(question)}
           handleScheduleConsultationClick={handleScheduleConsultationClick}
           t={t}
+          renderIn="website"
         />
       );
     });
@@ -87,9 +88,11 @@ export const MyQA = ({
             </GridItem>
           </Grid>
         </GridItem>
-        <GridItem xs={4} md={8} lg={12}>
-          {questions?.length > 0 && (
+        <GridItem classes="my-qa__questions-item" xs={4} md={8} lg={12}>
+          {questions?.length > 0 ? (
             <div className="my-qa__answers-container">{renderQuestions()}</div>
+          ) : (
+            <p>{t("no_answers")}</p>
           )}
         </GridItem>
       </Grid>

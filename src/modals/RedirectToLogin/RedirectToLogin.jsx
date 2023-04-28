@@ -15,7 +15,7 @@ export const RedirectToLogin = ({
   heading,
   text,
   buttonLabel,
-  handleButtonClick,
+  handleLoginRedirect,
 }) => {
   return (
     <Modal
@@ -24,7 +24,7 @@ export const RedirectToLogin = ({
       heading={heading}
       text={text}
       ctaLabel={buttonLabel}
-      ctaHandleClick={handleButtonClick}
-    ></Modal>
+      ctaHandleClick={handleLoginRedirect}
+    />
   );
 };

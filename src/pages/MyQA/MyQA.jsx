@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 import { Page, MascotHeaderMyQA, MyQA as MyQABlock } from "#blocks";
 import { RedirectToLogin, QuestionDetails, HowItWorksMyQA } from "#modals";
@@ -16,6 +17,7 @@ import "./my-qa.scss";
  */
 export const MyQA = () => {
   const { t } = useTranslation("my-qa-page");
+  const navigate = useNavigate();
 
   const [isRedirectToLoginBackdropOpen, setIsRedirectToLoginBackdropOpen] =
     useState(false);
@@ -49,45 +51,6 @@ export const MyQA = () => {
       );
   }, [questions]);
 
-  const handleLike = (vote, answerId) => {
-    const questionsCopy = [...questions];
-    const isLike = vote === "like" || vote === "remove-like";
-
-    for (let i = 0; i < questionsCopy.length; i++) {
-      if (questionsCopy[i].answerId === answerId) {
-        if (isLike) {
-          if (questionsCopy[i].isLiked) {
-            questionsCopy[i].likes--;
-          } else {
-            questionsCopy[i].likes++;
-          }
-
-          if (questionsCopy[i].isDisliked) {
-            questionsCopy[i].dislikes--;
-          }
-        } else {
-          if (questionsCopy[i].isDisliked) {
-            questionsCopy[i].dislikes--;
-          } else {
-            questionsCopy[i].dislikes++;
-          }
-          if (questionsCopy[i].isLiked) {
-            questionsCopy[i].likes--;
-          }
-        }
-        questionsCopy[i].isLiked = questionsCopy[i].isLiked ? false : isLike;
-        questionsCopy[i].isDisliked = !isLike
-          ? questionsCopy[i].isDisliked
-            ? false
-            : !isLike
-          : !isLike;
-      }
-    }
-
-    setQuestions(questionsCopy);
-    addQuestionMutation.mutate({ vote, answerId });
-  };
-
   const handleSetIsQuestionDetailsOpen = (question) => {
     setSelectedQuestion(question);
     setIsQuestionDetailsOpen(true);
@@ -119,7 +82,6 @@ export const MyQA = () => {
           isOpen={isQuestionDetailsOpen}
           onClose={() => setIsQuestionDetailsOpen(false)}
           question={selectedQuestion}
-          handleLike={handleLike}
           handleScheduleClick={() => {
             setIsQuestionDetailsOpen(false);
             setIsRedirectToLoginBackdropOpen(true);
@@ -132,6 +94,10 @@ export const MyQA = () => {
         buttonLabel={t("modal_button_label")}
         isOpen={isRedirectToLoginBackdropOpen}
         onClose={() => setIsRedirectToLoginBackdropOpen(false)}
+        handleLoginRedirect={() => {
+          window.location.href = "/client/login";
+          scrollTop();
+        }}
       />
     </Page>
   );
