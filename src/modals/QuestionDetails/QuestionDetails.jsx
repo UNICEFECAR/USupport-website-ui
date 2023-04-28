@@ -24,7 +24,6 @@ import "./question-details.scss";
  */
 export const QuestionDetails = ({
   question,
-  handleLike,
   isOpen,
   onClose,
   handleScheduleClick,
@@ -60,7 +59,6 @@ export const QuestionDetails = ({
           {question.answerTitle}
         </h4>
         <Like
-          handleClick={handleLike}
           likes={question.likes}
           dislikes={question.dislikes}
           answerId={question.answerId}

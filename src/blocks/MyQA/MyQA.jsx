@@ -54,6 +54,7 @@ export const MyQA = ({
           handleReadMore={() => handleReadMore(question)}
           handleScheduleConsultationClick={handleScheduleConsultationClick}
           t={t}
+          renderIn="website"
         />
       );
     });
