@@ -23,13 +23,19 @@ import {
   MeetOurProvidersOverview,
   OurPartners,
   OurPartnersOverview,
+  MyQALanding,
+  MascotHeaderMyQA,
+  MyQA,
 } from "#blocks/locales.js";
 
 import {
   NotFoundPage,
   ArticleInformation,
   ProviderOverview as ProviderOverviewPage,
+  MyQA as MyQAPage,
 } from "#pages/locales.js";
+
+import { QuestionDetails, HowItWorksMyQA } from "#modals/locales.js";
 
 const resources = {
   en: {
@@ -55,11 +61,19 @@ const resources = {
     "meet-our-providers-overview": MeetOurProvidersOverview.en,
     "our-partners": OurPartners.en,
     "our-partners-overview": OurPartnersOverview.en,
+    "my-qa-landing": MyQALanding.en,
+    "mascot-header-MyQA": MascotHeaderMyQA.en,
+    "my-qa": MyQA.en,
 
     // Pages
     "not-found-page": NotFoundPage.en,
     "article-information": ArticleInformation.en,
     "provider-overview-page": ProviderOverviewPage.en,
+    "my-qa-page": MyQAPage.en,
+
+    //Modals
+    "question-details": QuestionDetails.en,
+    "how-it-works-my-qa": HowItWorksMyQA.en,
   },
   kk: {
     // Blocks
@@ -84,11 +98,19 @@ const resources = {
     "meet-our-providers-overview": MeetOurProvidersOverview.kk,
     "our-partners": OurPartners.kk,
     "our-partners-overview": OurPartnersOverview.kk,
+    "my-qa-landing": MyQALanding.kk,
+    "mascot-header-MyQA": MascotHeaderMyQA.kk,
+    "my-qa": MyQA.kk,
 
     // Pages
     "not-found-page": NotFoundPage.kk,
     "article-information": ArticleInformation.kk,
     "provider-overview-page": ProviderOverviewPage.kk,
+    "my-qa-page": MyQAPage.kk,
+
+    //Modals
+    "question-details": QuestionDetails.kk,
+    "how-it-works-my-qa": HowItWorksMyQA.kk,
   },
   ru: {
     // Blocks
@@ -113,11 +135,19 @@ const resources = {
     "meet-our-providers-overview": MeetOurProvidersOverview.ru,
     "our-partners": OurPartners.ru,
     "our-partners-overview": OurPartnersOverview.ru,
+    "my-qa-landing": MyQALanding.ru,
+    "mascot-header-MyQA": MascotHeaderMyQA.ru,
+    "my-qa": MyQA.ru,
 
     // Pages
     "not-found-page": NotFoundPage.ru,
     "article-information": ArticleInformation.ru,
     "provider-overview-page": ProviderOverviewPage.ru,
+    "my-qa-page": MyQAPage.ru,
+
+    //Modals
+    "question-details": QuestionDetails.ru,
+    "how-it-works-my-qa": HowItWorksMyQA.ru,
   },
 };
 
