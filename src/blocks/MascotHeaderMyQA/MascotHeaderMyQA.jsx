@@ -44,7 +44,7 @@ export const MascotHeaderMyQA = ({ classes, handleSeeHowItWorksClick }) => {
           classes="mascot-header-my-qa__headings-item"
         >
           <Grid>
-            <GridItem xs={4} md={6} lg={8}>
+            <GridItem xs={4} md={5} lg={8}>
               <h4 className="heading">{t("heading")}</h4>
               <p className="text subheading heading">
                 {t("subheading_its")} <b>{t("subheading_anonymous")}</b>!{" "}
@@ -52,7 +52,7 @@ export const MascotHeaderMyQA = ({ classes, handleSeeHowItWorksClick }) => {
                 {t("subheading_text2")}
               </p>
             </GridItem>
-            <GridItem xs={4} md={2} lg={4}>
+            <GridItem xs={4} md={3} lg={4}>
               <Button
                 label={"See how it works"}
                 type="secondary"

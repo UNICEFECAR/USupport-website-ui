@@ -35,7 +35,11 @@ import {
   MyQA as MyQAPage,
 } from "#pages/locales.js";
 
-import { QuestionDetails, HowItWorksMyQA } from "#modals/locales.js";
+import {
+  QuestionDetails,
+  HowItWorksMyQA,
+  FilterQuestions,
+} from "#modals/locales.js";
 
 const resources = {
   en: {
@@ -74,6 +78,7 @@ const resources = {
     //Modals
     "question-details": QuestionDetails.en,
     "how-it-works-my-qa": HowItWorksMyQA.en,
+    "filter-questions": FilterQuestions.en,
   },
   kk: {
     // Blocks
@@ -111,6 +116,7 @@ const resources = {
     //Modals
     "question-details": QuestionDetails.kk,
     "how-it-works-my-qa": HowItWorksMyQA.kk,
+    "filter-questions": FilterQuestions.kk,
   },
   ru: {
     // Blocks
@@ -148,6 +154,7 @@ const resources = {
     //Modals
     "question-details": QuestionDetails.ru,
     "how-it-works-my-qa": HowItWorksMyQA.ru,
+    "filter-questions": FilterQuestions.ru,
   },
 };
 
