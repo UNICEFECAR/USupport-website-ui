@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 
-import { Page, MascotHeaderMyQA, MyQA as MyQABlock } from "#blocks";
-import { RedirectToLogin, QuestionDetails, HowItWorksMyQA } from "#modals";
+import {
+  FilterQuestions,
+  HowItWorksMyQA,
+  QuestionDetails,
+  RedirectToLogin,
+} from "#modals";
+import { MascotHeaderMyQA, MyQA as MyQABlock, Page } from "#blocks";
 import { useGetQuestions } from "#hooks";
-
 import "./my-qa.scss";
 
 /**
@@ -17,12 +20,12 @@ import "./my-qa.scss";
  */
 export const MyQA = () => {
   const { t } = useTranslation("my-qa-page");
-  const navigate = useNavigate();
 
   const [isRedirectToLoginBackdropOpen, setIsRedirectToLoginBackdropOpen] =
     useState(false);
   const [isQuestionDetailsOpen, setIsQuestionDetailsOpen] = useState(false);
   const [isHowItWorksOpen, setIsHowItWorksOpen] = useState(false);
+  const [isFilterQuestionsOpen, setIsFilterQuestionsOpen] = useState(false);
   const [selectedQuestion, setSelectedQuestion] = useState();
   const [questions, setQuestions] = useState([]);
   const [tabs, setTabs] = useState([
@@ -30,6 +33,7 @@ export const MyQA = () => {
     { label: "Most popular", value: "most_popular", isSelected: false },
     { label: "New", value: "newest", isSelected: false },
   ]);
+  const [filterTag, setFilterTag] = useState("");
 
   const isUserQuestionsEnabled =
     tabs.filter((tab) => tab.value === "your_questions" && tab.isSelected)
@@ -72,6 +76,8 @@ export const MyQA = () => {
         tabs={tabs}
         setTabs={setTabs}
         isUserQuestionsEnabled={isUserQuestionsEnabled}
+        filterTag={filterTag}
+        handleFilterTags={() => setIsFilterQuestionsOpen(true)}
       />
       <HowItWorksMyQA
         isOpen={isHowItWorksOpen}
@@ -98,6 +104,11 @@ export const MyQA = () => {
           window.location.href = "/client/login";
           scrollTop();
         }}
+      />
+      <FilterQuestions
+        isOpen={isFilterQuestionsOpen}
+        onClose={() => setIsFilterQuestionsOpen(false)}
+        setTag={setFilterTag}
       />
     </Page>
   );

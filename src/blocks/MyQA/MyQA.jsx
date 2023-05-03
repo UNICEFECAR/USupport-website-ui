@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import {
+  Answer,
   Block,
+  Button,
+  ButtonWithIcon,
   Grid,
   GridItem,
+  InputSearch,
   Tabs,
-  Button,
-  Answer,
 } from "@USupport-components-library/src";
+import { useWindowDimensions } from "@USupport-components-library/utils";
 
 import "./my-qa.scss";
 
@@ -20,15 +23,19 @@ import "./my-qa.scss";
  * @return {jsx}
  */
 export const MyQA = ({
-  handleAskAnonymous,
+  handleFilterTags,
   handleReadMore,
   handleScheduleConsultationClick,
   questions,
   tabs,
   setTabs,
   isUserQuestionsEnabled,
+  filterTag,
 }) => {
   const { t } = useTranslation("my-qa");
+  const { width } = useWindowDimensions();
+
+  const [searchValue, setSearchValue] = useState("");
 
   const handleTabChange = (index) => {
     const tabsCopy = [...tabs];
@@ -45,6 +52,27 @@ export const MyQA = ({
 
   const renderQuestions = () => {
     return questions.map((question, index) => {
+      if (!questions.length) {
+      }
+
+      if (filterTag) {
+        const tags = question.tags;
+        if (!tags.includes(filterTag)) {
+          return null;
+        }
+      }
+
+      const value = searchValue.toLowerCase();
+
+      if (value) {
+        if (
+          !question.answerTitle?.toLowerCase().includes(value) &&
+          !question.answerText?.toLowerCase().includes(value) &&
+          !question.tags?.find((x) => x.toLowerCase().includes(value))
+        )
+          return null;
+      }
+
       return (
         <Answer
           question={question}
@@ -65,7 +93,30 @@ export const MyQA = ({
       <Grid>
         <GridItem xs={4} md={8} lg={12}>
           <Grid classes="my-qa__tabs-grid">
-            <GridItem md={5} lg={7} classes="my-qa__categories-item">
+            <GridItem md={5} lg={7}>
+              <InputSearch
+                placeholder={t("search_placeholder")}
+                value={searchValue}
+                onChange={(value) => setSearchValue(value.toLowerCase())}
+              />
+            </GridItem>
+            <GridItem
+              md={3}
+              lg={5}
+              classes="my-qa__tabs-grid__filter-button-item"
+            >
+              <ButtonWithIcon
+                label={t("filter")}
+                iconName="filter"
+                iconColor="#ffffff"
+                iconSize="sm"
+                color="purple"
+                size="sm"
+                onClick={handleFilterTags}
+                classes="my-qa__tabs-grid__filter-button"
+              />
+            </GridItem>
+            <GridItem md={6} lg={7} classes="my-qa__categories-item">
               <Tabs
                 options={tabs.map((tab) => {
                   return {
@@ -77,11 +128,10 @@ export const MyQA = ({
                 handleSelect={handleTabChange}
               />
             </GridItem>
-            <GridItem md={3} lg={5}>
+            <GridItem md={2} lg={5} classes="my-qa__button-item">
               <Button
                 label={t("ask_button_label")}
-                size="md"
-                web
+                size={width < 980 && width > 768 ? "sm" : "lg"}
                 classes="my-qa__ask-question-button"
                 onClick={handleScheduleConsultationClick}
               />

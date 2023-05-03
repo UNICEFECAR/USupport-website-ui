@@ -1,32 +1,60 @@
 @import "@USupport-components-library/styles";
 
 .my-qa {
-  padding: $spacing_3_2;
+  padding-top: $spacing_3_2;
 
   &__categories-item {
     overflow-x: auto;
-    width: 35rem;
     padding-top: $spacing_1_0;
 
     @media screen and (min-width: $screen-md) {
       width: auto;
-      margin: auto;
       padding-top: $spacing_2_0;
+    }
+  }
+
+  &__button-item {
+    place-self: center;
+
+    @media screen and (min-width: $screen-md) {
+      justify-self: end;
     }
   }
 
   &__tabs-grid {
     align-items: center;
     justify-items: stretch;
-  }
 
-  &__questions-item {
-    margin-top: $spacing_1_2;
+    &__filter-button {
+      margin-top: $spacing_1_6;
+      float: right;
+    }
   }
 
   &__ask-question-button {
+    margin-top: $spacing_1_6;
     max-width: 10rem;
-    margin: 0 auto;
+    float: right;
+  }
+
+  &__search-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @media screen and (min-width: $screen_md) {
+      flex-direction: row;
+      justify-content: space-between;
+      padding-bottom: $spacing_1_6;
+    }
+
+    &__button {
+      margin-top: $spacing_1_6;
+
+      @media screen and (min-width: $screen_md) {
+        margin: 0;
+      }
+    }
   }
 
   &__answers-container {
