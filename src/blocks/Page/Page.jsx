@@ -164,6 +164,7 @@ export const Page = ({
         countries={countries}
         initialLanguage={selectedLanguage}
         initialCountry={selectedCountry}
+        renderIn="website"
       />
       <div
         className={[
