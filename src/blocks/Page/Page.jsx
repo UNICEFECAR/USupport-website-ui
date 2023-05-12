@@ -61,14 +61,18 @@ export const Page = ({
         label: x.name,
         countryID: x["country_id"],
         iconName: x.alpha2,
+        currencySymbol: x["symbol"],
       };
 
       if (localStorageCountry === x.alpha2) {
         setSelectedCountry(countryObject);
+        localStorage.setItem("currency_symbol", countryObject.currencySymbol);
       } else if (!localStorageCountry) {
         if (validCountry?.alpha2 === x.alpha2) {
           hasSetDefaultCountry = true;
           localStorage.setItem("country", x.alpha2);
+          localStorage.setItem("currency_symbol", x.symbol);
+
           window.dispatchEvent(new Event("countryChanged"));
           setSelectedCountry(countryObject);
         }
@@ -78,10 +82,18 @@ export const Page = ({
     });
 
     if (!hasSetDefaultCountry && !localStorageCountry) {
+      const kazakhstanCountryObject = countries.find(
+        (x) => x.value === kazakhstanCountry.value
+      );
+
       localStorage.setItem("country", kazakhstanCountry.value);
       localStorage.setItem(
         "country_id",
         countries.find((x) => x.value === kazakhstanCountry.value).countryID
+      );
+      localStorage.setItem(
+        "currency_symbol",
+        kazakhstanCountryObject.currencySymbol
       );
       window.dispatchEvent(new Event("countryChanged"));
     }
