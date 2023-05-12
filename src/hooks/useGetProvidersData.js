@@ -25,7 +25,6 @@ export default function useGetProvidersData(random = false, limit = 3) {
         surname: providerData.surname || "",
         nickname: providerData.nickname || "",
         email: providerData.email || "",
-        phonePrefix: providerData.phone_prefix || "",
         phone: providerData.phone || "",
         image: providerData.image || "default",
         specializations: providerData.specializations || [],
