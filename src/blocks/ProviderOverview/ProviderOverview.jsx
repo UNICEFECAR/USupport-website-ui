@@ -30,7 +30,12 @@ export const ProviderOverview = ({ providerId }) => {
       {providerDataQuery.isLoading || !provider ? (
         <Loading size="lg" />
       ) : (
-        <ProviderDetails provider={provider} t={t} image={image} />
+        <ProviderDetails
+          provider={provider}
+          t={t}
+          image={image}
+          renderIn="website"
+        />
       )}
     </Block>
   );
