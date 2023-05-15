@@ -3,14 +3,6 @@
 .page {
   padding-top: $spacing_6_6;
 
-  @media screen and (min-width: 1050px) {
-    padding-top: $spacing_7_0;
-  }
-
-  @media screen and (min-width: 1050px) {
-    padding-top: $spacing_8_0;
-  }
-
   &__header {
     align-items: flex-start;
     display: flex;
