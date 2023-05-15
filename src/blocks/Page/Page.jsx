@@ -62,6 +62,7 @@ export const Page = ({
         countryID: x["country_id"],
         iconName: x.alpha2,
         currencySymbol: x["symbol"],
+        localName: x["local_name"],
       };
 
       if (localStorageCountry === x.alpha2) {
@@ -104,10 +105,12 @@ export const Page = ({
   const fetchLanguages = async () => {
     const res = await languageSvc.getActiveLanguages();
     const languages = res.data.map((x) => {
+      console.log(x);
       const languageObject = {
         value: x.alpha2,
         label: x.name,
         id: x["language_id"],
+        localName: x["local_name"],
       };
       if (localStorageLanguage === x.alpha2) {
         setSelectedLanguage(languageObject);
