@@ -1,10 +1,13 @@
 {
-    "ask_button_label": "Ask anonymously",
-    "answer_by": "Answered by:",
-    "schedule_consultation": "Консультацияны жоспарлау",
-    "today": "Today",
-    "read_more": "Ары қарай оқу",
-    "all": "Барлығы",
-    "most_popular": "Ең танымал",
-    "newest": "Newest"
+  "ask_button_label": "Анонимді сұрау",
+  "answer_by": "Жауап берді:",
+  "schedule_consultation": "Консультацияны жоспарлау",
+  "today": "Бүгін",
+  "read_more": "Ары қарай оқу",
+  "all": "Барлығы",
+  "most_popular": "Ең танымал",
+  "newest": "Жаңа",
+  "no_answers": "Сұрақтарға жауап жоқ",
+  "filter": "Тегтерді сүзгілеу",
+  "search_placeholder": "Іздеу"
 }

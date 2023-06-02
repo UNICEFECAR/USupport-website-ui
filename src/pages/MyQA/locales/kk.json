@@ -1,5 +1,5 @@
 {
-    "modal_heading": "Login to the platform to ask a question",
-    "modal_text": "You need to have an account and to login into the system to ask a question and to receive an answer",
-    "modal_button_label": "Қосымшаға өту"
+  "modal_heading": "Сұрақ қою үшін платформаға кіріңіз",
+  "modal_text": "Сұрақ қою және жауап алу үшін Сізде аккаунт болуы және жүйеге кіру қажет",
+  "modal_button_label": "Қосымшаға өту"
 }
