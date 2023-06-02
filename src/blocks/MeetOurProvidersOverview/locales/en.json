@@ -1,5 +1,8 @@
 {
   "heading": "Meet providers you can consult with",
   "text": "Our providers will help you learn more and understand your situation and condition",
-  "button_label": "View all"
+  "button_label": "View all",
+  "psychologist": "Psychologist",
+  "psychiatrist": "Psychiatrist",
+  "psychotherapist": "Psychotherapist"
 }
