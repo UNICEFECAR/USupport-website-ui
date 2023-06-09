@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 import {
   FilterQuestions,
@@ -20,6 +21,7 @@ import "./my-qa.scss";
  */
 export const MyQA = () => {
   const { t } = useTranslation("my-qa-page");
+  const navigate = useNavigate();
 
   const [isRedirectToLoginBackdropOpen, setIsRedirectToLoginBackdropOpen] =
     useState(false);
@@ -60,6 +62,10 @@ export const MyQA = () => {
     setIsQuestionDetailsOpen(true);
   };
 
+  const handleProviderClick = (providerId) => {
+    navigate(`/about-us/provider?id=${providerId}`);
+  };
+
   return (
     <Page classes="page__my-qa" showGoBackArrow={false}>
       <MascotHeaderMyQA
@@ -92,6 +98,7 @@ export const MyQA = () => {
             setIsQuestionDetailsOpen(false);
             setIsRedirectToLoginBackdropOpen(true);
           }}
+          handleProviderClick={handleProviderClick}
         />
       )}
       <RedirectToLogin
