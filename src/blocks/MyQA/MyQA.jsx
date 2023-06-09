@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-
+import { useNavigate } from "react-router-dom";
 import {
   Answer,
   Block,
@@ -34,6 +34,7 @@ export const MyQA = ({
 }) => {
   const { t } = useTranslation("my-qa");
   const { width } = useWindowDimensions();
+  const navigate = useNavigate();
 
   const [searchValue, setSearchValue] = useState("");
 
@@ -48,6 +49,10 @@ export const MyQA = ({
       }
     }
     setTabs(tabsCopy);
+  };
+
+  const handleProviderClick = (providerId) => {
+    navigate(`/about-us/provider?id=${providerId}`);
   };
 
   const renderQuestions = () => {
@@ -81,6 +86,7 @@ export const MyQA = ({
           isInYourQuestions={isUserQuestionsEnabled}
           handleReadMore={() => handleReadMore(question)}
           handleScheduleConsultationClick={handleScheduleConsultationClick}
+          handleProviderClick={handleProviderClick}
           t={t}
           renderIn="website"
         />
