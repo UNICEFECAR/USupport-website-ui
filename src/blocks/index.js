@@ -23,3 +23,4 @@ export * from './OurPartnersOverview';
 export * from './MyQALanding';
 export * from './MascotHeaderMyQA';
 export * from './MyQA';
+export * from './CouponInformation';

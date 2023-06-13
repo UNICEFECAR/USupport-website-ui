@@ -26,6 +26,7 @@ import {
   MyQALanding,
   MascotHeaderMyQA,
   MyQA,
+  CouponInformation,
 } from "#blocks/locales.js";
 
 import {
@@ -68,6 +69,7 @@ const resources = {
     "my-qa-landing": MyQALanding.en,
     "mascot-header-MyQA": MascotHeaderMyQA.en,
     "my-qa": MyQA.en,
+    "coupon-information": CouponInformation.en,
 
     // Pages
     "not-found-page": NotFoundPage.en,
@@ -106,6 +108,7 @@ const resources = {
     "my-qa-landing": MyQALanding.kk,
     "mascot-header-MyQA": MascotHeaderMyQA.kk,
     "my-qa": MyQA.kk,
+    "coupon-information": CouponInformation.kk,
 
     // Pages
     "not-found-page": NotFoundPage.kk,
@@ -144,6 +147,7 @@ const resources = {
     "my-qa-landing": MyQALanding.ru,
     "mascot-header-MyQA": MascotHeaderMyQA.ru,
     "my-qa": MyQA.ru,
+    "coupon-information": CouponInformation.ru,
 
     // Pages
     "not-found-page": NotFoundPage.ru,

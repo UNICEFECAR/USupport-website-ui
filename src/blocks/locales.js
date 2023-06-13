@@ -22,3 +22,4 @@ export * as OurPartnersOverview from './OurPartnersOverview/locales.js';
 export * as MyQALanding from './MyQALanding/locales.js';
 export * as MascotHeaderMyQA from './MascotHeaderMyQA/locales.js';
 export * as MyQA from './MyQA/locales.js';
+export * as CouponInformation from './CouponInformation/locales.js';
