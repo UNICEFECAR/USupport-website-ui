@@ -1,0 +1,39 @@
+@import "@USupport-components-library/styles";
+
+.coupon-information {
+  padding-top: $spacing_5_0;
+
+  &__content-grid {
+    text-align: left;
+
+    & h4 {
+      margin-top: $spacing_2_6;
+    }
+
+    & p {
+      margin-top: $spacing_1_2;
+    }
+
+    &__reason-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      max-width: 30rem;
+      margin: $spacing_2_8 auto;
+
+      & img {
+        width: 7rem;
+      }
+
+      & .icon--lg {
+        width: 7rem;
+        height: 7rem;
+      }
+
+      & .text {
+        margin: 0;
+        margin-left: $spacing_1_4;
+      }
+    }
+  }
+}
