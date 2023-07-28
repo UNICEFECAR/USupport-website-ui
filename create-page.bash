@@ -58,7 +58,6 @@ mkdir "src/pages/$page_name"
 touch "src/pages/$page_name/index.js"
 touch "src/pages/$page_name/$page_name.jsx"
 touch "src/pages/$page_name/$page_name_kebab.scss"
-touch "src/pages/$page_name/$page_name.stories.jsx"
 
 # Add the page to the page index file
 echo "export * from './$page_name.jsx';" >> "src/pages/$page_name/index.js"
