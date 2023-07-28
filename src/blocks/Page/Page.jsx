@@ -140,11 +140,13 @@ export const Page = ({
       { name: t("footer_1"), url: "/about-us" },
       { name: t("footer_2"), url: "/information-portal" },
       { name: t("footer_3"), url: "/how-it-works" },
+      { name: t("page_6"), url: "/my-qa" },
     ],
     list2: [
       { name: t("footer_4"), url: "/terms-of-use", exact: true },
       { name: t("footer_5"), url: "/privacy-policy" },
       { name: t("footer_6"), url: "/cookie-policy" },
+      { name: t("footer_7"), url: "/how-it-works?to=faq" },
     ],
     list3: [
       { value: "+7 717 232 28 78", iconName: "call-filled", onClick: "phone" },

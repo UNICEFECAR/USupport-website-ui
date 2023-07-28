@@ -82,8 +82,13 @@ fi
 # Add the page to the main page file
 echo "import React from 'react';
 import { Page } from '#blocks';
+    " >> "src/pages/$page_name/$page_name.jsx"
 
-import './$page_name_kebab.scss';
+if [ "$page_locale" == "y" ]; then
+    echo "import { useTranslation } from 'react-i18next';" >> "src/pages/$page_name/$page_name.jsx"
+fi
+
+echo "import './$page_name_kebab.scss';
 
 /**
  * $page_name
@@ -93,6 +98,9 @@ import './$page_name_kebab.scss';
  * @returns {JSX.Element}
  */
 export const $page_name = () => {
+    `if ["$page_local" === "y"]; then 
+        echo "const { t } = useTranslation('$page_name_lower-page')"
+    fi`
     return (
         <Page classes='page__$page_name_kebab'>
             $page_name Page
