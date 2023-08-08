@@ -34,6 +34,10 @@
     @media screen and (min-width: $screen-lg) {
       padding-top: $spacing_7_2;
     }
+
+    &__load-more {
+      padding-top: $spacing_1_8;
+    }
   }
 
   &__secondary-grid {
