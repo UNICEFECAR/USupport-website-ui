@@ -1,5 +1,4 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { useState } from "react";
 import { providerSvc } from "@USupport-components-library/services";
 
 /**
