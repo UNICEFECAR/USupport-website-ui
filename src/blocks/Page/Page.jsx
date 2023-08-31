@@ -151,7 +151,7 @@ export const Page = ({
     list3: [
       { value: "+7 717 232 28 78", iconName: "call-filled", onClick: "phone" },
       {
-        value: `Beibitshilik St 10а, Astana 010000, Kazakhstan`,
+        value: "Beibitshilik St 10а, Astana 010000, Kazakhstan",
         iconName: "pin",
       },
       {

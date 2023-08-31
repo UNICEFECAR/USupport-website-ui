@@ -1,1 +1,1 @@
-export * from './HowItWorks.jsx';
+export * from "./HowItWorks.jsx";

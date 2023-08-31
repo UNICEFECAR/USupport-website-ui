@@ -5,7 +5,7 @@ import {
   DropdownWithLabel,
   Loading,
 } from "@USupport-components-library/src";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { useGetQuestionsTags } from "#hooks";
 import { useTranslation } from "react-i18next";

@@ -1,1 +1,1 @@
-export * from './MyQALanding.jsx';
+export * from "./MyQALanding.jsx";
