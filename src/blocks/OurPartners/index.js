@@ -1,1 +1,1 @@
-export * from './OurPartners.jsx';
+export * from "./OurPartners.jsx";

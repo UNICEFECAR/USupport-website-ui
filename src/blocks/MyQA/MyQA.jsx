@@ -57,8 +57,8 @@ export const MyQA = ({
 
   const renderQuestions = () => {
     return questions.map((question, index) => {
-      if (!questions.length) {
-      }
+      // if (!questions.length) {
+      // }
 
       if (filterTag) {
         const tags = question.tags;

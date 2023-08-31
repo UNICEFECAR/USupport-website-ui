@@ -24,7 +24,7 @@ export const About = () => {
     <Block classes={["about"]} animation="fade-right">
       <Grid classes={["about__main-grid"]}>
         <GridItem md={8} lg={12}>
-          <h2 classes="about__heading">{t("heading")}</h2>
+          <h2 className="about__heading">{t("heading")}</h2>
         </GridItem>
         <GridItem md={8} lg={7} classes="about__description-item">
           <p className="paragraph about__description-item__paragraph">

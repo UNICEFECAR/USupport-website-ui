@@ -73,7 +73,7 @@ export const MyQA = () => {
         handleHowItWorks={() => setIsHowItWorksOpen(true)}
       />
       <MyQABlock
-        handleAskAnonymous={() => setIsCreateQuestionOpen(true)}
+        // handleAskAnonymous={() => setIsCreateQuestionOpen(true)}
         handleReadMore={handleSetIsQuestionDetailsOpen}
         handleScheduleConsultationClick={() =>
           setIsRedirectToLoginBackdropOpen(true)
@@ -109,7 +109,6 @@ export const MyQA = () => {
         onClose={() => setIsRedirectToLoginBackdropOpen(false)}
         handleLoginRedirect={() => {
           window.location.href = "/client/login";
-          scrollTop();
         }}
       />
       <FilterQuestions

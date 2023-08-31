@@ -48,7 +48,6 @@ export const MyQALanding = () => {
                   classes="my-qa-landing__button"
                   onClick={() => {
                     window.location.href = "/client/my-qa";
-                    scrollTop();
                   }}
                 />
               </div>

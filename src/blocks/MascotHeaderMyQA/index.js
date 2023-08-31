@@ -1,1 +1,1 @@
-export * from './MascotHeaderMyQA.jsx';
+export * from "./MascotHeaderMyQA.jsx";

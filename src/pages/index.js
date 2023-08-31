@@ -10,4 +10,4 @@ export * from "./PrivacyPolicy";
 export * from "./CookiePolicy";
 export * from "./TermsOfUse";
 export * from "./ProviderOverview";
-export * from './MyQA';
+export * from "./MyQA";

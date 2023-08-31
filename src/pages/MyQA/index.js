@@ -1,1 +1,1 @@
-export * from './MyQA.jsx';
+export * from "./MyQA.jsx";
