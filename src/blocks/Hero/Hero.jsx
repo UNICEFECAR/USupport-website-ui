@@ -13,8 +13,8 @@ import "./hero.scss";
 
 import imageSrc from "./assets/PeopleCollage.png";
 import imageSrcWebp from "./assets/PeopleCollage.webp";
-import unicefSquareLogoSrc from "./assets/UnicefSquareLogo.png";
-import unicefSquareLogoSrcWebp from "./assets/UnicefSquareLogo.png";
+// import unicefSquareLogoSrc from "./assets/UnicefSquareLogo.png";
+// import unicefSquareLogoSrcWebp from "./assets/UnicefSquareLogo.png";
 
 /**
  * Hero
@@ -64,14 +64,15 @@ export const Hero = () => {
           <StaticImage png={imageSrc} webp={imageSrcWebp} alt="happy-people" />
         </GridItem>
       </Grid>
-      <div className="hero__unicef-logo-container">
+      {/* Commented out until comms team confirm, whether we can use the UNICEF logo in the Hero section of the commercial website */}
+      {/* <div className="hero__unicef-logo-container">
         <StaticImage
           png={unicefSquareLogoSrc}
           webp={unicefSquareLogoSrcWebp}
           imageClasses="hero__unicef-logo"
           alt="unicef-round-logo"
         />
-      </div>
+      </div> */}
       <RadialCircle color="purple" />
       <RadialCircle color="blue" />
     </Block>
