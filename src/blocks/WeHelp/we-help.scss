@@ -14,7 +14,8 @@
   }
 
   &__heading-text {
-    color: $color_white_ff;
+    // color: $color_white_ff;
+    @include themify($themes, "color", "color_white_ff");
     padding-bottom: $spacing_7_2;
   }
 

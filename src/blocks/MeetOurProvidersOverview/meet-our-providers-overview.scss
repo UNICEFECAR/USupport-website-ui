@@ -1,7 +1,8 @@
 @import "@USupport-components-library/styles";
 
 .meet-our-providers-overview {
-  background-color: rgba(244, 252, 253, 0.62);
+  @include themify($themes, "background", "color_white_ff");
+
   padding-top: 4rem;
   padding-bottom: 4rem;
 

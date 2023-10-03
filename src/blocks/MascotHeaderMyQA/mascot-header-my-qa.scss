@@ -46,7 +46,8 @@
     }
 
     & .heading {
-      color: $color_blue_263238;
+      // color: $color_blue_263238;
+      @include themify($themes, "color", "color_blue_263238");
     }
 
     & .subheading {

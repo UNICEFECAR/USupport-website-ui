@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -18,6 +18,7 @@ import {
   ProviderOverview,
   MyQA,
 } from "#pages";
+import { ThemeContext } from "../USupport-components-library/src/utils/theme-context";
 
 // AOS imports
 import "aos/dist/aos.css";
@@ -43,7 +44,20 @@ function App() {
     once: false,
   });
 
+  const getDefaultTheme = () => {
+    const localStorageTheme = localStorage.getItem("default-theme");
+    return localStorageTheme || "light";
+  };
+
+    const [theme, setTheme] = useState(getDefaultTheme());
+
+    useEffect(() => {
+      localStorage.setItem("default-theme", theme);
+    } , [theme]);
+
   return (
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      <div className={`theme-${theme}`}>
     <QueryClientProvider client={queryClient}>
       <Router>
         <Routes>
@@ -67,6 +81,8 @@ function App() {
       </Router>
       <ReactQueryDevtools initialOpen />
     </QueryClientProvider>
+    </div>
+    </ThemeContext.Provider>
   );
 }
 

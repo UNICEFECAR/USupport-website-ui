@@ -3,7 +3,8 @@
 .my-qa-landing {
   padding-top: $spacing_3_2;
   padding-bottom: $spacing_2_6;
-  background: rgba(244, 252, 253, 0.62);
+  @include themify($themes, "background", "color_white_ff");
+
   background-image: url("./assets/Background.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -39,10 +40,12 @@
   &__ask-anonymous-card {
     padding: $spacing_1_6 $spacing_1_2;
     text-align: left;
+    @include themify($themes, "background-color", "color_white_ff");
 
     & > p {
       margin-top: $spacing_0_4;
-      color: $color_gray_66768d;
+      // color: $color_gray_66768d;
+      @include themify($themes, "color", "color_gray_66768d");
     }
   }
 

@@ -55,7 +55,7 @@
 
   &__text-item {
     width: 100vw;
-    background-color: $color_purple_200e2f;
+    @include themify($themes, "background-color", "color_purple_200e2f");
     margin-top: -$spacing_0_8;
     padding: $spacing_2_6 0;
     display: flex;
@@ -66,7 +66,7 @@
 
     h2,
     p {
-      color: $color_white_ff;
+      @include themify($themes, "color", "color_white_ff");
     }
   }
 
@@ -159,7 +159,7 @@
     }
 
     & > .overlay {
-      background-color: $overlay_010101;
+      @include themify($themes, "background-color", "color_black_010101");
       border-radius: $border_radius_4_0;
       height: inherit;
       position: absolute;

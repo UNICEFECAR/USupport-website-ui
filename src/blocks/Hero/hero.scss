@@ -41,7 +41,7 @@
     place-self: start;
 
     span {
-      color: $color_primary_20809e;
+      @include themify($themes, "color", "color_primary_20809e");
     }
   }
 
