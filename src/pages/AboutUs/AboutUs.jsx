@@ -15,7 +15,7 @@ export const AboutUs = () => {
   return (
     <Page classes="page__about-us">
       <WeHelp />
-      <OurPartners />
+      {/* <OurPartners /> */}
       <div className="page__about-us__radial-circle">
         <RadialCircle color="blue" />
       </div>
