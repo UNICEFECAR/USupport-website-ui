@@ -31,7 +31,7 @@ export const MyQALanding = () => {
     <Block classes="my-qa-landing">
       <Grid>
         <GridItem md={8} lg={12}>
-          <h2>{t("heading")}</h2>
+          <h2 className="my-qa-landing__heading">{t("heading")}</h2>
           <p className="my-qa-landing__subheading-text">{t("subheading")}</p>
         </GridItem>
         <GridItem md={8} lg={12}>

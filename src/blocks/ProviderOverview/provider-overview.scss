@@ -88,12 +88,14 @@
 
         &__text-edit {
           margin-left: $spacing_1_2;
-          color: $color_primary_20809e;
+          // color: $color_primary_20809e;
+          @include themify($themes, "color", "color_primary_20809e");
         }
 
         &__text-delete {
           margin-left: $spacing_1_2;
-          color: $color_red_eb5757;
+          // color: $color_red_eb5757;
+          @include themify($themes, "color", "color_red_eb5757");
         }
       }
     }
@@ -116,7 +118,8 @@
     max-width: 34.3rem;
 
     &__heading.small-text {
-      color: $color_blue_3d527b;
+      // color: $color_blue_3d527b;
+      @include themify($themes, "color", "color_blue_3d527b");
       font-weight: $font_bold;
       margin-top: $spacing_0_8;
     }

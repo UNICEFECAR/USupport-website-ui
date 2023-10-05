@@ -40,13 +40,21 @@
   &__heading-item {
     place-self: start;
 
+    & h1 {
+      @include themify($themes, "color", "color_3d527b_white");
+    }
+
     span {
-      color: $color_primary_20809e;
+      @include themify($themes, "color", "color_blue_yellow");
     }
   }
 
   &__text-item {
     padding-top: $spacing_2_4;
+
+    & p {
+      @include themify($themes, "color", "color_66768d_c1d7e0");
+    }
   }
 
   &__buttons-item {

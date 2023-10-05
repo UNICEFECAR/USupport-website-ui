@@ -30,5 +30,8 @@
   "button_text": "Перейти к приложению",
   "language_label": "Язык",
   "country_label": "Страна",
-  "contact_us": "Свяжитесь с нами"
+  "contact_us": "Свяжитесь с нами",
+  "password": "Пароль",
+  "wrong_password": "Неверный пароль",
+  "submit": "Отправить"
 }
