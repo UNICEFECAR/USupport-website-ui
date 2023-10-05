@@ -58,7 +58,7 @@
   }
 
   &__heading-text--white {
-    color: $color_white_ff;
+    @include themify($themes, "color", "color_white_ff");
   }
 
   &__text-item {

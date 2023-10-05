@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate, NavLink, Link } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { useNavigate, NavLink, Link, useLocation } from "react-router-dom";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import {
@@ -11,6 +11,7 @@ import {
 import { languageSvc, countrySvc } from "@USupport-components-library/services";
 import { getCountryFromTimezone } from "@USupport-components-library/utils";
 import classNames from "classnames";
+import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./page.scss";
 import { useEffect } from "react";
@@ -164,6 +165,32 @@ export const Page = ({
   };
 
   const handleGoBack = () => navigateTo(-1);
+  const location = useLocation();
+
+  const { theme, setTheme } = useContext(ThemeContext);
+
+  const toggleTheme = () => {
+    if (theme === "light") {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
+
+  const themeButton = () => {
+    return location.pathname === "/" ? (
+      <>
+        <Icon
+          name={theme === "light" ? "dark-mode-switch" : "light-mode"}
+          size="lg"
+          classes="page__theme-button"
+          onClick={toggleTheme}
+        />
+      </>
+    ) : (
+      setTheme("light")
+    );
+  };
 
   const queryClient = useQueryClient();
   const hasEnteredPassword = queryClient.getQueryData(["hasEnteredPassword"]);
@@ -232,6 +259,7 @@ export const Page = ({
         )}
         {children}
       </div>
+      {themeButton()}
       <CircleIconButton
         iconName="phone-emergency"
         classes="page__emergency-button"
