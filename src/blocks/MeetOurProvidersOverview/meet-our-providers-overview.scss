@@ -10,6 +10,14 @@
     padding-bottom: 10rem;
   }
 
+  & h2 {
+    @include themify($themes, "color", "color_66768d_c1d7e0");
+  }
+
+  & h4 {
+    @include themify($themes, "color", "color_3d527b_20809e");
+  }
+
   &__grid {
     place-items: center;
     grid-gap: 4rem;
