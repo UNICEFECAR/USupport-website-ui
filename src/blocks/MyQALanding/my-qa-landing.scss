@@ -3,12 +3,12 @@
 .my-qa-landing {
   padding-top: $spacing_3_2;
   padding-bottom: $spacing_2_6;
-  @include themify($themes, "background-color", "color_green_transparent_1");
   background-image: url("./assets/Background.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position-x: left;
   background-position-y: top;
+  @include themify($themes, "background-color", "color_green_transparent_1");
 
   @media screen and (min-width: $screen-md) {
     padding-top: $spacing_3_6;
