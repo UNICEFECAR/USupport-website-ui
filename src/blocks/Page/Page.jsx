@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, NavLink, Link } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import {
   Navbar,
@@ -14,6 +14,7 @@ import classNames from "classnames";
 
 import "./page.scss";
 import { useEffect } from "react";
+import { PasswordModal } from "@USupport-components-library/src";
 
 const kazakhstanCountry = {
   value: "KZ",
@@ -164,8 +165,33 @@ export const Page = ({
 
   const handleGoBack = () => navigateTo(-1);
 
+  const queryClient = useQueryClient();
+  const hasEnteredPassword = queryClient.getQueryData(["hasEnteredPassword"]);
+
+  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(
+    !hasEnteredPassword
+  );
+  const [password, setPasswordError] = useState("");
+
+  const handlePasswordCheck = (password) => {
+    if (password === "USupport!2023") {
+      queryClient.setQueryData(["hasEnteredPassword"], true);
+      setIsPasswordModalOpen(false);
+    } else {
+      setPasswordError(t("wrong_password"));
+    }
+  };
+
   return (
     <>
+      <PasswordModal
+        label={t("password")}
+        btnLabel={t("submit")}
+        isOpen={isPasswordModalOpen}
+        error={password}
+        handleSubmit={handlePasswordCheck}
+      />
+
       <Navbar
         pages={pages}
         showCta
