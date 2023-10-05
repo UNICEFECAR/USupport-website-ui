@@ -11,8 +11,6 @@ import {
   Animation,
 } from "@USupport-components-library/src";
 
-import { emailSvc } from "@USupport-components-library/services";
-
 import { useSendIssueEmail } from "#hooks";
 
 import "./contact-us.scss";

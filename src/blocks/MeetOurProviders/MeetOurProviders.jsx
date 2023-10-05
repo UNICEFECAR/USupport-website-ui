@@ -3,11 +3,14 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import {
   Block,
+  Button,
   Grid,
   GridItem,
   Loading,
   CardProviderSmall,
 } from "@USupport-components-library/src";
+import { useWindowDimensions } from "@USupport-components-library/utils";
+
 import { useGetProvidersData } from "#hooks";
 
 import "./meet-our-providers.scss";
@@ -22,8 +25,9 @@ import "./meet-our-providers.scss";
 export const MeetOurProviders = () => {
   const navigate = useNavigate();
   const { t } = useTranslation("meet-our-providers");
+  const { width } = useWindowDimensions();
 
-  const providersQuery = useGetProvidersData(true, 3)[0];
+  const providersQuery = useGetProvidersData(false, 3, width);
 
   const redirectToDetails = (id) => {
     navigate(`/about-us/provider?id=${id}`);
@@ -45,7 +49,7 @@ export const MeetOurProviders = () => {
                 <Loading size="lg" />
               </GridItem>
             ) : (
-              providersQuery.data?.map((provider, index) => {
+              providersQuery.data?.pages.flat().map((provider, index) => {
                 const specializations = Array.isArray(provider.specializations)
                   ? provider.specializations.map((x) => t(x)).join(", ")
                   : "";
@@ -64,6 +68,24 @@ export const MeetOurProviders = () => {
                 );
               })
             )}
+            {providersQuery.isFetchingNextPage && (
+              <GridItem md={8} lg={12}>
+                <Loading padding="5rem" />
+              </GridItem>
+            )}
+            {providersQuery.hasNextPage ? (
+              <GridItem
+                md={8}
+                lg={12}
+                classes="meet-our-providers__providers-item__load-more"
+              >
+                <Button
+                  onClick={providersQuery.fetchNextPage}
+                  size="lg"
+                  label={t("show_more")}
+                />
+              </GridItem>
+            ) : null}
           </Grid>
         </GridItem>
       </Grid>

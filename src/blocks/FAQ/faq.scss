@@ -12,9 +12,12 @@
   background-repeat: no-repeat;
   background-blend-mode: lighten;
   background-position: right;
-  padding-top: $spacing_10_0;
+  padding-top: $spacing_7_0;
   padding-bottom: $spacing_5_0;
 
+  & h2 {
+    @include themify($themes, "color", "color_66768d_c1d7e0");
+  }
   &__content-item {
     margin-top: $spacing_8_0;
   }

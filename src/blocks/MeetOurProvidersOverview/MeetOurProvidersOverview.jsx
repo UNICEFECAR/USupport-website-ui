@@ -26,7 +26,7 @@ export const MeetOurProvidersOverview = () => {
   const { t } = useTranslation("meet-our-providers-overview");
   const navigate = useNavigate();
 
-  const providersQuery = useGetProvidersData()[0];
+  const providersQuery = useGetProvidersData(true);
 
   const redirectToDetails = (id) => {
     navigate(`/about-us/provider?id=${id}`);
@@ -47,7 +47,7 @@ export const MeetOurProvidersOverview = () => {
               {providersQuery.isLoading ? (
                 <Loading size="lg" />
               ) : (
-                providersQuery.data?.map((provider, index) => {
+                providersQuery.data?.pages.flat().map((provider, index) => {
                   const specializations = Array.isArray(
                     provider.specializations
                   )
@@ -83,7 +83,7 @@ export const MeetOurProvidersOverview = () => {
             label={t("button_label")}
             size="lg"
             type="secondary"
-            onClick={() => navigate(`/how-it-works`)}
+            onClick={() => navigate("/how-it-works")}
           />
         </GridItem>
       </Grid>

@@ -58,9 +58,7 @@ export const TermsOfUse = () => {
           <h2>{t("heading")}</h2>
         </GridItem>
         <GridItem xs={4} md={8} lg={12} classes="privacy-policy__text-item">
-          {termsOfUseData && (
-            <Markdown markDownText={termsOfUseData}></Markdown>
-          )}
+          {termsOfUseData && <Markdown markDownText={termsOfUseData} />}
           {!termsOfUseData && termsOfUseLoading && <Loading />}
           {!termsOfUseData && !termsOfUseLoading && isTermsOfUseFetched && (
             <h3 className="privacy-policy__no-results">{t("no_results")}</h3>

@@ -4,6 +4,7 @@
   "page_3": "О нас",
   "page_4": "Инфопортал",
   "page_5": "Контакты",
+  "page_6": "Мой Q&A",
 
   "country_1": "",
   "country_2": "",
@@ -22,11 +23,15 @@
   "footer_4": "Условия использования",
   "footer_5": "Политика конфиденциальности",
   "footer_6": "Политика Cookie",
+  "footer_7": "Часто задаваемые вопросы",
 
   "emergency_button": "SOS-центр",
 
   "button_text": "Перейти к приложению",
   "language_label": "Язык",
   "country_label": "Страна",
-  "contact_us": "Свяжитесь с нами"
+  "contact_us": "Свяжитесь с нами",
+  "password": "Пароль",
+  "wrong_password": "Неверный пароль",
+  "submit": "Отправить"
 }

@@ -1,4 +1,4 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { providerSvc } from "@USupport-components-library/services";
 
@@ -24,9 +24,6 @@ export default function useGetProviderData(id = null) {
       patronym: data.patronym || "",
       surname: data.surname || "",
       nickname: data.nickname || "",
-      email: data.email || "",
-      phonePrefix: data.phone_prefix || "",
-      phone: data.phone || "",
       image: data.image || "default",
       specializations: data.specializations || [],
       education: data.education || [],

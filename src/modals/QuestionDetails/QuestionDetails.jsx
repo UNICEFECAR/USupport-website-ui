@@ -27,6 +27,7 @@ export const QuestionDetails = ({
   isOpen,
   onClose,
   handleScheduleClick,
+  handleProviderClick,
 }) => {
   const { t } = useTranslation("question-details");
 
@@ -79,9 +80,9 @@ export const QuestionDetails = ({
           })}
         </div>
       ) : null}
-      <p className="text question-details__answer-text">
+      <pre className="text question-details__answer-text">
         {question.answerText}
-      </p>
+      </pre>
       <div className="question-details__bottom-container">
         <div className="question-details__answered-by-container">
           <p className="text">{t("answered_by")}</p>
@@ -90,8 +91,20 @@ export const QuestionDetails = ({
             alt="Specialist avatar"
             size="xs"
             classes="question-details__answered-by-container__avatar"
+            onClick={() =>
+              handleProviderClick(
+                providerInfo.providerId || providerInfo.provider_detail_id
+              )
+            }
           />
-          <p className="text">
+          <p
+            className="text question-details__answered-by-container__provider-name"
+            onClick={() =>
+              handleProviderClick(
+                providerInfo.providerId || providerInfo.provider_detail_id
+              )
+            }
+          >
             {providerInfo.name} {providerInfo.surname}
           </p>
         </div>

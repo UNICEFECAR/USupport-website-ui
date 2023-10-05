@@ -1,5 +1,5 @@
 {
-    "modal_heading": "Login to the platform to ask a question",
-    "modal_text": "You need to have an account and to login into the system to ask a question and to receive an answer",
-    "modal_button_label": "Перейти к приложению"
+  "modal_heading": "Войдите на платформу, чтобы задать вопрос",
+  "modal_text": "Вам необходимо иметь аккаунт и авторизоваться в системе, чтобы задать вопрос и получить ответ",
+  "modal_button_label": "Перейти к приложению"
 }

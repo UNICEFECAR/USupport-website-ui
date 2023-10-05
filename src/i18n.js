@@ -26,6 +26,7 @@ import {
   MyQALanding,
   MascotHeaderMyQA,
   MyQA,
+  CouponInformation,
 } from "#blocks/locales.js";
 
 import {
@@ -35,7 +36,11 @@ import {
   MyQA as MyQAPage,
 } from "#pages/locales.js";
 
-import { QuestionDetails, HowItWorksMyQA } from "#modals/locales.js";
+import {
+  QuestionDetails,
+  HowItWorksMyQA,
+  FilterQuestions,
+} from "#modals/locales.js";
 
 const resources = {
   en: {
@@ -64,6 +69,7 @@ const resources = {
     "my-qa-landing": MyQALanding.en,
     "mascot-header-MyQA": MascotHeaderMyQA.en,
     "my-qa": MyQA.en,
+    "coupon-information": CouponInformation.en,
 
     // Pages
     "not-found-page": NotFoundPage.en,
@@ -74,6 +80,7 @@ const resources = {
     //Modals
     "question-details": QuestionDetails.en,
     "how-it-works-my-qa": HowItWorksMyQA.en,
+    "filter-questions": FilterQuestions.en,
   },
   kk: {
     // Blocks
@@ -101,6 +108,7 @@ const resources = {
     "my-qa-landing": MyQALanding.kk,
     "mascot-header-MyQA": MascotHeaderMyQA.kk,
     "my-qa": MyQA.kk,
+    "coupon-information": CouponInformation.kk,
 
     // Pages
     "not-found-page": NotFoundPage.kk,
@@ -111,6 +119,7 @@ const resources = {
     //Modals
     "question-details": QuestionDetails.kk,
     "how-it-works-my-qa": HowItWorksMyQA.kk,
+    "filter-questions": FilterQuestions.kk,
   },
   ru: {
     // Blocks
@@ -138,6 +147,7 @@ const resources = {
     "my-qa-landing": MyQALanding.ru,
     "mascot-header-MyQA": MascotHeaderMyQA.ru,
     "my-qa": MyQA.ru,
+    "coupon-information": CouponInformation.ru,
 
     // Pages
     "not-found-page": NotFoundPage.ru,
@@ -148,6 +158,7 @@ const resources = {
     //Modals
     "question-details": QuestionDetails.ru,
     "how-it-works-my-qa": HowItWorksMyQA.ru,
+    "filter-questions": FilterQuestions.ru,
   },
 };
 

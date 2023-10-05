@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useNavigate, NavLink, Link } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import React, { useState, useContext } from "react";
+import { useNavigate, NavLink, Link, useLocation } from "react-router-dom";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import {
   Navbar,
@@ -11,9 +11,11 @@ import {
 import { languageSvc, countrySvc } from "@USupport-components-library/services";
 import { getCountryFromTimezone } from "@USupport-components-library/utils";
 import classNames from "classnames";
+import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./page.scss";
 import { useEffect } from "react";
+import { PasswordModal } from "@USupport-components-library/src";
 
 const kazakhstanCountry = {
   value: "KZ",
@@ -61,14 +63,19 @@ export const Page = ({
         label: x.name,
         countryID: x["country_id"],
         iconName: x.alpha2,
+        currencySymbol: x["symbol"],
+        localName: x["local_name"],
       };
 
       if (localStorageCountry === x.alpha2) {
         setSelectedCountry(countryObject);
+        localStorage.setItem("currency_symbol", countryObject.currencySymbol);
       } else if (!localStorageCountry) {
         if (validCountry?.alpha2 === x.alpha2) {
           hasSetDefaultCountry = true;
           localStorage.setItem("country", x.alpha2);
+          localStorage.setItem("currency_symbol", x.symbol);
+
           window.dispatchEvent(new Event("countryChanged"));
           setSelectedCountry(countryObject);
         }
@@ -78,10 +85,18 @@ export const Page = ({
     });
 
     if (!hasSetDefaultCountry && !localStorageCountry) {
+      const kazakhstanCountryObject = countries.find(
+        (x) => x.value === kazakhstanCountry.value
+      );
+
       localStorage.setItem("country", kazakhstanCountry.value);
       localStorage.setItem(
         "country_id",
         countries.find((x) => x.value === kazakhstanCountry.value).countryID
+      );
+      localStorage.setItem(
+        "currency_symbol",
+        kazakhstanCountryObject.currencySymbol
       );
       window.dispatchEvent(new Event("countryChanged"));
     }
@@ -96,6 +111,7 @@ export const Page = ({
         value: x.alpha2,
         label: x.name,
         id: x["language_id"],
+        localName: x["local_name"],
       };
       if (localStorageLanguage === x.alpha2) {
         setSelectedLanguage(languageObject);
@@ -126,16 +142,18 @@ export const Page = ({
       { name: t("footer_1"), url: "/about-us" },
       { name: t("footer_2"), url: "/information-portal" },
       { name: t("footer_3"), url: "/how-it-works" },
+      { name: t("page_6"), url: "/my-qa" },
     ],
     list2: [
       { name: t("footer_4"), url: "/terms-of-use", exact: true },
       { name: t("footer_5"), url: "/privacy-policy" },
       { name: t("footer_6"), url: "/cookie-policy" },
+      { name: t("footer_7"), url: "/how-it-works?to=faq" },
     ],
     list3: [
       { value: "+7 717 232 28 78", iconName: "call-filled", onClick: "phone" },
       {
-        value: `Beibitshilik St 10а, Astana 010000, Kazakhstan`,
+        value: "Beibitshilik St 10а, Astana 010000, Kazakhstan",
         iconName: "pin",
       },
       {
@@ -147,9 +165,60 @@ export const Page = ({
   };
 
   const handleGoBack = () => navigateTo(-1);
+  const location = useLocation();
+
+  const { theme, setTheme } = useContext(ThemeContext);
+
+  const toggleTheme = () => {
+    if (theme === "light") {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
+
+  const themeButton = () => {
+    return location.pathname === "/" ? (
+      <>
+        <Icon
+          name={theme === "light" ? "dark-mode-switch" : "light-mode"}
+          size="lg"
+          classes="page__theme-button"
+          onClick={toggleTheme}
+        />
+      </>
+    ) : (
+      setTheme("light")
+    );
+  };
+
+  const queryClient = useQueryClient();
+  const hasEnteredPassword = queryClient.getQueryData(["hasEnteredPassword"]);
+
+  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(
+    !hasEnteredPassword
+  );
+  const [password, setPasswordError] = useState("");
+
+  const handlePasswordCheck = (password) => {
+    if (password === "USupport!2023") {
+      queryClient.setQueryData(["hasEnteredPassword"], true);
+      setIsPasswordModalOpen(false);
+    } else {
+      setPasswordError(t("wrong_password"));
+    }
+  };
 
   return (
     <>
+      <PasswordModal
+        label={t("password")}
+        btnLabel={t("submit")}
+        isOpen={isPasswordModalOpen}
+        error={password}
+        handleSubmit={handlePasswordCheck}
+      />
+
       <Navbar
         pages={pages}
         showCta
@@ -164,6 +233,7 @@ export const Page = ({
         countries={countries}
         initialLanguage={selectedLanguage}
         initialCountry={selectedCountry}
+        renderIn="website"
       />
       <div
         className={[
@@ -189,6 +259,7 @@ export const Page = ({
         )}
         {children}
       </div>
+      {themeButton()}
       <CircleIconButton
         iconName="phone-emergency"
         classes="page__emergency-button"

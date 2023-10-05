@@ -1,16 +1,17 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { providerSvc } from "@USupport-components-library/services";
 
 /**
  * Reuseable hook to get and transform the client data in a desired format
  */
-export default function useGetProvidersData(random = false, limit = 3) {
-  const [providersData, setProvidersData] = useState();
-  const fetchProvidersData = async () => {
+export default function useGetProvidersData(random = false, limit = 3, width) {
+  const fetchProvidersData = async ({ pageParam = 1 }) => {
     let response;
-    if (random) {
-      response = await providerSvc.getAllProviders();
+    if (!random) {
+      response = await providerSvc.getAllProviders({
+        limit: width >= 1366 ? 12 : 10,
+        offset: pageParam,
+      });
     } else {
       response = await providerSvc.getRandomProviders(limit);
     }
@@ -24,9 +25,6 @@ export default function useGetProvidersData(random = false, limit = 3) {
         patronym: providerData.patronym || "",
         surname: providerData.surname || "",
         nickname: providerData.nickname || "",
-        email: providerData.email || "",
-        phonePrefix: providerData.phone_prefix || "",
-        phone: providerData.phone || "",
         image: providerData.image || "default",
         specializations: providerData.specializations || [],
         education: providerData.education || [],
@@ -43,16 +41,21 @@ export default function useGetProvidersData(random = false, limit = 3) {
     return formattedData;
   };
 
-  const providersDataQuery = useQuery(["client-data"], fetchProvidersData, {
-    onSuccess: (data) => {
-      const dataCopy = JSON.parse(JSON.stringify(data));
-      setProvidersData([...dataCopy]);
-    },
-    onError: (err) => console.log(err, "err"),
-    notifyOnChangeProps: ["data"],
-  });
+  const providersDataQuery = useInfiniteQuery(
+    ["providers-data"],
+    fetchProvidersData,
+    {
+      getNextPageParam: (lastPage, pages) => {
+        if (lastPage.length === 0) {
+          return undefined;
+        }
+        return pages.length + 1;
+      },
+      onError: (err) => console.log(err, "err"),
+    }
+  );
 
-  return [providersDataQuery, providersData, setProvidersData];
+  return providersDataQuery;
 }
 
 export { useGetProvidersData };

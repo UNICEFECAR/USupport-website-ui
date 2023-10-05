@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Button } from '@USupport-components-library/src';
+import React, { useState } from "react";
+import { Button } from "@USupport-components-library/src";
 
-import { QuestionDetails } from './QuestionDetails';
+import { QuestionDetails } from "./QuestionDetails";
 
 export default {
-  title: 'Client UI/modals/QuestionDetails',
+  title: "Client UI/modals/QuestionDetails",
   component: QuestionDetails,
   argTypes: {},
 };

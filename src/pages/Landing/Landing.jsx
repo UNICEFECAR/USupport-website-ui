@@ -11,6 +11,7 @@ import {
   MeetOurProvidersOverview,
   OurPartnersOverview,
   MyQALanding,
+  CouponInformation,
 } from "#blocks";
 
 /**
@@ -28,9 +29,10 @@ export function Landing() {
       <About />
       <HowItWorks summary isTitleWhite={false} />
       <MeetOurProvidersOverview />
-      <OurPartnersOverview />
+      {/* <OurPartnersOverview /> */}
       <InformationPortal />
       <MyQALanding />
+      <CouponInformation />
       <FAQ showLearnMore={true} showMascot={true} showAll={false} />
       <DownloadApp />
     </Page>

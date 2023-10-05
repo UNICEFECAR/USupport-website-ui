@@ -97,7 +97,7 @@ export const ArticleInformation = () => {
   return (
     <Page classes="page__article-information">
       {articleData ? (
-        <ArticleView articleData={articleData} />
+        <ArticleView articleData={articleData} t={t} />
       ) : (
         <Loading size="lg" />
       )}

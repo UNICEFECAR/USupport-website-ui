@@ -4,6 +4,7 @@
   "page_3": "Біз туралы",
   "page_4": "Инфопортал",
   "page_5": "Хабарласу",
+  "page_6": "Менің Q&A",
 
   "country_1": "",
   "country_2": "",
@@ -22,11 +23,15 @@
   "footer_4": "Пайдалану шарттары",
   "footer_5": "Құпиялық саясаты",
   "footer_6": "Cookie саясаты",
+  "footer_7": "Жиі қойылатын сұрақтар",
 
   "emergency_button": "SOS-орталық",
 
   "button_text": "Қосымшаға өту",
   "language_label": "Тіл",
   "country_label": "Ел",
-  "contact_us": "Бізге хабарласыңыз"
+  "contact_us": "Бізге хабарласыңыз",
+  "password": "Құпия сөз",
+  "wrong_password": "Құпия сөз дұрыс емес",
+  "submit": "Жіберу"
 }

@@ -58,7 +58,6 @@ mkdir "src/pages/$page_name"
 touch "src/pages/$page_name/index.js"
 touch "src/pages/$page_name/$page_name.jsx"
 touch "src/pages/$page_name/$page_name_kebab.scss"
-touch "src/pages/$page_name/$page_name.stories.jsx"
 
 # Add the page to the page index file
 echo "export * from './$page_name.jsx';" >> "src/pages/$page_name/index.js"
@@ -82,8 +81,13 @@ fi
 # Add the page to the main page file
 echo "import React from 'react';
 import { Page } from '#blocks';
+    " >> "src/pages/$page_name/$page_name.jsx"
 
-import './$page_name_kebab.scss';
+if [ "$page_locale" == "y" ]; then
+    echo "import { useTranslation } from 'react-i18next';" >> "src/pages/$page_name/$page_name.jsx"
+fi
+
+echo "import './$page_name_kebab.scss';
 
 /**
  * $page_name
@@ -93,28 +97,15 @@ import './$page_name_kebab.scss';
  * @returns {JSX.Element}
  */
 export const $page_name = () => {
+    `if ["$page_local" === "y"]; then 
+        echo "const { t } = useTranslation('$page_name_lower-page')"
+    fi`
     return (
         <Page classes='page__$page_name_kebab'>
             $page_name Page
         </Page>
     );
 }; " >> "src/pages/$page_name/$page_name.jsx"
-
-# Add the page to the storybook file
-echo "import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { $page_name } from './$page_name';
-
-export default {
-    title: 'Website UI/pages/$page_name',
-    component: $page_name,
-    argTypes: {},
-};
-
-const Template = (props) => <Router><$page_name {...props} /></Router>;
-
-export const Default = Template.bind({});
-Default.args = {}; " >> "src/pages/$page_name/$page_name.stories.jsx"
 
 # Add the theme to the page styles file 
 echo "/* $page_name styles */
