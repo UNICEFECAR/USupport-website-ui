@@ -31,7 +31,8 @@
   "language_label": "Язык",
   "country_label": "Страна",
   "contact_us": "Свяжитесь с нами",
-  "password": "Пароль",
+  "password_placeholder": "Пароль",
+  "password": "Пожалуйста, введите пароль для доступа к сайту",
   "wrong_password": "Неверный пароль",
   "submit": "Отправить"
 }
