@@ -31,7 +31,8 @@
   "language_label": "Тіл",
   "country_label": "Ел",
   "contact_us": "Бізге хабарласыңыз",
-  "password": "Құпия сөз",
+  "password_placeholder": "Құпия сөз",
+  "password": "Сайтқа кіру үшін құпия сөзіңізді енгізіңіз",
   "wrong_password": "Құпия сөз дұрыс емес",
   "submit": "Жіберу"
 }

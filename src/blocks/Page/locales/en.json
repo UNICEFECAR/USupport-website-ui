@@ -32,7 +32,8 @@
   "country_label": "Country",
   "contact_us": "Contact us",
 
-  "password": "Password",
+  "password_placeholder": "Password", 
+  "password": "Please enter your password to access the site",
   "wrong_password": "Wrong password",
   "submit": "Submit"
 }
