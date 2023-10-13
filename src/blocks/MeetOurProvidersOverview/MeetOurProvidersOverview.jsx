@@ -33,6 +33,7 @@ export const MeetOurProvidersOverview = () => {
   };
 
   return (
+    <div className="meet-our-providers-overview-wrapper">
     <Block classes="meet-our-providers-overview">
       <Grid classes="meet-our-providers-overview__grid">
         <GridItem md={8} lg={12}>
@@ -88,5 +89,6 @@ export const MeetOurProvidersOverview = () => {
         </GridItem>
       </Grid>
     </Block>
+    </div>
   );
 };

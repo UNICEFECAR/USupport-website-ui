@@ -79,6 +79,7 @@ export const FAQ = ({ showMascot, showLearnMore, showAll = true }) => {
   });
 
   return (
+    <div className="faq-wrapper">
     <Block classes="faq" animation="fade-right">
       <Grid>
         <GridItem md={8} lg={12}>
@@ -124,6 +125,7 @@ export const FAQ = ({ showMascot, showLearnMore, showAll = true }) => {
         </GridItem>
       </Grid>
     </Block>
+    </div>
   );
 };
 

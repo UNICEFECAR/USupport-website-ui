@@ -1,5 +1,9 @@
 @import "@USupport-components-library/styles";
 
+.my-qa-landing-wrapper {
+  @include themify($themes, "background", "color_white_ff");
+}
+
 .my-qa-landing {
   padding-top: $spacing_3_2;
   padding-bottom: $spacing_2_6;

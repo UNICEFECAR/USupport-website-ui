@@ -1,5 +1,9 @@
 @import "@USupport-components-library/styles";
 
+.how-it-works-wrapper{
+    @include themify($themes, "background", "color_white_ff");
+
+}
 .how-it-works {
   .no-webp & {
     background-image: url("./assets/Background.png");
@@ -7,6 +11,8 @@
   .webp & {
     background-image: url("./assets/Background.webp");
   }
+
+
 
   padding-top: $spacing_8_0;
   padding-bottom: $spacing_5_6;

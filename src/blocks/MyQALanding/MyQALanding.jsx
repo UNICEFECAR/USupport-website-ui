@@ -28,6 +28,7 @@ export const MyQALanding = () => {
   const { width } = useWindowDimensions();
 
   return (
+    <div className="my-qa-landing-wrapper">
     <Block classes="my-qa-landing">
       <Grid>
         <GridItem md={8} lg={12}>
@@ -63,5 +64,6 @@ export const MyQALanding = () => {
         </GridItem>
       </Grid>
     </Block>
+    </div>
   );
 };

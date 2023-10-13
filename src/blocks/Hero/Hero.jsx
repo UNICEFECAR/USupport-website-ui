@@ -26,6 +26,7 @@ import imageSrcWebp from "./assets/PeopleCollage.webp";
 export const Hero = () => {
   const { t } = useTranslation("hero");
   return (
+    <div className="hero-wrapper">
     <Block classes="hero" animation="fade-right">
       <Grid classes="hero__main-grid">
         <GridItem md={5} lg={6}>
@@ -76,5 +77,6 @@ export const Hero = () => {
       <RadialCircle color="purple" />
       <RadialCircle color="blue" />
     </Block>
+    </div>
   );
 };

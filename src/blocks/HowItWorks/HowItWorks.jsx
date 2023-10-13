@@ -32,6 +32,7 @@ export const HowItWorks = ({
   const { width } = useWindowDimensions();
 
   return (
+    <div className="how-it-works-wrapper">
     <Block classes="how-it-works" animation="fade-left">
       <Grid classes={onPage ? "how-it-works__grid" : ""}>
         <GridItem classes="how-it-works__heading" md={8} lg={12}>
@@ -91,6 +92,7 @@ export const HowItWorks = ({
         )}
       </div>
     </Block>
+    </div>
   );
 };
 

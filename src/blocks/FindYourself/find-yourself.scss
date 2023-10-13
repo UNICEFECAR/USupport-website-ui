@@ -4,6 +4,7 @@
   padding-top: 0;
   padding-bottom: $spacing_6_5;
   text-align: left;
+  @include themify($themes, "background", "color_white_ff");
 
   @media screen and (min-width: $screen-md) {
     padding-bottom: $spacing_9_0;
@@ -66,7 +67,7 @@
 
     h2,
     p {
-      @include themify($themes, "color", "color_white_ff");
+      color: $color_white_ff;
     }
   }
 
@@ -78,8 +79,16 @@
       padding-top: $spacing_3_2;
     }
 
+    & .paragraph {
+      color: $color_white_ff;
+    }
+
     &__content {
       padding-top: $spacing_2_4;
+
+      & .paragraph {
+        color: $color_white_ff;
+      }
     }
   }
 

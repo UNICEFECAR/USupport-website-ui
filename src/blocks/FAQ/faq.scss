@@ -1,5 +1,9 @@
 @import "@USupport-components-library/styles";
 
+.faq-wrapper {
+  @include themify($themes, "background", "color_white_ff");
+}
+
 .faq {
   .no-webp & {
     background-image: url("./assets/Background.png");
