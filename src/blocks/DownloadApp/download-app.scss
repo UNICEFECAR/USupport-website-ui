@@ -1,5 +1,9 @@
 @import "@USupport-components-library/styles";
 
+.download-app-wrapper {
+  @include themify($themes, "background", "color_white_ff");
+}
+
 .download-app {
   padding-top: $spacing_3_2;
   background: $gradient_block;

@@ -3,8 +3,8 @@
 .about {
   padding: $spacing_3_2 $spacing_1_6 0 $spacing_1_6;
   text-align: left;
-  // background-color: $color_white_ff;
-  // @include themify($themes, "background", "color_white_ff");
+  background-color: $color_white_ff;
+  @include themify($themes, "background", "color_white_ff");
   position: relative;
 
   & h2 {

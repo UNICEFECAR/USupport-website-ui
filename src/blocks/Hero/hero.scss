@@ -1,4 +1,7 @@
 @import "@USupport-components-library/styles";
+.hero-wrapper {
+  @include themify($themes, "background", "color_white_ff");
+}
 
 .hero {
   .no-webp & {
