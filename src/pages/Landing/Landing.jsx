@@ -14,6 +14,8 @@ import {
   CouponInformation,
 } from "#blocks";
 
+import "./landing.scss";
+
 /**
  * Landing
  *
@@ -23,7 +25,7 @@ import {
  */
 export function Landing() {
   return (
-    <Page>
+    <Page classes="page__landing">
       <Hero />
       <FindYourself />
       <About />
