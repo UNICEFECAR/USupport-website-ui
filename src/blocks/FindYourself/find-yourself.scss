@@ -46,11 +46,13 @@
         background-image: url("./assets/BeYourBestSelfDesktop.webp");
       }
     }
+  }
 
-    h2,
-    p {
-      color: $color_white_ff;
-    }
+  & h2,
+  & h3,
+  & p,
+  & .paragraph {
+    color: $color_white_ff !important;
   }
 
   &__text-item {
@@ -63,11 +65,6 @@
     align-items: center;
     justify-content: center;
     min-width: 40.7rem;
-
-    h2,
-    p {
-      @include themify($themes, "color", "color_white_ff");
-    }
   }
 
   &__text {
@@ -168,7 +165,6 @@
     }
 
     h3 {
-      color: $color_white_ff;
       position: relative;
       text-align: center;
       z-index: $z_index_2;

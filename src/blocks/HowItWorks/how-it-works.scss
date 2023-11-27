@@ -62,7 +62,7 @@
   }
 
   &__heading-text--white {
-    @include themify($themes, "color", "color_white_ff");
+    color: $color_white_ff !important;
   }
 
   &__text-item {

@@ -178,17 +178,13 @@ export const Page = ({
   };
 
   const themeButton = () => {
-    return location.pathname === "/" ? (
-      <>
-        <Icon
-          name={theme === "light" ? "dark-mode-switch" : "light-mode"}
-          size="lg"
-          classes="page__theme-button"
-          onClick={toggleTheme}
-        />
-      </>
-    ) : (
-      setTheme("light")
+    return (
+      <Icon
+        name={theme === "light" ? "dark-mode-switch" : "light-mode"}
+        size="lg"
+        classes="page__theme-button"
+        onClick={toggleTheme}
+      />
     );
   };
 
@@ -211,14 +207,14 @@ export const Page = ({
 
   return (
     <>
-      <PasswordModal
+      {/* <PasswordModal
         label={t("password")}
         btnLabel={t("submit")}
         isOpen={isPasswordModalOpen}
         error={password}
         handleSubmit={handlePasswordCheck}
         placeholder={t("password_placeholder")}
-      />
+      /> */}
 
       <Navbar
         pages={pages}
