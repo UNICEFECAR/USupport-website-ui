@@ -207,15 +207,14 @@ export const Page = ({
 
   return (
     <>
-      {/* <PasswordModal
+      <PasswordModal
         label={t("password")}
         btnLabel={t("submit")}
         isOpen={isPasswordModalOpen}
         error={password}
         handleSubmit={handlePasswordCheck}
         placeholder={t("password_placeholder")}
-      /> */}
-
+      />
       <Navbar
         pages={pages}
         showCta
