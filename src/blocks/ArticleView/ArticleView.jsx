@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import propTypes from "prop-types";
 import {
   Block,
   Grid,
@@ -7,7 +8,7 @@ import {
   Label,
   Markdown,
 } from "@USupport-components-library/src";
-import propTypes from "prop-types";
+import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./article-view.scss";
 
@@ -20,6 +21,7 @@ import "./article-view.scss";
  */
 export const ArticleView = ({ articleData, t }) => {
   const creator = articleData.creator ? articleData.creator : null;
+  const { theme } = useContext(ThemeContext);
   return (
     <Block classes="article-view">
       <Grid classes="article-view__main-grid">
@@ -42,7 +44,11 @@ export const ArticleView = ({ articleData, t }) => {
         <GridItem md={8} lg={12} classes="article-view__details-item">
           {creator && <p className={"small-text"}>{t("by", { creator })}</p>}
 
-          <Icon name={"time"} size="sm" />
+          <Icon
+            name="time"
+            size="sm"
+            color={theme != "dark" ? "#373737" : "#c1d7e0"}
+          />
           <p className={"small-text"}> {articleData.readingTime} min read</p>
 
           <div className="article-view__details-item__category">

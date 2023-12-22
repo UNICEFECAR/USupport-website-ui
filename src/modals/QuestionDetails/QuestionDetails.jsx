@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -8,9 +8,7 @@ import {
   Label,
   Avatar,
 } from "@USupport-components-library/src";
-
-import { isDateToday } from "@USupport-components-library/utils";
-
+import { isDateToday, ThemeContext } from "@USupport-components-library/utils";
 const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
 
 import "./question-details.scss";
@@ -30,6 +28,7 @@ export const QuestionDetails = ({
   handleProviderClick,
 }) => {
   const { t } = useTranslation("question-details");
+  const { theme } = useContext(ThemeContext);
 
   const providerInfo = question.providerData;
 
@@ -50,8 +49,17 @@ export const QuestionDetails = ({
   return (
     <Modal classes="question-details" isOpen={isOpen} closeModal={onClose}>
       <div className="question-details__date-container">
-        <Icon name="calendar" color="#92989B" />
-        <p className="text question-details__date-container__text">
+        <Icon
+          name="calendar"
+          color={theme === "dark" ? "#c1d7e0" : "#92989B"}
+        />
+        <p
+          className={[
+            "text",
+            "question-details__date-container__text",
+            theme === "dark" && "question-details__date-container__text--dark",
+          ].join(" ")}
+        >
           {getDateText()}
         </p>
       </div>
