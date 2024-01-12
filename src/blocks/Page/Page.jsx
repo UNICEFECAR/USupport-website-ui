@@ -134,7 +134,6 @@ export const Page = ({
     { name: t("page_3"), url: "/about-us" },
     { name: t("page_4"), url: "/information-portal" },
     { name: t("page_6"), url: "/my-qa" },
-    { name: t("page_5"), url: "/contact-us" },
   ];
 
   const footerLists = {
@@ -230,6 +229,8 @@ export const Page = ({
         initialLanguage={selectedLanguage}
         initialCountry={selectedCountry}
         renderIn="website"
+        hasThemeButton
+        t={t}
       />
       <div
         className={[
@@ -265,6 +266,7 @@ export const Page = ({
       <Footer
         lists={footerLists}
         contactUsText={t("contact_us")}
+        contactUsUrl={"/contact-us"}
         navigate={navigateTo}
         Link={Link}
       />
