@@ -220,6 +220,8 @@ export const Page = ({
         initialLanguage={selectedLanguage}
         initialCountry={selectedCountry}
         renderIn="website"
+        hasThemeButton
+        t={t}
       />
       <div
         className={[
