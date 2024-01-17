@@ -254,13 +254,7 @@ export const Page = ({
         onClick={() => navigateTo("/sos-center")}
         label={t("emergency_button")}
       />
-      <Footer
-        lists={footerLists}
-        // contactUsText={t("contact_us")}
-        // contactUsUrl={"/contact-us"}
-        navigate={navigateTo}
-        Link={Link}
-      />
+      <Footer lists={footerLists} navigate={navigateTo} Link={Link} />
     </>
   );
 };
