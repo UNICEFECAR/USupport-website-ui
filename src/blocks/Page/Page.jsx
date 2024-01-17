@@ -140,26 +140,17 @@ export const Page = ({
     list1: [
       { name: t("footer_1"), url: "/about-us" },
       { name: t("footer_2"), url: "/information-portal" },
-      { name: t("footer_3"), url: "/how-it-works" },
       { name: t("page_6"), url: "/my-qa" },
     ],
     list2: [
       { name: t("footer_4"), url: "/terms-of-use", exact: true },
       { name: t("footer_5"), url: "/privacy-policy" },
       { name: t("footer_6"), url: "/cookie-policy" },
-      { name: t("footer_7"), url: "/how-it-works?to=faq" },
     ],
     list3: [
-      { value: "+7 717 232 28 78", iconName: "call-filled", onClick: "phone" },
-      {
-        value: "Beibitshilik St 10а, Astana 010000, Kazakhstan",
-        iconName: "pin",
-      },
-      {
-        value: "usupport@7digit.io",
-        iconName: "mail-filled",
-        onClick: "mail",
-      },
+      { name: t("footer_3"), url: "/how-it-works" },
+      { name: t("footer_7"), url: "/how-it-works?to=faq" },
+      { name: t("contact_us"), url: "/contact-us" },
     ],
   };
 
@@ -263,8 +254,8 @@ export const Page = ({
       />
       <Footer
         lists={footerLists}
-        contactUsText={t("contact_us")}
-        contactUsUrl={"/contact-us"}
+        // contactUsText={t("contact_us")}
+        // contactUsUrl={"/contact-us"}
         navigate={navigateTo}
         Link={Link}
       />
