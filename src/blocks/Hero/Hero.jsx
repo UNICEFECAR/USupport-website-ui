@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Block,
   Grid,
@@ -8,6 +8,7 @@ import {
   StaticImage,
 } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
+import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./hero.scss";
 
@@ -25,8 +26,13 @@ import imageSrcWebp from "./assets/PeopleCollage.webp";
  */
 export const Hero = () => {
   const { t } = useTranslation("hero");
+  const { theme } = useContext(ThemeContext);
+  console.log(theme, "theme");
   return (
-    <Block classes="hero" animation="fade-right">
+    <Block
+      classes={`hero ${theme === "dark" ? "hero--dark" : ""}`}
+      animation="fade-right"
+    >
       <Grid classes="hero__main-grid">
         <GridItem md={5} lg={6}>
           <Grid
@@ -61,7 +67,7 @@ export const Hero = () => {
           </Grid>
         </GridItem>
         <GridItem md={3} lg={6} classes="hero__collage-item">
-          <StaticImage png={imageSrc} webp={imageSrcWebp} alt="happy-people" />
+          {/* <StaticImage png={imageSrc} webp={imageSrcWebp} alt="happy-people" /> */}
         </GridItem>
       </Grid>
       {/* Commented out until comms team confirm, whether we can use the UNICEF logo in the Hero section of the commercial website */}
