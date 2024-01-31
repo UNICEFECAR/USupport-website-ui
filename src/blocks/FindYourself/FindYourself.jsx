@@ -22,7 +22,9 @@ export const FindYourself = () => {
         <GridItem xs={4} md={8} lg={12} classes="find-yourself__heading-item">
           {width > 768 && (
             <>
-              <h2>{t("heading")}</h2>
+              <h3 className="find-yourself__heading-item__h3">
+                {t("heading")}
+              </h3>
               <div className="find-yourself__text">
                 <p className="paragraph">{t("paragraph")}</p>
                 <p className="paragraph">{t("paragraph_2")}</p>
@@ -33,7 +35,9 @@ export const FindYourself = () => {
         {width <= 768 && (
           <GridItem xs={4} md={8} lg={12} classes="find-yourself__text-item">
             <div className="find-yourself__text">
-              <h2>{t("heading")}</h2>
+              <h3 className="find-yourself__heading-item__h3">
+                {t("heading")}
+              </h3>
               <div className="find-yourself__text__content">
                 <p className="paragraph">{t("paragraph")}</p>
                 <p className="paragraph">{t("paragraph_2")}</p>
