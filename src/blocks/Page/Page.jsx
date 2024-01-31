@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate, NavLink, Link, useLocation } from "react-router-dom";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import {
   Navbar,
@@ -12,10 +12,12 @@ import { languageSvc, countrySvc } from "@USupport-components-library/services";
 import { getCountryFromTimezone } from "@USupport-components-library/utils";
 import classNames from "classnames";
 import { ThemeContext } from "@USupport-components-library/utils";
+import { PasswordModal } from "@USupport-components-library/src";
+import { userSvc } from "@USupport-components-library/services";
+
+import { useError } from "#hooks";
 
 import "./page.scss";
-import { useEffect } from "react";
-import { PasswordModal } from "@USupport-components-library/src";
 
 const kazakhstanCountry = {
   value: "KZ",
@@ -179,20 +181,29 @@ export const Page = ({
   };
 
   const queryClient = useQueryClient();
-  const hasEnteredPassword = queryClient.getQueryData(["hasEnteredPassword"]);
+  const hasPassedValidation = queryClient.getQueryData(["hasPassedValidation"]);
 
-  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(
-    !hasEnteredPassword
-  );
-  const [password, setPasswordError] = useState("");
+  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
+  const [passwordError, setPasswordError] = useState("");
 
-  const handlePasswordCheck = (password) => {
-    if (password === "USupport!2023") {
-      queryClient.setQueryData(["hasEnteredPassword"], true);
-      setIsPasswordModalOpen(false);
-    } else {
-      setPasswordError(t("wrong_password"));
+  const validatePlatformPasswordMutation = useMutation(
+    async (value) => {
+      return await userSvc.validatePlatformPassword(value);
+    },
+    {
+      onError: (error) => {
+        const { message: errorMessage } = useError(error);
+        setPasswordError(errorMessage);
+      },
+      onSuccess: () => {
+        queryClient.setQueryData(["hasPassedValidation"], true);
+        setIsPasswordModalOpen(false);
+      },
     }
+  );
+
+  const handlePasswordCheck = (value) => {
+    validatePlatformPasswordMutation.mutate(value);
   };
 
   return (
@@ -201,8 +212,9 @@ export const Page = ({
         label={t("password")}
         btnLabel={t("submit")}
         isOpen={isPasswordModalOpen}
-        error={password}
+        error={passwordError}
         handleSubmit={handlePasswordCheck}
+        isLoading={validatePlatformPasswordMutation.isLoading}
         placeholder={t("password_placeholder")}
       />
       <Navbar

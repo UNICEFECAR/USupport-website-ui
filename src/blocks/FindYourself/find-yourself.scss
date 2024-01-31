@@ -14,12 +14,13 @@
 
   &__grid {
     justify-content: center;
+    row-gap: 0;
   }
 
   &__heading-item {
     width: 100vw;
     background-repeat: no-repeat;
-    height: 26rem;
+    height: 38rem;
     background-position: center;
     background-size: cover;
     display: flex;
@@ -29,6 +30,13 @@
     text-align: center;
     min-width: 40.7rem;
 
+    &__h3 {
+      text-align: center;
+      @media screen and (min-width: $screen-md) {
+        padding-bottom: 2rem;
+      }
+    }
+
     .no-webp & {
       background-image: url("./assets/BeYourBestSelf.png");
     }
@@ -37,6 +45,17 @@
     }
 
     @media screen and (min-width: $screen-md) {
+      height: 41.9rem;
+
+      .no-webp & {
+        background-image: url("./assets/BeYourBestSelfTablet.png");
+      }
+      .webp & {
+        background-image: url("./assets/BeYourBestSelfTablet.webp");
+      }
+    }
+
+    @media screen and (min-width: $screen-lg) {
       height: 41.9rem;
 
       .no-webp & {
