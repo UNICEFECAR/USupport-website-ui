@@ -5,6 +5,11 @@ import { useWindowDimensions } from "@USupport-components-library/utils";
 
 import "./find-yourself.scss";
 
+import image1 from "./assets/image_1.png";
+import image2 from "./assets/image_2.png";
+import image3 from "./assets/image_3.png";
+import image4 from "./assets/image_4.png";
+
 /**
  * FindYourself
  *
@@ -46,20 +51,28 @@ export const FindYourself = () => {
           </GridItem>
         )}
         <GridItem md={4} lg={6} classes="find-yourself__image-item box box-1">
-          <div className="overlay" />
-          <h3>{t("card_text_1")}</h3>
+          <div className="overlay">
+            <img src={image1} className="box__image" />
+            <h3>{t("card_text_1")}</h3>
+          </div>
         </GridItem>
         <GridItem md={4} lg={6} classes="find-yourself__image-item box box-2">
-          <div className="overlay" />
-          <h3>{t("card_text_2")}</h3>
+          <div className="overlay">
+            <img src={image2} className="box__image" />
+            <h3>{t("card_text_2")}</h3>
+          </div>
         </GridItem>
         <GridItem md={4} lg={6} classes="find-yourself__image-item box box-3">
-          <div className="overlay" />
-          <h3>{t("card_text_3")}</h3>
+          <div className="overlay">
+            <img src={image3} className="box__image" />
+            <h3>{t("card_text_3")}</h3>
+          </div>
         </GridItem>
         <GridItem md={4} lg={6} classes="find-yourself__image-item box box-4">
-          <div className="overlay" />
-          <h3>{t("card_text_4")}</h3>
+          <div className="overlay">
+            <img src={image4} className="box__image" />
+            <h3>{t("card_text_4")}</h3>
+          </div>
         </GridItem>
       </Grid>
     </Block>
