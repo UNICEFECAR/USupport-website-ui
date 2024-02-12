@@ -183,7 +183,9 @@ export const Page = ({
   const queryClient = useQueryClient();
   const hasPassedValidation = queryClient.getQueryData(["hasPassedValidation"]);
 
-  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
+  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(
+    !hasPassedValidation
+  );
   const [passwordError, setPasswordError] = useState("");
 
   const validatePlatformPasswordMutation = useMutation(
