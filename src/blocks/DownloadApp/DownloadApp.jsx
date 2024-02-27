@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Block,
   Grid,
@@ -7,7 +7,10 @@ import {
   StaticImage,
 } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
-import { useWindowDimensions } from "@USupport-components-library/utils";
+import {
+  useWindowDimensions,
+  ThemeContext,
+} from "@USupport-components-library/utils";
 
 import "./download-app.scss";
 
@@ -16,6 +19,7 @@ import imageSrcWebp from "./assets/StartScreen.webp";
 
 import imageDesktopSrc from "./assets/StartScreenDesktop.png";
 import imageDesktopSrcWebp from "./assets/StartScreenDesktop.webp";
+import StartScreenPreviews from "./assets/StartScreenPreviews.png";
 
 /**
  * DownloadApp
@@ -25,11 +29,17 @@ import imageDesktopSrcWebp from "./assets/StartScreenDesktop.webp";
  * @return {jsx}
  */
 export const DownloadApp = () => {
+  const { theme } = useContext(ThemeContext);
   const { t } = useTranslation("download-app");
   const { width } = useWindowDimensions();
 
   return (
-    <Block classes="download-app" animation="fade-up">
+    <Block
+      classes={["download-app", theme === "dark" && "download-app--dark"].join(
+        " "
+      )}
+      animation="fade-up"
+    >
       <Grid>
         <GridItem md={5} lg={6} classes="download-app__content-item">
           <Grid classes="download-app__content-grid">
@@ -65,8 +75,8 @@ export const DownloadApp = () => {
             />
           ) : (
             <StaticImage
-              png={imageDesktopSrc}
-              webp={imageDesktopSrcWebp}
+              png={StartScreenPreviews}
+              webp={StartScreenPreviews}
               imageClasses="download-app__image"
               alt="mobile-app"
             />
