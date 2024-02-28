@@ -75,12 +75,11 @@
   }
 
   &__image-collage-item {
-    grid-row-start: 3;
-    grid-row-end: 5;
+    padding-top: $spacing_3_2;
     place-self: center;
 
     img {
-      width: 46.1rem;
+      width: 55rem;
     }
   }
 
@@ -88,7 +87,7 @@
     padding-top: $spacing_5_4;
 
     img {
-      width: 46.1rem;
+      max-width: 35rem;
     }
   }
 
