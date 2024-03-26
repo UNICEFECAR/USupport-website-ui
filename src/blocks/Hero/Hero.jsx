@@ -5,10 +5,12 @@ import {
   GridItem,
   StoreButton,
   RadialCircle,
-  StaticImage,
 } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
-import { ThemeContext } from "@USupport-components-library/utils";
+import {
+  useWindowDimensions,
+  ThemeContext,
+} from "@USupport-components-library/utils";
 
 import "./hero.scss";
 
@@ -25,9 +27,10 @@ import imageSrcWebp from "./assets/PeopleCollage.webp";
  * @return {jsx}
  */
 export const Hero = () => {
-  const { t } = useTranslation("hero");
+  const { t, i18n } = useTranslation("hero");
   const { theme } = useContext(ThemeContext);
-  console.log(theme, "theme");
+  const { width } = useWindowDimensions();
+
   return (
     <Block
       classes={`hero ${theme === "dark" ? "hero--dark" : ""}`}
@@ -57,7 +60,16 @@ export const Hero = () => {
                 store="google-play"
               />
             </GridItem>
-            <GridItem md={4} lg={6} classes="hero__buttons-item">
+            <GridItem
+              md={4}
+              lg={6}
+              classes={[
+                "hero__buttons-item",
+                width < 768 &&
+                  i18n.language != "en" &&
+                  "hero__buttons-item--padding-bottom",
+              ].join(" ")}
+            >
               <StoreButton
                 downloadText={t("download_text")}
                 size="lg"
