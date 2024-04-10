@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate, NavLink, Link, useLocation } from "react-router-dom";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import {
   Navbar,
@@ -12,10 +12,12 @@ import { languageSvc, countrySvc } from "@USupport-components-library/services";
 import { getCountryFromTimezone } from "@USupport-components-library/utils";
 import classNames from "classnames";
 import { ThemeContext } from "@USupport-components-library/utils";
+import { PasswordModal } from "@USupport-components-library/src";
+import { userSvc } from "@USupport-components-library/services";
+
+import { useError } from "#hooks";
 
 import "./page.scss";
-import { useEffect } from "react";
-import { PasswordModal } from "@USupport-components-library/src";
 
 const kazakhstanCountry = {
   value: "KZ",
@@ -134,33 +136,23 @@ export const Page = ({
     { name: t("page_3"), url: "/about-us" },
     { name: t("page_4"), url: "/information-portal" },
     { name: t("page_6"), url: "/my-qa" },
-    { name: t("page_5"), url: "/contact-us" },
   ];
 
   const footerLists = {
     list1: [
       { name: t("footer_1"), url: "/about-us" },
       { name: t("footer_2"), url: "/information-portal" },
-      { name: t("footer_3"), url: "/how-it-works" },
       { name: t("page_6"), url: "/my-qa" },
     ],
     list2: [
       { name: t("footer_4"), url: "/terms-of-use", exact: true },
       { name: t("footer_5"), url: "/privacy-policy" },
       { name: t("footer_6"), url: "/cookie-policy" },
-      { name: t("footer_7"), url: "/how-it-works?to=faq" },
     ],
     list3: [
-      { value: "+7 717 232 28 78", iconName: "call-filled", onClick: "phone" },
-      {
-        value: "Beibitshilik St 10а, Astana 010000, Kazakhstan",
-        iconName: "pin",
-      },
-      {
-        value: "usupport@7digit.io",
-        iconName: "mail-filled",
-        onClick: "mail",
-      },
+      { name: t("footer_3"), url: "/how-it-works" },
+      { name: t("footer_7"), url: "/how-it-works?to=faq" },
+      { name: t("contact_us"), url: "/contact-us" },
     ],
   };
 
@@ -178,35 +170,42 @@ export const Page = ({
   };
 
   const themeButton = () => {
-    return location.pathname === "/" ? (
-      <>
-        <Icon
-          name={theme === "light" ? "dark-mode-switch" : "light-mode"}
-          size="lg"
-          classes="page__theme-button"
-          onClick={toggleTheme}
-        />
-      </>
-    ) : (
-      setTheme("light")
+    return (
+      <Icon
+        name={theme === "light" ? "dark-mode-switch" : "light-mode"}
+        size="lg"
+        classes="page__theme-button"
+        onClick={toggleTheme}
+      />
     );
   };
 
   const queryClient = useQueryClient();
-  const hasEnteredPassword = queryClient.getQueryData(["hasEnteredPassword"]);
+  const hasPassedValidation = queryClient.getQueryData(["hasPassedValidation"]);
 
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(
-    !hasEnteredPassword
+    !hasPassedValidation
   );
-  const [password, setPasswordError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
-  const handlePasswordCheck = (password) => {
-    if (password === "USupport!2023") {
-      queryClient.setQueryData(["hasEnteredPassword"], true);
-      setIsPasswordModalOpen(false);
-    } else {
-      setPasswordError(t("wrong_password"));
+  const validatePlatformPasswordMutation = useMutation(
+    async (value) => {
+      return await userSvc.validatePlatformPassword(value);
+    },
+    {
+      onError: (error) => {
+        const { message: errorMessage } = useError(error);
+        setPasswordError(errorMessage);
+      },
+      onSuccess: () => {
+        queryClient.setQueryData(["hasPassedValidation"], true);
+        setIsPasswordModalOpen(false);
+      },
     }
+  );
+
+  const handlePasswordCheck = (value) => {
+    validatePlatformPasswordMutation.mutate(value);
   };
 
   return (
@@ -215,11 +214,11 @@ export const Page = ({
         label={t("password")}
         btnLabel={t("submit")}
         isOpen={isPasswordModalOpen}
-        error={password}
+        error={passwordError}
         handleSubmit={handlePasswordCheck}
+        isLoading={validatePlatformPasswordMutation.isLoading}
         placeholder={t("password_placeholder")}
       />
-
       <Navbar
         pages={pages}
         showCta
@@ -235,6 +234,8 @@ export const Page = ({
         initialLanguage={selectedLanguage}
         initialCountry={selectedCountry}
         renderIn="website"
+        hasThemeButton
+        t={t}
       />
       <div
         className={[
@@ -267,12 +268,7 @@ export const Page = ({
         onClick={() => navigateTo("/sos-center")}
         label={t("emergency_button")}
       />
-      <Footer
-        lists={footerLists}
-        contactUsText={t("contact_us")}
-        navigate={navigateTo}
-        Link={Link}
-      />
+      <Footer lists={footerLists} navigate={navigateTo} Link={Link} />
     </>
   );
 };

@@ -19,4 +19,13 @@
       height: 50rem;
     }
   }
+
+  & .contact-us {
+    padding-top: 0;
+    background-image: none;
+
+    &__heading {
+      color: $color_gray_66768d !important;
+    }
+  }
 }

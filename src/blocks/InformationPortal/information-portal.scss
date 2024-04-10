@@ -6,6 +6,7 @@
 
   & h2 {
     @include themify($themes, "color", "color_66768d_c1d7e0");
+    color: $color_white_ff !important;
   }
 
   & h4 {

@@ -13,6 +13,10 @@
     &__text {
       margin-left: $spacing_0_4;
       color: $color_gray_92989b;
+
+      &--dark {
+        color: $color_blue_c1d7e0;
+      }
     }
   }
 

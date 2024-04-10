@@ -11,6 +11,7 @@ export default function useGetProvidersData(random = false, limit = 3, width) {
       response = await providerSvc.getAllProviders({
         limit: width >= 1366 ? 12 : 10,
         offset: pageParam,
+        onlyAvailable: false,
       });
     } else {
       response = await providerSvc.getRandomProviders(limit);
