@@ -27,7 +27,7 @@ import imageSrcWebp from "./assets/PeopleCollage.webp";
 export const Hero = () => {
   const { t } = useTranslation("hero");
   const { theme } = useContext(ThemeContext);
-  console.log(theme, "theme");
+
   return (
     <Block
       classes={`hero ${theme === "dark" ? "hero--dark" : ""}`}
