@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useNavigate, NavLink, Link, useLocation } from "react-router-dom";
+import { useNavigate, NavLink, Link } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import {
@@ -41,7 +41,9 @@ export const Page = ({
   children,
 }) => {
   const navigateTo = useNavigate();
+  const queryClient = useQueryClient();
   const { t, i18n } = useTranslation("page");
+  const IS_DEV = process.env.NODE_ENV === "development";
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -157,7 +159,6 @@ export const Page = ({
   };
 
   const handleGoBack = () => navigateTo(-1);
-  const location = useLocation();
 
   const { theme, setTheme } = useContext(ThemeContext);
 
@@ -180,11 +181,10 @@ export const Page = ({
     );
   };
 
-  const queryClient = useQueryClient();
   const hasPassedValidation = queryClient.getQueryData(["hasPassedValidation"]);
 
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(
-    !hasPassedValidation
+    IS_DEV ? false : !hasPassedValidation
   );
   const [passwordError, setPasswordError] = useState("");
 
