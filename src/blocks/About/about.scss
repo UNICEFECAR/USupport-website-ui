@@ -3,8 +3,13 @@
 .about {
   padding: $spacing_3_2 $spacing_1_6 0 $spacing_1_6;
   text-align: left;
-  background-color: rgba(244, 252, 253, 0.62);
+  // background-color: $color_white_ff;
+  // @include themify($themes, "background", "color_white_ff");
   position: relative;
+
+  & h2 {
+    @include themify($themes, "color", "color_66768d_c1d7e0");
+  }
 
   &__main-grid {
     justify-items: center;

@@ -12,8 +12,9 @@ import { useWindowDimensions } from "@USupport-components-library/utils";
 
 import "./how-it-works.scss";
 
-import imageSrc from "./assets/HowItWorks.png";
-import imageSrcWebp from "./assets/HowItWorks.webp";
+import imageSrc from "./assets/HowItWorks2.png";
+import image1 from "./assets/HowItWorks3.png";
+import image2 from "./assets/HowItWorks4.png";
 
 /**
  * HowItWorks
@@ -51,38 +52,56 @@ export const HowItWorks = ({
             </p>
           )}
         </GridItem>
-        <GridItem lg={3}>
-          <CardNumber number="1" iconName="community" text={t("card_1")} />
-        </GridItem>
-        <GridItem lg={3}>
-          <CardNumber number="2" iconName="coaching" text={t("card_2")} />
-        </GridItem>
-        <GridItem lg={3}>
-          <CardNumber number="3" iconName="therapy" text={t("card_3")} />
-        </GridItem>
-        <GridItem lg={3}>
-          <CardNumber number="4" iconName="calm" text={t("card_4")} />
+        {width > 768 && width < 1366 && (
+          <GridItem md={8}>
+            <Grid classes="how-it-works__images-grid">
+              <GridItem md={4}>
+                <div className="how-it-works__tablet-image-container">
+                  <StaticImage
+                    png={image1}
+                    webp={image1}
+                    alt="happy-people-collage"
+                  />
+                </div>
+              </GridItem>
+              <GridItem md={4}>
+                <div className="how-it-works__tablet-image-container">
+                  <StaticImage
+                    png={image2}
+                    webp={image2}
+                    alt="happy-people-collage"
+                  />
+                </div>
+              </GridItem>
+            </Grid>
+          </GridItem>
+        )}
+        <GridItem md={8} lg={6}>
+          <Grid>
+            <GridItem lg={6}>
+              <CardNumber number="1" iconName="community" text={t("card_1")} />
+            </GridItem>
+            <GridItem lg={6}>
+              <CardNumber number="2" iconName="coaching" text={t("card_2")} />
+            </GridItem>
+            <GridItem lg={6}>
+              <CardNumber number="3" iconName="therapy" text={t("card_3")} />
+            </GridItem>
+            <GridItem lg={6}>
+              <CardNumber number="4" iconName="calm" text={t("card_4")} />
+            </GridItem>
+          </Grid>
         </GridItem>
         {width >= 1366 && (
           <GridItem lg={6} classes="how-it-works__image-collage-item">
             <StaticImage
               png={imageSrc}
-              webp={imageSrcWebp}
+              webp={imageSrc}
               alt="happy-people-collage"
             />
           </GridItem>
         )}
       </Grid>
-      {width > 768 && width < 1366 && (
-        <div className="how-it-works__tablet-image-container">
-          <StaticImage
-            png={imageSrc}
-            webp={imageSrcWebp}
-            alt="happy-people-collage"
-          />
-        </div>
-      )}
-
       <div>
         {showSummaryBellow && (
           <p className="paragraph how-it-works__summary-text-bellow">

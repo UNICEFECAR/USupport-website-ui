@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate, NavLink, Link } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import {
   Navbar,
@@ -11,9 +11,13 @@ import {
 import { languageSvc, countrySvc } from "@USupport-components-library/services";
 import { getCountryFromTimezone } from "@USupport-components-library/utils";
 import classNames from "classnames";
+import { ThemeContext } from "@USupport-components-library/utils";
+import { PasswordModal } from "@USupport-components-library/src";
+import { userSvc } from "@USupport-components-library/services";
+
+import { useError } from "#hooks";
 
 import "./page.scss";
-import { useEffect } from "react";
 
 const kazakhstanCountry = {
   value: "KZ",
@@ -37,7 +41,9 @@ export const Page = ({
   children,
 }) => {
   const navigateTo = useNavigate();
+  const queryClient = useQueryClient();
   const { t, i18n } = useTranslation("page");
+  const IS_DEV = process.env.NODE_ENV === "development";
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -132,40 +138,87 @@ export const Page = ({
     { name: t("page_3"), url: "/about-us" },
     { name: t("page_4"), url: "/information-portal" },
     { name: t("page_6"), url: "/my-qa" },
-    { name: t("page_5"), url: "/contact-us" },
   ];
 
   const footerLists = {
     list1: [
       { name: t("footer_1"), url: "/about-us" },
       { name: t("footer_2"), url: "/information-portal" },
-      { name: t("footer_3"), url: "/how-it-works" },
       { name: t("page_6"), url: "/my-qa" },
     ],
     list2: [
       { name: t("footer_4"), url: "/terms-of-use", exact: true },
       { name: t("footer_5"), url: "/privacy-policy" },
       { name: t("footer_6"), url: "/cookie-policy" },
-      { name: t("footer_7"), url: "/how-it-works?to=faq" },
     ],
     list3: [
-      { value: "+7 717 232 28 78", iconName: "call-filled", onClick: "phone" },
-      {
-        value: "Beibitshilik St 10а, Astana 010000, Kazakhstan",
-        iconName: "pin",
-      },
-      {
-        value: "usupport@7digit.io",
-        iconName: "mail-filled",
-        onClick: "mail",
-      },
+      { name: t("footer_3"), url: "/how-it-works" },
+      { name: t("footer_7"), url: "/how-it-works?to=faq" },
+      { name: t("contact_us"), url: "/contact-us" },
     ],
   };
 
   const handleGoBack = () => navigateTo(-1);
 
+  const { theme, setTheme } = useContext(ThemeContext);
+
+  const toggleTheme = () => {
+    if (theme === "light") {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
+
+  const themeButton = () => {
+    return (
+      <Icon
+        name={theme === "light" ? "dark-mode-switch" : "light-mode"}
+        size="lg"
+        classes="page__theme-button"
+        onClick={toggleTheme}
+      />
+    );
+  };
+
+  const hasPassedValidation = queryClient.getQueryData(["hasPassedValidation"]);
+
+  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(
+    IS_DEV ? false : !hasPassedValidation
+  );
+  const [passwordError, setPasswordError] = useState("");
+
+  const validatePlatformPasswordMutation = useMutation(
+    async (value) => {
+      return await userSvc.validatePlatformPassword(value);
+    },
+    {
+      onError: (error) => {
+        const { message: errorMessage } = useError(error);
+        setPasswordError(errorMessage);
+      },
+      onSuccess: () => {
+        queryClient.setQueryData(["hasPassedValidation"], true);
+        setIsPasswordModalOpen(false);
+      },
+    }
+  );
+
+  const handlePasswordCheck = (value) => {
+    validatePlatformPasswordMutation.mutate(value);
+  };
+
   return (
     <>
+      <PasswordModal
+        label={t("password")}
+        btnLabel={t("submit")}
+        isOpen={isPasswordModalOpen}
+        error={passwordError}
+        handleSubmit={handlePasswordCheck}
+        isLoading={validatePlatformPasswordMutation.isLoading}
+        placeholder={t("password_placeholder")}
+      />
       <Navbar
         pages={pages}
         showCta
@@ -181,6 +234,8 @@ export const Page = ({
         initialLanguage={selectedLanguage}
         initialCountry={selectedCountry}
         renderIn="website"
+        hasThemeButton
+        t={t}
       />
       <div
         className={[
@@ -206,18 +261,14 @@ export const Page = ({
         )}
         {children}
       </div>
+      {themeButton()}
       <CircleIconButton
         iconName="phone-emergency"
         classes="page__emergency-button"
         onClick={() => navigateTo("/sos-center")}
         label={t("emergency_button")}
       />
-      <Footer
-        lists={footerLists}
-        contactUsText={t("contact_us")}
-        navigate={navigateTo}
-        Link={Link}
-      />
+      <Footer lists={footerLists} navigate={navigateTo} Link={Link} />
     </>
   );
 };

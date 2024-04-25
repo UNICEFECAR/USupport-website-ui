@@ -29,7 +29,7 @@ export function Landing() {
       <About />
       <HowItWorks summary isTitleWhite={false} />
       <MeetOurProvidersOverview />
-      <OurPartnersOverview />
+      {/* <OurPartnersOverview /> */}
       <InformationPortal />
       <MyQALanding />
       <CouponInformation />

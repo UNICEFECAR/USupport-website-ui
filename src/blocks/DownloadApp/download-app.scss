@@ -1,15 +1,46 @@
 @import "@USupport-components-library/styles";
 
 .download-app {
-  padding-top: $spacing_3_2;
-  background: $gradient_block;
+  padding-top: 46.5rem;
+  background-image: url("./assets/background-mobile.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
   @media screen and (min-width: $screen-md) {
-    padding-top: 0;
+    padding-top: 6rem;
+
+    background-image: url("./assets/background-tablet.png");
 
     &__content-item {
       display: flex;
       align-items: center;
+    }
+  }
+
+  @media screen and (min-width: $screen-lg) {
+    background-image: url("./assets/background-desktop.png");
+  }
+
+  &--dark {
+    background-image: url("./assets/background-mobile-dark.png");
+
+    @media screen and (max-width: $screen-md) {
+      & .download-app__heading-item,
+      & .download-app__sub-heading {
+        & h3,
+        & p {
+          color: $color_blue_3d527b;
+        }
+      }
+    }
+
+    @media screen and (min-width: $screen-md) {
+      background-image: url("./assets/background-tablet-dark.png");
+    }
+
+    @media screen and (min-width: $screen-lg) {
+      background-image: url("./assets/background-desktop-dark.png");
     }
   }
 
@@ -59,13 +90,12 @@
     @media screen and (min-width: $screen-md) {
       margin-top: 0;
       width: auto;
-      height: 20.6rem;
-      margin-right: -3.6rem;
+      height: 30rem;
     }
 
-    @media screen and (min-width: 1000px) {
+    @media screen and (min-width: $screen-lg) {
       height: 36rem;
-      margin-right: -11.5rem;
+      margin-left: -50%;
     }
   }
 }

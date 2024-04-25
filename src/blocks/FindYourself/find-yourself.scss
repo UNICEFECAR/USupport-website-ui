@@ -14,12 +14,13 @@
 
   &__grid {
     justify-content: center;
+    row-gap: 0;
   }
 
   &__heading-item {
     width: 100vw;
     background-repeat: no-repeat;
-    height: 26rem;
+    height: 38rem;
     background-position: center;
     background-size: cover;
     display: flex;
@@ -28,6 +29,20 @@
     justify-content: center;
     text-align: center;
     min-width: 40.7rem;
+
+    & h2,
+    & h3,
+    & p,
+    & .paragraph {
+      color: $color_white_ff !important;
+    }
+
+    &__h3 {
+      text-align: center;
+      @media screen and (min-width: $screen-md) {
+        padding-bottom: 2rem;
+      }
+    }
 
     .no-webp & {
       background-image: url("./assets/BeYourBestSelf.png");
@@ -40,22 +55,28 @@
       height: 41.9rem;
 
       .no-webp & {
+        background-image: url("./assets/BeYourBestSelfTablet.png");
+      }
+      .webp & {
+        background-image: url("./assets/BeYourBestSelfTablet.webp");
+      }
+    }
+
+    @media screen and (min-width: $screen-lg) {
+      height: 41.9rem;
+
+      .no-webp & {
         background-image: url("./assets/BeYourBestSelfDesktop.png");
       }
       .webp & {
         background-image: url("./assets/BeYourBestSelfDesktop.webp");
       }
     }
-
-    h2,
-    p {
-      color: $color_white_ff;
-    }
   }
 
   &__text-item {
     width: 100vw;
-    background-color: $color_purple_200e2f;
+    @include themify($themes, "background-color", "color_purple_200e2f");
     margin-top: -$spacing_0_8;
     padding: $spacing_2_6 0;
     display: flex;
@@ -64,9 +85,11 @@
     justify-content: center;
     min-width: 40.7rem;
 
-    h2,
-    p {
-      color: $color_white_ff;
+    & h2,
+    & h3,
+    & p,
+    & .paragraph {
+      color: $color_white_ff !important;
     }
   }
 
@@ -101,15 +124,20 @@
       background-repeat: no-repeat;
       background-size: cover;
       justify-self: center;
+
+      & h3 {
+        color: #6a4a4c;
+        margin-top: 1rem;
+        font-weight: $font_medium;
+      }
+
+      & img {
+        width: 10.5rem;
+      }
     }
 
     &.box-1 {
-      .no-webp & {
-        background-image: url("./assets/NeedHelp.png");
-      }
-      .webp & {
-        background-image: url("./assets/NeedHelp.webp");
-      }
+      background-color: #fe9c91;
       margin-top: $spacing_4_8;
       @media screen and (min-width: $screen-md) {
         place-self: end;
@@ -117,12 +145,7 @@
     }
 
     &.box-2 {
-      .no-webp & {
-        background-image: url("./assets/OnlineConsultations.png");
-      }
-      .webp & {
-        background-image: url("./assets/OnlineConsultations.webp");
-      }
+      background-color: #bbe0fa;
       margin-top: $spacing_3_2;
       @media screen and (min-width: $screen-md) {
         margin-top: $spacing_4_8;
@@ -131,13 +154,13 @@
     }
 
     &.box-3 {
-      .no-webp & {
-        background-image: url("./assets/FreeResources.png");
-      }
-      .webp & {
-        background-image: url("./assets/FreeResources.webp");
-      }
+      background-color: #6085cb;
       margin-top: $spacing_3_2;
+
+      & h3 {
+        color: #fff3d7;
+      }
+
       @media screen and (min-width: $screen-md) {
         margin-top: $spacing_4_8;
         place-self: end;
@@ -145,31 +168,38 @@
     }
 
     &.box-4 {
-      .no-webp & {
-        background-image: url("./assets/EasyAndSelfAccess.png");
-      }
-      .webp & {
-        background-image: url("./assets/EasyAndSelfAccess.webp");
-      }
+      background-color: #fdccbe;
       margin-top: $spacing_3_2;
+
       @media screen and (min-width: $screen-md) {
         margin-top: $spacing_4_8;
         place-self: start;
       }
+
+      & img {
+        width: 9rem;
+        padding-right: 2rem;
+      }
+
+      & h3 {
+        margin-top: 1.5rem;
+        color: #535150;
+      }
     }
 
     & > .overlay {
-      background-color: $overlay_010101;
       border-radius: $border_radius_4_0;
       height: inherit;
       position: absolute;
       width: inherit;
       z-index: $z_index_1;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
     }
 
     h3 {
-      color: $color_white_ff;
-      position: relative;
       text-align: center;
       z-index: $z_index_2;
     }

@@ -16,7 +16,8 @@
   }
 
   &__heading-text {
-    color: $color_white_ff;
+    color: $color_white_ff !important;
+    // @include themify($themes, "color", "color_white_ff");
   }
 
   &__most-important-item {
@@ -86,7 +87,8 @@
     }
 
     h3 {
-      color: $color_white_ff;
+      color: $color_white_ff !important;
+      // @include themify($themes, "color", "color_white_ff");
     }
   }
 }

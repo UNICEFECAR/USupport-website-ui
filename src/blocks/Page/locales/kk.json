@@ -30,5 +30,12 @@
   "button_text": "Қосымшаға өту",
   "language_label": "Тіл",
   "country_label": "Ел",
-  "contact_us": "Бізге хабарласыңыз"
+  "contact_us": "Бізге хабарласыңыз",
+  "password_placeholder": "Құпия сөз",
+  "password": "Сайтқа кіру үшін құпия сөзіңізді енгізіңіз",
+  "wrong_password": "Құпия сөз дұрыс емес",
+  "submit": "Жіберу",
+
+  "dark": "Қараңғы",
+  "light": "Жарық"
 }

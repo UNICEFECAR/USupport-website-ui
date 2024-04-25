@@ -4,6 +4,15 @@
   padding-top: $spacing_8_0;
   padding-bottom: $spacing_2_4;
 
+  & h2 {
+    @include themify($themes, "color", "color_66768d_c1d7e0");
+    color: $color_white_ff !important;
+  }
+
+  & h4 {
+    @include themify($themes, "color", "color_3d527b_20809e");
+  }
+
   &__paragraphs {
     text-align: left;
   }

@@ -30,5 +30,13 @@
   "button_text": "Go to app",
   "language_label": "Language",
   "country_label": "Country",
-  "contact_us": "Contact us"
+  "contact_us": "Contact us",
+
+  "password_placeholder": "Password", 
+  "password": "Please enter your password to access the site",
+  "wrong_password": "Wrong password",
+  "submit": "Submit",
+
+  "dark": "Dark",
+  "light": "Light"
 }

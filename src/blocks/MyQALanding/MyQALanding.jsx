@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -8,7 +8,10 @@ import {
   Box,
   Button,
 } from "@USupport-components-library/src";
-import { useWindowDimensions } from "@USupport-components-library/utils";
+import {
+  useWindowDimensions,
+  ThemeContext,
+} from "@USupport-components-library/utils";
 
 import image from "./assets/image.png";
 import imageSmall from "./assets/image-small.png";
@@ -23,6 +26,7 @@ import "./my-qa-landing.scss";
  * @return {jsx}
  */
 export const MyQALanding = () => {
+  const { theme } = useContext(ThemeContext);
   const { t } = useTranslation("my-qa-landing");
 
   const { width } = useWindowDimensions();
@@ -31,14 +35,17 @@ export const MyQALanding = () => {
     <Block classes="my-qa-landing">
       <Grid>
         <GridItem md={8} lg={12}>
-          <h2>{t("heading")}</h2>
+          <h2 className="my-qa-landing__heading">{t("heading")}</h2>
           <p className="my-qa-landing__subheading-text">{t("subheading")}</p>
         </GridItem>
         <GridItem md={8} lg={12}>
           <Grid>
             <GridItem md={4} lg={5}>
               <div className="my-qa-landing__button-container">
-                <Box classes="my-qa-landing__ask-anonymous-card">
+                <Box
+                  classes="my-qa-landing__ask-anonymous-card"
+                  boxShadow={theme === "dark" ? 2 : 1}
+                >
                   <h4>{t("ask_anonymous_card_heading")}</h4>
                   <p className="text">{t("ask_anonymous_card_text")}</p>
                 </Box>
