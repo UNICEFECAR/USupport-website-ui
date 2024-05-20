@@ -1,0 +1,28 @@
+{
+  "earliest_slot_label": "Najwcześniejszy dostępny przedział czasowy dla konsultacji",
+  "languages_label": "Język działania",
+  "education_label": "Edukacja",
+  "work_with_label": "Praca z",
+  "specializations_label": "Specjalizacje",
+  "done_consultations_label": "Ogólnie przeprowadzone konsultacje",
+  "description_label": "Opis",
+  "edit_details": "Edytuj szczegóły",
+  "change_password": "Zmienić hasło",
+  "delete_account": "Usuń konto",
+  "no_available_slot": "Nie ma dostępnego przedziału czasowego",
+
+  "psychologist": "Psycholog",
+  "psychiatrist": "Psychiatra",
+  "psychotherapist": "Psychoterapeuta",
+
+  "addiction": "Uzależnienie",
+  "stress": "Stres",
+  "burnout": "Wypalenie",
+  "eating_disorder": "Zaburzenia odżywiania",
+  "depression": "Depresja",
+  "anxiety": "Niepokój",
+  "panic_attack": "Atak paniki",
+  "relationship": "Związek",
+  "personal_development": "Rozwój osobisty",
+  "hour_consultation": "za 1 godzinę konsultacji"
+}
