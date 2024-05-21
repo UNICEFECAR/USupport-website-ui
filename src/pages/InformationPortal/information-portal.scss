@@ -2,13 +2,13 @@
 @import "@USupport-components-library/styles";
 
 .page__information-portal {
-  background-image: url("./assets/information-portal-small.png");
+  background-image: url("./assets/information-portal-mobile.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position-y: $spacing_7_0;
   min-width: 40.7rem;
 
   @media screen and (min-width: $screen-md) {
-    background-image: url("./assets/information-portal-big.png");
+    background-image: url("./assets/information-portal.png");
   }
 }
