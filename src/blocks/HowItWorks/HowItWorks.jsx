@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import {
   Block,
@@ -8,13 +8,19 @@ import {
   StaticImage,
 } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
-import { useWindowDimensions } from "@USupport-components-library/utils";
+import {
+  useWindowDimensions,
+  ThemeContext,
+} from "@USupport-components-library/utils";
 
 import "./how-it-works.scss";
 
 import imageSrc from "./assets/HowItWorks2.png";
+import imageSrcDark from "./assets/HowItWorks2-dark.png";
 import image1 from "./assets/HowItWorks3.png";
 import image2 from "./assets/HowItWorks4.png";
+import image1Dark from "./assets/HowItWorks3-dark.png";
+import image2Dark from "./assets/HowItWorks4-dark.png";
 
 /**
  * HowItWorks
@@ -31,6 +37,8 @@ export const HowItWorks = ({
 }) => {
   const { t } = useTranslation("how-it-works");
   const { width } = useWindowDimensions();
+
+  const { theme } = useContext(ThemeContext);
 
   return (
     <Block classes="how-it-works" animation="fade-left">
@@ -58,8 +66,8 @@ export const HowItWorks = ({
               <GridItem md={4}>
                 <div className="how-it-works__tablet-image-container">
                   <StaticImage
-                    png={image1}
-                    webp={image1}
+                    png={theme === "dark" ? image1Dark : image1}
+                    webp={theme === "dark" ? image1Dark : image1}
                     alt="happy-people-collage"
                   />
                 </div>
@@ -67,8 +75,8 @@ export const HowItWorks = ({
               <GridItem md={4}>
                 <div className="how-it-works__tablet-image-container">
                   <StaticImage
-                    png={image2}
-                    webp={image2}
+                    png={theme === "dark" ? image2Dark : image2}
+                    webp={theme === "dark" ? image2Dark : image2}
                     alt="happy-people-collage"
                   />
                 </div>
@@ -95,8 +103,8 @@ export const HowItWorks = ({
         {width >= 1366 && (
           <GridItem lg={6} classes="how-it-works__image-collage-item">
             <StaticImage
-              png={imageSrc}
-              webp={imageSrc}
+              png={theme === "dark" ? imageSrcDark : imageSrc}
+              webp={theme === "dark" ? imageSrcDark : imageSrc}
               alt="happy-people-collage"
             />
           </GridItem>
