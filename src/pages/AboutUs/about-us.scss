@@ -9,7 +9,10 @@
   min-width: 40.7rem;
 
   @media screen and (min-width: $screen-md) {
-    background-image: url("./assets/about-us.png");
+    background-image: url("./assets/about-us-light.jpg");
+    &--dark {
+      background-image: url("./assets/about-us.png");
+    }
   }
   &__radial-circle {
     position: absolute;
