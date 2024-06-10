@@ -7,7 +7,7 @@ import {
   RadialCircle,
   StaticImage,
 } from "@USupport-components-library/src";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./hero.scss";
@@ -42,7 +42,7 @@ export const Hero = () => {
           >
             <GridItem md={8} lg={12} classes="hero__heading-item">
               <h1>
-                {t("heading_1")} <span>{t("heading_1_1")}</span>
+                <Trans components={[<br></br>]}>{t("heading_1")}</Trans>
               </h1>
             </GridItem>
             <GridItem md={8} lg={12} classes="hero__text-item">

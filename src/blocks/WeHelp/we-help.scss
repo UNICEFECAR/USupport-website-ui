@@ -16,6 +16,11 @@
   &__heading-text {
     color: $color_white_ff !important;
     padding-bottom: $spacing_7_2;
+
+    @media screen and (min-width: $screen_lg) {
+      padding-top: $spacing_7_2;
+      padding-bottom: 0;
+    }
   }
 
   &__secondary-grid {
