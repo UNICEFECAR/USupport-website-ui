@@ -55,6 +55,15 @@ function App() {
   };
 
   const [theme, setTheme] = useState(getDefaultTheme());
+  const [showContent, setShowContent] = useState(false);
+
+  useEffect(() => {
+    const lang = localStorage.getItem("language");
+    if (!lang) {
+      localStorage.setItem("language", "en");
+    }
+    setShowContent(true);
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("default-theme", theme);
@@ -64,7 +73,7 @@ function App() {
     <ThemeContext.Provider value={{ theme, setTheme }}>
       <div className={`theme-${theme}`}>
         <QueryClientProvider client={queryClient}>
-          <Root />
+          {showContent && <Root />}
           <ReactQueryDevtools initialOpen />
         </QueryClientProvider>
       </div>

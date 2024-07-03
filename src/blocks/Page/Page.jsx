@@ -15,7 +15,7 @@ import { ThemeContext } from "@USupport-components-library/utils";
 import { PasswordModal } from "@USupport-components-library/src";
 import { userSvc } from "@USupport-components-library/services";
 
-import { useError } from "#hooks";
+import { useError, useEventListener } from "#hooks";
 
 import "./page.scss";
 
@@ -129,8 +129,15 @@ export const Page = ({
     return languages;
   };
 
+  useEventListener("countryChanged", () => {
+    queryClient.invalidateQueries({ queryKey: ["languages"] });
+  });
+
   const { data: countries } = useQuery(["countries"], fetchCountries);
-  const { data: languages } = useQuery(["languages"], fetchLanguages);
+  const { data: languages } = useQuery(
+    ["languages", selectedCountry],
+    fetchLanguages
+  );
 
   const pages = [
     { name: t("page_1"), url: "/", exact: true },
