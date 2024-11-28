@@ -58,6 +58,7 @@ export const ArticleInformation = () => {
       excludeId: articleData.id,
       populate: true,
       ids: articleIdsQuerry.data,
+      ageGroupId: articleData.ageGroupId,
     });
 
     if (data.length === 0) {
@@ -69,6 +70,7 @@ export const ArticleInformation = () => {
         excludeId: articleData.id,
         populate: true,
         ids: articleIdsQuerry.data,
+        ageGroupId: articleData.ageGroupId,
       });
       return newest.data;
     }
