@@ -28,6 +28,12 @@ export const WeHelp = () => {
         <GridItem md={8} lg={12}>
           <Box borderSize="lg" classes="we-help__content-box">
             <Grid classes="we-help__secondary-grid">
+              <GridItem md={8} lg={12} classes="we-help__mascot-item">
+                <Animation
+                  name="MascotPurpleInformation"
+                  classes="we-help__mascot-item__animation"
+                />
+              </GridItem>
               <GridItem
                 md={8}
                 lg={12}
@@ -63,12 +69,6 @@ export const WeHelp = () => {
                 <p className="text we-help__secondary-grid__text-four">
                   {t("paragraph_7")}
                 </p>
-              </GridItem>
-              <GridItem md={8} lg={12} classes="we-help__mascot-item">
-                <Animation
-                  name="MascotPurpleInformation"
-                  classes="we-help__mascot-item__animation"
-                />
               </GridItem>
             </Grid>
           </Box>
