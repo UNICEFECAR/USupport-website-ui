@@ -33,8 +33,6 @@ export const WeHelp = () => {
                 lg={12}
                 classes="we-help__secondary-grid__descriptions-item"
               >
-                <h3>{t("heading_1")}</h3>
-
                 <p className="text we-help__secondary-grid__text-two">
                   {t("paragraph_1")}
                 </p>
@@ -61,7 +59,31 @@ export const WeHelp = () => {
                 </p>
 
                 <p className="text we-help__secondary-grid__text-four">
-                  {t("paragraph_7")}
+                  <span>{t("paragraph_7")}</span>
+                  <span>
+                    <a
+                      className="link"
+                      target="_blank"
+                      rel="noreferrer"
+                      href="https://usupport.online/terms-of-use"
+                    >
+                      {" "}
+                      {t("terms")}{" "}
+                    </a>
+                  </span>
+                  <span>{t("and")}</span>
+                  <span>
+                    <a
+                      className="link"
+                      target="_blank"
+                      rel="noreferrer"
+                      href="https://usupport.online/privacy-policy"
+                    >
+                      {" "}
+                      {t("privacy")}{" "}
+                    </a>
+                  </span>
+                  <span>{t("paragraph_7_2")}</span>
                 </p>
               </GridItem>
               <GridItem md={8} lg={12} classes="we-help__mascot-item">
