@@ -33,6 +33,7 @@ export const WeHelp = () => {
                 lg={12}
                 classes="we-help__secondary-grid__descriptions-item"
               >
+                <h3 className="mt-32">{t("heading_1")}</h3>
                 <p className="text we-help__secondary-grid__text-two">
                   {t("paragraph_1")}
                 </p>
