@@ -23,7 +23,7 @@ export const WeHelp = () => {
     <Block classes="we-help">
       <Grid>
         <GridItem md={8} lg={12} classes="we-help__heading">
-          <h2 className="we-help__heading-text">{t("heading_1")}</h2>
+          {/* <h2 className="we-help__heading-text">{t("heading_1")}</h2> */}
         </GridItem>
         <GridItem md={8} lg={12}>
           <Box borderSize="lg" classes="we-help__content-box">
@@ -44,6 +44,12 @@ export const WeHelp = () => {
               </GridItem>
 
               <GridItem md={1} lg={6} classes="we-help__mascot-item">
+                <Animation
+                  name="MascotPurpleInformation"
+                  classes="we-help__mascot-item__animation"
+                />
+              </GridItem>
+              <GridItem md={8} lg={12} classes="we-help__mascot-item">
                 <Animation
                   name="MascotPurpleInformation"
                   classes="we-help__mascot-item__animation"
