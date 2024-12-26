@@ -1,0 +1,42 @@
+{
+  "page_1": "Strona główna",
+  "page_2": "Jak to działa?",
+  "page_3": "O nas",
+  "page_4": "Portal informacyjny",
+  "page_5": "Skontaktuj się z nami",
+  "page_6": "Moje Q&A",
+
+  "country_1": "",
+  "country_2": "",
+  "country_3": "",
+
+  "language_1": "",
+  "language_2": "",
+  "language_3": "",
+  "language_4": "",
+  "language_5": "",
+  "language_6": "",
+
+  "footer_1": "O nas",
+  "footer_2": "Portal informacyjny",
+  "footer_3": "Jak to działa?",
+  "footer_4": "Warunki świadczenia usług",
+  "footer_5": "Polityka prywatności",
+  "footer_6": "Polityka plików cookie",
+  "footer_7": "Najczęściej zadawane pytania",
+
+  "emergency_button": "Centrum SOS",
+
+  "button_text": "Przejdź do aplikacji",
+  "language_label": "Język",
+  "country_label": "Kraj",
+  "contact_us": "Skontaktuj się z nami",
+
+  "password_placeholder": "Hasło",
+  "password": "Wprowadź hasło, aby uzyskać dostęp do strony",
+  "wrong_password": "Nieprawidłowe hasło",
+  "submit": "Prześlij",
+
+  "dark": "Ciemny",
+  "light": "Jasny"
+}
