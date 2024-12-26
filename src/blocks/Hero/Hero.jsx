@@ -50,20 +50,45 @@ export const Hero = () => {
               <br />
               <p className="paragraph">{t("paragraph_1_1")}</p>
             </GridItem>
-            <GridItem md={4} lg={6} classes="hero__buttons-item">
-              <StoreButton
-                downloadText={t("download_text")}
-                size="lg"
-                store="google-play"
-              />
+            <GridItem md={8} lg={12} classes="hero__buttons-item">
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  flexWrap: "wrap",
+                  gap: "1rem",
+                }}
+              >
+                <div>
+                  <StoreButton
+                    downloadText={t("download_text")}
+                    size="lg"
+                    store="google-play"
+                  />
+                </div>
+                <div>
+                  <StoreButton
+                    downloadText={t("download_text")}
+                    size="lg"
+                    store="app-store"
+                  />
+                </div>
+                <div>
+                  <StoreButton
+                    browserLabel={t("browser")}
+                    downloadText={t("click_to_use")}
+                    size="lg"
+                    store="web"
+                  />
+                </div>
+              </div>
             </GridItem>
-            <GridItem md={4} lg={6} classes="hero__buttons-item">
-              <StoreButton
-                downloadText={t("download_text")}
-                size="lg"
-                store="app-store"
-              />
+            {/* <GridItem md={6} lg={6} classes="hero__buttons-item">
+          
             </GridItem>
+            <GridItem md={8} lg={12} classes="hero__buttons-item">
+ 
+            </GridItem> */}
           </Grid>
         </GridItem>
         <GridItem md={3} lg={6} classes="hero__collage-item">
