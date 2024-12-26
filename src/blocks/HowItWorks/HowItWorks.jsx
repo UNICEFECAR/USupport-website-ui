@@ -6,6 +6,7 @@ import {
   GridItem,
   CardNumber,
   StaticImage,
+  StoreButton,
 } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
 import {
@@ -109,6 +110,27 @@ export const HowItWorks = ({
             />
           </GridItem>
         )}
+
+        <GridItem md={8} lg={12} classes="how-it-works__download-buttons">
+          <div className="how-it-works__download-buttons__store">
+            <StoreButton
+              downloadText={t("download_text")}
+              size="lg"
+              store="google-play"
+            />
+            <StoreButton
+              downloadText={t("download_text")}
+              size="lg"
+              store="app-store"
+            />
+            <StoreButton
+              browserLabel={t("browser")}
+              downloadText={t("click_to_use")}
+              size="lg"
+              store="web"
+            />
+          </div>
+        </GridItem>
       </Grid>
       <div>
         {showSummaryBellow && (
