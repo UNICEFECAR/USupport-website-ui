@@ -50,18 +50,26 @@ export const Hero = () => {
               <br />
               <p className="paragraph">{t("paragraph_1_1")}</p>
             </GridItem>
-            <GridItem md={4} lg={6} classes="hero__buttons-item">
+            <GridItem md={3} lg={4} classes="hero__buttons-item">
               <StoreButton
                 downloadText={t("download_text")}
                 size="lg"
                 store="google-play"
               />
             </GridItem>
-            <GridItem md={4} lg={6} classes="hero__buttons-item">
+            <GridItem md={3} lg={4} classes="hero__buttons-item">
               <StoreButton
                 downloadText={t("download_text")}
                 size="lg"
                 store="app-store"
+              />
+            </GridItem>
+            <GridItem md={3} lg={4} classes="hero__buttons-item">
+              <StoreButton
+                browserLabel={t("browser")}
+                downloadText={t("click_to_use")}
+                size="lg"
+                store="web"
               />
             </GridItem>
           </Grid>
