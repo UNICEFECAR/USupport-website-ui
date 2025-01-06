@@ -24,5 +24,7 @@
   "panic_attack": "Панічний напад",
   "relationship": "Відносини",
   "personal_development": "Особистий розвиток",
-  "hour_consultation": "за 1 годину консультації"
+  "hour_consultation": "за 1 годину консультації",
+  "organizations_label": "Організації",
+  "free": "безкоштовно"
 }
