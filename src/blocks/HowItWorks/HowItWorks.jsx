@@ -128,6 +128,10 @@ export const HowItWorks = ({
               downloadText={t("click_to_use")}
               size="lg"
               store="web"
+              onClick={() => {
+                window.location.href = "/client/register-preview";
+                window.scrollTo(0, 0);
+              }}
             />
           </div>
         </GridItem>
