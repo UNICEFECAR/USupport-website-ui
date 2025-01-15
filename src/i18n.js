@@ -27,6 +27,7 @@ import {
   MascotHeaderMyQA,
   MyQA,
   CouponInformation,
+  CustomAboutUs,
 } from "#blocks/locales.js";
 
 import {
@@ -70,6 +71,7 @@ const resources = {
     "mascot-header-MyQA": MascotHeaderMyQA.en,
     "my-qa": MyQA.en,
     "coupon-information": CouponInformation.en,
+    "custom-about-us": CustomAboutUs.en,
 
     // Pages
     "not-found-page": NotFoundPage.en,
@@ -109,6 +111,7 @@ const resources = {
     "mascot-header-MyQA": MascotHeaderMyQA.kk,
     "my-qa": MyQA.kk,
     "coupon-information": CouponInformation.kk,
+    "custom-about-us": CustomAboutUs.kk,
 
     // Pages
     "not-found-page": NotFoundPage.kk,
@@ -148,6 +151,7 @@ const resources = {
     "mascot-header-MyQA": MascotHeaderMyQA.ru,
     "my-qa": MyQA.ru,
     "coupon-information": CouponInformation.ru,
+    "custom-about-us": CustomAboutUs.ru,
 
     // Pages
     "not-found-page": NotFoundPage.ru,
@@ -187,6 +191,7 @@ const resources = {
     "mascot-header-MyQA": MascotHeaderMyQA.pl,
     "my-qa": MyQA.pl,
     "coupon-information": CouponInformation.pl,
+    "custom-about-us": CustomAboutUs.pl,
 
     // Pages
     "not-found-page": NotFoundPage.pl,
@@ -226,6 +231,7 @@ const resources = {
     "mascot-header-MyQA": MascotHeaderMyQA.uk,
     "my-qa": MyQA.uk,
     "coupon-information": CouponInformation.uk,
+    "custom-about-us": CustomAboutUs.uk,
 
     // Pages
     "not-found-page": NotFoundPage.uk,

@@ -1,0 +1,15 @@
+@import "@USupport-components-library/styles";
+
+.custom-about-us {
+  //   @include full-height-page-navbar;
+  padding: $spacing_3_4 $spacing_1_5 $spacing_4_0 $spacing_1_5;
+  padding-top: 28rem;
+
+  @media screen and (min-width: $screen-lg) {
+    padding: $spacing_3_4 $spacing_40_3 $spacing_4_0 $spacing_40_3;
+  }
+
+  &__box {
+    padding: $spacing_2_4 $spacing_1_6;
+  }
+}

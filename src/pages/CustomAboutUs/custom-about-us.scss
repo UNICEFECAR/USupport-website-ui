@@ -1,0 +1,26 @@
+/* CustomAboutUs styles */
+@import "@USupport-components-library/styles";
+
+.page__custom-about-us {
+  background-image: url("../AboutUs/assets/about-us-mobile.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-y: $spacing_7_0;
+  min-width: 40.7rem;
+
+  @media screen and (min-width: $screen-md) {
+    background-image: url("../AboutUs/assets/about-us-light.jpg");
+    &--dark {
+      background-image: url("../AboutUs/assets/about-us.png");
+    }
+  }
+
+  & .contact-us {
+    padding-top: 0;
+    background-image: none;
+
+    &__heading {
+      color: $color_gray_66768d !important;
+    }
+  }
+}

@@ -24,3 +24,4 @@ export * from "./MyQALanding";
 export * from "./MascotHeaderMyQA";
 export * from "./MyQA";
 export * from "./CouponInformation";
+export * from './CustomAboutUs';
