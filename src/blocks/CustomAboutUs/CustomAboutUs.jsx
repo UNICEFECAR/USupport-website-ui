@@ -31,10 +31,10 @@ export const CustomAboutUs = () => {
   useEventListener("countryChanged", handler);
 
   const { isLoading, data } = useQuery({
-    queryKey: ["about-us", selectedCountry, i18n.language],
+    queryKey: ["about-us", country, i18n.language],
     queryFn: async () => {
       const res = await cmsSvc.getAbousUsContentForCountry({
-        country: selectedCountry,
+        country: country.toLocaleUpperCase(),
         language: i18n.language,
       });
       return res;
