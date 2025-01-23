@@ -22,6 +22,9 @@ import {
  * @returns {JSX.Element}
  */
 export function Landing() {
+  const country = localStorage.getItem("country");
+  const showCouponSection = country !== "KZ";
+
   return (
     <Page>
       <Hero />
@@ -32,7 +35,7 @@ export function Landing() {
       {/* <OurPartnersOverview /> */}
       <InformationPortal />
       <MyQALanding />
-      <CouponInformation />
+      {showCouponSection ? <CouponInformation /> : null}
       <FAQ showLearnMore={true} showMascot={true} showAll={false} />
       <DownloadApp />
     </Page>
