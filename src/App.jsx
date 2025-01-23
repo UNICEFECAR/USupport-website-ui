@@ -21,6 +21,7 @@ import {
   TermsOfUse,
   ProviderOverview,
   MyQA,
+  CustomAboutUs,
 } from "#pages";
 import { ThemeContext } from "@USupport-components-library/utils";
 import { userSvc } from "@USupport-components-library/services";
@@ -84,14 +85,17 @@ function App() {
 const Root = () => {
   useQuery({
     queryKey: ["addPlatformAccess"],
-    queryFn: async () => await userSvc.addPlatformAccess("website"),
+    queryFn: async () => {
+      await userSvc.addPlatformAccess("website");
+    },
   });
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/how-it-works" element={<HowItWorks />} />
-        <Route path="/about-us" element={<AboutUs />} />
+        {/* <Route path="/about-us" element={<AboutUs />} /> */}
+        <Route path="/about-us/:country" element={<CustomAboutUs />} />
         <Route path="/about-us/provider" element={<ProviderOverview />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/information-portal" element={<InformationPortal />} />
