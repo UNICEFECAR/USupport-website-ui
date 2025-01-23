@@ -27,8 +27,12 @@ export const CustomAboutUs = () => {
   );
 
   const handler = useCallback(() => {
-    navigate(`/about-us/${localStorage.getItem("country").toLowerCase()}`);
-    setSelectedCountry(localStorage.getItem("country"));
+    const newCountry = localStorage.getItem("country");
+    if (newCountry) {
+      if (newCountry === selectedCountry) return;
+      navigate(`/about-us/${localStorage.getItem("country").toLowerCase()}`);
+      setSelectedCountry(localStorage.getItem("country"));
+    }
   }, []);
   useEventListener("countryChanged", handler);
 
