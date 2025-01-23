@@ -94,7 +94,7 @@ const Root = () => {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/how-it-works" element={<HowItWorks />} />
-        <Route path="/about-us" element={<AboutUs />} />
+        {/* <Route path="/about-us" element={<AboutUs />} /> */}
         <Route path="/about-us/:country" element={<CustomAboutUs />} />
         <Route path="/about-us/provider" element={<ProviderOverview />} />
         <Route path="/contact-us" element={<ContactUs />} />
