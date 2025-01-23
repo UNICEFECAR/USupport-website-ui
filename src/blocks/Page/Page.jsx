@@ -138,18 +138,23 @@ export const Page = ({
     ["languages", selectedCountry],
     fetchLanguages
   );
-
   const pages = [
     { name: t("page_1"), url: "/", exact: true },
     { name: t("page_2"), url: "/how-it-works" },
-    { name: t("page_3"), url: "/about-us" },
+    {
+      name: t("page_3"),
+      url: `/about-us/${selectedCountry?.value?.toLocaleLowerCase()}`,
+    },
     { name: t("page_4"), url: "/information-portal" },
     { name: t("page_6"), url: "/my-qa" },
   ];
 
   const footerLists = {
     list1: [
-      { name: t("footer_1"), url: "/about-us" },
+      {
+        name: t("footer_1"),
+        url: `/about-us/${selectedCountry?.value?.toLocaleLowerCase()}`,
+      },
       { name: t("footer_2"), url: "/information-portal" },
       { name: t("page_6"), url: "/my-qa" },
     ],
