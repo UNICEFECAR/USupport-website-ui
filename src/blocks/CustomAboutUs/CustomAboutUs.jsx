@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { useEventListener } from "#hooks";
 
@@ -21,17 +21,23 @@ import "./custom-about-us.scss";
 export const CustomAboutUs = () => {
   const { i18n, t } = useTranslation("custom-about-us");
   const { country } = useParams();
+  const navigate = useNavigate();
   const [selectedCountry, setSelectedCountry] = useState(
     localStorage.getItem("country") || "KZ"
   );
 
   const handler = useCallback(() => {
-    setSelectedCountry(localStorage.getItem("country"));
+    const newCountry = localStorage.getItem("country");
+    if (newCountry) {
+      if (newCountry === selectedCountry) return;
+      navigate(`/about-us/${localStorage.getItem("country").toLowerCase()}`);
+      setSelectedCountry(localStorage.getItem("country"));
+    }
   }, []);
   useEventListener("countryChanged", handler);
 
   const { isLoading, data } = useQuery({
-    queryKey: ["about-us", country, i18n.language],
+    queryKey: ["about-us", country, selectedCountry, i18n.language],
     queryFn: async () => {
       const res = await cmsSvc.getAbousUsContentForCountry({
         country: country.toLocaleUpperCase(),
