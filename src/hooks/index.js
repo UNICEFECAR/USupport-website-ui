@@ -17,3 +17,4 @@ export * from "./useGetConsultationData.js";
 export * from "./useGetProvidersData.js";
 export * from "./useGetQuestions.js";
 export * from "./useGetQuestionsTags.js";
+export * from "./useGetLanguages.js";
