@@ -8,6 +8,7 @@
   "most_popular": "Most Popular",
   "newest": "Newest",
   "no_answers": "There are no answered questions",
- "filter": "Filter tags",
- "search_placeholder": "Search"
+  "filter": "Filter tags",
+  "search_placeholder": "Search",
+  "language": "Language"
 }

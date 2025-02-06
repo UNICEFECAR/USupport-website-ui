@@ -8,6 +8,7 @@
   "most_popular": "Найпопулярніше",
   "newest": "Найновіше",
   "no_answers": "Пошук",
- "filter": "Фільтрувати теґи",
- "search_placeholder": "Немає відповідей на запитання"
+  "filter": "Фільтрувати теґи",
+  "search_placeholder": "Немає відповідей на запитання",
+  "language": "Мова"
 }
