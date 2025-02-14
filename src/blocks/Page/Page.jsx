@@ -7,6 +7,7 @@ import {
   CircleIconButton,
   Footer,
   Icon,
+  CookieBanner,
 } from "@USupport-components-library/src";
 import { languageSvc, countrySvc } from "@USupport-components-library/services";
 import { getCountryFromTimezone } from "@USupport-components-library/utils";
@@ -281,6 +282,7 @@ export const Page = ({
         label={t("emergency_button")}
       />
       <Footer lists={footerLists} navigate={navigateTo} Link={Link} />
+      <CookieBanner t={t} />
     </>
   );
 };
