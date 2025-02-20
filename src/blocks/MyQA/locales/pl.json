@@ -8,6 +8,7 @@
   "most_popular": "Najpopularniejsze",
   "newest": "Najnowsze",
   "no_answers": "Wyszukiwanie",
- "filter": "Filtruj tagi",
- "search_placeholder": "Nie ma odpowiedzi na żadne pytania"
+  "filter": "Filtruj tagi",
+  "search_placeholder": "Nie ma odpowiedzi na żadne pytania",
+  "language": "Język"
 }

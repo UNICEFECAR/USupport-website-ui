@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import {
@@ -25,6 +25,8 @@ import {
 } from "#pages";
 import { ThemeContext } from "@USupport-components-library/utils";
 import { userSvc } from "@USupport-components-library/services";
+
+import { useEventListener } from "#hooks";
 
 // AOS imports
 import "aos/dist/aos.css";
@@ -83,11 +85,25 @@ function App() {
 }
 
 const Root = () => {
+  const [country, setCountry] = useState(
+    localStorage.getItem("country") || null
+  );
+
+  const handler = useCallback(() => {
+    const country = localStorage.getItem("country");
+    if (country !== currentCountry) {
+      setCountry(country);
+    }
+  }, []);
+
+  useEventListener("countryChanged", handler);
+
   useQuery({
-    queryKey: ["addPlatformAccess"],
+    queryKey: ["addPlatformAccess", country],
     queryFn: async () => {
       await userSvc.addPlatformAccess("website");
     },
+    enabled: !!country,
   });
   return (
     <Router>
