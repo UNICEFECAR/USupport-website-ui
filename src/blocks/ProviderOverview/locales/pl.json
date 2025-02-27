@@ -10,6 +10,7 @@
   "change_password": "Zmienić hasło",
   "delete_account": "Usuń konto",
   "no_available_slot": "Nie ma dostępnego przedziału czasowego",
+  "video_label": "Reprezentacja wideo",
 
   "psychologist": "Psycholog",
   "psychiatrist": "Psychiatra",
@@ -24,5 +25,7 @@
   "panic_attack": "Atak paniki",
   "relationship": "Związek",
   "personal_development": "Rozwój osobisty",
-  "hour_consultation": "za 1 godzinę konsultacji"
+  "hour_consultation": "za 1 godzinę konsultacji",
+  "organizations_label": "Organizacje",
+  "free": "bezpłatnie"
 }

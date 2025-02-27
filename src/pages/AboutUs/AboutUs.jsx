@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Page, WeHelp, OurPartners, ContactUs } from "#blocks";
 import { RadialCircle } from "@USupport-components-library/src";
+import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./about-us.scss";
 
@@ -12,8 +13,15 @@ import "./about-us.scss";
  * @returns {JSX.Element}
  */
 export const AboutUs = () => {
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <Page classes="page__about-us">
+    <Page
+      classes={[
+        "page__about-us",
+        theme === "dark" ? "page__about-us--dark" : "",
+      ].join(" ")}
+    >
       <WeHelp />
       {/* <OurPartners /> */}
       <ContactUs />

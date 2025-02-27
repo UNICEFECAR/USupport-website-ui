@@ -25,18 +25,6 @@ export const ArticleView = ({ articleData, t }) => {
   return (
     <Block classes="article-view">
       <Grid classes="article-view__main-grid">
-        <GridItem md={8} lg={12}>
-          <img
-            className="article-view__image-item"
-            src={
-              articleData.imageMedium
-                ? articleData.imageMedium
-                : "https://picsum.photos/300/400"
-            }
-            alt=""
-          />
-        </GridItem>
-
         <GridItem md={8} lg={12} classes="article-view__title-item">
           <h3>{articleData.title}</h3>
         </GridItem>
@@ -66,6 +54,18 @@ export const ArticleView = ({ articleData, t }) => {
               />
             );
           })}
+        </GridItem>
+
+        <GridItem md={8} lg={12}>
+          <img
+            className="article-view__image-item"
+            src={
+              articleData.imageMedium
+                ? articleData.imageMedium
+                : "https://picsum.photos/300/400"
+            }
+            alt=""
+          />
         </GridItem>
 
         <GridItem md={8} lg={12} classes="article-view__body-item">

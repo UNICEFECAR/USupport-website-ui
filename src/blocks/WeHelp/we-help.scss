@@ -5,6 +5,10 @@
   padding-bottom: $spacing_1_0;
   text-align: left;
 
+  .mt-32 {
+    margin-top: 3.2rem;
+  }
+
   @media screen and (min-width: $screen-md) {
     padding-top: 10rem;
   }
@@ -16,6 +20,16 @@
   &__heading-text {
     color: $color_white_ff !important;
     padding-bottom: $spacing_7_2;
+
+    @media screen and (min-width: $screen_lg) {
+      padding-top: $spacing_7_2;
+      padding-bottom: 0;
+    }
+  }
+
+  .link {
+    text-decoration: underline;
+    color: $color_primary_20809e;
   }
 
   &__secondary-grid {
@@ -28,7 +42,7 @@
 
     &__descriptions-item {
       @media screen and (min-width: $screen-md) {
-        margin-left: $spacing_2_0;
+        margin-inline: $spacing_2_0;
       }
       @media screen and (min-width: $screen-lg) {
         margin-left: $spacing_9_6;
@@ -36,14 +50,18 @@
     }
 
     &__text-two {
-      padding-top: $spacing_2_4;
+      padding-top: $spacing_2_0;
       @media screen and (min-width: $screen-lg) {
-        padding-top: $spacing_4_8;
+        padding-top: $spacing_2_0;
       }
     }
 
     &__text-three {
-      padding-top: $spacing_3_2;
+      padding-top: $spacing_2_0;
+    }
+
+    &__text-four {
+      padding-top: $spacing_4_0;
     }
   }
 
@@ -51,7 +69,7 @@
     padding: $spacing_2_4;
     overflow: hidden;
     @media screen and (min-width: $screen-lg) {
-      margin-top: $spacing_4_0;
+      margin-top: $spacing_10_0;
       padding: $spacing_5_6 0 $spacing_9_0 0;
     }
   }
@@ -60,7 +78,7 @@
     padding-top: $spacing_1_6;
 
     @media screen and (min-width: $screen-md) {
-      justify-self: end;
+      justify-self: center;
     }
 
     &__animation {

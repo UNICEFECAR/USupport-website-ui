@@ -7,7 +7,7 @@ import {
   RadialCircle,
   StaticImage,
 } from "@USupport-components-library/src";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./hero.scss";
@@ -42,7 +42,7 @@ export const Hero = () => {
           >
             <GridItem md={8} lg={12} classes="hero__heading-item">
               <h1>
-                {t("heading_1")} <span>{t("heading_1_1")}</span>
+                <Trans components={[<br></br>]}>{t("heading_1")}</Trans>
               </h1>
             </GridItem>
             <GridItem md={8} lg={12} classes="hero__text-item">
@@ -50,20 +50,49 @@ export const Hero = () => {
               <br />
               <p className="paragraph">{t("paragraph_1_1")}</p>
             </GridItem>
-            <GridItem md={4} lg={6} classes="hero__buttons-item">
-              <StoreButton
-                downloadText={t("download_text")}
-                size="lg"
-                store="google-play"
-              />
+            <GridItem md={8} lg={12} classes="hero__buttons-item">
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  flexWrap: "wrap",
+                  gap: "1rem",
+                }}
+              >
+                <div>
+                  <StoreButton
+                    downloadText={t("download_text")}
+                    size="lg"
+                    store="google-play"
+                  />
+                </div>
+                <div>
+                  <StoreButton
+                    downloadText={t("download_text")}
+                    size="lg"
+                    store="app-store"
+                  />
+                </div>
+                <div>
+                  <StoreButton
+                    browserLabel={t("browser")}
+                    downloadText={t("click_to_use")}
+                    size="lg"
+                    store="web"
+                    onClick={() => {
+                      window.location.href = "/client/register-preview";
+                      window.scrollTo(0, 0);
+                    }}
+                  />
+                </div>
+              </div>
             </GridItem>
-            <GridItem md={4} lg={6} classes="hero__buttons-item">
-              <StoreButton
-                downloadText={t("download_text")}
-                size="lg"
-                store="app-store"
-              />
+            {/* <GridItem md={6} lg={6} classes="hero__buttons-item">
+          
             </GridItem>
+            <GridItem md={8} lg={12} classes="hero__buttons-item">
+ 
+            </GridItem> */}
           </Grid>
         </GridItem>
         <GridItem md={3} lg={6} classes="hero__collage-item">

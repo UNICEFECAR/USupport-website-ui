@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -19,6 +19,7 @@ import {
 } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 import { useDebounce, useEventListener } from "#hooks";
+import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./articles.scss";
 
@@ -33,6 +34,8 @@ export const Articles = () => {
   const navigate = useNavigate();
   const { width } = useWindowDimensions();
   const { i18n, t } = useTranslation("articles");
+
+  const { theme } = useContext(ThemeContext);
 
   const isNotDescktop = width < 1366;
 
@@ -314,7 +317,9 @@ export const Articles = () => {
         >
           <Grid classes="articles__main-grid">
             <GridItem md={8} lg={12} classes="articles__heading-item">
-              <h2 className="articles__heading-text">{t("heading")}</h2>
+              {theme === "dark" && (
+                <h2 className="articles__heading-text">{t("heading")}</h2>
+              )}
             </GridItem>
             <GridItem md={8} lg={12} classes="articles__most-important-item">
               <CardMedia
@@ -392,11 +397,13 @@ export const Articles = () => {
                     })}
                   </Grid>
                 )}
-              {!articles?.length && !isArticlesLoading && !isArticlesFetching && (
-                <div className="articles__no-results-container">
-                  <p>{t("no_results")}</p>
-                </div>
-              )}
+              {!articles?.length &&
+                !isArticlesLoading &&
+                !isArticlesFetching && (
+                  <div className="articles__no-results-container">
+                    <p>{t("no_results")}</p>
+                  </div>
+                )}
             </GridItem>
           </Grid>
         </InfiniteScroll>

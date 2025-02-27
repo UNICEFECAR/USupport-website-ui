@@ -9,6 +9,10 @@
   min-width: 40.7rem;
 
   @media screen and (min-width: $screen-md) {
-    background-image: url("./assets/information-portal.png");
+    background-image: url("./assets/information-portal-light.jpg");
+
+    &--dark {
+      background-image: url("./assets/information-portal.png");
+    }
   }
 }

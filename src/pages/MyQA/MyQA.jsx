@@ -36,14 +36,19 @@ export const MyQA = () => {
     { label: "New", value: "newest", isSelected: false },
   ]);
   const [filterTag, setFilterTag] = useState("");
+  const [selectedLanguage, setSelectedLanguage] = useState();
+  const [shouldFetchQuestions, setShouldFetchQuestions] = useState(false);
 
   const isUserQuestionsEnabled =
     tabs.filter((tab) => tab.value === "your_questions" && tab.isSelected)
-      .length > 0;
+      .length > 0 &&
+    shouldFetchQuestions &&
+    !!selectedLanguage;
 
   const allQuestions = useGetQuestions(
     tabs.find((tab) => tab.isSelected).value,
-    !isUserQuestionsEnabled
+    !isUserQuestionsEnabled,
+    selectedLanguage
   );
 
   useEffect(() => {
@@ -84,6 +89,10 @@ export const MyQA = () => {
         isUserQuestionsEnabled={isUserQuestionsEnabled}
         filterTag={filterTag}
         handleFilterTags={() => setIsFilterQuestionsOpen(true)}
+        isLoading={allQuestions.isLoading}
+        selectedLanguage={selectedLanguage}
+        setSelectedLanguage={setSelectedLanguage}
+        setShouldFetchQuestions={setShouldFetchQuestions}
       />
       <HowItWorksMyQA
         isOpen={isHowItWorksOpen}

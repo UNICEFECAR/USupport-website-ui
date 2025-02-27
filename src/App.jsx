@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import {
@@ -21,9 +21,12 @@ import {
   TermsOfUse,
   ProviderOverview,
   MyQA,
+  CustomAboutUs,
 } from "#pages";
 import { ThemeContext } from "@USupport-components-library/utils";
 import { userSvc } from "@USupport-components-library/services";
+
+import { useEventListener } from "#hooks";
 
 // AOS imports
 import "aos/dist/aos.css";
@@ -55,6 +58,15 @@ function App() {
   };
 
   const [theme, setTheme] = useState(getDefaultTheme());
+  const [showContent, setShowContent] = useState(false);
+
+  useEffect(() => {
+    const lang = localStorage.getItem("language");
+    if (!lang) {
+      localStorage.setItem("language", "en");
+    }
+    setShowContent(true);
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("default-theme", theme);
@@ -64,7 +76,7 @@ function App() {
     <ThemeContext.Provider value={{ theme, setTheme }}>
       <div className={`theme-${theme}`}>
         <QueryClientProvider client={queryClient}>
-          <Root />
+          {showContent && <Root />}
           <ReactQueryDevtools initialOpen />
         </QueryClientProvider>
       </div>
@@ -73,16 +85,33 @@ function App() {
 }
 
 const Root = () => {
+  const [country, setCountry] = useState(
+    localStorage.getItem("country") || null
+  );
+
+  const handler = useCallback(() => {
+    const country = localStorage.getItem("country");
+    if (country !== currentCountry) {
+      setCountry(country);
+    }
+  }, []);
+
+  useEventListener("countryChanged", handler);
+
   useQuery({
-    queryKey: ["addPlatformAccess"],
-    queryFn: async () => await userSvc.addPlatformAccess("website"),
+    queryKey: ["addPlatformAccess", country],
+    queryFn: async () => {
+      await userSvc.addPlatformAccess("website");
+    },
+    enabled: !!country,
   });
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/how-it-works" element={<HowItWorks />} />
-        <Route path="/about-us" element={<AboutUs />} />
+        {/* <Route path="/about-us" element={<AboutUs />} /> */}
+        <Route path="/about-us/:country" element={<CustomAboutUs />} />
         <Route path="/about-us/provider" element={<ProviderOverview />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/information-portal" element={<InformationPortal />} />

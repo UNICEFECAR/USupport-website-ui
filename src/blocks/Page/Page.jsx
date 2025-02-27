@@ -7,6 +7,7 @@ import {
   CircleIconButton,
   Footer,
   Icon,
+  CookieBanner,
 } from "@USupport-components-library/src";
 import { languageSvc, countrySvc } from "@USupport-components-library/services";
 import { getCountryFromTimezone } from "@USupport-components-library/utils";
@@ -15,7 +16,7 @@ import { ThemeContext } from "@USupport-components-library/utils";
 import { PasswordModal } from "@USupport-components-library/src";
 import { userSvc } from "@USupport-components-library/services";
 
-import { useError } from "#hooks";
+import { useError, useEventListener } from "#hooks";
 
 import "./page.scss";
 
@@ -129,20 +130,32 @@ export const Page = ({
     return languages;
   };
 
-  const { data: countries } = useQuery(["countries"], fetchCountries);
-  const { data: languages } = useQuery(["languages"], fetchLanguages);
+  useEventListener("countryChanged", () => {
+    queryClient.invalidateQueries({ queryKey: ["languages"] });
+  });
 
+  const { data: countries } = useQuery(["countries"], fetchCountries);
+  const { data: languages } = useQuery(
+    ["languages", selectedCountry],
+    fetchLanguages
+  );
   const pages = [
     { name: t("page_1"), url: "/", exact: true },
     { name: t("page_2"), url: "/how-it-works" },
-    { name: t("page_3"), url: "/about-us" },
+    {
+      name: t("page_3"),
+      url: `/about-us/${selectedCountry?.value?.toLocaleLowerCase()}`,
+    },
     { name: t("page_4"), url: "/information-portal" },
     { name: t("page_6"), url: "/my-qa" },
   ];
 
   const footerLists = {
     list1: [
-      { name: t("footer_1"), url: "/about-us" },
+      {
+        name: t("footer_1"),
+        url: `/about-us/${selectedCountry?.value?.toLocaleLowerCase()}`,
+      },
       { name: t("footer_2"), url: "/information-portal" },
       { name: t("page_6"), url: "/my-qa" },
     ],
@@ -269,6 +282,7 @@ export const Page = ({
         label={t("emergency_button")}
       />
       <Footer lists={footerLists} navigate={navigateTo} Link={Link} />
+      <CookieBanner t={t} />
     </>
   );
 };
