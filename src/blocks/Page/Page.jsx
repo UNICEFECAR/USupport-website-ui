@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate, NavLink, Link } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useTranslation } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
 import {
   Navbar,
   CircleIconButton,
@@ -282,7 +282,14 @@ export const Page = ({
         label={t("emergency_button")}
       />
       <Footer lists={footerLists} navigate={navigateTo} Link={Link} />
-      <CookieBanner t={t} />
+      <CookieBanner
+        text={
+          <Trans components={[<Link to="/cookie-policy" />]}>
+            {t("cookie_banner_text")}
+          </Trans>
+        }
+        t={t}
+      />
     </>
   );
 };
