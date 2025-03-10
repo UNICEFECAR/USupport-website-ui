@@ -204,7 +204,7 @@ const resources = {
     "how-it-works-my-qa": HowItWorksMyQA.pl,
     "filter-questions": FilterQuestions.pl,
   },
-  uk: {
+  ua: {
     // Blocks
     about: About.uk,
     "contact-us": ContactUs.uk,
