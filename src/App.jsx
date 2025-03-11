@@ -91,7 +91,7 @@ const Root = () => {
 
   const handler = useCallback(() => {
     const country = localStorage.getItem("country");
-    if (country !== currentCountry) {
+    if (country) {
       setCountry(country);
     }
   }, []);
