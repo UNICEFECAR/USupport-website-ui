@@ -88,10 +88,11 @@ const Root = () => {
   const [country, setCountry] = useState(
     localStorage.getItem("country") || null
   );
+  const [hasAddedPlatformAccess, setHasAddedPlatformAccess] = useState(false);
 
   const handler = useCallback(() => {
     const country = localStorage.getItem("country");
-    if (country !== currentCountry) {
+    if (country) {
       setCountry(country);
     }
   }, []);
@@ -102,8 +103,9 @@ const Root = () => {
     queryKey: ["addPlatformAccess", country],
     queryFn: async () => {
       await userSvc.addPlatformAccess("website");
+      setHasAddedPlatformAccess(true);
     },
-    enabled: !!country,
+    enabled: !!country && !hasAddedPlatformAccess,
   });
   return (
     <Router>

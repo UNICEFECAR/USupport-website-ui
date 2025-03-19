@@ -56,6 +56,7 @@ export const Page = ({
     localStorageLanguage ? { value: localStorageLanguage.toUpperCase() } : null
   );
   const [selectedCountry, setSelectedCountry] = useState();
+  const [langs, setLangs] = useState([]);
 
   const fetchCountries = async () => {
     const res = await countrySvc.getActiveCountries();
@@ -118,15 +119,17 @@ export const Page = ({
         id: x["language_id"],
         localName: x["local_name"],
       };
-      if (localStorageLanguage === x.alpha2) {
+      const localLanguage = localStorage.getItem("language");
+      if (localLanguage === x.alpha2) {
         setSelectedLanguage(languageObject);
-        i18n.changeLanguage(localStorageLanguage);
-      } else if (!localStorageLanguage) {
+        i18n.changeLanguage(localLanguage);
+      } else if (!localLanguage) {
         localStorage.setItem("language", "en");
         i18n.changeLanguage("en");
       }
       return languageObject;
     });
+    setLangs(languages);
     return languages;
   };
 
@@ -135,10 +138,11 @@ export const Page = ({
   });
 
   const { data: countries } = useQuery(["countries"], fetchCountries);
-  const { data: languages } = useQuery(
-    ["languages", selectedCountry],
-    fetchLanguages
-  );
+  useQuery(["languages", selectedCountry], fetchLanguages, {
+    enabled: !!selectedCountry,
+    staleTime: 1,
+  });
+
   const pages = [
     { name: t("page_1"), url: "/", exact: true },
     { name: t("page_2"), url: "/how-it-works" },
@@ -242,7 +246,7 @@ export const Page = ({
         i18n={i18n}
         navigate={navigateTo}
         NavLink={NavLink}
-        languages={languages}
+        languages={langs}
         countries={countries}
         initialLanguage={selectedLanguage}
         initialCountry={selectedCountry}
