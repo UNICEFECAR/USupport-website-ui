@@ -148,7 +148,10 @@ export const Page = ({
     { name: t("page_2"), url: "/how-it-works" },
     {
       name: t("page_3"),
-      url: `/about-us/${selectedCountry?.value?.toLocaleLowerCase()}`,
+      url: `/about-us/${
+        selectedCountry?.value?.toLocaleLowerCase() ||
+        localStorageCountry.toLocaleLowerCase()
+      }`,
     },
     { name: t("page_4"), url: "/information-portal" },
     { name: t("page_6"), url: "/my-qa" },
@@ -250,6 +253,7 @@ export const Page = ({
         countries={countries}
         initialLanguage={selectedLanguage}
         initialCountry={selectedCountry}
+        setInitialCountry={setSelectedCountry}
         renderIn="website"
         hasThemeButton
         t={t}
