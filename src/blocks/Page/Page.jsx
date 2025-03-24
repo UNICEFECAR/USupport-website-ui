@@ -150,7 +150,7 @@ export const Page = ({
       name: t("page_3"),
       url: `/about-us/${
         selectedCountry?.value?.toLocaleLowerCase() ||
-        localStorageCountry.toLocaleLowerCase()
+        localStorageCountry?.toLocaleLowerCase()
       }`,
     },
     { name: t("page_4"), url: "/information-portal" },
