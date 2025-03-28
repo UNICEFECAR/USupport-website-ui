@@ -21,8 +21,8 @@
   "footer_2": "Portal informacyjny",
   "footer_3": "Jak to działa?",
   "footer_4": "Warunki świadczenia usług",
-  "footer_5": "Polityka prywatności",
-  "footer_6": "Polityka plików cookie",
+  "footer_5": "Polityką prywatności",
+  "footer_6": "Polityka plików cookies",
   "footer_7": "Najczęściej zadawane pytania",
 
   "emergency_button": "Centrum SOS",
@@ -44,6 +44,6 @@
   "cookie_banner_text": "Ta strona używa plików cookie, aby poprawić i zabezpieczyć Twoje doświadczenia podczas przeglądania. Korzystając z naszej strony, zgadzasz się na naszą <0>Politykę Cookie</0>.",
   "accept_all_cookies": "Akceptuj wszystkie",
   "reject_all_cookies": "Odrzuć wszystkie",
-  "accept_necessary_cookies": "Akceptuj tylko niezbędne",
+  "accept_necessary_cookies": "Akceptuj tylko wymagane",
   "save": "Zapisz"
 }
