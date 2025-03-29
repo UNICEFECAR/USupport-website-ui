@@ -2,11 +2,11 @@
   "heading": "Nasi partnerzy",
   "paragraph": "Tutaj możesz zobaczyć wszystkich naszych partnerów",
   "partner_1_title": "Ministerstwo Zdrowia",
-  "partner_1_description":  "Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.",
-  "partner_1_link_placeholder": "Przejdź do gov.kz",
+  "partner_1_description": "Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.",
+  "partner_1_link_placeholder": "Ministerstwo Edukacji",
   "partner_1_link": "https://www.gov.kz/memleket/entities/dsm?lang=en",
   "partner_2_title": "Ministerstwo Edukacji",
-  "partner_2_description":  "Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.",
-  "partner_2_link_placeholder": "Przejdź do gov.kz",
-  "partner_2_link": "https://www.gov.kz/memleket/entities/edu?lang=en"
+  "partner_2_description": "Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.",
+  "partner_2_link_placeholder": "Przejdź do gov.pl",
+  "partner_2_link": "https://www.gov.pl/web/edukacja"
 }
