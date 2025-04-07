@@ -40,6 +40,14 @@ export const Articles = () => {
   const isNotDescktop = width < 1366;
 
   const [usersLanguage, setUsersLanguage] = useState(i18n.language);
+  const [showAgeGroups, setShowAgeGroups] = useState(true);
+
+  useEffect(() => {
+    const country = localStorage.getItem("country");
+    if (country === "PL") {
+      setShowAgeGroups(false);
+    }
+  }, []);
 
   useEffect(() => {
     if (i18n.language !== usersLanguage) {
@@ -158,6 +166,7 @@ export const Articles = () => {
     if (country !== currentCountry) {
       setCurrentCountry(country);
     }
+    setShowAgeGroups(country !== "PL");
   }, [currentCountry]);
 
   // Add event listener
@@ -343,15 +352,21 @@ export const Articles = () => {
               )}
             </GridItem>
 
-            <GridItem md={8} lg={8} classes="articles__age-groups-item">
-              {ageGroups && (
-                <TabsUnderlined
-                  options={ageGroups}
-                  handleSelect={handleAgeGroupOnPress}
-                />
-              )}
-            </GridItem>
-            <GridItem md={8} lg={4} classes="articles__search-item">
+            {showAgeGroups && (
+              <GridItem md={8} lg={8} classes="articles__age-groups-item">
+                {ageGroups && showAgeGroups && (
+                  <TabsUnderlined
+                    options={ageGroups}
+                    handleSelect={handleAgeGroupOnPress}
+                  />
+                )}
+              </GridItem>
+            )}
+            <GridItem
+              md={8}
+              lg={showAgeGroups ? 4 : 12}
+              classes="articles__search-item"
+            >
               <InputSearch onChange={handleInputChange} value={searchValue} />
             </GridItem>
 
