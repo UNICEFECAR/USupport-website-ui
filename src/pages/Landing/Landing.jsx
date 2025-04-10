@@ -9,10 +9,12 @@ import {
   Page,
   InformationPortal,
   MeetOurProvidersOverview,
-  OurPartnersOverview,
+  // OurPartnersOverview,
   MyQALanding,
   CouponInformation,
 } from "#blocks";
+
+import { useEventListener } from "#hooks";
 
 /**
  * Landing
@@ -22,8 +24,14 @@ import {
  * @returns {JSX.Element}
  */
 export function Landing() {
-  const country = localStorage.getItem("country");
-  const showCouponSection = country !== "KZ";
+  const [showCouponSection, setShowCouponSection] = React.useState(
+    localStorage.getItem("country") !== "KZ"
+  );
+
+  useEventListener("countryChanged", () => {
+    const country = localStorage.getItem("country");
+    setShowCouponSection(country !== "KZ");
+  });
 
   return (
     <Page>
