@@ -69,7 +69,7 @@ export const MyQA = ({
   const languageOptions = useMemo(() => {
     const showAllOption = {
       value: "all",
-      label: t("all"),
+      label: t("all_languages"),
     };
 
     if (!languages) return [showAllOption];
