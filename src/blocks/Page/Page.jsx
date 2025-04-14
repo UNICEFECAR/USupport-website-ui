@@ -9,7 +9,7 @@ import {
   Icon,
   CookieBanner,
 } from "@USupport-components-library/src";
-import { languageSvc, countrySvc } from "@USupport-components-library/services";
+import { countrySvc } from "@USupport-components-library/services";
 import { getCountryFromTimezone } from "@USupport-components-library/utils";
 import classNames from "classnames";
 import { ThemeContext } from "@USupport-components-library/utils";
@@ -50,7 +50,7 @@ export const Page = ({
     window.scrollTo(0, 0);
   }, []);
 
-  const localStorageCountry = localStorage.getItem("country");
+  let localStorageCountry = localStorage.getItem("country");
   const localStorageLanguage = localStorage.getItem("language");
   const [selectedLanguage, setSelectedLanguage] = useState(
     localStorageLanguage ? { value: localStorageLanguage.toUpperCase() } : null
@@ -59,11 +59,29 @@ export const Page = ({
   const [langs, setLangs] = useState([]);
 
   const fetchCountries = async () => {
-    const res = await countrySvc.getActiveCountries();
+    const subdomain = window.location.hostname.split(".")[0];
+    const res = await countrySvc.getActiveCountriesWithLanguages();
     const usersCountry = getCountryFromTimezone();
     const validCountry = res.data.find((x) => x.alpha2 === usersCountry);
     let hasSetDefaultCountry = false;
+
+    if (subdomain && subdomain !== "www" && subdomain !== "usupport") {
+      localStorageCountry =
+        res.data.find((x) => x.name.toLocaleLowerCase() === subdomain)
+          ?.alpha2 || localStorageCountry;
+    }
+
+    const allLanguages = [];
+
     const countries = res.data.map((x) => {
+      const currentLanguages = x.languages.map((y) => ({
+        value: y.alpha2,
+        label: y.name,
+        id: y["language_id"],
+        localName: y["local_name"],
+      }));
+      allLanguages.push(...currentLanguages);
+
       const countryObject = {
         value: x.alpha2,
         label: x.name,
@@ -71,10 +89,12 @@ export const Page = ({
         iconName: x.alpha2,
         currencySymbol: x["symbol"],
         localName: x["local_name"],
+        languages: currentLanguages,
       };
 
       if (localStorageCountry === x.alpha2) {
         setSelectedCountry(countryObject);
+        setLangs(countryObject.languages);
         localStorage.setItem("currency_symbol", countryObject.currencySymbol);
       } else if (!localStorageCountry) {
         if (validCountry?.alpha2 === x.alpha2) {
@@ -84,11 +104,28 @@ export const Page = ({
 
           window.dispatchEvent(new Event("countryChanged"));
           setSelectedCountry(countryObject);
+          setLangs(countryObject.languages);
         }
       }
-
       return countryObject;
     });
+    const localLanguage = localStorage.getItem("language");
+    if (localLanguage) {
+      const languageObject = allLanguages.find(
+        (x) =>
+          x.value?.toLocaleLowerCase() === localLanguage.toLocaleLowerCase()
+      );
+      if (languageObject) {
+        setSelectedLanguage(languageObject);
+        i18n.changeLanguage(languageObject.value);
+      } else {
+        localStorage.setItem("language", "en");
+        i18n.changeLanguage("en");
+      }
+    } else {
+      localStorage.setItem("language", "en");
+      i18n.changeLanguage("en");
+    }
 
     if (!hasSetDefaultCountry && !localStorageCountry) {
       const kazakhstanCountryObject = countries.find(
@@ -105,32 +142,11 @@ export const Page = ({
         kazakhstanCountryObject.currencySymbol
       );
       window.dispatchEvent(new Event("countryChanged"));
+      setSelectedCountry(kazakhstanCountryObject);
+      setLangs(kazakhstanCountryObject.languages);
     }
 
     return countries;
-  };
-
-  const fetchLanguages = async () => {
-    const res = await languageSvc.getActiveLanguages();
-    const languages = res.data.map((x) => {
-      const languageObject = {
-        value: x.alpha2,
-        label: x.name,
-        id: x["language_id"],
-        localName: x["local_name"],
-      };
-      const localLanguage = localStorage.getItem("language");
-      if (localLanguage === x.alpha2) {
-        setSelectedLanguage(languageObject);
-        i18n.changeLanguage(localLanguage);
-      } else if (!localLanguage) {
-        localStorage.setItem("language", "en");
-        i18n.changeLanguage("en");
-      }
-      return languageObject;
-    });
-    setLangs(languages);
-    return languages;
   };
 
   useEventListener("countryChanged", () => {
@@ -138,10 +154,6 @@ export const Page = ({
   });
 
   const { data: countries } = useQuery(["countries"], fetchCountries);
-  useQuery(["languages", selectedCountry], fetchLanguages, {
-    enabled: !!selectedCountry,
-    staleTime: 1,
-  });
 
   const pages = [
     { name: t("page_1"), url: "/", exact: true },
@@ -250,6 +262,7 @@ export const Page = ({
         navigate={navigateTo}
         NavLink={NavLink}
         languages={langs}
+        setLanguages={setLangs}
         countries={countries}
         initialLanguage={selectedLanguage}
         initialCountry={selectedCountry}
