@@ -104,6 +104,7 @@ const Root = () => {
     queryFn: async () => {
       await userSvc.addPlatformAccess("website");
       setHasAddedPlatformAccess(true);
+      return true;
     },
     enabled: !!country && !hasAddedPlatformAccess,
   });
