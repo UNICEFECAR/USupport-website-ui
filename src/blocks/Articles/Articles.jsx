@@ -314,6 +314,12 @@ export const Articles = () => {
     }
   );
 
+  const handleRedirect = (id) => {
+    navigate(
+      `/${localStorage.getItem("language")}/information-portal/article/${id}`
+    );
+  };
+
   return (
     <Block classes="articles">
       {newestArticle && ageGroups?.length > 0 && categories?.length > 0 && (
@@ -343,9 +349,7 @@ export const Articles = () => {
                 categoryName={newestArticle.categoryName}
                 showDescription={true}
                 t={t}
-                onClick={() => {
-                  navigate(`/information-portal/article/${newestArticle.id}`);
-                }}
+                onClick={() => handleRedirect(newestArticle.id)}
               />
               {!newestArticle && isNewestArticleLoading && (
                 <Loading size="lg" />
@@ -401,11 +405,7 @@ export const Articles = () => {
                             readingTime={articleData.readingTime}
                             t={t}
                             categoryName={articleData.categoryName}
-                            onClick={() => {
-                              navigate(
-                                `/information-portal/article/${articleData.id}`
-                              );
-                            }}
+                            onClick={() => handleRedirect(articleData.id)}
                           />
                         </GridItem>
                       );
