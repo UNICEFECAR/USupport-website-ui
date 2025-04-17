@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   Block,
   Button,
@@ -26,11 +26,12 @@ export const MeetOurProviders = () => {
   const navigate = useNavigate();
   const { t } = useTranslation("meet-our-providers");
   const { width } = useWindowDimensions();
+  const { language } = useParams();
 
   const providersQuery = useGetProvidersData(false, 3, width);
 
   const redirectToDetails = (id) => {
-    navigate(`/about-us/provider?id=${id}`);
+    navigate(`/${language}/about-us/provider?id=${id}`);
   };
   return (
     <Block classes="meet-our-providers" id="meet-our-providers">

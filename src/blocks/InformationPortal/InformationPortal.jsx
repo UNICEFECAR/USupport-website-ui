@@ -88,6 +88,12 @@ export const InformationPortal = () => {
     }
   );
 
+  const handleRedirect = (id) => {
+    navigate(
+      `/${localStorage.getItem("language")}/information-portal/article/${id}`
+    );
+  };
+
   return (
     <>
       {showBlock && (
@@ -129,11 +135,9 @@ export const InformationPortal = () => {
                     readingTime={mostReadArticlesQuerry.data[0].readingTime}
                     categoryName={mostReadArticlesQuerry.data[0].categoryName}
                     t={t}
-                    onClick={() => {
-                      navigate(
-                        `/information-portal/article/${mostReadArticlesQuerry.data[0].id}`
-                      );
-                    }}
+                    onClick={() =>
+                      handleRedirect(mostReadArticlesQuerry.data[0].id)
+                    }
                   />
                 </GridItem>
               )}
@@ -169,11 +173,7 @@ export const InformationPortal = () => {
                                 categoryName={article.categoryName}
                                 showLabels={false}
                                 t={t}
-                                onClick={() => {
-                                  navigate(
-                                    `/information-portal/article/${article.id}`
-                                  );
-                                }}
+                                onClick={() => handleRedirect(article.id)}
                               />
                             </GridItem>
                           )

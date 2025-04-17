@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useParams, useNavigate } from "react-router-dom";
 
 import { useEventListener } from "#hooks";
@@ -19,12 +19,16 @@ import "./custom-about-us.scss";
  * @return {jsx}
  */
 export const CustomAboutUs = () => {
+  const queryClient = useQueryClient();
   const { i18n, t } = useTranslation("custom-about-us");
-  const { country } = useParams();
   const navigate = useNavigate();
   const [selectedCountry, setSelectedCountry] = useState(
     localStorage.getItem("country") || "KZ"
   );
+
+  const country = window.location.hostname.split(".")[0];
+
+  const countries = queryClient.getQueryData(["countries"]);
 
   const handler = useCallback(() => {
     const newCountry = localStorage.getItem("country");
@@ -37,14 +41,16 @@ export const CustomAboutUs = () => {
   useEventListener("countryChanged", handler);
 
   const { isLoading, data } = useQuery({
-    queryKey: ["about-us", country, selectedCountry, i18n.language],
+    queryKey: ["about-us", country, selectedCountry, i18n.language, countries],
     queryFn: async () => {
+      const localStorageCountry = localStorage.getItem("country");
       const res = await cmsSvc.getAbousUsContentForCountry({
-        country: country.toLocaleUpperCase(),
+        country: localStorageCountry.toLocaleUpperCase(),
         language: i18n.language,
       });
       return res;
     },
+    enabled: !!countries,
   });
   return (
     <Block classes="custom-about-us">

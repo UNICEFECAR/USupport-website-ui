@@ -29,7 +29,7 @@ export const MeetOurProvidersOverview = () => {
   const providersQuery = useGetProvidersData(true);
 
   const redirectToDetails = (id) => {
-    navigate(`/about-us/provider?id=${id}`);
+    navigate(`/${localStorage.getItem("language")}/about-us/provider?id=${id}`);
   };
 
   return (
@@ -83,7 +83,9 @@ export const MeetOurProvidersOverview = () => {
             label={t("button_label")}
             size="lg"
             type="secondary"
-            onClick={() => navigate("/how-it-works")}
+            onClick={() =>
+              navigate(`/${localStorage.getItem("language")}/how-it-works`)
+            }
           />
         </GridItem>
       </Grid>

@@ -37,7 +37,9 @@ export const Question = () => {
             size={width > 768 ? "sm" : "lg"}
             web={width > 768}
             classes="question__button"
-            onClick={() => navigate("/contact-us")}
+            onClick={() =>
+              navigate(`/${localStorage.getItem("language")}/contact-us`)
+            }
           />
         </GridItem>
       </Grid>

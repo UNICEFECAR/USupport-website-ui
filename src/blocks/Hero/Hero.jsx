@@ -5,15 +5,15 @@ import {
   GridItem,
   StoreButton,
   RadialCircle,
-  StaticImage,
+  // StaticImage,
 } from "@USupport-components-library/src";
 import { Trans, useTranslation } from "react-i18next";
 import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./hero.scss";
 
-import imageSrc from "./assets/PeopleCollage.png";
-import imageSrcWebp from "./assets/PeopleCollage.webp";
+// import imageSrc from "./assets/PeopleCollage.png";
+// import imageSrcWebp from "./assets/PeopleCollage.webp";
 // import unicefSquareLogoSrc from "./assets/UnicefSquareLogo.png";
 // import unicefSquareLogoSrcWebp from "./assets/UnicefSquareLogo.png";
 
@@ -79,10 +79,6 @@ export const Hero = () => {
                     downloadText={t("click_to_use")}
                     size="lg"
                     store="web"
-                    onClick={() => {
-                      window.location.href = "/client/register-preview";
-                      window.scrollTo(0, 0);
-                    }}
                   />
                 </div>
               </div>

@@ -130,7 +130,11 @@ export const ArticleInformation = () => {
                     categoryName={articleData.categoryName}
                     t={t}
                     onClick={() => {
-                      navigate(`/information-portal/article/${articleData.id}`);
+                      navigate(
+                        `/${localStorage.getItem(
+                          "language"
+                        )}/information-portal/article/${articleData.id}`
+                      );
                       onArticleClick();
                     }}
                   />
