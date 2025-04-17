@@ -97,7 +97,9 @@ export const MyQA = ({
   };
 
   const handleProviderClick = (providerId) => {
-    navigate(`/about-us/provider?id=${providerId}`);
+    navigate(
+      `/${localStorage.getItem("language")}/about-us/provider?id=${providerId}`
+    );
   };
 
   const renderQuestions = () => {
