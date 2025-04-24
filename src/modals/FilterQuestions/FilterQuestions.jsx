@@ -17,7 +17,12 @@ import { useTranslation } from "react-i18next";
  *
  * @return {jsx}
  */
-export const FilterQuestions = ({ isOpen, onClose, setTag }) => {
+export const FilterQuestions = ({
+  isOpen,
+  onClose,
+  setTag,
+  isInGlobalCountry,
+}) => {
   const { t } = useTranslation("filter-questions");
 
   const [tags, setTags] = useState([]);
@@ -25,7 +30,10 @@ export const FilterQuestions = ({ isOpen, onClose, setTag }) => {
   const onSuccess = (data) => {
     setTags(data);
   };
-  const tagsQuery = useGetQuestionsTags(onSuccess);
+  const tagsQuery = useGetQuestionsTags({
+    enabled: !isInGlobalCountry,
+    onSuccess,
+  });
 
   const [selectedTagId, setSelectedTagId] = useState(null);
 
