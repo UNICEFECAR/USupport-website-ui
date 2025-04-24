@@ -30,6 +30,13 @@ const kazakhstanCountry = {
   iconName: "KZ",
 };
 
+const globalCountry = {
+  value: "global",
+  label: "Global",
+  countryID: "global",
+  iconName: "global",
+};
+
 /**
  * Page
  *
@@ -74,12 +81,30 @@ export const Page = ({
     const usersCountry = getCountryFromTimezone();
     const validCountry = res.data.find((x) => x.alpha2 === usersCountry);
     let hasSetDefaultCountry = false;
-
     if (subdomain && subdomain !== "www" && subdomain !== "usupport") {
       localStorageCountry =
         res.data.find((x) => x.name.toLocaleLowerCase() === subdomain)
           ?.alpha2 || localStorageCountry;
       localStorage.setItem("country", localStorageCountry);
+    } else if (subdomain === "usupport") {
+      localStorage.setItem("country", "global");
+      setSelectedCountry(globalCountry);
+
+      const allLanguages = res.data.reduce((acc, x) => {
+        // Get all languages from each country
+        // filter out duplicates
+        const currentLanguages = x.languages
+          .map((y) => ({
+            value: y.alpha2,
+            label: y.name,
+            id: y["language_id"],
+            localName: y["local_name"],
+          }))
+          .filter((k) => !acc.some((x) => x.value === k.value));
+        acc.push(...currentLanguages);
+        return acc;
+      }, []);
+      setLangs(allLanguages);
     }
 
     const allLanguages = [];
@@ -162,6 +187,8 @@ export const Page = ({
       setSelectedCountry(kazakhstanCountryObject);
       setLangs(kazakhstanCountryObject.languages);
     }
+
+    countries.unshift(globalCountry);
 
     return countries;
   };
