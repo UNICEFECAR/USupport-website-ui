@@ -145,7 +145,7 @@ const Root = () => {
       setHasAddedPlatformAccess(true);
       return true;
     },
-    enabled: !!country && !hasAddedPlatformAccess,
+    enabled: !!country && !hasAddedPlatformAccess && country !== "global",
   });
   return (
     <Router basename="/">
