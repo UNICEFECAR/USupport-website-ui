@@ -2,13 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { clientSvc } from "@USupport-components-library/services";
 
 export function useGetQuestions(orderBy = "all", enabled, languageId) {
-  /**
-   *
-   * @returns
-   */
   const getQuestions = async () => {
     const { data } = await clientSvc.getQuestions(orderBy, languageId);
-
     return data.map((question) => {
       return {
         answerCreatedAt: question.answer_created_at,

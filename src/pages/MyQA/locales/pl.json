@@ -1,5 +1,7 @@
 {
-    "modal_heading": "Zaloguj się do platformy, aby zadać pytanie",
-    "modal_text": "Aby zadać pytanie i otrzymać odpowiedź, musisz posiadać konto i zalogować się do systemu.",
-    "modal_button_label": "Przejdź do aplikacji"
+  "modal_heading": "Zaloguj się do platformy, aby zadać pytanie",
+  "modal_text": "Aby zadać pytanie i otrzymać odpowiedź, musisz posiadać konto i zalogować się do systemu.",
+  "modal_button_label": "Przejdź do aplikacji",
+  "my_qa_answer_title": "Jak działa Moje Q&A?",
+  "my_qa_answer_text": "Moje Q&A to funkcja, która pozwala zadawać pytania i otrzymywać odpowiedzi od dostawców uSupport."
 }

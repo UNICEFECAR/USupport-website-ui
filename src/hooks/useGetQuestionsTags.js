@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { providerSvc } from "@USupport-components-library/services";
 
-export function useGetQuestionsTags(onSuccess) {
+export function useGetQuestionsTags({ onSuccess, enabled }) {
   /**
    *
    *  @returns
@@ -19,6 +19,7 @@ export function useGetQuestionsTags(onSuccess) {
     getQuestionsTags,
     {
       onSuccess,
+      enabled,
     }
   );
 
