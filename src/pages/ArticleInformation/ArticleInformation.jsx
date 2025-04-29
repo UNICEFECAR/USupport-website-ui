@@ -138,6 +138,8 @@ export const ArticleInformation = () => {
                     creator={articleData.creator}
                     readingTime={articleData.readingTime}
                     categoryName={articleData.categoryName}
+                    likes={articleData.likes || 0}
+                    dislikes={articleData.dislikes || 0}
                     t={t}
                     onClick={() => {
                       navigate(
