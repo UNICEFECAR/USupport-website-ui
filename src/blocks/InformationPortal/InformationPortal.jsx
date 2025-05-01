@@ -134,6 +134,8 @@ export const InformationPortal = () => {
                     creator={mostReadArticlesQuerry.data[0].creator}
                     readingTime={mostReadArticlesQuerry.data[0].readingTime}
                     categoryName={mostReadArticlesQuerry.data[0].categoryName}
+                    likes={mostReadArticlesQuerry.data[0].likes || 0}
+                    dislikes={mostReadArticlesQuerry.data[0].dislikes || 0}
                     t={t}
                     onClick={() =>
                       handleRedirect(mostReadArticlesQuerry.data[0].id)
@@ -172,6 +174,8 @@ export const InformationPortal = () => {
                                 readingTime={article.readingTime}
                                 categoryName={article.categoryName}
                                 showLabels={false}
+                                likes={article.likes}
+                                dislikes={article.dislikes}
                                 t={t}
                                 onClick={() => handleRedirect(article.id)}
                               />

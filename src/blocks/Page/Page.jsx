@@ -343,7 +343,12 @@ export const Page = ({
         onClick={() => navigateTo(`/${localStorageLanguage}/sos-center`)}
         label={t("emergency_button")}
       />
-      <Footer lists={footerLists} navigate={navigateTo} Link={Link} />
+      <Footer
+        lists={footerLists}
+        navigate={navigateTo}
+        Link={Link}
+        renderIn="website"
+      />
       <CookieBanner
         text={
           <Trans components={[<Link to="/cookie-policy" />]}>

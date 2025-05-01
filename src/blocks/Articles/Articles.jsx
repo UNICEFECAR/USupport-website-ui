@@ -383,6 +383,8 @@ export const Articles = () => {
                 readingTime={newestArticle.readingTime}
                 categoryName={newestArticle.categoryName}
                 showDescription={true}
+                likes={newestArticle.likes}
+                dislikes={newestArticle.dislikes}
                 t={t}
                 onClick={() => handleRedirect(newestArticle.id)}
               />
@@ -438,6 +440,8 @@ export const Articles = () => {
                             labels={articleData.labels}
                             creator={articleData.creator}
                             readingTime={articleData.readingTime}
+                            likes={articleData.likes || 0}
+                            dislikes={articleData.dislikes || 0}
                             t={t}
                             categoryName={articleData.categoryName}
                             onClick={() => handleRedirect(articleData.id)}
