@@ -81,12 +81,18 @@ export const Page = ({
     const usersCountry = getCountryFromTimezone();
     const validCountry = res.data.find((x) => x.alpha2 === usersCountry);
     let hasSetDefaultCountry = false;
-    if (subdomain && subdomain !== "www" && subdomain !== "usupport") {
+
+    if (
+      subdomain &&
+      subdomain !== "www" &&
+      subdomain !== "usupport" &&
+      subdomain !== "staging"
+    ) {
       localStorageCountry =
         res.data.find((x) => x.name.toLocaleLowerCase() === subdomain)
           ?.alpha2 || localStorageCountry;
       localStorage.setItem("country", localStorageCountry);
-    } else if (subdomain === "usupport") {
+    } else if (subdomain === "usupport" || subdomain === "staging") {
       localStorage.setItem("country", "global");
       setSelectedCountry(globalCountry);
 
