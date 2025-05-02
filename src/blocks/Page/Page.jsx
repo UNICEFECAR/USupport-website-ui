@@ -78,21 +78,16 @@ export const Page = ({
   const fetchCountries = async () => {
     const subdomain = window.location.hostname.split(".")[0];
     const res = await countrySvc.getActiveCountriesWithLanguages();
-    const usersCountry = getCountryFromTimezone();
-    const validCountry = res.data.find((x) => x.alpha2 === usersCountry);
     let hasSetDefaultCountry = false;
 
-    if (
-      subdomain &&
-      subdomain !== "www" &&
-      subdomain !== "usupport" &&
-      subdomain !== "staging"
-    ) {
+    if (subdomain && subdomain !== "www" && subdomain !== "usupport") {
       localStorageCountry =
         res.data.find((x) => x.name.toLocaleLowerCase() === subdomain)
           ?.alpha2 || localStorageCountry;
       localStorage.setItem("country", localStorageCountry);
-    } else if (subdomain === "usupport" || subdomain === "staging") {
+    }
+
+    if (subdomain === "usupport") {
       localStorage.setItem("country", "global");
       setSelectedCountry(globalCountry);
 
@@ -138,21 +133,12 @@ export const Page = ({
         setSelectedCountry(countryObject);
         setLangs(countryObject.languages);
         localStorage.setItem("currency_symbol", countryObject.currencySymbol);
-      } else if (!localStorageCountry) {
-        if (validCountry?.alpha2 === x.alpha2) {
-          hasSetDefaultCountry = true;
-          localStorage.setItem("country", x.alpha2);
-          localStorage.setItem("currency_symbol", x.symbol);
-
-          window.dispatchEvent(new Event("countryChanged"));
-          setSelectedCountry(countryObject);
-          setLangs(countryObject.languages);
-        }
       }
       return countryObject;
     });
     const languageFromUrl = getLanguageFromUrl();
     const localLanguage = localStorage.getItem("language");
+
     if (localLanguage) {
       let languageObject = allLanguages.find(
         (x) =>
@@ -175,23 +161,14 @@ export const Page = ({
       changeLanguage("en");
     }
 
+    if (subdomain === "staging") {
+      setLangs(allLanguages);
+    }
     if (!hasSetDefaultCountry && !localStorageCountry) {
-      const kazakhstanCountryObject = countries.find(
-        (x) => x.value === kazakhstanCountry.value
-      );
-
-      localStorage.setItem("country", kazakhstanCountry.value);
-      localStorage.setItem(
-        "country_id",
-        countries.find((x) => x.value === kazakhstanCountry.value).countryID
-      );
-      localStorage.setItem(
-        "currency_symbol",
-        kazakhstanCountryObject.currencySymbol
-      );
+      localStorage.setItem("country", "global");
       window.dispatchEvent(new Event("countryChanged"));
-      setSelectedCountry(kazakhstanCountryObject);
-      setLangs(kazakhstanCountryObject.languages);
+      setSelectedCountry(globalCountry);
+      setLangs(allLanguages);
     }
 
     countries.unshift(globalCountry);
