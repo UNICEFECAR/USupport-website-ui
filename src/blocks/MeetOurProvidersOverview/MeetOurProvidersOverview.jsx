@@ -25,8 +25,9 @@ import "./meet-our-providers-overview.scss";
 export const MeetOurProvidersOverview = () => {
   const { t } = useTranslation("meet-our-providers-overview");
   const navigate = useNavigate();
+  const localStorageCountry = localStorage.getItem("country");
   const [isInGlobalCountry, setIsInGlobalCountry] = useState(
-    localStorage.getItem("country") === "global"
+    localStorageCountry === "global" || !localStorageCountry
   );
 
   useEventListener("countryChanged", () => {

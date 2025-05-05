@@ -42,7 +42,7 @@ export const FAQ = ({ showMascot, showLearnMore, showAll = true }) => {
 
   //--------------------- FAQs ----------------------//
 
-  const fetchFaqIds = currentCountry !== "global";
+  const fetchFaqIds = !!(currentCountry && currentCountry !== "global");
   const getFAQIds = async () => {
     // Request faq ids from the master DB based for website platform
     const faqIds = await adminSvc.getFAQs("website");

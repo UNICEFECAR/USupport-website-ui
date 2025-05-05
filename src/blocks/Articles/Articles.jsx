@@ -161,7 +161,7 @@ export const Articles = () => {
     localStorage.getItem("country")
   );
 
-  const shouldFetchIds = currentCountry !== "global";
+  const shouldFetchIds = !!(currentCountry && currentCountry !== "global");
 
   const handler = useCallback(() => {
     const country = localStorage.getItem("country");

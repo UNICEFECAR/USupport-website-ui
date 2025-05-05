@@ -31,7 +31,7 @@ export const InformationPortal = () => {
   const [currentCountry, setCurrentCountry] = useState(
     localStorage.getItem("country")
   );
-  const shouldFetchIds = currentCountry !== "global";
+  const shouldFetchIds = !!(currentCountry && currentCountry !== "global");
 
   const handler = useCallback(() => {
     setCurrentCountry(localStorage.getItem("country"));
