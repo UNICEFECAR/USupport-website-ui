@@ -76,6 +76,11 @@ export const Page = ({
   };
 
   const fetchCountries = async () => {
+    const freshLocalStorageCountry = localStorage.getItem("country");
+    if (freshLocalStorageCountry !== localStorageCountry) {
+      localStorageCountry = freshLocalStorageCountry;
+    }
+
     const subdomain = window.location.hostname.split(".")[0];
     const res = await countrySvc.getActiveCountriesWithLanguages();
     let hasSetDefaultCountry = false;
@@ -108,7 +113,7 @@ export const Page = ({
       setLangs(allLanguages);
     }
 
-    const allLanguages = [];
+    let allLanguages = [];
 
     const countries = res.data.map((x) => {
       const currentLanguages = x.languages.map((y) => ({
@@ -161,7 +166,14 @@ export const Page = ({
       changeLanguage("en");
     }
 
-    if (subdomain === "staging") {
+    allLanguages = allLanguages.filter(
+      (x, index, self) => index === self.findIndex((t) => t.value === x.value)
+    );
+
+    if (
+      subdomain === "staging" &&
+      (!localStorageCountry || localStorageCountry === "global")
+    ) {
       setLangs(allLanguages);
     }
     if (!hasSetDefaultCountry && !localStorageCountry) {
@@ -177,7 +189,7 @@ export const Page = ({
   };
 
   useEventListener("countryChanged", () => {
-    queryClient.invalidateQueries({ queryKey: ["languages"] });
+    queryClient.invalidateQueries({ queryKey: ["countries"] });
   });
 
   const { data: countries } = useQuery(["countries"], fetchCountries);
