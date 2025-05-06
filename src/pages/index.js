@@ -12,3 +12,4 @@ export * from "./TermsOfUse";
 export * from "./ProviderOverview";
 export * from "./MyQA";
 export * from "./CustomAboutUs";
+export * from './VideoInformation';
