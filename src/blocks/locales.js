@@ -24,3 +24,4 @@ export * as MascotHeaderMyQA from "./MascotHeaderMyQA/locales.js";
 export * as MyQA from "./MyQA/locales.js";
 export * as CouponInformation from "./CouponInformation/locales.js";
 export * as CustomAboutUs from "./CustomAboutUs/locales.js";
+export * as Videos from './Videos/locales.js';
