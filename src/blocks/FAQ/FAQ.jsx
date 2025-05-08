@@ -42,6 +42,7 @@ export const FAQ = ({ showMascot, showLearnMore, showAll = true }) => {
 
   //--------------------- FAQs ----------------------//
 
+  const fetchFaqIds = !!(currentCountry && currentCountry !== "global");
   const getFAQIds = async () => {
     // Request faq ids from the master DB based for website platform
     const faqIds = await adminSvc.getFAQs("website");
@@ -49,15 +50,29 @@ export const FAQ = ({ showMascot, showLearnMore, showAll = true }) => {
     return faqIds;
   };
 
-  const faqIdsQuerry = useQuery(["faqIds", currentCountry], getFAQIds);
+  const faqIdsQuery = useQuery(
+    ["faqIds", currentCountry, fetchFaqIds],
+    getFAQIds,
+    {
+      enabled: fetchFaqIds,
+    }
+  );
 
   const getFAQs = async () => {
     const faqs = [];
-
-    let { data } = await cmsSvc.getFAQs({
-      locale: i18n.language,
-      ids: faqIdsQuerry.data,
-    });
+    let data;
+    if (fetchFaqIds) {
+      const { data: faqsData } = await cmsSvc.getFAQs({
+        locale: i18n.language,
+        ids: faqIdsQuery.data,
+      });
+      data = faqsData;
+    } else {
+      const { data: faqsData } = await cmsSvc.getGlobalFAQs({
+        locale: i18n.language,
+      });
+      data = faqsData;
+    }
 
     data.data.forEach((faq) => {
       faqs.push({
@@ -73,10 +88,17 @@ export const FAQ = ({ showMascot, showLearnMore, showAll = true }) => {
     data: FAQsData,
     isLoading: FAQsLoading,
     isFetched: isFAQsFetched,
-  } = useQuery(["FAQs", faqIdsQuerry.data, i18n.language], getFAQs, {
-    // Run the query when the getCategories and getAgeGroups queries have finished running
-    enabled: !faqIdsQuerry.isLoading && faqIdsQuerry.data?.length > 0,
-  });
+  } = useQuery(
+    ["FAQs", faqIdsQuery.data, i18n.language, currentCountry, fetchFaqIds],
+    getFAQs,
+    {
+      // Run the query when the getCategories and getAgeGroups queries have finished running
+      // Dont the query if the country is global
+      enabled: fetchFaqIds
+        ? !faqIdsQuery.isLoading && faqIdsQuery.data?.length > 0
+        : true,
+    }
+  );
 
   return (
     <Block classes="faq" animation="fade-right">
@@ -94,9 +116,9 @@ export const FAQ = ({ showMascot, showLearnMore, showAll = true }) => {
                       data={showAll ? FAQsData : FAQsData.slice(0, 5)}
                     />
                   )}
-                  {faqIdsQuerry.data?.length > 0 &&
-                    !FAQsData &&
-                    FAQsLoading && <Loading />}
+                  {faqIdsQuery.data?.length > 0 && !FAQsData && FAQsLoading && (
+                    <Loading />
+                  )}
                   {!FAQsData?.length && !FAQsLoading && isFAQsFetched && (
                     <h3 className="page__faq__no-results">{t("no_results")}</h3>
                   )}
@@ -108,7 +130,10 @@ export const FAQ = ({ showMascot, showLearnMore, showAll = true }) => {
                       type="secondary"
                       label={t("button")}
                       onClick={() => {
-                        navigateTo("/how-it-works");
+                        navigateTo(`/${localStorage.getItem(
+                          "language"
+                        )}/how-it-works
+                          `);
                       }}
                     />
                   </GridItem>

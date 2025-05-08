@@ -9,7 +9,7 @@ import {
   RedirectToLogin,
 } from "#modals";
 import { MascotHeaderMyQA, MyQA as MyQABlock, Page } from "#blocks";
-import { useGetQuestions } from "#hooks";
+import { useGetQuestions, useEventListener } from "#hooks";
 import "./my-qa.scss";
 
 /**
@@ -38,6 +38,32 @@ export const MyQA = () => {
   const [filterTag, setFilterTag] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState();
   const [shouldFetchQuestions, setShouldFetchQuestions] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState(
+    localStorage.getItem("country")
+  );
+  const isInGlobalCountry = selectedCountry === "global";
+
+  const staticQuestions = [
+    {
+      answerCreatedAt: "2023-10-01T12:00:00Z",
+      answerId: 1,
+      answerText: t("my_qa_answer_text"),
+      answerTitle: t("my_qa_answer_title"),
+      dislikes: 0,
+      isDisliked: false,
+      isLiked: false,
+      likes: 10,
+      providerData: { name: "uSupport Provider", image: "default" },
+      providerDetailId: 1,
+      question: "What is the question?",
+      questionCreatedAt: "2023-10-01T12:00:00Z",
+      questionId: 1,
+    },
+  ];
+
+  useEventListener("countryChanged", (e) => {
+    setSelectedCountry(e.detail);
+  });
 
   const isUserQuestionsEnabled =
     tabs.filter((tab) => tab.value === "your_questions" && tab.isSelected)
@@ -47,7 +73,7 @@ export const MyQA = () => {
 
   const allQuestions = useGetQuestions(
     tabs.find((tab) => tab.isSelected).value,
-    !isUserQuestionsEnabled,
+    isInGlobalCountry ? false : !isUserQuestionsEnabled,
     selectedLanguage
   );
 
@@ -68,7 +94,9 @@ export const MyQA = () => {
   };
 
   const handleProviderClick = (providerId) => {
-    navigate(`/about-us/provider?id=${providerId}`);
+    navigate(
+      `/${localStorage.getItem("language")}/about-us/provider?id=${providerId}`
+    );
   };
 
   return (
@@ -83,13 +111,13 @@ export const MyQA = () => {
         handleScheduleConsultationClick={() =>
           setIsRedirectToLoginBackdropOpen(true)
         }
-        questions={questions}
+        questions={isInGlobalCountry ? staticQuestions : questions}
         tabs={tabs}
         setTabs={setTabs}
         isUserQuestionsEnabled={isUserQuestionsEnabled}
         filterTag={filterTag}
         handleFilterTags={() => setIsFilterQuestionsOpen(true)}
-        isLoading={allQuestions.isLoading}
+        isLoading={allQuestions.isFetching}
         selectedLanguage={selectedLanguage}
         setSelectedLanguage={setSelectedLanguage}
         setShouldFetchQuestions={setShouldFetchQuestions}
@@ -124,6 +152,7 @@ export const MyQA = () => {
         isOpen={isFilterQuestionsOpen}
         onClose={() => setIsFilterQuestionsOpen(false)}
         setTag={setFilterTag}
+        isInGlobalCountry={isInGlobalCountry}
       />
     </Page>
   );

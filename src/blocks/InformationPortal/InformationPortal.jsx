@@ -31,6 +31,7 @@ export const InformationPortal = () => {
   const [currentCountry, setCurrentCountry] = useState(
     localStorage.getItem("country")
   );
+  const shouldFetchIds = !!(currentCountry && currentCountry !== "global");
 
   const handler = useCallback(() => {
     setCurrentCountry(localStorage.getItem("country"));
@@ -49,21 +50,30 @@ export const InformationPortal = () => {
   };
 
   const articleIdsQuerry = useQuery(
-    ["articleIds", currentCountry],
-    getArticlesIds
+    ["articleIds", currentCountry, shouldFetchIds],
+    getArticlesIds,
+    {
+      enabled: shouldFetchIds,
+    }
   );
 
   //--------------------- Most Read Articles ----------------------//
 
   const getMostReadArticles = async () => {
-    let { data } = await cmsSvc.getArticles({
+    const queryParams = {
       limit: 4,
       sortBy: "read_count", // Sort by created date
       sortOrder: "desc", // Sort in descending order
       locale: i18n.language,
       populate: true,
-      ids: articleIdsQuerry.data,
-    });
+    };
+    if (shouldFetchIds) {
+      queryParams["ids"] = articleIdsQuerry.data;
+    } else {
+      queryParams["global"] = true;
+      queryParams["isForAdmin"] = true;
+    }
+    let { data } = await cmsSvc.getArticles(queryParams);
 
     for (let i = 0; i < data.data.length; i++) {
       data.data[i] = destructureArticleData(data.data[i]);
@@ -73,10 +83,12 @@ export const InformationPortal = () => {
   };
 
   const mostReadArticlesQuerry = useQuery(
-    ["mostReadArticles", i18n.language, articleIdsQuerry.data],
+    ["mostReadArticles", i18n.language, articleIdsQuerry.data, shouldFetchIds],
     getMostReadArticles,
     {
-      enabled: !articleIdsQuerry.isLoading && articleIdsQuerry.data?.length > 0,
+      enabled: shouldFetchIds
+        ? !articleIdsQuerry.isLoading && articleIdsQuerry.data?.length > 0
+        : true,
       refetchOnWindowFocus: false,
       onSuccess: (data) => {
         if (data.length === 0) {
@@ -87,6 +99,12 @@ export const InformationPortal = () => {
       },
     }
   );
+
+  const handleRedirect = (id) => {
+    navigate(
+      `/${localStorage.getItem("language")}/information-portal/article/${id}`
+    );
+  };
 
   return (
     <>
@@ -128,12 +146,12 @@ export const InformationPortal = () => {
                     creator={mostReadArticlesQuerry.data[0].creator}
                     readingTime={mostReadArticlesQuerry.data[0].readingTime}
                     categoryName={mostReadArticlesQuerry.data[0].categoryName}
+                    likes={mostReadArticlesQuerry.data[0].likes || 0}
+                    dislikes={mostReadArticlesQuerry.data[0].dislikes || 0}
                     t={t}
-                    onClick={() => {
-                      navigate(
-                        `/information-portal/article/${mostReadArticlesQuerry.data[0].id}`
-                      );
-                    }}
+                    onClick={() =>
+                      handleRedirect(mostReadArticlesQuerry.data[0].id)
+                    }
                   />
                 </GridItem>
               )}
@@ -168,12 +186,10 @@ export const InformationPortal = () => {
                                 readingTime={article.readingTime}
                                 categoryName={article.categoryName}
                                 showLabels={false}
+                                likes={article.likes}
+                                dislikes={article.dislikes}
                                 t={t}
-                                onClick={() => {
-                                  navigate(
-                                    `/information-portal/article/${article.id}`
-                                  );
-                                }}
+                                onClick={() => handleRedirect(article.id)}
                               />
                             </GridItem>
                           )

@@ -1,5 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useParams,
+  Navigate,
+} from "react-router-dom";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import {
   QueryClient,
@@ -84,11 +90,44 @@ function App() {
   );
 }
 
+const LanguageLayout = () => {
+  const { language } = useParams();
+
+  const allLangs = ["en", "ru", "kk", "pl", "uk"];
+
+  if (!allLangs.includes(language) || !language) {
+    return <Navigate to="/en" />;
+  }
+
+  return (
+    <Routes>
+      <Route path="" element={<Landing />} />
+      <Route path="how-it-works" element={<HowItWorks />} />
+      {/* <Route path="/about-us" element={<AboutUs />} /> */}
+      <Route path="about-us" element={<CustomAboutUs />} />
+      <Route path="about-us/provider" element={<ProviderOverview />} />
+      <Route path="contact-us" element={<ContactUs />} />
+      <Route path="information-portal" element={<InformationPortal />} />
+      <Route
+        path="information-portal/article/:id"
+        element={<ArticleInformation />}
+      />
+      <Route path="my-qa" element={<MyQA />} />
+      <Route path="privacy-policy" element={<PrivacyPolicy />} />
+      <Route path="sos-center" element={<SOSCenter />} />
+      <Route path="cookie-policy" element={<CookiePolicy />} />
+      <Route path="terms-of-use" element={<TermsOfUse />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
+};
+
 const Root = () => {
   const [country, setCountry] = useState(
     localStorage.getItem("country") || null
   );
   const [hasAddedPlatformAccess, setHasAddedPlatformAccess] = useState(false);
+  const language = localStorage.getItem("language") || "en";
 
   const handler = useCallback(() => {
     const country = localStorage.getItem("country");
@@ -106,27 +145,13 @@ const Root = () => {
       setHasAddedPlatformAccess(true);
       return true;
     },
-    enabled: !!country && !hasAddedPlatformAccess,
+    enabled: !!country && !hasAddedPlatformAccess && country !== "global",
   });
   return (
-    <Router>
+    <Router basename="/">
       <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/how-it-works" element={<HowItWorks />} />
-        {/* <Route path="/about-us" element={<AboutUs />} /> */}
-        <Route path="/about-us/:country" element={<CustomAboutUs />} />
-        <Route path="/about-us/provider" element={<ProviderOverview />} />
-        <Route path="/contact-us" element={<ContactUs />} />
-        <Route path="/information-portal" element={<InformationPortal />} />
-        <Route
-          path="/information-portal/article/:id"
-          element={<ArticleInformation />}
-        />
-        <Route path="/my-qa" element={<MyQA />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/sos-center" element={<SOSCenter />} />
-        <Route path="/cookie-policy" element={<CookiePolicy />} />
-        <Route path="/terms-of-use" element={<TermsOfUse />} />
+        <Route path="/" element={<Navigate to={`/${language}`} replace />} />
+        <Route path=":language/*" element={<LanguageLayout />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

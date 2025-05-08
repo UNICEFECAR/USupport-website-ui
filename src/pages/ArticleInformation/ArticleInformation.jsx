@@ -11,7 +11,11 @@ import {
   CardMedia,
   Loading,
 } from "@USupport-components-library/src";
-import { cmsSvc, adminSvc } from "@USupport-components-library/services";
+import {
+  cmsSvc,
+  adminSvc,
+  userSvc,
+} from "@USupport-components-library/services";
 
 import "./article-information.scss";
 
@@ -33,12 +37,18 @@ export const ArticleInformation = () => {
   const getArticleData = async () => {
     let articleIdToFetch = id;
 
+    const contentRatings = await userSvc.getRatingsForContent({
+      contentType: "article",
+      contentId: articleIdToFetch,
+    });
+
     const { data } = await cmsSvc.getArticleById(
       articleIdToFetch,
       i18n.language
     );
 
     const finalData = destructureArticleData(data);
+    finalData.contentRating = contentRatings.data;
     return finalData;
   };
 
@@ -128,9 +138,15 @@ export const ArticleInformation = () => {
                     creator={articleData.creator}
                     readingTime={articleData.readingTime}
                     categoryName={articleData.categoryName}
+                    likes={articleData.likes || 0}
+                    dislikes={articleData.dislikes || 0}
                     t={t}
                     onClick={() => {
-                      navigate(`/information-portal/article/${articleData.id}`);
+                      navigate(
+                        `/${localStorage.getItem(
+                          "language"
+                        )}/information-portal/article/${articleData.id}`
+                      );
                       onArticleClick();
                     }}
                   />

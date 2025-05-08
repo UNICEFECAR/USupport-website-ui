@@ -161,6 +161,8 @@ export const Articles = () => {
     localStorage.getItem("country")
   );
 
+  const shouldFetchIds = !!(currentCountry && currentCountry !== "global");
+
   const handler = useCallback(() => {
     const country = localStorage.getItem("country");
     if (country !== currentCountry) {
@@ -182,10 +184,15 @@ export const Articles = () => {
   };
 
   const articleIdsQuery = useQuery(
-    ["articleIds", currentCountry],
-    getArticlesIds
+    ["articleIds", currentCountry, shouldFetchIds],
+    getArticlesIds,
+    {
+      enabled: shouldFetchIds,
+    }
   );
 
+  const [articles, setArticles] = useState();
+  const [numberOfArticles, setNumberOfArticles] = useState();
   const [hasMore, setHasMore] = useState(true);
 
   const getArticlesData = async () => {
@@ -196,15 +203,23 @@ export const Articles = () => {
       categoryId = selectedCategory.id;
     }
 
-    let { data } = await cmsSvc.getArticles({
+    let queryParams = {
       limit: 6,
       contains: debouncedSearchValue,
       ageGroupId,
       categoryId,
       locale: usersLanguage,
       populate: true,
-      ids: articleIdsQuery.data,
-    });
+    };
+
+    if (shouldFetchIds) {
+      queryParams["ids"] = articleIdsQuery.data;
+    } else {
+      queryParams["global"] = true;
+      queryParams["isForAdmin"] = true;
+    }
+
+    let { data } = await cmsSvc.getArticles(queryParams);
 
     const articles = data.data;
 
@@ -212,8 +227,6 @@ export const Articles = () => {
     return { articles, numberOfArticles };
   };
 
-  const [articles, setArticles] = useState();
-  const [numberOfArticles, setNumberOfArticles] = useState();
   const {
     isLoading: isArticlesLoading,
     isFetching: isArticlesFetching,
@@ -228,16 +241,18 @@ export const Articles = () => {
       selectedCategory,
       articleIdsQuery.data,
       usersLanguage,
+      shouldFetchIds,
     ],
     getArticlesData,
     {
       enabled:
-        !articleIdsQuery.isLoading &&
+        (shouldFetchIds
+          ? !articleIdsQuery.isLoading && articleIdsQuery.data?.length > 0
+          : true) &&
         !ageGroupsQuery.isLoading &&
         !categoriesQuery.isLoading &&
         categoriesQuery.data?.length > 0 &&
         ageGroupsQuery.data?.length > 0 &&
-        articleIdsQuery.data?.length > 0 &&
         selectedCategory !== null &&
         selectedAgeGroup !== null,
       refetchOnWindowFocus: false,
@@ -267,7 +282,7 @@ export const Articles = () => {
     //   categoryId = selectedCategory.id;
     // }
 
-    const { data } = await cmsSvc.getArticles({
+    let queryParams = {
       startFrom: articles?.length,
       limit: 6,
       contains: searchValue,
@@ -275,8 +290,16 @@ export const Articles = () => {
       categoryId: null,
       locale: usersLanguage,
       populate: true,
-      ids: articleIdsQuery.data,
-    });
+    };
+
+    if (shouldFetchIds) {
+      queryParams["ids"] = articleIdsQuery.data;
+    } else {
+      queryParams["global"] = true;
+      queryParams["isForAdmin"] = true;
+    }
+
+    const { data } = await cmsSvc.getArticles(queryParams);
 
     const newArticles = data.data;
 
@@ -285,14 +308,24 @@ export const Articles = () => {
 
   //--------------------- Newest Article ----------------------//
   const getNewestArticle = async () => {
-    let { data } = await cmsSvc.getArticles({
+    console.log("fetch newest article");
+    let queryParams = {
       limit: 1, // Only get the newest article
       sortBy: "createdAt", // Sort by created date
       sortOrder: "desc", // Sort in descending order
       locale: usersLanguage,
       populate: true,
-      ids: articleIdsQuery.data,
-    });
+    };
+
+    if (shouldFetchIds) {
+      queryParams["ids"] = articleIdsQuery.data;
+    } else {
+      queryParams["global"] = true;
+      queryParams["isForAdmin"] = true;
+    }
+
+    let { data } = await cmsSvc.getArticles(queryParams);
+    console.log("newwest article data", data);
     if (!data || !data.data[0]) return null;
     const newestArticleData = destructureArticleData(data.data[0]);
     return newestArticleData;
@@ -305,14 +338,22 @@ export const Articles = () => {
     isFetched: isNewestArticleFetched,
     fetchStatus: newestArticleFetchStatus,
   } = useQuery(
-    ["newestArticle", usersLanguage, currentCountry],
+    ["newestArticle", usersLanguage, currentCountry, shouldFetchIds],
     getNewestArticle,
     {
       // Run the query when the getCategories and getAgeGroups queries have finished running
-      enabled: !articleIdsQuery.isLoading && articleIdsQuery.data?.length > 0,
+      enabled: shouldFetchIds
+        ? !articleIdsQuery.isLoading && articleIdsQuery.data?.length > 0
+        : true,
       refetchOnWindowFocus: false,
     }
   );
+
+  const handleRedirect = (id) => {
+    navigate(
+      `/${localStorage.getItem("language")}/information-portal/article/${id}`
+    );
+  };
 
   return (
     <Block classes="articles">
@@ -342,10 +383,10 @@ export const Articles = () => {
                 readingTime={newestArticle.readingTime}
                 categoryName={newestArticle.categoryName}
                 showDescription={true}
+                likes={newestArticle.likes}
+                dislikes={newestArticle.dislikes}
                 t={t}
-                onClick={() => {
-                  navigate(`/information-portal/article/${newestArticle.id}`);
-                }}
+                onClick={() => handleRedirect(newestArticle.id)}
               />
               {!newestArticle && isNewestArticleLoading && (
                 <Loading size="lg" />
@@ -399,13 +440,11 @@ export const Articles = () => {
                             labels={articleData.labels}
                             creator={articleData.creator}
                             readingTime={articleData.readingTime}
+                            likes={articleData.likes || 0}
+                            dislikes={articleData.dislikes || 0}
                             t={t}
                             categoryName={articleData.categoryName}
-                            onClick={() => {
-                              navigate(
-                                `/information-portal/article/${articleData.id}`
-                              );
-                            }}
+                            onClick={() => handleRedirect(articleData.id)}
                           />
                         </GridItem>
                       );
@@ -424,9 +463,10 @@ export const Articles = () => {
         </InfiniteScroll>
       )}
 
-      {isArticlesFetching ||
-      articleIdsQuery.isLoading ||
-      articleIdsQuery.isFetching ||
+      {(shouldFetchIds &&
+        (isArticlesFetching ||
+          articleIdsQuery.isLoading ||
+          articleIdsQuery.isFetching)) ||
       isNewestArticleFetching ||
       (isNewestArticleLoading && newestArticleFetchStatus !== "idle") ? (
         <Loading />

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
 import {
   Block,
   Button,
@@ -11,7 +12,7 @@ import {
 } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 
-import { useGetProvidersData } from "#hooks";
+import { useGetProvidersData, useEventListener } from "#hooks";
 
 import "./meet-our-providers.scss";
 
@@ -26,11 +27,26 @@ export const MeetOurProviders = () => {
   const navigate = useNavigate();
   const { t } = useTranslation("meet-our-providers");
   const { width } = useWindowDimensions();
+  const { language } = useParams();
+  const [isInGlobalCountry, setIsInGlobalCountry] = useState(
+    localStorage.getItem("country") === "global"
+  );
 
-  const providersQuery = useGetProvidersData(false, 3, width);
+  useEventListener("countryChanged", () => {
+    const country = localStorage.getItem("country");
+
+    setIsInGlobalCountry(country === "global");
+  });
+
+  const providersQuery = useGetProvidersData({
+    random: false,
+    limit: 3,
+    width,
+    isInGlobalCountry: isInGlobalCountry,
+  });
 
   const redirectToDetails = (id) => {
-    navigate(`/about-us/provider?id=${id}`);
+    navigate(`/${language}/about-us/provider?id=${id}`);
   };
   return (
     <Block classes="meet-our-providers" id="meet-our-providers">

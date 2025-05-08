@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { providerSvc } from "@USupport-components-library/services";
 
+import { staticProvidersData } from "./useGetProvidersData";
+
 /**
  * Reuseable hook to get and transform the provider data in a desired format
  */
@@ -10,12 +12,19 @@ export default function useGetProviderData(id = null) {
   const [providersData, setProvidersData] = useState();
   const fetchProvidersData = async () => {
     let data;
-    if (id) {
-      const response = await providerSvc.getProviderById(id);
-      data = response.data;
-    } else {
-      const response = await providerSvc.getProviderData();
-      data = response.data;
+
+    if (staticProvidersData.map((x) => x.provider_detail_id).includes(id)) {
+      data = staticProvidersData.find((x) => x.provider_detail_id === id);
+    }
+
+    if (!data) {
+      if (id) {
+        const response = await providerSvc.getProviderById(id);
+        data = response.data;
+      } else {
+        const response = await providerSvc.getProviderData();
+        data = response.data;
+      }
     }
 
     const formattedData = {

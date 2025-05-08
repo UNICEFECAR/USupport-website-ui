@@ -2,6 +2,8 @@ import React, { useEffect, useState, useContext } from "react";
 import { useNavigate, NavLink, Link } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation, Trans } from "react-i18next";
+import classNames from "classnames";
+
 import {
   Navbar,
   CircleIconButton,
@@ -9,12 +11,14 @@ import {
   Icon,
   CookieBanner,
 } from "@USupport-components-library/src";
-import { countrySvc } from "@USupport-components-library/services";
-import { getCountryFromTimezone } from "@USupport-components-library/utils";
-import classNames from "classnames";
-import { ThemeContext } from "@USupport-components-library/utils";
+import { countrySvc, userSvc } from "@USupport-components-library/services";
+import {
+  getCountryFromTimezone,
+  ThemeContext,
+  replaceLanguageInUrl,
+  getLanguageFromUrl,
+} from "@USupport-components-library/utils";
 import { PasswordModal } from "@USupport-components-library/src";
-import { userSvc } from "@USupport-components-library/services";
 
 import { useError, useEventListener } from "#hooks";
 
@@ -24,6 +28,13 @@ const kazakhstanCountry = {
   value: "KZ",
   label: "Kazakhstan",
   iconName: "KZ",
+};
+
+const globalCountry = {
+  value: "global",
+  label: "Global",
+  countryID: "global",
+  iconName: "global",
 };
 
 /**
@@ -58,20 +69,51 @@ export const Page = ({
   const [selectedCountry, setSelectedCountry] = useState();
   const [langs, setLangs] = useState([]);
 
+  const changeLanguage = (language) => {
+    i18n.changeLanguage(language.value);
+    localStorage.setItem("language", language.value);
+    replaceLanguageInUrl(language);
+  };
+
   const fetchCountries = async () => {
+    const freshLocalStorageCountry = localStorage.getItem("country");
+    if (freshLocalStorageCountry !== localStorageCountry) {
+      localStorageCountry = freshLocalStorageCountry;
+    }
+
     const subdomain = window.location.hostname.split(".")[0];
     const res = await countrySvc.getActiveCountriesWithLanguages();
-    const usersCountry = getCountryFromTimezone();
-    const validCountry = res.data.find((x) => x.alpha2 === usersCountry);
     let hasSetDefaultCountry = false;
 
     if (subdomain && subdomain !== "www" && subdomain !== "usupport") {
       localStorageCountry =
         res.data.find((x) => x.name.toLocaleLowerCase() === subdomain)
           ?.alpha2 || localStorageCountry;
+      localStorage.setItem("country", localStorageCountry);
     }
 
-    const allLanguages = [];
+    if (subdomain === "usupport") {
+      localStorage.setItem("country", "global");
+      setSelectedCountry(globalCountry);
+
+      const allLanguages = res.data.reduce((acc, x) => {
+        // Get all languages from each country
+        // filter out duplicates
+        const currentLanguages = x.languages
+          .map((y) => ({
+            value: y.alpha2,
+            label: y.name,
+            id: y["language_id"],
+            localName: y["local_name"],
+          }))
+          .filter((k) => !acc.some((x) => x.value === k.value));
+        acc.push(...currentLanguages);
+        return acc;
+      }, []);
+      setLangs(allLanguages);
+    }
+
+    let allLanguages = [];
 
     const countries = res.data.map((x) => {
       const currentLanguages = x.languages.map((y) => ({
@@ -96,61 +138,58 @@ export const Page = ({
         setSelectedCountry(countryObject);
         setLangs(countryObject.languages);
         localStorage.setItem("currency_symbol", countryObject.currencySymbol);
-      } else if (!localStorageCountry) {
-        if (validCountry?.alpha2 === x.alpha2) {
-          hasSetDefaultCountry = true;
-          localStorage.setItem("country", x.alpha2);
-          localStorage.setItem("currency_symbol", x.symbol);
-
-          window.dispatchEvent(new Event("countryChanged"));
-          setSelectedCountry(countryObject);
-          setLangs(countryObject.languages);
-        }
       }
       return countryObject;
     });
+    const languageFromUrl = getLanguageFromUrl();
     const localLanguage = localStorage.getItem("language");
+
     if (localLanguage) {
-      const languageObject = allLanguages.find(
+      let languageObject = allLanguages.find(
         (x) =>
-          x.value?.toLocaleLowerCase() === localLanguage.toLocaleLowerCase()
+          x.value?.toLocaleLowerCase() === languageFromUrl.toLocaleLowerCase()
       );
+      if (!languageObject) {
+        languageObject = allLanguages.find(
+          (x) =>
+            x.value?.toLocaleLowerCase() === localLanguage.toLocaleLowerCase()
+        );
+      }
       if (languageObject) {
         setSelectedLanguage(languageObject);
         i18n.changeLanguage(languageObject.value);
+        replaceLanguageInUrl(languageObject.value);
       } else {
-        localStorage.setItem("language", "en");
-        i18n.changeLanguage("en");
+        changeLanguage("en");
       }
     } else {
-      localStorage.setItem("language", "en");
-      i18n.changeLanguage("en");
+      changeLanguage("en");
     }
 
+    allLanguages = allLanguages.filter(
+      (x, index, self) => index === self.findIndex((t) => t.value === x.value)
+    );
+
+    if (
+      subdomain === "staging" &&
+      (!localStorageCountry || localStorageCountry === "global")
+    ) {
+      setLangs(allLanguages);
+    }
     if (!hasSetDefaultCountry && !localStorageCountry) {
-      const kazakhstanCountryObject = countries.find(
-        (x) => x.value === kazakhstanCountry.value
-      );
-
-      localStorage.setItem("country", kazakhstanCountry.value);
-      localStorage.setItem(
-        "country_id",
-        countries.find((x) => x.value === kazakhstanCountry.value).countryID
-      );
-      localStorage.setItem(
-        "currency_symbol",
-        kazakhstanCountryObject.currencySymbol
-      );
+      localStorage.setItem("country", "global");
       window.dispatchEvent(new Event("countryChanged"));
-      setSelectedCountry(kazakhstanCountryObject);
-      setLangs(kazakhstanCountryObject.languages);
+      setSelectedCountry(globalCountry);
+      setLangs(allLanguages);
     }
+
+    countries.unshift(globalCountry);
 
     return countries;
   };
 
   useEventListener("countryChanged", () => {
-    queryClient.invalidateQueries({ queryKey: ["languages"] });
+    queryClient.invalidateQueries({ queryKey: ["countries"] });
   });
 
   const { data: countries } = useQuery(["countries"], fetchCountries);
@@ -160,10 +199,7 @@ export const Page = ({
     { name: t("page_2"), url: "/how-it-works" },
     {
       name: t("page_3"),
-      url: `/about-us/${
-        selectedCountry?.value?.toLocaleLowerCase() ||
-        localStorageCountry?.toLocaleLowerCase()
-      }`,
+      url: "/about-us",
     },
     { name: t("page_4"), url: "/information-portal" },
     { name: t("page_6"), url: "/my-qa" },
@@ -173,7 +209,7 @@ export const Page = ({
     list1: [
       {
         name: t("footer_1"),
-        url: `/about-us/${selectedCountry?.value?.toLocaleLowerCase()}`,
+        url: `/about-us`,
       },
       { name: t("footer_2"), url: "/information-portal" },
       { name: t("page_6"), url: "/my-qa" },
@@ -299,10 +335,15 @@ export const Page = ({
       <CircleIconButton
         iconName="phone-emergency"
         classes="page__emergency-button"
-        onClick={() => navigateTo("/sos-center")}
+        onClick={() => navigateTo(`/${localStorageLanguage}/sos-center`)}
         label={t("emergency_button")}
       />
-      <Footer lists={footerLists} navigate={navigateTo} Link={Link} />
+      <Footer
+        lists={footerLists}
+        navigate={navigateTo}
+        Link={Link}
+        renderIn="website"
+      />
       <CookieBanner
         text={
           <Trans components={[<Link to="/cookie-policy" />]}>

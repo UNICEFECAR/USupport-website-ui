@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -11,7 +11,7 @@ import {
   Button,
 } from "@USupport-components-library/src";
 
-import { useGetProvidersData } from "#hooks";
+import { useGetProvidersData, useEventListener } from "#hooks";
 
 import "./meet-our-providers-overview.scss";
 
@@ -25,11 +25,24 @@ import "./meet-our-providers-overview.scss";
 export const MeetOurProvidersOverview = () => {
   const { t } = useTranslation("meet-our-providers-overview");
   const navigate = useNavigate();
+  const localStorageCountry = localStorage.getItem("country");
+  const [isInGlobalCountry, setIsInGlobalCountry] = useState(
+    localStorageCountry === "global" || !localStorageCountry
+  );
 
-  const providersQuery = useGetProvidersData(true);
+  useEventListener("countryChanged", () => {
+    const country = localStorage.getItem("country");
+
+    setIsInGlobalCountry(country === "global");
+  });
+
+  const providersQuery = useGetProvidersData({
+    random: true,
+    isInGlobalCountry,
+  });
 
   const redirectToDetails = (id) => {
-    navigate(`/about-us/provider?id=${id}`);
+    navigate(`/${localStorage.getItem("language")}/about-us/provider?id=${id}`);
   };
 
   return (
@@ -83,7 +96,9 @@ export const MeetOurProvidersOverview = () => {
             label={t("button_label")}
             size="lg"
             type="secondary"
-            onClick={() => navigate("/how-it-works")}
+            onClick={() =>
+              navigate(`/${localStorage.getItem("language")}/how-it-works`)
+            }
           />
         </GridItem>
       </Grid>
