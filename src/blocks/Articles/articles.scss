@@ -4,7 +4,7 @@
   @include full-height-page-navbar;
 
   padding-bottom: $spacing_3_2;
-  padding-top: $spacing_25_0;
+  // padding-top: $spacing_25_0;
   text-align: left;
 
   @media screen and (min-width: $screen-md) {
@@ -21,7 +21,7 @@
   }
 
   &__most-important-item {
-    padding-top: $spacing_10_0;
+    padding-top: $spacing_5_0;
     padding-bottom: $spacing_4_0;
   }
 

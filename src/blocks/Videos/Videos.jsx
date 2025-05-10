@@ -270,6 +270,7 @@ export const Videos = () => {
                 labels={newestVideo.labels}
                 creator={newestVideo.creator}
                 categoryName={newestVideo.categoryName}
+                contentType="videos"
                 showDescription={true}
                 likes={newestVideo.likes}
                 dislikes={newestVideo.dislikes}
@@ -315,6 +316,7 @@ export const Videos = () => {
                       dislikes={videoData.dislikes || 0}
                       t={t}
                       categoryName={videoData.categoryName}
+                      contentType="videos"
                       onClick={() => handleRedirect(videoData.id)}
                     />
                   </GridItem>

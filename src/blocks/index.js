@@ -26,4 +26,5 @@ export * from "./MyQA";
 export * from "./CouponInformation";
 export * from "./CustomAboutUs";
 export * from "./Videos";
-export { VideoView } from "./VideoView/VideoView";
+export * from "./VideoView";
+export * from "./PodcastView";
