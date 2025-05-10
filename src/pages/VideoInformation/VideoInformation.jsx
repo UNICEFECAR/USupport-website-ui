@@ -137,6 +137,7 @@ export const VideoInformation = () => {
                     labels={videoData.labels}
                     creator={videoData.creator}
                     categoryName={videoData.categoryName}
+                    contentType="videos"
                     likes={videoData.likes || 0}
                     dislikes={videoData.dislikes || 0}
                     t={t}
