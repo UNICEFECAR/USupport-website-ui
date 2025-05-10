@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import { Page, Articles, Videos } from "#blocks";
+import { Page, Articles, Videos, Podcasts } from "#blocks";
 
 import {
   ThemeContext,
@@ -25,20 +25,20 @@ export const InformationPortal = () => {
 
   const [contentTypes, setContentTypes] = useState([
     {
-      label: t("articles"),
+      label: "articles",
       value: "articles",
       isSelected: tab === "articles",
     },
     {
-      label: t("videos"),
+      label: "videos",
       value: "videos",
       isSelected: tab === "videos",
     },
-    // {
-    //   label: t("podcasts"),
-    //   value: "podcasts",
-    //   isSelected: tab === "podcasts",
-    // },
+    {
+      label: "podcasts",
+      value: "podcasts",
+      isSelected: tab === "podcasts",
+    },
   ]);
 
   useEffect(() => {
@@ -95,11 +95,15 @@ export const InformationPortal = () => {
         />
       )}
       <TabsUnderlined
-        options={contentTypes}
+        options={contentTypes.map((x) => ({
+          ...x,
+          label: t(x.label),
+        }))}
         handleSelect={handleContentTypeOnPress}
       />
       {selectedContentType === "articles" && <Articles />}
       {selectedContentType === "videos" && <Videos />}
+      {selectedContentType === "podcasts" && <Podcasts />}
     </Page>
   );
 };
