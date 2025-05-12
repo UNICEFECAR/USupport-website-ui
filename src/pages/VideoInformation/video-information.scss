@@ -1,0 +1,32 @@
+@import "@USupport-components-library/styles";
+
+.page__video-information {
+  @include full-height-page-navbar;
+  text-align: left;
+
+  &__more-videos {
+    padding-top: $spacing_3_2;
+    padding-bottom: $spacing_3_2;
+
+    &__main-grid {
+      justify-items: center;
+    }
+
+    .more-videos__heading-item {
+      margin-bottom: $spacing_2_4;
+
+      h4 {
+        font-weight: bold;
+      }
+    }
+  }
+
+  &__more-videos-card {
+    margin-bottom: $spacing_2_4;
+  }
+
+  &__no-results {
+    text-align: center;
+    padding: $spacing_8_0;
+  }
+}

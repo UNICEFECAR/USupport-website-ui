@@ -13,7 +13,6 @@ import {
 } from "@USupport-components-library/src";
 import { countrySvc, userSvc } from "@USupport-components-library/services";
 import {
-  getCountryFromTimezone,
   ThemeContext,
   replaceLanguageInUrl,
   getLanguageFromUrl,
@@ -52,6 +51,7 @@ export const Page = ({
   classes,
   children,
 }) => {
+  const { theme, setTheme, setAllLanguages } = useContext(ThemeContext);
   const navigateTo = useNavigate();
   const queryClient = useQueryClient();
   const { t, i18n } = useTranslation("page");
@@ -111,6 +111,7 @@ export const Page = ({
         return acc;
       }, []);
       setLangs(allLanguages);
+      setAllLanguages(allLanguages);
     }
 
     let allLanguages = [];
@@ -174,6 +175,7 @@ export const Page = ({
       subdomain === "staging" &&
       (!localStorageCountry || localStorageCountry === "global")
     ) {
+      setAllLanguages(allLanguages);
       setLangs(allLanguages);
     }
     if (!hasSetDefaultCountry && !localStorageCountry) {
@@ -181,6 +183,7 @@ export const Page = ({
       window.dispatchEvent(new Event("countryChanged"));
       setSelectedCountry(globalCountry);
       setLangs(allLanguages);
+      setAllLanguages(allLanguages);
     }
 
     countries.unshift(globalCountry);
@@ -201,7 +204,7 @@ export const Page = ({
       name: t("page_3"),
       url: "/about-us",
     },
-    { name: t("page_4"), url: "/information-portal" },
+    { name: t("page_4"), url: "/information-portal?tab=articles" },
     { name: t("page_6"), url: "/my-qa" },
   ];
 
@@ -211,7 +214,7 @@ export const Page = ({
         name: t("footer_1"),
         url: `/about-us`,
       },
-      { name: t("footer_2"), url: "/information-portal" },
+      { name: t("footer_2"), url: "/information-portal?tab=articles" },
       { name: t("page_6"), url: "/my-qa" },
     ],
     list2: [
@@ -227,8 +230,6 @@ export const Page = ({
   };
 
   const handleGoBack = () => navigateTo(-1);
-
-  const { theme, setTheme } = useContext(ThemeContext);
 
   const toggleTheme = () => {
     if (theme === "light") {

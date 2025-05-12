@@ -2,17 +2,29 @@
 @import "@USupport-components-library/styles";
 
 .page__information-portal {
-  background-image: url("./assets/information-portal-mobile.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position-y: $spacing_7_0;
   min-width: 40.7rem;
 
-  @media screen and (min-width: $screen-md) {
-    background-image: url("./assets/information-portal-light.jpg");
+  .information-portal-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 
-    &--dark {
-      background-image: url("./assets/information-portal.png");
+  @media screen and (min-width: $screen-md) {
+    .information-portal-image {
+      &--mobile {
+        display: none;
+      }
+
+      &--desktop {
+        display: block;
+        opacity: 1;
+      }
     }
+  }
+
+  & .tabs-underlined-container {
+    justify-content: center;
+    max-width: unset;
   }
 }
