@@ -28,6 +28,8 @@ import {
   ProviderOverview,
   MyQA,
   CustomAboutUs,
+  VideoInformation,
+  PodcastInformation,
 } from "#pages";
 import { ThemeContext } from "@USupport-components-library/utils";
 import { userSvc } from "@USupport-components-library/services";
@@ -65,6 +67,7 @@ function App() {
 
   const [theme, setTheme] = useState(getDefaultTheme());
   const [showContent, setShowContent] = useState(false);
+  const [allLanguages, setAllLanguages] = useState([]);
 
   useEffect(() => {
     const lang = localStorage.getItem("language");
@@ -79,7 +82,9 @@ function App() {
   }, [theme]);
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider
+      value={{ theme, setTheme, allLanguages, setAllLanguages }}
+    >
       <div className={`theme-${theme}`}>
         <QueryClientProvider client={queryClient}>
           {showContent && <Root />}
@@ -111,6 +116,14 @@ const LanguageLayout = () => {
       <Route
         path="information-portal/article/:id"
         element={<ArticleInformation />}
+      />
+      <Route
+        path="information-portal/video/:id"
+        element={<VideoInformation />}
+      />
+      <Route
+        path="information-portal/podcast/:id"
+        element={<PodcastInformation />}
       />
       <Route path="my-qa" element={<MyQA />} />
       <Route path="privacy-policy" element={<PrivacyPolicy />} />

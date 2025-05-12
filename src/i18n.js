@@ -35,6 +35,8 @@ import {
   ArticleInformation,
   ProviderOverview as ProviderOverviewPage,
   MyQA as MyQAPage,
+  VideoInformation,
+  PodcastInformation,
 } from "#pages/locales.js";
 
 import {
@@ -78,7 +80,8 @@ const resources = {
     "article-information": ArticleInformation.en,
     "provider-overview-page": ProviderOverviewPage.en,
     "my-qa-page": MyQAPage.en,
-
+    "video-information-page": VideoInformation.en,
+    "podcast-information-page": PodcastInformation.en,
     //Modals
     "question-details": QuestionDetails.en,
     "how-it-works-my-qa": HowItWorksMyQA.en,
@@ -118,7 +121,8 @@ const resources = {
     "article-information": ArticleInformation.kk,
     "provider-overview-page": ProviderOverviewPage.kk,
     "my-qa-page": MyQAPage.kk,
-
+    "video-information-page": VideoInformation.kk,
+    "podcast-information-page": PodcastInformation.kk,
     //Modals
     "question-details": QuestionDetails.kk,
     "how-it-works-my-qa": HowItWorksMyQA.kk,
@@ -158,7 +162,8 @@ const resources = {
     "article-information": ArticleInformation.ru,
     "provider-overview-page": ProviderOverviewPage.ru,
     "my-qa-page": MyQAPage.ru,
-
+    "video-information-page": VideoInformation.ru,
+    "podcast-information-page": PodcastInformation.ru,
     //Modals
     "question-details": QuestionDetails.ru,
     "how-it-works-my-qa": HowItWorksMyQA.ru,
@@ -198,7 +203,8 @@ const resources = {
     "article-information": ArticleInformation.pl,
     "provider-overview-page": ProviderOverviewPage.pl,
     "my-qa-page": MyQAPage.pl,
-
+    "video-information-page": VideoInformation.pl,
+    "podcast-information-page": PodcastInformation.pl,
     //Modals
     "question-details": QuestionDetails.pl,
     "how-it-works-my-qa": HowItWorksMyQA.pl,
@@ -238,7 +244,8 @@ const resources = {
     "article-information": ArticleInformation.uk,
     "provider-overview-page": ProviderOverviewPage.uk,
     "my-qa-page": MyQAPage.uk,
-
+    "video-information-page": VideoInformation.uk,
+    "podcast-information-page": PodcastInformation.uk,
     //Modals
     "question-details": QuestionDetails.uk,
     "how-it-works-my-qa": HowItWorksMyQA.uk,

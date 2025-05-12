@@ -25,3 +25,7 @@ export * from "./MascotHeaderMyQA";
 export * from "./MyQA";
 export * from "./CouponInformation";
 export * from "./CustomAboutUs";
+export * from "./Videos";
+export * from "./VideoView";
+export * from "./PodcastView";
+export * from "./Podcasts";
