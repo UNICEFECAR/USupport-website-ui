@@ -63,14 +63,9 @@
 
   &__no-results-container {
     text-align: center;
-
+    padding-block: 100px;
     @media screen and (min-width: $screen-lg) {
-      padding-top: $spacing_15_3;
-    }
-
-    h3,
-    p {
-      color: $color_white_ff !important;
+      padding-block: 153px;
     }
   }
 }
