@@ -1,4 +1,10 @@
-import React, { useState, useMemo, useCallback, useEffect } from "react";
+import React, {
+  useState,
+  useMemo,
+  useCallback,
+  useEffect,
+  useContext,
+} from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -14,7 +20,10 @@ import {
   Loading,
   Dropdown,
 } from "@USupport-components-library/src";
-import { useWindowDimensions } from "@USupport-components-library/utils";
+import {
+  ThemeContext,
+  useWindowDimensions,
+} from "@USupport-components-library/utils";
 
 import { useEventListener, useGetLanguages } from "#hooks";
 
@@ -47,6 +56,7 @@ export const MyQA = ({
 
   const [searchValue, setSearchValue] = useState("");
 
+  const { allLanguages } = useContext(ThemeContext);
   const { data: languages } = useGetLanguages();
 
   const handler = useCallback(() => {
@@ -73,6 +83,7 @@ export const MyQA = ({
     };
 
     if (!languages) return [showAllOption];
+    if (!languages.length) return [showAllOption, ...allLanguages];
 
     return [
       showAllOption,
@@ -81,7 +92,7 @@ export const MyQA = ({
         label: x.local_name,
       })),
     ];
-  }, [languages, t]);
+  }, [languages, allLanguages, t]);
 
   const handleTabChange = (index) => {
     const tabsCopy = [...tabs];
@@ -104,9 +115,6 @@ export const MyQA = ({
 
   const renderQuestions = () => {
     return questions.map((question, index) => {
-      // if (!questions.length) {
-      // }
-
       if (filterTag) {
         const tags = question.tags;
         if (!tags.includes(filterTag)) {

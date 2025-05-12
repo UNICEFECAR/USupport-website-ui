@@ -65,6 +65,7 @@ function App() {
 
   const [theme, setTheme] = useState(getDefaultTheme());
   const [showContent, setShowContent] = useState(false);
+  const [allLanguages, setAllLanguages] = useState([]);
 
   useEffect(() => {
     const lang = localStorage.getItem("language");
@@ -79,7 +80,9 @@ function App() {
   }, [theme]);
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider
+      value={{ theme, setTheme, allLanguages, setAllLanguages }}
+    >
       <div className={`theme-${theme}`}>
         <QueryClientProvider client={queryClient}>
           {showContent && <Root />}
