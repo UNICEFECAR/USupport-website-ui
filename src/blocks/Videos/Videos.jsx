@@ -108,7 +108,7 @@ export const Videos = () => {
     localStorage.getItem("country")
   );
 
-  const shouldFetchIds = true;
+  const shouldFetchIds = !!(currentCountry && currentCountry !== "global");
 
   const handler = useCallback(() => {
     const country = localStorage.getItem("country");
@@ -225,7 +225,7 @@ export const Videos = () => {
       `/${localStorage.getItem("language")}/information-portal/video/${id}`
     );
   };
-  console.log(newestVideo, "newestVideo");
+
   // Simplified loading state
   const isLoading =
     isVideosLoading ||

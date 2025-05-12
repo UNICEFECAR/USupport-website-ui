@@ -107,7 +107,7 @@ export const Podcasts = () => {
     localStorage.getItem("country")
   );
 
-  const shouldFetchIds = true;
+  const shouldFetchIds = !!(currentCountry && currentCountry !== "global");
 
   const handler = useCallback(() => {
     const country = localStorage.getItem("country");

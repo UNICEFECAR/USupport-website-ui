@@ -88,7 +88,7 @@ export const PodcastInformation = () => {
   const {
     data: morePodcasts,
     isLoading: isMorePodcastsLoading,
-    isFetched: isMorePodcastsFetched,
+    isFetching: isMorePodcastsFetching,
   } = useQuery(["more-podcasts", id, i18n.language], getSimilarPodcasts, {
     enabled:
       !isFetchingPodcastData &&
@@ -155,7 +155,7 @@ export const PodcastInformation = () => {
       )}
 
       <Block>
-        {!morePodcasts && isMorePodcastsLoading && !isPodcastLoading && (
+        {!morePodcasts && isMorePodcastsFetching && !isPodcastLoading && (
           <Loading size="lg" />
         )}
       </Block>
