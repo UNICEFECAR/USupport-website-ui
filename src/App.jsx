@@ -28,6 +28,8 @@ import {
   ProviderOverview,
   MyQA,
   CustomAboutUs,
+  VideoInformation,
+  PodcastInformation,
 } from "#pages";
 import { ThemeContext } from "@USupport-components-library/utils";
 import { userSvc } from "@USupport-components-library/services";
@@ -114,6 +116,14 @@ const LanguageLayout = () => {
       <Route
         path="information-portal/article/:id"
         element={<ArticleInformation />}
+      />
+      <Route
+        path="information-portal/video/:id"
+        element={<VideoInformation />}
+      />
+      <Route
+        path="information-portal/podcast/:id"
+        element={<PodcastInformation />}
       />
       <Route path="my-qa" element={<MyQA />} />
       <Route path="privacy-policy" element={<PrivacyPolicy />} />

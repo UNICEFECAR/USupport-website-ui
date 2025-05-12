@@ -6,5 +6,9 @@
   "read_more_button": "Ары қарай оқу",
   "min_read": "минут оқуға",
   "by": "дайындаушы {{creator}}",
-  "number_of_more_options": "тағы {{count}}"
+  "number_of_more_options": "тағы {{count}}",
+  "articles": "Мақалалар",
+  "videos": "Видео",
+  "podcasts": "Подкасттар",
+  "view_more": "Көбірек көру"
 }

@@ -6,5 +6,9 @@
   "read_more_button": "Czytaj więcej",
   "min_read": "min czytać",
   "by": "Przez {{creator}}",
-  "number_of_more_options": "jeszcze {{count}}"
+  "number_of_more_options": "jeszcze {{count}}",
+  "articles": "Artykuły",
+  "videos": "Wideo",
+  "podcasts": "Podcasty",
+  "view_more": "Zobacz więcej"
 }

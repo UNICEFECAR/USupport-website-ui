@@ -34,7 +34,6 @@ export const Articles = () => {
   const navigate = useNavigate();
   const { width } = useWindowDimensions();
   const { i18n, t } = useTranslation("articles");
-
   const { theme } = useContext(ThemeContext);
 
   const isNotDescktop = width < 1366;
@@ -308,7 +307,6 @@ export const Articles = () => {
 
   //--------------------- Newest Article ----------------------//
   const getNewestArticle = async () => {
-    console.log("fetch newest article");
     let queryParams = {
       limit: 1, // Only get the newest article
       sortBy: "createdAt", // Sort by created date
@@ -325,7 +323,7 @@ export const Articles = () => {
     }
 
     let { data } = await cmsSvc.getArticles(queryParams);
-    console.log("newwest article data", data);
+
     if (!data || !data.data[0]) return null;
     const newestArticleData = destructureArticleData(data.data[0]);
     return newestArticleData;

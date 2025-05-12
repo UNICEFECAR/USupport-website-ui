@@ -204,7 +204,7 @@ export const Page = ({
       name: t("page_3"),
       url: "/about-us",
     },
-    { name: t("page_4"), url: "/information-portal" },
+    { name: t("page_4"), url: "/information-portal?tab=articles" },
     { name: t("page_6"), url: "/my-qa" },
   ];
 
@@ -214,7 +214,7 @@ export const Page = ({
         name: t("footer_1"),
         url: `/about-us`,
       },
-      { name: t("footer_2"), url: "/information-portal" },
+      { name: t("footer_2"), url: "/information-portal?tab=articles" },
       { name: t("page_6"), url: "/my-qa" },
     ],
     list2: [
