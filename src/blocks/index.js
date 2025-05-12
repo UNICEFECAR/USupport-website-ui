@@ -28,3 +28,4 @@ export * from "./CustomAboutUs";
 export * from "./Videos";
 export * from "./VideoView";
 export * from "./PodcastView";
+export * from "./Podcasts";
