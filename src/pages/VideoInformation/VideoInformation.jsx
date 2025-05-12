@@ -57,6 +57,7 @@ export const VideoInformation = () => {
     data: videoData,
     isLoading: isVideoLoading,
     isFetching: isFetchingVideoData,
+    isFetched,
   } = useQuery(["video", i18n.language, id], getVideoData, {
     enabled: !!id,
   });
@@ -109,6 +110,10 @@ export const VideoInformation = () => {
     <Page classes="page__video-information" showGoBackArrow={true}>
       {videoData ? (
         <VideoView videoData={videoData} t={t} />
+      ) : isFetched ? (
+        <h3 className="page__video-information__no-results">
+          {t("not_found")}
+        </h3>
       ) : (
         <Loading size="lg" />
       )}
@@ -156,17 +161,6 @@ export const VideoInformation = () => {
           </Grid>
         </Block>
       )}
-
-      <Block>
-        {!moreVideos && isMoreVideosLoading && !isVideoLoading && (
-          <Loading size="lg" />
-        )}
-        {!moreVideos?.length && !isMoreVideosLoading && isMoreVideosFetched && (
-          <h3 className="page__video-information__no-results">
-            {t("no_results")}
-          </h3>
-        )}
-      </Block>
     </Page>
   );
 };

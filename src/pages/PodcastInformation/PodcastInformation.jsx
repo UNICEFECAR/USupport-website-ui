@@ -85,20 +85,20 @@ export const PodcastInformation = () => {
     return data.data;
   };
 
-  const {
-    data: morePodcasts,
-    isLoading: isMorePodcastsLoading,
-    isFetching: isMorePodcastsFetching,
-  } = useQuery(["more-podcasts", id, i18n.language], getSimilarPodcasts, {
-    enabled:
-      !isFetchingPodcastData &&
-      !podcastIdsQuery.isLoading &&
-      podcastIdsQuery.data?.length > 0 &&
-      podcastData &&
-      podcastData.categoryId
-        ? true
-        : false,
-  });
+  const { data: morePodcasts, isLoading: isMorePodcastsLoading } = useQuery(
+    ["more-podcasts", id, i18n.language],
+    getSimilarPodcasts,
+    {
+      enabled:
+        !isFetchingPodcastData &&
+        !podcastIdsQuery.isLoading &&
+        podcastIdsQuery.data?.length > 0 &&
+        podcastData &&
+        podcastData.categoryId
+          ? true
+          : false,
+    }
+  );
 
   const onPodcastClick = () => {
     window.scrollTo(0, 0);
@@ -107,8 +107,12 @@ export const PodcastInformation = () => {
     <Page classes="page__podcast-information" showGoBackArrow={true}>
       {podcastData ? (
         <PodcastView podcastData={podcastData} t={t} />
-      ) : (
+      ) : isFetchingPodcastData ? (
         <Loading size="lg" />
+      ) : (
+        <h3 className="page__podcast-information__no-results">
+          {t("not_found")}
+        </h3>
       )}
 
       {!isMorePodcastsLoading && morePodcasts && morePodcasts.length > 0 && (
@@ -153,12 +157,6 @@ export const PodcastInformation = () => {
           </Grid>
         </Block>
       )}
-
-      <Block>
-        {!morePodcasts && isMorePodcastsFetching && !isPodcastLoading && (
-          <Loading size="lg" />
-        )}
-      </Block>
     </Page>
   );
 };
