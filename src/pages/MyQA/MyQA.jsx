@@ -145,7 +145,9 @@ export const MyQA = () => {
         isOpen={isRedirectToLoginBackdropOpen}
         onClose={() => setIsRedirectToLoginBackdropOpen(false)}
         handleLoginRedirect={() => {
-          window.location.href = "/client/login";
+          window.location.href = `/client/${localStorage.getItem(
+            "language"
+          )}/login`;
         }}
       />
       <FilterQuestions
