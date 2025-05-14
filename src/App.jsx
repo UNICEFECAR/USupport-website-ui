@@ -13,6 +13,9 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 import { useWebPSupportCheck } from "react-use-webp-support-check";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import {
   Landing,
   SOSCenter,
@@ -85,6 +88,8 @@ function App() {
     <ThemeContext.Provider
       value={{ theme, setTheme, allLanguages, setAllLanguages }}
     >
+      <ToastContainer />
+
       <div className={`theme-${theme}`}>
         <QueryClientProvider client={queryClient}>
           {showContent && <Root />}
