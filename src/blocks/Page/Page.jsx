@@ -89,7 +89,9 @@ export const Page = ({
       localStorageCountry =
         res.data.find((x) => x.name.toLocaleLowerCase() === subdomain)
           ?.alpha2 || localStorageCountry;
-      localStorage.setItem("country", localStorageCountry);
+      if (localStorageCountry) {
+        localStorage.setItem("country", localStorageCountry);
+      }
     }
 
     if (subdomain === "usupport") {
