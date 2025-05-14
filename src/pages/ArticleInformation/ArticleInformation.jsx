@@ -38,7 +38,6 @@ export const ArticleInformation = () => {
     if (country !== currentCountry) {
       setCurrentCountry(country);
     }
-    setShowAgeGroups(country !== "PL");
   }, [currentCountry]);
 
   useEventListener("countryChanged", handler);
