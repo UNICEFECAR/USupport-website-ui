@@ -39,12 +39,13 @@ export const ArticleView = ({ articleData, t }) => {
   });
 
   const handleExportToPdf = async () => {
+    const language = localStorage.getItem("language") || "en";
     try {
       setIsExportingPdf(true);
       // Get CMS API URL where the article can be accessed with nested image data
       const apiUrl = `${import.meta.env.VITE_CMS_API_URL}/articles/${
         articleData.id
-      }?populate=creator,category,labels,thumbnail.formats,image`;
+      }?locale=${language}&populate=creator,category,labels,thumbnail.formats,image`;
 
       // Make the fetch call
       const response = await userSvc.generatePdf({
