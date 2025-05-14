@@ -23,6 +23,7 @@
     "react-i18next": "^11.18.6",
     "react-infinite-scroll-component": "^6.1.0",
     "react-router-dom": "^6.4.1",
+    "react-share": "^5.2.2",
     "react-use-webp-support-check": "^1.0.21",
     "usupport-components-library": "file:USupport-components-library"
   },

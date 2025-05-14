@@ -89,7 +89,9 @@ export const Page = ({
       localStorageCountry =
         res.data.find((x) => x.name.toLocaleLowerCase() === subdomain)
           ?.alpha2 || localStorageCountry;
-      localStorage.setItem("country", localStorageCountry);
+      if (localStorageCountry) {
+        localStorage.setItem("country", localStorageCountry);
+      }
     }
 
     if (subdomain === "usupport") {
@@ -145,7 +147,7 @@ export const Page = ({
     const languageFromUrl = getLanguageFromUrl();
     const localLanguage = localStorage.getItem("language");
 
-    if (localLanguage) {
+    if (localLanguage || languageFromUrl) {
       let languageObject = allLanguages.find(
         (x) =>
           x.value?.toLocaleLowerCase() === languageFromUrl.toLocaleLowerCase()
@@ -160,6 +162,7 @@ export const Page = ({
         setSelectedLanguage(languageObject);
         i18n.changeLanguage(languageObject.value);
         replaceLanguageInUrl(languageObject.value);
+        localStorage.setItem("language", languageObject.value);
       } else {
         changeLanguage("en");
       }
