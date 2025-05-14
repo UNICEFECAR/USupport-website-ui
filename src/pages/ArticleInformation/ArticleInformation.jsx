@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -16,6 +16,7 @@ import {
   adminSvc,
   userSvc,
 } from "@USupport-components-library/services";
+import { useEventListener } from "#hooks";
 
 import "./article-information.scss";
 
@@ -25,6 +26,22 @@ export const ArticleInformation = () => {
 
   const { i18n, t } = useTranslation("article-information");
 
+  //--------------------- Country Change Event Listener ----------------------//
+  const [currentCountry, setCurrentCountry] = useState(
+    localStorage.getItem("country")
+  );
+
+  const shouldFetchIds = !!(currentCountry && currentCountry !== "global");
+
+  const handler = useCallback(() => {
+    const country = localStorage.getItem("country");
+    if (country !== currentCountry) {
+      setCurrentCountry(country);
+    }
+  }, [currentCountry]);
+
+  useEventListener("countryChanged", handler);
+
   const getArticlesIds = async () => {
     // Request articles ids from the master DB based for website platform
     const articlesIds = await adminSvc.getArticles();
@@ -32,7 +49,13 @@ export const ArticleInformation = () => {
     return articlesIds;
   };
 
-  const articleIdsQuerry = useQuery(["articleIds"], getArticlesIds);
+  const articleIdsQuery = useQuery(
+    ["articleIds", currentCountry, shouldFetchIds],
+    getArticlesIds,
+    {
+      enabled: shouldFetchIds,
+    }
+  );
 
   const getArticleData = async () => {
     let articleIdToFetch = id;
@@ -61,26 +84,32 @@ export const ArticleInformation = () => {
   });
 
   const getSimilarArticles = async () => {
-    let { data } = await cmsSvc.getArticles({
+    let queryParams = {
       limit: 3,
-      categoryId: articleData.categoryId,
       locale: i18n.language,
       excludeId: articleData.id,
       populate: true,
-      ids: articleIdsQuerry.data,
+      ids: articleIdsQuery.data,
       ageGroupId: articleData.ageGroupId,
+    };
+
+    if (shouldFetchIds) {
+      queryParams["ids"] = articleIdsQuery.data;
+    } else {
+      queryParams["global"] = true;
+      queryParams["isForAdmin"] = true;
+    }
+
+    let { data } = await cmsSvc.getArticles({
+      ...queryParams,
+      categoryId: articleData.categoryId,
     });
 
     if (data.length === 0) {
       let { data: newest } = await cmsSvc.getArticles({
-        limit: 3,
+        ...queryParams,
         sortBy: "createdAt", // Sort by created date
         sortOrder: "desc", // Sort in descending order
-        locale: i18n.language,
-        excludeId: articleData.id,
-        populate: true,
-        ids: articleIdsQuerry.data,
-        ageGroupId: articleData.ageGroupId,
       });
       return newest.data;
     }
@@ -91,16 +120,21 @@ export const ArticleInformation = () => {
     data: moreArticles,
     isLoading: isMoreArticlesLoading,
     isFetched: isMoreArticlesFetched,
-  } = useQuery(["more-articles", id, i18n.language], getSimilarArticles, {
-    enabled:
-      !isFetchingArticleData &&
-      !articleIdsQuerry.isLoading &&
-      articleIdsQuerry.data?.length > 0 &&
-      articleData &&
-      articleData.categoryId
-        ? true
-        : false,
-  });
+  } = useQuery(
+    ["more-articles", id, i18n.language, shouldFetchIds],
+    getSimilarArticles,
+    {
+      enabled:
+        (shouldFetchIds
+          ? !articleIdsQuery.isLoading && articleIdsQuery.data?.length > 0
+          : true) &&
+        !isFetchingArticleData &&
+        articleData &&
+        articleData.categoryId
+          ? true
+          : false,
+    }
+  );
 
   const onArticleClick = () => {
     window.scrollTo(0, 0);
