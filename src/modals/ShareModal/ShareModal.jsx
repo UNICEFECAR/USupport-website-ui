@@ -1,5 +1,5 @@
 import React from "react";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -27,8 +27,8 @@ export const ShareModal = ({
   shareTitle,
 }) => {
   const handleCopyLink = () => {
-    navigator.clipboard.writeText(contentUrl);
-    // toast(successText);
+    navigator?.clipboard?.writeText(contentUrl);
+    toast(successText);
   };
 
   return (
