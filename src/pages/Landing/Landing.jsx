@@ -24,13 +24,20 @@ import { useEventListener } from "#hooks";
  * @returns {JSX.Element}
  */
 export function Landing() {
+  const isGlobalOrRomania =
+    localStorage.getItem("country") === "global" ||
+    localStorage.getItem("country") === "RO";
   const [showCouponSection, setShowCouponSection] = React.useState(
     localStorage.getItem("country") !== "KZ"
+  );
+  const [showProvidersSection, setShowProvidersSection] = React.useState(
+    !isGlobalOrRomania
   );
 
   useEventListener("countryChanged", () => {
     const country = localStorage.getItem("country");
     setShowCouponSection(country !== "KZ");
+    setShowProvidersSection(!(country === "global" || country === "RO"));
   });
 
   return (
@@ -39,7 +46,7 @@ export function Landing() {
       <FindYourself />
       <About />
       <HowItWorks summary isTitleWhite={false} />
-      <MeetOurProvidersOverview />
+      {showProvidersSection ? <MeetOurProvidersOverview /> : null}
       {/* <OurPartnersOverview /> */}
       <InformationPortal />
       <MyQALanding />
