@@ -84,12 +84,11 @@ export const MyQA = ({
 
     if (!languages) return [showAllOption];
     if (!languages.length) return [showAllOption, ...allLanguages];
-
     return [
       showAllOption,
       ...languages.map((x) => ({
         value: x.language_id,
-        label: x.local_name,
+        label: x.name === "English" ? x.name : `${x.name} (${x.local_name})`,
       })),
     ];
   }, [languages, allLanguages, t]);

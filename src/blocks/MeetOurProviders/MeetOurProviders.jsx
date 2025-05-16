@@ -28,26 +28,36 @@ export const MeetOurProviders = () => {
   const { t } = useTranslation("meet-our-providers");
   const { width } = useWindowDimensions();
   const { language } = useParams();
-  const [isInGlobalCountry, setIsInGlobalCountry] = useState(
-    localStorage.getItem("country") === "global"
-  );
+
+  const isGlobalOrRomania =
+    localStorage.getItem("country") === "global" ||
+    localStorage.getItem("country") === "RO";
+
+  const [showContent, setShowContent] = useState(!isGlobalOrRomania);
 
   useEventListener("countryChanged", () => {
     const country = localStorage.getItem("country");
 
-    setIsInGlobalCountry(country === "global");
+    const shouldHide = country === "global" || country === "RO";
+
+    setShowContent(!shouldHide);
   });
 
   const providersQuery = useGetProvidersData({
     random: false,
     limit: 3,
     width,
-    isInGlobalCountry: isInGlobalCountry,
+    enabled: showContent,
   });
 
   const redirectToDetails = (id) => {
     navigate(`/${language}/about-us/provider?id=${id}`);
   };
+
+  if (!showContent) {
+    return null;
+  }
+
   return (
     <Block classes="meet-our-providers" id="meet-our-providers">
       <Grid classes="meet-our-providers__main-grid">
