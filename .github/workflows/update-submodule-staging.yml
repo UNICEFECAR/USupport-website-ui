@@ -1,4 +1,4 @@
-name: Update Submodule
+name: Update Submodule Staging
 
 on:
   repository_dispatch:
@@ -14,7 +14,7 @@ jobs:
         with:
           submodules: true
 
-      - name: Update Submodule
+      - name: Update Submodule Staging
         run: |
           git fetch origin staging
           git checkout staging
