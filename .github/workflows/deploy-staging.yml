@@ -27,6 +27,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_GITHUB }}
           aws-region: eu-central-1
 
+      - name: Clone submodules
+        run: |
+          git submodule init
+          git submodule update
+
       - name: Upload to S3 and invalidate CloudFront
         run: |
           chmod +x ./deploy.sh
