@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react";
 import propTypes from "prop-types";
+import { toast } from "react-toastify";
+
 import {
   Block,
   Grid,
@@ -10,12 +12,12 @@ import {
   Like,
   Loading,
 } from "@USupport-components-library/src";
-import { cmsSvc, userSvc } from "@USupport-components-library/services";
+import { userSvc } from "@USupport-components-library/services";
 import {
   constructShareUrl,
   ThemeContext,
 } from "@USupport-components-library/utils";
-import { ShareModal } from "#modals";
+// import { ShareModal } from "#modals";
 
 import "./article-view.scss";
 
@@ -30,7 +32,7 @@ export const ArticleView = ({ articleData, t }) => {
   const creator = articleData.creator ? articleData.creator : null;
   const { theme } = useContext(ThemeContext);
 
-  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  // const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isExportingPdf, setIsExportingPdf] = useState(false);
 
   const url = constructShareUrl({
@@ -86,12 +88,9 @@ export const ArticleView = ({ articleData, t }) => {
     }
   };
 
-  const handleOpenShareModal = () => {
-    setIsShareModalOpen(true);
-  };
-
-  const handleCloseShareModal = () => {
-    setIsShareModalOpen(false);
+  const handleCopyLink = () => {
+    navigator?.clipboard?.writeText(url);
+    toast(t("share_success"));
   };
 
   return (
@@ -112,7 +111,11 @@ export const ArticleView = ({ articleData, t }) => {
         <GridItem md={8} lg={12} classes="article-view__details-item">
           {creator && <p className={"small-text"}>{t("by", { creator })}</p>}
 
-          <Icon name={"time"} size="sm" />
+          <Icon
+            color={theme === "dark" ? "#ffffff" : "#66768d"}
+            name={"time"}
+            size="sm"
+          />
           <p className={"small-text"}>
             {" "}
             {articleData.readingTime} {t("min_read")}
@@ -125,14 +128,22 @@ export const ArticleView = ({ articleData, t }) => {
             {isExportingPdf ? (
               <Loading padding="0px" size="sm" />
             ) : (
-              <Icon name="download" size="sm" />
+              <Icon
+                color={theme === "dark" ? "#ffffff" : "#66768d"}
+                name="download"
+                size="sm"
+              />
             )}
           </div>
           <div
-            onClick={handleOpenShareModal}
             className="article-view__details-item__download"
+            onClick={handleCopyLink}
           >
-            <Icon name="share" size="sm" />
+            <Icon
+              color={theme === "dark" ? "#ffffff" : "#66768d"}
+              name="copy"
+              size="sm"
+            />
           </div>
         </GridItem>
 
@@ -174,7 +185,7 @@ export const ArticleView = ({ articleData, t }) => {
         </GridItem>
       </Grid>
 
-      <ShareModal
+      {/* <ShareModal
         isOpen={isShareModalOpen}
         onClose={handleCloseShareModal}
         contentUrl={url}
@@ -182,7 +193,7 @@ export const ArticleView = ({ articleData, t }) => {
         shareTitle={t("share_title")}
         successText={t("share_success")}
         copyText={t("copy_link")}
-      />
+      /> */}
     </Block>
   );
 };
