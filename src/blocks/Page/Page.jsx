@@ -85,7 +85,12 @@ export const Page = ({
     const res = await countrySvc.getActiveCountriesWithLanguages();
     let hasSetDefaultCountry = false;
 
-    if (subdomain && subdomain !== "www" && subdomain !== "usupport") {
+    if (
+      subdomain &&
+      subdomain !== "www" &&
+      subdomain !== "usupport" &&
+      subdomain !== "staging"
+    ) {
       localStorageCountry =
         res.data.find((x) => x.name.toLocaleLowerCase() === subdomain)
           ?.alpha2 || localStorageCountry;
@@ -94,10 +99,11 @@ export const Page = ({
       }
     }
 
-    if (subdomain === "usupport") {
+    let shouldSelectCountry = true;
+    if (subdomain === "usupport" || subdomain === "staging") {
       localStorage.setItem("country", "global");
       setSelectedCountry(globalCountry);
-
+      shouldSelectCountry = false;
       const allLanguages = res.data.reduce((acc, x) => {
         // Get all languages from each country
         // filter out duplicates
@@ -137,7 +143,7 @@ export const Page = ({
         languages: currentLanguages,
       };
 
-      if (localStorageCountry === x.alpha2) {
+      if (localStorageCountry === x.alpha2 && shouldSelectCountry) {
         setSelectedCountry(countryObject);
         setLangs(countryObject.languages);
         localStorage.setItem("currency_symbol", countryObject.currencySymbol);
