@@ -25,6 +25,11 @@ fi
 echo "Building $UI for $ENV..."
 npm install
 
+# Install the components library
+cd USupport-components-library
+npm install
+cd ..
+
 if [ "$ENV" == "prod" ]; then
     npm run build --prod
 else
