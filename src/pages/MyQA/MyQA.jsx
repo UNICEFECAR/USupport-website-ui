@@ -12,6 +12,41 @@ import { MascotHeaderMyQA, MyQA as MyQABlock, Page } from "#blocks";
 import { useGetQuestions, useEventListener } from "#hooks";
 import "./my-qa.scss";
 
+const getTextAndTitle = (language) => {
+  switch (language) {
+    case "en":
+      return {
+        title: "How does the My Q&A work?",
+        text: "The My Q&A is a feature that allows you to ask questions and receive answers from the uSupport providers.",
+      };
+    case "kk":
+      return {
+        title: "Менің Q&A қалай жұмыс істейді?",
+        text: "Менің Q&A - бұл uSupport провайдерлерінен сұрақ қоюға және жауап алуға мүмкіндік беретін функция.",
+      };
+    case "pl":
+      return {
+        title: "Jak działa Moje Q&A?",
+        text: "Moje Q&A to funkcja, która pozwala zadawać pytania i otrzymywać odpowiedzi od dostawców uSupport.",
+      };
+    case "ru":
+      return {
+        title: "Как работает Мой Q&A?",
+        text: "Мой Q&A - это функция, которая позволяет задавать вопросы и получать ответы от поставщиков uSupport.",
+      };
+    case "uk":
+      return {
+        title: "Як працює My Q&A?",
+        text: "My Q&A - це функція, яка дозволяє ставити запитання та отримувати відповіді від постачальників uSupport.",
+      };
+    default:
+      return {
+        title: "How does the My Q&A work?",
+        text: "The My Q&A is a feature that allows you to ask questions and receive answers from the uSupport providers.",
+      };
+  }
+};
+
 /**
  * MyQA
  *
@@ -43,23 +78,19 @@ export const MyQA = () => {
   );
   const isInGlobalCountry = selectedCountry === "global";
 
-  const staticQuestions = [
-    {
-      answerCreatedAt: "2023-10-01T12:00:00Z",
-      answerId: 1,
-      answerText: t("my_qa_answer_text"),
-      answerTitle: t("my_qa_answer_title"),
-      dislikes: 0,
-      isDisliked: false,
-      isLiked: false,
-      likes: 10,
-      providerData: { name: "uSupport Provider", image: "default" },
-      providerDetailId: 1,
-      question: "What is the question?",
-      questionCreatedAt: "2023-10-01T12:00:00Z",
-      questionId: 1,
-    },
-  ];
+  const staticQuestion = {
+    answerCreatedAt: "2023-10-01T12:00:00Z",
+    answerId: 1,
+    dislikes: 0,
+    isDisliked: false,
+    isLiked: false,
+    likes: 10,
+    providerData: { name: "uSupport Provider", image: "default" },
+    providerDetailId: 1,
+    question: "What is the question?",
+    questionCreatedAt: "2023-10-01T12:00:00Z",
+    questionId: 1,
+  };
 
   useEventListener("countryChanged", (e) => {
     setSelectedCountry(e.detail);
@@ -111,7 +142,17 @@ export const MyQA = () => {
         handleScheduleConsultationClick={() =>
           setIsRedirectToLoginBackdropOpen(true)
         }
-        questions={isInGlobalCountry ? staticQuestions : questions}
+        questions={
+          isInGlobalCountry
+            ? [
+                {
+                  ...staticQuestion,
+                  answerText: getTextAndTitle(selectedLanguage).text,
+                  answerTitle: getTextAndTitle(selectedLanguage).title,
+                },
+              ]
+            : questions
+        }
         tabs={tabs}
         setTabs={setTabs}
         isUserQuestionsEnabled={isUserQuestionsEnabled}
