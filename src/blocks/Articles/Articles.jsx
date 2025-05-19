@@ -275,18 +275,18 @@ export const Articles = () => {
       ageGroupId = selectedAgeGroup.id;
     }
 
-    // let categoryId = "";
-    // if (categories) {
-    //   let selectedCategory = categories.find((o) => o.isSelected === true);
-    //   categoryId = selectedCategory.id;
-    // }
+    let categoryId = null;
+    if (categories) {
+      let selectedCategory = categories.find((o) => o.isSelected === true);
+      categoryId = selectedCategory.id;
+    }
 
     let queryParams = {
       startFrom: articles?.length,
       limit: 6,
       contains: searchValue,
       ageGroupId: ageGroupId,
-      categoryId: null,
+      categoryId,
       locale: usersLanguage,
       populate: true,
     };
