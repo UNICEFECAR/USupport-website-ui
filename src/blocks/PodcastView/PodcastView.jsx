@@ -52,11 +52,9 @@ export const PodcastView = ({ podcastData, t }) => {
 
         <GridItem xs={1} md={2} lg={4} classes="podcast-view__like-item">
           <Like
-            likes={podcastData.contentRating?.likes || podcastData.likes || 0}
+            likes={podcastData.likes || 0}
             isLiked={podcastData.contentRating?.isLikedByUser || false}
-            dislikes={
-              podcastData.contentRating?.dislikes || podcastData.dislikes || 0
-            }
+            dislikes={podcastData.dislikes || 0}
             isDisliked={podcastData.contentRating?.isDislikedByUser || false}
           />
         </GridItem>
