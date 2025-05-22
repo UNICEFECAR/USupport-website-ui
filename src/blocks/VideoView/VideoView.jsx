@@ -73,11 +73,9 @@ export const VideoView = ({ videoData, t }) => {
 
         <GridItem xs={1} md={2} lg={4} classes="video-view__like-item">
           <Like
-            likes={videoData.contentRating?.likes || videoData.likes || 0}
+            likes={videoData.likes || 0}
             isLiked={videoData.contentRating?.isLikedByUser || false}
-            dislikes={
-              videoData.contentRating?.dislikes || videoData.dislikes || 0
-            }
+            dislikes={videoData.dislikes || 0}
             isDisliked={videoData.contentRating?.isDislikedByUser || false}
           />
         </GridItem>

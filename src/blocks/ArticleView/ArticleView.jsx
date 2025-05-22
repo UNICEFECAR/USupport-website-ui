@@ -141,7 +141,7 @@ export const ArticleView = ({ articleData, t }) => {
           >
             <Icon
               color={theme === "dark" ? "#ffffff" : "#66768d"}
-              name="copy"
+              name="share"
               size="sm"
             />
           </div>
@@ -161,9 +161,9 @@ export const ArticleView = ({ articleData, t }) => {
 
         <GridItem xs={1} md={2} lg={4} classes="article-view__like-item">
           <Like
-            likes={articleData.contentRating?.likes || 0}
+            likes={articleData.likes || 0}
             isLiked={articleData.contentRating?.isLikedByUser || false}
-            dislikes={articleData.contentRating?.dislikes || 0}
+            dislikes={articleData.dislikes || 0}
             isDisliked={articleData.contentRating?.isDislikedByUser || false}
           />
         </GridItem>
