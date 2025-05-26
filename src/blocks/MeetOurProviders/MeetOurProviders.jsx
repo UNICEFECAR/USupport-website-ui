@@ -108,7 +108,7 @@ export const MeetOurProviders = () => {
                 <Button
                   onClick={providersQuery.fetchNextPage}
                   size="lg"
-                  label={t("show_more")}
+                  label={t("show_more_btn")}
                 />
               </GridItem>
             ) : null}
