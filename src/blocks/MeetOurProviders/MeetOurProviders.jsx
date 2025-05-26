@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -25,9 +25,13 @@ import "./meet-our-providers.scss";
  */
 export const MeetOurProviders = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation("meet-our-providers");
+  const { t, i18n } = useTranslation("meet-our-providers");
   const { width } = useWindowDimensions();
   const { language } = useParams();
+
+  const buttonLabel = useMemo(() => {
+    return t("show_more_btn");
+  }, [i18n.language, language]);
 
   const isGlobalOrRomania =
     localStorage.getItem("country") === "global" ||
@@ -108,7 +112,7 @@ export const MeetOurProviders = () => {
                 <Button
                   onClick={providersQuery.fetchNextPage}
                   size="lg"
-                  label={t("show_more_btn")}
+                  label={buttonLabel}
                 />
               </GridItem>
             ) : null}
