@@ -75,7 +75,7 @@ export const Hero = () => {
                 </div>
                 <div>
                   <StoreButton
-                    browserLabel={t("browser")}
+                    browserLabel={t("web_browser")}
                     downloadText={t("click_to_use")}
                     size="lg"
                     store="web"
