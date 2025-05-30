@@ -12,7 +12,7 @@ import {
   Like,
   Loading,
 } from "@USupport-components-library/src";
-import { userSvc } from "@USupport-components-library/services";
+import { userSvc, cmsSvc } from "@USupport-components-library/services";
 import { ThemeContext } from "@USupport-components-library/utils";
 // import { ShareModal } from "#modals";
 
@@ -55,6 +55,8 @@ const constructShareUrl = ({ contentType, id }) => {
  */
 export const ArticleView = ({ articleData, t }) => {
   const creator = articleData.creator ? articleData.creator : null;
+
+  const [isShared, setIsShared] = useState(false);
   const { theme } = useContext(ThemeContext);
 
   // const [isShareModalOpen, setIsShareModalOpen] = useState(false);
@@ -110,12 +112,18 @@ export const ArticleView = ({ articleData, t }) => {
       window.URL.revokeObjectURL(url);
     } finally {
       setIsExportingPdf(false);
+      // Increment the download count for the article
+      cmsSvc.addArticleDownloadCount(articleData.id);
     }
   };
 
   const handleCopyLink = () => {
     navigator?.clipboard?.writeText(url);
     toast(t("share_success"));
+    if (!isShared)
+      cmsSvc.addArticleShareCount(articleData.id).then(() => {
+        setIsShared(true);
+      });
   };
 
   return (
