@@ -1,15 +1,47 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import propTypes from "prop-types";
+import { toast } from "react-toastify";
+
 import {
   Block,
   Grid,
   GridItem,
+  ActionButton,
   Label,
   Like,
 } from "@USupport-components-library/src";
+import { cmsSvc } from "@USupport-components-library/services";
 import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./podcast-view.scss";
+
+const countriesMap = {
+  global: "global",
+  kz: "kazakhstan",
+  pl: "poland",
+  ro: "romania",
+};
+
+const constructShareUrl = ({ contentType, id }) => {
+  const country = localStorage.getItem("country");
+  const language = localStorage.getItem("language");
+  const subdomain = window.location.hostname.split(".")[0];
+
+  if (subdomain === "staging") {
+    return `https://staging.usupport.online/${language}/information-portal/${contentType}/${id}`;
+  }
+
+  if (country === "global") {
+    return `https://usupport.online/${language}/information-portal/${contentType}/${id}`;
+  }
+  const countryName = countriesMap[country.toLocaleLowerCase()];
+
+  if (window.location.hostname.includes("staging")) {
+    return `https://${countryName}.staging.usupport.online/${language}/information-portal/${contentType}/${id}`;
+  }
+  const url = `https://${countryName}.usupport.online/${language}/information-portal/${contentType}/${id}`;
+  return url;
+};
 
 /**
  * PodcastView
@@ -21,12 +53,33 @@ import "./podcast-view.scss";
 export const PodcastView = ({ podcastData, t }) => {
   const creator = podcastData.creator ? podcastData.creator : null;
   const { theme } = useContext(ThemeContext);
+  const [isShared, setIsShared] = useState(false);
+
+  const url = constructShareUrl({
+    contentType: "podcast",
+    id: podcastData.id,
+  });
+
+  const handleCopyLink = () => {
+    navigator?.clipboard?.writeText(url);
+    toast(t("share_success"));
+    if (!isShared)
+      cmsSvc.addPodcastShareCount(podcastData.id).then(() => {
+        setIsShared(true);
+      });
+  };
 
   return (
     <Block classes="podcast-view">
       <Grid classes="podcast-view__main-grid">
         <GridItem md={8} lg={12} classes="podcast-view__title-item">
-          <h3>{podcastData.title}</h3>
+          <div className="podcast-view__title-item__container">
+            <h3>
+              {podcastData.title} and a very very long title and a very very
+              long title and a very very long title
+            </h3>
+            <ActionButton iconName="share" onClick={handleCopyLink} />
+          </div>
         </GridItem>
 
         <GridItem md={8} lg={12} classes="podcast-view__details-item">

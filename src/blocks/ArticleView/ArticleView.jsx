@@ -11,6 +11,7 @@ import {
   Markdown,
   Like,
   Loading,
+  ActionButton,
 } from "@USupport-components-library/src";
 import { userSvc, cmsSvc } from "@USupport-components-library/services";
 import { ThemeContext } from "@USupport-components-library/utils";
@@ -153,31 +154,12 @@ export const ArticleView = ({ articleData, t }) => {
             {" "}
             {articleData.readingTime} {t("min_read")}
           </p>
-
-          <div
+          <ActionButton
+            iconName="download"
+            isLoading={isExportingPdf}
             onClick={handleExportToPdf}
-            className="article-view__details-item__download"
-          >
-            {isExportingPdf ? (
-              <Loading padding="0px" size="sm" />
-            ) : (
-              <Icon
-                color={theme === "dark" ? "#ffffff" : "#66768d"}
-                name="download"
-                size="sm"
-              />
-            )}
-          </div>
-          <div
-            className="article-view__details-item__download"
-            onClick={handleCopyLink}
-          >
-            <Icon
-              color={theme === "dark" ? "#ffffff" : "#66768d"}
-              name="share"
-              size="sm"
-            />
-          </div>
+          />
+          <ActionButton iconName="share" onClick={handleCopyLink} />
         </GridItem>
 
         <GridItem xs={3} md={6} lg={8} classes="article-view__labels-item">
