@@ -52,7 +52,6 @@ const constructShareUrl = ({ contentType, id }) => {
  */
 export const PodcastView = ({ podcastData, t }) => {
   const creator = podcastData.creator ? podcastData.creator : null;
-  const { theme } = useContext(ThemeContext);
   const [isShared, setIsShared] = useState(false);
 
   const url = constructShareUrl({
@@ -74,10 +73,7 @@ export const PodcastView = ({ podcastData, t }) => {
       <Grid classes="podcast-view__main-grid">
         <GridItem md={8} lg={12} classes="podcast-view__title-item">
           <div className="podcast-view__title-item__container">
-            <h3>
-              {podcastData.title} and a very very long title and a very very
-              long title and a very very long title
-            </h3>
+            <h3>{podcastData.title}</h3>
             <ActionButton iconName="share" onClick={handleCopyLink} />
           </div>
         </GridItem>
