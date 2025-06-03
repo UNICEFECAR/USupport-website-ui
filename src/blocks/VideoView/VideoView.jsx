@@ -1,15 +1,47 @@
 import React, { useContext } from "react";
 import propTypes from "prop-types";
+import { toast } from "react-toastify";
+
 import {
   Block,
   Grid,
   GridItem,
   Label,
   Like,
+  ActionButton,
 } from "@USupport-components-library/src";
 import { ThemeContext } from "@USupport-components-library/utils";
+import { cmsSvc } from "@USupport-components-library/services";
 
 import "./video-view.scss";
+
+const countriesMap = {
+  global: "global",
+  kz: "kazakhstan",
+  pl: "poland",
+  ro: "romania",
+};
+
+const constructShareUrl = ({ contentType, id }) => {
+  const country = localStorage.getItem("country");
+  const language = localStorage.getItem("language");
+  const subdomain = window.location.hostname.split(".")[0];
+
+  if (subdomain === "staging") {
+    return `https://staging.usupport.online/${language}/information-portal/${contentType}/${id}`;
+  }
+
+  if (country === "global") {
+    return `https://usupport.online/${language}/information-portal/${contentType}/${id}`;
+  }
+  const countryName = countriesMap[country.toLocaleLowerCase()];
+
+  if (window.location.hostname.includes("staging")) {
+    return `https://${countryName}.staging.usupport.online/${language}/information-portal/${contentType}/${id}`;
+  }
+  const url = `https://${countryName}.usupport.online/${language}/information-portal/${contentType}/${id}`;
+  return url;
+};
 
 /**
  * VideoView
@@ -21,6 +53,8 @@ import "./video-view.scss";
 export const VideoView = ({ videoData, t }) => {
   const creator = videoData.creator ? videoData.creator : null;
   const { theme } = useContext(ThemeContext);
+
+  const [isShared, setIsShared] = React.useState(false);
 
   // Function to render YouTube embed
   const renderVideoEmbed = () => {
@@ -43,11 +77,31 @@ export const VideoView = ({ videoData, t }) => {
     );
   };
 
+  const url = constructShareUrl({
+    contentType: "video",
+    id: videoData.id,
+  });
+
+  const handleCopyLink = () => {
+    console.log(url);
+
+    navigator?.clipboard?.writeText(url);
+    toast(t("share_success"));
+    if (!isShared) {
+      cmsSvc.addVideoShareCount(videoData.id).then(() => {
+        setIsShared(true);
+      });
+    }
+  };
+
   return (
     <Block classes="video-view">
       <Grid classes="video-view__main-grid">
         <GridItem md={8} lg={12} classes="video-view__title-item">
-          <h3>{videoData.title}</h3>
+          <div className="video-view__title-item__container">
+            <h3>{videoData.title}</h3>
+            <ActionButton onClick={handleCopyLink} iconName="share" />
+          </div>
         </GridItem>
 
         <GridItem md={8} lg={12} classes="video-view__details-item">
