@@ -62,8 +62,6 @@ export const MeetOurProviders = () => {
     return null;
   }
 
-  console.log("buttonLabel: ", buttonLabel);
-
   return (
     <Block classes="meet-our-providers" id="meet-our-providers">
       <Grid classes="meet-our-providers__main-grid">
