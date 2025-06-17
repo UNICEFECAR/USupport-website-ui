@@ -1,9 +1,13 @@
 {
-  "heading": "About uSupport",
-  "paragraph": "uSupport is a mental health, psychosocial and wellbeing platform designed for young people and their carers where privacy and safety is a priority.",
-  "card_text_1": "Content for self-development",
-  "card_text_2": "Proven providers",
-  "card_text_3": "Online support",
-  "card_text_4": "Your safe place",
-  "paragraph_2": "Let’s face the stress together and cope with all the challenges of life."
+  "blocks": {
+    "about": {
+      "heading": "About uSupport",
+      "paragraph": "uSupport is a mental health, psychosocial and wellbeing platform designed for young people and their carers where privacy and safety is a priority.",
+      "card_text_1": "Content for self-development",
+      "card_text_2": "Proven providers",
+      "card_text_3": "Online support",
+      "card_text_4": "Your safe place",
+      "paragraph_2": "Let’s face the stress together and cope with all the challenges of life."
+    }
+  }
 }
