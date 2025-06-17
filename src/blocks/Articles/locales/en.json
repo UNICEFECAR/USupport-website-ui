@@ -1,14 +1,18 @@
 {
-  "heading": "Information portal",
-  "no_results": "No Results Found",
-  "could_not_load_content": "There are no results for the current selected country and language.",
-  "all": "All",
-  "read_more_button": "Read more",
-  "min_read": "min read",
-  "by": "by {{creator}}",
-  "number_of_more_options": "{{count}} more",
-  "articles": "Articles",
-  "videos": "Videos",
-  "podcasts": "Podcasts",
-  "view_more": "View more"
+  "blocks": {
+    "articles": {
+      "heading": "Information portal",
+      "no_results": "No Results Found",
+      "could_not_load_content": "There are no results for the current selected country and language.",
+      "all": "All",
+      "read_more_button": "Read more",
+      "min_read": "min read",
+      "by": "by {{creator}}",
+      "number_of_more_options": "{{count}} more",
+      "articles": "Articles",
+      "videos": "Videos",
+      "podcasts": "Podcasts",
+      "view_more": "View more"
+    }
+  }
 }
