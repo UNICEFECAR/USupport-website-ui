@@ -8,6 +8,20 @@
       "card_text_3": "Online support",
       "card_text_4": "Your safe place",
       "paragraph_2": "Let’s face the stress together and cope with all the challenges of life."
+    },
+    "articles": {
+      "heading": "Information portal",
+      "no_results": "No Results Found",
+      "could_not_load_content": "There are no results for the current selected country and language.",
+      "all": "All2",
+      "read_more_button": "Read more",
+      "min_read": "min read",
+      "by": "by {{creator}}",
+      "number_of_more_options": "{{count}} more",
+      "articles": "Articles",
+      "videos": "Videos",
+      "podcasts": "Podcasts",
+      "view_more": "View more"
     }
   }
 }
