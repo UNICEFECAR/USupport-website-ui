@@ -1,0 +1,64 @@
+{
+  "blocks": {
+    "about": {
+      "heading": "Informacje o uSupport",
+      "paragraph": "uSupport to platforma zdrowia psychicznego, psychospołecznego i dobrego samopoczucia przeznaczona dla młodych ludzi, gdzie prywatność i bezpieczeństwo są priorytetem. ",
+      "card_text_1": "Treści samorozwojowe",
+      "card_text_2": "Sprawdzeni specjaliści",
+      "card_text_3": "Wsparcie online",
+      "card_text_4": "Twoje bezpieczne miejsce",
+      "paragraph_2": "Razem stawmy czoła stresowi i radźmy sobie ze wszystkimi wyzwaniami życia."
+    },
+    "contact-us": {},
+    "download-app": {},
+    "faq": {},
+    "find-yourself": {},
+    "hero": {},
+    "how-it-works": {},
+    "meet-our-providers": {},
+    "page": {},
+    "question": {},
+    "sos-center": {},
+    "we-help": {},
+    "articles": {
+      "heading": "Portal informacyjny",
+      "no_results": "Nie znaleziono wyników",
+      "could_not_load_content": "Brak wyników dla aktualnie wybranego kraju i języka.",
+      "all": "Wszystkie",
+      "read_more_button": "Czytaj więcej",
+      "min_read": "min czytać",
+      "by": "Przez {{creator}}",
+      "number_of_more_options": "jeszcze {{count}}",
+      "articles": "Artykuły",
+      "videos": "Wideo",
+      "podcasts": "Podcasty",
+      "view_more": "Zobacz więcej"
+    },
+    "privacy-policy": {},
+    "cookie-policy": {},
+    "terms-of-use": {},
+    "information-portal": {},
+    "provider-overview": {},
+    "meet-our-providers-overview": {},
+    "our-partners": {},
+    "our-partners-overview": {},
+    "my-qa-landing": {},
+    "mascot-header-MyQA": {},
+    "my-qa": {},
+    "coupon-information": {},
+    "custom-about-us": {}
+  },
+  "pages": {
+    "not-found-page": {},
+    "article-information": {},
+    "provider-overview-page": {},
+    "my-qa-page": {},
+    "video-information-page": {},
+    "podcast-information-page": {}
+  },
+  "modals": {
+    "question-details": {},
+    "how-it-works-my-qa": {},
+    "filter-questions": {}
+  }
+}

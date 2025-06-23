@@ -1,0 +1,64 @@
+{
+  "blocks": {
+    "about": {
+      "heading": "uSupport жайлы",
+      "paragraph": "uSupport – жастар мен олардың ата-аналарына/қамқоршыларына арналған ментал денсаулық тұрғысынан қолдау көрсетілетін және консультация берілетін платформа, мұнда құпиялық пен қауіпсіздік басты басымдық болып табылады.",
+      "card_text_1": "Өзін-өзі дамытуға арналған контент",
+      "card_text_2": "Тексерілген консультанттар",
+      "card_text_3": "Онлайн қолдау",
+      "card_text_4": "Сіздің қауіпсіз жеріңіз",
+      "paragraph_2": "Стресске және өмірлік қиындықтарға бірге төтеп береміз."
+    },
+    "contact-us": {},
+    "download-app": {},
+    "faq": {},
+    "find-yourself": {},
+    "hero": {},
+    "how-it-works": {},
+    "meet-our-providers": {},
+    "page": {},
+    "question": {},
+    "sos-center": {},
+    "we-help": {},
+    "articles": {
+      "heading": "Ақпараттық портал",
+      "no_results": "Ештеңе табылмады",
+      "could_not_load_content": "Таңдалған ел мен тіл үшін ештеңе табылмады.",
+      "all": "Барлығы",
+      "read_more_button": "Ары қарай оқу",
+      "min_read": "минут оқуға",
+      "by": "дайындаушы {{creator}}",
+      "number_of_more_options": "тағы {{count}}",
+      "articles": "Мақалалар",
+      "videos": "Видео",
+      "podcasts": "Подкасттар",
+      "view_more": "Көбірек көру"
+    },
+    "privacy-policy": {},
+    "cookie-policy": {},
+    "terms-of-use": {},
+    "information-portal": {},
+    "provider-overview": {},
+    "meet-our-providers-overview": {},
+    "our-partners": {},
+    "our-partners-overview": {},
+    "my-qa-landing": {},
+    "mascot-header-MyQA": {},
+    "my-qa": {},
+    "coupon-information": {},
+    "custom-about-us": {}
+  },
+  "pages": {
+    "not-found-page": {},
+    "article-information": {},
+    "provider-overview-page": {},
+    "my-qa-page": {},
+    "video-information-page": {},
+    "podcast-information-page": {}
+  },
+  "modals": {
+    "question-details": {},
+    "how-it-works-my-qa": {},
+    "filter-questions": {}
+  }
+}

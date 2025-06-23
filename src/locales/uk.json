@@ -1,0 +1,64 @@
+{
+  "blocks": {
+    "about": {
+      "heading": "Про Підтримку",
+      "paragraph": "Usupport — це платформа з питань психічного здоров'я, психосоціального розвитку та благополуччя, розроблена для молодих людей і їхніх опікунів, для яких конфіденційність і безпека є пріоритетом. ",
+      "card_text_1": "Контент для саморозвитку",
+      "card_text_2": "Перевірені Консультанти(ки)",
+      "card_text_3": "Онлайн-підтримка",
+      "card_text_4": "Ваше безпечне місце",
+      "paragraph_2": "Протидіймо стресу і справляймося з усіма життєвими викликами разом!"
+    },
+    "contact-us": {},
+    "download-app": {},
+    "faq": {},
+    "find-yourself": {},
+    "hero": {},
+    "how-it-works": {},
+    "meet-our-providers": {},
+    "page": {},
+    "question": {},
+    "sos-center": {},
+    "we-help": {},
+    "articles": {
+      "heading": "Інформаційний портал",
+      "no_results": "Не знайдено жодного результату",
+      "could_not_load_content": "Для обраної країни й мови немає результатів.",
+      "all": "Все",
+      "read_more_button": "Читати далі",
+      "min_read": "хв читання",
+      "by": "Від {{creator}}",
+      "number_of_more_options": "ще {{count}}",
+      "articles": "Статті",
+      "videos": "Відео",
+      "podcasts": "Підкасти",
+      "view_more": "Подивитися більше"
+    },
+    "privacy-policy": {},
+    "cookie-policy": {},
+    "terms-of-use": {},
+    "information-portal": {},
+    "provider-overview": {},
+    "meet-our-providers-overview": {},
+    "our-partners": {},
+    "our-partners-overview": {},
+    "my-qa-landing": {},
+    "mascot-header-MyQA": {},
+    "my-qa": {},
+    "coupon-information": {},
+    "custom-about-us": {}
+  },
+  "pages": {
+    "not-found-page": {},
+    "article-information": {},
+    "provider-overview-page": {},
+    "my-qa-page": {},
+    "video-information-page": {},
+    "podcast-information-page": {}
+  },
+  "modals": {
+    "question-details": {},
+    "how-it-works-my-qa": {},
+    "filter-questions": {}
+  }
+}

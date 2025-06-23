@@ -1,0 +1,64 @@
+{
+  "blocks": {
+    "about": {
+      "heading": "О uSupport",
+      "paragraph": "uSupport - это платформа по поддержке ментального здоровья и консультированию молодых людей, их родителей/опекунов, где конфиденциальность и безопасность в приоритете.",
+      "card_text_1": "Контент для саморазвития",
+      "card_text_2": "Проверенные консультанты",
+      "card_text_3": "Онлайн поддержка",
+      "card_text_4": "Ваше безопасное место",
+      "paragraph_2": "Вместе мы справимся со стрессом и жизненными сложностями."
+    },
+    "contact-us": {},
+    "download-app": {},
+    "faq": {},
+    "find-yourself": {},
+    "hero": {},
+    "how-it-works": {},
+    "meet-our-providers": {},
+    "page": {},
+    "question": {},
+    "sos-center": {},
+    "we-help": {},
+    "articles": {
+      "heading": "Информационный портал",
+      "no_results": "Ничего не найдено",
+      "could_not_load_content": "Для выбранной страны и языка ничего не найдено",
+      "all": "Все",
+      "read_more_button": "Узнать больше",
+      "min_read": "минут на прочтение",
+      "by": "от {{creator}}",
+      "number_of_more_options": "еще {{count}}",
+      "articles": "Статьи",
+      "videos": "Видео",
+      "podcasts": "Подкасты",
+      "view_more": "Посмотреть больше"
+    },
+    "privacy-policy": {},
+    "cookie-policy": {},
+    "terms-of-use": {},
+    "information-portal": {},
+    "provider-overview": {},
+    "meet-our-providers-overview": {},
+    "our-partners": {},
+    "our-partners-overview": {},
+    "my-qa-landing": {},
+    "mascot-header-MyQA": {},
+    "my-qa": {},
+    "coupon-information": {},
+    "custom-about-us": {}
+  },
+  "pages": {
+    "not-found-page": {},
+    "article-information": {},
+    "provider-overview-page": {},
+    "my-qa-page": {},
+    "video-information-page": {},
+    "podcast-information-page": {}
+  },
+  "modals": {
+    "question-details": {},
+    "how-it-works-my-qa": {},
+    "filter-questions": {}
+  }
+}

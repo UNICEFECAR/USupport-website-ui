@@ -9,11 +9,22 @@
       "card_text_4": "Your safe place",
       "paragraph_2": "Let’s face the stress together and cope with all the challenges of life."
     },
+    "contact-us": {},
+    "download-app": {},
+    "faq": {},
+    "find-yourself": {},
+    "hero": {},
+    "how-it-works": {},
+    "meet-our-providers": {},
+    "page": {},
+    "question": {},
+    "sos-center": {},
+    "we-help": {},
     "articles": {
       "heading": "Information portal",
       "no_results": "No Results Found",
       "could_not_load_content": "There are no results for the current selected country and language.",
-      "all": "All2",
+      "all": "All",
       "read_more_button": "Read more",
       "min_read": "min read",
       "by": "by {{creator}}",
@@ -22,6 +33,32 @@
       "videos": "Videos",
       "podcasts": "Podcasts",
       "view_more": "View more"
-    }
+    },
+    "privacy-policy": {},
+    "cookie-policy": {},
+    "terms-of-use": {},
+    "information-portal": {},
+    "provider-overview": {},
+    "meet-our-providers-overview": {},
+    "our-partners": {},
+    "our-partners-overview": {},
+    "my-qa-landing": {},
+    "mascot-header-MyQA": {},
+    "my-qa": {},
+    "coupon-information": {},
+    "custom-about-us": {}
+  },
+  "pages": {
+    "not-found-page": {},
+    "article-information": {},
+    "provider-overview-page": {},
+    "my-qa-page": {},
+    "video-information-page": {},
+    "podcast-information-page": {}
+  },
+  "modals": {
+    "question-details": {},
+    "how-it-works-my-qa": {},
+    "filter-questions": {}
   }
 }
