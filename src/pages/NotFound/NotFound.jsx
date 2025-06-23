@@ -13,7 +13,7 @@ import "./not-found.scss";
  * @returns {JSX.Element}
  */
 export const NotFound = () => {
-  const { t } = useTranslation("not-found-page");
+  const { t } = useTranslation("pages", { keyPrefix: "not-found-page" });
   return (
     <Page>
       <div className="not-found-page__content-block">

@@ -25,7 +25,7 @@ import "./faq.scss";
  * @return {jsx}
  */
 export const FAQ = ({ showMascot, showLearnMore, showAll = true }) => {
-  const { i18n, t } = useTranslation("faq");
+  const { i18n, t } = useTranslation("blocks", { keyPrefix: "faq" });
   const navigateTo = useNavigate();
 
   //--------------------- Country Change Event Listener ----------------------//

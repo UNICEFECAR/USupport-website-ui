@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { useEventListener } from "#hooks";
 
@@ -20,7 +20,9 @@ import "./custom-about-us.scss";
  */
 export const CustomAboutUs = () => {
   const queryClient = useQueryClient();
-  const { i18n, t } = useTranslation("custom-about-us");
+  const { i18n, t } = useTranslation("blocks", {
+    keyPrefix: "custom-about-us",
+  });
   const navigate = useNavigate();
   const [selectedCountry, setSelectedCountry] = useState(
     localStorage.getItem("country") || "KZ"

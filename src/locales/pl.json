@@ -9,17 +9,136 @@
       "card_text_4": "Twoje bezpieczne miejsce",
       "paragraph_2": "Razem stawmy czoła stresowi i radźmy sobie ze wszystkimi wyzwaniami życia."
     },
-    "contact-us": {},
-    "download-app": {},
-    "faq": {},
-    "find-yourself": {},
-    "hero": {},
-    "how-it-works": {},
-    "meet-our-providers": {},
-    "page": {},
-    "question": {},
-    "sos-center": {},
-    "we-help": {},
+    "contact-us": {
+      "heading_1": "Skontaktuj się z nami",
+      "contact_form_heading": "Masz pytanie? Nie wahaj się z nami skontaktować.",
+      "email_subject": "Nowa wiadomość od Skontaktuj się z nami",
+      "email_title": "Nowa wiadomość",
+      "email_text": "Witaj,<br></br> masz nową wiadomość od użytkownika:<br></br>Email: {{email}}<br></br>Powód: {{reason}}<br></br>Wiadomość: {{message}}<br></br>Z poważaniem,<br></br>Zespół Obsługi Klienta",
+      "contact_reason_placeholder": "Wybierz powód",
+      "contact_reason_1": "Informacje o uSupport",
+      "contact_reason_2": "Problem techniczny",
+      "contact_reason_3": "Dołącz do sieci konsultantów",
+      "contact_reason_4": "Partnerstwa",
+      "contact_reason_5": "Inne",
+      "email_label": "Email",
+      "reason_label": "Powód skontaktowania się z nami",
+      "message_label": "Wiadomość",
+      "email_error": "Wprowadź swój adres email",
+      "reason_error": "Wybierz powód",
+      "message_error": "Wprowadź wiadomość",
+      "message_placeholder": "Twoja wiadomość do nas",
+      "send_button": "Wyślij",
+      "modal_title": "Twoja wiadomość została pomyślnie wysłana",
+      "modal_text": "Skontaktujemy się z Tobą tak szybko, jak to możliwe",
+      "modal_cta_label": "Wróć do strony głównej",
+      "paragraph": "Odpowiemy na twoją wiadomość email w ciągu 24 godzin. Upewnij się, że poprawnie wpisałeś swój adres email",
+      "contact_form": "Formularz kontaktowy"
+    },
+    "download-app": {
+      "heading": "Pobierz aplikację",
+      "paragraph": "Teraz dostępne dla systemów iOS i Android",
+      "download_text": "Pobierz z"
+    },
+    "faq": {
+      "heading": "Często zadawane pytania",
+      "button": "Dowiedz się więcej",
+      "no_results": "Brak wyników dla aktualnie wybranego kraju i języka."
+    },
+    "find-yourself": {
+      "heading": "Bądź najlepszą wersją siebie",
+      "paragraph": "Czujesz się zagubiony? Niezrozumiany? Niewysłuchany? Bez motywacji? Nieszczęśliwy?",
+      "paragraph_2": "To… nie do końca Ty? Pomożemy Ci odnaleźć siebie na nowo.",
+      "card_text_1": "Profesjonalna pomoc",
+      "card_text_2": "Konsultacje online",
+      "card_text_3": "Bezpłatne materiały",
+      "card_text_4": "Łatwy i bezpieczny dostęp"
+    },
+    "hero": {
+      "heading_1": "Rozpocznij swoją podróż w kierunku lepszego<1></1> zdrowia psychicznego i dobrego samopoczucia",
+      "paragraph_1": "Platforma, która szanuje Twoją prywatność i bezpieczeństwo. Twoje dobro jest dla nas najważniejsze! uSupport oferuje spersonalizowaną i dyskretną opiekę psychologiczną",
+      "paragraph_1_1": "Twoja historia ma znaczenie! Odważ się nią podzielić.",
+      "download_text": "Pobierz uSupport z",
+      "web_browser": "Przeglądarka internetowa",
+      "click_to_use": "Kliknij, aby użyć"
+    },
+    "how-it-works": {
+      "heading": "Łatwo i szybko",
+      "paragraph_summary": "Wystarczy kilka kliknięć, aby uzyskać potrzebną pomoc. W pełni anonimowo.",
+      "paragraph_normal": "Wystarczy kilka kliknięć, aby uzyskać potrzebną pomoc. W pełni anonimowo.",
+      "card_1": "Wybierz swój kraj i język",
+      "card_2": "Utwórz swoje konto",
+      "card_3": "Wybierz konsultanta",
+      "card_4": "Zarezerwuj sesję",
+      "download_text": "Pobierz uSupport z",
+      "web_browser": "Przeglądarka internetowa",
+      "click_to_use": "Kliknij, aby użyć"
+    },
+    "meet-our-providers": {
+      "heading": "Poznaj naszych konsultantów",
+      "paragraph": "Eksploruj dalej swoje emocje. Weź udział w rozmowach z profesjonalistami i uzyskaj dostęp do narzędzi i strategii, aby skutecznie radzić sobie z wyzwaniami napotykanymi w codziennym życiu.",
+      "psychologist": "Psycholog",
+      "psychiatrist": "Psychiatra",
+      "psychotherapist": "Psychoterapeuta",
+      "show_more_btn": "Pokaż więcej"
+    },
+    "page": {
+      "page_1": "Strona główna",
+      "page_2": "Jak to działa?",
+      "page_3": "O nas",
+      "page_4": "Portal informacyjny",
+      "page_5": "Skontaktuj się z nami",
+      "page_6": "Moje Q&A",
+      "footer_1": "O nas",
+      "footer_2": "Portal informacyjny",
+      "footer_3": "Jak to działa?",
+      "footer_4": "Warunki świadczenia usług",
+      "footer_5": "Polityką prywatności",
+      "footer_6": "Polityka plików cookies",
+      "footer_7": "Najczęściej zadawane pytania",
+      "emergency_button": "Centrum SOS",
+      "button_text": "Przejdź do aplikacji",
+      "language_label": "Język",
+      "country_label": "Kraj",
+      "contact_us": "Skontaktuj się z nami",
+      "password_placeholder": "Hasło",
+      "password": "Wprowadź hasło, aby uzyskać dostęp do strony",
+      "wrong_password": "Nieprawidłowe hasło",
+      "submit": "Prześlij",
+      "dark": "Ciemny",
+      "light": "Jasny",
+      "cookie_banner_header": "Cenimy Twoją prywatność",
+      "cookie_banner_text": "Ta strona używa plików cookie, aby poprawić i zabezpieczyć Twoje doświadczenia podczas przeglądania. Korzystając z naszej strony, zgadzasz się na naszą <0>Politykę Cookie</0>.",
+      "accept_all_cookies": "Akceptuj wszystkie",
+      "reject_all_cookies": "Odrzuć wszystkie",
+      "accept_necessary_cookies": "Akceptuj tylko wymagane",
+      "save": "Zapisz"
+    },
+    "question": {
+      "heading": "Masz pytanie?",
+      "paragraph": "Nie wahaj się z nami skontaktować",
+      "button": "Skontaktuj się z nami"
+    },
+    "sos-center": {
+      "heading": "Centrum SOS",
+      "button_link": "Odwiedź stronę",
+      "button_call": "Skontaktuj się teraz",
+      "no_results": "Brak wyników dla aktualnie wybranego kraju i języka."
+    },
+    "we-help": {
+      "heading_1": "O nas",
+      "heading_2": "Our Vision",
+      "heading_3": "Who We are?",
+      "heading_4": "Our Impact",
+      "heading_5": "Join Us",
+      "paragraph_1": "Welcome to uSupport, an innovative platform dedicated to supporting the mental health of adolescents, young people, parents, and caregivers. Our goal is to provide a confidential, secure, and trusted space where you can access mental health resources or seek consultations anytime, anywhere. On uSupport, you can explore your thoughts and feelings and learn how to manage them with the help of articles on our platform and guidance from our providers.",
+      "paragraph_2": "At uSupport, we believe that mental health and well-being are essential to every person’s overall health and development. We are committed to enhancing the mental health and psychosocial well-being of adolescents and young people by providing accessible, affordable, and high-quality support services. Our goal is to reduce the stigma surrounding mental health and ensure that every young person receives the support they need to thrive.",
+      "paragraph_3": "uSupport was developed with the support of UNICEF (United Nations Children’s Fund) in close consultation with young people in Kazakhstan. Our key partner is the Republican Center of Mental Health under the Ministry of Health of Kazakhstan.",
+      "paragraph_4": "Our team consists of experienced mental health professionals who are actively working in Youth Mental Health Centers across various regions of Kazakhstan. These professionals bring a wide range of expertise, covering diverse topics such as emotional well-being, coping strategies, stress management, and mental health challenges faced by young people today. By engaging directly with youth, our team is able to offer personalized support and address the unique mental health needs of adolescents and young people in different communities.",
+      "paragraph_5": "uSupport is more than just a digital platform; it is a vital part of the larger MHPSS ecosystem in the countries where we operate. By connecting young people with existing mental health resources, we aim to contribute towards universal access to quality prevention, care, and support for all. ",
+      "paragraph_6": "We invite you to join us in our mission to improve the mental health and well-being of young people. Whether you are a young person seeking support, a mental health professional looking to make a difference, or a partner interested in supporting our work, we welcome you to be a part of the uSupport community. Together, we can create a positive impact and ensure every young person has the opportunity to thrive.",
+      "paragraph_7": "Disclaimer: uSupport is a platform that builds mental health literacy and supports young people to understand better issues related to their psychosocial and emotional wellbeing and overall mental health. It is designed to maximize awareness of mental health by providing anonymous access to information and consultations to interested users.   It is not designed to assist in cases of serious crises such as abuse and exploitation, severe mental health conditions that may cause feelings of suicide, self-harm, or any other medical emergencies. uSupport cannot offer medical or clinical advice, it can only put young people in contact with local mental health professionals who can suggest referrals and guide users to seek specialized medical help within their national health care system. In case of emergency, users are directed to reach out to country-specific suicide hotlines or ambulance services.   uSupport provides information and support to young people over the age of 10. The terms of service and privacy policy stipulate that parents or legal guardians are expected to provide consent for users who are minors – in accordance to local country legislation. uSupport cannot be held responsible for the accuracy of age-related or other information provided by users. "
+    },
     "articles": {
       "heading": "Portal informacyjny",
       "no_results": "Nie znaleziono wyników",
@@ -34,31 +153,208 @@
       "podcasts": "Podcasty",
       "view_more": "Zobacz więcej"
     },
-    "privacy-policy": {},
-    "cookie-policy": {},
-    "terms-of-use": {},
-    "information-portal": {},
-    "provider-overview": {},
-    "meet-our-providers-overview": {},
-    "our-partners": {},
-    "our-partners-overview": {},
-    "my-qa-landing": {},
-    "mascot-header-MyQA": {},
-    "my-qa": {},
-    "coupon-information": {},
-    "custom-about-us": {}
+    "privacy-policy": {
+      "heading": "Polityką prywatności",
+      "no_results": "Brak wyników dla wybranego kraju i języka."
+    },
+    "cookie-policy": {
+      "heading": "Polityka plików cookies",
+      "no_results": "Brak wyników dla wybranego kraju i języka."
+    },
+    "terms-of-use": {
+      "heading": "Regulamin",
+      "no_results": "Brak wyników dla wybranego kraju i języka."
+    },
+    "information-portal": {
+      "heading": "Portal informacyjny",
+      "paragraph_1": "Uzyskaj dostęp do bezpłatnych materiałów opracowanych przez doświadczonych konsultantów w dziedzinie zdrowia psychicznego.",
+      "paragraph_2": "Nasza obszerna baza cennych materiałów jest nieustannie rozwijana, aby uwzględniać wszystkie kluczowe tematy, które pomogą Ci w pełni wykorzystać swój potencjał.",
+      "paragraph_3": "W ramach portalu odkryjesz artykuły autorstwa ekspertów, poznasz techniki samorozwoju i będziesz na bieżąco z interesującymi Cię tematami",
+      "read_more_button": "Czytaj więcej",
+      "min_read": "min czytać",
+      "by": "Przez {{creator}}"
+    },
+    "provider-overview": {
+      "earliest_slot_label": "Najbliższy dostępny termin konsultacji",
+      "languages_label": "Język ",
+      "education_label": "Edukacja",
+      "work_with_label": "Pracuje z",
+      "specializations_label": "Specjalizacje",
+      "done_consultations_label": "Wszystkie przeprowadzone konsultacje",
+      "description_label": "Opis",
+      "edit_details": "Edytuj szczegóły",
+      "change_password": "Zmień hasło",
+      "delete_account": "Usuń konto",
+      "no_available_slot": "Brak dostępnych terminów",
+      "video_label": "Reprezentacja wideo",
+      "psychologist": "Psycholog",
+      "psychiatrist": "Psychiatra",
+      "psychotherapist": "Psychoterapeuta",
+      "addiction": "Uzależnienia i używki",
+      "stress": "Zarządzanie stresem",
+      "burnout": "Wypalenie i stres akademicki",
+      "eating_disorder": "Zaburzenia odżywiania",
+      "depression": "Depresja i zaburzenia nastroju",
+      "anxiety": "Niepokój",
+      "panic_attack": "Atak paniki",
+      "relationship": "Relacje",
+      "personal_development": "Rozwój osobisty",
+      "ptsd": "Zespół Stresu Pourazowego (PTSD)",
+      "phobia": "Fobie",
+      "sexuality": "Seksualność i problemy związane z relacjami intymnymi",
+      "lgbtq": "Kwestie LGBTQ+",
+      "goal": "Wyznaczanie celów i rozwój osobisty",
+      "emotional_intelligence": "Inteligencja emocjonalna i samoregulacja",
+      "productivity": "Produktywność i zarządzanie czasem",
+      "self_care": "Praktyki dbania o siebie",
+      "insomnia": "Bezsenność i problemy ze snem",
+      "motivation": "Motywacja i samodoskonalenie",
+      "anger": "Zarządzanie gniewem",
+      "bullying": "Bullying i presja rówieśnicza",
+      "grief": "Żałoba i strata",
+      "gender_identity": "Tożsamość płciowa",
+      "family": "Rodzina i konflikty rodzicielskie",
+      "low_mood": "Obniżony nastrój i dobrostan emocjonalny",
+      "hiv": "HIV/AIDS",
+      "loneliness": "Samotność i izolacja społeczna",
+      "toxic_relationships": "Toksyczne relacje",
+      "love": "Miłość i relacje romantyczne",
+      "social_skills": "Umiejętności społeczne i przyjaźń",
+      "body_image": "Obraz ciała i poczucie własnej wartości",
+      "hour_consultation": "za 1 godzinę konsultacji",
+      "organizations_label": "Organizacje",
+      "free": "bezpłatnie"
+    },
+    "meet-our-providers-overview": {
+      "heading": "Poznaj specjalistów, z którymi możesz się skonsultować",
+      "text": "Nasi specjaliści pomogą Ci lepiej zrozumieć Twoją sytuację i znaleźć najlepszy sposób, aby sobie z nią poradzić",
+      "button_label": "Wyświetl wszystkie",
+      "psychologist": "Psycholog",
+      "psychiatrist": "Psychiatra",
+      "psychotherapist": "Psychoterapeuta"
+    },
+    "our-partners": {
+      "heading": "Nasi partnerzy",
+      "paragraph": "Tutaj możesz zobaczyć wszystkich naszych partnerów",
+      "partner_1_title": "Ministerstwo Zdrowia",
+      "partner_1_description": "Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.",
+      "partner_1_link_placeholder": "Ministerstwo Edukacji",
+      "partner_1_link": "https://www.gov.kz/memleket/entities/dsm?lang=en",
+      "partner_2_title": "Ministerstwo Edukacji",
+      "partner_2_description": "Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.",
+      "partner_2_link_placeholder": "Przejdź do gov.pl",
+      "partner_2_link": "https://www.gov.pl/web/edukacja"
+    },
+    "our-partners-overview": {
+      "heading": "Nasi partnerzy",
+      "button_label": "Czytaj więcej",
+      "partner_1_title": "Ministerstwo Zdrowia",
+      "partner_1_description": "Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.",
+      "partner_1_link": "https://www.gov.kz/memleket/entities/dsm?lang=en",
+      "partner_2_title": "Ministerstwo Edukacji",
+      "partner_2_description": "Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.",
+      "partner_2_link": "https://www.gov.kz/memleket/entities/edu?lang=en"
+    },
+    "my-qa-landing": {
+      "heading": "Moje Pytania i odpowiedzi",
+      "subheading": "Zadawaj pytania, a nasz zespół profesjonalistów dołoży wszelkich starań, aby Ci pomóc",
+      "ask_anonymous_card_heading": "Zadaj anonimowe pytanie",
+      "ask_anonymous_card_text": "Każde pytanie jest w pełni anonimowe i nikt nie może zobaczyć, kto je zadał",
+      "button_label": "Zadaj pytanie już teraz"
+    },
+    "mascot-header-MyQA": {
+      "heading": "Moje Pytania i odpowiedzi",
+      "subheading_its": "To jest",
+      "subheading_anonymous": "ANONIMOWE",
+      "subheading_text1": "Twoje pytania",
+      "subheading_not": "NIE",
+      "subheading_text2": "są połączone z Tobą. Odpowiedzi będą publicznie dostępne, dzięki czemu wszyscy mogą zobaczyć, z jakimi zagadnieniami borykają się inni.",
+      "how_it_works": "Zobacz, jak to działa"
+    },
+    "my-qa": {
+      "ask_button_label": "Zadaj pytanie anonimowo",
+      "answer_by": "Odpowiedź udzielona przez:",
+      "schedule_consultation": "Zaplanuj konsultację",
+      "today": "Dzisiaj",
+      "read_more": "Czytaj więcej",
+      "all": "Wszystkie",
+      "all_languages": "Wszystkie języki",
+      "most_popular": "Najpopularniejsze",
+      "newest": "Najnowsze",
+      "no_answers": "Wyszukiwanie",
+      "filter": "Filtruj tagi",
+      "search_placeholder": "Nie ma odpowiedzi na żadne pytania",
+      "language": "Język"
+    },
+    "coupon-information": {
+      "heading": "Chcesz darmowych sesji ze specjalistami?",
+      "how": "Jak?",
+      "how_text": "Zamiast płacić za sesje kartą kredytową, wybierz \"kupony\" podczas rezerwacji następnej sesji!",
+      "where": "Gdzie znaleźć kody kuponów?",
+      "where_text": "Śledź UNICEF na Instagramie i TikTok, gdzie od czasu do czasu mogą pojawiać się kody kuponów. Nasi partnerzy mogą również udostępniać kody kuponów w swoich mediach społecznościowych. Śledź ich, aby być powiadomionym.",
+      "where_text_2": "Liczba kuponów jest ograniczona i mogą się wyczerpać w zależności od zapotrzebowania, więc złap swój i zarezerwuj darmową sesję.",
+      "reason_1": "Kupony zapewniają bezpłatne sesje",
+      "reason_2": "Uzyskaj kody kuponów z mediów społecznościowych",
+      "reason_3": "Wykorzystaj je przed upływem terminu ważności"
+    },
+    "custom-about-us": {
+      "no_data_found": "Brak danych"
+    }
   },
   "pages": {
-    "not-found-page": {},
-    "article-information": {},
-    "provider-overview-page": {},
-    "my-qa-page": {},
-    "video-information-page": {},
-    "podcast-information-page": {}
+    "not-found-page": {
+      "heading": "Ups! Nie możemy znaleźć strony, której szukasz...",
+      "subheading": "Wygląda na to, że ta strona zaginęła lub nie jest obecnie dostępna.",
+      "button": "Przejdź do strony głównej"
+    },
+    "article-information": {
+      "heading": "Więcej artykułów",
+      "no_results": "Brak podobnych artykułów dla aktualnie wybranego języka. ",
+      "read_more_button": "Czytaj więcej",
+      "min_read": "min. czytania",
+      "by": "Przez {{creator}}",
+      "share_title": "Udostępnij ten artykuł",
+      "share_success": "Link został skopiowany do schowka!",
+      "copy_link": "Skopiuj link"
+    },
+    "provider-overview-page": {
+      "heading": "Інформація про консультанта(ку)"
+    },
+    "my-qa-page": {
+      "modal_heading": "Zaloguj się do platformy, aby zadać pytanie",
+      "modal_text": "Aby zadać pytanie i otrzymać odpowiedź, musisz posiadać konto i zalogować się do systemu.",
+      "modal_button_label": "Przejdź do aplikacji",
+      "my_qa_answer_title": "Jak działa Moje Q&A?",
+      "my_qa_answer_text": "Moje Q&A to funkcja, która pozwala zadawać pytania i otrzymywać odpowiedzi od dostawców uSupport."
+    },
+    "video-information-page": {
+      "more_videos": "Więcej filmów",
+      "view_more": "Zobacz więcej",
+      "not_found": "Film nie znaleziony"
+    },
+    "podcast-information-page": {
+      "more_podcasts": "Więcej podcastów",
+      "view_more": "Zobacz więcej",
+      "not_found": "Podcast nie znaleziony"
+    }
   },
   "modals": {
-    "question-details": {},
-    "how-it-works-my-qa": {},
-    "filter-questions": {}
+    "question-details": {
+      "today": "Dzisiaj",
+      "answered_by": "Odpowiedź udzielona przez:",
+      "schedule_consultation": "Zaplanuj konsultację"
+    },
+    "how-it-works-my-qa": {
+      "heading": "Jak to działa",
+      "subheading_1": "Klienci mogą wysłać anonimową prywatną wiadomość do usupport w wybranym przez siebie języku, korzystając ze strony internetowej lub aplikacji.",
+      "subheading_2": "Zatwierdzone — dostępny specjalista uSupport odpowie, przedstawiając odpowiednie ścieżki wsparcia itp.",
+      "subheading_3": "Wszyscy Klienci mogą zobaczyć odpowiedź, ale nikt nie wie, że pochodzi od Ciebie! Trafia ona do wspólnej przestrzeni z odpowiednimi #tagami, aby można było do niej wrócić w przyszłości."
+    },
+    "filter-questions": {
+      "heading": "Filtruj pytania według tagów",
+      "dropdown_label": "Wybierz tag",
+      "cta_label": "Zastosuj filtry",
+      "secondary_cta_label": "Zresetuj filtry"
+    }
   }
 }

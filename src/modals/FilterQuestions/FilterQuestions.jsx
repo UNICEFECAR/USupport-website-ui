@@ -23,7 +23,7 @@ export const FilterQuestions = ({
   setTag,
   isInGlobalCountry,
 }) => {
-  const { t } = useTranslation("filter-questions");
+  const { t } = useTranslation("modals", { keyPrefix: "filter-questions" });
 
   const [tags, setTags] = useState([]);
 

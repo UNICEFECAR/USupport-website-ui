@@ -23,7 +23,9 @@ import "./information-portal.scss";
  * @return {jsx}
  */
 export const InformationPortal = () => {
-  const { i18n, t } = useTranslation("information-portal");
+  const { i18n, t } = useTranslation("blocks", {
+    keyPrefix: "information-portal",
+  });
   const navigate = useNavigate();
   const [showBlock, setShowBlock] = useState(false);
 

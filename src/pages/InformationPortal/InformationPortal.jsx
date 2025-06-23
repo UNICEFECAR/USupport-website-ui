@@ -17,7 +17,7 @@ import informationPortalDark from "./assets/information-portal.png";
 import "./information-portal.scss";
 
 export const InformationPortal = () => {
-  const { t } = useTranslation("articles");
+  const { t } = useTranslation("blocks", { keyPrefix: "articles" });
   const { theme } = useContext(ThemeContext);
   const { width } = useWindowDimensions();
   const [searchParams, setSearchParams] = useSearchParams();

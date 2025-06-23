@@ -31,7 +31,9 @@ import "./podcast-information.scss";
 export const PodcastInformation = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const { i18n, t } = useTranslation("podcast-information-page");
+  const { i18n, t } = useTranslation("pages", {
+    keyPrefix: "podcast-information-page",
+  });
 
   const getPodcastsIds = async () => {
     const podcastIds = await adminSvc.getPodcasts();

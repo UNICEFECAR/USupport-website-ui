@@ -25,7 +25,7 @@ import "./hero.scss";
  * @return {jsx}
  */
 export const Hero = () => {
-  const { t } = useTranslation("hero");
+  const { t } = useTranslation("blocks", { keyPrefix: "hero" });
   const { theme } = useContext(ThemeContext);
 
   return (

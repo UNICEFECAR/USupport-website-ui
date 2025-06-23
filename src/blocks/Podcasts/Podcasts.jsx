@@ -31,7 +31,7 @@ import "./podcasts.scss";
 export const Podcasts = () => {
   const navigate = useNavigate();
   const { width } = useWindowDimensions();
-  const { i18n, t } = useTranslation("articles");
+  const { i18n, t } = useTranslation("blocks", { keyPrefix: "articles" });
   const { theme } = useContext(ThemeContext);
 
   const isNotDescktop = width < 1366;
@@ -70,16 +70,12 @@ export const Podcasts = () => {
     }
   };
 
-  const categoriesQuery = useQuery(
-    ["podcasts-categories", usersLanguage],
-    getCategories,
-    {
-      refetchOnWindowFocus: false,
-      onSuccess: (data) => {
-        setCategories([...data]);
-      },
-    }
-  );
+  useQuery(["podcasts-categories", usersLanguage], getCategories, {
+    refetchOnWindowFocus: false,
+    onSuccess: (data) => {
+      setCategories([...data]);
+    },
+  });
 
   const handleCategoryOnPress = (index) => {
     const categoriesCopy = [...categories];

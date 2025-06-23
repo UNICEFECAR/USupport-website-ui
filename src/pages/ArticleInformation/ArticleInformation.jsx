@@ -24,7 +24,9 @@ export const ArticleInformation = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const { i18n, t } = useTranslation("article-information");
+  const { i18n, t } = useTranslation("pages", {
+    keyPrefix: "article-information",
+  });
 
   //--------------------- Country Change Event Listener ----------------------//
   const [currentCountry, setCurrentCountry] = useState(
