@@ -55,7 +55,7 @@ const getTextAndTitle = (language) => {
  * @returns {JSX.Element}
  */
 export const MyQA = () => {
-  const { t } = useTranslation("my-qa-page");
+  const { t } = useTranslation("pages", { keyPrefix: "my-qa-page" });
   const navigate = useNavigate();
 
   const [isRedirectToLoginBackdropOpen, setIsRedirectToLoginBackdropOpen] =

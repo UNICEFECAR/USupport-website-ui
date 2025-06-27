@@ -23,12 +23,6 @@ import { useError, useEventListener } from "#hooks";
 
 import "./page.scss";
 
-const kazakhstanCountry = {
-  value: "KZ",
-  label: "Kazakhstan",
-  iconName: "KZ",
-};
-
 const globalCountry = {
   value: "global",
   label: "Global",
@@ -54,7 +48,7 @@ export const Page = ({
   const { theme, setTheme, setAllLanguages } = useContext(ThemeContext);
   const navigateTo = useNavigate();
   const queryClient = useQueryClient();
-  const { t, i18n } = useTranslation("page");
+  const { t, i18n } = useTranslation("blocks", { keyPrefix: "page" });
   const IS_DEV = process.env.NODE_ENV === "development";
 
   useEffect(() => {

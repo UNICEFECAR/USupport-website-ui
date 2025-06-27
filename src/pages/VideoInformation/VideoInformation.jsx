@@ -32,7 +32,9 @@ export const VideoInformation = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const { i18n, t } = useTranslation("video-information-page");
+  const { i18n, t } = useTranslation("pages", {
+    keyPrefix: "video-information-page",
+  });
 
   const getVideosIds = async () => {
     const videoIds = await adminSvc.getVideos();

@@ -27,7 +27,7 @@ import "./my-qa-landing.scss";
  */
 export const MyQALanding = () => {
   const { theme } = useContext(ThemeContext);
-  const { t } = useTranslation("my-qa-landing");
+  const { t } = useTranslation("blocks", { keyPrefix: "my-qa-landing" });
 
   const { width } = useWindowDimensions();
 

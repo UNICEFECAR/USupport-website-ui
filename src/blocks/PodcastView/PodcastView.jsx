@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import propTypes from "prop-types";
 import {
   Block,
@@ -7,7 +7,6 @@ import {
   Label,
   Like,
 } from "@USupport-components-library/src";
-import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./podcast-view.scss";
 
@@ -20,7 +19,6 @@ import "./podcast-view.scss";
  */
 export const PodcastView = ({ podcastData, t }) => {
   const creator = podcastData.creator ? podcastData.creator : null;
-  const { theme } = useContext(ThemeContext);
 
   return (
     <Block classes="podcast-view">

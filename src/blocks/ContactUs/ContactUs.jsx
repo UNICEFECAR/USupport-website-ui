@@ -24,7 +24,7 @@ import "./contact-us.scss";
  */
 export const ContactUs = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation("contact-us");
+  const { t } = useTranslation("blocks", { keyPrefix: "contact-us" });
   const [submitError, setSubmitError] = useState("");
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
 

@@ -19,7 +19,7 @@ import "./question.scss";
  * @return {jsx}
  */
 export const Question = () => {
-  const { t } = useTranslation("question");
+  const { t } = useTranslation("blocks", { keyPrefix: "question" });
   const { width } = useWindowDimensions();
 
   const navigate = useNavigate();

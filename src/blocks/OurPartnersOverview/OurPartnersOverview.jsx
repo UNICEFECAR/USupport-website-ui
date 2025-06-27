@@ -22,7 +22,9 @@ import "./our-partners-overview.scss";
  * @return {jsx}
  */
 export const OurPartnersOverview = () => {
-  const { t } = useTranslation("our-partners-overview");
+  const { t } = useTranslation("blocks", {
+    keyPrefix: "our-partners-overview",
+  });
   const navigate = useNavigate();
 
   const partners = [

@@ -17,8 +17,6 @@ import "./download-app.scss";
 import imageSrc from "./assets/StartScreen.png";
 import imageSrcWebp from "./assets/StartScreen.webp";
 
-import imageDesktopSrc from "./assets/StartScreenDesktop.png";
-import imageDesktopSrcWebp from "./assets/StartScreenDesktop.webp";
 import StartScreenPreviews from "./assets/StartScreenPreviews.png";
 
 /**
@@ -30,7 +28,7 @@ import StartScreenPreviews from "./assets/StartScreenPreviews.png";
  */
 export const DownloadApp = () => {
   const { theme } = useContext(ThemeContext);
-  const { t } = useTranslation("download-app");
+  const { t } = useTranslation("blocks", { keyPrefix: "download-app" });
   const { width } = useWindowDimensions();
 
   return (

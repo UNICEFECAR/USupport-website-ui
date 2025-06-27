@@ -25,7 +25,9 @@ import "./meet-our-providers.scss";
  */
 export const MeetOurProviders = () => {
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation("meet-our-providers");
+  const { t, i18n } = useTranslation("blocks", {
+    keyPrefix: "meet-our-providers",
+  });
   const { width } = useWindowDimensions();
   const { language } = useParams();
 
