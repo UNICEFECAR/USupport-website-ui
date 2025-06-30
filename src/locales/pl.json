@@ -299,6 +299,110 @@
     },
     "custom-about-us": {
       "no_data_found": "Brak danych"
+    },
+    "organizations": {
+      "in_person_interaction": "Osobiście",
+      "online_interaction": "Online",
+      "phone_interaction": "Telefon",
+      "hybrid_interaction": "Hybrydowo",
+
+      "cash": "Gotówka",
+      "bank_transfer": "Transfer bankowy",
+      "card": "Karta",
+      "free": "Bezpłatnie",
+
+      "individual_psychotherapy": "Psychoterapia indywidualna",
+      "group_psychotherapy": "Psychoterapia grupowa",
+      "individual_psychological_counseling": "Indywidualne poradnictwo psychologiczne",
+      "group_psychological_counseling": "Grupowe poradnictwo psychologiczne",
+      "personal_development_counseling": "Poradnictwo rozwoju osobistego",
+      "speech_therapy": "Terapia mowy",
+      "social_information_counseling": "Informacja społeczna i poradnictwo",
+      "rehab_autism_children": "Usługi rehabilitacyjne i naprawcze dla dzieci z autyzmem",
+      "rehab_psycho_neuro_children": "Usługi rehabilitacyjne i naprawcze dla dzieci z zaburzeniami psycho-neurologiczno-ruchowymi",
+      "suicide_prevention_helpline": "Linia pomocy w zapobieganiu samobójstwom",
+      "addiction_helpline": "Linia pomocy w uzależnieniach",
+      "violence_victim_helpline": "Linia pomocy dla ofiar przemocy",
+      "child_helpline": "Linia pomocy dla dzieci",
+      "child_psychiatry": "Psychiatria dziecięca",
+      "art_recreational_activities": "Rekreacyjne zajęcia artystyczne (teatr, muzyka, poezja, malarstwo, opowiadanie)",
+      "sport_recreational_activities": "Rekreacyjne zajęcia sportowe (sport, gry, taniec)",
+
+      "sector_1": "Sektor 1",
+      "sector_2": "Sektor 2",
+      "sector_3": "Sektor 3",
+      "sector_4": "Sektor 4",
+      "sector_5": "Sektor 5",
+      "sector_6": "Sektor 6",
+
+      "children": "Dzieci",
+      "children_disabilities": "Dzieci z niepełnosprawnościami",
+      "adults": "Dorośli",
+      "adults_disabilities": "Dorośli z niepełnosprawnościami",
+
+      "work_with_placeholder": "Wybierz grupę docelową",
+      "specialisation_placeholder": "Wybierz specjalizacje",
+      "district_placeholder": "Wybierz dzielnicę",
+      "payment_method_placeholder": "Wybierz metodę płatności",
+      "user_interaction_placeholder": "Wybierz sposób kontaktu",
+      "search_placeholder": "Szukaj po nazwie lub nazwie jednostki",
+
+      "no_data_found": "Nie znaleziono danych",
+      "reset_filters": "Resetuj filtry",
+
+      "view_organization_details": "Zobacz szczegóły organizacji",
+      "address": "Adres",
+      "phone": "Telefon",
+      "email": "Email"
+    },
+    "organizations-overview": {
+      "error-loading-data": "Wystąpił błąd podczas ładowania danych organizacji",
+      "description_label": "Opis",
+      "address_label": "Adres",
+      "district_label": "Dzielnica",
+      "payment_method_label": "Metoda płatności",
+      "work_with_label": "Pracuje z",
+      "specialisations_label": "Specjalizacje",
+      "providers_label": "Dostawcy",
+
+      "individual_psychotherapy": "Psychoterapia indywidualna",
+      "group_psychotherapy": "Psychoterapia grupowa",
+      "individual_psychological_counseling": "Indywidualne poradnictwo psychologiczne",
+      "group_psychological_counseling": "Grupowe poradnictwo psychologiczne",
+      "personal_development_counseling": "Poradnictwo rozwoju osobistego",
+      "speech_therapy": "Terapia mowy",
+      "social_information_counseling": "Informacja społeczna i poradnictwo",
+      "rehab_autism_children": "Usługi rehabilitacyjne i naprawcze dla dzieci z autyzmem",
+      "rehab_psycho_neuro_children": "Usługi rehabilitacyjne i naprawcze dla dzieci z zaburzeniami psycho-neurologiczno-ruchowymi",
+      "suicide_prevention_helpline": "Linia pomocy w zapobieganiu samobójstwom",
+      "addiction_helpline": "Linia pomocy w uzależnieniach",
+      "violence_victim_helpline": "Linia pomocy dla ofiar przemocy",
+      "child_helpline": "Linia pomocy dla dzieci",
+      "child_psychiatry": "Psychiatria dziecięca",
+      "art_recreational_activities": "Rekreacyjne zajęcia artystyczne (teatr, muzyka, poezja, malarstwo, opowiadanie)",
+      "sport_recreational_activities": "Rekreacyjne zajęcia sportowe (sport, gry, taniec)",
+
+      "in_person_interaction": "Osobiście",
+      "online_interaction": "Online",
+      "phone_interaction": "Telefon",
+      "hybrid_interaction": "Hybrydowo",
+
+      "cash": "Gotówka",
+      "bank_transfer": "Transfer bankowy",
+      "card": "Karta",
+      "free": "Bezpłatnie",
+
+      "sector_1": "Sektor 1",
+      "sector_2": "Sektor 2",
+      "sector_3": "Sektor 3",
+      "sector_4": "Sektor 4",
+      "sector_5": "Sektor 5",
+      "sector_6": "Sektor 6",
+
+      "children": "Dzieci",
+      "children_disabilities": "Dzieci z niepełnosprawnościami",
+      "adults": "Dorośli",
+      "adults_disabilities": "Dorośli z niepełnosprawnościami"
     }
   },
   "pages": {
@@ -336,6 +440,13 @@
       "more_podcasts": "Więcej podcastów",
       "view_more": "Zobacz więcej",
       "not_found": "Podcast nie znaleziony"
+    },
+    "organizations-page": {
+      "heading": "Organizacje"
+    },
+    "organization-overview-page": {
+      "heading": "Przegląd organizacji",
+      "subheading": "Szczegółowy przegląd profilu wybranej organizacji"
     }
   },
   "modals": {

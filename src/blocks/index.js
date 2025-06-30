@@ -29,3 +29,5 @@ export * from "./Videos";
 export * from "./VideoView";
 export * from "./PodcastView";
 export * from "./Podcasts";
+export * from "./Organizations";
+export * from "./OrganizationOverview";

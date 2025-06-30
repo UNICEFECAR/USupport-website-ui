@@ -33,6 +33,8 @@ import {
   CustomAboutUs,
   VideoInformation,
   PodcastInformation,
+  Organizations,
+  OrganizationOverview,
 } from "#pages";
 import { ThemeContext } from "@USupport-components-library/utils";
 import { userSvc } from "@USupport-components-library/services";
@@ -135,6 +137,11 @@ const LanguageLayout = () => {
       <Route path="sos-center" element={<SOSCenter />} />
       <Route path="cookie-policy" element={<CookiePolicy />} />
       <Route path="terms-of-use" element={<TermsOfUse />} />
+      <Route path="organizations" element={<Organizations />} />
+      <Route
+        path="organization-overview/:organizationId"
+        element={<OrganizationOverview />}
+      />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

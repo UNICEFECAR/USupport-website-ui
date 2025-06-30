@@ -303,6 +303,110 @@
     },
     "custom-about-us": {
       "no_data_found": "Данные отсутствуют"
+    },
+    "organizations": {
+      "in_person_interaction": "Лично",
+      "online_interaction": "Онлайн",
+      "phone_interaction": "Телефон",
+      "hybrid_interaction": "Гибридно",
+
+      "cash": "Наличные",
+      "bank_transfer": "Банковский перевод",
+      "card": "Карта",
+      "free": "Бесплатно",
+
+      "individual_psychotherapy": "Индивидуальная психотерапия",
+      "group_psychotherapy": "Групповая психотерапия",
+      "individual_psychological_counseling": "Индивидуальное психологическое консультирование",
+      "group_psychological_counseling": "Групповое психологическое консультирование",
+      "personal_development_counseling": "Консультирование по личностному развитию",
+      "speech_therapy": "Логопедическая терапия",
+      "social_information_counseling": "Социальная информация и консультирование",
+      "rehab_autism_children": "Реабилитационные и восстановительные услуги для детей с аутизмом",
+      "rehab_psycho_neuro_children": "Реабилитационные и восстановительные услуги для детей с психо-неврологическими нарушениями",
+      "suicide_prevention_helpline": "Линия предотвращения самоубийств",
+      "addiction_helpline": "Линия помощи при зависимостях",
+      "violence_victim_helpline": "Линия помощи жертвам насилия",
+      "child_helpline": "Детская линия помощи",
+      "child_psychiatry": "Детская психиатрия",
+      "art_recreational_activities": "Художественные рекреационные мероприятия (театр, музыка, поэзия, живопись, рассказывание)",
+      "sport_recreational_activities": "Спортивные рекреационные мероприятия (спорт, игры, танцы)",
+
+      "sector_1": "Сектор 1",
+      "sector_2": "Сектор 2",
+      "sector_3": "Сектор 3",
+      "sector_4": "Сектор 4",
+      "sector_5": "Сектор 5",
+      "sector_6": "Сектор 6",
+
+      "children": "Дети",
+      "children_disabilities": "Дети с инвалидностью",
+      "adults": "Взрослые",
+      "adults_disabilities": "Взрослые с инвалидностью",
+
+      "work_with_placeholder": "Выберите целевую группу",
+      "specialisation_placeholder": "Выберите специализации",
+      "district_placeholder": "Выберите район",
+      "payment_method_placeholder": "Выберите способ оплаты",
+      "user_interaction_placeholder": "Выберите тип взаимодействия",
+      "search_placeholder": "Поиск по названию или названию подразделения",
+
+      "no_data_found": "Данные не найдены",
+      "reset_filters": "Сбросить фильтры",
+
+      "view_organization_details": "Посмотреть детали организации",
+      "address": "Адрес",
+      "phone": "Телефон",
+      "email": "Электронная почта"
+    },
+    "organizations-overview": {
+      "error-loading-data": "Произошла ошибка при загрузке данных организации",
+      "description_label": "Описание",
+      "address_label": "Адрес",
+      "district_label": "Район",
+      "payment_method_label": "Способ оплаты",
+      "work_with_label": "Работает с",
+      "specialisations_label": "Специализации",
+      "providers_label": "Провайдеры",
+
+      "individual_psychotherapy": "Индивидуальная психотерапия",
+      "group_psychotherapy": "Групповая психотерапия",
+      "individual_psychological_counseling": "Индивидуальное психологическое консультирование",
+      "group_psychological_counseling": "Групповое психологическое консультирование",
+      "personal_development_counseling": "Консультирование по личностному развитию",
+      "speech_therapy": "Логопедическая терапия",
+      "social_information_counseling": "Социальная информация и консультирование",
+      "rehab_autism_children": "Реабилитационные и восстановительные услуги для детей с аутизмом",
+      "rehab_psycho_neuro_children": "Реабилитационные и восстановительные услуги для детей с психо-неврологическими нарушениями",
+      "suicide_prevention_helpline": "Линия предотвращения самоубийств",
+      "addiction_helpline": "Линия помощи при зависимостях",
+      "violence_victim_helpline": "Линия помощи жертвам насилия",
+      "child_helpline": "Детская линия помощи",
+      "child_psychiatry": "Детская психиатрия",
+      "art_recreational_activities": "Художественные рекреационные мероприятия (театр, музыка, поэзия, живопись, рассказывание)",
+      "sport_recreational_activities": "Спортивные рекреационные мероприятия (спорт, игры, танцы)",
+
+      "in_person_interaction": "Лично",
+      "online_interaction": "Онлайн",
+      "phone_interaction": "Телефон",
+      "hybrid_interaction": "Гибридно",
+
+      "cash": "Наличные",
+      "bank_transfer": "Банковский перевод",
+      "card": "Карта",
+      "free": "Бесплатно",
+
+      "sector_1": "Сектор 1",
+      "sector_2": "Сектор 2",
+      "sector_3": "Сектор 3",
+      "sector_4": "Сектор 4",
+      "sector_5": "Сектор 5",
+      "sector_6": "Сектор 6",
+
+      "children": "Дети",
+      "children_disabilities": "Дети с инвалидностью",
+      "adults": "Взрослые",
+      "adults_disabilities": "Взрослые с инвалидностью"
     }
   },
   "pages": {
@@ -340,6 +444,13 @@
       "more_podcasts": "Больше подкастов",
       "view_more": "Посмотреть больше",
       "not_found": "Подкаст не найден"
+    },
+    "organizations-page": {
+      "heading": "Организации"
+    },
+    "organization-overview-page": {
+      "heading": "Обзор организации",
+      "subheading": "Подробный обзор профиля выбранной вами организации"
     }
   },
   "modals": {
