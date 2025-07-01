@@ -13,7 +13,11 @@ import {
   Button,
   OrganizationOverview,
 } from "@USupport-components-library/src";
-import { useGetOrganizationMetadata, useGetAllOrganizations } from "#hooks";
+import {
+  useGetOrganizationMetadata,
+  useGetAllOrganizations,
+  useDebounce,
+} from "#hooks";
 
 import "./organizations.scss";
 
@@ -40,8 +44,10 @@ export const Organizations = () => {
   const [filters, setFilters] = React.useState(INITIAL_FILTERS);
   const [userLocation, setUserLocation] = React.useState(null);
 
+  const debouncedSearch = useDebounce(filters.search, 500);
+
   const { data, isLoading } = useGetAllOrganizations({
-    search: filters.search,
+    search: debouncedSearch,
     workWith: filters.workWith,
     district: filters.district,
     paymentMethod: filters.paymentMethod,
