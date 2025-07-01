@@ -277,6 +277,110 @@
     },
     "custom-about-us": {
       "no_data_found": "Дані відсутні"
+    },
+    "organizations": {
+      "in_person_interaction": "Особисто",
+      "online_interaction": "Онлайн",
+      "phone_interaction": "Телефон",
+      "hybrid_interaction": "Гібридно",
+
+      "cash": "Готівка",
+      "bank_transfer": "Банківський переказ",
+      "card": "Картка",
+      "free": "Безкоштовно",
+
+      "individual_psychotherapy": "Індивідуальна психотерапія",
+      "group_psychotherapy": "Групова психотерапія",
+      "individual_psychological_counseling": "Індивідуальне психологічне консультування",
+      "group_psychological_counseling": "Групове психологічне консультування",
+      "personal_development_counseling": "Консультування з особистого розвитку",
+      "speech_therapy": "Логопедична терапія",
+      "social_information_counseling": "Соціальна інформація та консультування",
+      "rehab_autism_children": "Реабілітаційні та відновлювальні послуги для дітей з аутизмом",
+      "rehab_psycho_neuro_children": "Реабілітаційні та відновлювальні послуги для дітей з психо-неврологічними порушеннями",
+      "suicide_prevention_helpline": "Лінія запобігання самогубствам",
+      "addiction_helpline": "Лінія допомоги з залежностей",
+      "violence_victim_helpline": "Лінія допомоги жертвам насильства",
+      "child_helpline": "Дитяча лінія допомоги",
+      "child_psychiatry": "Дитяча психіатрія",
+      "art_recreational_activities": "Художні рекреаційні заходи (театр, музика, поезія, живопис, розповідання)",
+      "sport_recreational_activities": "Спортивні рекреаційні заходи (спорт, ігри, танці)",
+
+      "sector_1": "Сектор 1",
+      "sector_2": "Сектор 2",
+      "sector_3": "Сектор 3",
+      "sector_4": "Сектор 4",
+      "sector_5": "Сектор 5",
+      "sector_6": "Сектор 6",
+
+      "children": "Діти",
+      "children_disabilities": "Діти з інвалідністю",
+      "adults": "Дорослі",
+      "adults_disabilities": "Дорослі з інвалідністю",
+
+      "work_with_placeholder": "Оберіть цільову групу",
+      "specialisation_placeholder": "Оберіть спеціалізації",
+      "district_placeholder": "Оберіть район",
+      "payment_method_placeholder": "Оберіть спосіб оплати",
+      "user_interaction_placeholder": "Оберіть тип взаємодії",
+      "search_placeholder": "Пошук за назвою або назвою підрозділу",
+
+      "no_data_found": "Дані не знайдено",
+      "reset_filters": "Скинути фільтри",
+
+      "view_organization_details": "Переглянути деталі організації",
+      "address": "Адреса",
+      "phone": "Телефон",
+      "email": "Електронна пошта"
+    },
+    "organizations-overview": {
+      "error-loading-data": "Сталася помилка під час завантаження даних організації",
+      "description_label": "Опис",
+      "address_label": "Адреса",
+      "district_label": "Район",
+      "payment_method_label": "Спосіб оплати",
+      "work_with_label": "Працює з",
+      "specialisations_label": "Спеціалізації",
+      "providers_label": "Провайдери",
+
+      "individual_psychotherapy": "Індивідуальна психотерапія",
+      "group_psychotherapy": "Групова психотерапія",
+      "individual_psychological_counseling": "Індивідуальне психологічне консультування",
+      "group_psychological_counseling": "Групове психологічне консультування",
+      "personal_development_counseling": "Консультування з особистого розвитку",
+      "speech_therapy": "Логопедична терапія",
+      "social_information_counseling": "Соціальна інформація та консультування",
+      "rehab_autism_children": "Реабілітаційні та відновлювальні послуги для дітей з аутизмом",
+      "rehab_psycho_neuro_children": "Реабілітаційні та відновлювальні послуги для дітей з психо-неврологічними порушеннями",
+      "suicide_prevention_helpline": "Лінія запобігання самогубствам",
+      "addiction_helpline": "Лінія допомоги з залежностей",
+      "violence_victim_helpline": "Лінія допомоги жертвам насильства",
+      "child_helpline": "Дитяча лінія допомоги",
+      "child_psychiatry": "Дитяча психіатрія",
+      "art_recreational_activities": "Художні рекреаційні заходи (театр, музика, поезія, живопис, розповідання)",
+      "sport_recreational_activities": "Спортивні рекреаційні заходи (спорт, ігри, танці)",
+
+      "in_person_interaction": "Особисто",
+      "online_interaction": "Онлайн",
+      "phone_interaction": "Телефон",
+      "hybrid_interaction": "Гібридно",
+
+      "cash": "Готівка",
+      "bank_transfer": "Банківський переказ",
+      "card": "Картка",
+      "free": "Безкоштовно",
+
+      "sector_1": "Сектор 1",
+      "sector_2": "Сектор 2",
+      "sector_3": "Сектор 3",
+      "sector_4": "Сектор 4",
+      "sector_5": "Сектор 5",
+      "sector_6": "Сектор 6",
+
+      "children": "Діти",
+      "children_disabilities": "Діти з інвалідністю",
+      "adults": "Дорослі",
+      "adults_disabilities": "Дорослі з інвалідністю"
     }
   },
   "pages": {
@@ -314,6 +418,13 @@
       "more_podcasts": "Більше підкастів",
       "view_more": "Переглянути більше",
       "not_found": "Підкаст не знайдено"
+    },
+    "organizations-page": {
+      "heading": "Організації"
+    },
+    "organization-overview-page": {
+      "heading": "Огляд організації",
+      "subheading": "Детальний огляд профілю вибраної вами організації"
     }
   },
   "modals": {
