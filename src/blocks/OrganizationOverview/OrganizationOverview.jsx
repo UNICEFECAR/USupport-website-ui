@@ -22,7 +22,7 @@ import "./organization-overview.scss";
  */
 export const OrganizationOverview = ({ organizationId }) => {
   const { t } = useTranslation("blocks", {
-    keyPrefix: "organizations-overview",
+    keyPrefix: "organization-overview",
   });
 
   const {
