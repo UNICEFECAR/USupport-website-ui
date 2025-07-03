@@ -8,20 +8,13 @@ import {
   Loading,
 } from "@USupport-components-library/src";
 
-import { countriesMap } from "@USupport-components-library/utils";
+import { constructShareUrl } from "@USupport-components-library/utils";
 
 import { useGetOrganizationById } from "#hooks";
 
 // const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
 
 import "./organization-overview.scss";
-
-const constructShareUrl = (organizationId) => {
-  const country = localStorage.getItem("country");
-  const language = localStorage.getItem("language");
-  const countryName = countriesMap[country.toLocaleLowerCase()];
-  return `https://${countryName}.usupport.online/${language}/organization-overview/${organizationId}`;
-};
 
 /**
  * OrganizationOverview
@@ -41,7 +34,10 @@ export const OrganizationOverview = ({ organizationId }) => {
     isError,
   } = useGetOrganizationById(organizationId);
 
-  const url = constructShareUrl(organizationId);
+  const url = constructShareUrl({
+    contentType: "organization",
+    id: organizationId,
+  });
 
   const handleCopyLink = () => {
     navigator?.clipboard?.writeText(url);
