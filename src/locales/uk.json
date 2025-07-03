@@ -333,7 +333,7 @@
       "phone": "Телефон",
       "email": "Електронна пошта"
     },
-    "organizations-overview": {
+    "organization-overview": {
       "error-loading-data": "Сталася помилка під час завантаження даних організації",
       "description_label": "Опис",
       "address_label": "Адреса",
@@ -380,7 +380,8 @@
       "children": "Діти",
       "children_disabilities": "Діти з інвалідністю",
       "adults": "Дорослі",
-      "adults_disabilities": "Дорослі з інвалідністю"
+      "adults_disabilities": "Дорослі з інвалідністю",
+      "copy_link_success": "Ссилка скопійована в буфер обміну!"
     }
   },
   "pages": {

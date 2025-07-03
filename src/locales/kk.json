@@ -359,7 +359,7 @@
       "phone": "Телефон",
       "email": "Электрондық пошта"
     },
-    "organizations-overview": {
+    "organization-overview": {
       "error-loading-data": "Ұйым деректерін жүктеу кезінде қате орын алды",
       "description_label": "Сипаттама",
       "address_label": "Мекен-жай",
@@ -406,7 +406,8 @@
       "children": "Балалар",
       "children_disabilities": "Мүмкіндігі шектеулі балалар",
       "adults": "Ересектер",
-      "adults_disabilities": "Мүмкіндігі шектеулі ересектер"
+      "adults_disabilities": "Мүмкіндігі шектеулі ересектер",
+      "copy_link_success": "Сілтеме көшірілді!"
     }
   },
   "pages": {

@@ -359,7 +359,7 @@
       "phone": "Телефон",
       "email": "Электронная почта"
     },
-    "organizations-overview": {
+    "organization-overview": {
       "error-loading-data": "Произошла ошибка при загрузке данных организации",
       "description_label": "Описание",
       "address_label": "Адрес",
@@ -406,7 +406,8 @@
       "children": "Дети",
       "children_disabilities": "Дети с инвалидностью",
       "adults": "Взрослые",
-      "adults_disabilities": "Взрослые с инвалидностью"
+      "adults_disabilities": "Взрослые с инвалидностью",
+      "copy_link_success": "Ссылка скопирована в буфер обмена!"
     }
   },
   "pages": {
