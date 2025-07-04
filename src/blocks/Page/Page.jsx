@@ -284,6 +284,7 @@ export const Page = ({
   return (
     <>
       <PasswordModal
+        environment={process.env.NODE_ENV}
         label={t("password")}
         btnLabel={t("submit")}
         isOpen={isPasswordModalOpen}
