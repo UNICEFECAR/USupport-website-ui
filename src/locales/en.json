@@ -359,7 +359,7 @@
       "phone": "Phone",
       "email": "Email"
     },
-    "organizations-overview": {
+    "organization-overview": {
       "error-loading-data": "An error occurred while loading the organization data",
       "description_label": "Description",
       "address_label": "Address",
@@ -406,7 +406,8 @@
       "children": "Children",
       "children_disabilities": "Children with disabilities",
       "adults": "Adults",
-      "adults_disabilities": "Adults with disabilities"
+      "adults_disabilities": "Adults with disabilities",
+      "copy_link_success": "Link copied to clipboard!"
     }
   },
   "pages": {

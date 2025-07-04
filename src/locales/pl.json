@@ -355,7 +355,7 @@
       "phone": "Telefon",
       "email": "Email"
     },
-    "organizations-overview": {
+    "organization-overview": {
       "error-loading-data": "Wystąpił błąd podczas ładowania danych organizacji",
       "description_label": "Opis",
       "address_label": "Adres",
@@ -402,7 +402,8 @@
       "children": "Dzieci",
       "children_disabilities": "Dzieci z niepełnosprawnościami",
       "adults": "Dorośli",
-      "adults_disabilities": "Dorośli z niepełnosprawnościami"
+      "adults_disabilities": "Dorośli z niepełnosprawnościami",
+      "copy_link_success": "Link został skopiowany do schowka!"
     }
   },
   "pages": {

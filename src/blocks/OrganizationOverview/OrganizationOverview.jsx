@@ -1,11 +1,14 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 import {
   Block,
   OrganizationDetails,
   Loading,
 } from "@USupport-components-library/src";
+
+import { constructShareUrl } from "@USupport-components-library/utils";
 
 import { useGetOrganizationById } from "#hooks";
 
@@ -22,7 +25,7 @@ import "./organization-overview.scss";
  */
 export const OrganizationOverview = ({ organizationId }) => {
   const { t } = useTranslation("blocks", {
-    keyPrefix: "organizations-overview",
+    keyPrefix: "organization-overview",
   });
 
   const {
@@ -31,6 +34,16 @@ export const OrganizationOverview = ({ organizationId }) => {
     isError,
   } = useGetOrganizationById(organizationId);
 
+  const url = constructShareUrl({
+    contentType: "organization",
+    id: organizationId,
+  });
+
+  const handleCopyLink = () => {
+    navigator?.clipboard?.writeText(url);
+    toast(t("copy_link_success"));
+  };
+
   return (
     <Block classes="organization-profile">
       {isError ? (
@@ -38,7 +51,11 @@ export const OrganizationOverview = ({ organizationId }) => {
       ) : isLoading ? (
         <Loading size="lg" />
       ) : (
-        <OrganizationDetails organization={organization} t={t} />
+        <OrganizationDetails
+          organization={organization}
+          t={t}
+          handleCopyLink={handleCopyLink}
+        />
       )}
     </Block>
   );
