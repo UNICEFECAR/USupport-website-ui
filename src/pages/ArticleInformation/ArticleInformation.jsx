@@ -3,7 +3,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { Page, ArticleView } from "#blocks";
-import { destructureArticleData } from "@USupport-components-library/utils";
+import {
+  destructureArticleData,
+  createArticleSlug,
+} from "@USupport-components-library/utils";
 import {
   Block,
   Grid,
@@ -145,7 +148,7 @@ export const ArticleInformation = () => {
   return (
     <Page classes="page__article-information">
       {articleData ? (
-        <ArticleView articleData={articleData} t={t} />
+        <ArticleView articleData={articleData} i18n={i18n} />
       ) : (
         <Loading size="lg" />
       )}
@@ -181,7 +184,9 @@ export const ArticleInformation = () => {
                       navigate(
                         `/${localStorage.getItem(
                           "language"
-                        )}/information-portal/article/${articleData.id}`
+                        )}/information-portal/article/${
+                          articleData.id
+                        }/${createArticleSlug(articleData.title)}`
                       );
                       onArticleClick();
                     }}

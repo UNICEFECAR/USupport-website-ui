@@ -121,15 +121,15 @@ const LanguageLayout = () => {
       <Route path="contact-us" element={<ContactUs />} />
       <Route path="information-portal" element={<InformationPortal />} />
       <Route
-        path="information-portal/article/:id"
+        path="information-portal/article/:id/:name"
         element={<ArticleInformation />}
       />
       <Route
-        path="information-portal/video/:id"
+        path="information-portal/video/:id/:name"
         element={<VideoInformation />}
       />
       <Route
-        path="information-portal/podcast/:id"
+        path="information-portal/podcast/:id/:name"
         element={<PodcastInformation />}
       />
       <Route path="my-qa" element={<MyQA />} />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import propTypes from "prop-types";
 import {
   Block,
@@ -17,8 +17,30 @@ import "./video-view.scss";
  *
  * @return {jsx}
  */
-export const VideoView = ({ videoData, t }) => {
+export const VideoView = ({ videoData, t, language }) => {
   const creator = videoData.creator ? videoData.creator : null;
+
+  const { name } = useParams();
+
+  const [hasUpdatedUrl, setHasUpdatedUrl] = useState(false);
+
+  useEffect(() => {
+    setHasUpdatedUrl(false);
+  }, [i18n.language]);
+
+  useEffect(() => {
+    if (videoData?.title && !hasUpdatedUrl) {
+      const currentSlug = createArticleSlug(videoData.title);
+      const urlSlug = name;
+
+      if (currentSlug !== urlSlug) {
+        const newUrl = `/${i18n.language}/information-portal/article/${videoData.id}/${currentSlug}`;
+
+        window.history.replaceState(null, "", newUrl);
+        setHasUpdatedUrl(true);
+      }
+    }
+  }, [videoData?.title, name, language, hasUpdatedUrl]);
 
   // Function to render YouTube embed
   const renderVideoEmbed = () => {

@@ -14,6 +14,7 @@ import {
 import {
   destructureVideoData,
   useWindowDimensions,
+  createArticleSlug,
 } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 import { useDebounce, useEventListener } from "#hooks";
@@ -216,9 +217,11 @@ export const Videos = () => {
     }
   );
 
-  const handleRedirect = (id) => {
+  const handleRedirect = (id, name) => {
     navigate(
-      `/${localStorage.getItem("language")}/information-portal/video/${id}`
+      `/${localStorage.getItem(
+        "language"
+      )}/information-portal/video/${id}/${createArticleSlug(name)}`
     );
   };
 
@@ -271,7 +274,9 @@ export const Videos = () => {
                 likes={newestVideo.likes}
                 dislikes={newestVideo.dislikes}
                 t={t}
-                onClick={() => handleRedirect(newestVideo.id)}
+                onClick={() =>
+                  handleRedirect(newestVideo.id, newestVideo.title)
+                }
               />
             </GridItem>
           )
@@ -313,7 +318,9 @@ export const Videos = () => {
                       t={t}
                       categoryName={videoData.categoryName}
                       contentType="videos"
-                      onClick={() => handleRedirect(videoData.id)}
+                      onClick={() =>
+                        handleRedirect(videoData.id, videoData.title)
+                      }
                     />
                   </GridItem>
                 );

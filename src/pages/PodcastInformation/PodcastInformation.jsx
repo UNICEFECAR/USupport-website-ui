@@ -108,7 +108,7 @@ export const PodcastInformation = () => {
   return (
     <Page classes="page__podcast-information" showGoBackArrow={true}>
       {podcastData ? (
-        <PodcastView podcastData={podcastData} t={t} />
+        <PodcastView podcastData={podcastData} t={t} language={i18n.language} />
       ) : isFetchingPodcastData ? (
         <Loading size="lg" />
       ) : (

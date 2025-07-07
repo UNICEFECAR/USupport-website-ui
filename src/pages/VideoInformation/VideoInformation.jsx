@@ -111,7 +111,7 @@ export const VideoInformation = () => {
   return (
     <Page classes="page__video-information" showGoBackArrow={true}>
       {videoData ? (
-        <VideoView videoData={videoData} t={t} />
+        <VideoView videoData={videoData} t={t} language={i18n.language} />
       ) : isFetched ? (
         <h3 className="page__video-information__no-results">
           {t("not_found")}
