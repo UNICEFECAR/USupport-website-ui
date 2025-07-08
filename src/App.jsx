@@ -73,6 +73,8 @@ function App() {
   const [theme, setTheme] = useState(getDefaultTheme());
   const [showContent, setShowContent] = useState(false);
   const [allLanguages, setAllLanguages] = useState([]);
+  const [isPodcastsActive, setIsPodcastsActive] = useState(false);
+  const [isVideosActive, setIsVideosActive] = useState(false);
 
   useEffect(() => {
     const lang = localStorage.getItem("language");
@@ -88,7 +90,16 @@ function App() {
 
   return (
     <ThemeContext.Provider
-      value={{ theme, setTheme, allLanguages, setAllLanguages }}
+      value={{
+        theme,
+        setTheme,
+        allLanguages,
+        setAllLanguages,
+        isPodcastsActive,
+        setIsPodcastsActive,
+        isVideosActive,
+        setIsVideosActive,
+      }}
     >
       <ToastContainer />
 

@@ -28,6 +28,8 @@ const globalCountry = {
   label: "Global",
   countryID: "global",
   iconName: "global",
+  podcastsActive: true,
+  videosActive: true,
 };
 
 /**
@@ -45,7 +47,13 @@ export const Page = ({
   classes,
   children,
 }) => {
-  const { theme, setTheme, setAllLanguages } = useContext(ThemeContext);
+  const {
+    theme,
+    setTheme,
+    setAllLanguages,
+    setIsPodcastsActive,
+    setIsVideosActive,
+  } = useContext(ThemeContext);
   const navigateTo = useNavigate();
   const queryClient = useQueryClient();
   const { t, i18n } = useTranslation("blocks", { keyPrefix: "page" });
@@ -96,6 +104,10 @@ export const Page = ({
     let shouldSelectCountry = true;
     if (subdomain === "usupport" || subdomain === "staging") {
       localStorage.setItem("country", "global");
+
+      setIsPodcastsActive(true);
+      setIsVideosActive(true);
+
       setSelectedCountry(globalCountry);
       shouldSelectCountry = false;
       const allLanguages = res.data.reduce((acc, x) => {
@@ -135,11 +147,16 @@ export const Page = ({
         currencySymbol: x["symbol"],
         localName: x["local_name"],
         languages: currentLanguages,
+        podcastsActive: x.podcasts_active,
+        videosActive: x.videos_active,
       };
 
       if (localStorageCountry === x.alpha2 && shouldSelectCountry) {
+        console.log("here");
         setSelectedCountry(countryObject);
         setLangs(countryObject.languages);
+        setIsPodcastsActive(countryObject.podcastsActive);
+        setIsVideosActive(countryObject.videosActive);
         localStorage.setItem("currency_symbol", countryObject.currencySymbol);
       }
       return countryObject;
@@ -178,8 +195,11 @@ export const Page = ({
       subdomain === "staging" &&
       (!localStorageCountry || localStorageCountry === "global")
     ) {
+      localStorage.setItem("country", "global");
       setAllLanguages(allLanguages);
       setLangs(allLanguages);
+      setIsPodcastsActive(true);
+      setIsVideosActive(true);
     }
     if (!hasSetDefaultCountry && !localStorageCountry) {
       localStorage.setItem("country", "global");
@@ -187,6 +207,8 @@ export const Page = ({
       setSelectedCountry(globalCountry);
       setLangs(allLanguages);
       setAllLanguages(allLanguages);
+      setIsPodcastsActive(true);
+      setIsVideosActive(true);
     }
 
     countries.unshift(globalCountry);
@@ -254,11 +276,9 @@ export const Page = ({
   };
 
   const hasPassedValidation = queryClient.getQueryData(["hasPassedValidation"]);
-  console.log(hasPassedValidation, "hasPassedValidation");
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(
     !hasPassedValidation
   );
-  console.log(isPasswordModalOpen, "isPasswordModalOpen");
   const [passwordError, setPasswordError] = useState("");
 
   const validatePlatformPasswordMutation = useMutation(
@@ -311,6 +331,8 @@ export const Page = ({
         renderIn="website"
         hasThemeButton
         t={t}
+        setIsPodcastsActive={setIsPodcastsActive}
+        setIsVideosActive={setIsVideosActive}
       />
       <div
         className={[
