@@ -26,7 +26,7 @@ export const VideoView = ({ videoData, t, language }) => {
 
   useEffect(() => {
     setHasUpdatedUrl(false);
-  }, [i18n.language]);
+  }, [language]);
 
   useEffect(() => {
     if (videoData?.title && !hasUpdatedUrl) {
@@ -34,7 +34,7 @@ export const VideoView = ({ videoData, t, language }) => {
       const urlSlug = name;
 
       if (currentSlug !== urlSlug) {
-        const newUrl = `/${i18n.language}/information-portal/article/${videoData.id}/${currentSlug}`;
+        const newUrl = `/${language}/information-portal/article/${videoData.id}/${currentSlug}`;
 
         window.history.replaceState(null, "", newUrl);
         setHasUpdatedUrl(true);
