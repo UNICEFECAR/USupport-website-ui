@@ -23,6 +23,29 @@
     }
   }
 
+  &__img-container {
+    position: relative;
+
+    &__input {
+      position: absolute;
+      bottom: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      z-index: 1;
+
+      // Mobile specific adjustments if needed
+      @media (max-width: 767px) {
+        width: 90%;
+        bottom: 15%; // Different position for mobile if desired
+      }
+    }
+  }
+
+  &__tabs-container {
+    display: flex;
+  }
+
   & .tabs-underlined-container {
     justify-content: center;
     max-width: unset;

@@ -8,10 +8,15 @@ import {
   ThemeContext,
   useWindowDimensions,
 } from "@USupport-components-library/utils";
-import { TabsUnderlined } from "@USupport-components-library/src";
+import { useDebounce } from "#hooks";
+import {
+  Block,
+  InputSearch,
+  TabsUnderlined,
+} from "@USupport-components-library/src";
 
 import informationPortalMobile from "./assets/information-portal-mobile.png";
-import informationPortalLight from "./assets/information-portal-light.jpg";
+// import informationPortalLight from "./assets/information-portal-light.jpg";
 import informationPortalDark from "./assets/information-portal.png";
 
 import "./information-portal.scss";
@@ -60,6 +65,14 @@ export const InformationPortal = () => {
     setContentTypes(initialTabs);
   }, [isPodcastsActive, isVideosActive, tab]);
 
+  //--------------------- Search Input ----------------------//
+  const [searchValue, setSearchValue] = useState("");
+  const debouncedSearchValue = useDebounce(searchValue, 500);
+
+  const handleInputChange = (newValue) => {
+    setSearchValue(newValue);
+  };
+
   const selectedContentType = contentTypes.find(
     (contentType) => contentType.isSelected
   )?.value;
@@ -85,34 +98,60 @@ export const InformationPortal = () => {
       ].join(" ")}
     >
       {width < 768 ? (
-        <img
-          src={informationPortalMobile}
-          alt="Information Portal"
-          className="information-portal-image information-portal-image--mobile"
-        />
+        <div className="page__information-portal__img-container">
+          <img
+            src={informationPortalMobile}
+            alt="Information Portal"
+            className="information-portal-image information-portal-image--mobile"
+          />
+          <InputSearch
+            onChange={handleInputChange}
+            value={searchValue}
+            classes="page__information-portal__img-container__input"
+            placeholder={t("search")}
+          />
+        </div>
       ) : (
-        <img
-          src={
-            theme === "dark" ? informationPortalDark : informationPortalLight
-          }
-          alt="Information Portal"
-          className={`information-portal-image information-portal-image--desktop ${
-            theme !== "dark" ? "information-portal-image--visible" : ""
-          }`}
-        />
+        <div className="page__information-portal__img-container">
+          <img
+            // src={
+            //   theme === "dark" ? informationPortalDark : informationPortalLight
+            // }
+            src={informationPortalDark}
+            alt="Information Portal"
+            className={`information-portal-image information-portal-image--desktop ${
+              theme !== "dark" ? "information-portal-image--visible" : ""
+            }`}
+          />
+          <InputSearch
+            onChange={handleInputChange}
+            value={searchValue}
+            classes="page__information-portal__img-container__input"
+            placeholder={t("search")}
+          />
+        </div>
       )}
-      {contentTypes.length > 1 && (
-        <TabsUnderlined
-          options={contentTypes.map((x) => ({
-            ...x,
-            label: t(x.label),
-          }))}
-          handleSelect={handleContentTypeOnPress}
-        />
+      <Block>
+        <div className="page__information-portal__tabs-container">
+          <TabsUnderlined
+            options={contentTypes.map((x) => ({
+              ...x,
+              label: t(x.label),
+            }))}
+            handleSelect={handleContentTypeOnPress}
+            textType="h3"
+          />
+        </div>
+      </Block>
+      {selectedContentType === "articles" && (
+        <Articles debouncedSearchValue={debouncedSearchValue} />
       )}
-      {selectedContentType === "articles" && <Articles />}
-      {selectedContentType === "videos" && <Videos />}
-      {selectedContentType === "podcasts" && <Podcasts />}
+      {selectedContentType === "videos" && (
+        <Videos debouncedSearchValue={debouncedSearchValue} />
+      )}
+      {selectedContentType === "podcasts" && (
+        <Podcasts debounceSearchValue={debouncedSearchValue} />
+      )}
     </Page>
   );
 };
