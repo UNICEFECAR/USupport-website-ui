@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback, useContext } from "react";
+import { useState, useEffect, useCallback, useContext } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
@@ -7,7 +8,6 @@ import {
   GridItem,
   Block,
   CardMedia,
-  InputSearch,
   Tabs,
   Loading,
 } from "@USupport-components-library/src";
@@ -17,26 +17,38 @@ import {
   createArticleSlug,
 } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
-import { useDebounce, useEventListener } from "#hooks";
+import { useEventListener } from "#hooks";
 import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./podcasts.scss";
 
-/**
- * Podcasts
- *
- * Information portal podcasts
- *
- * @return {jsx}
- */
-export const Podcasts = () => {
+// 2-3-1 card span logic
+const getGridSpanForIndex = (index, pattern = [2, 3, 1]) => {
+  const totalItems = pattern.reduce((sum, count) => sum + count, 0);
+  const position = index % totalItems;
+  let current = 0;
+  for (let i = 0; i < pattern.length; i++) {
+    const items = pattern[i];
+    const span = 12 / items;
+    if (position < current + items) return span;
+    current += items;
+  }
+  return 4;
+};
+
+export const Podcasts = ({ debouncedSearchValue }) => {
   const navigate = useNavigate();
   const { width } = useWindowDimensions();
   const { i18n, t } = useTranslation("blocks", { keyPrefix: "articles" });
   const { theme } = useContext(ThemeContext);
-
   const isNotDescktop = width < 1366;
+
   const [usersLanguage, setUsersLanguage] = useState(i18n.language);
+  const [categories, setCategories] = useState();
+  const [selectedCategory, setSelectedCategory] = useState();
+  const [podcasts, setPodcasts] = useState([]);
+  const [numberOfPodcasts, setNumberOfPodcasts] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
     if (i18n.language !== usersLanguage) {
@@ -44,160 +56,129 @@ export const Podcasts = () => {
     }
   }, [i18n.language]);
 
-  //--------------------- Categories ----------------------//
-  const [categories, setCategories] = useState();
-  const [selectedCategory, setSelectedCategory] = useState();
-
   const getCategories = async () => {
-    try {
-      const res = await cmsSvc.getCategories(usersLanguage);
-      let categoriesData = [
-        { label: t("all"), value: "all", isSelected: true },
-      ];
-      res.data.map((category) =>
-        categoriesData.push({
-          label: category.attributes.name,
-          value: category.attributes.name,
-          id: category.id,
-          isSelected: false,
-        })
-      );
-
-      setSelectedCategory(categoriesData[0]);
-      return categoriesData;
-    } catch (err) {
-      console.log(err, "Error when calling getCategories");
-      return [];
-    }
+    const res = await cmsSvc.getCategories(usersLanguage);
+    const data = [
+      { label: t("all"), value: "all", isSelected: true },
+      ...res.data.map((cat) => ({
+        label: cat.attributes.name,
+        value: cat.attributes.name,
+        id: cat.id,
+        isSelected: false,
+      })),
+    ];
+    setSelectedCategory(data[0]);
+    return data;
   };
 
   useQuery(["podcasts-categories", usersLanguage], getCategories, {
     refetchOnWindowFocus: false,
-    onSuccess: (data) => {
-      setCategories([...data]);
-    },
+    onSuccess: (data) => setCategories([...data]),
   });
 
   const handleCategoryOnPress = (index) => {
-    const categoriesCopy = [...categories];
-    for (let i = 0; i < categoriesCopy.length; i++) {
-      if (i === index) {
-        categoriesCopy[i].isSelected = true;
-        setSelectedCategory(categoriesCopy[i]);
-      } else {
-        categoriesCopy[i].isSelected = false;
-      }
-    }
-    setCategories(categoriesCopy);
+    const updated = categories.map((cat, i) => ({
+      ...cat,
+      isSelected: i === index,
+    }));
+    setCategories(updated);
+    setSelectedCategory(updated[index]);
   };
 
-  //--------------------- Search Input ----------------------//
-  const [searchValue, setSearchValue] = useState("");
-  const debouncedSearchValue = useDebounce(searchValue, 500);
-
-  const handleInputChange = (newValue) => {
-    setSearchValue(newValue);
-  };
-
-  //--------------------- Country Change Event Listener ----------------------//
   const [currentCountry, setCurrentCountry] = useState(
     localStorage.getItem("country")
   );
-
   const shouldFetchIds = !!(currentCountry && currentCountry !== "global");
 
   const handler = useCallback(() => {
     const country = localStorage.getItem("country");
-    if (country !== currentCountry) {
-      setCurrentCountry(country);
-    }
+    if (country !== currentCountry) setCurrentCountry(country);
   }, [currentCountry]);
 
   useEventListener("countryChanged", handler);
 
-  //--------------------- Podcasts ----------------------//
   const getPodcastsIds = async () => {
-    const podcastIds = await adminSvc.getPodcasts();
-    return podcastIds;
+    return await adminSvc.getPodcasts();
   };
 
   const podcastIdsQuery = useQuery(
     ["podcastIds", currentCountry, shouldFetchIds],
     getPodcastsIds,
-    {
-      enabled: true,
-    }
+    { enabled: true }
   );
 
-  console.log(podcastIdsQuery.error);
-
   const getPodcastsData = async () => {
-    let categoryId = "";
-    if (selectedCategory && selectedCategory.value !== "all") {
-      categoryId = selectedCategory.id;
-    }
-
-    let queryParams = {
-      limit: 12,
+    const categoryId =
+      selectedCategory?.value !== "all" ? selectedCategory.id : "";
+    const queryParams = {
+      startFrom: 0,
+      limit: 6,
       contains: debouncedSearchValue,
       categoryId,
       locale: usersLanguage,
       populate: true,
+      ...(shouldFetchIds
+        ? { ids: podcastIdsQuery.data }
+        : { global: true, isForAdmin: true }),
     };
-
-    if (shouldFetchIds) {
-      queryParams["ids"] = podcastIdsQuery.data;
-    } else {
-      queryParams["global"] = true;
-      queryParams["isForAdmin"] = true;
-    }
-
     const { data } = await cmsSvc.getPodcasts(queryParams);
-    return data.data || [];
+    setPodcasts(data.data || []);
+    setNumberOfPodcasts(data.meta?.pagination?.total || data.data.length);
+    return data.data;
   };
 
-  const {
-    data: podcasts,
-    isLoading: isPodcastsLoading,
-    isFetching: isPodcastsFetching,
-  } = useQuery(
-    [
-      "podcasts",
-      debouncedSearchValue,
-      selectedCategory,
-      podcastIdsQuery.data,
-      usersLanguage,
-      shouldFetchIds,
-    ],
-    getPodcastsData,
-    {
-      enabled:
-        (shouldFetchIds
-          ? !podcastIdsQuery.isLoading && !!podcastIdsQuery.data
-          : true) && !!selectedCategory,
-    }
-  );
+  const { isLoading: isPodcastsLoading, isFetching: isPodcastsFetching } =
+    useQuery(
+      [
+        "podcasts",
+        debouncedSearchValue,
+        selectedCategory,
+        podcastIdsQuery.data,
+        usersLanguage,
+        shouldFetchIds,
+      ],
+      getPodcastsData,
+      {
+        enabled:
+          (shouldFetchIds
+            ? !podcastIdsQuery.isLoading && !!podcastIdsQuery.data
+            : true) && !!selectedCategory,
+      }
+    );
 
-  //--------------------- Newest Podcast ----------------------//
+  const getMorePodcasts = async () => {
+    const categoryId =
+      selectedCategory?.value !== "all" ? selectedCategory.id : "";
+    const queryParams = {
+      startFrom: podcasts.length,
+      limit: 6,
+      contains: debouncedSearchValue,
+      categoryId,
+      locale: usersLanguage,
+      populate: true,
+      ...(shouldFetchIds
+        ? { ids: podcastIdsQuery.data }
+        : { global: true, isForAdmin: true }),
+    };
+    const { data } = await cmsSvc.getPodcasts(queryParams);
+    const newData = data.data || [];
+    setPodcasts((prev) => [...prev, ...newData]);
+    if (podcasts.length + newData.length >= numberOfPodcasts) setHasMore(false);
+  };
+
   const getNewestPodcast = async () => {
-    let queryParams = {
+    const queryParams = {
       limit: 1,
       sortBy: "createdAt",
       sortOrder: "desc",
       locale: usersLanguage,
       populate: true,
+      ...(shouldFetchIds
+        ? { ids: podcastIdsQuery.data }
+        : { global: true, isForAdmin: true }),
     };
-
-    if (shouldFetchIds) {
-      queryParams["ids"] = podcastIdsQuery.data;
-    } else {
-      queryParams["global"] = true;
-      queryParams["isForAdmin"] = true;
-    }
-
-    let { data } = await cmsSvc.getPodcasts(queryParams);
-
-    if (!data.data || !data.data[0]) return null;
+    const { data } = await cmsSvc.getPodcasts(queryParams);
+    if (!data?.data?.[0]) return null;
     return destructurePodcastData(data.data[0]);
   };
 
@@ -220,19 +201,17 @@ export const Podcasts = () => {
     );
   };
 
-  // Simplified loading state
   const isLoading =
     isPodcastsLoading ||
     isPodcastsFetching ||
     isNewestPodcastLoading ||
     (shouldFetchIds && podcastIdsQuery.isLoading);
 
-  // Simplified empty state detection
   const hasNoData =
     !isLoading &&
     ((shouldFetchIds && !podcastIdsQuery.data?.length) ||
       (!podcasts?.length && !newestPodcast));
-  console.log(newestPodcast);
+
   return (
     <Block classes="podcasts">
       {hasNoData && (
@@ -248,13 +227,11 @@ export const Podcasts = () => {
           )}
         </GridItem>
 
-        {isNewestPodcastLoading ? (
-          <GridItem md={8} lg={12} classes="podcasts__most-important-item">
+        <GridItem md={8} lg={12} classes="podcasts__most-important-item">
+          {isNewestPodcastLoading ? (
             <Loading />
-          </GridItem>
-        ) : (
-          newestPodcast && (
-            <GridItem md={8} lg={12} classes="podcasts__most-important-item">
+          ) : (
+            newestPodcast && (
               <CardMedia
                 type={isNotDescktop ? "portrait" : "landscape"}
                 size="lg"
@@ -273,63 +250,62 @@ export const Podcasts = () => {
                   handleRedirect(newestPodcast.id, newestPodcast.title)
                 }
               />
-            </GridItem>
-          )
-        )}
-
-        <GridItem md={8} lg={12} classes="podcasts__search-item">
-          <InputSearch onChange={handleInputChange} value={searchValue} />
+            )
+          )}
         </GridItem>
 
         {categories && (
           <GridItem md={8} lg={12} classes="podcasts__categories-item">
-            <Tabs
-              options={categories}
-              handleSelect={handleCategoryOnPress}
-              t={t}
-            />
+            <div className="podcasts__categories-item__container">
+              <Tabs
+                options={categories}
+                handleSelect={handleCategoryOnPress}
+                t={t}
+              />
+            </div>
           </GridItem>
         )}
 
         <GridItem md={8} lg={12} classes="podcasts__podcasts-item">
-          {podcastIdsQuery.isLoading || isPodcastsLoading ? (
-            <Loading />
-          ) : podcasts?.length > 0 ? (
-            <Grid>
+          <InfiniteScroll
+            dataLength={podcasts.length}
+            next={getMorePodcasts}
+            hasMore={hasMore}
+            loader={<Loading size="lg" />}
+          >
+            <div className="podcasts__custom-grid">
               {podcasts.map((podcast, index) => {
-                const podcastData = destructurePodcastData(podcast);
+                const data = destructurePodcastData(podcast);
+                const span = getGridSpanForIndex(index);
                 return (
-                  <GridItem key={index}>
+                  <div
+                    key={index}
+                    className="podcasts__card-wrapper"
+                    style={{ gridColumn: `span ${span}` }}
+                  >
                     <CardMedia
-                      type="portrait"
-                      size="sm"
-                      style={{ gridColumn: "span 4" }}
-                      title={podcastData.title}
-                      image={podcastData.imageMedium}
-                      description={podcastData.description}
-                      labels={podcastData.labels}
-                      likes={podcastData.likes || 0}
-                      dislikes={podcastData.dislikes || 0}
+                      type={
+                        span === 12 && !isNotDescktop ? "landscape" : "portrait"
+                      }
+                      size={span === 12 && !isNotDescktop ? "lg" : "sm"}
+                      title={data.title}
+                      image={data.imageMedium}
+                      description={data.description}
+                      labels={data.labels}
+                      likes={data.likes || 0}
+                      dislikes={data.dislikes || 0}
                       contentType="podcasts"
                       t={t}
-                      categoryName={podcastData.categoryName}
-                      onClick={() =>
-                        handleRedirect(podcastData.id, podcastData.title)
-                      }
+                      categoryName={data.categoryName}
+                      onClick={() => handleRedirect(data.id, data.title)}
                     />
-                  </GridItem>
+                  </div>
                 );
               })}
-            </Grid>
-          ) : (
-            <div className="podcasts__no-results-container">
-              <p>{t("no_results")}</p>
             </div>
-          )}
+          </InfiniteScroll>
         </GridItem>
       </Grid>
     </Block>
   );
 };
-
-export default Podcasts;
