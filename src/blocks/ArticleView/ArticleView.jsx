@@ -57,8 +57,7 @@ const constructShareUrl = ({ contentType, id, name }) => {
  *
  * @return {jsx}
  */
-export const ArticleView = ({ articleData, i18n }) => {
-  const { t } = i18n;
+export const ArticleView = ({ articleData, t, language }) => {
   const { name } = useParams();
 
   const creator = articleData.creator ? articleData.creator : null;
@@ -76,7 +75,7 @@ export const ArticleView = ({ articleData, i18n }) => {
 
   useEffect(() => {
     setHasUpdatedUrl(false);
-  }, [i18n.language]);
+  }, [language]);
 
   useEffect(() => {
     if (articleData?.title && !hasUpdatedUrl) {
@@ -84,13 +83,13 @@ export const ArticleView = ({ articleData, i18n }) => {
       const urlSlug = name;
 
       if (currentSlug !== urlSlug) {
-        const newUrl = `/${i18n.language}/information-portal/article/${articleData.id}/${currentSlug}`;
+        const newUrl = `/${language}/information-portal/article/${articleData.id}/${currentSlug}`;
 
         window.history.replaceState(null, "", newUrl);
         setHasUpdatedUrl(true);
       }
     }
-  }, [articleData?.title, name, i18n.language, hasUpdatedUrl]);
+  }, [articleData?.title, name, language, hasUpdatedUrl]);
 
   const handleExportToPdf = async () => {
     const language = localStorage.getItem("language") || "en";
