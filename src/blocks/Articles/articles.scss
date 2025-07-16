@@ -8,7 +8,7 @@
   text-align: left;
 
   @media screen and (min-width: $screen-md) {
-    padding-top: $spacing_10_0;
+    padding-top: $spacing_8_0;
   }
 
   &__main-grid {
@@ -21,7 +21,7 @@
   }
 
   &__most-important-item {
-    padding-top: $spacing_5_0;
+    padding-top: $spacing_3_0;
     padding-bottom: $spacing_4_0;
   }
 

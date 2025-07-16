@@ -14,6 +14,7 @@ import {
 import {
   destructurePodcastData,
   useWindowDimensions,
+  createArticleSlug,
 } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 import { useDebounce, useEventListener } from "#hooks";
@@ -211,9 +212,11 @@ export const Podcasts = () => {
     }
   );
 
-  const handleRedirect = (id) => {
+  const handleRedirect = (id, name) => {
     navigate(
-      `/${localStorage.getItem("language")}/information-portal/podcast/${id}`
+      `/${localStorage.getItem(
+        "language"
+      )}/information-portal/podcast/${id}/${createArticleSlug(name)}`
     );
   };
 
@@ -266,7 +269,9 @@ export const Podcasts = () => {
                 likes={newestPodcast.likes}
                 dislikes={newestPodcast.dislikes}
                 t={t}
-                onClick={() => handleRedirect(newestPodcast.id)}
+                onClick={() =>
+                  handleRedirect(newestPodcast.id, newestPodcast.title)
+                }
               />
             </GridItem>
           )
@@ -308,7 +313,9 @@ export const Podcasts = () => {
                       contentType="podcasts"
                       t={t}
                       categoryName={podcastData.categoryName}
-                      onClick={() => handleRedirect(podcastData.id)}
+                      onClick={() =>
+                        handleRedirect(podcastData.id, podcastData.title)
+                      }
                     />
                   </GridItem>
                 );

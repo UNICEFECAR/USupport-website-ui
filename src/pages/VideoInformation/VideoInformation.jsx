@@ -1,5 +1,5 @@
-import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { useParams, useNavigate, Navigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { Page } from "#blocks";
@@ -17,7 +17,10 @@ import {
   adminSvc,
   userSvc,
 } from "@USupport-components-library/services";
-import { destructureVideoData } from "@USupport-components-library/utils";
+import {
+  destructureVideoData,
+  ThemeContext,
+} from "@USupport-components-library/utils";
 
 import "./video-information.scss";
 
@@ -35,6 +38,8 @@ export const VideoInformation = () => {
   const { i18n, t } = useTranslation("pages", {
     keyPrefix: "video-information-page",
   });
+
+  const { isVideosActive } = useContext(ThemeContext);
 
   const getVideosIds = async () => {
     const videoIds = await adminSvc.getVideos();
@@ -108,10 +113,20 @@ export const VideoInformation = () => {
     window.scrollTo(0, 0);
   };
 
+  if (!isVideosActive) {
+    return (
+      <Navigate
+        to={`/${localStorage.getItem(
+          "language"
+        )}/information-portal?tab=articles`}
+      />
+    );
+  }
+
   return (
     <Page classes="page__video-information" showGoBackArrow={true}>
       {videoData ? (
-        <VideoView videoData={videoData} t={t} />
+        <VideoView videoData={videoData} t={t} language={i18n.language} />
       ) : isFetched ? (
         <h3 className="page__video-information__no-results">
           {t("not_found")}

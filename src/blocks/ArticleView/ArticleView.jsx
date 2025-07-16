@@ -1,4 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import propTypes from "prop-types";
 import { toast } from "react-toastify";
 
@@ -13,8 +14,10 @@ import {
   Loading,
 } from "@USupport-components-library/src";
 import { userSvc } from "@USupport-components-library/services";
-import { ThemeContext } from "@USupport-components-library/utils";
-// import { ShareModal } from "#modals";
+import {
+  ThemeContext,
+  createArticleSlug,
+} from "@USupport-components-library/utils";
 
 import "./article-view.scss";
 
@@ -25,24 +28,25 @@ const countriesMap = {
   ro: "romania",
 };
 
-const constructShareUrl = ({ contentType, id }) => {
+const constructShareUrl = ({ contentType, id, name }) => {
   const country = localStorage.getItem("country");
   const language = localStorage.getItem("language");
   const subdomain = window.location.hostname.split(".")[0];
+  const nameSlug = createArticleSlug(name);
 
   if (subdomain === "staging") {
-    return `https://staging.usupport.online/${language}/information-portal/${contentType}/${id}`;
+    return `https://staging.usupport.online/${language}/information-portal/${contentType}/${id}/${nameSlug}`;
   }
 
   if (country === "global") {
-    return `https://usupport.online/${language}/information-portal/${contentType}/${id}`;
+    return `https://usupport.online/${language}/information-portal/${contentType}/${id}/${nameSlug}`;
   }
   const countryName = countriesMap[country.toLocaleLowerCase()];
 
   if (window.location.hostname.includes("staging")) {
-    return `https://${countryName}.staging.usupport.online/${language}/information-portal/${contentType}/${id}`;
+    return `https://${countryName}.staging.usupport.online/${language}/information-portal/${contentType}/${id}/${nameSlug}`;
   }
-  const url = `https://${countryName}.usupport.online/${language}/information-portal/${contentType}/${id}`;
+  const url = `https://${countryName}.usupport.online/${language}/information-portal/${contentType}/${id}/${nameSlug}`;
   return url;
 };
 
@@ -53,17 +57,40 @@ const constructShareUrl = ({ contentType, id }) => {
  *
  * @return {jsx}
  */
-export const ArticleView = ({ articleData, t }) => {
+export const ArticleView = ({ articleData, i18n }) => {
+  const { t } = i18n;
+  const { name } = useParams();
+
   const creator = articleData.creator ? articleData.creator : null;
   const { theme } = useContext(ThemeContext);
 
   // const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isExportingPdf, setIsExportingPdf] = useState(false);
+  const [hasUpdatedUrl, setHasUpdatedUrl] = useState(false);
 
   const url = constructShareUrl({
     contentType: "article",
     id: articleData.id,
+    name: articleData.title,
   });
+
+  useEffect(() => {
+    setHasUpdatedUrl(false);
+  }, [i18n.language]);
+
+  useEffect(() => {
+    if (articleData?.title && !hasUpdatedUrl) {
+      const currentSlug = createArticleSlug(articleData.title);
+      const urlSlug = name;
+
+      if (currentSlug !== urlSlug) {
+        const newUrl = `/${i18n.language}/information-portal/article/${articleData.id}/${currentSlug}`;
+
+        window.history.replaceState(null, "", newUrl);
+        setHasUpdatedUrl(true);
+      }
+    }
+  }, [articleData?.title, name, i18n.language, hasUpdatedUrl]);
 
   const handleExportToPdf = async () => {
     const language = localStorage.getItem("language") || "en";
