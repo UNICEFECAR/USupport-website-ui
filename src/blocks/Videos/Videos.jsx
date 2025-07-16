@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback, useContext } from "react";
+import { useState, useEffect, useCallback, useContext } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
@@ -7,7 +8,6 @@ import {
   GridItem,
   Block,
   CardMedia,
-  InputSearch,
   Tabs,
   Loading,
 } from "@USupport-components-library/src";
@@ -17,19 +17,30 @@ import {
   createArticleSlug,
 } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
-import { useDebounce, useEventListener } from "#hooks";
+import { useEventListener } from "#hooks";
 import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./videos.scss";
 
-/**
- * Videos
- *
- * Information portal videos
- *
- * @return {jsx}
- */
-export const Videos = () => {
+const getGridSpanForIndex = (index, pattern = [2, 3, 1]) => {
+  const totalItemsInCycle = pattern.reduce((sum, count) => sum + count, 0);
+  const cyclePosition = index % totalItemsInCycle;
+
+  let currentPosition = 0;
+  for (let i = 0; i < pattern.length; i++) {
+    const itemsInThisRow = pattern[i];
+    const columnsPerItem = 12 / itemsInThisRow;
+
+    if (cyclePosition < currentPosition + itemsInThisRow) {
+      return columnsPerItem;
+    }
+    currentPosition += itemsInThisRow;
+  }
+
+  return 4;
+};
+
+export const Videos = ({ debouncedSearchValue }) => {
   const navigate = useNavigate();
   const { width } = useWindowDimensions();
   const { i18n, t } = useTranslation("blocks", { keyPrefix: "articles" });
@@ -38,91 +49,62 @@ export const Videos = () => {
   const isNotDescktop = width < 1366;
   const [usersLanguage, setUsersLanguage] = useState(i18n.language);
 
+  const [categories, setCategories] = useState();
+  const [selectedCategory, setSelectedCategory] = useState();
+  const [videos, setVideos] = useState([]);
+  const [numberOfVideos, setNumberOfVideos] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
+
   useEffect(() => {
     if (i18n.language !== usersLanguage) {
       setUsersLanguage(i18n.language);
     }
   }, [i18n.language]);
 
-  //--------------------- Categories ----------------------//
-  const [categories, setCategories] = useState();
-  const [selectedCategory, setSelectedCategory] = useState();
-
   const getCategories = async () => {
-    try {
-      const res = await cmsSvc.getCategories(usersLanguage);
-      let categoriesData = [
-        { label: t("all"), value: "all", isSelected: true },
-      ];
-      res.data.map((category) =>
-        categoriesData.push({
-          label: category.attributes.name,
-          value: category.attributes.name,
-          id: category.id,
-          isSelected: false,
-        })
-      );
-
-      setSelectedCategory(categoriesData[0]);
-      return categoriesData;
-    } catch (err) {
-      console.log(err, "Error when calling getCategories");
-      return [];
-    }
+    const res = await cmsSvc.getCategories(usersLanguage);
+    let data = [{ label: t("all"), value: "all", isSelected: true }];
+    res.data.forEach((category) =>
+      data.push({
+        label: category.attributes.name,
+        value: category.attributes.name,
+        id: category.id,
+        isSelected: false,
+      })
+    );
+    setSelectedCategory(data[0]);
+    return data;
   };
 
   useQuery(["videos-categories", usersLanguage], getCategories, {
     refetchOnWindowFocus: false,
-    onSuccess: (data) => {
-      setCategories([...data]);
-    },
+    onSuccess: (data) => setCategories([...data]),
   });
 
   const handleCategoryOnPress = (index) => {
-    const categoriesCopy = [...categories];
-
-    for (let i = 0; i < categoriesCopy.length; i++) {
-      if (i === index) {
-        categoriesCopy[i].isSelected = true;
-        setSelectedCategory(categoriesCopy[i]);
-      } else {
-        categoriesCopy[i].isSelected = false;
-      }
-    }
-    setCategories(categoriesCopy);
+    const updated = categories.map((c, i) => ({
+      ...c,
+      isSelected: i === index,
+    }));
+    setSelectedCategory(updated[index]);
+    setCategories(updated);
   };
 
-  //--------------------- Search Input ----------------------//
-  const [searchValue, setSearchValue] = useState("");
-  const debouncedSearchValue = useDebounce(searchValue, 500);
-
-  const handleInputChange = (newValue) => {
-    setSearchValue(newValue);
-  };
-
-  //--------------------- Country Change Event Listener ----------------------//
   const [currentCountry, setCurrentCountry] = useState(
     localStorage.getItem("country")
   );
-
   const shouldFetchIds = !!(currentCountry && currentCountry !== "global");
 
   const handler = useCallback(() => {
     const country = localStorage.getItem("country");
-    if (country !== currentCountry) {
-      setCurrentCountry(country);
-    }
+    if (country !== currentCountry) setCurrentCountry(country);
   }, [currentCountry]);
 
-  // Add event listener
   useEventListener("countryChanged", handler);
 
-  //--------------------- Videos ----------------------//
-
   const getVideosIds = async () => {
-    // Request videos ids from the master DB
-    const videosIds = await adminSvc.getVideos();
-    return videosIds;
+    const ids = await adminSvc.getVideos();
+    return ids;
   };
 
   const videoIdsQuery = useQuery(
@@ -134,35 +116,32 @@ export const Videos = () => {
   );
 
   const getVideosData = async () => {
-    let categoryId = "";
-    if (selectedCategory && selectedCategory.value !== "all") {
-      categoryId = selectedCategory.id;
-    }
+    let categoryId =
+      selectedCategory?.value !== "all" ? selectedCategory.id : "";
 
     let queryParams = {
-      limit: 12, // Load more items at once since we're not using infinite scroll
+      startFrom: 0,
+      limit: 6,
       contains: debouncedSearchValue,
       categoryId,
       locale: usersLanguage,
       populate: true,
     };
 
-    if (shouldFetchIds) {
-      queryParams["ids"] = videoIdsQuery.data;
-    } else {
-      queryParams["global"] = true;
-      queryParams["isForAdmin"] = true;
+    if (shouldFetchIds) queryParams.ids = videoIdsQuery.data;
+    else {
+      queryParams.global = true;
+      queryParams.isForAdmin = true;
     }
 
     const { data } = await cmsSvc.getVideos(queryParams);
-    return data.data || [];
+    const videoData = data.data || [];
+    setVideos([...videoData]);
+    setNumberOfVideos(data.meta?.pagination?.total || videoData.length);
+    return videoData;
   };
 
-  const {
-    data: videos,
-    isLoading: isVideosLoading,
-    isFetching: isVideosFetching,
-  } = useQuery(
+  const { isLoading: isVideosLoading, isFetching: isVideosFetching } = useQuery(
     [
       "videos",
       debouncedSearchValue,
@@ -180,30 +159,52 @@ export const Videos = () => {
     }
   );
 
-  //--------------------- Newest Video ----------------------//
-  const getNewestVideo = async () => {
+  const getMoreVideos = async () => {
+    let categoryId =
+      selectedCategory?.value !== "all" ? selectedCategory.id : "";
+
     let queryParams = {
-      limit: 1, // Only get the newest video
-      sortBy: "createdAt", // Sort by created date
-      sortOrder: "desc", // Sort in descending order
+      startFrom: videos.length,
+      limit: 6,
+      contains: debouncedSearchValue,
+      categoryId,
       locale: usersLanguage,
       populate: true,
     };
 
-    if (shouldFetchIds) {
-      queryParams["ids"] = videoIdsQuery.data;
-    } else {
-      queryParams["global"] = true;
-      queryParams["isForAdmin"] = true;
+    if (shouldFetchIds) queryParams.ids = videoIdsQuery.data;
+    else {
+      queryParams.global = true;
+      queryParams.isForAdmin = true;
     }
 
-    let { data } = await cmsSvc.getVideos(queryParams);
+    const { data } = await cmsSvc.getVideos(queryParams);
+    const newVideos = data.data || [];
+    setVideos((prev) => [...prev, ...newVideos]);
 
-    if (!data.data || !data.data[0]) return null;
+    if (videos.length + newVideos.length >= numberOfVideos) {
+      setHasMore(false);
+    }
+  };
+
+  const getNewestVideo = async () => {
+    let queryParams = {
+      limit: 1,
+      sortBy: "createdAt",
+      sortOrder: "desc",
+      locale: usersLanguage,
+      populate: true,
+    };
+
+    if (shouldFetchIds) queryParams.ids = videoIdsQuery.data;
+    else {
+      queryParams.global = true;
+      queryParams.isForAdmin = true;
+    }
+
+    const { data } = await cmsSvc.getVideos(queryParams);
+    if (!data?.data?.[0]) return null;
     return destructureVideoData(data.data[0]);
-    // Assuming videos data structure is similar to articles
-    // const newestVideoData = destructureArticleData(data.data[0]);
-    // return newestVideoData;
   };
 
   const { data: newestVideo, isLoading: isNewestVideoLoading } = useQuery(
@@ -225,14 +226,12 @@ export const Videos = () => {
     );
   };
 
-  // Simplified loading state
   const isLoading =
     isVideosLoading ||
     isVideosFetching ||
     isNewestVideoLoading ||
     (shouldFetchIds && videoIdsQuery.isLoading);
 
-  // Simplified empty state detection
   const hasNoData =
     !isLoading &&
     ((shouldFetchIds && !videoIdsQuery.data?.length) ||
@@ -253,13 +252,11 @@ export const Videos = () => {
           )}
         </GridItem>
 
-        {isNewestVideoLoading ? (
-          <GridItem md={8} lg={12} classes="videos__most-important-item">
+        <GridItem md={8} lg={12} classes="videos__most-important-item">
+          {isNewestVideoLoading ? (
             <Loading />
-          </GridItem>
-        ) : (
-          newestVideo && (
-            <GridItem md={8} lg={12} classes="videos__most-important-item">
+          ) : (
+            newestVideo && (
               <CardMedia
                 type={isNotDescktop ? "portrait" : "landscape"}
                 size="lg"
@@ -278,37 +275,46 @@ export const Videos = () => {
                   handleRedirect(newestVideo.id, newestVideo.title)
                 }
               />
-            </GridItem>
-          )
-        )}
-
-        <GridItem md={8} lg={12} classes="videos__search-item">
-          <InputSearch onChange={handleInputChange} value={searchValue} />
+            )
+          )}
         </GridItem>
 
-        {categories && (
-          <GridItem md={8} lg={12} classes="videos__categories-item">
-            <Tabs
-              options={categories}
-              handleSelect={handleCategoryOnPress}
-              t={t}
-            />
-          </GridItem>
-        )}
+        <GridItem md={8} lg={12} classes="videos__categories-item">
+          {categories && (
+            <div className="videos__categories-item__container">
+              <Tabs
+                options={categories}
+                handleSelect={handleCategoryOnPress}
+                t={t}
+              />
+            </div>
+          )}
+        </GridItem>
 
         <GridItem md={8} lg={12} classes="videos__videos-item">
-          {videoIdsQuery.isLoading || isVideosLoading ? (
-            <Loading />
-          ) : videos?.length > 0 ? (
-            <Grid>
-              {videos.map((video, index) => {
+          <InfiniteScroll
+            dataLength={videos?.length || 0}
+            next={getMoreVideos}
+            hasMore={hasMore}
+            loader={<Loading size="lg" />}
+          >
+            <div className="videos__custom-grid">
+              {videos?.map((video, index) => {
                 const videoData = destructureVideoData(video);
+                const gridSpan = getGridSpanForIndex(index, [2, 3, 1]);
                 return (
-                  <GridItem key={index}>
+                  <div
+                    key={index}
+                    className="videos__card-wrapper"
+                    style={{ gridColumn: `span ${gridSpan}` }}
+                  >
                     <CardMedia
-                      type="portrait"
-                      size="sm"
-                      style={{ gridColumn: "span 4" }}
+                      type={
+                        gridSpan === 12 && !isNotDescktop
+                          ? "landscape"
+                          : "portrait"
+                      }
+                      size={gridSpan === 12 && !isNotDescktop ? "lg" : "sm"}
                       title={videoData.title}
                       image={videoData.image}
                       description={videoData.description}
@@ -322,15 +328,11 @@ export const Videos = () => {
                         handleRedirect(videoData.id, videoData.title)
                       }
                     />
-                  </GridItem>
+                  </div>
                 );
               })}
-            </Grid>
-          ) : (
-            <div className="videos__no-results-container">
-              <p>{t("no_results")}</p>
             </div>
-          )}
+          </InfiniteScroll>
         </GridItem>
       </Grid>
     </Block>
