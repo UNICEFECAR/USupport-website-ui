@@ -2,7 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import { Page, Articles, Videos, Podcasts } from "#blocks";
+import {
+  Question,
+  Page,
+  DownloadApp,
+  Articles,
+  Videos,
+  Podcasts,
+} from "#blocks";
 
 import {
   ThemeContext,
@@ -152,6 +159,8 @@ export const InformationPortal = () => {
       {selectedContentType === "podcasts" && (
         <Podcasts debounceSearchValue={debouncedSearchValue} />
       )}
+      <Question />
+      <DownloadApp />
     </Page>
   );
 };

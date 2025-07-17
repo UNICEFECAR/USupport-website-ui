@@ -39,6 +39,14 @@
         width: 90%;
         bottom: 15%; // Different position for mobile if desired
       }
+
+      @media screen and (min-width: $screen-md) {
+        max-width: 50%;
+      }
+
+      @media screen and (min-width: $screen-lg) {
+        max-width: 30%;
+      }
     }
   }
 
