@@ -18,7 +18,7 @@ import image4 from "./assets/image_4.png";
  * @returns {JSX.Element}
  */
 export const FindYourself = () => {
-  const { t } = useTranslation("find-yourself");
+  const { t } = useTranslation("blocks", { keyPrefix: "find-yourself" });
   const { width } = useWindowDimensions();
 
   return (

@@ -19,7 +19,7 @@ import "./about.scss";
  * @returns {JSX.Element}
  */
 export const About = () => {
-  const { t } = useTranslation("about");
+  const { t } = useTranslation("blocks", { keyPrefix: "about" });
   return (
     <Block classes={["about"]} animation="fade-right">
       <Grid classes={["about__main-grid"]}>

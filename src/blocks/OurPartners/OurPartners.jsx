@@ -20,7 +20,7 @@ import "./our-partners.scss";
  * @return {jsx}
  */
 export const OurPartners = () => {
-  const { t } = useTranslation("our-partners");
+  const { t } = useTranslation("blocks", { keyPrefix: "our-partners" });
 
   return (
     <Block classes="our-partners">

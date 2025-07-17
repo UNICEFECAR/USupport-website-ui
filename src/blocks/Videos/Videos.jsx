@@ -14,6 +14,7 @@ import {
 import {
   destructureVideoData,
   useWindowDimensions,
+  createArticleSlug,
 } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 import { useDebounce, useEventListener } from "#hooks";
@@ -31,7 +32,7 @@ import "./videos.scss";
 export const Videos = () => {
   const navigate = useNavigate();
   const { width } = useWindowDimensions();
-  const { i18n, t } = useTranslation("articles");
+  const { i18n, t } = useTranslation("blocks", { keyPrefix: "articles" });
   const { theme } = useContext(ThemeContext);
 
   const isNotDescktop = width < 1366;
@@ -70,16 +71,12 @@ export const Videos = () => {
     }
   };
 
-  const categoriesQuery = useQuery(
-    ["videos-categories", usersLanguage],
-    getCategories,
-    {
-      refetchOnWindowFocus: false,
-      onSuccess: (data) => {
-        setCategories([...data]);
-      },
-    }
-  );
+  useQuery(["videos-categories", usersLanguage], getCategories, {
+    refetchOnWindowFocus: false,
+    onSuccess: (data) => {
+      setCategories([...data]);
+    },
+  });
 
   const handleCategoryOnPress = (index) => {
     const categoriesCopy = [...categories];
@@ -220,9 +217,11 @@ export const Videos = () => {
     }
   );
 
-  const handleRedirect = (id) => {
+  const handleRedirect = (id, name) => {
     navigate(
-      `/${localStorage.getItem("language")}/information-portal/video/${id}`
+      `/${localStorage.getItem(
+        "language"
+      )}/information-portal/video/${id}/${createArticleSlug(name)}`
     );
   };
 
@@ -275,7 +274,9 @@ export const Videos = () => {
                 likes={newestVideo.likes}
                 dislikes={newestVideo.dislikes}
                 t={t}
-                onClick={() => handleRedirect(newestVideo.id)}
+                onClick={() =>
+                  handleRedirect(newestVideo.id, newestVideo.title)
+                }
               />
             </GridItem>
           )
@@ -317,7 +318,9 @@ export const Videos = () => {
                       t={t}
                       categoryName={videoData.categoryName}
                       contentType="videos"
-                      onClick={() => handleRedirect(videoData.id)}
+                      onClick={() =>
+                        handleRedirect(videoData.id, videoData.title)
+                      }
                     />
                   </GridItem>
                 );

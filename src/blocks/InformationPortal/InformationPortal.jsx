@@ -8,7 +8,10 @@ import {
   Loading,
   CardMedia,
 } from "@USupport-components-library/src";
-import { destructureArticleData } from "@USupport-components-library/utils";
+import {
+  destructureArticleData,
+  createArticleSlug,
+} from "@USupport-components-library/utils";
 import { useTranslation } from "react-i18next";
 import { useEventListener } from "#hooks";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
@@ -23,7 +26,9 @@ import "./information-portal.scss";
  * @return {jsx}
  */
 export const InformationPortal = () => {
-  const { i18n, t } = useTranslation("information-portal");
+  const { i18n, t } = useTranslation("blocks", {
+    keyPrefix: "information-portal",
+  });
   const navigate = useNavigate();
   const [showBlock, setShowBlock] = useState(false);
 
@@ -100,9 +105,11 @@ export const InformationPortal = () => {
     }
   );
 
-  const handleRedirect = (id) => {
+  const handleRedirect = (id, name) => {
     navigate(
-      `/${localStorage.getItem("language")}/information-portal/article/${id}`
+      `/${localStorage.getItem(
+        "language"
+      )}/information-portal/article/${id}/${createArticleSlug(name)}`
     );
   };
 
@@ -150,7 +157,10 @@ export const InformationPortal = () => {
                     dislikes={mostReadArticlesQuerry.data[0].dislikes || 0}
                     t={t}
                     onClick={() =>
-                      handleRedirect(mostReadArticlesQuerry.data[0].id)
+                      handleRedirect(
+                        mostReadArticlesQuerry.data[0].id,
+                        mostReadArticlesQuerry.data[0].name
+                      )
                     }
                   />
                 </GridItem>
@@ -189,7 +199,9 @@ export const InformationPortal = () => {
                                 likes={article.likes}
                                 dislikes={article.dislikes}
                                 t={t}
-                                onClick={() => handleRedirect(article.id)}
+                                onClick={() =>
+                                  handleRedirect(article.id, article.title)
+                                }
                               />
                             </GridItem>
                           )

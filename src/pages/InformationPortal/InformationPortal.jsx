@@ -17,41 +17,48 @@ import informationPortalDark from "./assets/information-portal.png";
 import "./information-portal.scss";
 
 export const InformationPortal = () => {
-  const { t } = useTranslation("articles");
-  const { theme } = useContext(ThemeContext);
+  const { t } = useTranslation("blocks", { keyPrefix: "articles" });
+  const { theme, isPodcastsActive, isVideosActive } = useContext(ThemeContext);
   const { width } = useWindowDimensions();
   const [searchParams, setSearchParams] = useSearchParams();
   const tab = searchParams.get("tab");
 
-  const [contentTypes, setContentTypes] = useState([
-    {
-      label: "articles",
-      value: "articles",
-      isSelected: tab === "articles",
-    },
-    {
-      label: "videos",
-      value: "videos",
-      isSelected: tab === "videos",
-    },
-    {
-      label: "podcasts",
-      value: "podcasts",
-      isSelected: tab === "podcasts",
-    },
-  ]);
+  const [contentTypes, setContentTypes] = useState([]);
 
   useEffect(() => {
-    if (!tab) {
+    let selectedTab = tab || "articles";
+
+    if (!isPodcastsActive && !isVideosActive && selectedTab !== "articles") {
+      selectedTab = "articles";
       setSearchParams({ tab: "articles" });
-      setContentTypes(
-        contentTypes.map((contentType) => ({
-          ...contentType,
-          isSelected: contentType.value === "articles",
-        }))
-      );
     }
-  }, [tab]);
+
+    const initialTabs = [
+      {
+        label: "articles",
+        value: "articles",
+        isSelected: selectedTab === "articles",
+      },
+    ];
+
+    if (isVideosActive) {
+      initialTabs.push({
+        label: "videos",
+        value: "videos",
+        isSelected: selectedTab === "videos",
+      });
+    }
+
+    if (isPodcastsActive) {
+      initialTabs.push({
+        label: "podcasts",
+        value: "podcasts",
+        isSelected: selectedTab === "podcasts",
+      });
+    }
+
+    setContentTypes(initialTabs);
+  }, [isPodcastsActive, isVideosActive, tab]);
 
   const selectedContentType = contentTypes.find(
     (contentType) => contentType.isSelected
@@ -94,13 +101,15 @@ export const InformationPortal = () => {
           }`}
         />
       )}
-      <TabsUnderlined
-        options={contentTypes.map((x) => ({
-          ...x,
-          label: t(x.label),
-        }))}
-        handleSelect={handleContentTypeOnPress}
-      />
+      {contentTypes.length > 1 && (
+        <TabsUnderlined
+          options={contentTypes.map((x) => ({
+            ...x,
+            label: t(x.label),
+          }))}
+          handleSelect={handleContentTypeOnPress}
+        />
+      )}
       {selectedContentType === "articles" && <Articles />}
       {selectedContentType === "videos" && <Videos />}
       {selectedContentType === "podcasts" && <Podcasts />}

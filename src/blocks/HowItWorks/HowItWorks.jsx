@@ -36,7 +36,7 @@ export const HowItWorks = ({
   onPage = false,
   isTitleWhite = true,
 }) => {
-  const { t } = useTranslation("how-it-works");
+  const { t } = useTranslation("blocks", { keyPrefix: "how-it-works" });
   const { width } = useWindowDimensions();
 
   const { theme } = useContext(ThemeContext);

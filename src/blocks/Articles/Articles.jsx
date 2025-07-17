@@ -16,6 +16,7 @@ import {
 import {
   destructureArticleData,
   useWindowDimensions,
+  createArticleSlug,
 } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 import { useDebounce, useEventListener } from "#hooks";
@@ -33,7 +34,7 @@ import "./articles.scss";
 export const Articles = () => {
   const navigate = useNavigate();
   const { width } = useWindowDimensions();
-  const { i18n, t } = useTranslation("articles");
+  const { i18n, t } = useTranslation("blocks", { keyPrefix: "articles" });
   const { theme } = useContext(ThemeContext);
 
   const isNotDescktop = width < 1366;
@@ -347,9 +348,11 @@ export const Articles = () => {
     }
   );
 
-  const handleRedirect = (id) => {
+  const handleRedirect = (id, name) => {
     navigate(
-      `/${localStorage.getItem("language")}/information-portal/article/${id}`
+      `/${localStorage.getItem(
+        "language"
+      )}/information-portal/article/${id}/${createArticleSlug(name)}`
     );
   };
 
@@ -384,7 +387,9 @@ export const Articles = () => {
                 likes={newestArticle.likes}
                 dislikes={newestArticle.dislikes}
                 t={t}
-                onClick={() => handleRedirect(newestArticle.id)}
+                onClick={() =>
+                  handleRedirect(newestArticle.id, newestArticle.title)
+                }
               />
               {!newestArticle && isNewestArticleLoading && (
                 <Loading size="lg" />
@@ -442,7 +447,9 @@ export const Articles = () => {
                             dislikes={articleData.dislikes || 0}
                             t={t}
                             categoryName={articleData.categoryName}
-                            onClick={() => handleRedirect(articleData.id)}
+                            onClick={() =>
+                              handleRedirect(articleData.id, articleData.title)
+                            }
                           />
                         </GridItem>
                       );

@@ -18,7 +18,7 @@ import "./we-help.scss";
  * @return {jsx}
  */
 export const WeHelp = () => {
-  const { t } = useTranslation("we-help");
+  const { t } = useTranslation("blocks", { keyPrefix: "we-help" });
   return (
     <Block classes="we-help">
       <Grid>

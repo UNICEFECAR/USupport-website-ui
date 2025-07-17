@@ -3,7 +3,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { Page, ArticleView } from "#blocks";
-import { destructureArticleData } from "@USupport-components-library/utils";
+import {
+  destructureArticleData,
+  createArticleSlug,
+} from "@USupport-components-library/utils";
 import {
   Block,
   Grid,
@@ -24,7 +27,9 @@ export const ArticleInformation = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const { i18n, t } = useTranslation("article-information");
+  const { i18n, t } = useTranslation("pages", {
+    keyPrefix: "article-information",
+  });
 
   //--------------------- Country Change Event Listener ----------------------//
   const [currentCountry, setCurrentCountry] = useState(
@@ -143,7 +148,7 @@ export const ArticleInformation = () => {
   return (
     <Page classes="page__article-information">
       {articleData ? (
-        <ArticleView articleData={articleData} t={t} />
+        <ArticleView articleData={articleData} t={t} language={i18n.language} />
       ) : (
         <Loading size="lg" />
       )}
@@ -179,7 +184,9 @@ export const ArticleInformation = () => {
                       navigate(
                         `/${localStorage.getItem(
                           "language"
-                        )}/information-portal/article/${articleData.id}`
+                        )}/information-portal/article/${
+                          articleData.id
+                        }/${createArticleSlug(articleData.title)}`
                       );
                       onArticleClick();
                     }}

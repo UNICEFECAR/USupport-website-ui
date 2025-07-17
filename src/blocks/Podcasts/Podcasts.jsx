@@ -14,6 +14,7 @@ import {
 import {
   destructurePodcastData,
   useWindowDimensions,
+  createArticleSlug,
 } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 import { useDebounce, useEventListener } from "#hooks";
@@ -31,7 +32,7 @@ import "./podcasts.scss";
 export const Podcasts = () => {
   const navigate = useNavigate();
   const { width } = useWindowDimensions();
-  const { i18n, t } = useTranslation("articles");
+  const { i18n, t } = useTranslation("blocks", { keyPrefix: "articles" });
   const { theme } = useContext(ThemeContext);
 
   const isNotDescktop = width < 1366;
@@ -70,16 +71,12 @@ export const Podcasts = () => {
     }
   };
 
-  const categoriesQuery = useQuery(
-    ["podcasts-categories", usersLanguage],
-    getCategories,
-    {
-      refetchOnWindowFocus: false,
-      onSuccess: (data) => {
-        setCategories([...data]);
-      },
-    }
-  );
+  useQuery(["podcasts-categories", usersLanguage], getCategories, {
+    refetchOnWindowFocus: false,
+    onSuccess: (data) => {
+      setCategories([...data]);
+    },
+  });
 
   const handleCategoryOnPress = (index) => {
     const categoriesCopy = [...categories];
@@ -215,9 +212,11 @@ export const Podcasts = () => {
     }
   );
 
-  const handleRedirect = (id) => {
+  const handleRedirect = (id, name) => {
     navigate(
-      `/${localStorage.getItem("language")}/information-portal/podcast/${id}`
+      `/${localStorage.getItem(
+        "language"
+      )}/information-portal/podcast/${id}/${createArticleSlug(name)}`
     );
   };
 
@@ -270,7 +269,9 @@ export const Podcasts = () => {
                 likes={newestPodcast.likes}
                 dislikes={newestPodcast.dislikes}
                 t={t}
-                onClick={() => handleRedirect(newestPodcast.id)}
+                onClick={() =>
+                  handleRedirect(newestPodcast.id, newestPodcast.title)
+                }
               />
             </GridItem>
           )
@@ -312,7 +313,9 @@ export const Podcasts = () => {
                       contentType="podcasts"
                       t={t}
                       categoryName={podcastData.categoryName}
-                      onClick={() => handleRedirect(podcastData.id)}
+                      onClick={() =>
+                        handleRedirect(podcastData.id, podcastData.title)
+                      }
                     />
                   </GridItem>
                 );

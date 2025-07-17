@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import propTypes from "prop-types";
 import {
   Block,
@@ -7,7 +7,6 @@ import {
   Label,
   Like,
 } from "@USupport-components-library/src";
-import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./podcast-view.scss";
 
@@ -18,9 +17,29 @@ import "./podcast-view.scss";
  *
  * @return {jsx}
  */
-export const PodcastView = ({ podcastData, t }) => {
+export const PodcastView = ({ podcastData, t, language }) => {
+  const { name } = useParams();
   const creator = podcastData.creator ? podcastData.creator : null;
-  const { theme } = useContext(ThemeContext);
+
+  const [hasUpdatedUrl, setHasUpdatedUrl] = React.useState(false);
+
+  useEffect(() => {
+    setHasUpdatedUrl(false);
+  }, [i18n.language]);
+
+  useEffect(() => {
+    if (podcastData?.title && !hasUpdatedUrl) {
+      const currentSlug = createArticleSlug(podcastData.title);
+      const urlSlug = name;
+
+      if (currentSlug !== urlSlug) {
+        const newUrl = `/${i18n.language}/information-portal/article/${videoData.id}/${currentSlug}`;
+
+        window.history.replaceState(null, "", newUrl);
+        setHasUpdatedUrl(true);
+      }
+    }
+  }, [podcastData?.title, name, i18n.language, hasUpdatedUrl]);
 
   return (
     <Block classes="podcast-view">

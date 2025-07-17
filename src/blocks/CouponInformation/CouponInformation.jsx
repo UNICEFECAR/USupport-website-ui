@@ -14,7 +14,7 @@ import "./coupon-information.scss";
  * @return {jsx}
  */
 export const CouponInformation = () => {
-  const { t } = useTranslation("coupon-information");
+  const { t } = useTranslation("blocks", { keyPrefix: "coupon-information" });
 
   return (
     <Block classes="coupon-information">

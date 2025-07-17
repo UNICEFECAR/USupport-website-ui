@@ -14,3 +14,5 @@ export * from "./MyQA";
 export * from "./CustomAboutUs";
 export * from "./VideoInformation";
 export * from "./PodcastInformation";
+export * from "./OrganizationOverview";
+export * from "./Organizations";
