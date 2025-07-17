@@ -47,7 +47,7 @@ export const OrganizationOverview = ({ organizationId }) => {
   return (
     <Block classes="organization-profile">
       {isError ? (
-        <h5>{t("error-loading-data")}</h5>
+        <h5>{t("error_loading_data")}</h5>
       ) : isLoading ? (
         <Loading size="lg" />
       ) : (

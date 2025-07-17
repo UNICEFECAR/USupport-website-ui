@@ -388,7 +388,7 @@
       "email": "Email"
     },
     "organization-overview": {
-      "error-loading-data": "An error occurred while loading the organization data",
+      "error_loading_data": "An error occurred while loading the organization data",
       "other_services_label": "Other services",
       "address_label": "Address",
       "sector_label": "District",
