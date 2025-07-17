@@ -252,44 +252,48 @@ export const Videos = ({ debouncedSearchValue }) => {
           )}
         </GridItem>
 
-        <GridItem md={8} lg={12} classes="videos__most-important-item">
-          {isNewestVideoLoading ? (
-            <Loading />
-          ) : (
-            newestVideo && (
-              <CardMedia
-                type={isNotDescktop ? "portrait" : "landscape"}
-                size="lg"
-                title={newestVideo.title}
-                image={newestVideo.image}
-                description={newestVideo.description}
-                labels={newestVideo.labels}
-                creator={newestVideo.creator}
-                categoryName={newestVideo.categoryName}
-                contentType="videos"
-                showDescription={true}
-                likes={newestVideo.likes}
-                dislikes={newestVideo.dislikes}
-                t={t}
-                onClick={() =>
-                  handleRedirect(newestVideo.id, newestVideo.title)
-                }
-              />
-            )
-          )}
-        </GridItem>
+        {(isNewestVideoLoading || newestVideo) && (
+          <GridItem md={8} lg={12} classes="videos__most-important-item">
+            {isNewestVideoLoading ? (
+              <Loading />
+            ) : (
+              newestVideo && (
+                <CardMedia
+                  type={isNotDescktop ? "portrait" : "landscape"}
+                  size="lg"
+                  title={newestVideo.title}
+                  image={newestVideo.image}
+                  description={newestVideo.description}
+                  labels={newestVideo.labels}
+                  creator={newestVideo.creator}
+                  categoryName={newestVideo.categoryName}
+                  contentType="videos"
+                  showDescription={true}
+                  likes={newestVideo.likes}
+                  dislikes={newestVideo.dislikes}
+                  t={t}
+                  onClick={() =>
+                    handleRedirect(newestVideo.id, newestVideo.title)
+                  }
+                />
+              )
+            )}
+          </GridItem>
+        )}
 
-        <GridItem md={8} lg={12} classes="videos__categories-item">
-          {categories && (
-            <div className="videos__categories-item__container">
-              <Tabs
-                options={categories}
-                handleSelect={handleCategoryOnPress}
-                t={t}
-              />
-            </div>
-          )}
-        </GridItem>
+        {videos?.length > 0 && (
+          <GridItem md={8} lg={12} classes="videos__categories-item">
+            {categories && (
+              <div className="videos__categories-item__container">
+                <Tabs
+                  options={categories}
+                  handleSelect={handleCategoryOnPress}
+                  t={t}
+                />
+              </div>
+            )}
+          </GridItem>
+        )}
 
         <GridItem md={8} lg={12} classes="videos__videos-item">
           <InfiniteScroll

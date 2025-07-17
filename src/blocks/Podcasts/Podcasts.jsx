@@ -227,34 +227,36 @@ export const Podcasts = ({ debouncedSearchValue }) => {
           )}
         </GridItem>
 
-        <GridItem md={8} lg={12} classes="podcasts__most-important-item">
-          {isNewestPodcastLoading ? (
-            <Loading />
-          ) : (
-            newestPodcast && (
-              <CardMedia
-                type={isNotDescktop ? "portrait" : "landscape"}
-                size="lg"
-                title={newestPodcast.title}
-                image={newestPodcast.imageMedium}
-                description={newestPodcast.description}
-                labels={newestPodcast.labels}
-                creator={newestPodcast.creator}
-                contentType="podcasts"
-                categoryName={newestPodcast.categoryName}
-                showDescription={true}
-                likes={newestPodcast.likes}
-                dislikes={newestPodcast.dislikes}
-                t={t}
-                onClick={() =>
-                  handleRedirect(newestPodcast.id, newestPodcast.title)
-                }
-              />
-            )
-          )}
-        </GridItem>
+        {(isNewestPodcastLoading || newestPodcast) && (
+          <GridItem md={8} lg={12} classes="podcasts__most-important-item">
+            {isNewestPodcastLoading ? (
+              <Loading />
+            ) : (
+              newestPodcast && (
+                <CardMedia
+                  type={isNotDescktop ? "portrait" : "landscape"}
+                  size="lg"
+                  title={newestPodcast.title}
+                  image={newestPodcast.imageMedium}
+                  description={newestPodcast.description}
+                  labels={newestPodcast.labels}
+                  creator={newestPodcast.creator}
+                  contentType="podcasts"
+                  categoryName={newestPodcast.categoryName}
+                  showDescription={true}
+                  likes={newestPodcast.likes}
+                  dislikes={newestPodcast.dislikes}
+                  t={t}
+                  onClick={() =>
+                    handleRedirect(newestPodcast.id, newestPodcast.title)
+                  }
+                />
+              )
+            )}
+          </GridItem>
+        )}
 
-        {categories && (
+        {podcasts?.length > 0 && categories && (
           <GridItem md={8} lg={12} classes="podcasts__categories-item">
             <div className="podcasts__categories-item__container">
               <Tabs

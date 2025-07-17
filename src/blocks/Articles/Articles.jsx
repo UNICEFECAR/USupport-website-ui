@@ -387,29 +387,31 @@ export const Articles = ({ debouncedSearchValue }) => {
                 <h2 className="articles__heading-text">{t("heading")}</h2>
               )}
             </GridItem>
-            <GridItem md={8} lg={12} classes="articles__most-important-item">
-              <CardMedia
-                type={isNotDescktop ? "portrait" : "landscape"}
-                size="lg"
-                title={newestArticle.title}
-                image={newestArticle.imageMedium}
-                description={newestArticle.description}
-                labels={newestArticle.labels}
-                creator={newestArticle.creator}
-                readingTime={newestArticle.readingTime}
-                categoryName={newestArticle.categoryName}
-                showDescription={true}
-                likes={newestArticle.likes}
-                dislikes={newestArticle.dislikes}
-                t={t}
-                onClick={() =>
-                  handleRedirect(newestArticle.id, newestArticle.title)
-                }
-              />
-              {!newestArticle && isNewestArticleLoading && (
-                <Loading size="lg" />
-              )}
-            </GridItem>
+            {(newestArticle || isNewestArticleFetched) && (
+              <GridItem md={8} lg={12} classes="articles__most-important-item">
+                <CardMedia
+                  type={isNotDescktop ? "portrait" : "landscape"}
+                  size="lg"
+                  title={newestArticle.title}
+                  image={newestArticle.imageMedium}
+                  description={newestArticle.description}
+                  labels={newestArticle.labels}
+                  creator={newestArticle.creator}
+                  readingTime={newestArticle.readingTime}
+                  categoryName={newestArticle.categoryName}
+                  showDescription={true}
+                  likes={newestArticle.likes}
+                  dislikes={newestArticle.dislikes}
+                  t={t}
+                  onClick={() =>
+                    handleRedirect(newestArticle.id, newestArticle.title)
+                  }
+                />
+                {!newestArticle && isNewestArticleLoading && (
+                  <Loading size="lg" />
+                )}
+              </GridItem>
+            )}
 
             {showAgeGroups && (
               <GridItem md={8} lg={12} classes="articles__age-groups-item">
@@ -425,15 +427,17 @@ export const Articles = ({ debouncedSearchValue }) => {
               </GridItem>
             )}
 
-            <GridItem md={8} lg={12}>
-              {categories && (
-                <Tabs
-                  options={categories}
-                  handleSelect={handleCategoryOnPress}
-                  t={t}
-                />
-              )}
-            </GridItem>
+            {articles?.length > 0 && (
+              <GridItem md={8} lg={12}>
+                {categories && (
+                  <Tabs
+                    options={categories}
+                    handleSelect={handleCategoryOnPress}
+                    t={t}
+                  />
+                )}
+              </GridItem>
+            )}
 
             <GridItem md={8} lg={12} classes="articles__articles-item">
               {articles?.length > 0 &&
