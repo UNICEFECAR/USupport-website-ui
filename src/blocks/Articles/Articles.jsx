@@ -427,17 +427,17 @@ export const Articles = ({ debouncedSearchValue }) => {
               </GridItem>
             )}
 
-            {articles?.length > 0 && (
-              <GridItem md={8} lg={12}>
-                {categories && (
-                  <Tabs
-                    options={categories}
-                    handleSelect={handleCategoryOnPress}
-                    t={t}
-                  />
-                )}
-              </GridItem>
-            )}
+            {/* {articles?.length > 0 && ( */}
+            <GridItem md={8} lg={12}>
+              {categories && (
+                <Tabs
+                  options={categories}
+                  handleSelect={handleCategoryOnPress}
+                  t={t}
+                />
+              )}
+            </GridItem>
+            {/* )} */}
 
             <GridItem md={8} lg={12} classes="articles__articles-item">
               {articles?.length > 0 &&
