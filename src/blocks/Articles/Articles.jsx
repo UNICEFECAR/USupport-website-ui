@@ -466,11 +466,7 @@ export const Articles = ({ debouncedSearchValue }) => {
                             title={articleData.title}
                             image={articleData.imageMedium}
                             description={articleData.description}
-                            labels={[
-                              { name: "anxiety", id: "1" },
-                              { name: "depression", id: "2" },
-                              { name: "stress", id: "3" },
-                            ]}
+                            labels={articleData.labels || []}
                             creator={articleData.creator}
                             readingTime={articleData.readingTime}
                             likes={articleData.likes || 0}
