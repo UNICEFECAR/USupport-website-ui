@@ -137,7 +137,11 @@
       "paragraph_4": "Our team consists of experienced mental health professionals who are actively working in Youth Mental Health Centers across various regions of Kazakhstan. These professionals bring a wide range of expertise, covering diverse topics such as emotional well-being, coping strategies, stress management, and mental health challenges faced by young people today. By engaging directly with youth, our team is able to offer personalized support and address the unique mental health needs of adolescents and young people in different communities.",
       "paragraph_5": "uSupport is more than just a digital platform; it is a vital part of the larger MHPSS ecosystem in the countries where we operate. By connecting young people with existing mental health resources, we aim to contribute towards universal access to quality prevention, care, and support for all. ",
       "paragraph_6": "We invite you to join us in our mission to improve the mental health and well-being of young people. Whether you are a young person seeking support, a mental health professional looking to make a difference, or a partner interested in supporting our work, we welcome you to be a part of the uSupport community. Together, we can create a positive impact and ensure every young person has the opportunity to thrive.",
-      "paragraph_7": "Disclaimer: uSupport is a platform that builds mental health literacy and supports young people to understand better issues related to their psychosocial and emotional wellbeing and overall mental health. It is designed to maximize awareness of mental health by providing anonymous access to information and consultations to interested users.   It is not designed to assist in cases of serious crises such as abuse and exploitation, severe mental health conditions that may cause feelings of suicide, self-harm, or any other medical emergencies. uSupport cannot offer medical or clinical advice, it can only put young people in contact with local mental health professionals who can suggest referrals and guide users to seek specialized medical help within their national health care system. In case of emergency, users are directed to reach out to country-specific suicide hotlines or ambulance services.   uSupport provides information and support to young people over the age of 10. The terms of service and privacy policy stipulate that parents or legal guardians are expected to provide consent for users who are minors – in accordance to local country legislation. uSupport cannot be held responsible for the accuracy of age-related or other information provided by users. "
+      "paragraph_7": "Disclaimer: uSupport is a platform that builds mental health literacy and supports young people to understand better issues related to their psychosocial and emotional wellbeing and overall mental health. It is designed to maximize awareness of mental health by providing anonymous access to information and consultations to interested users.   It is not designed to assist in cases of serious crises such as abuse and exploitation, severe mental health conditions that may cause feelings of suicide, self-harm, or any other medical emergencies. uSupport cannot offer medical or clinical advice, it can only put young people in contact with local mental health professionals who can suggest referrals and guide users to seek specialized medical help within their national health care system. In case of emergency, users are directed to reach out to country-specific suicide hotlines or ambulance services.   uSupport provides information and support to young people over the age of 10. The terms of service and privacy policy stipulate that parents or legal guardians are expected to provide consent for users who are minors – in accordance to local country legislation. uSupport cannot be held responsible for the accuracy of age-related or other information provided by users.",
+      "terms": "terms of service",
+      "and": "and",
+      "privacy": "privacy policy",
+      "paragraph_7_2": "stipulate that parents or legal guardians are expected to provide consent for users who are minors – in accordance to local country legislation. uSupport cannot be held responsible for the accuracy of age-related or other information provided by users. "
     },
     "articles": {
       "heading": "Portal informacyjny",
@@ -151,7 +155,8 @@
       "articles": "Artykuły",
       "videos": "Wideo",
       "podcasts": "Podcasty",
-      "view_more": "Zobacz więcej"
+      "view_more": "Zobacz więcej",
+      "search": "Szukaj"
     },
     "privacy-policy": {
       "heading": "Polityką prywatności",
@@ -375,7 +380,7 @@
     },
     "organization-overview": {
       "error_loading_data": "Wystąpił błąd podczas ładowania danych organizacji",
-      "description_label": "Opis",
+      "other_services_label": "Inne usługi",
       "address_label": "Adres",
       "sector_label": "Dzielnica",
       "payment_methods_label": "Metody płatności",
@@ -474,7 +479,9 @@
     },
     "my-qa-page": {
       "modal_heading": "Zaloguj się do platformy, aby zadać pytanie",
-      "modal_text": "Aby zadać pytanie i otrzymać odpowiedź, musisz posiadać konto i zalogować się do systemu.",
+      "modal_heading_consultation": "Zaloguj się na platformie, aby umówić się na konsultację",
+      "modal_text": "Zaloguj się na platformie, aby zadać pytanie i otrzymać odpowiedź od naszych specjalistów — Twoje pytanie będzie anonimowe.",
+      "modal_text_consultation": "Zaloguj się na platformie, aby umówić się na konsultację ze specjalistą.",
       "modal_button_label": "Przejdź do aplikacji",
       "my_qa_answer_title": "Jak działa Moje Q&A?",
       "my_qa_answer_text": "Moje Q&A to funkcja, która pozwala zadawać pytania i otrzymywać odpowiedzi od dostawców uSupport."
