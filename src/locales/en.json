@@ -175,7 +175,7 @@
       "paragraph_1": "Access free resources developed with experienced providers in the field of mental health.",
       "paragraph_2": "Our extensive collection of valuable resources is continuously improving to ensure that we address all essential subjects that will support you in reaching your highest potential.",
       "paragraph_3": "Within the portal, you'll discover articles authored by experts, learn self-development techniques, and stay updated with topics that interest you",
-      "read_more_button": "Read more",
+      "read_more_button": "Click to read more",
       "min_read": "min read",
       "by": "by {{creator}}"
     },
@@ -252,7 +252,7 @@
     },
     "our-partners-overview": {
       "heading": "Our partners",
-      "button_label": "Read more",
+      "button_label": "Click to read more",
       "partner_1_title": "Ministry of Health",
       "partner_1_description": "Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.",
       "partner_1_link": "https://www.gov.kz/memleket/entities/dsm?lang=en",
@@ -281,7 +281,7 @@
       "answer_by": "Answered by:",
       "schedule_consultation": "Schedule consultation",
       "today": "Today",
-      "read_more": "Read more",
+      "read_more": "Click to read more",
       "all": "All",
       "all_languages": "All languages",
       "most_popular": "Most Popular",
@@ -447,7 +447,7 @@
     "article-information": {
       "heading": "More Articles",
       "no_results": "There are no similar articles for the current selected language.",
-      "read_more_button": "Read more",
+      "read_more_button": "Click to read more",
       "min_read": "min read",
       "by": "by {{creator}}",
       "share_title": "Share this content",
