@@ -471,7 +471,7 @@ export const Articles = ({ debouncedSearchValue }) => {
                               { name: "depression", id: "2" },
                               { name: "stress", id: "3" },
                             ]}
-                            creator={"A very long creator name that"}
+                            creator={articleData.creator}
                             readingTime={articleData.readingTime}
                             likes={articleData.likes || 0}
                             dislikes={articleData.dislikes || 0}
