@@ -164,14 +164,13 @@ export const MyQA = ({
                 onChange={(value) => setSearchValue(value.toLowerCase())}
                 classes="my-qa__tabs-grid__search-container__input"
               />
-              {allLanguages?.length > 0 && (
+              {languageOptions?.length > 0 && (
                 <Dropdown
                   options={languageOptions}
-                  selected={selectedLanguage}
+                  selected={selectedLanguage || "all"}
                   setSelected={(lang) => {
                     setSelectedLanguage(lang);
                   }}
-                  placeholder={t("placeholder")}
                   classes="my-qa__categories-item__language-dropdown"
                 />
               )}
