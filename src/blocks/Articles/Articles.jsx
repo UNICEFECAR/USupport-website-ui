@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useContext } from "react";
+import { useState, useEffect, useCallback, useContext } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -9,7 +9,6 @@ import {
   Block,
   CardMedia,
   TabsUnderlined,
-  InputSearch,
   Tabs,
   Loading,
 } from "@USupport-components-library/src";
@@ -19,10 +18,34 @@ import {
   createArticleSlug,
 } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
-import { useDebounce, useEventListener } from "#hooks";
+import { useEventListener } from "#hooks";
 import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./articles.scss";
+
+/**
+ * Calculate grid span for articles based on 2-3-1 pattern
+ * @param {number} index - Article index
+ * @param {number[]} pattern - Array representing items per row [2, 3, 1]
+ * @returns {number} Grid span value
+ */
+const getGridSpanForIndex = (index, pattern = [2, 3, 1]) => {
+  const totalItemsInCycle = pattern.reduce((sum, count) => sum + count, 0);
+  const cyclePosition = index % totalItemsInCycle;
+
+  let currentPosition = 0;
+  for (let i = 0; i < pattern.length; i++) {
+    const itemsInThisRow = pattern[i];
+    const columnsPerItem = 12 / itemsInThisRow;
+
+    if (cyclePosition < currentPosition + itemsInThisRow) {
+      return columnsPerItem;
+    }
+    currentPosition += itemsInThisRow;
+  }
+
+  return 4; // fallback
+};
 
 /**
  * Articles
@@ -31,7 +54,7 @@ import "./articles.scss";
  *
  * @return {jsx}
  */
-export const Articles = () => {
+export const Articles = ({ debouncedSearchValue }) => {
   const navigate = useNavigate();
   const { width } = useWindowDimensions();
   const { i18n, t } = useTranslation("blocks", { keyPrefix: "articles" });
@@ -146,14 +169,6 @@ export const Articles = () => {
       }
     }
     setCategories(categoriesCopy);
-  };
-
-  //--------------------- Search Input ----------------------//
-  const [searchValue, setSearchValue] = useState("");
-  const debouncedSearchValue = useDebounce(searchValue, 500);
-
-  const handleInputChange = (newValue) => {
-    setSearchValue(newValue);
   };
 
   //--------------------- Country Change Event Listener ----------------------//
@@ -285,7 +300,7 @@ export const Articles = () => {
     let queryParams = {
       startFrom: articles?.length,
       limit: 6,
-      contains: searchValue,
+      contains: debouncedSearchValue,
       ageGroupId: ageGroupId,
       categoryId,
       locale: usersLanguage,
@@ -372,49 +387,48 @@ export const Articles = () => {
                 <h2 className="articles__heading-text">{t("heading")}</h2>
               )}
             </GridItem>
-            <GridItem md={8} lg={12} classes="articles__most-important-item">
-              <CardMedia
-                type={isNotDescktop ? "portrait" : "landscape"}
-                size="lg"
-                title={newestArticle.title}
-                image={newestArticle.imageMedium}
-                description={newestArticle.description}
-                labels={newestArticle.labels}
-                creator={newestArticle.creator}
-                readingTime={newestArticle.readingTime}
-                categoryName={newestArticle.categoryName}
-                showDescription={true}
-                likes={newestArticle.likes}
-                dislikes={newestArticle.dislikes}
-                t={t}
-                onClick={() =>
-                  handleRedirect(newestArticle.id, newestArticle.title)
-                }
-              />
-              {!newestArticle && isNewestArticleLoading && (
-                <Loading size="lg" />
-              )}
-            </GridItem>
-
-            {showAgeGroups && (
-              <GridItem md={8} lg={8} classes="articles__age-groups-item">
-                {ageGroups && showAgeGroups && (
-                  <TabsUnderlined
-                    options={ageGroups}
-                    handleSelect={handleAgeGroupOnPress}
-                  />
+            {(newestArticle || isNewestArticleFetched) && (
+              <GridItem md={8} lg={12} classes="articles__most-important-item">
+                <CardMedia
+                  type={isNotDescktop ? "portrait" : "landscape"}
+                  size="lg"
+                  title={newestArticle.title}
+                  image={newestArticle.imageMedium}
+                  description={newestArticle.description}
+                  labels={newestArticle.labels}
+                  creator={newestArticle.creator}
+                  readingTime={newestArticle.readingTime}
+                  categoryName={newestArticle.categoryName}
+                  showDescription={true}
+                  likes={newestArticle.likes}
+                  dislikes={newestArticle.dislikes}
+                  t={t}
+                  onClick={() =>
+                    handleRedirect(newestArticle.id, newestArticle.title)
+                  }
+                />
+                {!newestArticle && isNewestArticleLoading && (
+                  <Loading size="lg" />
                 )}
               </GridItem>
             )}
-            <GridItem
-              md={8}
-              lg={showAgeGroups ? 4 : 12}
-              classes="articles__search-item"
-            >
-              <InputSearch onChange={handleInputChange} value={searchValue} />
-            </GridItem>
 
-            <GridItem md={8} lg={12} classes="articles__categories-item">
+            {showAgeGroups && (
+              <GridItem md={8} lg={12} classes="articles__age-groups-item">
+                <div className="articles__age-groups-item__container">
+                  {ageGroups && showAgeGroups && (
+                    <TabsUnderlined
+                      options={ageGroups}
+                      handleSelect={handleAgeGroupOnPress}
+                      textType="h3"
+                    />
+                  )}
+                </div>
+              </GridItem>
+            )}
+
+            {/* {articles?.length > 0 && ( */}
+            <GridItem md={8} lg={12}>
               {categories && (
                 <Tabs
                   options={categories}
@@ -423,24 +437,36 @@ export const Articles = () => {
                 />
               )}
             </GridItem>
+            {/* )} */}
 
             <GridItem md={8} lg={12} classes="articles__articles-item">
               {articles?.length > 0 &&
                 !isArticlesLoading &&
                 !isArticlesFetching && (
-                  <Grid>
+                  <div className="articles__custom-grid">
                     {articles?.map((article, index) => {
                       const articleData = destructureArticleData(article);
+                      const gridSpan = getGridSpanForIndex(index, [2, 3, 1]);
+
                       return (
-                        <GridItem key={index}>
+                        <div
+                          key={index}
+                          className="articles__card-wrapper"
+                          style={{ gridColumn: `span ${gridSpan}` }}
+                        >
                           <CardMedia
-                            type="portrait"
-                            size="sm"
-                            style={{ gridColumn: "span 4" }}
+                            type={
+                              gridSpan === 12 && !isNotDescktop
+                                ? "landscape"
+                                : "portrait"
+                            }
+                            size={
+                              gridSpan === 12 && !isNotDescktop ? "lg" : "sm"
+                            }
                             title={articleData.title}
                             image={articleData.imageMedium}
                             description={articleData.description}
-                            labels={articleData.labels}
+                            labels={articleData.labels || []}
                             creator={articleData.creator}
                             readingTime={articleData.readingTime}
                             likes={articleData.likes || 0}
@@ -451,11 +477,12 @@ export const Articles = () => {
                               handleRedirect(articleData.id, articleData.title)
                             }
                           />
-                        </GridItem>
+                        </div>
                       );
                     })}
-                  </Grid>
+                  </div>
                 )}
+
               {!articles?.length &&
                 !isArticlesLoading &&
                 !isArticlesFetching && (
