@@ -137,7 +137,11 @@
       "paragraph_4": "Our team consists of experienced mental health professionals who are actively working in Youth Mental Health Centers across various regions of Kazakhstan. These professionals bring a wide range of expertise, covering diverse topics such as emotional well-being, coping strategies, stress management, and mental health challenges faced by young people today. By engaging directly with youth, our team is able to offer personalized support and address the unique mental health needs of adolescents and young people in different communities.",
       "paragraph_5": "uSupport is more than just a digital platform; it is a vital part of the larger MHPSS ecosystem in the countries where we operate. By connecting young people with existing mental health resources, we aim to contribute towards universal access to quality prevention, care, and support for all. ",
       "paragraph_6": "We invite you to join us in our mission to improve the mental health and well-being of young people. Whether you are a young person seeking support, a mental health professional looking to make a difference, or a partner interested in supporting our work, we welcome you to be a part of the uSupport community. Together, we can create a positive impact and ensure every young person has the opportunity to thrive.",
-      "paragraph_7": "Disclaimer: uSupport is a platform that builds mental health literacy and supports young people to understand better issues related to their psychosocial and emotional wellbeing and overall mental health. It is designed to maximize awareness of mental health by providing anonymous access to information and consultations to interested users.   It is not designed to assist in cases of serious crises such as abuse and exploitation, severe mental health conditions that may cause feelings of suicide, self-harm, or any other medical emergencies. uSupport cannot offer medical or clinical advice, it can only put young people in contact with local mental health professionals who can suggest referrals and guide users to seek specialized medical help within their national health care system. In case of emergency, users are directed to reach out to country-specific suicide hotlines or ambulance services.   uSupport provides information and support to young people over the age of 10. The terms of service and privacy policy stipulate that parents or legal guardians are expected to provide consent for users who are minors – in accordance to local country legislation. uSupport cannot be held responsible for the accuracy of age-related or other information provided by users. "
+      "paragraph_7": "Disclaimer: uSupport is a platform that builds mental health literacy and supports young people to understand better issues related to their psychosocial and emotional wellbeing and overall mental health. It is designed to maximize awareness of mental health by providing anonymous access to information and consultations to interested users.   It is not designed to assist in cases of serious crises such as abuse and exploitation, severe mental health conditions that may cause feelings of suicide, self-harm, or any other medical emergencies. uSupport cannot offer medical or clinical advice, it can only put young people in contact with local mental health professionals who can suggest referrals and guide users to seek specialized medical help within their national health care system. In case of emergency, users are directed to reach out to country-specific suicide hotlines or ambulance services.   uSupport provides information and support to young people over the age of 10. The terms of service and privacy policy stipulate that parents or legal guardians are expected to provide consent for users who are minors – in accordance to local country legislation. uSupport cannot be held responsible for the accuracy of age-related or other information provided by users. ",
+      "terms": "terms of service",
+      "and": "and",
+      "privacy": "privacy policy",
+      "paragraph_7_2": "stipulate that parents or legal guardians are expected to provide consent for users who are minors – in accordance to local country legislation. uSupport cannot be held responsible for the accuracy of age-related or other information provided by users. "
     },
     "articles": {
       "heading": "Інформаційний портал",
@@ -151,7 +155,8 @@
       "articles": "Статті",
       "videos": "Відео",
       "podcasts": "Підкасти",
-      "view_more": "Подивитися більше"
+      "view_more": "Подивитися більше",
+      "search": "Пошук"
     },
     "privacy-policy": {
       "heading": "Політика конфіденційності",
@@ -199,6 +204,28 @@
       "panic_attack": "Панічний напад",
       "relationship": "Відносини",
       "personal_development": "Особистий розвиток",
+      "ptsd": "Посттравматичний стресовий розлад (ПТСР)",
+      "phobia": "Фобії",
+      "sexuality": "Сексуальність та проблеми інтимних стосунків",
+      "lgbtq": "Питання ЛГБТК+",
+      "goal": "Постановка цілей та особистий розвиток",
+      "emotional_intelligence": "Емоційний інтелект та регуляція емоцій",
+      "productivity": "Продуктивність та управління часом",
+      "self_care": "Практики самодопомоги",
+      "insomnia": "Безсоння та порушення сну",
+      "motivation": "Мотивація та самовдосконалення",
+      "anger": "Управління гнівом",
+      "bullying": "Булінг та тиск з боку однолітків",
+      "grief": "Горе та втрата",
+      "gender_identity": "Гендерна ідентичність",
+      "family": "Сімейні конфлікти та конфлікти з батьками",
+      "low_mood": "Поганий настрій та емоційне благополуччя",
+      "hiv": "ВІЛ/СНІД",
+      "loneliness": "Самотність та соціальна ізоляція",
+      "toxic_relationships": "Токсичні стосунки",
+      "love": "Кохання та романтичні стосунки",
+      "social_skills": "Соціальні навички та дружба",
+      "body_image": "Сприйняття тіла та самооцінка",
       "hour_consultation": "за 1 годину консультації",
       "organizations_label": "Організації",
       "free": "безкоштовно"
@@ -452,7 +479,9 @@
     },
     "my-qa-page": {
       "modal_heading": "УЩоб поставити запитання, увійдіть на платформу",
-      "modal_text": "Щоб поставити запитання й отримати відповідь, треба мати обліковий запис і увійти в систему",
+      "modal_heading_consultation": "Увійдіть на платформу, щоб записатися на консультацію",
+      "modal_text": "Увійдіть на платформу, щоб поставити запитання та отримати відповідь від наших фахівців — ваше запитання буде анонімним.",
+      "modal_text_consultation": "Увійдіть на платформу, щоб записатися на консультацію з фахівцем.",
       "modal_button_label": "Перейти до додатку",
       "my_qa_answer_title": "Як працює My Q&A?",
       "my_qa_answer_text": "My Q&A - це функція, яка дозволяє ставити запитання та отримувати відповіді від постачальників uSupport."

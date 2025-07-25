@@ -139,7 +139,9 @@ export const MyQA = ({
           classes="my-qa__answer"
           isInYourQuestions={isUserQuestionsEnabled}
           handleReadMore={() => handleReadMore(question)}
-          handleScheduleConsultationClick={handleScheduleConsultationClick}
+          handleScheduleConsultationClick={() =>
+            handleScheduleConsultationClick("consultation")
+          }
           handleProviderClick={handleProviderClick}
           t={t}
           renderIn="website"
@@ -164,14 +166,13 @@ export const MyQA = ({
                 onChange={(value) => setSearchValue(value.toLowerCase())}
                 classes="my-qa__tabs-grid__search-container__input"
               />
-              {allLanguages?.length > 0 && (
+              {languageOptions?.length > 0 && (
                 <Dropdown
                   options={languageOptions}
-                  selected={selectedLanguage}
+                  selected={selectedLanguage || "all"}
                   setSelected={(lang) => {
                     setSelectedLanguage(lang);
                   }}
-                  placeholder={t("placeholder")}
                   classes="my-qa__categories-item__language-dropdown"
                 />
               )}
@@ -209,7 +210,7 @@ export const MyQA = ({
                 label={t("ask_button_label")}
                 size={width < 980 && width > 768 ? "lg" : "lg"}
                 classes="my-qa__ask-question-button"
-                onClick={handleScheduleConsultationClick}
+                onClick={() => handleScheduleConsultationClick("question")}
               />
             </GridItem>
           </Grid>
