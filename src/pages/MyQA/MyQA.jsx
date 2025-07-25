@@ -191,7 +191,9 @@ export const MyQA = () => {
             ? "modal_heading"
             : "modal_heading_consultation"
         )}
-        text={t(redirectType ? "modal_text" : "modal_text_consultation")}
+        text={t(
+          redirectType === "question" ? "modal_text" : "modal_text_consultation"
+        )}
         buttonLabel={t("modal_button_label")}
         isOpen={isRedirectToLoginBackdropOpen}
         onClose={() => setIsRedirectToLoginBackdropOpen(false)}
