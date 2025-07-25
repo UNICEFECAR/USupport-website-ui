@@ -96,7 +96,7 @@
       "footer_5": "Политика конфиденциальности",
       "footer_6": "Политика Cookie",
       "footer_7": "Часто задаваемые вопросы",
-      "emergency_button": "SOS-центр",
+      "emergency_button": "Экстренная помощь",
       "button_text": "Перейти к приложению",
       "language_label": "Язык",
       "country_label": "Страна",
@@ -120,7 +120,7 @@
       "button": "Свяжитесь с нами"
     },
     "sos-center": {
-      "heading": "SOS-центр",
+      "heading": "Экстренная помощь",
       "button_link": "Посетить вебсайт",
       "button_call": "Связаться сейчас",
       "no_results": "Для выбранной страны и языка ничего не найдено"
