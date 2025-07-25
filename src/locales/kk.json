@@ -155,7 +155,8 @@
       "articles": "Мақалалар",
       "videos": "Видео",
       "podcasts": "Подкасттар",
-      "view_more": "Көбірек көру"
+      "view_more": "Көбірек көру",
+      "search": "Іздеу"
     },
     "privacy-policy": {
       "heading": "Құпиялық саясаты",
@@ -378,15 +379,15 @@
       "email": "Электрондық пошта"
     },
     "organization-overview": {
-      "error_loading_data": "Ұйым деректерін жүктеу кезінде қате орын алды",
-      "description_label": "Сипаттама",
-      "address_label": "Мекенжай",
-      "district_label": "Аудан",
-      "payment_method_label": "Төлем әдісі",
-      "user_interactions_label": "Өзара әрекет режимдері",
-      "property_types_label": "Мүлік түрі",
+      "error_loading_data": "Деректерді жүктеу кезінде қате пайда болды",
+      "other_services_label": "Басқа қызметтер",
+      "address_label": "Мекен-жай",
+      "sector_label": "Сектор",
+      "payment_methods_label": "Төлем әдістері",
+      "user_interactions_label": "Өзара әрекеттесу режимдері",
+      "property_types_label": "Меншік түрлері",
       "work_with_label": "Кіммен жұмыс істейді",
-      "specialisations_label": "Мамандану",
+      "offered_services_label": "Ұсынылатын қызметтер",
       "providers_label": "Ұйымдар",
 
       "violence_victim_helpline": "Зорлық құрбандарына қолдау желісі",
@@ -478,7 +479,9 @@
     },
     "my-qa-page": {
       "modal_heading": "Сұрақ қою үшін платформаға кіріңіз",
-      "modal_text": "Сұрақ қою және жауап алу үшін Сізде аккаунт болуы және жүйеге кіру қажет",
+      "modal_heading_consultation": "Кеңес алу үшін платформаға кіріңіз",
+      "modal_text": "Сұрақ қою және провайдерлерден жауап алу үшін платформаға кіріңіз, сіздің сұрағыңыз анонимді болады.",
+      "modal_text_consultation": "Провайдермен кеңес алу үшін платформаға кіріңіз.",
       "modal_button_label": "Қосымшаға өту",
       "my_qa_answer_title": "Менің Q&A қалай жұмыс істейді?",
       "my_qa_answer_text": "Менің Q&A - бұл uSupport провайдерлерінен сұрақ қоюға және жауап алуға мүмкіндік беретін функция."

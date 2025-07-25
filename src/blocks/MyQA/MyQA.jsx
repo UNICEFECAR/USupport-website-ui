@@ -139,7 +139,9 @@ export const MyQA = ({
           classes="my-qa__answer"
           isInYourQuestions={isUserQuestionsEnabled}
           handleReadMore={() => handleReadMore(question)}
-          handleScheduleConsultationClick={handleScheduleConsultationClick}
+          handleScheduleConsultationClick={() =>
+            handleScheduleConsultationClick("question")
+          }
           handleProviderClick={handleProviderClick}
           t={t}
           renderIn="website"
@@ -208,7 +210,7 @@ export const MyQA = ({
                 label={t("ask_button_label")}
                 size={width < 980 && width > 768 ? "lg" : "lg"}
                 classes="my-qa__ask-question-button"
-                onClick={handleScheduleConsultationClick}
+                onClick={() => handleScheduleConsultationClick("consultation")}
               />
             </GridItem>
           </Grid>
