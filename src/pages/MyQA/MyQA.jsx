@@ -60,6 +60,7 @@ export const MyQA = () => {
 
   const [isRedirectToLoginBackdropOpen, setIsRedirectToLoginBackdropOpen] =
     useState(false);
+  const [redirectType, setRedirectType] = useState("");
   const [isQuestionDetailsOpen, setIsQuestionDetailsOpen] = useState(false);
   const [isHowItWorksOpen, setIsHowItWorksOpen] = useState(false);
   const [isFilterQuestionsOpen, setIsFilterQuestionsOpen] = useState(false);
@@ -130,6 +131,13 @@ export const MyQA = () => {
     );
   };
 
+  const handleOpenModal = (type) => {
+    setRedirectType(type);
+    setTimeout(() => {
+      setIsRedirectToLoginBackdropOpen(true);
+    }, 100);
+  };
+
   return (
     <Page classes="page__my-qa" showGoBackArrow={false}>
       <MascotHeaderMyQA
@@ -139,9 +147,7 @@ export const MyQA = () => {
       <MyQABlock
         // handleAskAnonymous={() => setIsCreateQuestionOpen(true)}
         handleReadMore={handleSetIsQuestionDetailsOpen}
-        handleScheduleConsultationClick={() =>
-          setIsRedirectToLoginBackdropOpen(true)
-        }
+        handleScheduleConsultationClick={handleOpenModal}
         questions={
           isInGlobalCountry
             ? [
@@ -180,8 +186,14 @@ export const MyQA = () => {
         />
       )}
       <RedirectToLogin
-        heading={t("modal_heading")}
-        text={t("modal_text")}
+        heading={t(
+          redirectType === "question"
+            ? "modal_heading"
+            : "modal_heading_consultation"
+        )}
+        text={t(
+          redirectType === "question" ? "modal_text" : "modal_text_consultation"
+        )}
         buttonLabel={t("modal_button_label")}
         isOpen={isRedirectToLoginBackdropOpen}
         onClose={() => setIsRedirectToLoginBackdropOpen(false)}
