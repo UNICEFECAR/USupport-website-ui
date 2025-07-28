@@ -13,8 +13,18 @@ import {
   ThemeContext,
 } from "@USupport-components-library/utils";
 
-import image from "./assets/image.png";
-import imageSmall from "./assets/image-small.png";
+import en from "./assets/en.png";
+import enSmall from "./assets/en-small.png";
+import kk from "./assets/kk.png";
+import kkSmall from "./assets/kk-small.png";
+import pl from "./assets/pl.png";
+import plSmall from "./assets/pl-small.png";
+import ru from "./assets/ru.png";
+import ruSmall from "./assets/ru-small.png";
+import ro from "./assets/ro.png";
+import roSmall from "./assets/ro-small.png";
+import uk from "./assets/uk.png";
+import ukSmall from "./assets/uk-small.png";
 
 import "./my-qa-landing.scss";
 
@@ -27,9 +37,24 @@ import "./my-qa-landing.scss";
  */
 export const MyQALanding = () => {
   const { theme } = useContext(ThemeContext);
-  const { t } = useTranslation("blocks", { keyPrefix: "my-qa-landing" });
+  const { t, i18n } = useTranslation("blocks", { keyPrefix: "my-qa-landing" });
 
   const { width } = useWindowDimensions();
+
+  const languageImages = {
+    en: { large: en, small: enSmall },
+    kk: { large: kk, small: kkSmall },
+    pl: { large: pl, small: plSmall },
+    ru: { large: ru, small: ruSmall },
+    ro: { large: ro, small: roSmall },
+    uk: { large: uk, small: ukSmall },
+  };
+
+  const currentLanguage = i18n.language;
+
+  const currentImages = languageImages[currentLanguage] || languageImages.en;
+  const image = currentImages.large;
+  const imageSmall = currentImages.small;
 
   return (
     <Block classes="my-qa-landing">
