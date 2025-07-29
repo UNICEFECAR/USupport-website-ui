@@ -9,7 +9,7 @@ import {
   Label,
   Like,
 } from "@USupport-components-library/src";
-
+import { createArticleSlug } from "@USupport-components-library/utils";
 import "./video-view.scss";
 
 /**
