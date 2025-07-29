@@ -37,6 +37,8 @@ export const OrganizationOverview = () => {
       classes="page__organization-overview"
       heading={t("heading")}
       subheading={t("subheading")}
+      showGoBackArrow
+      handleGoBack={() => window.history.back()}
     >
       <RadialCircle
         color="purple"

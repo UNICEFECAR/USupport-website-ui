@@ -152,7 +152,6 @@ export const Page = ({
       };
 
       if (localStorageCountry === x.alpha2 && shouldSelectCountry) {
-        console.log("here");
         setSelectedCountry(countryObject);
         setLangs(countryObject.languages);
         setIsPodcastsActive(countryObject.podcastsActive);
