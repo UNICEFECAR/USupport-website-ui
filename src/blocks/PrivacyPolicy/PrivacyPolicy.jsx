@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 import {
   Block,
   Grid,
@@ -21,36 +22,52 @@ import "./privacy-policy.scss";
  * @return {jsx}
  */
 export const PrivacyPolicy = () => {
+  const queryClient = useQueryClient();
   const { i18n, t } = useTranslation("blocks", { keyPrefix: "privacy-policy" });
+  const navigate = useNavigate();
 
   //--------------------- Country Change Event Listener ----------------------//
-  const [currentCountry, setCurrentCountry] = useState(
-    localStorage.getItem("country")
+  const [selectedCountry, setSelectedCountry] = useState(
+    localStorage.getItem("country") || "KZ"
   );
 
+  const country = window.location.hostname.split(".")[0];
+  const countries = queryClient.getQueryData(["countries"]);
+
   const handler = useCallback(() => {
-    setCurrentCountry(localStorage.getItem("country"));
-  }, []);
+    const newCountry = localStorage.getItem("country");
+    if (newCountry) {
+      if (newCountry === selectedCountry) return;
+      navigate(
+        `/privacy-policy/${localStorage.getItem("country").toLowerCase()}`
+      );
+      setSelectedCountry(localStorage.getItem("country"));
+    }
+  }, [selectedCountry, navigate]);
 
   // Add event listener
   useEventListener("countryChanged", handler);
 
   //--------------------- Policies ----------------------//
-  const getPolicies = async () => {
-    const { data } = await cmsSvc.getPolicies(
+  const { isLoading, data } = useQuery({
+    queryKey: [
+      "privacy-policy",
+      country,
+      selectedCountry,
       i18n.language,
-      currentCountry,
-      "website"
-    );
-
-    return data;
-  };
-
-  const {
-    data: policiesData,
-    isLoading: policiesLoading,
-    isFetched: isPoliciesFetched,
-  } = useQuery(["policies", currentCountry, i18n.language], getPolicies);
+      countries,
+    ],
+    queryFn: async () => {
+      const localStorageCountry = localStorage.getItem("country");
+      const { data } = await cmsSvc.getPolicies(
+        i18n.language,
+        localStorageCountry.toLocaleUpperCase(),
+        "website"
+      );
+      return data;
+    },
+    enabled: !!countries,
+  });
 
   return (
     <Block classes="privacy-policy">
@@ -59,10 +76,18 @@ export const PrivacyPolicy = () => {
           <h2>{t("heading")}</h2>
         </GridItem>
         <GridItem xs={4} md={8} lg={12} classes="privacy-policy__text-item">
-          {policiesData && <Markdown markDownText={policiesData}></Markdown>}
-          {!policiesData && policiesLoading && <Loading />}
-          {!policiesData && !policiesLoading && isPoliciesFetched && (
-            <h3 className="privacy-policy__no-results">{t("no_results")}</h3>
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <>
+              {data ? (
+                <Markdown markDownText={data}></Markdown>
+              ) : (
+                <h3 className="privacy-policy__no-results">
+                  {t("no_results")}
+                </h3>
+              )}
+            </>
           )}
         </GridItem>
       </Grid>
