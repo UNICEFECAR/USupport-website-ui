@@ -502,7 +502,9 @@
     "video-information-page": {
       "more_videos": "More videos",
       "view_more": "View more",
-      "not_found": "Video not found"
+      "not_found": "Video not found",
+      "require_cookies": "To view this video, please accept all cookies.",
+      "cookie_preferences": "Cookie preferences"
     },
     "podcast-information-page": {
       "more_podcasts": "More podcasts",

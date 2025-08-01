@@ -53,6 +53,8 @@ export const Page = ({
     setAllLanguages,
     setIsPodcastsActive,
     setIsVideosActive,
+    cookieState,
+    setCookieState,
   } = useContext(ThemeContext);
   const navigateTo = useNavigate();
   const queryClient = useQueryClient();
@@ -371,6 +373,8 @@ export const Page = ({
         renderIn="website"
       />
       <CookieBanner
+        cookieState={cookieState}
+        setCookieState={setCookieState}
         text={
           <Trans
             components={[

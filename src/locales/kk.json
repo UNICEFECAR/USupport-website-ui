@@ -493,7 +493,9 @@
     "video-information-page": {
       "more_videos": "Көбірек видеолар",
       "view_more": "Толығырақ көру",
-      "not_found": "Видео табылмады"
+      "not_found": "Видео табылмады",
+      "require_cookies": "Бұл видео көру үшін, барлық cookie-лерді қабылдаңыз.",
+      "cookie_preferences": "Cookie параметрлері"
     },
     "podcast-information-page": {
       "more_podcasts": "Көбірек подкасттар",

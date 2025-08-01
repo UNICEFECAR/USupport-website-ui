@@ -493,7 +493,9 @@
     "video-information-page": {
       "more_videos": "Більше відео",
       "view_more": "Переглянути більше",
-      "not_found": "Відео не знайдено"
+      "not_found": "Відео не знайдено",
+      "require_cookies": "Для перегляду цього відео, будь ласка, прийміть всі файли cookie.",
+      "cookie_preferences": "Налаштування файлів cookie"
     },
     "podcast-information-page": {
       "more_podcasts": "Більше підкастів",

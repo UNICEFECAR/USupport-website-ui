@@ -502,7 +502,9 @@
     "video-information-page": {
       "more_videos": "Больше видео",
       "view_more": "Посмотреть больше",
-      "not_found": "Видео не найдено"
+      "not_found": "Видео не найдено",
+      "require_cookies": "Для просмотра этого видео, пожалуйста, примите все файлы cookie.",
+      "cookie_preferences": "Настройки файлов cookie"
     },
     "podcast-information-page": {
       "more_podcasts": "Больше подкастов",
