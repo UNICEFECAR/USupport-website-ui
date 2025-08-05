@@ -469,6 +469,10 @@
       "other_situations": "Другие ситуации",
 
       "copy_link_success": "Ссылка скопирована в буфер!"
+    },
+    "video-tutorial": {
+      "title": "Как пользоваться платформой",
+      "tutorial_video_title": "Как пользоваться платформой"
     }
   },
   "pages": {
