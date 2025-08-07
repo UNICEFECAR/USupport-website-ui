@@ -28,6 +28,8 @@ export const ContactUs = () => {
   const [submitError, setSubmitError] = useState("");
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
 
+  const country = localStorage.getItem("country");
+
   const onSendEmailSuccess = () => {
     setIsSuccessModalOpen(true);
   };
@@ -61,6 +63,7 @@ export const ContactUs = () => {
                 isSuccessModalOpen={isSuccessModalOpen}
                 closeSuccessModal={() => setIsSuccessModalOpen(false)}
                 t={t}
+                country={country}
               />
             </GridItem>
 

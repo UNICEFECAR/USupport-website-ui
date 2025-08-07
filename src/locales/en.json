@@ -21,6 +21,10 @@
       "contact_reason_3": "Join the network of providers",
       "contact_reason_4": "Partnerships",
       "contact_reason_5": "Other",
+      "contact_reason_1_pl": "Information about uSupport",
+      "contact_reason_2_pl": "Technical problem",
+      "contact_reason_3_pl": "Complaint",
+      "contact_reason_4_pl": "Something else",
       "email_label": "Email",
       "reason_label": "Reason for contacting us",
       "message_label": "Message",
@@ -498,7 +502,9 @@
     "video-information-page": {
       "more_videos": "More videos",
       "view_more": "View more",
-      "not_found": "Video not found"
+      "not_found": "Video not found",
+      "require_cookies": "To view this video, please accept all cookies.",
+      "cookie_preferences": "Cookie preferences"
     },
     "podcast-information-page": {
       "more_podcasts": "More podcasts",
