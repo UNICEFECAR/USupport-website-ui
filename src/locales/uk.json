@@ -21,6 +21,10 @@
       "contact_reason_3": "Приєднуйтесь до мережі консультантів(ок)",
       "contact_reason_4": "Партнерства",
       "contact_reason_5": "Інше",
+      "contact_reason_1_pl": "Информация о uSupport",
+      "contact_reason_2_pl": "Техническая проблема",
+      "contact_reason_3_pl": "Жалоба",
+      "contact_reason_4_pl": "Прочее",
       "email_label": "Електронна пошта",
       "reason_label": "Причина звернення до нас",
       "message_label": "Повідомлення",
@@ -489,7 +493,9 @@
     "video-information-page": {
       "more_videos": "Більше відео",
       "view_more": "Переглянути більше",
-      "not_found": "Відео не знайдено"
+      "not_found": "Відео не знайдено",
+      "require_cookies": "Для перегляду цього відео, будь ласка, прийміть всі файли cookie.",
+      "cookie_preferences": "Налаштування файлів cookie"
     },
     "podcast-information-page": {
       "more_podcasts": "Більше підкастів",

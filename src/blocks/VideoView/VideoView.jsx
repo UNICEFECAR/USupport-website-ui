@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import propTypes from "prop-types";
 
 import {
   Block,
+  Button,
   Grid,
   GridItem,
   Label,
   Like,
 } from "@USupport-components-library/src";
-import { createArticleSlug } from "@USupport-components-library/utils";
+import {
+  createArticleSlug,
+  ThemeContext,
+} from "@USupport-components-library/utils";
 import "./video-view.scss";
 
 /**
@@ -21,6 +25,8 @@ import "./video-view.scss";
  */
 export const VideoView = ({ videoData, t, language }) => {
   const creator = videoData.creator ? videoData.creator : null;
+  const { cookieState, setCookieState } = useContext(ThemeContext);
+  const DISPLAY_VIDEO = cookieState.hasAcceptedCookies;
 
   const { name } = useParams();
 
@@ -44,10 +50,29 @@ export const VideoView = ({ videoData, t, language }) => {
     }
   }, [videoData?.title, name, language, hasUpdatedUrl]);
 
-  // Function to render YouTube embed
+  const handleOpenCookieBanner = () => {
+    setCookieState({
+      ...cookieState,
+      isBannerOpen: true,
+    });
+  };
+
   const renderVideoEmbed = () => {
     if (!videoData || !videoData.videoId) return null;
 
+    if (!DISPLAY_VIDEO) {
+      return (
+        <div className="video-view__cookie-banner">
+          <p>{t("require_cookies")}</p>
+          <Button
+            onClick={handleOpenCookieBanner}
+            color="purple"
+            size="sm"
+            label={t("cookie_preferences")}
+          />
+        </div>
+      );
+    }
     return (
       <div className="video-view__embed-container">
         <iframe

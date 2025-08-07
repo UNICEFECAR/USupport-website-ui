@@ -76,8 +76,27 @@ function App() {
   const [isPodcastsActive, setIsPodcastsActive] = useState(false);
   const [isVideosActive, setIsVideosActive] = useState(false);
 
+  const [cookieState, setCookieState] = useState({
+    hasAcceptedCookies: false,
+    hasHandledCookies: false,
+    isBannerOpen: false,
+  });
+
   useEffect(() => {
     const lang = localStorage.getItem("language");
+    const hasAcceptedCookies = !!Number(
+      localStorage.getItem("hasAcceptedCookies")
+    );
+    const hasHandledCookies = !!Number(
+      localStorage.getItem("hasHandledCookies")
+    );
+
+    setCookieState({
+      hasAcceptedCookies,
+      hasHandledCookies,
+      isBannerOpen: hasHandledCookies ? false : true,
+    });
+
     if (!lang) {
       localStorage.setItem("language", "en");
     }
@@ -99,6 +118,8 @@ function App() {
         setIsPodcastsActive,
         isVideosActive,
         setIsVideosActive,
+        cookieState,
+        setCookieState,
       }}
     >
       <ToastContainer />
