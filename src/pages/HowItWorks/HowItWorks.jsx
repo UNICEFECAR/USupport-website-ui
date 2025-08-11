@@ -5,6 +5,7 @@ import {
   MeetOurProviders,
   Question,
   FAQ,
+  VideoTutorial,
 } from "#blocks";
 
 import "./how-it-works.scss";
@@ -32,6 +33,7 @@ export const HowItWorks = () => {
     <Page classes="page__how-it-works">
       <HowItWorksBlock showSummaryBellow={true} onPage={true} />
       <MeetOurProviders />
+      <VideoTutorial />
       <div ref={faqRef} />
       <FAQ showLearnMore={false} showMascot={false} />
       <Question />
