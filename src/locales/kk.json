@@ -469,6 +469,12 @@
       "other_situations": "Басқа жағдайлар",
 
       "copy_link_success": "Сілтеме буферге көшірілді!"
+    },
+    "video-tutorial": {
+      "title": "Платформаны қалай пайдалану керек",
+      "tutorial_video_title": "Платформаны қалай пайдалану керек",
+      "require_cookies": "Бұл видео көру үшін, барлық cookie-лерді қабылдаңыз.",
+      "cookie_preferences": "Cookie параметрлері"
     }
   },
   "pages": {

@@ -469,6 +469,12 @@
       "other_situations": "Другие ситуации",
 
       "copy_link_success": "Ссылка скопирована в буфер!"
+    },
+    "video-tutorial": {
+      "title": "Как пользоваться платформой",
+      "tutorial_video_title": "Как пользоваться платформой",
+      "require_cookies": "Для просмотра этого видео, пожалуйста, примите все файлы cookie.",
+      "cookie_preferences": "Настройки файлов cookie"
     }
   },
   "pages": {
