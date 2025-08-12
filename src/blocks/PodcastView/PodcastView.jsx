@@ -21,6 +21,7 @@ import "./podcast-view.scss";
  * @return {jsx}
  */
 export const PodcastView = ({ podcastData, t, language }) => {
+  const { i18n } = useTranslation("blocks", { keyPrefix: "podcast-view" });
   const { name } = useParams();
   const creator = podcastData.creator ? podcastData.creator : null;
 
@@ -28,7 +29,7 @@ export const PodcastView = ({ podcastData, t, language }) => {
 
   useEffect(() => {
     setHasUpdatedUrl(false);
-  }, [i18n.language]);
+  }, [language]);
 
   useEffect(() => {
     if (podcastData?.title && !hasUpdatedUrl) {
@@ -42,7 +43,7 @@ export const PodcastView = ({ podcastData, t, language }) => {
         setHasUpdatedUrl(true);
       }
     }
-  }, [podcastData?.title, name, i18n.language, hasUpdatedUrl]);
+  }, [podcastData?.title, name, language, hasUpdatedUrl]);
 
   return (
     <Block classes="podcast-view">
