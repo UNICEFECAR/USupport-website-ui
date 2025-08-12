@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import propTypes from "prop-types";
 import { useParams } from "react-router-dom";
 
@@ -28,7 +28,7 @@ export const PodcastView = ({ podcastData, t, language }) => {
 
   useEffect(() => {
     setHasUpdatedUrl(false);
-  }, [i18n.language]);
+  }, [language]);
 
   useEffect(() => {
     if (podcastData?.title && !hasUpdatedUrl) {
@@ -42,7 +42,7 @@ export const PodcastView = ({ podcastData, t, language }) => {
         setHasUpdatedUrl(true);
       }
     }
-  }, [podcastData?.title, name, i18n.language, hasUpdatedUrl]);
+  }, [podcastData?.title, name, language, hasUpdatedUrl]);
 
   return (
     <Block classes="podcast-view">
