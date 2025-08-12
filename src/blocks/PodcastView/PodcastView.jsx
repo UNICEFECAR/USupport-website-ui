@@ -21,7 +21,6 @@ import "./podcast-view.scss";
  * @return {jsx}
  */
 export const PodcastView = ({ podcastData, t, language }) => {
-  const { i18n } = useTranslation("blocks", { keyPrefix: "podcast-view" });
   const { name } = useParams();
   const creator = podcastData.creator ? podcastData.creator : null;
 
