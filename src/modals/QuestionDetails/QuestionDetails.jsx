@@ -51,20 +51,36 @@ export const QuestionDetails = ({
       <div className="question-details__date-container">
         <Icon
           name="calendar"
-          color={theme === "dark" ? "#c1d7e0" : "#92989B"}
+          color={
+            theme === "dark"
+              ? "#c1d7e0"
+              : theme === "highContrast"
+              ? "#ffff00"
+              : "#92989B"
+          }
         />
         <p
           className={[
             "text",
             "question-details__date-container__text",
-            theme === "dark" && "question-details__date-container__text--dark",
+            theme === "dark"
+              ? "question-details__date-container__text--dark"
+              : theme === "highContrast"
+              ? "question-details__date-container__text--hc"
+              : "",
           ].join(" ")}
         >
           {getDateText()}
         </p>
       </div>
       <div className="question-details__heading">
-        <h4 className="question-details__heading__text">
+        <h4
+          className={`question-details__heading__text ${
+            theme === "highContrast"
+              ? "question-details__heading__text--hc"
+              : ""
+          }`}
+        >
           {question.answerTitle}
         </h4>
         <Like
@@ -120,8 +136,19 @@ export const QuestionDetails = ({
           className="question-details__schedule-button"
           onClick={() => handleScheduleClick()}
         >
-          <Icon name="calendar" color="#20809e" />
-          <p className="text">{t("schedule_consultation")}</p>
+          <Icon
+            name="calendar"
+            color={theme === "highContrast" ? "#fff" : "#20809e"}
+          />
+          <p
+            className={`text question-details__schedule-button__text ${
+              theme === "highContrast"
+                ? "question-details__schedule-button__text--hc"
+                : ""
+            }`}
+          >
+            {t("schedule_consultation")}
+          </p>
         </div>
       </div>
     </Modal>

@@ -84,3 +84,17 @@
     }
   }
 }
+
+.accessibility-controller {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: $spacing_0_8 $spacing_2_4;
+  position: fixed;
+  z-index: 99998;
+  right: 50%;
+  transform: translateX(50%);
+  bottom: 5vh;
+  background-color: $color_white_ff;
+  border-radius: $border_radius_3_2;
+}
