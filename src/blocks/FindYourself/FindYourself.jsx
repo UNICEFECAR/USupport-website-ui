@@ -1,6 +1,8 @@
-import React from "react";
-import { Block, Grid, GridItem } from "@USupport-components-library/src";
+import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
+
+import { ThemeContext } from "@USupport-components-library/utils";
+import { Block, Grid, GridItem } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 
 import "./find-yourself.scss";
@@ -20,6 +22,7 @@ import image4 from "./assets/image_4.png";
 export const FindYourself = () => {
   const { t } = useTranslation("blocks", { keyPrefix: "find-yourself" });
   const { width } = useWindowDimensions();
+  const { theme } = useContext(ThemeContext);
 
   return (
     <Block classes="find-yourself" animation="fade-up">
@@ -50,25 +53,49 @@ export const FindYourself = () => {
             </div>
           </GridItem>
         )}
-        <GridItem md={4} lg={6} classes="find-yourself__image-item box box-1">
+        <GridItem
+          md={4}
+          lg={6}
+          classes={`find-yourself__image-item ${
+            theme === "highContrast" ? "find-yourself__image-item--hc" : ""
+          } box box-1`}
+        >
           <div className="overlay">
             <img src={image1} className="box__image" />
             <h3>{t("card_text_1")}</h3>
           </div>
         </GridItem>
-        <GridItem md={4} lg={6} classes="find-yourself__image-item box box-2">
+        <GridItem
+          md={4}
+          lg={6}
+          classes={`find-yourself__image-item ${
+            theme === "highContrast" ? "find-yourself__image-item--hc" : ""
+          } box box-2`}
+        >
           <div className="overlay">
             <img src={image2} className="box__image" />
             <h3>{t("card_text_2")}</h3>
           </div>
         </GridItem>
-        <GridItem md={4} lg={6} classes="find-yourself__image-item box box-3">
+        <GridItem
+          md={4}
+          lg={6}
+          classes={`find-yourself__image-item ${
+            theme === "highContrast" ? "find-yourself__image-item--hc" : ""
+          } box box-3`}
+        >
           <div className="overlay">
             <img src={image3} className="box__image" />
             <h3>{t("card_text_3")}</h3>
           </div>
         </GridItem>
-        <GridItem md={4} lg={6} classes="find-yourself__image-item box box-4">
+        <GridItem
+          md={4}
+          lg={6}
+          classes={`find-yourself__image-item ${
+            theme === "highContrast" ? "find-yourself__image-item--hc" : ""
+          } box box-4`}
+        >
           <div className="overlay">
             <img src={image4} className="box__image" />
             <h3>{t("card_text_4")}</h3>

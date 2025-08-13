@@ -53,6 +53,7 @@ export const MyQA = ({
   const { t } = useTranslation("blocks", { keyPrefix: "my-qa" });
   const { width } = useWindowDimensions();
   const navigate = useNavigate();
+  const { theme } = useContext(ThemeContext);
 
   const [searchValue, setSearchValue] = useState("");
 
@@ -196,7 +197,7 @@ export const MyQA = ({
                 <ButtonWithIcon
                   label={t("filter")}
                   iconName="filter"
-                  iconColor="#ffffff"
+                  iconColor={theme === "highContrast" ? "#ffff00" : "#ffffff"}
                   iconSize="sm"
                   color="purple"
                   size="sm"
