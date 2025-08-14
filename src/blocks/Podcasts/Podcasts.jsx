@@ -10,6 +10,7 @@ import {
   CardMedia,
   Tabs,
   Loading,
+  PodcastModal, // Add this import
 } from "@USupport-components-library/src";
 import {
   destructurePodcastData,
@@ -49,6 +50,7 @@ export const Podcasts = ({ debouncedSearchValue }) => {
   const [podcasts, setPodcasts] = useState([]);
   const [numberOfPodcasts, setNumberOfPodcasts] = useState(0);
   const [hasMore, setHasMore] = useState(true);
+  const [podcastToPlay, setPodcastToPlay] = useState(null);
 
   useEffect(() => {
     if (i18n.language !== usersLanguage) {
@@ -201,6 +203,10 @@ export const Podcasts = ({ debouncedSearchValue }) => {
     );
   };
 
+  const handlePlay = (spotifyId, title) => {
+    setPodcastToPlay({ spotifyId, title });
+  };
+
   const isLoading =
     isPodcastsLoading ||
     isPodcastsFetching ||
@@ -213,101 +219,121 @@ export const Podcasts = ({ debouncedSearchValue }) => {
       (!podcasts?.length && !newestPodcast));
 
   return (
-    <Block classes="podcasts">
-      {hasNoData && (
-        <div className="podcasts__no-results-container">
-          <h3>{t("could_not_load_content")}</h3>
-        </div>
+    <>
+      {podcastToPlay && (
+        <PodcastModal
+          isOpen={!!podcastToPlay}
+          onClose={() => setPodcastToPlay(null)}
+          spotifyId={podcastToPlay.spotifyId}
+          title={podcastToPlay.title}
+          t={t}
+        />
       )}
 
-      <Grid classes="podcasts__main-grid">
-        <GridItem md={8} lg={12} classes="podcasts__heading-item">
-          {theme === "dark" && (
-            <h2 className="podcasts__heading-text">{t("heading")}</h2>
-          )}
-        </GridItem>
+      <Block classes="podcasts">
+        {hasNoData && (
+          <div className="podcasts__no-results-container">
+            <h3>{t("could_not_load_content")}</h3>
+          </div>
+        )}
 
-        {(isNewestPodcastLoading || newestPodcast) && (
-          <GridItem md={8} lg={12} classes="podcasts__most-important-item">
-            {isNewestPodcastLoading ? (
-              <Loading />
-            ) : (
-              newestPodcast && (
-                <CardMedia
-                  type={isNotDescktop ? "portrait" : "landscape"}
-                  size="lg"
-                  title={newestPodcast.title}
-                  image={newestPodcast.imageMedium}
-                  description={newestPodcast.description}
-                  labels={newestPodcast.labels}
-                  creator={newestPodcast.creator}
-                  contentType="podcasts"
-                  categoryName={newestPodcast.categoryName}
-                  showDescription={true}
-                  likes={newestPodcast.likes}
-                  dislikes={newestPodcast.dislikes}
-                  t={t}
-                  onClick={() =>
-                    handleRedirect(newestPodcast.id, newestPodcast.title)
-                  }
-                />
-              )
+        <Grid classes="podcasts__main-grid">
+          <GridItem md={8} lg={12} classes="podcasts__heading-item">
+            {theme === "dark" && (
+              <h2 className="podcasts__heading-text">{t("heading")}</h2>
             )}
           </GridItem>
-        )}
 
-        {podcasts?.length > 0 && categories && (
-          <GridItem md={8} lg={12} classes="podcasts__categories-item">
-            <div className="podcasts__categories-item__container">
-              <Tabs
-                options={categories}
-                handleSelect={handleCategoryOnPress}
-                t={t}
-              />
-            </div>
+          {(isNewestPodcastLoading || newestPodcast) && (
+            <GridItem md={8} lg={12} classes="podcasts__most-important-item">
+              {isNewestPodcastLoading ? (
+                <Loading />
+              ) : (
+                newestPodcast && (
+                  <CardMedia
+                    type={isNotDescktop ? "portrait" : "landscape"}
+                    size="lg"
+                    title={newestPodcast.title}
+                    image={newestPodcast.imageMedium}
+                    description={newestPodcast.description}
+                    labels={newestPodcast.labels}
+                    creator={newestPodcast.creator}
+                    contentType="podcasts"
+                    categoryName={newestPodcast.categoryName}
+                    showDescription={true}
+                    likes={newestPodcast.likes}
+                    dislikes={newestPodcast.dislikes}
+                    t={t}
+                    onClick={() =>
+                      handleRedirect(newestPodcast.id, newestPodcast.title)
+                    }
+                    handlePlay={() => {
+                      handlePlay(newestPodcast.spotifyId, newestPodcast.title);
+                    }}
+                  />
+                )
+              )}
+            </GridItem>
+          )}
+
+          {podcasts?.length > 0 && categories && (
+            <GridItem md={8} lg={12} classes="podcasts__categories-item">
+              <div className="podcasts__categories-item__container">
+                <Tabs
+                  options={categories}
+                  handleSelect={handleCategoryOnPress}
+                  t={t}
+                />
+              </div>
+            </GridItem>
+          )}
+
+          <GridItem md={8} lg={12} classes="podcasts__podcasts-item">
+            <InfiniteScroll
+              dataLength={podcasts.length}
+              next={getMorePodcasts}
+              hasMore={hasMore}
+              loader={<Loading size="lg" />}
+            >
+              <div className="podcasts__custom-grid">
+                {podcasts.map((podcast, index) => {
+                  const data = destructurePodcastData(podcast);
+                  const span = getGridSpanForIndex(index);
+                  return (
+                    <div
+                      key={index}
+                      className="podcasts__card-wrapper"
+                      style={{ gridColumn: `span ${span}` }}
+                    >
+                      <CardMedia
+                        type={
+                          span === 12 && !isNotDescktop
+                            ? "landscape"
+                            : "portrait"
+                        }
+                        size={span === 12 && !isNotDescktop ? "lg" : "sm"}
+                        title={data.title}
+                        image={data.imageMedium}
+                        description={data.description}
+                        labels={data.labels}
+                        likes={data.likes || 0}
+                        dislikes={data.dislikes || 0}
+                        contentType="podcasts"
+                        t={t}
+                        categoryName={data.categoryName}
+                        onClick={() => handleRedirect(data.id, data.title)}
+                        handlePlay={() => {
+                          handlePlay(data.spotifyId, data.title);
+                        }}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            </InfiniteScroll>
           </GridItem>
-        )}
-
-        <GridItem md={8} lg={12} classes="podcasts__podcasts-item">
-          <InfiniteScroll
-            dataLength={podcasts.length}
-            next={getMorePodcasts}
-            hasMore={hasMore}
-            loader={<Loading size="lg" />}
-          >
-            <div className="podcasts__custom-grid">
-              {podcasts.map((podcast, index) => {
-                const data = destructurePodcastData(podcast);
-                const span = getGridSpanForIndex(index);
-                return (
-                  <div
-                    key={index}
-                    className="podcasts__card-wrapper"
-                    style={{ gridColumn: `span ${span}` }}
-                  >
-                    <CardMedia
-                      type={
-                        span === 12 && !isNotDescktop ? "landscape" : "portrait"
-                      }
-                      size={span === 12 && !isNotDescktop ? "lg" : "sm"}
-                      title={data.title}
-                      image={data.imageMedium}
-                      description={data.description}
-                      labels={data.labels}
-                      likes={data.likes || 0}
-                      dislikes={data.dislikes || 0}
-                      contentType="podcasts"
-                      t={t}
-                      categoryName={data.categoryName}
-                      onClick={() => handleRedirect(data.id, data.title)}
-                    />
-                  </div>
-                );
-              })}
-            </div>
-          </InfiniteScroll>
-        </GridItem>
-      </Grid>
-    </Block>
+        </Grid>
+      </Block>
+    </>
   );
 };

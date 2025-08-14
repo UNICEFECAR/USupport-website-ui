@@ -161,7 +161,10 @@
       "videos": "Videos",
       "podcasts": "Podcasts",
       "view_more": "View more",
-      "search": "Search"
+      "search": "Search",
+      "not_found": "This resource is not available",
+      "require_cookies": "To view this video, please accept all cookies.",
+      "cookie_preferences": "Cookie preferences"
     },
     "privacy-policy": {
       "heading": "Privacy Policy",
