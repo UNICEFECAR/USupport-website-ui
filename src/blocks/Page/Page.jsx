@@ -223,6 +223,7 @@ export const Page = ({
   });
 
   const { data: countries } = useQuery(["countries"], fetchCountries);
+  const country = localStorage.getItem("country");
 
   const pages = [
     { name: t("page_1"), url: "/", exact: true },
@@ -232,7 +233,9 @@ export const Page = ({
       url: "/about-us",
     },
     { name: t("page_4"), url: "/information-portal?tab=articles" },
-    { name: t("page_6"), url: "/my-qa" },
+    country === "RO"
+      ? { name: t("page_7"), ulr: "/organizations" }
+      : { name: t("page_6"), url: "/my-qa" },
   ];
 
   const footerLists = {
