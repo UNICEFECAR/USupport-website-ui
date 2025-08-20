@@ -3,6 +3,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
+
 import {
   Grid,
   GridItem,
@@ -10,15 +11,16 @@ import {
   CardMedia,
   Tabs,
   Loading,
+  VideoModal,
 } from "@USupport-components-library/src";
 import {
   destructureVideoData,
   useWindowDimensions,
   createArticleSlug,
+  ThemeContext,
 } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 import { useEventListener } from "#hooks";
-import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./videos.scss";
 
@@ -54,6 +56,8 @@ export const Videos = ({ debouncedSearchValue }) => {
   const [videos, setVideos] = useState([]);
   const [numberOfVideos, setNumberOfVideos] = useState(0);
   const [hasMore, setHasMore] = useState(true);
+
+  const [videoToPlayUrl, setVideoToPlayUrl] = useState(null);
 
   useEffect(() => {
     if (i18n.language !== usersLanguage) {
@@ -237,108 +241,128 @@ export const Videos = ({ debouncedSearchValue }) => {
     ((shouldFetchIds && !videoIdsQuery.data?.length) ||
       (!videos?.length && !newestVideo));
 
+  const handlePlay = (url) => {
+    setVideoToPlayUrl(url);
+  };
+
   return (
-    <Block classes="videos">
-      {hasNoData && (
-        <div className="videos__no-results-container">
-          <h3>{t("could_not_load_content")}</h3>
-        </div>
+    <>
+      {videoToPlayUrl && (
+        <VideoModal
+          isOpen={!!videoToPlayUrl}
+          onClose={() => setVideoToPlayUrl(null)}
+          videoUrl={videoToPlayUrl}
+          t={t}
+        />
       )}
+      <Block classes="videos">
+        {hasNoData && (
+          <div className="videos__no-results-container">
+            <h3>{t("could_not_load_content")}</h3>
+          </div>
+        )}
 
-      <Grid classes="videos__main-grid">
-        <GridItem md={8} lg={12} classes="videos__heading-item">
-          {theme === "dark" && (
-            <h2 className="videos__heading-text">{t("heading")}</h2>
+        <Grid classes="videos__main-grid">
+          <GridItem md={8} lg={12} classes="videos__heading-item">
+            {theme === "dark" && (
+              <h2 className="videos__heading-text">{t("heading")}</h2>
+            )}
+          </GridItem>
+
+          {(isNewestVideoLoading || newestVideo) && (
+            <GridItem md={8} lg={12} classes="videos__most-important-item">
+              {isNewestVideoLoading ? (
+                <Loading />
+              ) : (
+                newestVideo && (
+                  <CardMedia
+                    type={isNotDescktop ? "portrait" : "landscape"}
+                    size="lg"
+                    title={newestVideo.title}
+                    image={newestVideo.image}
+                    description={newestVideo.description}
+                    labels={newestVideo.labels}
+                    creator={newestVideo.creator}
+                    categoryName={newestVideo.categoryName}
+                    contentType="videos"
+                    showDescription={true}
+                    likes={newestVideo.likes}
+                    dislikes={newestVideo.dislikes}
+                    t={t}
+                    onClick={() =>
+                      handleRedirect(newestVideo.id, newestVideo.title)
+                    }
+                    handlePlay={() => {
+                      handlePlay(newestVideo.originalUrl);
+                    }}
+                  />
+                )
+              )}
+            </GridItem>
           )}
-        </GridItem>
 
-        {(isNewestVideoLoading || newestVideo) && (
-          <GridItem md={8} lg={12} classes="videos__most-important-item">
-            {isNewestVideoLoading ? (
-              <Loading />
-            ) : (
-              newestVideo && (
-                <CardMedia
-                  type={isNotDescktop ? "portrait" : "landscape"}
-                  size="lg"
-                  title={newestVideo.title}
-                  image={newestVideo.image}
-                  description={newestVideo.description}
-                  labels={newestVideo.labels}
-                  creator={newestVideo.creator}
-                  categoryName={newestVideo.categoryName}
-                  contentType="videos"
-                  showDescription={true}
-                  likes={newestVideo.likes}
-                  dislikes={newestVideo.dislikes}
-                  t={t}
-                  onClick={() =>
-                    handleRedirect(newestVideo.id, newestVideo.title)
-                  }
-                />
-              )
-            )}
-          </GridItem>
-        )}
+          {videos?.length > 0 && (
+            <GridItem md={8} lg={12} classes="videos__categories-item">
+              {categories && (
+                <div className="videos__categories-item__container">
+                  <Tabs
+                    options={categories}
+                    handleSelect={handleCategoryOnPress}
+                    t={t}
+                  />
+                </div>
+              )}
+            </GridItem>
+          )}
 
-        {videos?.length > 0 && (
-          <GridItem md={8} lg={12} classes="videos__categories-item">
-            {categories && (
-              <div className="videos__categories-item__container">
-                <Tabs
-                  options={categories}
-                  handleSelect={handleCategoryOnPress}
-                  t={t}
-                />
+          <GridItem md={8} lg={12} classes="videos__videos-item">
+            <InfiniteScroll
+              dataLength={videos?.length || 0}
+              next={getMoreVideos}
+              hasMore={hasMore}
+              loader={<Loading size="lg" />}
+            >
+              <div className="videos__custom-grid">
+                {videos?.map((video, index) => {
+                  const videoData = destructureVideoData(video);
+                  const gridSpan = getGridSpanForIndex(index, [2, 3, 1]);
+                  return (
+                    <div
+                      key={index}
+                      className="videos__card-wrapper"
+                      style={{ gridColumn: `span ${gridSpan}` }}
+                    >
+                      <CardMedia
+                        type={
+                          gridSpan === 12 && !isNotDescktop
+                            ? "landscape"
+                            : "portrait"
+                        }
+                        size={gridSpan === 12 && !isNotDescktop ? "lg" : "sm"}
+                        title={videoData.title}
+                        image={videoData.image}
+                        description={videoData.description}
+                        labels={videoData.labels}
+                        likes={videoData.likes || 0}
+                        dislikes={videoData.dislikes || 0}
+                        t={t}
+                        categoryName={videoData.categoryName}
+                        contentType="videos"
+                        onClick={() =>
+                          handleRedirect(videoData.id, videoData.title)
+                        }
+                        handlePlay={() => {
+                          handlePlay(videoData.originalUrl);
+                        }}
+                      />
+                    </div>
+                  );
+                })}
               </div>
-            )}
+            </InfiniteScroll>
           </GridItem>
-        )}
-
-        <GridItem md={8} lg={12} classes="videos__videos-item">
-          <InfiniteScroll
-            dataLength={videos?.length || 0}
-            next={getMoreVideos}
-            hasMore={hasMore}
-            loader={<Loading size="lg" />}
-          >
-            <div className="videos__custom-grid">
-              {videos?.map((video, index) => {
-                const videoData = destructureVideoData(video);
-                const gridSpan = getGridSpanForIndex(index, [2, 3, 1]);
-                return (
-                  <div
-                    key={index}
-                    className="videos__card-wrapper"
-                    style={{ gridColumn: `span ${gridSpan}` }}
-                  >
-                    <CardMedia
-                      type={
-                        gridSpan === 12 && !isNotDescktop
-                          ? "landscape"
-                          : "portrait"
-                      }
-                      size={gridSpan === 12 && !isNotDescktop ? "lg" : "sm"}
-                      title={videoData.title}
-                      image={videoData.image}
-                      description={videoData.description}
-                      labels={videoData.labels}
-                      likes={videoData.likes || 0}
-                      dislikes={videoData.dislikes || 0}
-                      t={t}
-                      categoryName={videoData.categoryName}
-                      contentType="videos"
-                      onClick={() =>
-                        handleRedirect(videoData.id, videoData.title)
-                      }
-                    />
-                  </div>
-                );
-              })}
-            </div>
-          </InfiniteScroll>
-        </GridItem>
-      </Grid>
-    </Block>
+        </Grid>
+      </Block>
+    </>
   );
 };

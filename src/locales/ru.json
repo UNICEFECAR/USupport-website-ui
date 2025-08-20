@@ -161,7 +161,10 @@
       "videos": "Видео",
       "podcasts": "Подкасты",
       "view_more": "Посмотреть больше",
-      "search": "Поиск"
+      "search": "Поиск",
+      "not_found": "Этот ресурс недоступен",
+      "require_cookies": "Чтобы посмотреть это видео, примите все cookie-файлы.",
+      "cookie_preferences": "Настройки cookie"
     },
     "privacy-policy": {
       "heading": "Политика конфиденциальности",

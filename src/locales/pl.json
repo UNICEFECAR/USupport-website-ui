@@ -161,7 +161,10 @@
       "videos": "Wideo",
       "podcasts": "Podcasty",
       "view_more": "Zobacz więcej",
-      "search": "Szukaj"
+      "search": "Szukaj",
+      "not_found": "Ten zasób jest niedostępny",
+      "require_cookies": "Aby obejrzeć ten film, zaakceptuj wszystkie pliki cookie.",
+      "cookie_preferences": "Preferencje plików cookie"
     },
     "privacy-policy": {
       "heading": "Polityką prywatności",
