@@ -137,7 +137,7 @@ function App() {
 const LanguageLayout = () => {
   const { language } = useParams();
 
-  const allLangs = ["en", "ru", "kk", "pl", "uk"];
+  const allLangs = ["en", "ru", "kk", "pl", "uk", "hy"];
 
   if (!allLangs.includes(language) || !language) {
     return <Navigate to="/en" />;
