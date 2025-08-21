@@ -479,14 +479,14 @@ const AccessibilityController = () => {
   return (
     <div className="accessibility-controller">
       <ButtonOnlyIcon
-        iconName="zoom"
-        onClick={increaseFontSize}
-        disabled={!canIncrease}
-        title={`Increase font size (Current: ${currentFontSize}%) ${
-          !canIncrease ? "- Maximum reached" : ""
+        iconName="zoom-out"
+        onClick={decreaseFontSize}
+        disabled={!canDecrease}
+        title={`Decrease font size (Current: ${currentFontSize}%) ${
+          !canDecrease ? "- Minimum reached" : ""
         }`}
-        aria-label={`Increase font size. Current size: ${currentFontSize}%. ${
-          !canIncrease ? "Maximum size reached." : ""
+        aria-label={`Decrease font size. Current size: ${currentFontSize}%. ${
+          !canDecrease ? "Minimum size reached." : ""
         }`}
       />
       <ButtonOnlyIcon
@@ -497,14 +497,14 @@ const AccessibilityController = () => {
         }`}
       />
       <ButtonOnlyIcon
-        iconName="zoom-out"
-        onClick={decreaseFontSize}
-        disabled={!canDecrease}
-        title={`Decrease font size (Current: ${currentFontSize}%) ${
-          !canDecrease ? "- Minimum reached" : ""
+        iconName="zoom"
+        onClick={increaseFontSize}
+        disabled={!canIncrease}
+        title={`Increase font size (Current: ${currentFontSize}%) ${
+          !canIncrease ? "- Maximum reached" : ""
         }`}
-        aria-label={`Decrease font size. Current size: ${currentFontSize}%. ${
-          !canDecrease ? "Minimum size reached." : ""
+        aria-label={`Increase font size. Current size: ${currentFontSize}%. ${
+          !canIncrease ? "Maximum size reached." : ""
         }`}
       />
     </div>
