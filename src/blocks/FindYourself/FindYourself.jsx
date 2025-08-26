@@ -61,7 +61,7 @@ export const FindYourself = () => {
           } box box-1`}
         >
           <div className="overlay">
-            <img src={image1} className="box__image" />
+            <img src={image1} className="box__image" alt={t("card_text_1")} />
             <h3>{t("card_text_1")}</h3>
           </div>
         </GridItem>
@@ -73,7 +73,7 @@ export const FindYourself = () => {
           } box box-2`}
         >
           <div className="overlay">
-            <img src={image2} className="box__image" />
+            <img src={image2} className="box__image" alt={t("card_text_2")} />
             <h3>{t("card_text_2")}</h3>
           </div>
         </GridItem>
@@ -85,7 +85,7 @@ export const FindYourself = () => {
           } box box-3`}
         >
           <div className="overlay">
-            <img src={image3} className="box__image" />
+            <img src={image3} className="box__image" alt={t("card_text_3")} />
             <h3>{t("card_text_3")}</h3>
           </div>
         </GridItem>
@@ -97,7 +97,7 @@ export const FindYourself = () => {
           } box box-4`}
         >
           <div className="overlay">
-            <img src={image4} className="box__image" />
+            <img src={image4} className="box__image" alt={t("card_text_4")} />
             <h3>{t("card_text_4")}</h3>
           </div>
         </GridItem>

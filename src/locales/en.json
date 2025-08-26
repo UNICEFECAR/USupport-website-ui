@@ -9,6 +9,24 @@
       "card_text_4": "Your safe place",
       "paragraph_2": "Let’s face the stress together and cope with all the challenges of life."
     },
+    "articles": {
+      "heading": "Information portal",
+      "no_results": "No Results Found",
+      "could_not_load_content": "There are no results for the current selected country and language.",
+      "all": "All",
+      "read_more_button": "Click to read more",
+      "min_read": "min read",
+      "by": "by {{creator}}",
+      "number_of_more_options": "{{count}} more",
+      "articles": "Articles",
+      "videos": "Videos",
+      "podcasts": "Podcasts",
+      "view_more": "View more",
+      "search": "Search",
+      "not_found": "This resource is not available",
+      "require_cookies": "To view this video, please accept all cookies.",
+      "cookie_preferences": "Cookie preferences"
+    },
     "contact-us": {
       "heading_1": "Contact us",
       "contact_form_heading": "Have a question? Don’t hesitate to contact us.",
@@ -21,10 +39,6 @@
       "contact_reason_3": "Join the network of providers",
       "contact_reason_4": "Partnerships",
       "contact_reason_5": "Other",
-      "contact_reason_1_pl": "Information about uSupport",
-      "contact_reason_2_pl": "Technical problem",
-      "contact_reason_3_pl": "Complaint",
-      "contact_reason_4_pl": "Something else",
       "email_label": "Email",
       "reason_label": "Reason for contacting us",
       "message_label": "Message",
@@ -37,7 +51,11 @@
       "modal_text": "We will get back to you as soon as possible",
       "modal_cta_label": "Go back to Home",
       "paragraph": "We will reply to your email shortly. Make sure you enter your email address correctly",
-      "contact_form": "Contact form"
+      "contact_form": "Contact form",
+      "contact_reason_1_pl": "Information about uSupport",
+      "contact_reason_2_pl": "Technical problem",
+      "contact_reason_3_pl": "Complaint",
+      "contact_reason_4_pl": "Something else"
     },
     "download-app": {
       "heading": "Download the app",
@@ -76,7 +94,9 @@
       "card_4": "Book a session",
       "download_text": "Download uSupport from",
       "web_browser": "Web browser",
-      "click_to_use": "Click to use"
+      "click_to_use": "Click to use",
+      "download_from_web": "",
+      "browser": ""
     },
     "meet-our-providers": {
       "heading": "Meet our providers",
@@ -93,7 +113,6 @@
       "page_4": "Information portal",
       "page_5": "Contact us",
       "page_6": "My Q&A",
-      "page_7": "Organizations",
       "footer_1": "About us",
       "footer_2": "Information portal",
       "footer_3": "How it works?",
@@ -117,7 +136,8 @@
       "accept_all_cookies": "Accept all",
       "reject_all_cookies": "Reject all",
       "accept_necessary_cookies": "Accept only necessary",
-      "save": "Save"
+      "save": "Save",
+      "page_7": "Organizations"
     },
     "question": {
       "heading": "Have a question?",
@@ -147,24 +167,6 @@
       "and": "and",
       "privacy": "privacy policy",
       "paragraph_7_2": "stipulate that parents or legal guardians are expected to provide consent for users who are minors – in accordance to local country legislation. uSupport cannot be held responsible for the accuracy of age-related or other information provided by users. "
-    },
-    "articles": {
-      "heading": "Information portal",
-      "no_results": "No Results Found",
-      "could_not_load_content": "There are no results for the current selected country and language.",
-      "all": "All",
-      "read_more_button": "Click to read more",
-      "min_read": "min read",
-      "by": "by {{creator}}",
-      "number_of_more_options": "{{count}} more",
-      "articles": "Articles",
-      "videos": "Videos",
-      "podcasts": "Podcasts",
-      "view_more": "View more",
-      "search": "Search",
-      "not_found": "This resource is not available",
-      "require_cookies": "To view this video, please accept all cookies.",
-      "cookie_preferences": "Cookie preferences"
     },
     "privacy-policy": {
       "heading": "Privacy Policy",
@@ -318,12 +320,10 @@
       "online_interaction": "Online",
       "phone_interaction": "Phone",
       "hybrid_interaction": "Hybrid",
-
       "free_services": "Free services",
       "paid_services": "Paid services",
       "co_payment_services": "Co-payment services",
       "cnas_reimbursed_services": "CNAS reimbursed services",
-
       "violence_victim_helpline": "Violence victims helpline",
       "social_information_counseling": "Social information and counseling",
       "rehab_psycho_neuro_children": "Rehabilitation and recovery services for children with psycho-neuro-motor disorders",
@@ -337,7 +337,6 @@
       "rehab_autism_children": "Rehabilitation and recovery services for children with autism",
       "art_recreational_activities": "Artistic recreational activities (theatre, music, poetry, painting, storytelling)",
       "addiction_helpline": "Addiction helpline",
-
       "emergency_situations": "Emergency situations",
       "pediatric_psychiatry": "Pediatric psychiatry",
       "psychological_evaluation": "Psychological evaluation",
@@ -356,14 +355,12 @@
       "pediatric_neurology": "Pediatric neurology",
       "special_psychopedagogy": "Special psychopedagogy",
       "neuropsychomotor_recovery": "Neuropsychomotor recovery",
-
       "sector_1": "Sector 1",
       "sector_2": "Sector 2",
       "sector_3": "Sector 3",
       "sector_4": "Sector 4",
       "sector_5": "Sector 5",
       "sector_6": "Sector 6",
-
       "aggression_violence_victim_or_aggressor": "Aggression/violence - victim or aggressor",
       "learning_difficulties_special_educational_needs": "Learning difficulties/Special educational needs",
       "behavioral_disorder": "Behavioral disorder",
@@ -373,12 +370,10 @@
       "identity_issues": "Identity issues",
       "illness_oncological_treatment_chronic_diseases": "Illness (oncological treatment, chronic diseases)",
       "other_situations": "Other situations",
-
       "public": "Public",
       "private": "Private",
       "ong": "NGO",
       "public_private": "Public-private",
-
       "work_with_placeholder": "Select work with categories",
       "specialisations_placeholder": "Select offered services",
       "district_placeholder": "Select sector",
@@ -386,10 +381,8 @@
       "user_interactions_placeholder": "Select interaction modes",
       "property_types_placeholder": "Select property types",
       "search_placeholder": "Search by organization name",
-
       "no_data_found": "No data found",
       "reset_filters": "Reset filters",
-
       "view_organization_details": "Read more",
       "address": "Address",
       "phone": "Phone",
@@ -407,7 +400,6 @@
       "work_with_label": "Work with",
       "offered_services_label": "Offered services",
       "providers_label": "Providers",
-
       "violence_victim_helpline": "Violence victims helpline",
       "individual_psychotherapy": "Individual psychotherapy",
       "social_information_counseling": "Social information and counseling",
@@ -424,7 +416,6 @@
       "art_recreational_activities": "Artistic recreational activities (theatre, music, poetry, painting, storytelling)",
       "addiction_helpline": "Addiction helpline",
       "group_psychotherapy": "Group psychotherapy",
-
       "emergency_situations": "Emergency situations",
       "pediatric_psychiatry": "Pediatric psychiatry",
       "psychological_evaluation": "Psychological evaluation",
@@ -440,29 +431,24 @@
       "pediatric_neurology": "Pediatric neurology",
       "special_psychopedagogy": "Special psychopedagogy",
       "neuropsychomotor_recovery": "Neuropsychomotor recovery",
-
       "in_person_interaction": "In person",
       "online_interaction": "Online",
       "phone_interaction": "Phone",
       "hybrid_interaction": "Hybrid",
-
       "free_services": "Free services",
       "paid_services": "Paid services",
       "co_payment_services": "Co-payment services",
       "cnas_reimbursed_services": "CNAS reimbursed services",
-
       "public": "Public",
       "private": "Private",
       "ong": "NGO",
       "public_private": "Public-private",
-
       "sector_1": "Sector 1",
       "sector_2": "Sector 2",
       "sector_3": "Sector 3",
       "sector_4": "Sector 4",
       "sector_5": "Sector 5",
       "sector_6": "Sector 6",
-
       "aggression_violence_victim_or_aggressor": "Aggression/violence - victim or aggressor",
       "learning_difficulties_special_educational_needs": "Learning difficulties/Special educational needs",
       "behavioral_disorder": "Behavioral disorder",
@@ -472,8 +458,13 @@
       "identity_issues": "Identity issues",
       "illness_oncological_treatment_chronic_diseases": "Illness (oncological treatment, chronic diseases)",
       "other_situations": "Other situations",
-
       "copy_link_success": "Link copied to clipboard!"
+    },
+    "video-tutorial": {
+      "title": "",
+      "tutorial_video_title": "",
+      "require_cookies": "",
+      "cookie_preferences": ""
     }
   },
   "pages": {
@@ -497,12 +488,12 @@
     },
     "my-qa-page": {
       "modal_heading": "Login to the platform to ask a question",
-      "modal_heading_consultation": "Login to the platform to schedule a consultation",
       "modal_text": "Login to the platform to ask a question and get an answer from our providers, your question will be anonymous.",
-      "modal_text_consultation": "Login to the platform to schedule a consultation with a provider.",
       "modal_button_label": "Go to app",
       "my_qa_answer_title": "How does the My Q&A work?",
-      "my_qa_answer_text": "The My Q&A is a feature that allows you to ask questions and receive answers from the uSupport providers."
+      "my_qa_answer_text": "The My Q&A is a feature that allows you to ask questions and receive answers from the uSupport providers.",
+      "modal_heading_consultation": "Login to the platform to schedule a consultation",
+      "modal_text_consultation": "Login to the platform to schedule a consultation with a provider."
     },
     "video-information-page": {
       "more_videos": "More videos",
