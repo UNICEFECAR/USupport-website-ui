@@ -397,7 +397,6 @@ export const Page = ({
         }
         t={t}
       />
-      <AccessibilityController />
     </>
   );
 };
