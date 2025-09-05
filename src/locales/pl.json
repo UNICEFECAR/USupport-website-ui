@@ -117,7 +117,8 @@
       "accept_all_cookies": "Akceptuj wszystkie",
       "reject_all_cookies": "Odrzuć wszystkie",
       "accept_necessary_cookies": "Akceptuj tylko wymagane",
-      "save": "Zapisz"
+      "save": "Zapisz",
+      "high_contrast": "Wysoki kontrast"
     },
     "question": {
       "heading": "Masz pytanie?",

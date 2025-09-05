@@ -117,7 +117,8 @@
       "accept_all_cookies": "Прийняти всі",
       "reject_all_cookies": "Відхилити всі",
       "accept_necessary_cookies": "Прийняти лише необхідні",
-      "save": "Зберегти"
+      "save": "Зберегти",
+      "high_contrast": "Високий контраст"
     },
     "question": {
       "heading": "Маєте запитання?",

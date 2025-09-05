@@ -226,16 +226,25 @@ export const Page = ({
   const country = localStorage.getItem("country");
 
   const pages = [
-    { name: t("page_1"), url: "/", exact: true },
-    { name: t("page_2"), url: "/how-it-works" },
+    { name: t("page_1"), url: "/", exact: true, icon: "home" },
+    { name: t("page_2"), url: "/how-it-works", icon: "info" },
     {
       name: t("page_3"),
       url: "/about-us",
+      icon: "two-people",
     },
-    { name: t("page_4"), url: "/information-portal?tab=articles" },
+    {
+      name: t("page_4"),
+      url: "/information-portal?tab=articles",
+      icon: "activities",
+    },
     country === "RO"
-      ? { name: t("page_7"), ulr: "/organizations" }
-      : { name: t("page_6"), url: "/my-qa" },
+      ? { name: t("page_7"), ulr: "/organizations", icon: "home" }
+      : {
+          name: t("page_6"),
+          url: "/my-qa",
+          icon: "document",
+        },
   ];
 
   const footerLists = {
