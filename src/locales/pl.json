@@ -93,6 +93,7 @@
       "page_4": "Portal informacyjny",
       "page_5": "Skontaktuj się z nami",
       "page_6": "Moje Q&A",
+      "page_7": "Organizacje",
       "footer_1": "O nas",
       "footer_2": "Portal informacyjny",
       "footer_3": "Jak to działa?",
@@ -160,7 +161,10 @@
       "videos": "Wideo",
       "podcasts": "Podcasty",
       "view_more": "Zobacz więcej",
-      "search": "Szukaj"
+      "search": "Szukaj",
+      "not_found": "Ten zasób jest niedostępny",
+      "require_cookies": "Aby obejrzeć ten film, zaakceptuj wszystkie pliki cookie.",
+      "cookie_preferences": "Preferencje plików cookie"
     },
     "privacy-policy": {
       "heading": "Polityką prywatności",
@@ -389,7 +393,8 @@
       "view_organization_details": "Zobacz szczegóły organizacji",
       "address": "Adres",
       "phone": "Telefon",
-      "email": "E-mail"
+      "email": "E-mail",
+      "any": "Dowolny"
     },
     "organization-overview": {
       "error_loading_data": "Wystąpił błąd podczas ładowania danych organizacji",

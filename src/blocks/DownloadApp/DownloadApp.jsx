@@ -33,7 +33,7 @@ export const DownloadApp = () => {
 
   return (
     <Block
-      classes={["download-app", theme === "dark" && "download-app--dark"].join(
+      classes={["download-app", theme !== "light" && "download-app--dark"].join(
         " "
       )}
       animation="fade-up"

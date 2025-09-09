@@ -30,7 +30,7 @@ export const Hero = () => {
 
   return (
     <Block
-      classes={`hero ${theme === "dark" ? "hero--dark" : ""}`}
+      classes={`hero ${theme === "light" ? "" : "hero--dark"}`}
       animation="fade-right"
     >
       <Grid classes="hero__main-grid">

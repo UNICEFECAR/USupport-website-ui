@@ -93,6 +93,7 @@
       "page_4": "Инфопортал",
       "page_5": "Хабарласу",
       "page_6": "Менің Q&A",
+      "page_7": "Ұйымдар",
       "footer_1": "Біз туралы",
       "footer_2": "Ақпараттық портал",
       "footer_3": "Бұл қалай жұмыс істейді?",
@@ -160,7 +161,10 @@
       "videos": "Видео",
       "podcasts": "Подкасттар",
       "view_more": "Көбірек көру",
-      "search": "Іздеу"
+      "search": "Іздеу",
+      "not_found": "Бұл ресурс қолжетімді емес",
+      "require_cookies": "Бұл бейнені көру үшін барлық cookie файлдарын қабылдаңыз.",
+      "cookie_preferences": "Cookie параметрлері"
     },
     "privacy-policy": {
       "heading": "Құпиялық саясаты",
@@ -389,7 +393,8 @@
       "view_organization_details": "Ұйым мәліметтерін көру",
       "address": "Мекенжай",
       "phone": "Телефон",
-      "email": "E-mail"
+      "email": "E-mail",
+      "any": "Кез келген"
     },
     "organization-overview": {
       "error_loading_data": "Деректерді жүктеу кезінде қате пайда болды",

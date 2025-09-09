@@ -10,6 +10,7 @@ import {
   Footer,
   Icon,
   CookieBanner,
+  AccessibilityController,
 } from "@USupport-components-library/src";
 import { countrySvc, userSvc } from "@USupport-components-library/services";
 import {
@@ -222,6 +223,7 @@ export const Page = ({
   });
 
   const { data: countries } = useQuery(["countries"], fetchCountries);
+  const country = localStorage.getItem("country");
 
   const pages = [
     { name: t("page_1"), url: "/", exact: true },
@@ -231,7 +233,9 @@ export const Page = ({
       url: "/about-us",
     },
     { name: t("page_4"), url: "/information-portal?tab=articles" },
-    { name: t("page_6"), url: "/my-qa" },
+    country === "RO"
+      ? { name: t("page_7"), ulr: "/organizations" }
+      : { name: t("page_6"), url: "/my-qa" },
   ];
 
   const footerLists = {
@@ -378,7 +382,14 @@ export const Page = ({
         text={
           <Trans
             components={[
-              <Link to={`/${localStorageLanguage}/cookie-policy`} />,
+              <Link
+                to={`/${localStorageLanguage}/cookie-policy`}
+                className={
+                  theme === "highContrast"
+                    ? "page__cookie-policy-banner__link--hc"
+                    : ""
+                }
+              />,
             ]}
           >
             {t("cookie_banner_text")}
@@ -386,6 +397,7 @@ export const Page = ({
         }
         t={t}
       />
+      <AccessibilityController />
     </>
   );
 };
