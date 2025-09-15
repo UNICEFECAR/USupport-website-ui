@@ -117,7 +117,8 @@
       "accept_all_cookies": "Барлығын қабылдау",
       "reject_all_cookies": "Барлығын қабылдамау",
       "accept_necessary_cookies": "Тек қажеттілерін қабылдау",
-      "save": "Сақтау"
+      "save": "Сақтау",
+      "high_contrast": "Жоғары контраст"
     },
     "question": {
       "heading": "Сұрақ бар ма?",

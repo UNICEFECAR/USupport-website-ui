@@ -113,6 +113,7 @@
       "page_4": "Տեղեկատվության պորտալ",
       "page_5": "Կապվել մեզ հետ",
       "page_6": "Իմ հարցուպատասխանը",
+      "page_7": "Organizations",
       "footer_1": "Մեր մասին",
       "footer_2": "Տեղեկատվության պորտալ",
       "footer_3": "Ինչպես է այն աշխատում",
@@ -137,7 +138,7 @@
       "reject_all_cookies": "Մերժել բոլորը",
       "accept_necessary_cookies": "Ընդունել միայն անհրաժեշտը",
       "save": "Պահպանել",
-      "page_7": "Organizations"
+      "high_contrast": "Բարձր հակադրություն"
     },
     "question": {
       "heading": "Ունեք հա՞րց։",

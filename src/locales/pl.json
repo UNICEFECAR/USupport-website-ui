@@ -2,7 +2,7 @@
   "blocks": {
     "about": {
       "heading": "Informacje o uSupport",
-      "paragraph": "uSupport to platforma zdrowia psychicznego, psychospołecznego i dobrego samopoczucia przeznaczona dla młodych ludzi, gdzie prywatność i bezpieczeństwo są priorytetem. ",
+      "paragraph": "uSupport to platforma poświęcona zdrowiu psychicznemu, dobrostanowi psychospołecznemu i dobremu samopoczuciu, przeznaczona dla młodych ludzi, gdzie prywatność i bezpieczeństwo są priorytetem.",
       "card_text_1": "Treści samorozwojowe",
       "card_text_2": "Sprawdzeni specjaliści",
       "card_text_3": "Wsparcie online",
@@ -23,7 +23,7 @@
       "contact_reason_5": "Inne",
       "contact_reason_1_pl": "Informacje o uSupport",
       "contact_reason_2_pl": "Problem techniczny",
-      "contact_reason_3_pl": "Skarga",
+      "contact_reason_3_pl": "Dołączenie do sieci konsultantów",
       "contact_reason_4_pl": "Coś innego",
       "email_label": "Email",
       "reason_label": "Powód skontaktowania się z nami",
@@ -34,7 +34,7 @@
       "message_placeholder": "Twoja wiadomość do nas",
       "send_button": "Wyślij",
       "modal_title": "Twoja wiadomość została pomyślnie wysłana",
-      "modal_text": "Skontaktujemy się z Tobą tak szybko, jak to możliwe",
+      "modal_text": "Skontaktujemy się z Tobą tak szybko, jak to możliwe.",
       "modal_cta_label": "Wróć do strony głównej",
       "paragraph": "Odpowiemy na twoją wiadomość email w ciągu 24 godzin. Upewnij się, że poprawnie wpisałeś swój adres email",
       "contact_form": "Formularz kontaktowy"
@@ -60,7 +60,7 @@
     },
     "hero": {
       "heading_1": "Rozpocznij swoją podróż w kierunku lepszego<1></1> zdrowia psychicznego i dobrego samopoczucia",
-      "paragraph_1": "Platforma, która szanuje Twoją prywatność i bezpieczeństwo. Twoje dobro jest dla nas najważniejsze! uSupport oferuje spersonalizowaną i dyskretną opiekę psychologiczną",
+      "paragraph_1": "Platforma, która szanuje Twoją prywatność i bezpieczeństwo. Twoje dobro jest dla nas najważniejsze! uSupport oferuje spersonalizowaną i dyskretną opiekę psychologiczną.",
       "paragraph_1_1": "Twoja historia ma znaczenie! Odważ się nią podzielić.",
       "download_text": "Pobierz uSupport z",
       "web_browser": "Przeglądarka internetowa",
@@ -73,17 +73,17 @@
       "card_1": "Wybierz swój kraj i język",
       "card_2": "Utwórz swoje konto",
       "card_3": "Wybierz konsultanta",
-      "card_4": "Zarezerwuj sesję",
+      "card_4": "Wybierz konsultanta/kę",
       "download_text": "Pobierz uSupport z",
-      "web_browser": "Przeglądarka internetowa",
-      "click_to_use": "Kliknij, aby użyć"
+      "web_browser": "Kliknij, aby skorzystać",
+      "click_to_use": "Przeglądarka"
     },
     "meet-our-providers": {
       "heading": "Poznaj naszych konsultantów",
       "paragraph": "Eksploruj dalej swoje emocje. Weź udział w rozmowach z profesjonalistami i uzyskaj dostęp do narzędzi i strategii, aby skutecznie radzić sobie z wyzwaniami napotykanymi w codziennym życiu.",
-      "psychologist": "Psycholog",
+      "psychologist": "Psycholog/żka",
       "psychiatrist": "Psychiatra",
-      "psychotherapist": "Psychoterapeuta",
+      "psychotherapist": "Psychoterapeuta/ka",
       "show_more_btn": "Pokaż więcej"
     },
     "page": {
@@ -99,7 +99,7 @@
       "footer_3": "Jak to działa?",
       "footer_4": "Warunki świadczenia usług",
       "footer_5": "Polityką prywatności",
-      "footer_6": "Polityka plików cookies",
+      "footer_6": "Polityka plików cookie",
       "footer_7": "Najczęściej zadawane pytania",
       "emergency_button": "Centrum SOS",
       "button_text": "Przejdź do aplikacji",
@@ -113,11 +113,12 @@
       "dark": "Ciemny",
       "light": "Jasny",
       "cookie_banner_header": "Cenimy Twoją prywatność",
-      "cookie_banner_text": "Ta strona używa plików cookie, aby poprawić i zabezpieczyć Twoje doświadczenia podczas przeglądania. Korzystając z naszej strony, zgadzasz się na naszą <0>Politykę Cookie</0>.",
+      "cookie_banner_text": "Ta strona korzysta z plików cookie, aby poprawić działanie serwisu i zapewnić bezpieczeństwo podczas przeglądania. Korzystając z niej, akceptujesz naszą Politykę Cookie.",
       "accept_all_cookies": "Akceptuj wszystkie",
       "reject_all_cookies": "Odrzuć wszystkie",
       "accept_necessary_cookies": "Akceptuj tylko wymagane",
-      "save": "Zapisz"
+      "save": "Zapisz",
+      "high_contrast": "Wysoki kontrast"
     },
     "question": {
       "heading": "Masz pytanie?",
@@ -132,21 +133,21 @@
     },
     "we-help": {
       "heading_1": "O nas",
-      "heading_2": "Our Vision",
-      "heading_3": "Who We are?",
-      "heading_4": "Our Impact",
-      "heading_5": "Join Us",
-      "paragraph_1": "Welcome to uSupport, an innovative platform dedicated to supporting the mental health of adolescents, young people, parents, and caregivers. Our goal is to provide a confidential, secure, and trusted space where you can access mental health resources or seek consultations anytime, anywhere. On uSupport, you can explore your thoughts and feelings and learn how to manage them with the help of articles on our platform and guidance from our providers.",
-      "paragraph_2": "At uSupport, we believe that mental health and well-being are essential to every person’s overall health and development. We are committed to enhancing the mental health and psychosocial well-being of adolescents and young people by providing accessible, affordable, and high-quality support services. Our goal is to reduce the stigma surrounding mental health and ensure that every young person receives the support they need to thrive.",
-      "paragraph_3": "uSupport was developed with the support of UNICEF (United Nations Children’s Fund) in close consultation with young people in Kazakhstan. Our key partner is the Republican Center of Mental Health under the Ministry of Health of Kazakhstan.",
-      "paragraph_4": "Our team consists of experienced mental health professionals who are actively working in Youth Mental Health Centers across various regions of Kazakhstan. These professionals bring a wide range of expertise, covering diverse topics such as emotional well-being, coping strategies, stress management, and mental health challenges faced by young people today. By engaging directly with youth, our team is able to offer personalized support and address the unique mental health needs of adolescents and young people in different communities.",
-      "paragraph_5": "uSupport is more than just a digital platform; it is a vital part of the larger MHPSS ecosystem in the countries where we operate. By connecting young people with existing mental health resources, we aim to contribute towards universal access to quality prevention, care, and support for all. ",
-      "paragraph_6": "We invite you to join us in our mission to improve the mental health and well-being of young people. Whether you are a young person seeking support, a mental health professional looking to make a difference, or a partner interested in supporting our work, we welcome you to be a part of the uSupport community. Together, we can create a positive impact and ensure every young person has the opportunity to thrive.",
-      "paragraph_7": "Disclaimer: uSupport is a platform that builds mental health literacy and supports young people to understand better issues related to their psychosocial and emotional wellbeing and overall mental health. It is designed to maximize awareness of mental health by providing anonymous access to information and consultations to interested users.   It is not designed to assist in cases of serious crises such as abuse and exploitation, severe mental health conditions that may cause feelings of suicide, self-harm, or any other medical emergencies. uSupport cannot offer medical or clinical advice, it can only put young people in contact with local mental health professionals who can suggest referrals and guide users to seek specialized medical help within their national health care system. In case of emergency, users are directed to reach out to country-specific suicide hotlines or ambulance services.   uSupport provides information and support to young people over the age of 10. The terms of service and privacy policy stipulate that parents or legal guardians are expected to provide consent for users who are minors – in accordance to local country legislation. uSupport cannot be held responsible for the accuracy of age-related or other information provided by users.",
-      "terms": "terms of service",
-      "and": "and",
-      "privacy": "privacy policy",
-      "paragraph_7_2": "stipulate that parents or legal guardians are expected to provide consent for users who are minors – in accordance to local country legislation. uSupport cannot be held responsible for the accuracy of age-related or other information provided by users. "
+      "heading_2": "Nasza wizja",
+      "heading_3": "Kim jesteśmy",
+      "heading_4": "Nasz wpływ",
+      "heading_5": "Dołącz do nas",
+      "paragraph_1": "Witamy w uSupport – innowacyjnej platformie wspierającej zdrowie psychiczne nastolatków i młodych dorosłych. Naszym celem jest zapewnienie poufnego, bezpiecznego i godnego zaufania miejsca, w którym możesz w każdej chwili i z dowolnego miejsca uzyskać dostęp do zasobów dotyczących zdrowia psychicznego lub skorzystać z konsultacji. Na platformie uSupport możesz przyjrzeć się swoim myślom i emocjom oraz dowiedzieć się, jak sobie z nimi radzić – z pomocą artykułów dostępnych na stronie oraz wsparcia naszych specjalistów.",
+      "paragraph_2": "W uSupport wierzymy, że zdrowie psychiczne i dobre samopoczucie są kluczowe dla ogólnego zdrowia i rozwoju każdego człowieka. Naszą misją jest wspieranie zdrowia psychicznego oraz dobrostanu psychospołecznego nastolatków i młodych dorosłych poprzez zapewnianie dostępnych, przystępnych cenowo i wysokiej jakości usług wsparcia. Chcemy przełamywać stygmatyzację związaną ze zdrowiem psychicznym i dążyć do tego, aby każda młoda osoba otrzymała potrzebne wsparcie, by mogła się rozwijać i dobrze funkcjonować.",
+      "paragraph_3": "Platforma uSupport została opracowana przy wsparciu Funduszu Narodów Zjednoczonych na rzecz Dzieci (UNICEF), w ścisłej współpracy z młodymi ludźmi w Polsce.",
+      "paragraph_4": "Nasz zespół tworzą doświadczeni specjaliści, którzy aktywnie pracują z młodzieżą i młodymi dorosłymi w różnych regionach Polski. Eksperci ci posiadają szeroką wiedzę i kompetencje w takich obszarach jak dobrostan emocjonalny, strategie radzenia sobie, zarządzanie stresem oraz wyzwania zdrowia psychicznego, z jakimi mierzą się dziś młodzi ludzie. Dzięki bezpośredniemu kontaktowi z młodzieżą, nasz zespół może oferować spersonalizowane wsparcie i odpowiadać na indywidualne potrzeby związane ze zdrowiem psychicznym w różnych społecznościach.",
+      "paragraph_5": "uSupport to nie tylko platforma cyfrowa – to ważny element szerszego systemu wsparcia psychicznego i psychospołecznego w krajach, w których działamy. Łącząc młodych ludzi z istniejącymi zasobami w zakresie zdrowia psychicznego, dążymy do zapewnienia powszechnego dostępu do wysokiej jakości działań profilaktycznych, opieki i wsparcia dla wszystkich.",
+      "paragraph_6": "Zapraszamy Cię do wspólnej misji na rzecz poprawy zdrowia psychicznego i dobrostanu młodych ludzi. Niezależnie od tego, czy jesteś młodą osobą szukającą wsparcia, specjalistą zdrowia psychicznego chcącym realnie pomagać, czy partnerem zainteresowanym współpracą – cieszymy się, że chcesz być częścią społeczności uSupport. Razem możemy wywrzeć pozytywny wpływ i zadbać o to, by każda młoda osoba miała szansę na rozwój i dobre życie.",
+      "paragraph_7": "Zastrzeżenie: uSupport to platforma, która wspiera rozwój wiedzy na temat zdrowia psychicznego oraz pomaga młodym osobom lepiej rozumieć kwestie związane z ich dobrostanem psychospołecznym, emocjonalnym i ogólnym zdrowiem psychicznym. Platforma została stworzona w celu zwiększania świadomości na temat zdrowia psychicznego poprzez zapewnienie anonimowego dostępu do informacji i konsultacji dla zainteresowanych użytkowników. uSupport nie jest przeznaczony do udzielania pomocy w poważnych sytuacjach kryzysowych, takich jak przemoc, wykorzystywanie, ciężkie zaburzenia psychiczne mogące prowadzić do myśli samobójczych, samookaleczeń ani w nagłych przypadkach medycznych. Platforma nie świadczy pomocy medycznej ani porad klinicznych. Jej rolą jest jedynie łączenie młodych osób z lokalnymi specjalistami zdrowia psychicznego, którzy mogą udzielić wskazówek, zaproponować dalsze kroki i skierować użytkowników do odpowiednich usług w ramach krajowego systemu opieki zdrowotnej. W nagłych przypadkach użytkownicy powinni niezwłocznie skontaktować się z lokalnymi numerami alarmowymi lub liniami wsparcia dla osób w kryzysie. uSupport oferuje informacje i wsparcie dla młodzieży powyżej 16. roku życia.",
+      "terms": "regulamin",
+      "and": "i",
+      "privacy": "polityka prywatności",
+      "paragraph_7_2": "Użytkownicy niepełnoletni mogą korzystać z platformy zgodnie z obowiązującymi przepisami prawa w danym kraju. uSupport nie ponosi odpowiedzialności za prawdziwość informacji podawanych przez użytkowników, w tym dotyczących wieku lub innych danych osobowych."
     },
     "articles": {
       "heading": "Portal informacyjny",
@@ -181,8 +182,8 @@
     "information-portal": {
       "heading": "Portal informacyjny",
       "paragraph_1": "Uzyskaj dostęp do bezpłatnych materiałów opracowanych przez doświadczonych konsultantów w dziedzinie zdrowia psychicznego.",
-      "paragraph_2": "Nasza obszerna baza cennych materiałów jest nieustannie rozwijana, aby uwzględniać wszystkie kluczowe tematy, które pomogą Ci w pełni wykorzystać swój potencjał.",
-      "paragraph_3": "W ramach portalu odkryjesz artykuły autorstwa ekspertów, poznasz techniki samorozwoju i będziesz na bieżąco z interesującymi Cię tematami",
+      "paragraph_2": "Nasza baza materiałów jest nieustannie rozwijana, aby uwzględniać wszystkie kluczowe tematy, które pomogą Ci w pełni wykorzystać swój potencjał.",
+      "paragraph_3": "W ramach portalu odkryjesz artykuły autorstwa ekspertów, poznasz techniki samorozwoju i będziesz na bieżąco z interesującymi Cię tematami.",
       "read_more_button": "Czytaj więcej",
       "min_read": "min czytać",
       "by": "Przez {{creator}}"
@@ -200,9 +201,9 @@
       "delete_account": "Usuń konto",
       "no_available_slot": "Brak dostępnych terminów",
       "video_label": "Reprezentacja wideo",
-      "psychologist": "Psycholog",
+      "psychologist": "Psycholog/żka",
       "psychiatrist": "Psychiatra",
-      "psychotherapist": "Psychoterapeuta",
+      "psychotherapist": "Psychoterapeuta/ka",
       "addiction": "Uzależnienia i używki",
       "stress": "Zarządzanie stresem",
       "burnout": "Wypalenie i stres akademicki",
@@ -222,7 +223,7 @@
       "self_care": "Praktyki dbania o siebie",
       "insomnia": "Bezsenność i problemy ze snem",
       "motivation": "Motywacja i samodoskonalenie",
-      "anger": "Zarządzanie gniewem",
+      "anger": "Zarządzanie złością",
       "bullying": "Bullying i presja rówieśnicza",
       "grief": "Żałoba i strata",
       "gender_identity": "Tożsamość płciowa",
@@ -240,11 +241,11 @@
     },
     "meet-our-providers-overview": {
       "heading": "Poznaj specjalistów, z którymi możesz się skonsultować",
-      "text": "Nasi specjaliści pomogą Ci lepiej zrozumieć Twoją sytuację i znaleźć najlepszy sposób, aby sobie z nią poradzić",
+      "text": "Nasi specjaliści pomogą Ci lepiej zrozumieć Twoją sytuację i znaleźć najlepszy sposób, aby sobie z nią poradzić.",
       "button_label": "Wyświetl wszystkie",
-      "psychologist": "Psycholog",
+      "psychologist": "Psycholog/żka",
       "psychiatrist": "Psychiatra",
-      "psychotherapist": "Psychoterapeuta"
+      "psychotherapist": "Psychoterapeuta/ka"
     },
     "our-partners": {
       "heading": "Nasi partnerzy",
@@ -270,9 +271,9 @@
     },
     "my-qa-landing": {
       "heading": "Moje Pytania i odpowiedzi",
-      "subheading": "Zadawaj pytania, a nasz zespół profesjonalistów dołoży wszelkich starań, aby Ci pomóc",
+      "subheading": "Zadawaj pytania, a nasz zespół profesjonalistów dołoży wszelkich starań, aby Ci pomóc.",
       "ask_anonymous_card_heading": "Zadaj anonimowe pytanie",
-      "ask_anonymous_card_text": "Każde pytanie jest w pełni anonimowe i nikt nie może zobaczyć, kto je zadał",
+      "ask_anonymous_card_text": "Każde pytanie jest w pełni anonimowe i nikt nie może zobaczyć, kto je zadał.",
       "button_label": "Zadaj pytanie już teraz"
     },
     "mascot-header-MyQA": {
@@ -281,12 +282,12 @@
       "subheading_anonymous": "ANONIMOWE",
       "subheading_text1": "Twoje pytania",
       "subheading_not": "NIE",
-      "subheading_text2": "są połączone z Tobą. Odpowiedzi będą publicznie dostępne, dzięki czemu wszyscy mogą zobaczyć, z jakimi zagadnieniami borykają się inni.",
+      "subheading_text2": "są powiązane z Tobą. Odpowiedzi będą dostępne publicznie, aby każdy mógł zobaczyć, z jakimi zagadnieniami mierzą się inni.",
       "how_it_works": "Zobacz, jak to działa"
     },
     "my-qa": {
       "ask_button_label": "Zadaj pytanie anonimowo",
-      "answer_by": "Odpowiedź udzielona przez:",
+      "answer_by": "Odpowiedział/a:",
       "schedule_consultation": "Zaplanuj konsultację",
       "today": "Dzisiaj",
       "read_more": "Czytaj więcej",
@@ -294,9 +295,9 @@
       "all_languages": "Wszystkie języki",
       "most_popular": "Najpopularniejsze",
       "newest": "Najnowsze",
-      "no_answers": "Wyszukiwanie",
+      "no_answers": "Brak odpowiedzi",
       "filter": "Filtruj tagi",
-      "search_placeholder": "Nie ma odpowiedzi na żadne pytania",
+      "search_placeholder": "Wyszukiwanie",
       "language": "Język"
     },
     "coupon-information": {
@@ -304,10 +305,10 @@
       "how": "Jak?",
       "how_text": "Zamiast płacić za sesje kartą kredytową, wybierz \"kupony\" podczas rezerwacji następnej sesji!",
       "where": "Gdzie znaleźć kody kuponów?",
-      "where_text": "Śledź UNICEF na Instagramie i TikTok, gdzie od czasu do czasu mogą pojawiać się kody kuponów. Nasi partnerzy mogą również udostępniać kody kuponów w swoich mediach społecznościowych. Śledź ich, aby być powiadomionym.",
+      "where_text": "Śledź Tuser (spółkę która odpowiada za platformę w Polsce) na Facebooku. Tam od czasu do czasu mogą pojawiać się kody kuponów. Również inni nasi partnerzy mogą udostępniać kody kuponów w swoich mediach społecznościowych.",
       "where_text_2": "Liczba kuponów jest ograniczona i mogą się wyczerpać w zależności od zapotrzebowania, więc złap swój i zarezerwuj darmową sesję.",
       "reason_1": "Kupony zapewniają bezpłatne sesje",
-      "reason_2": "Uzyskaj kody kuponów z mediów społecznościowych",
+      "reason_2": "Uzyskaj kod kuponu z mediów społecznościowych",
       "reason_3": "Wykorzystaj je przed upływem terminu ważności"
     },
     "custom-about-us": {
@@ -479,7 +480,7 @@
   "pages": {
     "not-found-page": {
       "heading": "Ups! Nie możemy znaleźć strony, której szukasz...",
-      "subheading": "Wygląda na to, że ta strona zaginęła lub nie jest obecnie dostępna.",
+      "subheading": "Wygląda na to, że ta strona nie istnieje lub nie jest obecnie dostępna.",
       "button": "Przejdź do strony głównej"
     },
     "article-information": {
@@ -488,12 +489,12 @@
       "read_more_button": "Czytaj więcej",
       "min_read": "min. czytania",
       "by": "Przez {{creator}}",
-      "share_title": "Udostępnij ten artykuł",
-      "share_success": "Link został skopiowany do schowka!",
+      "share_title": "Udostępnij ten materiał",
+      "share_success": "Link skopiowany do schowka!",
       "copy_link": "Skopiuj link"
     },
     "provider-overview-page": {
-      "heading": "Інформація про консультанта(ку)"
+      "heading": "Szczegóły dotyczące konsultantów"
     },
     "my-qa-page": {
       "modal_heading": "Zaloguj się do platformy, aby zadać pytanie",
@@ -532,9 +533,9 @@
     },
     "how-it-works-my-qa": {
       "heading": "Jak to działa",
-      "subheading_1": "Klienci mogą wysłać anonimową prywatną wiadomość do usupport w wybranym przez siebie języku, korzystając ze strony internetowej lub aplikacji.",
-      "subheading_2": "Zatwierdzone — dostępny specjalista uSupport odpowie, przedstawiając odpowiednie ścieżki wsparcia itp.",
-      "subheading_3": "Wszyscy Klienci mogą zobaczyć odpowiedź, ale nikt nie wie, że pochodzi od Ciebie! Trafia ona do wspólnej przestrzeni z odpowiednimi #tagami, aby można było do niej wrócić w przyszłości."
+      "subheading_1": "Użytkownicy mogą wysłać anonimową prywatną wiadomość do uSupport w wybranym przez siebie języku, korzystając ze strony internetowej lub aplikacji.",
+      "subheading_2": "Zatwierdzony konsultant/ka uSupport odpowie na Twoje pytanie",
+      "subheading_3": "Wszyscy Użytkownicy mogą zobaczyć odpowiedź, ale nikt nie wie, że pochodzi od Ciebie! Trafia ona do wspólnej przestrzeni z odpowiednimi #tagami, aby można było do niej wrócić w przyszłości."
     },
     "filter-questions": {
       "heading": "Filtruj pytania według tagów",
