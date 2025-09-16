@@ -37,6 +37,8 @@ export const SOSCenter = () => {
   // Add event listener
   useEventListener("countryChanged", handler);
 
+  const shouldFetchIds = !!(currentCountry && currentCountry !== "global");
+
   //--------------------- SOS Centers ----------------------//
 
   const getSOSCenterIds = async () => {
@@ -47,16 +49,27 @@ export const SOSCenter = () => {
   };
 
   const sosCenterIdsQuerry = useQuery(
-    ["sosCenterIds", currentCountry],
-    getSOSCenterIds
+    ["sosCenterIds", currentCountry, shouldFetchIds],
+    getSOSCenterIds,
+    {
+      enabled: shouldFetchIds,
+    }
   );
 
   const getSOSCenters = async () => {
-    let { data } = await cmsSvc.getSOSCenters({
+    let queryParams = {
       locale: i18n.language,
-      ids: sosCenterIdsQuerry.data,
       populate: true,
-    });
+    };
+
+    if (shouldFetchIds) {
+      queryParams["ids"] = sosCenterIdsQuerry.data;
+    } else {
+      queryParams["global"] = true;
+      queryParams["isForAdmin"] = true;
+    }
+
+    let { data } = await cmsSvc.getSOSCenters(queryParams);
 
     const sosCenters = data.data;
 
@@ -68,11 +81,12 @@ export const SOSCenter = () => {
     isLoading: SOSCentersLoading,
     isFetched: isSOSCentersFetched,
   } = useQuery(
-    ["SOSCenters", sosCenterIdsQuerry.data, i18n.language],
+    ["SOSCenters", sosCenterIdsQuerry.data, i18n.language, shouldFetchIds],
     getSOSCenters,
     {
-      enabled:
-        !sosCenterIdsQuerry.isLoading && sosCenterIdsQuerry.data?.length > 0,
+      enabled: shouldFetchIds
+        ? !sosCenterIdsQuerry.isLoading && sosCenterIdsQuerry.data?.length > 0
+        : true,
     }
   );
 
