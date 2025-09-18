@@ -145,8 +145,10 @@ export const InformationPortal = () => {
                   md={8}
                   lg={6}
                   classes="information-portal__main-article-item"
+                  type="portrait"
                 >
                   <CardMedia
+                    // type={isNotDescktop ? "portrait" : "landscape"}
                     size="lg"
                     title={mostReadArticlesQuerry.data[0].title}
                     image={mostReadArticlesQuerry.data[0].imageMedium}
@@ -171,38 +173,34 @@ export const InformationPortal = () => {
             {!mostReadArticlesQuerry.isLoading &&
               mostReadArticlesQuerry.data?.length > 1 && (
                 <GridItem md={8} lg={6}>
-                  {mostReadArticlesQuerry.data?.map((article, index) => {
-                    return (
-                      index > 0 && (
-                        <GridItem
-                          md={8}
-                          lg={12}
-                          key={index}
-                          classes="information-portal__secondary-cards"
-                        >
-                          <CardMedia
-                            type={isNotDescktop ? "portrait" : "landscape"}
-                            size="sm"
-                            style={{ gridColumn: "span 4" }}
-                            title={article.title}
-                            image={article.imageSmall}
-                            description={article.description}
-                            labels={article.labels}
-                            creator={article.creator}
-                            readingTime={article.readingTime}
-                            categoryName={article.categoryName}
-                            showLabels={false}
-                            likes={article.likes}
-                            dislikes={article.dislikes}
-                            t={t}
-                            onClick={() =>
-                              handleRedirect(article.id, article.title)
-                            }
-                          />
-                        </GridItem>
-                      )
-                    );
-                  })}
+                  <Grid classes="information-portal__secondary-cards-grid">
+                    {mostReadArticlesQuerry.data?.map((article, index) => {
+                      return (
+                        index > 0 && (
+                          <GridItem md={4} lg={12} key={index}>
+                            <CardMedia
+                              type={isNotDescktop ? "portrait" : "landscape"}
+                              size="sm"
+                              title={article.title}
+                              image={article.imageSmall}
+                              description={article.description}
+                              labels={article.labels}
+                              creator={article.creator}
+                              readingTime={article.readingTime}
+                              categoryName={article.categoryName}
+                              showLabels={false}
+                              likes={article.likes}
+                              dislikes={article.dislikes}
+                              t={t}
+                              onClick={() =>
+                                handleRedirect(article.id, article.title)
+                              }
+                            />
+                          </GridItem>
+                        )
+                      );
+                    })}
+                  </Grid>
                 </GridItem>
               )}
           </Grid>
