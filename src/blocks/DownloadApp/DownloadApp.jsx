@@ -18,6 +18,7 @@ import imageSrc from "./assets/StartScreen.png";
 import imageSrcWebp from "./assets/StartScreen.webp";
 
 import StartScreenPreviews from "./assets/StartScreenPreviews.png";
+import StartScreenPreviewsNoCountry from "./assets/StartScreenPreviewsNoCountry.png";
 
 /**
  * DownloadApp
@@ -30,6 +31,10 @@ export const DownloadApp = () => {
   const { theme } = useContext(ThemeContext);
   const { t } = useTranslation("blocks", { keyPrefix: "download-app" });
   const { width } = useWindowDimensions();
+  const country = localStorage.getItem("country");
+
+  const imageToRender =
+    country === "KZ" ? StartScreenPreviews : StartScreenPreviewsNoCountry;
 
   return (
     <Block
@@ -73,8 +78,8 @@ export const DownloadApp = () => {
             />
           ) : (
             <StaticImage
-              png={StartScreenPreviews}
-              webp={StartScreenPreviews}
+              png={imageToRender}
+              webp={imageToRender}
               imageClasses="download-app__image"
               alt="mobile-app"
             />
