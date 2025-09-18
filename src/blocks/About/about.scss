@@ -25,7 +25,11 @@
 
   &__description-item-2 {
     padding-top: $spacing_2_4;
-    place-self: end;
+
+    @media screen and (min-width: $screen-md) {
+      place-self: end;
+    }
+
     &__paragraph {
       max-width: 60rem;
     }
@@ -36,12 +40,17 @@
   }
 
   &__icons-grid {
+    margin-top: $spacing_2_4;
     max-width: 40rem;
     width: 100%;
-    justify-self: end;
+    justify-self: center;
+
+    @media screen and (min-width: $screen-md) {
+    }
 
     @media screen and (min-width: $screen-lg) {
       justify-self: center;
+      margin-top: 0;
     }
   }
 
