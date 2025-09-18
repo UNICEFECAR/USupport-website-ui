@@ -32,7 +32,7 @@ export const About = () => {
           </p>
         </GridItem>
 
-        <GridItem xs={4} md={6} lg={5} classes="about__icons-grid">
+        <GridItem xs={4} md={8} lg={5} classes="about__icons-grid">
           <Grid>
             <GridItem xs={4} md={8} lg={12} classes="about__icon-item first">
               <CardIconAndLabel
