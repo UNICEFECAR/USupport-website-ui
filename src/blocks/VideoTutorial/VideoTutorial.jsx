@@ -24,18 +24,8 @@ export const VideoTutorial = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const allowedLangs = ["kk", "ru"];
-
-  if (!IS_KZ_COUNTRY || !allowedLangs.includes(i18n.language)) {
-    return null;
-  }
-
-  const KZ_PLAYLIST_ID = "PLAuQrsWZrgDhnfcN4Dh-GlzLwUUxbRwPy";
-  const RU_PLAYLIST_ID = "PLAuQrsWZrgDjv8gKsAIVcup3qu81RfMrf";
-
-  const playlistId = i18n.language === "kk" ? KZ_PLAYLIST_ID : RU_PLAYLIST_ID;
-
   useEffect(() => {
+    if (!shouldShow) return;
     let isMounted = true;
 
     async function fetchPlaylistItems() {
@@ -121,7 +111,16 @@ export const VideoTutorial = () => {
     return () => {
       isMounted = false;
     };
-  }, [playlistId]);
+  }, [playlistId, shouldShow]);
+
+  const allowedLangs = ["kk", "ru"];
+
+  const shouldShow = IS_KZ_COUNTRY && allowedLangs.includes(i18n.language);
+
+  const KZ_PLAYLIST_ID = "PLAuQrsWZrgDhnfcN4Dh-GlzLwUUxbRwPy";
+  const RU_PLAYLIST_ID = "PLAuQrsWZrgDjv8gKsAIVcup3qu81RfMrf";
+
+  const playlistId = i18n.language === "kk" ? KZ_PLAYLIST_ID : RU_PLAYLIST_ID;
 
   const renderSlides = () => {
     return videos.map((video, index) => (
@@ -145,7 +144,7 @@ export const VideoTutorial = () => {
     mobile: { breakpoint: { max: 768, min: 0 }, items: 1 },
   };
 
-  if (isLoading || error || videos.length === 0) return null;
+  if (!shouldShow || isLoading || error || videos.length === 0) return null;
 
   return (
     <CustomCarousel
