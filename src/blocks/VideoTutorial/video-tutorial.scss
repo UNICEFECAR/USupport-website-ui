@@ -1,8 +1,21 @@
-@import "@USupport-components-library/styles";
-
 .video-tutorial {
-  padding-top: $spacing_3_0;
-  &__title {
-    padding-bottom: $spacing_2_4;
+  &__carousel {
+    .react-multi-carousel-item {
+      padding: 25px 8px; // 16px gaps between items
+      box-sizing: border-box;
+    }
+  }
+
+  &__slide {
+    width: 100%;
+  }
+
+  &__player {
+    width: 100%;
+
+    .video-player__box__embed-container iframe {
+      display: block;
+      width: 100%;
+    }
   }
 }
