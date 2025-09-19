@@ -19,6 +19,11 @@ export const VideoTutorial = () => {
   const { cookieState, setCookieState } = useContext(ThemeContext);
 
   const IS_KZ_COUNTRY = localStorage.getItem("country") === "KZ";
+
+  const [videos, setVideos] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+
   const allowedLangs = ["kk", "ru"];
 
   if (!IS_KZ_COUNTRY || !allowedLangs.includes(i18n.language)) {
@@ -29,10 +34,6 @@ export const VideoTutorial = () => {
   const RU_PLAYLIST_ID = "PLAuQrsWZrgDjv8gKsAIVcup3qu81RfMrf";
 
   const playlistId = i18n.language === "kk" ? KZ_PLAYLIST_ID : RU_PLAYLIST_ID;
-
-  const [videos, setVideos] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
 
   useEffect(() => {
     let isMounted = true;

@@ -239,7 +239,7 @@ export const Page = ({
       icon: "activities",
     },
     country === "RO"
-      ? { name: t("page_7"), ulr: "/organizations", icon: "home" }
+      ? { name: t("page_7"), url: "/organizations", icon: "home" }
       : {
           name: t("page_6"),
           url: "/my-qa",
