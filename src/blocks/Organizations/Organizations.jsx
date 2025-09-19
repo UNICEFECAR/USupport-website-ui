@@ -12,6 +12,7 @@ import {
   Loading,
   Button,
   OrganizationOverview,
+  Select,
 } from "@USupport-components-library/src";
 import {
   useGetOrganizationMetadata,
@@ -26,7 +27,7 @@ const INITIAL_FILTERS = {
   district: "",
   paymentMethod: "",
   userInteraction: "",
-  specialisation: "",
+  specialisations: [],
   propertyType: "",
 };
 
@@ -52,7 +53,7 @@ export const Organizations = () => {
     district: filters.district,
     paymentMethod: filters.paymentMethod,
     userInteraction: filters.userInteraction,
-    specialisation: filters.specialisation,
+    specialisations: filters.specialisations,
     propertyType: filters.propertyType,
     userLocation,
   });
@@ -129,97 +130,107 @@ export const Organizations = () => {
     }
 
     return (
-      <div className="organizations__dropdowns-container">
-        {metadata?.districts && metadata.districts.length > 0 && (
-          <Dropdown
-            selected={filters.district}
-            setSelected={(value) => handleChange("district", value)}
-            placeholder={t("district_placeholder")}
-            options={[
-              { label: t("any"), value: null },
-              ...metadata.districts
-                .map((district) => ({
-                  label: t(district.name),
-                  value: district.districtId,
-                }))
-                .sort((a, b) => a.label.localeCompare(b.label)),
-            ]}
-            isSmall
-          />
-        )}
+      <>
+        <div className="organizations__dropdowns-container">
+          {metadata?.districts && metadata.districts.length > 0 && (
+            <Dropdown
+              selected={filters.district}
+              setSelected={(value) => handleChange("district", value)}
+              placeholder={t("district_placeholder")}
+              options={[
+                { label: t("any"), value: null },
+                ...metadata.districts
+                  .map((district) => ({
+                    label: t(district.name),
+                    value: district.districtId,
+                  }))
+                  .sort((a, b) => a.label.localeCompare(b.label)),
+              ]}
+              isSmall
+            />
+          )}
 
-        {metadata?.paymentMethods && metadata.paymentMethods.length > 0 && (
-          <Dropdown
-            selected={filters.paymentMethod}
-            setSelected={(value) => handleChange("paymentMethod", value)}
-            placeholder={t("payment_methods_placeholder")}
-            options={[
-              { label: t("any"), value: null },
-              ...metadata.paymentMethods
-                .map((method) => ({
-                  label: t(method.name),
-                  value: method.paymentMethodId,
-                }))
-                .sort((a, b) => a.label.localeCompare(b.label)),
-            ]}
-            isSmall
-          />
-        )}
+          {metadata?.paymentMethods && metadata.paymentMethods.length > 0 && (
+            <Dropdown
+              selected={filters.paymentMethod}
+              setSelected={(value) => handleChange("paymentMethod", value)}
+              placeholder={t("payment_methods_placeholder")}
+              options={[
+                { label: t("any"), value: null },
+                ...metadata.paymentMethods
+                  .map((method) => ({
+                    label: t(method.name),
+                    value: method.paymentMethodId,
+                  }))
+                  .sort((a, b) => a.label.localeCompare(b.label)),
+              ]}
+              isSmall
+            />
+          )}
 
-        {metadata?.userInteractions && metadata.userInteractions.length > 0 && (
-          <Dropdown
-            selected={filters.userInteraction}
-            setSelected={(value) => handleChange("userInteraction", value)}
-            placeholder={t("user_interactions_placeholder")}
-            options={[
-              { label: t("any"), value: null },
-              ...metadata.userInteractions
-                .map((interaction) => ({
-                  label: t(interaction.name + "_interaction"),
-                  value: interaction.userInteractionId,
-                }))
-                .sort((a, b) => a.label.localeCompare(b.label)),
-            ]}
-            isSmall
-          />
-        )}
+          {metadata?.userInteractions &&
+            metadata.userInteractions.length > 0 && (
+              <Dropdown
+                selected={filters.userInteraction}
+                setSelected={(value) => handleChange("userInteraction", value)}
+                placeholder={t("user_interactions_placeholder")}
+                options={[
+                  { label: t("any"), value: null },
+                  ...metadata.userInteractions
+                    .map((interaction) => ({
+                      label: t(interaction.name + "_interaction"),
+                      value: interaction.userInteractionId,
+                    }))
+                    .sort((a, b) => a.label.localeCompare(b.label)),
+                ]}
+                isSmall
+              />
+            )}
 
+          {metadata?.propertyTypes && metadata.propertyTypes.length > 0 && (
+            <Dropdown
+              selected={filters.propertyType}
+              setSelected={(value) => handleChange("propertyType", value)}
+              placeholder={t("property_types_placeholder")}
+              options={[
+                { label: t("any"), value: null },
+                ...metadata.propertyTypes
+                  .map((propertyType) => ({
+                    label: t(propertyType.name),
+                    value: propertyType.organizationPropertyTypeId,
+                  }))
+                  .sort((a, b) => a.label.localeCompare(b.label)),
+              ]}
+              isSmall
+            />
+          )}
+        </div>
         {metadata?.specialisations && metadata.specialisations.length > 0 && (
-          <Dropdown
-            selected={filters.specialisation}
-            setSelected={(value) => handleChange("specialisation", value)}
-            placeholder={t("specialisations_placeholder")}
-            options={[
-              { label: t("any"), value: null },
-              ...metadata.specialisations
+          <div className="organizations__specialisations-container">
+            <Select
+              placeholder={t("specialisations_placeholder")}
+              options={metadata.specialisations
                 .map((spec) => ({
                   label: t(spec.name),
                   value: spec.organizationSpecialisationId,
+                  selected: filters.specialisations.includes(
+                    spec.organizationSpecialisationId
+                  ),
                 }))
-                .sort((a, b) => a.label.localeCompare(b.label)),
-            ]}
-            isSmall
-          />
+                .sort((a, b) => a.label.localeCompare(b.label))}
+              handleChange={(updatedOptions) => {
+                const selectedValues = updatedOptions
+                  .filter((option) => option.selected)
+                  .map((option) => option.value);
+                handleChange("specialisations", selectedValues);
+              }}
+              classes="organizations__specialisations-select select-container--full-width"
+              maxMenuHeight={250}
+              isSearchable={true}
+            />
+          </div>
         )}
-
-        {metadata?.propertyTypes && metadata.propertyTypes.length > 0 && (
-          <Dropdown
-            selected={filters.propertyType}
-            setSelected={(value) => handleChange("propertyType", value)}
-            placeholder={t("property_types_placeholder")}
-            options={[
-              { label: t("any"), value: null },
-              ...metadata.propertyTypes
-                .map((propertyType) => ({
-                  label: t(propertyType.name),
-                  value: propertyType.organizationPropertyTypeId,
-                }))
-                .sort((a, b) => a.label.localeCompare(b.label)),
-            ]}
-            isSmall
-          />
-        )}
-      </div>
+      </>
     );
   };
 
