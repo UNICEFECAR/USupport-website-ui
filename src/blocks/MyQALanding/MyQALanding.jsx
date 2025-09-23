@@ -25,6 +25,8 @@ import ro from "./assets/ro.png";
 import roSmall from "./assets/ro-small.png";
 import uk from "./assets/uk.png";
 import ukSmall from "./assets/uk-small.png";
+import hy from "./assets/hy.png";
+import hySmall from "./assets/hy-small.png";
 
 import "./my-qa-landing.scss";
 
@@ -48,6 +50,7 @@ export const MyQALanding = () => {
     ru: { large: ru, small: ruSmall },
     ro: { large: ro, small: roSmall },
     uk: { large: uk, small: ukSmall },
+    hy: { large: hy, small: hySmall },
   };
 
   const currentLanguage = i18n.language;
