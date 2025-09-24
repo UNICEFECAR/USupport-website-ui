@@ -9,6 +9,24 @@
       "card_text_4": "Twoje bezpieczne miejsce",
       "paragraph_2": "Razem stawmy czoła stresowi i radźmy sobie ze wszystkimi wyzwaniami życia."
     },
+    "articles": {
+      "heading": "Wiedza",
+      "no_results": "Nie znaleziono wyników",
+      "could_not_load_content": "Brak wyników dla aktualnie wybranego kraju i języka.",
+      "all": "Wszystkie",
+      "read_more_button": "Czytaj więcej",
+      "min_read": "min czytania",
+      "by": "Przez {{creator}}",
+      "number_of_more_options": "jeszcze {{count}}",
+      "articles": "Artykuły",
+      "videos": "Wideo",
+      "podcasts": "Podcasty",
+      "view_more": "Zobacz więcej",
+      "search": "Szukaj",
+      "not_found": "Ten zasób jest niedostępny",
+      "require_cookies": "Aby obejrzeć ten film, zaakceptuj wszystkie pliki cookie.",
+      "cookie_preferences": "Preferencje plików cookie"
+    },
     "contact-us": {
       "heading_1": "Skontaktuj się z nami",
       "contact_form_heading": "Masz pytanie? Nie wahaj się z nami skontaktować.",
@@ -21,10 +39,6 @@
       "contact_reason_3": "Dołącz do sieci konsultantów",
       "contact_reason_4": "Partnerstwa",
       "contact_reason_5": "Inne",
-      "contact_reason_1_pl": "Informacje o uSupport",
-      "contact_reason_2_pl": "Problem techniczny",
-      "contact_reason_3_pl": "Dołączenie do sieci konsultantów",
-      "contact_reason_4_pl": "Coś innego",
       "email_label": "Email",
       "reason_label": "Powód skontaktowania się z nami",
       "message_label": "Wiadomość",
@@ -37,7 +51,11 @@
       "modal_text": "Skontaktujemy się z Tobą tak szybko, jak to możliwe.",
       "modal_cta_label": "Wróć do strony głównej",
       "paragraph": "Odpowiemy na twoją wiadomość email w ciągu 24 godzin. Upewnij się, że poprawnie wpisałeś swój adres email",
-      "contact_form": "Formularz kontaktowy"
+      "contact_form": "Formularz kontaktowy",
+      "contact_reason_1_pl": "Informacje o uSupport",
+      "contact_reason_2_pl": "Problem techniczny",
+      "contact_reason_3_pl": "Dołączenie do sieci konsultantów",
+      "contact_reason_4_pl": "Coś innego"
     },
     "download-app": {
       "heading": "Pobierz aplikację",
@@ -72,37 +90,38 @@
       "paragraph_normal": "Wystarczy kilka kliknięć, aby uzyskać potrzebną pomoc. W pełni anonimowo.",
       "card_1": "Wybierz swój kraj i język",
       "card_2": "Utwórz swoje konto",
-      "card_3": "Wybierz konsultanta",
-      "card_4": "Wybierz konsultanta/kę",
+      "card_3": "Wybierz specjalistę",
+      "card_4": "Zarezerwuj sesję",
       "download_text": "Pobierz uSupport z",
       "web_browser": "Kliknij, aby skorzystać",
-      "click_to_use": "Przeglądarka"
+      "click_to_use": "Przeglądarka",
+      "download_from_web": "",
+      "browser": ""
     },
     "meet-our-providers": {
       "heading": "Poznaj naszych konsultantów",
       "paragraph": "Eksploruj dalej swoje emocje. Weź udział w rozmowach z profesjonalistami i uzyskaj dostęp do narzędzi i strategii, aby skutecznie radzić sobie z wyzwaniami napotykanymi w codziennym życiu.",
-      "psychologist": "Psycholog/żka",
+      "psychologist": "Psycholog",
       "psychiatrist": "Psychiatra",
-      "psychotherapist": "Psychoterapeuta/ka",
+      "psychotherapist": "Psychoterapeuta",
       "show_more_btn": "Pokaż więcej"
     },
     "page": {
       "page_1": "Strona główna",
       "page_2": "Jak to działa?",
       "page_3": "O nas",
-      "page_4": "Portal informacyjny",
+      "page_4": "Wiedza",
       "page_5": "Skontaktuj się z nami",
       "page_6": "Moje Q&A",
-      "page_7": "Organizacje",
       "footer_1": "O nas",
-      "footer_2": "Portal informacyjny",
+      "footer_2": "Wiedza",
       "footer_3": "Jak to działa?",
       "footer_4": "Warunki świadczenia usług",
       "footer_5": "Polityką prywatności",
       "footer_6": "Polityka plików cookie",
       "footer_7": "Najczęściej zadawane pytania",
       "emergency_button": "Centrum SOS",
-      "button_text": "Przejdź do aplikacji",
+      "button_text": "Umów się konsultację",
       "language_label": "Język",
       "country_label": "Kraj",
       "contact_us": "Skontaktuj się z nami",
@@ -118,6 +137,7 @@
       "reject_all_cookies": "Odrzuć wszystkie",
       "accept_necessary_cookies": "Akceptuj tylko wymagane",
       "save": "Zapisz",
+      "page_7": "Organizacje",
       "high_contrast": "Wysoki kontrast"
     },
     "question": {
@@ -149,24 +169,6 @@
       "privacy": "polityka prywatności",
       "paragraph_7_2": "Użytkownicy niepełnoletni mogą korzystać z platformy zgodnie z obowiązującymi przepisami prawa w danym kraju. uSupport nie ponosi odpowiedzialności za prawdziwość informacji podawanych przez użytkowników, w tym dotyczących wieku lub innych danych osobowych."
     },
-    "articles": {
-      "heading": "Portal informacyjny",
-      "no_results": "Nie znaleziono wyników",
-      "could_not_load_content": "Brak wyników dla aktualnie wybranego kraju i języka.",
-      "all": "Wszystkie",
-      "read_more_button": "Czytaj więcej",
-      "min_read": "min czytać",
-      "by": "Przez {{creator}}",
-      "number_of_more_options": "jeszcze {{count}}",
-      "articles": "Artykuły",
-      "videos": "Wideo",
-      "podcasts": "Podcasty",
-      "view_more": "Zobacz więcej",
-      "search": "Szukaj",
-      "not_found": "Ten zasób jest niedostępny",
-      "require_cookies": "Aby obejrzeć ten film, zaakceptuj wszystkie pliki cookie.",
-      "cookie_preferences": "Preferencje plików cookie"
-    },
     "privacy-policy": {
       "heading": "Polityką prywatności",
       "no_results": "Brak wyników dla wybranego kraju i języka."
@@ -180,9 +182,9 @@
       "no_results": "Brak wyników dla wybranego kraju i języka."
     },
     "information-portal": {
-      "heading": "Portal informacyjny",
-      "paragraph_1": "Uzyskaj dostęp do bezpłatnych materiałów opracowanych przez doświadczonych konsultantów w dziedzinie zdrowia psychicznego.",
-      "paragraph_2": "Nasza baza materiałów jest nieustannie rozwijana, aby uwzględniać wszystkie kluczowe tematy, które pomogą Ci w pełni wykorzystać swój potencjał.",
+      "heading": "Wiedza",
+      "paragraph_1": "Access free resources developed with experienced providers in the field of mental health.",
+      "paragraph_2": "Our extensive collection of valuable resources is continuously improving to ensure that we address all essential subjects that will support you in reaching your highest potential.",
       "paragraph_3": "W ramach portalu odkryjesz artykuły autorstwa ekspertów, poznasz techniki samorozwoju i będziesz na bieżąco z interesującymi Cię tematami.",
       "read_more_button": "Czytaj więcej",
       "min_read": "min czytać",
@@ -201,9 +203,9 @@
       "delete_account": "Usuń konto",
       "no_available_slot": "Brak dostępnych terminów",
       "video_label": "Reprezentacja wideo",
-      "psychologist": "Psycholog/żka",
+      "psychologist": "Psycholog",
       "psychiatrist": "Psychiatra",
-      "psychotherapist": "Psychoterapeuta/ka",
+      "psychotherapist": "Psychoterapeuta",
       "addiction": "Uzależnienia i używki",
       "stress": "Zarządzanie stresem",
       "burnout": "Wypalenie i stres akademicki",
@@ -243,9 +245,9 @@
       "heading": "Poznaj specjalistów, z którymi możesz się skonsultować",
       "text": "Nasi specjaliści pomogą Ci lepiej zrozumieć Twoją sytuację i znaleźć najlepszy sposób, aby sobie z nią poradzić.",
       "button_label": "Wyświetl wszystkie",
-      "psychologist": "Psycholog/żka",
+      "psychologist": "Psycholog",
       "psychiatrist": "Psychiatra",
-      "psychotherapist": "Psychoterapeuta/ka"
+      "psychotherapist": "Psychoterapeuta"
     },
     "our-partners": {
       "heading": "Nasi partnerzy",
@@ -270,14 +272,14 @@
       "partner_2_link": "https://www.gov.kz/memleket/entities/edu?lang=en"
     },
     "my-qa-landing": {
-      "heading": "Moje Pytania i odpowiedzi",
+      "heading": "Moje pytania i odpowiedzi",
       "subheading": "Zadawaj pytania, a nasz zespół profesjonalistów dołoży wszelkich starań, aby Ci pomóc.",
       "ask_anonymous_card_heading": "Zadaj anonimowe pytanie",
       "ask_anonymous_card_text": "Każde pytanie jest w pełni anonimowe i nikt nie może zobaczyć, kto je zadał.",
       "button_label": "Zadaj pytanie już teraz"
     },
     "mascot-header-MyQA": {
-      "heading": "Moje Pytania i odpowiedzi",
+      "heading": "Moje pytania i odpowiedzi",
       "subheading_its": "To jest",
       "subheading_anonymous": "ANONIMOWE",
       "subheading_text1": "Twoje pytania",
@@ -319,12 +321,10 @@
       "online_interaction": "Online",
       "phone_interaction": "Telefonicznie",
       "hybrid_interaction": "Hybrydowo",
-
       "free_services": "Usługi bezpłatne",
       "paid_services": "Usługi płatne",
       "co_payment_services": "Usługi współfinansowane",
       "cnas_reimbursed_services": "Usługi refundowane przez CNAS",
-
       "violence_victim_helpline": "Telefon zaufania dla ofiar przemocy",
       "social_information_counseling": "Informacja i poradnictwo społeczne",
       "rehab_psycho_neuro_children": "Rehabilitacja i terapia dla dzieci z zaburzeniami psycho-neuro-motorycznymi",
@@ -338,7 +338,6 @@
       "rehab_autism_children": "Rehabilitacja i terapia dla dzieci z autyzmem",
       "art_recreational_activities": "Zajęcia artystyczno-rekreacyjne (teatr, muzyka, poezja, malarstwo, opowiadanie historii)",
       "addiction_helpline": "Telefon zaufania ds. uzależnień",
-
       "emergency_situations": "Sytuacje awaryjne",
       "pediatric_psychiatry": "Psychiatria dziecięca",
       "psychological_evaluation": "Ocena psychologiczna",
@@ -357,14 +356,12 @@
       "pediatric_neurology": "Neurologia dziecięca",
       "special_psychopedagogy": "Pedagogika specjalna",
       "neuropsychomotor_recovery": "Rehabilitacja neuropsychomotoryczna",
-
       "sector_1": "Sektor 1",
       "sector_2": "Sektor 2",
       "sector_3": "Sektor 3",
       "sector_4": "Sektor 4",
       "sector_5": "Sektor 5",
       "sector_6": "Sektor 6",
-
       "aggression_violence_victim_or_aggressor": "Agresja/przemoc – ofiara lub sprawca",
       "learning_difficulties_special_educational_needs": "Trudności w nauce/Szczególne potrzeby edukacyjne",
       "behavioral_disorder": "Zaburzenia zachowania",
@@ -374,12 +371,10 @@
       "identity_issues": "Problemy tożsamościowe",
       "illness_oncological_treatment_chronic_diseases": "Choroba (leczenie onkologiczne, choroby przewlekłe)",
       "other_situations": "Inne sytuacje",
-
       "public": "Publiczne",
       "private": "Prywatne",
       "ong": "NGO",
       "public_private": "Publiczno-prywatne",
-
       "work_with_placeholder": "Wybierz kategorie docelowe",
       "specialisations_placeholder": "Wybierz oferowane usługi",
       "district_placeholder": "Wybierz sektor",
@@ -387,10 +382,8 @@
       "user_interactions_placeholder": "Wybierz tryby interakcji",
       "property_types_placeholder": "Wybierz typy instytucji",
       "search_placeholder": "Szukaj po nazwie organizacji",
-
       "no_data_found": "Brak danych",
       "reset_filters": "Resetuj filtry",
-
       "view_organization_details": "Zobacz szczegóły organizacji",
       "address": "Adres",
       "phone": "Telefon",
@@ -408,7 +401,6 @@
       "work_with_label": "Współpraca z",
       "offered_services_label": "Oferowane usługi",
       "providers_label": "Dostawcy",
-
       "violence_victim_helpline": "Telefon pomocowy dla ofiar przemocy",
       "individual_psychotherapy": "Psychoterapia indywidualna",
       "social_information_counseling": "Informacja społeczna i poradnictwo",
@@ -425,7 +417,6 @@
       "art_recreational_activities": "Artystyczne zajęcia rekreacyjne (teatr, muzyka, poezja, malarstwo, opowiadanie)",
       "addiction_helpline": "Telefon pomocowy dla osób uzależnionych",
       "group_psychotherapy": "Psychoterapia grupowa",
-
       "emergency_situations": "Sytuacje awaryjne",
       "pediatric_psychiatry": "Psychiatria dziecięca",
       "psychological_evaluation": "Ocena psychologiczna",
@@ -441,29 +432,24 @@
       "pediatric_neurology": "Neurologia dziecięca",
       "special_psychopedagogy": "Specjalna psychopedagogika",
       "neuropsychomotor_recovery": "Neuropsychomotoryczna rehabilitacja",
-
       "in_person_interaction": "Osobiście",
       "online_interaction": "Online",
       "phone_interaction": "Telefonicznie",
       "hybrid_interaction": "Hybarydowe",
-
       "free_services": "Usługi bezpłatne",
       "paid_services": "Usługi płatne",
       "co_payment_services": "Usługi współpłacone",
       "cnas_reimbursed_services": "Usługi refundowane przez CNAS",
-
       "public": "Publiczny",
       "private": "Prywatny",
       "ong": "NGO",
       "public_private": "Publiczno‑prywatny",
-
       "sector_1": "Sektor 1",
       "sector_2": "Sektor 2",
       "sector_3": "Sektor 3",
       "sector_4": "Sektor 4",
       "sector_5": "Sektor 5",
       "sector_6": "Sektor 6",
-
       "aggression_violence_victim_or_aggressor": "Agresja/przemoc – ofiara lub sprawca",
       "learning_difficulties_special_educational_needs": "Trudności w uczeniu się/Specialne potrzeby edukacyjne",
       "behavioral_disorder": "Zaburzenia zachowania",
@@ -473,8 +459,13 @@
       "identity_issues": "Problemy tożsamościowe",
       "illness_oncological_treatment_chronic_diseases": "Choroba (leczenie onkologiczne, choroby przewlekłe)",
       "other_situations": "Inne sytuacje",
-
       "copy_link_success": "Link został skopiowany do schowka!"
+    },
+    "video-tutorial": {
+      "title": "",
+      "tutorial_video_title": "",
+      "require_cookies": "",
+      "cookie_preferences": ""
     }
   },
   "pages": {
@@ -498,12 +489,12 @@
     },
     "my-qa-page": {
       "modal_heading": "Zaloguj się do platformy, aby zadać pytanie",
-      "modal_heading_consultation": "Zaloguj się na platformie, aby umówić się na konsultację",
       "modal_text": "Zaloguj się na platformie, aby zadać pytanie i otrzymać odpowiedź od naszych specjalistów — Twoje pytanie będzie anonimowe.",
-      "modal_text_consultation": "Zaloguj się na platformie, aby umówić się na konsultację ze specjalistą.",
-      "modal_button_label": "Przejdź do aplikacji",
+      "modal_button_label": "Umów się na konsultację",
       "my_qa_answer_title": "Jak działa Moje Q&A?",
-      "my_qa_answer_text": "Moje Q&A to funkcja, która pozwala zadawać pytania i otrzymywać odpowiedzi od dostawców uSupport."
+      "my_qa_answer_text": "Moje Q&A to funkcja, która pozwala zadawać pytania i otrzymywać odpowiedzi od dostawców uSupport.",
+      "modal_heading_consultation": "Zaloguj się na platformie, aby umówić się na konsultację",
+      "modal_text_consultation": "Zaloguj się na platformie, aby umówić się na konsultację ze specjalistą."
     },
     "video-information-page": {
       "more_videos": "Więcej filmów",
