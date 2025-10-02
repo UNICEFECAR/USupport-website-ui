@@ -46,7 +46,7 @@
       "reason_error": "Вибери причину",
       "message_error": "Введи повідомлення",
       "message_placeholder": "Твоє повідомлення для нас",
-      "send_button": "Надішли",
+      "send_button": "Надіслати",
       "modal_title": "Твоє повідомлення відправлено",
       "modal_text": "Найближчим часом ми з тобою зв'яжемося",
       "modal_cta_label": "На головну сторінку",
@@ -55,7 +55,7 @@
       "contact_reason_1_pl": "Інформація про службу підтримки",
       "contact_reason_2_pl": "Технічна проблема",
       "contact_reason_3_pl": "Скарга",
-      "contact_reason_4_pl": "Ще дещо."
+      "contact_reason_4_pl": "Щось інше"
     },
     "download-app": {
       "heading": "Завантаж додаток",
@@ -63,8 +63,8 @@
       "download_text": "Завантажити з"
     },
     "faq": {
-      "heading": "Дізнайся більше",
-      "button": "Дізнайтеся більше",
+      "heading": "Дізнатися більше",
+      "button": "Дізнайтися більше",
       "no_results": "Для обраної країни й мови немає результатів."
     },
     "find-yourself": {
@@ -92,7 +92,7 @@
       "card_2": "Вибери країну й мову",
       "card_3": "Вибери консультанта/ку",
       "card_4": "Забронювати сесію",
-      "download_text": "Забронюй консультацію",
+      "download_text": "Завантаж uSupport з",
       "web_browser": "Браузер",
       "click_to_use": "Клацніть, щоб використати",
       "download_from_web": "",
@@ -104,7 +104,7 @@
       "psychologist": "Психолог/иня",
       "psychiatrist": "Психіатр/иня",
       "psychotherapist": "Психотерапевт/ка",
-      "show_more_btn": "Покажи більше"
+      "show_more_btn": "Показати більше"
     },
     "page": {
       "page_1": "Головна",
@@ -121,7 +121,7 @@
       "footer_6": "Політика щодо файлів cookie",
       "footer_7": "Поширені запитання",
       "emergency_button": "Центр SOS",
-      "button_text": "Запишіться на консультацію",
+      "button_text": "Записатися на консультацію",
       "language_label": "Мова",
       "country_label": "Країна",
       "contact_us": "Зв'яжися з нами",
@@ -194,13 +194,13 @@
       "earliest_slot_label": "Найближчий вільний часовий слот для консультації",
       "languages_label": "Мова",
       "education_label": "Освіта",
-      "work_with_label": "Працюємо з",
+      "work_with_label": "Працює з",
       "specializations_label": "Спеціалізації",
       "done_consultations_label": "Всі проведені консультації",
       "description_label": "Опис",
-      "edit_details": "Редагуй деталі",
-      "change_password": "Зміни пароль",
-      "delete_account": "Видали обліковий запис",
+      "edit_details": "Редагувати деталі",
+      "change_password": "Змінити пароль",
+      "delete_account": "Видалити обліковий запис",
       "no_available_slot": "Немає вільного часового слоту",
       "video_label": "Відеоряд",
       "psychologist": "Психолог(иня)",
@@ -213,7 +213,7 @@
       "depression": "Депресія і афективні розлади",
       "anxiety": "Тривога",
       "panic_attack": "Панічні атаки",
-      "relationship": "Відносини",
+      "relationship": "Стосунки",
       "personal_development": "Особистий розвиток",
       "ptsd": "Посттравматичний стресовий розлад (PTSD)",
       "phobia": "Фобії",
@@ -229,7 +229,7 @@
       "bullying": "Булінг та тиск з боку однолітків",
       "grief": "Скорбота та втрати",
       "gender_identity": "Гендерна ідентичність",
-      "family": "Сім'я та батьківські конфлікти",
+      "family": "Сім'я та конфлікти з батьками",
       "low_mood": "Погіршення настрою та емоційного благополуччя",
       "hiv": "ВІЛ/СНІД",
       "loneliness": "Самотність та соціальна ізоляція",
@@ -258,12 +258,12 @@
       "partner_1_link": "https://www.gov.kz/memleket/entities/dsm?lang=en",
       "partner_2_title": "Міністерство освіти",
       "partner_2_description": "Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.",
-      "partner_2_link_placeholder": "Перейдіть на gov.kz",
+      "partner_2_link_placeholder": "Перейти на gov.kz",
       "partner_2_link": "https://www.gov.kz/memleket/entities/edu?lang=en"
     },
     "our-partners-overview": {
       "heading": "Наші партнери",
-      "button_label": "Читай далі",
+      "button_label": "Читати далі",
       "partner_1_title": "Міністерство охорони здоров'я",
       "partner_1_description": "Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.",
       "partner_1_link": "https://www.gov.kz/memleket/entities/dsm?lang=en",
@@ -292,7 +292,7 @@
       "answer_by": "Відповів/ла",
       "schedule_consultation": "Заплануй консультацію",
       "today": "Сьогодні",
-      "read_more": "Читай далі",
+      "read_more": "Читати далі",
       "all": "Усі",
       "all_languages": "Усі мови",
       "most_popular": "Найпопулярніше",
@@ -391,18 +391,18 @@
       "any": "Будь-який"
     },
     "organization-overview": {
-      "error_loading_data": "При загрузке данных организации возникла ошибка",
-      "other_services_label": "Другие услуги",
-      "address_label": "Адрес",
+      "error_loading_data": "При завантаженні даних виникла помилка",
+      "other_services_label": "Інші послуги",
+      "address_label": "Адреса",
       "sector_label": "Район",
-      "payment_methods_label": "Способы оплаты",
-      "user_interactions_label": "Режимы взаимодействия",
-      "property_types_label": "Тип собственности",
-      "work_with_label": "С кем работаем",
-      "offered_services_label": "Предлагаемые услуги",
-      "providers_label": "Поставщики",
-      "violence_victim_helpline": "Горячая линия для жертв насилия",
-      "individual_psychotherapy": "Индивидуальная психотерапия",
+      "payment_methods_label": "Способи оплати",
+      "user_interactions_label": "Режими співпраці",
+      "property_types_label": "Тип власності",
+      "work_with_label": "Працює з",
+      "offered_services_label": "Послуги",
+      "providers_label": "Консультанти",
+      "violence_victim_helpline": "Гаряча лінія для жертв насильства",
+      "individual_psychotherapy": "Індивідуальна психотерапія",
       "social_information_counseling": "Социальная информация и консультирование",
       "rehab_psycho_neuro_children": "Реабилитация и восстановление детей с психонейро‑двигательными расстройствами",
       "individual_psychological_counseling": "Индивидуальное психологическое консультирование",
@@ -490,17 +490,17 @@
     "my-qa-page": {
       "modal_heading": "Увійди на платформу, щоб запитати",
       "modal_text": "Щоб запитати і отримати відповідь, треба мати обліковий запис і увійти в систему",
-      "modal_button_label": "Запишіться на консультацію",
+      "modal_button_label": "Відкрити застосунок",
       "my_qa_answer_title": "Як працює Мої Q&A?",
       "my_qa_answer_text": "Мої Q&A - це розділ, що дозволяє ставити запитання та отримувати відповіді від фахівців uSupport.",
-      "modal_heading_consultation": "Увійдіть на платформу, щоб записатися на консультацію",
-      "modal_text_consultation": "Увійдіть на платформу, щоб записатися на консультацію з фахівцем."
+      "modal_heading_consultation": "Увійди на платформу, щоб записатися на консультацію",
+      "modal_text_consultation": "Увійди на платформу, щоб записатися на консультацію з фахівцем."
     },
     "video-information-page": {
       "more_videos": "Більше відео",
       "view_more": "Переглянути більше",
       "not_found": "Відео не знайдено",
-      "require_cookies": "Для перегляду цього відео, будь ласка, прийміть всі файли cookie.",
+      "require_cookies": "Для перегляду цього відео, будь ласка, прийми всі файли cookie.",
       "cookie_preferences": "Налаштування файлів cookie"
     },
     "podcast-information-page": {
@@ -513,14 +513,14 @@
     },
     "organization-overview-page": {
       "heading": "Огляд організації",
-      "subheading": "Детальний огляд профілю вибраної вами організації"
+      "subheading": "Детальний огляд профілю вибраної організації"
     }
   },
   "modals": {
     "question-details": {
       "today": "Сьогодні",
       "answered_by": "Відповів/ла:",
-      "schedule_consultation": "Заплануй консультацію"
+      "schedule_consultation": "Запланувати консультацію"
     },
     "how-it-works-my-qa": {
       "heading": "Як це працює",
@@ -529,10 +529,10 @@
       "subheading_3": "Всі користувачі можуть бачити відповідь, але ніхто не знає, що вона від тебе! Вона потрапляє в спільний простір з відповідними #тегами, щоб можна було повернутися до неї в майбутньому."
     },
     "filter-questions": {
-      "heading": "Фільтруй запитання за тегом",
-      "dropdown_label": "Вибери тег",
-      "cta_label": "Застосуй фільтри",
-      "secondary_cta_label": "Скинь фільтри"
+      "heading": "Фільтрувати запитання за тегом",
+      "dropdown_label": "Вибрати тег",
+      "cta_label": "Застосувати фільтри",
+      "secondary_cta_label": "Скинути фільтри"
     }
   }
 }
