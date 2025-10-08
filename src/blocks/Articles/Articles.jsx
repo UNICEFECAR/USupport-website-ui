@@ -23,6 +23,11 @@ import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./articles.scss";
 
+const PL_LANGUAGE_AGE_GROUP_IDS = {
+  pl: 13,
+  uk: 11,
+};
+
 /**
  * Calculate grid span for articles based on 2-3-1 pattern
  * @param {number} index - Article index
@@ -66,13 +71,6 @@ export const Articles = ({ debouncedSearchValue }) => {
   const [showAgeGroups, setShowAgeGroups] = useState(true);
 
   useEffect(() => {
-    const country = localStorage.getItem("country");
-    if (country === "PL") {
-      setShowAgeGroups(false);
-    }
-  }, []);
-
-  useEffect(() => {
     if (i18n.language !== usersLanguage) {
       setUsersLanguage(i18n.language);
     }
@@ -82,7 +80,25 @@ export const Articles = ({ debouncedSearchValue }) => {
   const [ageGroups, setAgeGroups] = useState();
   const [selectedAgeGroup, setSelectedAgeGroup] = useState();
 
+  const country = localStorage.getItem("country");
+  const isPLCountry = country === "PL";
+  const hardcodedAgeGroupId = isPLCountry
+    ? PL_LANGUAGE_AGE_GROUP_IDS[usersLanguage]
+    : null;
+  const shouldUseHardcodedAgeGroup = typeof hardcodedAgeGroupId === "number";
+
   const getAgeGroups = async () => {
+    if (shouldUseHardcodedAgeGroup) {
+      const hardcodedAgeGroup = {
+        label: "",
+        id: hardcodedAgeGroupId,
+        isSelected: true,
+      };
+      setSelectedAgeGroup(hardcodedAgeGroup);
+      setAgeGroups([hardcodedAgeGroup]);
+      setShowAgeGroups(false);
+      return [hardcodedAgeGroup];
+    }
     try {
       const res = await cmsSvc.getAgeGroups(usersLanguage);
       const ageGroupsData = res.data.map((age, index) => ({
@@ -97,13 +113,18 @@ export const Articles = ({ debouncedSearchValue }) => {
     }
   };
 
-  const ageGroupsQuery = useQuery(["ageGroups", usersLanguage], getAgeGroups, {
-    refetchOnWindowFocus: false,
-    refetchOnMount: true,
-    onSuccess: (data) => {
-      setAgeGroups([...data]);
-    },
-  });
+  const ageGroupsQuery = useQuery(
+    ["ageGroups", usersLanguage, hardcodedAgeGroupId],
+    getAgeGroups,
+    {
+      enabled: showAgeGroups || shouldUseHardcodedAgeGroup,
+      refetchOnWindowFocus: false,
+      refetchOnMount: true,
+      onSuccess: (data) => {
+        setAgeGroups([...data]);
+      },
+    }
+  );
 
   const handleAgeGroupOnPress = (index) => {
     const ageGroupsCopy = [...ageGroups];
