@@ -22,7 +22,6 @@ import {
   ContactUs,
   HowItWorks,
   NotFound,
-  AboutUs,
   InformationPortal,
   ArticleInformation,
   PrivacyPolicy,
@@ -137,7 +136,7 @@ function App() {
 const LanguageLayout = () => {
   const { language } = useParams();
 
-  const allLangs = ["en", "ru", "kk", "pl", "uk", "hy"];
+  const allLangs = ["en", "ru", "kk", "pl", "uk", "hy", "ro"];
 
   if (!allLangs.includes(language) || !language) {
     return <Navigate to="/en" />;
