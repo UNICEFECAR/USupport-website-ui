@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useCustomNavigate as useNavigate } from "#hooks";
+import { useSearchParams } from "react-router-dom";
+
+import {
+  useCustomNavigate as useNavigate,
+  useGetOrganizationMetadata,
+  useGetAllOrganizations,
+  useDebounce,
+} from "#hooks";
 
 import {
   Dropdown,
@@ -14,11 +21,6 @@ import {
   OrganizationOverview,
   Select,
 } from "@USupport-components-library/src";
-import {
-  useGetOrganizationMetadata,
-  useGetAllOrganizations,
-  useDebounce,
-} from "#hooks";
 
 import "./organizations.scss";
 
@@ -41,10 +43,18 @@ const INITIAL_FILTERS = {
 export const Organizations = () => {
   const { t } = useTranslation("blocks", { keyPrefix: "organizations" });
   const navigate = useNavigate();
-  const [mapControls, setMapControls] = React.useState(null);
+  const [mapControls, setMapControls] = useState(null);
 
-  const [filters, setFilters] = React.useState(INITIAL_FILTERS);
-  const [userLocation, setUserLocation] = React.useState(null);
+  const [filters, setFilters] = useState(INITIAL_FILTERS);
+  const [userLocation, setUserLocation] = useState(null);
+  const [hasAppliedSpecialisations, setHasAppliedSpecialisations] =
+    useState(false);
+
+  const [searchParams] = useSearchParams();
+  const specialisations = searchParams.get("specialisations");
+  const specialisationsArray = specialisations
+    ? specialisations?.replace(/^\[|\]$/g, "").split(",")
+    : [];
 
   const debouncedSearch = useDebounce(filters.search, 500);
 
@@ -60,6 +70,18 @@ export const Organizations = () => {
 
   const { data: metadata, isLoading: isMetadataLoading } =
     useGetOrganizationMetadata();
+
+  useEffect(() => {
+    if (
+      specialisationsArray.length > 0 &&
+      data &&
+      data.length > 0 &&
+      !hasAppliedSpecialisations
+    ) {
+      setHasAppliedSpecialisations(true);
+      handleChange("specialisations", specialisationsArray);
+    }
+  }, [specialisationsArray, data, hasAppliedSpecialisations]);
 
   const handleChange = (field, value) => {
     setFilters({

@@ -149,7 +149,9 @@
       "heading": "SOS center",
       "button_link": "Visit website",
       "button_call": "Contact now",
-      "no_results": "There are no results for the current selected country and language."
+      "no_results": "There are no results for the current selected country and language.",
+      "other_emergency_services": "Other emergency service providers",
+      "browse": "Browse"
     },
     "we-help": {
       "heading_1": "About Us",
