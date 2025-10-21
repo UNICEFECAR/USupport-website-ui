@@ -149,7 +149,9 @@
       "heading": "Centrum SOS",
       "button_link": "Odwiedź stronę",
       "button_call": "Skontaktuj się teraz",
-      "no_results": "Brak wyników dla aktualnie wybranego kraju i języka."
+      "no_results": "Brak wyników dla aktualnie wybranego kraju i języka.",
+      "other_emergency_services": "Other emergency service providers",
+      "browse": "Browse"
     },
     "we-help": {
       "heading_1": "O nas",
