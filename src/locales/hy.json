@@ -149,7 +149,9 @@
       "heading": "SOS կենտրոն",
       "button_link": "Այցելեք կայքէջ",
       "button_call": "Կապվեք հիմա",
-      "no_results": "Ընտրված տվյալ երկրի և լեզվի վերաբերյալ արդյունքներ չեն գտնվել"
+      "no_results": "Ընտրված տվյալ երկրի և լեզվի վերաբերյալ արդյունքներ չեն գտնվել",
+      "other_emergency_services": "Other emergency service providers",
+      "browse": "Browse"
     },
     "we-help": {
       "heading_1": "Մեր մասին",

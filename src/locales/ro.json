@@ -149,7 +149,9 @@
       "heading": "Centrul SOS",
       "button_link": "Vizitați site-ul web",
       "button_call": "Contact acum",
-      "no_results": "Nu există rezultate pentru țara și limba selectate."
+      "no_results": "Nu există rezultate pentru țara și limba selectate.",
+      "other_emergency_services": "Alți furnizori de servicii de urgență",
+      "browse": "Răsfoiește"
     },
     "we-help": {
       "heading_1": "Despre noi",

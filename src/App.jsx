@@ -35,7 +35,10 @@ import {
   Organizations,
   OrganizationOverview,
 } from "#pages";
-import { ThemeContext } from "@USupport-components-library/utils";
+import {
+  ThemeContext,
+  generateVisitorId,
+} from "@USupport-components-library/utils";
 import { userSvc } from "@USupport-components-library/services";
 
 import { useEventListener } from "#hooks";
@@ -89,6 +92,12 @@ function App() {
     const hasHandledCookies = !!Number(
       localStorage.getItem("hasHandledCookies")
     );
+    const visitorId = localStorage.getItem("visitorId");
+
+    if (!visitorId) {
+      const visitorId = generateVisitorId();
+      localStorage.setItem("visitorId", visitorId);
+    }
 
     setCookieState({
       hasAcceptedCookies,
@@ -193,6 +202,17 @@ const Root = () => {
   }, []);
 
   useEventListener("countryChanged", handler);
+
+  useQuery({
+    queryKey: ["addGlobalVisit", country],
+    queryFn: async () => {
+      await userSvc.addCountryEvent({
+        eventType: "global_visit",
+      });
+      return true;
+    },
+    enabled: country === "global",
+  });
 
   useQuery({
     queryKey: ["addPlatformAccess", country],

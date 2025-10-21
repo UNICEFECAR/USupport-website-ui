@@ -129,7 +129,9 @@
       "heading": "SOS-орталық",
       "button_link": "Веб-сайтқа кіру",
       "button_call": "Қазір хабарласі",
-      "no_results": "Таңдалған ел мен тіл үшін ештеңе табылмады."
+      "no_results": "Таңдалған ел мен тіл үшін ештеңе табылмады.",
+      "other_emergency_services": "Other emergency service providers",
+      "browse": "Browse"
     },
     "we-help": {
       "heading_1": "Біз туралы",
