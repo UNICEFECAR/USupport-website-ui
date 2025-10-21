@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 import {
   useCustomNavigate as useNavigate,
@@ -21,6 +22,8 @@ import {
   OrganizationOverview,
   Select,
 } from "@USupport-components-library/src";
+
+import { userSvc } from "@USupport-components-library/services";
 
 import "./organizations.scss";
 
@@ -57,6 +60,15 @@ export const Organizations = () => {
     : [];
 
   const debouncedSearch = useDebounce(filters.search, 500);
+
+  const { data: organizationsKey, isLoading: isOrganizationsKeyLoading } =
+    useQuery({
+      queryKey: ["organizationsKey"],
+      queryFn: async () => {
+        const response = await userSvc.getOrganizationKey("web");
+        return response.data.organizationsKey;
+      },
+    });
 
   const { data, isLoading } = useGetAllOrganizations({
     search: debouncedSearch,
@@ -281,14 +293,17 @@ export const Organizations = () => {
       >
         {t("reset_filters")}
       </Button>
-      <InteractiveMap
-        data={data}
-        onMapReady={handleMapReady}
-        t={t}
-        navigate={navigate}
-        userLocation={userLocation}
-        setUserLocation={setUserLocation}
-      />
+      {!isOrganizationsKeyLoading && (
+        <InteractiveMap
+          data={data}
+          onMapReady={handleMapReady}
+          t={t}
+          navigate={navigate}
+          userLocation={userLocation}
+          setUserLocation={setUserLocation}
+          organizationsKey={organizationsKey}
+        />
+      )}
       <Grid md={8} lg={12} classes="organizations__grid">
         {isLoading ? <Loading /> : renderOrganizations()}
       </Grid>
