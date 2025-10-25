@@ -10,12 +10,12 @@ import {
   Videos,
   Podcasts,
 } from "#blocks";
+import { useDebounce } from "#hooks";
 
 import {
   ThemeContext,
   useWindowDimensions,
 } from "@USupport-components-library/utils";
-import { useDebounce } from "#hooks";
 import {
   Block,
   InputSearch,
@@ -33,7 +33,9 @@ export const InformationPortal = () => {
   const { theme, isPodcastsActive, isVideosActive } = useContext(ThemeContext);
   const { width } = useWindowDimensions();
   const [searchParams, setSearchParams] = useSearchParams();
+
   const tab = searchParams.get("tab");
+  const IS_PS = localStorage.getItem("country") === "PS";
 
   const [contentTypes, setContentTypes] = useState([]);
 
@@ -159,8 +161,8 @@ export const InformationPortal = () => {
       {selectedContentType === "podcasts" && (
         <Podcasts debounceSearchValue={debouncedSearchValue} />
       )}
-      <Question />
-      <DownloadApp />
+      {!IS_PS && <Question />}
+      {!IS_PS && <DownloadApp />}
     </Page>
   );
 };
