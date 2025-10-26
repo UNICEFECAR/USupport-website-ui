@@ -41,15 +41,19 @@ export const CustomAboutUs = () => {
     }
   }, []);
   useEventListener("countryChanged", handler);
-
+  const IS_PS = localStorage.getItem("country") === "PS";
   const { isLoading, data } = useQuery({
     queryKey: ["about-us", country, selectedCountry, i18n.language, countries],
     queryFn: async () => {
       const localStorageCountry = localStorage.getItem("country");
-      const res = await cmsSvc.getAbousUsContentForCountry({
+      const params = {
         country: localStorageCountry.toLocaleUpperCase(),
         language: i18n.language,
-      });
+      };
+      if (IS_PS) {
+        params.is_playandheal = true;
+      }
+      const res = await cmsSvc.getAbousUsContentForCountry(params);
       return res;
     },
     enabled: !!countries,

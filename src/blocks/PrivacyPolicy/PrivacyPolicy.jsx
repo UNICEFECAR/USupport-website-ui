@@ -34,6 +34,8 @@ export const PrivacyPolicy = () => {
   const country = window.location.hostname.split(".")[0];
   const countries = queryClient.getQueryData(["countries"]);
 
+  const IS_PS = localStorage.getItem("country") === "PS";
+
   const handler = useCallback(() => {
     const newCountry = localStorage.getItem("country");
     if (newCountry) {
@@ -56,13 +58,15 @@ export const PrivacyPolicy = () => {
       selectedCountry,
       i18n.language,
       countries,
+      IS_PS,
     ],
     queryFn: async () => {
       const localStorageCountry = localStorage.getItem("country");
       const { data } = await cmsSvc.getPolicies(
         i18n.language,
         localStorageCountry.toLocaleUpperCase(),
-        "website"
+        "website",
+        IS_PS
       );
       return data;
     },
