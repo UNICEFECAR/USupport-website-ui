@@ -74,6 +74,8 @@ export const Page = ({
   const [selectedCountry, setSelectedCountry] = useState();
   const [langs, setLangs] = useState([]);
 
+  const IS_PS = localStorageCountry === "PS";
+
   const changeLanguage = (language) => {
     i18n.changeLanguage(language.value);
     localStorage.setItem("language", language.value);
@@ -89,7 +91,6 @@ export const Page = ({
     const subdomain = window.location.hostname.split(".")[0];
     const res = await countrySvc.getActiveCountriesWithLanguages();
     let hasSetDefaultCountry = false;
-
     if (
       subdomain &&
       subdomain !== "www" &&
@@ -101,6 +102,7 @@ export const Page = ({
           ?.alpha2 || localStorageCountry;
       if (localStorageCountry) {
         localStorage.setItem("country", localStorageCountry);
+        // window.dispatchEvent(new Event("countryChanged"));
       }
     }
 
@@ -203,6 +205,7 @@ export const Page = ({
       setIsPodcastsActive(true);
       setIsVideosActive(true);
     }
+
     if (!hasSetDefaultCountry && !localStorageCountry) {
       localStorage.setItem("country", "global");
       window.dispatchEvent(new Event("countryChanged"));
@@ -225,7 +228,7 @@ export const Page = ({
   const { data: countries } = useQuery(["countries"], fetchCountries);
   const country = localStorage.getItem("country");
 
-  const pages = [
+  let pages = [
     { name: t("page_1"), url: "/", exact: true, icon: "home" },
     { name: t("page_2"), url: "/how-it-works", icon: "info" },
     {
@@ -247,11 +250,26 @@ export const Page = ({
         },
   ];
 
+  if (IS_PS) {
+    pages = [
+      {
+        name: t("page_3"),
+        url: "/about-us",
+        icon: "two-people",
+      },
+      {
+        name: t("page_4"),
+        url: "/information-portal?tab=articles",
+        icon: "activities",
+      },
+    ];
+  }
+
   const footerLists = {
     list1: [
       {
         name: t("footer_1"),
-        url: `/about-us`,
+        url: "/about-us",
       },
       { name: t("footer_2"), url: "/information-portal?tab=articles" },
       { name: t("page_6"), url: "/my-qa" },
@@ -329,10 +347,10 @@ export const Page = ({
       <Navbar
         pages={pages}
         showCta
-        showCountries
+        showCountries={!IS_PS}
         languageLabel={t("language_label")}
         countryLabel={t("country_label")}
-        buttonText={t("button_text")}
+        buttonText={IS_PS ? null : t("button_text")}
         i18n={i18n}
         navigate={navigateTo}
         NavLink={NavLink}
@@ -373,12 +391,14 @@ export const Page = ({
         {children}
       </div>
       {themeButton()}
-      <CircleIconButton
-        iconName="phone-emergency"
-        classes="page__emergency-button"
-        onClick={() => navigateTo(`/${localStorageLanguage}/sos-center`)}
-        label={t("emergency_button")}
-      />
+      {!IS_PS && (
+        <CircleIconButton
+          iconName="phone-emergency"
+          classes="page__emergency-button"
+          onClick={() => navigateTo(`/${localStorageLanguage}/sos-center`)}
+          label={t("emergency_button")}
+        />
+      )}
       <Footer
         lists={footerLists}
         navigate={navigateTo}

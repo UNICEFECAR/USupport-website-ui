@@ -13,6 +13,7 @@ import {
   Like,
   Loading,
 } from "@USupport-components-library/src";
+import { PDFViewer } from "#blocks/PDFViewer/PDFViewer";
 import { userSvc } from "@USupport-components-library/services";
 import {
   ThemeContext,
@@ -59,6 +60,8 @@ const constructShareUrl = ({ contentType, id, name }) => {
  */
 export const ArticleView = ({ articleData, t, language }) => {
   const { name } = useParams();
+
+  const IS_RTL = localStorage.getItem("language") === "ar";
 
   const creator = articleData.creator ? articleData.creator : null;
   const { theme } = useContext(ThemeContext);
@@ -144,8 +147,10 @@ export const ArticleView = ({ articleData, t, language }) => {
     toast(t("share_success"));
   };
 
+  const SHOW_DOWNLOAD = !articleData.pdfUrl;
+
   return (
-    <Block classes="article-view">
+    <Block classes={`article-view ${IS_RTL ? "article-view--rtl" : ""}`}>
       <Grid classes="article-view__main-grid">
         <GridItem md={8} lg={12} classes="article-view__title-item">
           <div className="article-view__title-row">
@@ -171,31 +176,34 @@ export const ArticleView = ({ articleData, t, language }) => {
             {" "}
             {articleData.readingTime} {t("min_read")}
           </p>
-
-          <div
-            onClick={handleExportToPdf}
-            className="article-view__details-item__download"
-          >
-            {isExportingPdf ? (
-              <Loading padding="0px" size="sm" />
-            ) : (
-              <Icon
-                color={theme === "dark" ? "#ffffff" : "#66768d"}
-                name="download"
-                size="sm"
-              />
-            )}
-          </div>
-          <div
-            className="article-view__details-item__download"
-            onClick={handleCopyLink}
-          >
-            <Icon
-              color={theme === "dark" ? "#ffffff" : "#66768d"}
-              name="share"
-              size="sm"
-            />
-          </div>
+          {SHOW_DOWNLOAD && (
+            <React.Fragment>
+              <div
+                onClick={handleExportToPdf}
+                className="article-view__details-item__download"
+              >
+                {isExportingPdf ? (
+                  <Loading padding="0px" size="sm" />
+                ) : (
+                  <Icon
+                    color={theme === "dark" ? "#ffffff" : "#66768d"}
+                    name="download"
+                    size="sm"
+                  />
+                )}
+              </div>
+              <div
+                className="article-view__details-item__download"
+                onClick={handleCopyLink}
+              >
+                <Icon
+                  color={theme === "dark" ? "#ffffff" : "#66768d"}
+                  name="share"
+                  size="sm"
+                />
+              </div>
+            </React.Fragment>
+          )}
         </GridItem>
 
         <GridItem xs={3} md={6} lg={8} classes="article-view__labels-item">
@@ -210,25 +218,33 @@ export const ArticleView = ({ articleData, t, language }) => {
           })}
         </GridItem>
 
-        <GridItem xs={1} md={2} lg={4} classes="article-view__like-item">
-          <Like
-            likes={articleData.likes || 0}
-            isLiked={articleData.contentRating?.isLikedByUser || false}
-            dislikes={articleData.dislikes || 0}
-            isDisliked={articleData.contentRating?.isDislikedByUser || false}
-          />
-        </GridItem>
+        {SHOW_DOWNLOAD && (
+          <GridItem xs={1} md={2} lg={4} classes="article-view__like-item">
+            <Like
+              likes={articleData.likes || 0}
+              isLiked={articleData.contentRating?.isLikedByUser || false}
+              dislikes={articleData.dislikes || 0}
+              isDisliked={articleData.contentRating?.isDislikedByUser || false}
+            />
+          </GridItem>
+        )}
+
+        {!articleData.pdfUrl && (
+          <GridItem md={8} lg={12}>
+            <img
+              className="article-view__image-item"
+              src={
+                articleData.imageMedium
+                  ? articleData.imageMedium
+                  : "https://picsum.photos/300/400"
+              }
+              alt=""
+            />
+          </GridItem>
+        )}
 
         <GridItem md={8} lg={12}>
-          <img
-            className="article-view__image-item"
-            src={
-              articleData.imageMedium
-                ? articleData.imageMedium
-                : "https://picsum.photos/300/400"
-            }
-            alt=""
-          />
+          <PDFViewer pdfUrl={articleData.pdfUrl} />
         </GridItem>
 
         <GridItem md={8} lg={12} classes="article-view__body-item">

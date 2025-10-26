@@ -4,6 +4,11 @@
   text-align: left;
   margin-top: $spacing_1_6;
 
+  &--rtl {
+    direction: rtl;
+    text-align: right;
+  }
+
   @media screen and (min-width: $screen-md) {
     padding: 0 $spacing_10_0;
   }
@@ -13,6 +18,7 @@
 
   &__main-grid {
     grid-gap: 0;
+    direction: rtl;
   }
 
   &__image-item {
@@ -163,5 +169,6 @@
 
   &__description-item {
     padding-top: $spacing_2_5;
+    padding-bottom: $spacing_2_5;
   }
 }

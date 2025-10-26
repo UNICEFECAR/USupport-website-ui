@@ -15,6 +15,7 @@ import {
 } from "#blocks";
 
 import { useEventListener } from "#hooks";
+import { Navigate } from "react-router-dom";
 
 /**
  * Landing
@@ -39,6 +40,18 @@ export function Landing() {
     setShowCouponSection(country !== "KZ");
     setShowProvidersSection(!(country === "global" || country === "RO"));
   });
+
+  const IS_PS = localStorage.getItem("country") === "PS";
+
+  if (IS_PS) {
+    return (
+      <Navigate
+        to={`/${localStorage.getItem(
+          "language"
+        )}/information-portal?tab=articles`}
+      />
+    );
+  }
 
   return (
     <Page>
