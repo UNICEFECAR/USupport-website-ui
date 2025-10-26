@@ -26,12 +26,14 @@ export const TermsOfUse = () => {
   const { i18n, t } = useTranslation("blocks", { keyPrefix: "terms-of-use" });
   const navigate = useNavigate();
 
+  const IS_PS = localStorage.getItem("country") === "PS";
+  const IS_RTL = localStorage.getItem("language") === "ar";
+
   //--------------------- Country Change Event Listener ----------------------//
   const [selectedCountry, setSelectedCountry] = useState(
     localStorage.getItem("country") || "KZ"
   );
 
-  const IS_PS = localStorage.getItem("country") === "PS";
   const country = window.location.hostname.split(".")[0];
   const countries = queryClient.getQueryData(["countries"]);
 
@@ -73,7 +75,7 @@ export const TermsOfUse = () => {
   });
 
   return (
-    <Block classes="terms-of-use">
+    <Block classes={`terms-of-use ${IS_RTL ? "terms-of-use--rtl" : ""}`}>
       <Grid>
         <GridItem xs={4} md={8} lg={12} classes="privacy-policy__heading-item">
           <h2>{t("heading")}</h2>

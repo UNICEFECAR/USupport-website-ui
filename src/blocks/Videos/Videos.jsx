@@ -49,6 +49,9 @@ export const Videos = ({ debouncedSearchValue }) => {
   const isNotDescktop = width < 1366;
   const [usersLanguage, setUsersLanguage] = useState(i18n.language);
 
+  const IS_PS = localStorage.getItem("country") === "PS";
+  const IS_RTL = localStorage.getItem("language") === "ar";
+
   const [categories, setCategories] = useState();
   const [selectedCategory, setSelectedCategory] = useState();
   const [videos, setVideos] = useState([]);
@@ -239,7 +242,9 @@ export const Videos = ({ debouncedSearchValue }) => {
     ["newestVideo", usersLanguage, currentCountry, shouldFetchIds],
     getNewestVideo,
     {
-      enabled: shouldFetchIds
+      enabled: IS_PS
+        ? false
+        : shouldFetchIds
         ? !videoIdsQuery.isLoading &&
           !!videoIdsQuery.data &&
           videoIdsQuery.data.length > 0
@@ -308,7 +313,7 @@ export const Videos = ({ debouncedSearchValue }) => {
             </GridItem>
           )}
 
-          {(isNewestVideoFetching || newestVideo) && (
+          {(isNewestVideoFetching || (newestVideo && !IS_PS)) && (
             <GridItem md={8} lg={12} classes="videos__most-important-item">
               {isNewestVideoFetching ? (
                 <Loading />
@@ -340,7 +345,7 @@ export const Videos = ({ debouncedSearchValue }) => {
             </GridItem>
           )}
 
-          {showCategories && (
+          {showCategories && !IS_PS && (
             <GridItem md={8} lg={12} classes="videos__categories-item">
               {categories && (
                 <div className="videos__categories-item__container">
