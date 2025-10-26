@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useNavigate, NavLink, Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation, Trans } from "react-i18next";
 import classNames from "classnames";
@@ -20,7 +20,11 @@ import {
 } from "@USupport-components-library/utils";
 import { PasswordModal } from "@USupport-components-library/src";
 
-import { useError, useEventListener } from "#hooks";
+import {
+  useError,
+  useEventListener,
+  useCustomNavigate as useNavigate,
+} from "#hooks";
 
 import "./page.scss";
 
@@ -265,7 +269,7 @@ export const Page = ({
     ];
   }
 
-  const footerLists = {
+  let footerLists = {
     list1: [
       {
         name: t("footer_1"),
@@ -285,6 +289,23 @@ export const Page = ({
       { name: t("contact_us"), url: "/contact-us" },
     ],
   };
+
+  if (IS_PS) {
+    footerLists = {
+      list1: [
+        {
+          name: t("footer_1"),
+          url: "/about-us",
+        },
+        { name: t("footer_2"), url: "/information-portal?tab=articles" },
+        { name: t("footer_4"), url: "/terms-of-use", exact: true },
+        { name: t("footer_5"), url: "/privacy-policy" },
+        { name: t("footer_6"), url: "/cookie-policy" },
+      ],
+      list2: [],
+      list3: [],
+    };
+  }
 
   const handleGoBack = () => navigateTo(-1);
 
@@ -400,6 +421,7 @@ export const Page = ({
         />
       )}
       <Footer
+        showSocials={!IS_PS}
         lists={footerLists}
         navigate={navigateTo}
         Link={Link}
