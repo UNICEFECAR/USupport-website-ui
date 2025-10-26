@@ -31,7 +31,10 @@ export const CustomAboutUs = () => {
   const country = window.location.hostname.split(".")[0];
 
   const countries = queryClient.getQueryData(["countries"]);
+  const IS_PS = localStorage.getItem("country") === "PS";
 
+  const IS_RTL = localStorage.getItem("language") === "ar";
+  console.log(localStorage.getItem("language"));
   const handler = useCallback(() => {
     const newCountry = localStorage.getItem("country");
     if (newCountry) {
@@ -40,8 +43,9 @@ export const CustomAboutUs = () => {
       setSelectedCountry(localStorage.getItem("country"));
     }
   }, []);
+
   useEventListener("countryChanged", handler);
-  const IS_PS = localStorage.getItem("country") === "PS";
+
   const { isLoading, data } = useQuery({
     queryKey: ["about-us", country, selectedCountry, i18n.language, countries],
     queryFn: async () => {
@@ -58,8 +62,9 @@ export const CustomAboutUs = () => {
     },
     enabled: !!countries,
   });
+
   return (
-    <Block classes="custom-about-us">
+    <Block classes={`custom-about-us ${IS_RTL ? "custom-about-us--rtl" : ""}`}>
       {isLoading ? (
         <Loading />
       ) : (

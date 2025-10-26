@@ -428,7 +428,9 @@ export const Articles = ({ debouncedSearchValue }) => {
     getNewestArticle,
     {
       // Run the query when the getCategories and getAgeGroups queries have finished running
-      enabled: shouldFetchIds
+      enabled: IS_PS
+        ? false
+        : shouldFetchIds
         ? !articleIdsQuery.isLoading && articleIdsQuery.data?.length > 0
         : true,
       refetchOnWindowFocus: false,
@@ -445,155 +447,166 @@ export const Articles = ({ debouncedSearchValue }) => {
 
   return (
     <Block classes="articles">
-      {newestArticle && ageGroups?.length > 0 && categories?.length > 0 && (
-        <InfiniteScroll
-          dataLength={articles?.length || 0}
-          next={getMoreArticles}
-          hasMore={hasMore}
-          loader={<Loading size="lg" />}
-          // endMessage={} // Add end message here if required
-        >
-          <Grid classes="articles__main-grid">
-            <GridItem md={8} lg={12} classes="articles__heading-item">
-              {theme === "dark" && (
-                <h2 className="articles__heading-text">{t("heading")}</h2>
-              )}
-            </GridItem>
-            {(newestArticle || isNewestArticleFetched) && (
-              <GridItem md={8} lg={12} classes="articles__most-important-item">
-                {newestArticle ? (
-                  <CardMedia
-                    type={isNotDescktop ? "portrait" : "landscape"}
-                    size="lg"
-                    title={newestArticle.title}
-                    image={newestArticle.imageMedium}
-                    description={newestArticle.description}
-                    labels={newestArticle.labels}
-                    creator={newestArticle.creator}
-                    readingTime={newestArticle.readingTime}
-                    categoryName={newestArticle.categoryName}
-                    showDescription={true}
-                    likes={newestArticle.likes}
-                    dislikes={newestArticle.dislikes}
-                    t={t}
-                    onClick={() =>
-                      handleRedirect(newestArticle.id, newestArticle.title)
-                    }
-                  />
-                ) : isNewestArticleLoading ? (
-                  <Loading size="lg" />
-                ) : null}
+      {(newestArticle || IS_PS) &&
+        ageGroups?.length > 0 &&
+        categories?.length > 0 && (
+          <InfiniteScroll
+            dataLength={articles?.length || 0}
+            next={getMoreArticles}
+            hasMore={hasMore}
+            loader={<Loading size="lg" />}
+            // endMessage={} // Add end message here if required
+          >
+            <Grid classes="articles__main-grid">
+              <GridItem md={8} lg={12} classes="articles__heading-item">
+                {theme === "dark" && (
+                  <h2 className="articles__heading-text">{t("heading")}</h2>
+                )}
               </GridItem>
-            )}
+              {(newestArticle || isNewestArticleFetched) && (
+                <GridItem
+                  md={8}
+                  lg={12}
+                  classes="articles__most-important-item"
+                >
+                  {newestArticle ? (
+                    <CardMedia
+                      type={isNotDescktop ? "portrait" : "landscape"}
+                      size="lg"
+                      title={newestArticle.title}
+                      image={newestArticle.imageMedium}
+                      description={newestArticle.description}
+                      labels={newestArticle.labels}
+                      creator={newestArticle.creator}
+                      readingTime={newestArticle.readingTime}
+                      categoryName={newestArticle.categoryName}
+                      showDescription={true}
+                      likes={newestArticle.likes}
+                      dislikes={newestArticle.dislikes}
+                      t={t}
+                      onClick={() =>
+                        handleRedirect(newestArticle.id, newestArticle.title)
+                      }
+                    />
+                  ) : isNewestArticleLoading ? (
+                    <Loading size="lg" />
+                  ) : null}
+                </GridItem>
+              )}
 
-            {showAgeGroups && (
-              <GridItem
-                md={8}
-                lg={12}
-                classes={`articles__age-groups-item ${
-                  IS_RTL ? "articles__age-groups-item--rtl" : ""
-                }`}
-              >
-                <div className="articles__age-groups-item__container">
-                  {ageGroups && showAgeGroups && (
-                    <TabsUnderlined
-                      options={ageGroups}
-                      handleSelect={handleAgeGroupOnPress}
-                      textType="h3"
+              {showAgeGroups && !IS_PS && (
+                <GridItem
+                  md={8}
+                  lg={12}
+                  classes={`articles__age-groups-item ${
+                    IS_RTL ? "articles__age-groups-item--rtl" : ""
+                  }`}
+                >
+                  <div className="articles__age-groups-item__container">
+                    {ageGroups && showAgeGroups && (
+                      <TabsUnderlined
+                        options={ageGroups}
+                        handleSelect={handleAgeGroupOnPress}
+                        textType="h3"
+                      />
+                    )}
+                  </div>
+                </GridItem>
+              )}
+
+              {!IS_PS && (
+                <GridItem
+                  md={8}
+                  lg={12}
+                  classes={`articles__categories-item ${
+                    IS_RTL ? "articles__categories-item--rtl" : ""
+                  }`}
+                >
+                  {categories && (
+                    <Tabs
+                      options={categoriesToShow}
+                      handleSelect={handleCategoryOnPress}
+                      t={t}
                     />
                   )}
-                </div>
-              </GridItem>
-            )}
-
-            <GridItem
-              md={8}
-              lg={12}
-              classes={`articles__categories-item ${
-                IS_RTL ? "articles__categories-item--rtl" : ""
-              }`}
-            >
-              {categories && (
-                <Tabs
-                  options={categoriesToShow}
-                  handleSelect={handleCategoryOnPress}
-                  t={t}
-                />
+                </GridItem>
               )}
-            </GridItem>
 
-            <GridItem md={8} lg={12} classes="articles__articles-item">
-              <div style={{ position: "relative", minHeight: "20rem" }}>
-                {/* Loading overlay for category changes - only show when refetching existing data */}
-                {isArticlesFetching && articles?.length > 0 && (
-                  <div className="articles__articles-item__loader-overlay">
-                    <Loading size="lg" />
-                  </div>
-                )}
-
-                {/* Show articles when available and not in initial loading state */}
-                {articles?.length > 0 && !isArticlesLoading && (
-                  <div className="articles__custom-grid">
-                    {articles?.map((article, index) => {
-                      const articleData = destructureArticleData(article);
-                      const gridSpan = getGridSpanForIndex(index, [2, 3, 1]);
-
-                      return (
-                        <div
-                          key={index}
-                          className="articles__card-wrapper"
-                          style={{ gridColumn: `span ${gridSpan}` }}
-                        >
-                          <CardMedia
-                            type={
-                              gridSpan === 12 && !isNotDescktop
-                                ? "landscape"
-                                : "portrait"
-                            }
-                            size={
-                              gridSpan === 12 && !isNotDescktop ? "lg" : "sm"
-                            }
-                            title={articleData.title}
-                            image={articleData.imageMedium}
-                            description={articleData.description}
-                            labels={articleData.labels || []}
-                            creator={articleData.creator}
-                            readingTime={articleData.readingTime}
-                            likes={articleData.likes || 0}
-                            dislikes={articleData.dislikes || 0}
-                            t={t}
-                            categoryName={articleData.categoryName}
-                            onClick={() =>
-                              handleRedirect(articleData.id, articleData.title)
-                            }
-                          />
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-
-                {/* Show initial loading state when no articles yet */}
-                {isArticlesLoading && !articles?.length && (
-                  <div style={{ padding: "2rem", textAlign: "center" }}>
-                    <Loading size="lg" />
-                  </div>
-                )}
-
-                {/* No results message */}
-                {!articles?.length &&
-                  !isArticlesLoading &&
-                  !isArticlesFetching &&
-                  isArticlesFetched && (
-                    <div className="articles__no-results-container">
-                      <p>{t("no_results")}</p>
+              <GridItem md={8} lg={12} classes="articles__articles-item">
+                <div style={{ position: "relative", minHeight: "20rem" }}>
+                  {/* Loading overlay for category changes - only show when refetching existing data */}
+                  {isArticlesFetching && articles?.length > 0 && (
+                    <div className="articles__articles-item__loader-overlay">
+                      <Loading size="lg" />
                     </div>
                   )}
-              </div>
-            </GridItem>
-          </Grid>
-        </InfiniteScroll>
-      )}
+
+                  {/* Show articles when available and not in initial loading state */}
+                  {articles?.length > 0 && !isArticlesLoading && (
+                    <div className="articles__custom-grid">
+                      {articles?.map((article, index) => {
+                        const articleData = destructureArticleData(article);
+                        const gridSpan = getGridSpanForIndex(index, [2, 3, 1]);
+
+                        return (
+                          <div
+                            key={index}
+                            className="articles__card-wrapper"
+                            style={{ gridColumn: `span ${gridSpan}` }}
+                          >
+                            <CardMedia
+                              type={
+                                gridSpan === 12 && !isNotDescktop
+                                  ? "landscape"
+                                  : "portrait"
+                              }
+                              size={
+                                gridSpan === 12 && !isNotDescktop ? "lg" : "sm"
+                              }
+                              title={articleData.title}
+                              image={articleData.imageMedium}
+                              description={articleData.description}
+                              labels={articleData.labels || []}
+                              creator={articleData.creator}
+                              readingTime={articleData.readingTime}
+                              likes={articleData.likes || 0}
+                              dislikes={articleData.dislikes || 0}
+                              t={t}
+                              categoryName={articleData.categoryName}
+                              onClick={() =>
+                                handleRedirect(
+                                  articleData.id,
+                                  articleData.title
+                                )
+                              }
+                            />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {/* Show initial loading state when no articles yet */}
+                  {isArticlesLoading && !articles?.length && (
+                    <div style={{ padding: "2rem", textAlign: "center" }}>
+                      <Loading size="lg" />
+                    </div>
+                  )}
+
+                  {/* No results message */}
+                  {!articles?.length &&
+                    !isArticlesLoading &&
+                    !isArticlesFetching &&
+                    isArticlesFetched && (
+                      <div className="articles__no-results-container">
+                        <p>{t("no_results")}</p>
+                      </div>
+                    )}
+                </div>
+              </GridItem>
+            </Grid>
+          </InfiniteScroll>
+        )}
 
       {/* Only show main loading when initially loading all data */}
       {!newestArticle &&
