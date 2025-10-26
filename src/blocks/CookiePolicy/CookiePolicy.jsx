@@ -29,6 +29,8 @@ export const CookiePolicy = () => {
   //--------------------- Country Change Event Listener ----------------------//
   const [currentCountry, setCurrentCountry] = useState();
 
+  const IS_PS = localStorage.getItem("country") === "PS";
+
   useEffect(() => {
     const country = localStorage.getItem("country");
     if (country) {
@@ -60,7 +62,8 @@ export const CookiePolicy = () => {
     const { data } = await cmsSvc.getCookiePolicy(
       i18n.language,
       currentCountry,
-      "website"
+      "website",
+      IS_PS
     );
 
     return data;
@@ -71,7 +74,7 @@ export const CookiePolicy = () => {
     isLoading: cookiePolicyLoading,
     isFetched: isCookiePolicyFetched,
   } = useQuery(
-    ["cookie-policy", currentCountry, i18n.language],
+    ["cookie-policy", currentCountry, i18n.language, IS_PS],
     getCookiePolicy
   );
   return (

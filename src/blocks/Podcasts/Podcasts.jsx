@@ -1,4 +1,10 @@
-import { useState, useEffect, useCallback, useContext } from "react";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useContext,
+  useMemo,
+} from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -79,7 +85,7 @@ export const Podcasts = ({ debouncedSearchValue }) => {
   });
 
   const handleCategoryOnPress = (index) => {
-    const updated = categories.map((cat, i) => ({
+    const updated = categoriesToShow.map((cat, i) => ({
       ...cat,
       isSelected: i === index,
     }));
@@ -129,24 +135,23 @@ export const Podcasts = ({ debouncedSearchValue }) => {
     return data.data;
   };
 
-  const { isLoading: isPodcastsLoading, isFetching: isPodcastsFetching } =
-    useQuery(
-      [
-        "podcasts",
-        debouncedSearchValue,
-        selectedCategory,
-        podcastIdsQuery.data,
-        usersLanguage,
-        shouldFetchIds,
-      ],
-      getPodcastsData,
-      {
-        enabled:
-          (shouldFetchIds
-            ? !podcastIdsQuery.isLoading && !!podcastIdsQuery.data
-            : true) && !!selectedCategory,
-      }
-    );
+  const podcastsQuery = useQuery(
+    [
+      "podcasts",
+      debouncedSearchValue,
+      selectedCategory,
+      podcastIdsQuery.data,
+      usersLanguage,
+      shouldFetchIds,
+    ],
+    getPodcastsData,
+    {
+      enabled:
+        (shouldFetchIds
+          ? !podcastIdsQuery.isLoading && !!podcastIdsQuery.data
+          : true) && !!selectedCategory,
+    }
+  );
 
   const getMorePodcasts = async () => {
     const categoryId =
@@ -164,8 +169,9 @@ export const Podcasts = ({ debouncedSearchValue }) => {
     };
     const { data } = await cmsSvc.getPodcasts(queryParams);
     const newData = data.data || [];
+    const currentPodcastsLength = podcasts.length + newData.length;
     setPodcasts((prev) => [...prev, ...newData]);
-    if (podcasts.length + newData.length >= numberOfPodcasts) setHasMore(false);
+    if (currentPodcastsLength >= numberOfPodcasts) setHasMore(false);
   };
 
   const getNewestPodcast = async () => {
@@ -183,6 +189,33 @@ export const Podcasts = ({ debouncedSearchValue }) => {
     if (!data?.data?.[0]) return null;
     return destructurePodcastData(data.data[0]);
   };
+
+  const { data: podcastCategoryIdsToShow } = useQuery(
+    [
+      "podcasts-category-ids",
+      usersLanguage,
+      podcastIdsQuery.data,
+      shouldFetchIds,
+    ],
+    () =>
+      cmsSvc.getPodcastCategoryIds(
+        usersLanguage,
+        shouldFetchIds ? podcastIdsQuery.data : undefined
+      ),
+    {
+      enabled: shouldFetchIds ? !!podcastIdsQuery.data : true,
+    }
+  );
+
+  const categoriesToShow = useMemo(() => {
+    if (!categories || !podcastCategoryIdsToShow) return [];
+
+    return categories.filter(
+      (category) =>
+        podcastCategoryIdsToShow.includes(category.id) ||
+        category.value === "all"
+    );
+  }, [categories, podcastCategoryIdsToShow]);
 
   const { data: newestPodcast, isLoading: isNewestPodcastLoading } = useQuery(
     ["newestPodcast", usersLanguage, currentCountry, shouldFetchIds],
@@ -207,131 +240,182 @@ export const Podcasts = ({ debouncedSearchValue }) => {
     setPodcastToPlay({ spotifyId, title });
   };
 
-  const isLoading =
-    isPodcastsLoading ||
-    isPodcastsFetching ||
-    isNewestPodcastLoading ||
-    (shouldFetchIds && podcastIdsQuery.isLoading);
+  // Loading states
+  const isInitialLoading = podcastIdsQuery.isLoading || isNewestPodcastLoading;
+  const isContentLoading = podcastsQuery.isLoading || podcastsQuery.isFetching;
+  const isAnyLoading = isInitialLoading || isContentLoading;
 
-  const hasNoData =
-    !isLoading &&
-    ((shouldFetchIds && !podcastIdsQuery.data?.length) ||
-      (!podcasts?.length && !newestPodcast));
+  // Data availability
+  const hasIdsData = !shouldFetchIds || podcastIdsQuery.data?.length > 0;
+  const hasPodcastsData = podcasts?.length > 0;
+  const hasNewestData = !!newestPodcast;
+
+  // UI conditions
+  const shouldShowNoData =
+    !isAnyLoading && (!hasIdsData || (!hasPodcastsData && !hasNewestData));
+
+  const shouldShowPodcastsList =
+    hasIdsData &&
+    hasPodcastsData &&
+    (selectedCategory?.value !== "all" ||
+      (hasNewestData &&
+        hasPodcastsData &&
+        podcasts.some((podcast) => podcast.id !== newestPodcast.id)));
+
+  const shouldShowCategories =
+    categoriesToShow?.length > 1 && shouldShowPodcastsList;
+
+  // Render helpers
+  const renderPodcastModal = () =>
+    podcastToPlay && (
+      <PodcastModal
+        isOpen={!!podcastToPlay}
+        onClose={() => setPodcastToPlay(null)}
+        spotifyId={podcastToPlay.spotifyId}
+        title={podcastToPlay.title}
+        t={t}
+      />
+    );
+
+  const renderNoData = () =>
+    shouldShowNoData && (
+      <div className="podcasts__no-results-container">
+        <h3>{t("could_not_load_content")}</h3>
+      </div>
+    );
+
+  const renderHeading = () => (
+    <GridItem md={8} lg={12} classes="podcasts__heading-item">
+      {theme === "dark" && (
+        <h2 className="podcasts__heading-text">{t("heading")}</h2>
+      )}
+    </GridItem>
+  );
+
+  const renderNewestPodcast = () =>
+    (isNewestPodcastLoading || hasNewestData) && (
+      <GridItem md={8} lg={12} classes="podcasts__most-important-item">
+        {isNewestPodcastLoading ? (
+          <Loading />
+        ) : (
+          hasNewestData && (
+            <CardMedia
+              type={isNotDescktop ? "portrait" : "landscape"}
+              size="lg"
+              title={newestPodcast.title}
+              image={newestPodcast.imageMedium}
+              description={newestPodcast.description}
+              labels={newestPodcast.labels}
+              creator={newestPodcast.creator}
+              contentType="podcasts"
+              categoryName={newestPodcast.categoryName}
+              showDescription={true}
+              likes={newestPodcast.likes}
+              dislikes={newestPodcast.dislikes}
+              t={t}
+              onClick={() =>
+                handleRedirect(newestPodcast.id, newestPodcast.title)
+              }
+              handlePlay={() => {
+                handlePlay(newestPodcast.spotifyId, newestPodcast.title);
+              }}
+            />
+          )
+        )}
+      </GridItem>
+    );
+
+  const renderCategories = () =>
+    shouldShowCategories && (
+      <GridItem md={8} lg={12} classes="podcasts__categories-item">
+        <div className="podcasts__categories-item__container">
+          <Tabs
+            options={categoriesToShow}
+            handleSelect={handleCategoryOnPress}
+            t={t}
+          />
+        </div>
+      </GridItem>
+    );
+
+  const renderPodcastsList = () =>
+    shouldShowPodcastsList && (
+      <GridItem md={8} lg={12} classes="podcasts__podcasts-item">
+        <div style={{ position: "relative" }}>
+          {/* Loading overlay for category changes */}
+          {podcastsQuery.isFetching && podcasts?.length > 0 && (
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: "rgba(255, 255, 255, 0.8)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                zIndex: 10,
+              }}
+            >
+              <Loading size="lg" />
+            </div>
+          )}
+
+          <InfiniteScroll
+            dataLength={podcasts.length}
+            next={getMorePodcasts}
+            hasMore={hasMore}
+            loader={<Loading size="lg" />}
+          >
+            <div className="podcasts__custom-grid">
+              {podcasts.map((podcast, index) => {
+                const data = destructurePodcastData(podcast);
+                const span = getGridSpanForIndex(index);
+                return (
+                  <div
+                    key={index}
+                    className="podcasts__card-wrapper"
+                    style={{ gridColumn: `span ${span}` }}
+                  >
+                    <CardMedia
+                      type={
+                        span === 12 && !isNotDescktop ? "landscape" : "portrait"
+                      }
+                      size={span === 12 && !isNotDescktop ? "lg" : "sm"}
+                      title={data.title}
+                      image={data.imageMedium}
+                      description={data.description}
+                      labels={data.labels}
+                      likes={data.likes || 0}
+                      dislikes={data.dislikes || 0}
+                      contentType="podcasts"
+                      t={t}
+                      categoryName={data.categoryName}
+                      onClick={() => handleRedirect(data.id, data.title)}
+                      handlePlay={() => {
+                        handlePlay(data.spotifyId, data.title);
+                      }}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </InfiniteScroll>
+        </div>
+      </GridItem>
+    );
 
   return (
     <>
-      {podcastToPlay && (
-        <PodcastModal
-          isOpen={!!podcastToPlay}
-          onClose={() => setPodcastToPlay(null)}
-          spotifyId={podcastToPlay.spotifyId}
-          title={podcastToPlay.title}
-          t={t}
-        />
-      )}
-
+      {renderPodcastModal()}
       <Block classes="podcasts">
-        {hasNoData && (
-          <div className="podcasts__no-results-container">
-            <h3>{t("could_not_load_content")}</h3>
-          </div>
-        )}
-
+        {renderNoData()}
         <Grid classes="podcasts__main-grid">
-          <GridItem md={8} lg={12} classes="podcasts__heading-item">
-            {theme === "dark" && (
-              <h2 className="podcasts__heading-text">{t("heading")}</h2>
-            )}
-          </GridItem>
-
-          {(isNewestPodcastLoading || newestPodcast) && (
-            <GridItem md={8} lg={12} classes="podcasts__most-important-item">
-              {isNewestPodcastLoading ? (
-                <Loading />
-              ) : (
-                newestPodcast && (
-                  <CardMedia
-                    type={isNotDescktop ? "portrait" : "landscape"}
-                    size="lg"
-                    title={newestPodcast.title}
-                    image={newestPodcast.imageMedium}
-                    description={newestPodcast.description}
-                    labels={newestPodcast.labels}
-                    creator={newestPodcast.creator}
-                    contentType="podcasts"
-                    categoryName={newestPodcast.categoryName}
-                    showDescription={true}
-                    likes={newestPodcast.likes}
-                    dislikes={newestPodcast.dislikes}
-                    t={t}
-                    onClick={() =>
-                      handleRedirect(newestPodcast.id, newestPodcast.title)
-                    }
-                    handlePlay={() => {
-                      handlePlay(newestPodcast.spotifyId, newestPodcast.title);
-                    }}
-                  />
-                )
-              )}
-            </GridItem>
-          )}
-
-          {podcasts?.length > 0 && categories && (
-            <GridItem md={8} lg={12} classes="podcasts__categories-item">
-              <div className="podcasts__categories-item__container">
-                <Tabs
-                  options={categories}
-                  handleSelect={handleCategoryOnPress}
-                  t={t}
-                />
-              </div>
-            </GridItem>
-          )}
-
-          <GridItem md={8} lg={12} classes="podcasts__podcasts-item">
-            <InfiniteScroll
-              dataLength={podcasts.length}
-              next={getMorePodcasts}
-              hasMore={hasMore}
-              loader={<Loading size="lg" />}
-            >
-              <div className="podcasts__custom-grid">
-                {podcasts.map((podcast, index) => {
-                  const data = destructurePodcastData(podcast);
-                  const span = getGridSpanForIndex(index);
-                  return (
-                    <div
-                      key={index}
-                      className="podcasts__card-wrapper"
-                      style={{ gridColumn: `span ${span}` }}
-                    >
-                      <CardMedia
-                        type={
-                          span === 12 && !isNotDescktop
-                            ? "landscape"
-                            : "portrait"
-                        }
-                        size={span === 12 && !isNotDescktop ? "lg" : "sm"}
-                        title={data.title}
-                        image={data.imageMedium}
-                        description={data.description}
-                        labels={data.labels}
-                        likes={data.likes || 0}
-                        dislikes={data.dislikes || 0}
-                        contentType="podcasts"
-                        t={t}
-                        categoryName={data.categoryName}
-                        onClick={() => handleRedirect(data.id, data.title)}
-                        handlePlay={() => {
-                          handlePlay(data.spotifyId, data.title);
-                        }}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-            </InfiniteScroll>
-          </GridItem>
+          {renderHeading()}
+          {renderNewestPodcast()}
+          {renderCategories()}
+          {renderPodcastsList()}
         </Grid>
       </Block>
     </>

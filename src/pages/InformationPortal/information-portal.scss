@@ -34,6 +34,15 @@
       width: 80%;
       z-index: 1;
 
+      &--rtl {
+        direction: rtl;
+
+        & .pre-input-wrapper {
+          margin-left: 0;
+          margin-right: $spacing_1_8;
+        }
+      }
+
       // Mobile specific adjustments if needed
       @media (max-width: 767px) {
         width: 90%;
@@ -52,6 +61,10 @@
 
   &__tabs-container {
     display: flex;
+
+    &--rtl {
+      flex-direction: row-reverse;
+    }
   }
 
   & .tabs-underlined-container {

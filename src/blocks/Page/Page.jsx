@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useNavigate, NavLink, Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation, Trans } from "react-i18next";
 import classNames from "classnames";
@@ -20,7 +20,11 @@ import {
 } from "@USupport-components-library/utils";
 import { PasswordModal } from "@USupport-components-library/src";
 
-import { useError, useEventListener } from "#hooks";
+import {
+  useError,
+  useEventListener,
+  useCustomNavigate as useNavigate,
+} from "#hooks";
 
 import "./page.scss";
 
@@ -74,6 +78,8 @@ export const Page = ({
   const [selectedCountry, setSelectedCountry] = useState();
   const [langs, setLangs] = useState([]);
 
+  const IS_PS = localStorageCountry === "PS";
+
   const changeLanguage = (language) => {
     i18n.changeLanguage(language.value);
     localStorage.setItem("language", language.value);
@@ -89,7 +95,6 @@ export const Page = ({
     const subdomain = window.location.hostname.split(".")[0];
     const res = await countrySvc.getActiveCountriesWithLanguages();
     let hasSetDefaultCountry = false;
-
     if (
       subdomain &&
       subdomain !== "www" &&
@@ -101,6 +106,7 @@ export const Page = ({
           ?.alpha2 || localStorageCountry;
       if (localStorageCountry) {
         localStorage.setItem("country", localStorageCountry);
+        // window.dispatchEvent(new Event("countryChanged"));
       }
     }
 
@@ -203,6 +209,7 @@ export const Page = ({
       setIsPodcastsActive(true);
       setIsVideosActive(true);
     }
+
     if (!hasSetDefaultCountry && !localStorageCountry) {
       localStorage.setItem("country", "global");
       window.dispatchEvent(new Event("countryChanged"));
@@ -225,7 +232,7 @@ export const Page = ({
   const { data: countries } = useQuery(["countries"], fetchCountries);
   const country = localStorage.getItem("country");
 
-  const pages = [
+  let pages = [
     { name: t("page_1"), url: "/", exact: true, icon: "home" },
     { name: t("page_2"), url: "/how-it-works", icon: "info" },
     {
@@ -247,11 +254,26 @@ export const Page = ({
         },
   ];
 
-  const footerLists = {
+  if (IS_PS) {
+    pages = [
+      {
+        name: t("page_3"),
+        url: "/about-us",
+        icon: "two-people",
+      },
+      {
+        name: t("page_4"),
+        url: "/information-portal?tab=articles",
+        icon: "activities",
+      },
+    ];
+  }
+
+  let footerLists = {
     list1: [
       {
         name: t("footer_1"),
-        url: `/about-us`,
+        url: "/about-us",
       },
       { name: t("footer_2"), url: "/information-portal?tab=articles" },
       { name: t("page_6"), url: "/my-qa" },
@@ -267,6 +289,23 @@ export const Page = ({
       { name: t("contact_us"), url: "/contact-us" },
     ],
   };
+
+  if (IS_PS) {
+    footerLists = {
+      list1: [
+        {
+          name: t("footer_1"),
+          url: "/about-us",
+        },
+        { name: t("footer_2"), url: "/information-portal?tab=articles" },
+        { name: t("footer_4"), url: "/terms-of-use", exact: true },
+        { name: t("footer_5"), url: "/privacy-policy" },
+        { name: t("footer_6"), url: "/cookie-policy" },
+      ],
+      list2: [],
+      list3: [],
+    };
+  }
 
   const handleGoBack = () => navigateTo(-1);
 
@@ -329,10 +368,10 @@ export const Page = ({
       <Navbar
         pages={pages}
         showCta
-        showCountries
+        showCountries={!IS_PS}
         languageLabel={t("language_label")}
         countryLabel={t("country_label")}
-        buttonText={t("button_text")}
+        buttonText={IS_PS ? null : t("button_text")}
         i18n={i18n}
         navigate={navigateTo}
         NavLink={NavLink}
@@ -373,13 +412,16 @@ export const Page = ({
         {children}
       </div>
       {themeButton()}
-      <CircleIconButton
-        iconName="phone-emergency"
-        classes="page__emergency-button"
-        onClick={() => navigateTo(`/${localStorageLanguage}/sos-center`)}
-        label={t("emergency_button")}
-      />
+      {!IS_PS && (
+        <CircleIconButton
+          iconName="phone-emergency"
+          classes="page__emergency-button"
+          onClick={() => navigateTo(`/${localStorageLanguage}/sos-center`)}
+          label={t("emergency_button")}
+        />
+      )}
       <Footer
+        showSocials={!IS_PS}
         lists={footerLists}
         navigate={navigateTo}
         Link={Link}
