@@ -31,6 +31,7 @@ export const TermsOfUse = () => {
     localStorage.getItem("country") || "KZ"
   );
 
+  const IS_PS = localStorage.getItem("country") === "PS";
   const country = window.location.hostname.split(".")[0];
   const countries = queryClient.getQueryData(["countries"]);
 
@@ -56,13 +57,15 @@ export const TermsOfUse = () => {
       selectedCountry,
       i18n.language,
       countries,
+      IS_PS,
     ],
     queryFn: async () => {
       const localStorageCountry = localStorage.getItem("country");
       const { data } = await cmsSvc.getTermsOfUse(
         i18n.language,
         localStorageCountry.toLocaleUpperCase(),
-        "website"
+        "website",
+        IS_PS
       );
       return data;
     },
