@@ -30,6 +30,7 @@ export const CookiePolicy = () => {
   const [currentCountry, setCurrentCountry] = useState();
 
   const IS_PS = localStorage.getItem("country") === "PS";
+  const IS_RTL = localStorage.getItem("language") === "ar";
 
   useEffect(() => {
     const country = localStorage.getItem("country");
@@ -78,7 +79,7 @@ export const CookiePolicy = () => {
     getCookiePolicy
   );
   return (
-    <Block classes="cookie-policy">
+    <Block classes={`cookie-policy ${IS_RTL ? "cookie-policy--rtl" : ""}`}>
       {" "}
       <Grid>
         <GridItem xs={4} md={8} lg={12} classes="privacy-policy__heading-item">
