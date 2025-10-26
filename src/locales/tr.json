@@ -1,0 +1,190 @@
+{
+  "blocks": {
+    "about": {
+      "heading": "uSupport Hakkında",
+      "paragraph": "uSupport, gençler ve onların bakımını üstlenenler için tasarlanmış, gizlilik ve güvenliğe en yüksek önceliği veren bir ruh sağlığı, psikososyal destek ve refah platformudur.",
+      "card_text_1": "Kişisel gelişim için içerik",
+      "card_text_2": "Güvenilir sağlayıcılar",
+      "card_text_3": "Çevrimiçi destek",
+      "card_text_4": "Güvenli alanınız",
+      "paragraph_2": "Hayatın zorluklarını birlikte aşalım ve stresle beraber başa çıkalım."
+    },
+    "articles": {
+      "heading": "Bilgi Portalı",
+      "no_results": "Sonuç bulunamadı",
+      "could_not_load_content": "Belirtilen ülke ve dil için şu anda sonuç bulunmamaktadır.",
+      "all": "Tümü",
+      "read_more_button": "Daha fazla oku",
+      "min_read": "dakika okuma",
+      "by": "{{creator}} tarafından",
+      "number_of_more_options": "{{count}} daha fazla",
+      "articles": "Makaleler",
+      "videos": "Videolar",
+      "podcasts": "Podcastler",
+      "view_more": "Daha fazlasını görüntüle",
+      "search": "Ara",
+      "not_found": "Bu kaynak mevcut değil",
+      "require_cookies": "Bu videoyu görüntülemek için lütfen tüm çerezleri kabul edin.",
+      "cookie_preferences": "Çerez tercihleri"
+    },
+    "contact-us": {
+      "heading_1": "Bize Ulaşın",
+      "contact_form_heading": "Bir sorunuz mu var? Bizimle iletişime geçmekten çekinmeyin.",
+      "email_subject": "İletişim formundan yeni bir mesaj",
+      "email_title": "Yeni mesaj",
+      "email_text": "Merhaba,<br></br>Kullanıcıdan yeni bir mesajınız var:<br></br>E-posta: {{email}}<br></br>Neden: {{reason}}<br></br>Mesaj: {{message}}<br></br>Saygılarımızla,<br></br>uSupport Ekibi",
+      "contact_reason_placeholder": "Bir neden seçin",
+      "contact_reason_1": "uSupport hakkında bilgi",
+      "contact_reason_2": "Teknik sorun",
+      "contact_reason_3": "Sağlayıcı ağına katılma",
+      "contact_reason_4": "Ortaklıklar",
+      "contact_reason_5": "Diğer",
+      "email_label": "E-posta",
+      "reason_label": "İletişim nedeni",
+      "message_label": "Mesaj",
+      "email_error": "Lütfen e-posta adresinizi girin",
+      "reason_error": "Lütfen bir neden seçin",
+      "message_error": "Lütfen mesajınızı girin",
+      "message_placeholder": "Bize mesajınız",
+      "send_button": "Gönder",
+      "modal_title": "Mesajınız başarıyla gönderildi",
+      "modal_text": "En kısa sürede size geri döneceğiz",
+      "modal_cta_label": "Ana sayfaya dön",
+      "paragraph": "E-postanıza yakında yanıt vereceğiz. Lütfen adresinizi doğru girdiğinizden emin olun.",
+      "contact_form": "İletişim formu",
+      "contact_reason_1_pl": "uSupport hakkında bilgi",
+      "contact_reason_2_pl": "Teknik sorun",
+      "contact_reason_3_pl": "Şikayet",
+      "contact_reason_4_pl": "Başka bir şey"
+    },
+    "faq": {
+      "heading": "Sıkça Sorulan Sorular",
+      "button": "Daha fazla bilgi edinin",
+      "no_results": "Belirtilen ülke ve dil için sonuç bulunamadı."
+    },
+    "how-it-works": {
+      "heading": "Kolay ve Hızlı",
+      "paragraph_summary": "Sadece birkaç tıklama ile ihtiyacınız olan yardımı tamamen anonim bir şekilde alabilirsiniz.",
+      "paragraph_normal": "Sadece birkaç tıklama ile ihtiyacınız olan yardımı tamamen anonim bir şekilde alabilirsiniz.",
+      "card_1": "Ülkenizi ve dilinizi seçin",
+      "card_2": "Hesabınızı oluşturun",
+      "card_3": "Sağlayıcıyı seçin",
+      "card_4": "Bir seans ayırtın",
+      "download_text": "uSupport'u indirin",
+      "web_browser": "Web tarayıcısı",
+      "click_to_use": "Kullanmak için tıklayın",
+      "download_from_web": "",
+      "browser": ""
+    },
+    "page": {
+      "page_1": "Ana Sayfa",
+      "page_2": "Nasıl Çalışır?",
+      "page_3": "Hakkımızda",
+      "page_4": "Bilgi Portalı",
+      "page_5": "Bize Ulaşın",
+      "page_6": "Sorularım ve Cevaplarım",
+      "footer_1": "Hakkımızda",
+      "footer_2": "Bilgi Portalı",
+      "footer_3": "Nasıl Çalışır?",
+      "footer_4": "Hizmet Şartları",
+      "footer_5": "Gizlilik Politikası",
+      "footer_6": "Çerez Politikası",
+      "footer_7": "SSS",
+      "emergency_button": "SOS Acil Durum Merkezi",
+      "button_text": "Uygulamaya Git",
+      "language_label": "Dil",
+      "country_label": "Ülke",
+      "contact_us": "Bize Ulaşın",
+      "password_placeholder": "Şifre",
+      "password": "Siteye erişmek için lütfen şifreyi girin",
+      "wrong_password": "Yanlış şifre",
+      "submit": "Gönder",
+      "dark": "Koyu",
+      "light": "Açık",
+      "cookie_banner_header": "Gizliliğinize değer veriyoruz",
+      "cookie_banner_text": "Bu site, gezinme deneyiminizi geliştirmek ve güvenliğini sağlamak için çerezler kullanır. Sitemizi kullanarak <0>Çerez Politikamızı</0> kabul etmiş olursunuz.",
+      "accept_all_cookies": "Tümünü kabul et",
+      "reject_all_cookies": "Tümünü reddet",
+      "accept_necessary_cookies": "Sadece gerekli olanları kabul et",
+      "save": "Kaydet",
+      "page_7": "Kuruluşlar",
+      "high_contrast": "Yüksek Kontrast"
+    },
+    "sos-center": {
+      "heading": "SOS Acil Durum Merkezi",
+      "button_link": "Web sitesini ziyaret et",
+      "button_call": "Şimdi ara",
+      "no_results": "Belirtilen ülke ve dil için sonuç bulunamadı.",
+      "other_emergency_services": "Diğer acil durum hizmet sağlayıcıları",
+      "browse": "Göz at"
+    },
+    "we-help": {
+      "heading_1": "Hakkımızda",
+      "heading_2": "Vizyonumuz",
+      "heading_3": "Biz Kimiz?",
+      "heading_4": "Etkimiz",
+      "heading_5": "Bize Katılın",
+      "paragraph_1": "uSupport’a hoş geldiniz. Gençlerin, ebeveynlerin ve bakıcıların ruh sağlığını desteklemeye adanmış yenilikçi bir platformdur. Amacımız, ruh sağlığı kaynaklarına erişebileceğiniz veya istediğiniz zaman ve yerden danışmanlık alabileceğiniz güvenli, gizli ve güvenilir bir alan sağlamaktır. uSupport platformunda düşüncelerinizi ve duygularınızı keşfedebilir, bunları nasıl yöneteceğinizi öğrenebilirsiniz.",
+      "paragraph_2": "uSupport olarak, ruh sağlığının ve refahın her birey için genel sağlık ve gelişimin temel bir unsuru olduğuna inanıyoruz. Gençlerin ruh sağlığını ve psikososyal refahını iyileştirmek için erişilebilir, uygun maliyetli ve yüksek kaliteli destek hizmetleri sunmaya kararlıyız.",
+      "paragraph_3": "uSupport, Birleşmiş Milletler Çocuklara Yardım Fonu (UNICEF) desteğiyle ve Kazakistan’daki gençlerle yakın iş birliği içinde geliştirilmiştir. Ana ortağımız, Kazakistan Sağlık Bakanlığı’na bağlı Cumhuriyet Ruh Sağlığı Merkezi’dir.",
+      "paragraph_4": "Ekibimiz, Kazakistan’ın farklı bölgelerinde gençlerle aktif olarak çalışan deneyimli profesyonellerden oluşmaktadır. Bu profesyoneller, duygusal refah, başa çıkma stratejileri, stres yönetimi ve gençlerin bugün karşılaştığı psikolojik zorluklar gibi konularda geniş deneyime sahiptir.",
+      "paragraph_5": "uSupport yalnızca dijital bir platform değildir; çalıştığımız ülkelerdeki psikososyal destek ekosisteminin temel bir parçasıdır. Gençleri mevcut ruh sağlığı kaynaklarıyla buluşturarak herkes için önleme, bakım ve yüksek kaliteli desteğe erişimi artırmayı amaçlıyoruz.",
+      "paragraph_6": "Gençlerin ruh sağlığını ve refahını iyileştirme misyonumuza katılmanızı bekliyoruz. İster destek arayan bir genç olun, ister fark yaratmak isteyen bir profesyonel ya da işimizi desteklemek isteyen bir ortak olun, uSupport topluluğunun bir parçası olabilirsiniz.",
+      "paragraph_7": "Feragatname: uSupport, gençlerin ruhsal, duygusal ve sosyal sağlıklarıyla ilgili konuları daha iyi anlamalarına yardımcı olmayı amaçlayan bir farkındalık platformudur. Ciddi krizler veya tıbbi acil durumlar için tasarlanmamıştır. uSupport tıbbi veya klinik tavsiye vermez, ancak kullanıcıları ulusal sağlık sistemi içinde uygun profesyonellere yönlendirebilir. Acil durumlarda, kullanıcıların ulusal yardım hatlarını veya ambulans hizmetlerini aramaları önerilir.",
+      "terms": "Hizmet Şartları",
+      "and": "ve",
+      "privacy": "Gizlilik Politikası",
+      "paragraph_7_2": "Ebeveynlerin veya yasal vasilerin, reşit olmayan kullanıcılar için yerel yasalara göre izin vermesi gerekir. uSupport, kullanıcıların sağladığı yaş veya diğer bilgilerden sorumlu değildir."
+    },
+    "privacy-policy": {
+      "heading": "Gizlilik Politikası",
+      "no_results": "Belirtilen ülke ve dil için sonuç bulunamadı."
+    },
+    "cookie-policy": {
+      "heading": "Çerez Politikası",
+      "no_results": "Belirtilen ülke ve dil için sonuç bulunamadı."
+    },
+    "terms-of-use": {
+      "heading": "Kullanım Şartları",
+      "no_results": "Belirtilen ülke ve dil için sonuç bulunamadı."
+    },
+    "information-portal": {
+      "heading": "Bilgi Portalı",
+      "paragraph_1": "Ruh sağlığı alanında deneyimli sağlayıcılarla iş birliği içinde hazırlanan ücretsiz kaynaklara erişin.",
+      "paragraph_2": "Geniş kaynak koleksiyonumuz, sizi desteklemek için gerekli temel konuları kapsayacak şekilde sürekli olarak güncellenmektedir.",
+      "paragraph_3": "Portalda uzmanlar tarafından yazılmış makaleleri bulabilir, kişisel gelişim tekniklerini öğrenebilir ve ilginizi çeken konularda güncel kalabilirsiniz.",
+      "read_more_button": "Daha fazla oku",
+      "min_read": "dakika okuma",
+      "by": "{{creator}} tarafından"
+    }
+  },
+  "pages": {
+    "not-found-page": {
+      "heading": "Üzgünüz! Aradığınız sayfayı bulamıyoruz...",
+      "subheading": "Görünüşe göre bu sayfa şu anda mevcut değil veya taşınmış.",
+      "button": "Ana Sayfaya Git"
+    },
+    "article-information": {
+      "heading": "Daha Fazla Makale",
+      "no_results": "Seçilen dil için benzer makale bulunamadı.",
+      "read_more_button": "Daha fazla oku",
+      "min_read": "dakika okuma",
+      "by": "{{creator}} tarafından",
+      "share_title": "Bu içeriği paylaş",
+      "share_success": "Bağlantı panoya kopyalandı!",
+      "copy_link": "Bağlantıyı kopyala"
+    },
+    "video-information-page": {
+      "more_videos": "Daha Fazla Video",
+      "view_more": "Daha fazlasını görüntüle",
+      "not_found": "Video bulunamadı",
+      "require_cookies": "Bu videoyu izlemek için lütfen tüm çerezleri kabul edin.",
+      "cookie_preferences": "Çerez tercihleri"
+    },
+    "podcast-information-page": {
+      "more_podcasts": "Daha Fazla Podcast",
+      "view_more": "Daha fazlasını görüntüle",
+      "not_found": "Podcast bulunamadı"
+    }
+  }
+}
