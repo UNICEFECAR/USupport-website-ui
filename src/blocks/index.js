@@ -31,4 +31,5 @@ export * from "./PodcastView";
 export * from "./Podcasts";
 export * from "./Organizations";
 export * from "./OrganizationOverview";
-export * from './VideoTutorial';
+export * from "./VideoTutorial";
+export * from "./PDFViewer";

@@ -5,6 +5,7 @@ import {
   Route,
   useParams,
   Navigate,
+  useSearchParams,
 } from "react-router-dom";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import {
@@ -87,7 +88,7 @@ function App() {
   useEffect(() => {
     const lang = localStorage.getItem("language");
     const hasAcceptedCookies = !!Number(
-      localStorage.getItem("hasAcceptedCookies")
+      localStorage.getItem("acceptAllCookies")
     );
     const hasHandledCookies = !!Number(
       localStorage.getItem("hasHandledCookies")
@@ -145,7 +146,29 @@ function App() {
 const LanguageLayout = () => {
   const { language } = useParams();
 
-  const allLangs = ["en", "ru", "kk", "pl", "uk", "hy", "ro"];
+  const allLangs = ["en", "ru", "kk", "pl", "uk", "hy", "ro", "ar", "tr"];
+
+  const IS_PS = localStorage.getItem("country") === "PS";
+  const [searchParams, setSearchParams] = useSearchParams();
+  const source = searchParams.get("source");
+
+  useQuery(
+    ["playandheal-visit"],
+    () => {
+      const eventType =
+        source === "qr" ? "playandheal_visit_qr" : "playandheal_visit";
+      if (source === "qr") {
+        setSearchParams((prev) => {
+          prev.delete("source");
+          return prev;
+        });
+      }
+      return userSvc.addCountryEvent({
+        eventType,
+      });
+    },
+    { enabled: IS_PS }
+  );
 
   if (!allLangs.includes(language) || !language) {
     return <Navigate to="/en" />;
@@ -221,7 +244,11 @@ const Root = () => {
       setHasAddedPlatformAccess(true);
       return true;
     },
-    enabled: !!country && !hasAddedPlatformAccess && country !== "global",
+    enabled:
+      !!country &&
+      !hasAddedPlatformAccess &&
+      country !== "global" &&
+      country !== "PS",
   });
   return (
     <Router basename="/">

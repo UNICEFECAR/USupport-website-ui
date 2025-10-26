@@ -10,7 +10,7 @@ import {
   Videos,
   Podcasts,
 } from "#blocks";
-import { useDebounce } from "#hooks";
+import { useDebounce, useCustomNavigate as useNavigate } from "#hooks";
 
 import {
   ThemeContext,
@@ -33,9 +33,11 @@ export const InformationPortal = () => {
   const { theme, isPodcastsActive, isVideosActive } = useContext(ThemeContext);
   const { width } = useWindowDimensions();
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const tab = searchParams.get("tab");
   const IS_PS = localStorage.getItem("country") === "PS";
+  const IS_RTL = localStorage.getItem("language") === "ar";
 
   const [contentTypes, setContentTypes] = useState([]);
 
@@ -96,7 +98,8 @@ export const InformationPortal = () => {
       }
     }
     setContentTypes(contentTypesCopy);
-    setSearchParams({ tab: contentTypesCopy[index].value });
+    const newTab = contentTypesCopy[index].value;
+    navigate(`/information-portal?tab=${newTab}`);
   };
 
   return (
@@ -116,7 +119,11 @@ export const InformationPortal = () => {
           <InputSearch
             onChange={handleInputChange}
             value={searchValue}
-            classes="page__information-portal__img-container__input"
+            classes={`page__information-portal__img-container__input ${
+              IS_RTL
+                ? "page__information-portal__img-container__input--rtl"
+                : ""
+            }`}
             placeholder={t("search")}
           />
         </div>
@@ -135,13 +142,21 @@ export const InformationPortal = () => {
           <InputSearch
             onChange={handleInputChange}
             value={searchValue}
-            classes="page__information-portal__img-container__input"
+            classes={`page__information-portal__img-container__input ${
+              IS_RTL
+                ? "page__information-portal__img-container__input--rtl"
+                : ""
+            }`}
             placeholder={t("search")}
           />
         </div>
       )}
       <Block>
-        <div className="page__information-portal__tabs-container">
+        <div
+          className={`page__information-portal__tabs-container ${
+            IS_RTL ? "page__information-portal__tabs-container--rtl" : ""
+          }`}
+        >
           <TabsUnderlined
             options={contentTypes.map((x) => ({
               ...x,

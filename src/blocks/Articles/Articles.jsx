@@ -1,4 +1,10 @@
-import { useState, useEffect, useCallback, useContext } from "react";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useContext,
+  useMemo,
+} from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -65,12 +71,21 @@ export const Articles = ({ debouncedSearchValue }) => {
   const { i18n, t } = useTranslation("blocks", { keyPrefix: "articles" });
   const { theme } = useContext(ThemeContext);
 
+  const IS_PS = localStorage.getItem("country") === "PS";
+  const IS_RTL = localStorage.getItem("language") === "ar";
+
   const isNotDescktop = width < 1366;
 
   const [usersLanguage, setUsersLanguage] = useState(i18n.language);
   const [showAgeGroups, setShowAgeGroups] = useState(true);
 
   useEffect(() => {
+    async function getArticleCategories() {
+      const res = await cmsSvc.getCategories(usersLanguage);
+      return res.data;
+    }
+    getArticleCategories();
+
     if (i18n.language !== usersLanguage) {
       setUsersLanguage(i18n.language);
     }
@@ -141,6 +156,24 @@ export const Articles = ({ debouncedSearchValue }) => {
     setAgeGroups(ageGroupsCopy);
   };
 
+  //--------------------- Country Change Event Listener ----------------------//
+  const [currentCountry, setCurrentCountry] = useState(
+    localStorage.getItem("country")
+  );
+
+  const shouldFetchIds = !!(currentCountry && currentCountry !== "global");
+
+  const handler = useCallback(() => {
+    const country = localStorage.getItem("country");
+    if (country !== currentCountry) {
+      setCurrentCountry(country);
+    }
+    setShowAgeGroups(country !== "PL");
+  }, [currentCountry]);
+
+  // Add event listener
+  useEventListener("countryChanged", handler);
+
   //--------------------- Categories ----------------------//
   const [categories, setCategories] = useState();
   const [selectedCategory, setSelectedCategory] = useState();
@@ -178,38 +211,6 @@ export const Articles = ({ debouncedSearchValue }) => {
     }
   );
 
-  const handleCategoryOnPress = (index) => {
-    const categoriesCopy = [...categories];
-
-    for (let i = 0; i < categoriesCopy.length; i++) {
-      if (i === index) {
-        categoriesCopy[i].isSelected = true;
-        setSelectedCategory(categoriesCopy[i]);
-      } else {
-        categoriesCopy[i].isSelected = false;
-      }
-    }
-    setCategories(categoriesCopy);
-  };
-
-  //--------------------- Country Change Event Listener ----------------------//
-  const [currentCountry, setCurrentCountry] = useState(
-    localStorage.getItem("country")
-  );
-
-  const shouldFetchIds = !!(currentCountry && currentCountry !== "global");
-
-  const handler = useCallback(() => {
-    const country = localStorage.getItem("country");
-    if (country !== currentCountry) {
-      setCurrentCountry(country);
-    }
-    setShowAgeGroups(country !== "PL");
-  }, [currentCountry]);
-
-  // Add event listener
-  useEventListener("countryChanged", handler);
-
   //--------------------- Articles ----------------------//
 
   const getArticlesIds = async () => {
@@ -227,6 +228,52 @@ export const Articles = ({ debouncedSearchValue }) => {
     }
   );
 
+  const { data: categoryIdsToShow } = useQuery(
+    [
+      "articles-category-ids",
+      usersLanguage,
+      selectedAgeGroup?.id,
+      articleIdsQuery.data,
+      shouldFetchIds,
+    ],
+    () => {
+      if (!selectedAgeGroup?.id) return [];
+      return cmsSvc.getArticleCategoryIds(
+        usersLanguage,
+        selectedAgeGroup.id,
+        shouldFetchIds ? articleIdsQuery.data : undefined
+      );
+    },
+    {
+      enabled:
+        !!selectedAgeGroup?.id &&
+        (shouldFetchIds ? !!articleIdsQuery.data : true),
+    }
+  );
+
+  const categoriesToShow = useMemo(() => {
+    if (!categories || !categoryIdsToShow) return [];
+
+    return categories.filter(
+      (category) =>
+        categoryIdsToShow.includes(category.id) || category.value === "all"
+    );
+  }, [categories, categoryIdsToShow]);
+
+  const handleCategoryOnPress = (index) => {
+    const categoriesCopy = [...categoriesToShow];
+
+    for (let i = 0; i < categoriesCopy.length; i++) {
+      if (i === index) {
+        categoriesCopy[i].isSelected = true;
+        setSelectedCategory(categoriesCopy[i]);
+      } else {
+        categoriesCopy[i].isSelected = false;
+      }
+    }
+    setCategories(categoriesCopy);
+  };
+
   const [articles, setArticles] = useState();
   const [numberOfArticles, setNumberOfArticles] = useState();
   const [hasMore, setHasMore] = useState(true);
@@ -235,7 +282,7 @@ export const Articles = ({ debouncedSearchValue }) => {
     const ageGroupId = ageGroupsQuery.data.find((x) => x.isSelected).id;
 
     let categoryId = "";
-    if (selectedCategory.value !== "all") {
+    if (selectedCategory && selectedCategory.value !== "all") {
       categoryId = selectedCategory.id;
     }
 
@@ -247,6 +294,10 @@ export const Articles = ({ debouncedSearchValue }) => {
       locale: usersLanguage,
       populate: true,
     };
+    if (IS_PS) {
+      queryParams["sortBy"] = "title";
+      queryParams["sortOrder"] = "asc";
+    }
 
     if (shouldFetchIds) {
       queryParams["ids"] = articleIdsQuery.data;
@@ -410,32 +461,39 @@ export const Articles = ({ debouncedSearchValue }) => {
             </GridItem>
             {(newestArticle || isNewestArticleFetched) && (
               <GridItem md={8} lg={12} classes="articles__most-important-item">
-                <CardMedia
-                  type={isNotDescktop ? "portrait" : "landscape"}
-                  size="lg"
-                  title={newestArticle.title}
-                  image={newestArticle.imageMedium}
-                  description={newestArticle.description}
-                  labels={newestArticle.labels}
-                  creator={newestArticle.creator}
-                  readingTime={newestArticle.readingTime}
-                  categoryName={newestArticle.categoryName}
-                  showDescription={true}
-                  likes={newestArticle.likes}
-                  dislikes={newestArticle.dislikes}
-                  t={t}
-                  onClick={() =>
-                    handleRedirect(newestArticle.id, newestArticle.title)
-                  }
-                />
-                {!newestArticle && isNewestArticleLoading && (
+                {newestArticle ? (
+                  <CardMedia
+                    type={isNotDescktop ? "portrait" : "landscape"}
+                    size="lg"
+                    title={newestArticle.title}
+                    image={newestArticle.imageMedium}
+                    description={newestArticle.description}
+                    labels={newestArticle.labels}
+                    creator={newestArticle.creator}
+                    readingTime={newestArticle.readingTime}
+                    categoryName={newestArticle.categoryName}
+                    showDescription={true}
+                    likes={newestArticle.likes}
+                    dislikes={newestArticle.dislikes}
+                    t={t}
+                    onClick={() =>
+                      handleRedirect(newestArticle.id, newestArticle.title)
+                    }
+                  />
+                ) : isNewestArticleLoading ? (
                   <Loading size="lg" />
-                )}
+                ) : null}
               </GridItem>
             )}
 
             {showAgeGroups && (
-              <GridItem md={8} lg={12} classes="articles__age-groups-item">
+              <GridItem
+                md={8}
+                lg={12}
+                classes={`articles__age-groups-item ${
+                  IS_RTL ? "articles__age-groups-item--rtl" : ""
+                }`}
+              >
                 <div className="articles__age-groups-item__container">
                   {ageGroups && showAgeGroups && (
                     <TabsUnderlined
@@ -448,22 +506,33 @@ export const Articles = ({ debouncedSearchValue }) => {
               </GridItem>
             )}
 
-            {/* {articles?.length > 0 && ( */}
-            <GridItem md={8} lg={12}>
+            <GridItem
+              md={8}
+              lg={12}
+              classes={`articles__categories-item ${
+                IS_RTL ? "articles__categories-item--rtl" : ""
+              }`}
+            >
               {categories && (
                 <Tabs
-                  options={categories}
+                  options={categoriesToShow}
                   handleSelect={handleCategoryOnPress}
                   t={t}
                 />
               )}
             </GridItem>
-            {/* )} */}
 
             <GridItem md={8} lg={12} classes="articles__articles-item">
-              {articles?.length > 0 &&
-                !isArticlesLoading &&
-                !isArticlesFetching && (
+              <div style={{ position: "relative", minHeight: "20rem" }}>
+                {/* Loading overlay for category changes - only show when refetching existing data */}
+                {isArticlesFetching && articles?.length > 0 && (
+                  <div className="articles__articles-item__loader-overlay">
+                    <Loading size="lg" />
+                  </div>
+                )}
+
+                {/* Show articles when available and not in initial loading state */}
+                {articles?.length > 0 && !isArticlesLoading && (
                   <div className="articles__custom-grid">
                     {articles?.map((article, index) => {
                       const articleData = destructureArticleData(article);
@@ -504,42 +573,54 @@ export const Articles = ({ debouncedSearchValue }) => {
                   </div>
                 )}
 
-              {!articles?.length &&
-                !isArticlesLoading &&
-                !isArticlesFetching && (
-                  <div className="articles__no-results-container">
-                    <p>{t("no_results")}</p>
+                {/* Show initial loading state when no articles yet */}
+                {isArticlesLoading && !articles?.length && (
+                  <div style={{ padding: "2rem", textAlign: "center" }}>
+                    <Loading size="lg" />
                   </div>
                 )}
+
+                {/* No results message */}
+                {!articles?.length &&
+                  !isArticlesLoading &&
+                  !isArticlesFetching &&
+                  isArticlesFetched && (
+                    <div className="articles__no-results-container">
+                      <p>{t("no_results")}</p>
+                    </div>
+                  )}
+              </div>
             </GridItem>
           </Grid>
         </InfiniteScroll>
       )}
 
-      {(shouldFetchIds &&
-        (isArticlesFetching ||
-          articleIdsQuery.isLoading ||
-          articleIdsQuery.isFetching)) ||
-      isNewestArticleFetching ||
-      (isNewestArticleLoading && newestArticleFetchStatus !== "idle") ? (
-        <Loading />
-      ) : null}
+      {/* Only show main loading when initially loading all data */}
+      {!newestArticle &&
+        !ageGroups?.length &&
+        !categories?.length &&
+        (isNewestArticleLoading ||
+          isArticlesLoading ||
+          articleIdsQuery.isLoading) && <Loading />}
 
-      {(articleIdsQuery.isFetched &&
+      {/* Show error state only when everything is loaded but no data exists */}
+      {((articleIdsQuery.isFetched &&
         articleIdsQuery.data?.length === 0 &&
-        (isArticlesFetched || articlesFetchStatus === "idle") &&
+        isArticlesFetched &&
         isNewestArticleFetched) ||
-      (!newestArticle &&
-        !isNewestArticleFetching &&
-        (isArticlesFetched || articlesFetchStatus === "idle") &&
-        !articleIdsQuery.isFetching &&
-        (!articlesQueryData ||
-          !articlesQueryData.articles ||
-          articlesQueryData.articles.length === 0)) ? (
+        (!newestArticle &&
+          !isNewestArticleFetching &&
+          !isNewestArticleLoading &&
+          isArticlesFetched &&
+          !articleIdsQuery.isFetching &&
+          !articleIdsQuery.isLoading &&
+          (!articlesQueryData ||
+            !articlesQueryData.articles ||
+            articlesQueryData.articles.length === 0))) && (
         <div className="articles__no-results-container">
           <h3>{t("could_not_load_content")}</h3>
         </div>
-      ) : null}
+      )}
     </Block>
   );
 };
