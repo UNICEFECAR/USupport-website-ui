@@ -281,7 +281,8 @@ export const Videos = ({ debouncedSearchValue }) => {
   const showCategories =
     categories && categories.length > 1 && hasVideosDifferentThanNewest;
 
-  const handlePlay = (url) => {
+  const handlePlay = ({ id, url }) => {
+    cmsSvc.getVideoById(id, i18n.language);
     setVideoToPlayUrl(url);
   };
 
@@ -335,15 +336,19 @@ export const Videos = ({ debouncedSearchValue }) => {
                     t={t}
                     onClick={() => {
                       if (IS_PS) {
-                        handlePlay(
-                          newestVideo.originalUrl || newestVideo.awsUrl
-                        );
+                        handlePlay({
+                          id: newestVideo.id,
+                          url: newestVideo.originalUrl || newestVideo.awsUrl,
+                        });
                       } else {
                         handleRedirect(newestVideo.id, newestVideo.title);
                       }
                     }}
                     handlePlay={() => {
-                      handlePlay(newestVideo.originalUrl || newestVideo.awsUrl);
+                      handlePlay({
+                        id: newestVideo.id,
+                        url: newestVideo.originalUrl || newestVideo.awsUrl,
+                      });
                     }}
                   />
                 )
@@ -428,17 +433,21 @@ export const Videos = ({ debouncedSearchValue }) => {
                               contentType="videos"
                               onClick={() => {
                                 if (IS_PS) {
-                                  handlePlay(
-                                    videoData.originalUrl || videoData.awsUrl
-                                  );
+                                  handlePlay({
+                                    id: videoData.id,
+                                    url:
+                                      videoData.originalUrl || videoData.awsUrl,
+                                  });
                                 } else {
                                   handleRedirect(videoData.id, videoData.title);
                                 }
                               }}
                               handlePlay={() => {
-                                handlePlay(
-                                  videoData.originalUrl || videoData.awsUrl
-                                );
+                                handlePlay({
+                                  id: videoData.id,
+                                  url:
+                                    videoData.originalUrl || videoData.awsUrl,
+                                });
                               }}
                             />
                           </div>
