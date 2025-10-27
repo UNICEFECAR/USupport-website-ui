@@ -386,6 +386,11 @@ export const Articles = ({ debouncedSearchValue }) => {
       queryParams["isForAdmin"] = true;
     }
 
+    if (IS_PS) {
+      queryParams["sortBy"] = "title";
+      queryParams["sortOrder"] = "asc";
+    }
+
     const { data } = await cmsSvc.getArticles(queryParams);
 
     const newArticles = data.data;
