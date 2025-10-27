@@ -274,9 +274,9 @@ export const Videos = ({ debouncedSearchValue }) => {
   const hasVideosDifferentThanNewest =
     selectedCategory?.value !== "all"
       ? true
-      : newestVideo &&
+      : (newestVideo || IS_PS) &&
         videos?.length > 0 &&
-        videos?.some((video) => video.id !== newestVideo?.id);
+        (videos?.some((video) => video.id !== newestVideo?.id) || IS_PS);
 
   const showCategories =
     categories && categories.length > 1 && hasVideosDifferentThanNewest;
