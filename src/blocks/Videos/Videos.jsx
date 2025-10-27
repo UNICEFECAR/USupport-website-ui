@@ -333,9 +333,15 @@ export const Videos = ({ debouncedSearchValue }) => {
                     likes={newestVideo.likes}
                     dislikes={newestVideo.dislikes}
                     t={t}
-                    onClick={() =>
-                      handleRedirect(newestVideo.id, newestVideo.title)
-                    }
+                    onClick={() => {
+                      if (IS_PS) {
+                        handlePlay(
+                          newestVideo.originalUrl || newestVideo.awsUrl
+                        );
+                      } else {
+                        handleRedirect(newestVideo.id, newestVideo.title);
+                      }
+                    }}
                     handlePlay={() => {
                       handlePlay(newestVideo.originalUrl || newestVideo.awsUrl);
                     }}
@@ -420,9 +426,15 @@ export const Videos = ({ debouncedSearchValue }) => {
                               t={t}
                               categoryName={videoData.categoryName}
                               contentType="videos"
-                              onClick={() =>
-                                handleRedirect(videoData.id, videoData.title)
-                              }
+                              onClick={() => {
+                                if (IS_PS) {
+                                  handlePlay(
+                                    videoData.originalUrl || videoData.awsUrl
+                                  );
+                                } else {
+                                  handleRedirect(videoData.id, videoData.title);
+                                }
+                              }}
                               handlePlay={() => {
                                 handlePlay(
                                   videoData.originalUrl || videoData.awsUrl
