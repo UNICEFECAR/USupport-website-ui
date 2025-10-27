@@ -514,23 +514,21 @@ export const Articles = ({ debouncedSearchValue }) => {
                 </GridItem>
               )}
 
-              {!IS_PS && (
-                <GridItem
-                  md={8}
-                  lg={12}
-                  classes={`articles__categories-item ${
-                    IS_RTL ? "articles__categories-item--rtl" : ""
-                  }`}
-                >
-                  {categories && (
-                    <Tabs
-                      options={categoriesToShow}
-                      handleSelect={handleCategoryOnPress}
-                      t={t}
-                    />
-                  )}
-                </GridItem>
-              )}
+              <GridItem
+                md={8}
+                lg={12}
+                classes={`articles__categories-item ${
+                  IS_RTL ? "articles__categories-item--rtl" : ""
+                }`}
+              >
+                {categories && (
+                  <Tabs
+                    options={categoriesToShow}
+                    handleSelect={handleCategoryOnPress}
+                    t={t}
+                  />
+                )}
+              </GridItem>
 
               <GridItem md={8} lg={12} classes="articles__articles-item">
                 <div style={{ position: "relative", minHeight: "20rem" }}>
