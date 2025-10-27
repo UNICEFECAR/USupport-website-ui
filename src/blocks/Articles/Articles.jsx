@@ -390,7 +390,7 @@ export const Articles = ({ debouncedSearchValue }) => {
 
     const newArticles = data.data;
 
-    setArticles((prevArticles) => [...prevArticles, ...newArticles]);
+    setArticles((prevArticles) => [...(prevArticles || []), ...newArticles]);
   };
 
   //--------------------- Newest Article ----------------------//
