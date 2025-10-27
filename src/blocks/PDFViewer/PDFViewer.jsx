@@ -1,18 +1,16 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState, useEffect, useRef } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import pdfWorker from "pdfjs-dist/build/pdf.worker.min.mjs?url";
-
 import { Loading } from "@USupport-components-library/src";
 
-pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker;
-
 import "./pdf-viewer.scss";
+
+pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker;
 
 /**
  * PDFViewer
  *
- * PDF viewer component with smooth scrolling through all pages
+ * PDF viewer component with smooth infinite scroll loading
  *
  * @param {Object} props
  * @param {string} props.pdfUrl - URL of the PDF file
@@ -20,67 +18,92 @@ import "./pdf-viewer.scss";
  */
 export const PDFViewer = ({ pdfUrl }) => {
   const [numPages, setNumPages] = useState(null);
-  const [visiblePages, setVisiblePages] = useState(5);
+  const [visiblePages, setVisiblePages] = useState(8);
+  const loaderRef = useRef(null);
 
+  // Disable right-click (prevent save-as on images)
   useEffect(() => {
-    // disable right click
-    document.addEventListener("contextmenu", (e) => {
-      e.preventDefault();
-    });
-    return () => {
-      document.removeEventListener("contextmenu", (e) => {
-        e.preventDefault();
-      });
-    };
+    const handleContextMenu = (e) => e.preventDefault();
+    document.addEventListener("contextmenu", handleContextMenu);
+    return () => document.removeEventListener("contextmenu", handleContextMenu);
   }, []);
 
-  // Load pages in batches on scroll
+  // Load additional pages when the sentinel (loaderRef) becomes visible
   useEffect(() => {
-    const handleScroll = () => {
-      if (
-        window.innerHeight + window.scrollY >=
-        document.body.offsetHeight - 800
-      ) {
-        setVisiblePages((prev) => Math.min(prev + 3, numPages));
+    if (!numPages) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          setVisiblePages((prev) => Math.min(prev + 5, numPages));
+        }
+      },
+      {
+        root: null, // observe viewport
+        rootMargin: "400px", // prefetch ahead of time
+        threshold: 0.1,
       }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    );
+
+    if (loaderRef.current) observer.observe(loaderRef.current);
+    return () => observer.disconnect();
   }, [numPages]);
 
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
   };
 
+  const pageWidth =
+    typeof window !== "undefined"
+      ? Math.min(window.innerWidth * 0.9, 900)
+      : 900;
+
+  console.log(numPages, visiblePages);
+
   return (
-    <React.Fragment>
+    <div className="pdf-viewer-container">
       <Document
-        loading={<Loading size="lg" />}
         file={pdfUrl}
+        loading={<Loading size="lg" />}
         onLoadSuccess={onDocumentLoadSuccess}
       >
         {Array.from({ length: visiblePages }, (_, index) => (
           <div
             key={index}
+            className="pdf-page-wrapper"
             style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginBottom: "1.5rem",
+            }}
+          >
+            <Page
+              key={index}
+              pageNumber={index + 1}
+              renderTextLayer={false}
+              renderAnnotationLayer={false}
+              width={pageWidth}
+            />
+          </div>
+        ))}
+
+        {/* Sentinel element — triggers when user scrolls near bottom */}
+        {visiblePages < (numPages ?? 0) && (
+          <div
+            ref={loaderRef}
+            style={{
+              height: "60px",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
             }}
           >
-            <Page
-              renderTextLayer={false}
-              renderAnnotationLayer={false}
-              loading=""
-              width={
-                window.innerWidth * 0.9 > 900 ? 900 : window.innerWidth * 0.9
-              }
-              key={index}
-              pageNumber={index + 1}
-            />
+            <Loading size="sm" />
           </div>
-        ))}
+        )}
       </Document>
-    </React.Fragment>
+    </div>
   );
 };
