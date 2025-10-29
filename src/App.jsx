@@ -5,6 +5,7 @@ import {
   Route,
   useParams,
   Navigate,
+  useSearchParams,
 } from "react-router-dom";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import {
@@ -22,7 +23,6 @@ import {
   ContactUs,
   HowItWorks,
   NotFound,
-  AboutUs,
   InformationPortal,
   ArticleInformation,
   PrivacyPolicy,
@@ -36,7 +36,10 @@ import {
   Organizations,
   OrganizationOverview,
 } from "#pages";
-import { ThemeContext } from "@USupport-components-library/utils";
+import {
+  ThemeContext,
+  generateVisitorId,
+} from "@USupport-components-library/utils";
 import { userSvc } from "@USupport-components-library/services";
 
 import { useEventListener } from "#hooks";
@@ -85,11 +88,17 @@ function App() {
   useEffect(() => {
     const lang = localStorage.getItem("language");
     const hasAcceptedCookies = !!Number(
-      localStorage.getItem("hasAcceptedCookies")
+      localStorage.getItem("acceptAllCookies")
     );
     const hasHandledCookies = !!Number(
       localStorage.getItem("hasHandledCookies")
     );
+    const visitorId = localStorage.getItem("visitorId");
+
+    if (!visitorId) {
+      const visitorId = generateVisitorId();
+      localStorage.setItem("visitorId", visitorId);
+    }
 
     setCookieState({
       hasAcceptedCookies,
@@ -137,7 +146,29 @@ function App() {
 const LanguageLayout = () => {
   const { language } = useParams();
 
-  const allLangs = ["en", "ru", "kk", "pl", "uk", "hy"];
+  const allLangs = ["en", "ru", "kk", "pl", "uk", "hy", "ro", "ar", "tr"];
+
+  const IS_PS = localStorage.getItem("country") === "PS";
+  const [searchParams, setSearchParams] = useSearchParams();
+  const source = searchParams.get("source");
+
+  useQuery(
+    ["playandheal-visit"],
+    () => {
+      const eventType =
+        source === "qr" ? "playandheal_visit_qr" : "playandheal_visit";
+      if (source === "qr") {
+        setSearchParams((prev) => {
+          prev.delete("source");
+          return prev;
+        });
+      }
+      return userSvc.addCountryEvent({
+        eventType,
+      });
+    },
+    { enabled: IS_PS }
+  );
 
   if (!allLangs.includes(language) || !language) {
     return <Navigate to="/en" />;
@@ -196,13 +227,28 @@ const Root = () => {
   useEventListener("countryChanged", handler);
 
   useQuery({
+    queryKey: ["addGlobalVisit", country],
+    queryFn: async () => {
+      await userSvc.addCountryEvent({
+        eventType: "global_visit",
+      });
+      return true;
+    },
+    enabled: country === "global",
+  });
+
+  useQuery({
     queryKey: ["addPlatformAccess", country],
     queryFn: async () => {
       await userSvc.addPlatformAccess("website");
       setHasAddedPlatformAccess(true);
       return true;
     },
-    enabled: !!country && !hasAddedPlatformAccess && country !== "global",
+    enabled:
+      !!country &&
+      !hasAddedPlatformAccess &&
+      country !== "global" &&
+      country !== "PS",
   });
   return (
     <Router basename="/">

@@ -34,6 +34,9 @@ export const PrivacyPolicy = () => {
   const country = window.location.hostname.split(".")[0];
   const countries = queryClient.getQueryData(["countries"]);
 
+  const IS_PS = localStorage.getItem("country") === "PS";
+  const IS_RTL = localStorage.getItem("language") === "ar";
+
   const handler = useCallback(() => {
     const newCountry = localStorage.getItem("country");
     if (newCountry) {
@@ -56,13 +59,15 @@ export const PrivacyPolicy = () => {
       selectedCountry,
       i18n.language,
       countries,
+      IS_PS,
     ],
     queryFn: async () => {
       const localStorageCountry = localStorage.getItem("country");
       const { data } = await cmsSvc.getPolicies(
         i18n.language,
         localStorageCountry.toLocaleUpperCase(),
-        "website"
+        "website",
+        IS_PS
       );
       return data;
     },
@@ -70,7 +75,7 @@ export const PrivacyPolicy = () => {
   });
 
   return (
-    <Block classes="privacy-policy">
+    <Block classes={`privacy-policy ${IS_RTL ? "privacy-policy--rtl" : ""}`}>
       <Grid>
         <GridItem xs={4} md={8} lg={12} classes="privacy-policy__heading-item">
           <h2>{t("heading")}</h2>

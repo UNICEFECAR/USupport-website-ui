@@ -12,16 +12,20 @@
     "lint-fix": "eslint --ext .js,.jsx src --fix"
   },
   "dependencies": {
+    "@react-pdf/renderer": "^4.3.1",
     "@tanstack/react-query": "^4.13.0",
     "@tanstack/react-query-devtools": "^4.14.1",
     "aos": "^2.3.4",
     "axios": "^1.7.2",
     "classnames": "^2.3.2",
     "i18next": "^21.10.0",
+    "pdfjs-dist": "^5.4.296",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hls-player": "^3.0.7",
     "react-i18next": "^11.18.6",
     "react-infinite-scroll-component": "^6.1.0",
+    "react-pdf": "^10.2.0",
     "react-router-dom": "^6.4.1",
     "react-share": "^5.2.2",
     "react-toastify": "^11.0.5",
@@ -41,9 +45,7 @@
     "vite": "^4.4.7"
   },
   "overrides": {
-    "remark-parse": "9.0.0",
     "glob-parent": "5.1.2",
-    "trim-newlines": "3.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

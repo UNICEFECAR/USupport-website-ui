@@ -15,6 +15,7 @@ import {
   ThemeContext,
 } from "@USupport-components-library/utils";
 import "./video-view.scss";
+import ReactHlsPlayer from "react-hls-player";
 
 /**
  * VideoView
@@ -27,6 +28,8 @@ export const VideoView = ({ videoData, t, language }) => {
   const creator = videoData.creator ? videoData.creator : null;
   const { cookieState, setCookieState } = useContext(ThemeContext);
   const DISPLAY_VIDEO = cookieState.hasAcceptedCookies;
+  const IS_PS = localStorage.getItem("country") === "PS";
+  const IS_RTL = localStorage.getItem("language") === "ar";
 
   const { name } = useParams();
 
@@ -58,7 +61,7 @@ export const VideoView = ({ videoData, t, language }) => {
   };
 
   const renderVideoEmbed = () => {
-    if (!videoData || !videoData.videoId) return null;
+    if (!videoData || (!videoData.videoId && !videoData.awsUrl)) return null;
 
     if (!DISPLAY_VIDEO) {
       return (
@@ -73,6 +76,25 @@ export const VideoView = ({ videoData, t, language }) => {
         </div>
       );
     }
+
+    if (videoData.awsUrl) {
+      return (
+        <div className="video-view__embed-container">
+          <ReactHlsPlayer
+            src={videoData.awsUrl}
+            autoPlay={false}
+            controls={true}
+            width="100%"
+            height="auto"
+            hlsConfig={{
+              startLevel: -1,
+              capLevelOnFPSDrop: true,
+            }}
+          />
+        </div>
+      );
+    }
+
     return (
       <div className="video-view__embed-container">
         <iframe
@@ -91,7 +113,7 @@ export const VideoView = ({ videoData, t, language }) => {
   };
 
   return (
-    <Block classes="video-view">
+    <Block classes={`video-view ${IS_RTL ? "video-view--rtl" : ""}`}>
       <Grid classes="video-view__main-grid">
         <GridItem md={8} lg={12} classes="video-view__title-item">
           <h3>{videoData.title}</h3>
@@ -118,14 +140,16 @@ export const VideoView = ({ videoData, t, language }) => {
             })}
         </GridItem>
 
-        <GridItem xs={1} md={2} lg={4} classes="video-view__like-item">
-          <Like
-            likes={videoData.likes || 0}
-            isLiked={videoData.contentRating?.isLikedByUser || false}
-            dislikes={videoData.dislikes || 0}
-            isDisliked={videoData.contentRating?.isDislikedByUser || false}
-          />
-        </GridItem>
+        {!IS_PS && (
+          <GridItem xs={1} md={2} lg={4} classes="video-view__like-item">
+            <Like
+              likes={videoData.likes || 0}
+              isLiked={videoData.contentRating?.isLikedByUser || false}
+              dislikes={videoData.dislikes || 0}
+              isDisliked={videoData.contentRating?.isDislikedByUser || false}
+            />
+          </GridItem>
+        )}
 
         <GridItem md={8} lg={12} classes="video-view__embed-item">
           {renderVideoEmbed()}

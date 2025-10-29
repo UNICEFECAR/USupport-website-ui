@@ -29,6 +29,9 @@ export const CookiePolicy = () => {
   //--------------------- Country Change Event Listener ----------------------//
   const [currentCountry, setCurrentCountry] = useState();
 
+  const IS_PS = localStorage.getItem("country") === "PS";
+  const IS_RTL = localStorage.getItem("language") === "ar";
+
   useEffect(() => {
     const country = localStorage.getItem("country");
     if (country) {
@@ -60,7 +63,8 @@ export const CookiePolicy = () => {
     const { data } = await cmsSvc.getCookiePolicy(
       i18n.language,
       currentCountry,
-      "website"
+      "website",
+      IS_PS
     );
 
     return data;
@@ -71,11 +75,11 @@ export const CookiePolicy = () => {
     isLoading: cookiePolicyLoading,
     isFetched: isCookiePolicyFetched,
   } = useQuery(
-    ["cookie-policy", currentCountry, i18n.language],
+    ["cookie-policy", currentCountry, i18n.language, IS_PS],
     getCookiePolicy
   );
   return (
-    <Block classes="cookie-policy">
+    <Block classes={`cookie-policy ${IS_RTL ? "cookie-policy--rtl" : ""}`}>
       {" "}
       <Grid>
         <GridItem xs={4} md={8} lg={12} classes="privacy-policy__heading-item">
