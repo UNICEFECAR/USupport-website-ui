@@ -416,7 +416,7 @@ export const Page = ({
         <CircleIconButton
           iconName="phone-emergency"
           classes="page__emergency-button"
-          onClick={() => navigateTo(`/${localStorageLanguage}/sos-center`)}
+          onClick={() => navigateTo(`/sos-center`)}
           label={t("emergency_button")}
         />
       )}
