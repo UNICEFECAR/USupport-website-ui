@@ -253,7 +253,7 @@ export const Podcasts = ({ debouncedSearchValue }) => {
   // UI conditions
   const shouldShowNoData =
     !isAnyLoading && (!hasIdsData || (!hasPodcastsData && !hasNewestData));
-
+  console.log("shouldShowNoData", shouldShowNoData);
   const shouldShowPodcastsList =
     hasIdsData &&
     hasPodcastsData &&
@@ -283,14 +283,6 @@ export const Podcasts = ({ debouncedSearchValue }) => {
         <h3>{t("could_not_load_content")}</h3>
       </div>
     );
-
-  const renderHeading = () => (
-    <GridItem md={8} lg={12} classes="podcasts__heading-item">
-      {theme === "dark" && (
-        <h2 className="podcasts__heading-text">{t("heading")}</h2>
-      )}
-    </GridItem>
-  );
 
   const renderNewestPodcast = () =>
     (isNewestPodcastLoading || hasNewestData) && (
@@ -412,7 +404,6 @@ export const Podcasts = ({ debouncedSearchValue }) => {
       <Block classes="podcasts">
         {renderNoData()}
         <Grid classes="podcasts__main-grid">
-          {renderHeading()}
           {renderNewestPodcast()}
           {renderCategories()}
           {renderPodcastsList()}
