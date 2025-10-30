@@ -54,7 +54,7 @@ export const PodcastInformation = () => {
     });
     const { data } = await cmsSvc.getPodcastById(id, i18n.language);
 
-    const finalData = destructurePodcastData(data);
+    const finalData = await destructurePodcastData(data);
     finalData.contentRating = contentRatings.data;
     return finalData;
   };
@@ -77,7 +77,8 @@ export const PodcastInformation = () => {
       ids: podcastIdsQuery.data,
     });
 
-    if (data.length === 0) {
+    let podcastsData = data.data || [];
+    if (podcastsData.length === 0) {
       let { data: newest } = await cmsSvc.getPodcasts({
         limit: 3,
         sortBy: "createdAt",
@@ -87,9 +88,13 @@ export const PodcastInformation = () => {
         populate: true,
         ids: podcastIdsQuery.data,
       });
-      return newest.data;
+      podcastsData = newest.data || [];
     }
-    return data.data;
+    // Process podcasts with async destructurePodcastData
+    const processedPodcasts = await Promise.all(
+      podcastsData.map((podcast) => destructurePodcastData(podcast))
+    );
+    return processedPodcasts;
   };
 
   const { data: morePodcasts, isLoading: isMorePodcastsLoading } = useQuery(
@@ -140,7 +145,8 @@ export const PodcastInformation = () => {
               <h4>{t("more_podcasts")}</h4>
             </GridItem>
             {morePodcasts.map((podcast, index) => {
-              const podcastData = destructurePodcastData(podcast);
+              // Podcast data is already processed in getSimilarPodcasts
+              const podcastData = podcast;
               return (
                 <GridItem
                   classes="page__podcast-information__more-podcasts-card"
