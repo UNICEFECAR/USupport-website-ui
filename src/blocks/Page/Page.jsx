@@ -300,7 +300,7 @@ export const Page = ({
         { name: t("footer_2"), url: "/information-portal?tab=articles" },
         // { name: t("footer_4"), url: "/terms-of-use", exact: true },
         // { name: t("footer_5"), url: "/privacy-policy" },
-        // { name: t("footer_6"), url: "/cookie-policy" },
+        { name: t("footer_6"), url: "/cookie-policy" },
       ],
       list2: [],
       list3: [],
