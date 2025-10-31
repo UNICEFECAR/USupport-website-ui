@@ -25,6 +25,7 @@ import {
 import informationPortalMobile from "./assets/information-portal-mobile.png";
 // import informationPortalLight from "./assets/information-portal-light.jpg";
 import informationPortalDark from "./assets/information-portal.png";
+import informationPortalPs from "./assets/information-portal-ps.png";
 
 import "./information-portal.scss";
 
@@ -112,7 +113,7 @@ export const InformationPortal = () => {
       {width < 768 ? (
         <div className="page__information-portal__img-container">
           <img
-            src={informationPortalMobile}
+            src={IS_PS ? informationPortalPs : informationPortalMobile}
             alt="Information Portal"
             className="information-portal-image information-portal-image--mobile"
           />
@@ -133,7 +134,7 @@ export const InformationPortal = () => {
             // src={
             //   theme === "dark" ? informationPortalDark : informationPortalLight
             // }
-            src={informationPortalDark}
+            src={IS_PS ? informationPortalPs : informationPortalDark}
             alt="Information Portal"
             className={`information-portal-image information-portal-image--desktop ${
               theme !== "dark" ? "information-portal-image--visible" : ""
