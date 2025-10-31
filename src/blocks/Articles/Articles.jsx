@@ -240,7 +240,7 @@ export const Articles = ({ debouncedSearchValue }) => {
       if (!selectedAgeGroup?.id) return [];
       return cmsSvc.getArticleCategoryIds(
         usersLanguage,
-        selectedAgeGroup.id,
+        IS_PS ? null : selectedAgeGroup.id,
         shouldFetchIds ? articleIdsQuery.data : undefined
       );
     },
@@ -451,6 +451,8 @@ export const Articles = ({ debouncedSearchValue }) => {
       )}/information-portal/article/${id}/${createArticleSlug(name)}`
     );
   };
+
+  console.log(categoriesToShow);
 
   return (
     <Block classes="articles">
