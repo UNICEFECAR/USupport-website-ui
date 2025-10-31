@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
@@ -53,6 +53,8 @@ export const Organizations = () => {
   const [hasAppliedSpecialisations, setHasAppliedSpecialisations] =
     useState(false);
 
+  const interactiveMapRef = useRef(null);
+
   const [searchParams] = useSearchParams();
   const specialisations = searchParams.get("specialisations");
   const specialisationsArray = specialisations
@@ -103,6 +105,11 @@ export const Organizations = () => {
   };
 
   const handleOrganizationClick = (organization) => {
+    // Scroll to map when organization is clicked
+    interactiveMapRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+
     if (
       mapControls &&
       organization.location.latitude &&
@@ -294,15 +301,17 @@ export const Organizations = () => {
         {t("reset_filters")}
       </Button>
       {!isOrganizationsKeyLoading && (
-        <InteractiveMap
-          data={data}
-          onMapReady={handleMapReady}
-          t={t}
-          navigate={navigate}
-          userLocation={userLocation}
-          setUserLocation={setUserLocation}
-          organizationsKey={organizationsKey}
-        />
+        <div ref={interactiveMapRef}>
+          <InteractiveMap
+            data={data}
+            onMapReady={handleMapReady}
+            t={t}
+            navigate={navigate}
+            userLocation={userLocation}
+            setUserLocation={setUserLocation}
+            organizationsKey={organizationsKey}
+          />
+        </div>
       )}
       <Grid md={8} lg={12} classes="organizations__grid">
         {isLoading ? <Loading /> : renderOrganizations()}

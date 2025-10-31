@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useCallback,
-  useContext,
-  useMemo,
-} from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -25,7 +19,6 @@ import {
 } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 import { useEventListener } from "#hooks";
-import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./podcasts.scss";
 
@@ -47,7 +40,6 @@ export const Podcasts = ({ debouncedSearchValue }) => {
   const navigate = useNavigate();
   const { width } = useWindowDimensions();
   const { i18n, t } = useTranslation("blocks", { keyPrefix: "articles" });
-  const { theme } = useContext(ThemeContext);
   const isNotDescktop = width < 1366;
 
   const [usersLanguage, setUsersLanguage] = useState(i18n.language);
@@ -130,9 +122,14 @@ export const Podcasts = ({ debouncedSearchValue }) => {
         : { global: true, isForAdmin: true }),
     };
     const { data } = await cmsSvc.getPodcasts(queryParams);
-    setPodcasts(data.data || []);
-    setNumberOfPodcasts(data.meta?.pagination?.total || data.data.length);
-    return data.data;
+    const podcastsData = data.data || [];
+    // Process podcasts with async destructurePodcastData
+    const processedPodcasts = await Promise.all(
+      podcastsData.map((podcast) => destructurePodcastData(podcast))
+    );
+    setPodcasts(processedPodcasts);
+    setNumberOfPodcasts(data.meta?.pagination?.total || podcastsData.length);
+    return processedPodcasts;
   };
 
   const podcastsQuery = useQuery(
@@ -169,8 +166,12 @@ export const Podcasts = ({ debouncedSearchValue }) => {
     };
     const { data } = await cmsSvc.getPodcasts(queryParams);
     const newData = data.data || [];
-    const currentPodcastsLength = podcasts.length + newData.length;
-    setPodcasts((prev) => [...prev, ...newData]);
+    // Process new podcasts with async destructurePodcastData
+    const processedNewData = await Promise.all(
+      newData.map((podcast) => destructurePodcastData(podcast))
+    );
+    const currentPodcastsLength = podcasts.length + processedNewData.length;
+    setPodcasts((prev) => [...prev, ...processedNewData]);
     if (currentPodcastsLength >= numberOfPodcasts) setHasMore(false);
   };
 
@@ -187,7 +188,7 @@ export const Podcasts = ({ debouncedSearchValue }) => {
     };
     const { data } = await cmsSvc.getPodcasts(queryParams);
     if (!data?.data?.[0]) return null;
-    return destructurePodcastData(data.data[0]);
+    return await destructurePodcastData(data.data[0]);
   };
 
   const { data: podcastCategoryIdsToShow } = useQuery(
@@ -362,7 +363,8 @@ export const Podcasts = ({ debouncedSearchValue }) => {
           >
             <div className="podcasts__custom-grid">
               {podcasts.map((podcast, index) => {
-                const data = destructurePodcastData(podcast);
+                // Podcast data is already processed in getPodcastsData/getMorePodcasts
+                const data = podcast;
                 const span = getGridSpanForIndex(index);
                 return (
                   <div

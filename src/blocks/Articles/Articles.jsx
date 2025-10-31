@@ -549,7 +549,9 @@ export const Articles = ({ debouncedSearchValue }) => {
                     <div className="articles__custom-grid">
                       {articles?.map((article, index) => {
                         const articleData = destructureArticleData(article);
-                        const gridSpan = getGridSpanForIndex(index, [2, 3, 1]);
+                        const gridSpan = IS_PS
+                          ? 3
+                          : getGridSpanForIndex(index, [2, 3, 1]);
 
                         return (
                           <div
