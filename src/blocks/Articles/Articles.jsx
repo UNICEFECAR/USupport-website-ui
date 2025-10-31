@@ -297,6 +297,7 @@ export const Articles = ({ debouncedSearchValue }) => {
     if (IS_PS) {
       queryParams["sortBy"] = "title";
       queryParams["sortOrder"] = "asc";
+      delete queryParams["ageGroupId"];
     }
 
     if (shouldFetchIds) {
@@ -389,6 +390,7 @@ export const Articles = ({ debouncedSearchValue }) => {
     if (IS_PS) {
       queryParams["sortBy"] = "title";
       queryParams["sortOrder"] = "asc";
+      delete queryParams["ageGroupId"];
     }
 
     const { data } = await cmsSvc.getArticles(queryParams);
