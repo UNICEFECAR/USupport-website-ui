@@ -26,6 +26,9 @@ import informationPortalMobile from "./assets/information-portal-mobile.png";
 // import informationPortalLight from "./assets/information-portal-light.jpg";
 import informationPortalDark from "./assets/information-portal.png";
 import informationPortalPs from "./assets/information-portal-ps.png";
+import informationPortalPsDark from "./assets/information-portal-ps-dark.png";
+import informationPortalPsMobile from "./assets/information-portal-ps-mobile.png";
+import informationPortalPsMobileDark from "./assets/information-portal-ps-mobile-dark.png";
 
 import "./information-portal.scss";
 
@@ -103,6 +106,18 @@ export const InformationPortal = () => {
     navigate(`/information-portal?tab=${newTab}`);
   };
 
+  const isDark = theme === "dark";
+  const informationPortalMobileImage = IS_PS
+    ? isDark
+      ? informationPortalPsMobileDark
+      : informationPortalPsMobile
+    : informationPortalMobile;
+  const informationPortalImage = IS_PS
+    ? isDark
+      ? informationPortalPsDark
+      : informationPortalPs
+    : informationPortalDark;
+
   return (
     <Page
       classes={[
@@ -113,7 +128,7 @@ export const InformationPortal = () => {
       {width < 768 ? (
         <div className="page__information-portal__img-container">
           <img
-            src={IS_PS ? informationPortalPs : informationPortalMobile}
+            src={informationPortalMobileImage}
             alt="Information Portal"
             className="information-portal-image information-portal-image--mobile"
           />
@@ -134,7 +149,7 @@ export const InformationPortal = () => {
             // src={
             //   theme === "dark" ? informationPortalDark : informationPortalLight
             // }
-            src={IS_PS ? informationPortalPs : informationPortalDark}
+            src={informationPortalImage}
             alt="Information Portal"
             className={`information-portal-image information-portal-image--desktop ${
               theme !== "dark" ? "information-portal-image--visible" : ""
