@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { Page, CustomAboutUs as CustomAboutUsBlock, ContactUs } from "#blocks";
 import { RadialCircle } from "@USupport-components-library/src";
+import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./custom-about-us.scss";
 
@@ -14,8 +15,14 @@ import "./custom-about-us.scss";
  */
 export const CustomAboutUs = () => {
   const IS_PS = localStorage.getItem("country") === "PS";
+  const { theme } = useContext(ThemeContext);
+  const IS_DARK = theme === "dark";
   return (
-    <Page classes="page__custom-about-us">
+    <Page
+      classes={`page__custom-about-us ${
+        IS_PS ? "page__custom-about-us--ps" : ""
+      } ${IS_DARK ? "page__custom-about-us--ps--dark" : ""}`}
+    >
       <CustomAboutUsBlock />
       {!IS_PS && <ContactUs />}
       <div className="page__about-us__radial-circle">
