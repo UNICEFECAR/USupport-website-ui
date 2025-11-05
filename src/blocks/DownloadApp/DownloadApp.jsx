@@ -17,7 +17,7 @@ import "./download-app.scss";
 import imageSrc from "./assets/StartScreen.png";
 import imageSrcWebp from "./assets/StartScreen.webp";
 
-import StartScreenPreviews from "./assets/StartScreenPreviews.png";
+import StartScreenPreviews from "./assets/StartScreenPreviewsNew.png";
 
 /**
  * DownloadApp
@@ -33,7 +33,7 @@ export const DownloadApp = () => {
 
   return (
     <Block
-      classes={["download-app", theme === "dark" && "download-app--dark"].join(
+      classes={["download-app", theme !== "light" && "download-app--dark"].join(
         " "
       )}
       animation="fade-up"

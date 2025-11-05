@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useContext } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -10,6 +10,7 @@ import {
   CardMedia,
   Tabs,
   Loading,
+  PodcastModal, // Add this import
 } from "@USupport-components-library/src";
 import {
   destructurePodcastData,
@@ -18,7 +19,6 @@ import {
 } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 import { useEventListener } from "#hooks";
-import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./podcasts.scss";
 
@@ -40,7 +40,6 @@ export const Podcasts = ({ debouncedSearchValue }) => {
   const navigate = useNavigate();
   const { width } = useWindowDimensions();
   const { i18n, t } = useTranslation("blocks", { keyPrefix: "articles" });
-  const { theme } = useContext(ThemeContext);
   const isNotDescktop = width < 1366;
 
   const [usersLanguage, setUsersLanguage] = useState(i18n.language);
@@ -49,6 +48,7 @@ export const Podcasts = ({ debouncedSearchValue }) => {
   const [podcasts, setPodcasts] = useState([]);
   const [numberOfPodcasts, setNumberOfPodcasts] = useState(0);
   const [hasMore, setHasMore] = useState(true);
+  const [podcastToPlay, setPodcastToPlay] = useState(null);
 
   useEffect(() => {
     if (i18n.language !== usersLanguage) {
@@ -77,7 +77,7 @@ export const Podcasts = ({ debouncedSearchValue }) => {
   });
 
   const handleCategoryOnPress = (index) => {
-    const updated = categories.map((cat, i) => ({
+    const updated = categoriesToShow.map((cat, i) => ({
       ...cat,
       isSelected: i === index,
     }));
@@ -122,29 +122,33 @@ export const Podcasts = ({ debouncedSearchValue }) => {
         : { global: true, isForAdmin: true }),
     };
     const { data } = await cmsSvc.getPodcasts(queryParams);
-    setPodcasts(data.data || []);
-    setNumberOfPodcasts(data.meta?.pagination?.total || data.data.length);
-    return data.data;
+    const podcastsData = data.data || [];
+    // Process podcasts with async destructurePodcastData
+    const processedPodcasts = await Promise.all(
+      podcastsData.map((podcast) => destructurePodcastData(podcast))
+    );
+    setPodcasts(processedPodcasts);
+    setNumberOfPodcasts(data.meta?.pagination?.total || podcastsData.length);
+    return processedPodcasts;
   };
 
-  const { isLoading: isPodcastsLoading, isFetching: isPodcastsFetching } =
-    useQuery(
-      [
-        "podcasts",
-        debouncedSearchValue,
-        selectedCategory,
-        podcastIdsQuery.data,
-        usersLanguage,
-        shouldFetchIds,
-      ],
-      getPodcastsData,
-      {
-        enabled:
-          (shouldFetchIds
-            ? !podcastIdsQuery.isLoading && !!podcastIdsQuery.data
-            : true) && !!selectedCategory,
-      }
-    );
+  const podcastsQuery = useQuery(
+    [
+      "podcasts",
+      debouncedSearchValue,
+      selectedCategory,
+      podcastIdsQuery.data,
+      usersLanguage,
+      shouldFetchIds,
+    ],
+    getPodcastsData,
+    {
+      enabled:
+        (shouldFetchIds
+          ? !podcastIdsQuery.isLoading && !!podcastIdsQuery.data
+          : true) && !!selectedCategory,
+    }
+  );
 
   const getMorePodcasts = async () => {
     const categoryId =
@@ -162,8 +166,13 @@ export const Podcasts = ({ debouncedSearchValue }) => {
     };
     const { data } = await cmsSvc.getPodcasts(queryParams);
     const newData = data.data || [];
-    setPodcasts((prev) => [...prev, ...newData]);
-    if (podcasts.length + newData.length >= numberOfPodcasts) setHasMore(false);
+    // Process new podcasts with async destructurePodcastData
+    const processedNewData = await Promise.all(
+      newData.map((podcast) => destructurePodcastData(podcast))
+    );
+    const currentPodcastsLength = podcasts.length + processedNewData.length;
+    setPodcasts((prev) => [...prev, ...processedNewData]);
+    if (currentPodcastsLength >= numberOfPodcasts) setHasMore(false);
   };
 
   const getNewestPodcast = async () => {
@@ -179,8 +188,35 @@ export const Podcasts = ({ debouncedSearchValue }) => {
     };
     const { data } = await cmsSvc.getPodcasts(queryParams);
     if (!data?.data?.[0]) return null;
-    return destructurePodcastData(data.data[0]);
+    return await destructurePodcastData(data.data[0]);
   };
+
+  const { data: podcastCategoryIdsToShow } = useQuery(
+    [
+      "podcasts-category-ids",
+      usersLanguage,
+      podcastIdsQuery.data,
+      shouldFetchIds,
+    ],
+    () =>
+      cmsSvc.getPodcastCategoryIds(
+        usersLanguage,
+        shouldFetchIds ? podcastIdsQuery.data : undefined
+      ),
+    {
+      enabled: shouldFetchIds ? !!podcastIdsQuery.data : true,
+    }
+  );
+
+  const categoriesToShow = useMemo(() => {
+    if (!categories || !podcastCategoryIdsToShow) return [];
+
+    return categories.filter(
+      (category) =>
+        podcastCategoryIdsToShow.includes(category.id) ||
+        category.value === "all"
+    );
+  }, [categories, podcastCategoryIdsToShow]);
 
   const { data: newestPodcast, isLoading: isNewestPodcastLoading } = useQuery(
     ["newestPodcast", usersLanguage, currentCountry, shouldFetchIds],
@@ -201,74 +237,124 @@ export const Podcasts = ({ debouncedSearchValue }) => {
     );
   };
 
-  const isLoading =
-    isPodcastsLoading ||
-    isPodcastsFetching ||
-    isNewestPodcastLoading ||
-    (shouldFetchIds && podcastIdsQuery.isLoading);
+  const handlePlay = (spotifyId, title) => {
+    setPodcastToPlay({ spotifyId, title });
+  };
 
-  const hasNoData =
-    !isLoading &&
-    ((shouldFetchIds && !podcastIdsQuery.data?.length) ||
-      (!podcasts?.length && !newestPodcast));
+  // Loading states
+  const isInitialLoading = podcastIdsQuery.isLoading || isNewestPodcastLoading;
+  const isContentLoading = podcastsQuery.isLoading || podcastsQuery.isFetching;
+  const isAnyLoading = isInitialLoading || isContentLoading;
 
-  return (
-    <Block classes="podcasts">
-      {hasNoData && (
-        <div className="podcasts__no-results-container">
-          <h3>{t("could_not_load_content")}</h3>
+  // Data availability
+  const hasIdsData = !shouldFetchIds || podcastIdsQuery.data?.length > 0;
+  const hasPodcastsData = podcasts?.length > 0;
+  const hasNewestData = !!newestPodcast;
+
+  // UI conditions
+  const shouldShowNoData =
+    !isAnyLoading && (!hasIdsData || (!hasPodcastsData && !hasNewestData));
+  console.log("shouldShowNoData", shouldShowNoData);
+  const shouldShowPodcastsList =
+    hasIdsData &&
+    hasPodcastsData &&
+    (selectedCategory?.value !== "all" ||
+      (hasNewestData &&
+        hasPodcastsData &&
+        podcasts.some((podcast) => podcast.id !== newestPodcast.id)));
+
+  const shouldShowCategories =
+    categoriesToShow?.length > 1 && shouldShowPodcastsList;
+
+  // Render helpers
+  const renderPodcastModal = () =>
+    podcastToPlay && (
+      <PodcastModal
+        isOpen={!!podcastToPlay}
+        onClose={() => setPodcastToPlay(null)}
+        spotifyId={podcastToPlay.spotifyId}
+        title={podcastToPlay.title}
+        t={t}
+      />
+    );
+
+  const renderNoData = () =>
+    shouldShowNoData && (
+      <div className="podcasts__no-results-container">
+        <h3>{t("could_not_load_content")}</h3>
+      </div>
+    );
+
+  const renderNewestPodcast = () =>
+    (isNewestPodcastLoading || hasNewestData) && (
+      <GridItem md={8} lg={12} classes="podcasts__most-important-item">
+        {isNewestPodcastLoading ? (
+          <Loading />
+        ) : (
+          hasNewestData && (
+            <CardMedia
+              type={isNotDescktop ? "portrait" : "landscape"}
+              size="lg"
+              title={newestPodcast.title}
+              image={newestPodcast.imageMedium}
+              description={newestPodcast.description}
+              labels={newestPodcast.labels}
+              creator={newestPodcast.creator}
+              contentType="podcasts"
+              categoryName={newestPodcast.categoryName}
+              showDescription={true}
+              likes={newestPodcast.likes}
+              dislikes={newestPodcast.dislikes}
+              t={t}
+              onClick={() =>
+                handleRedirect(newestPodcast.id, newestPodcast.title)
+              }
+              handlePlay={() => {
+                handlePlay(newestPodcast.spotifyId, newestPodcast.title);
+              }}
+            />
+          )
+        )}
+      </GridItem>
+    );
+
+  const renderCategories = () =>
+    shouldShowCategories && (
+      <GridItem md={8} lg={12} classes="podcasts__categories-item">
+        <div className="podcasts__categories-item__container">
+          <Tabs
+            options={categoriesToShow}
+            handleSelect={handleCategoryOnPress}
+            t={t}
+          />
         </div>
-      )}
+      </GridItem>
+    );
 
-      <Grid classes="podcasts__main-grid">
-        <GridItem md={8} lg={12} classes="podcasts__heading-item">
-          {theme === "dark" && (
-            <h2 className="podcasts__heading-text">{t("heading")}</h2>
-          )}
-        </GridItem>
-
-        {(isNewestPodcastLoading || newestPodcast) && (
-          <GridItem md={8} lg={12} classes="podcasts__most-important-item">
-            {isNewestPodcastLoading ? (
-              <Loading />
-            ) : (
-              newestPodcast && (
-                <CardMedia
-                  type={isNotDescktop ? "portrait" : "landscape"}
-                  size="lg"
-                  title={newestPodcast.title}
-                  image={newestPodcast.imageMedium}
-                  description={newestPodcast.description}
-                  labels={newestPodcast.labels}
-                  creator={newestPodcast.creator}
-                  contentType="podcasts"
-                  categoryName={newestPodcast.categoryName}
-                  showDescription={true}
-                  likes={newestPodcast.likes}
-                  dislikes={newestPodcast.dislikes}
-                  t={t}
-                  onClick={() =>
-                    handleRedirect(newestPodcast.id, newestPodcast.title)
-                  }
-                />
-              )
-            )}
-          </GridItem>
-        )}
-
-        {podcasts?.length > 0 && categories && (
-          <GridItem md={8} lg={12} classes="podcasts__categories-item">
-            <div className="podcasts__categories-item__container">
-              <Tabs
-                options={categories}
-                handleSelect={handleCategoryOnPress}
-                t={t}
-              />
+  const renderPodcastsList = () =>
+    shouldShowPodcastsList && (
+      <GridItem md={8} lg={12} classes="podcasts__podcasts-item">
+        <div style={{ position: "relative" }}>
+          {/* Loading overlay for category changes */}
+          {podcastsQuery.isFetching && podcasts?.length > 0 && (
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: "rgba(255, 255, 255, 0.8)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                zIndex: 10,
+              }}
+            >
+              <Loading size="lg" />
             </div>
-          </GridItem>
-        )}
+          )}
 
-        <GridItem md={8} lg={12} classes="podcasts__podcasts-item">
           <InfiniteScroll
             dataLength={podcasts.length}
             next={getMorePodcasts}
@@ -277,7 +363,8 @@ export const Podcasts = ({ debouncedSearchValue }) => {
           >
             <div className="podcasts__custom-grid">
               {podcasts.map((podcast, index) => {
-                const data = destructurePodcastData(podcast);
+                // Podcast data is already processed in getPodcastsData/getMorePodcasts
+                const data = podcast;
                 const span = getGridSpanForIndex(index);
                 return (
                   <div
@@ -300,14 +387,30 @@ export const Podcasts = ({ debouncedSearchValue }) => {
                       t={t}
                       categoryName={data.categoryName}
                       onClick={() => handleRedirect(data.id, data.title)}
+                      handlePlay={() => {
+                        handlePlay(data.spotifyId, data.title);
+                      }}
                     />
                   </div>
                 );
               })}
             </div>
           </InfiniteScroll>
-        </GridItem>
-      </Grid>
-    </Block>
+        </div>
+      </GridItem>
+    );
+
+  return (
+    <>
+      {renderPodcastModal()}
+      <Block classes="podcasts">
+        {renderNoData()}
+        <Grid classes="podcasts__main-grid">
+          {renderNewestPodcast()}
+          {renderCategories()}
+          {renderPodcastsList()}
+        </Grid>
+      </Block>
+    </>
   );
 };

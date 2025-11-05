@@ -4,6 +4,11 @@
   text-align: left;
   margin-top: $spacing_1_6;
 
+  &--rtl {
+    direction: rtl;
+    text-align: right;
+  }
+
   @media screen and (min-width: $screen-md) {
     padding: 0 $spacing_10_0;
   }
@@ -13,14 +18,18 @@
 
   &__main-grid {
     grid-gap: 0;
+    direction: rtl;
   }
 
   &__image-item {
     width: 100%;
-    height: 40rem;
+    height: auto;
+    max-height: 40rem;
     border-radius: $border_radius_1_2;
+    object-fit: cover;
+
     @media screen and (min-width: $screen-md) {
-      height: 80rem;
+      max-height: 60rem;
     }
   }
 
@@ -160,5 +169,6 @@
 
   &__description-item {
     padding-top: $spacing_2_5;
+    padding-bottom: $spacing_2_5;
   }
 }

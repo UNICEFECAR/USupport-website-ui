@@ -11,6 +11,7 @@ import {
 import {
   destructureArticleData,
   createArticleSlug,
+  useWindowDimensions,
 } from "@USupport-components-library/utils";
 import { useTranslation } from "react-i18next";
 import { useEventListener } from "#hooks";
@@ -29,7 +30,10 @@ export const InformationPortal = () => {
   const { i18n, t } = useTranslation("blocks", {
     keyPrefix: "information-portal",
   });
+  const { width } = useWindowDimensions();
   const navigate = useNavigate();
+
+  const isNotDescktop = width < 1366;
   const [showBlock, setShowBlock] = useState(false);
 
   //--------------------- Country Change Event Listener ----------------------//
@@ -138,14 +142,14 @@ export const InformationPortal = () => {
             {!mostReadArticlesQuerry.isLoading &&
               mostReadArticlesQuerry.data?.length > 0 && (
                 <GridItem
-                  md={4}
+                  md={8}
                   lg={6}
                   classes="information-portal__main-article-item"
+                  type="portrait"
                 >
                   <CardMedia
-                    type="portrait"
+                    // type={isNotDescktop ? "portrait" : "landscape"}
                     size="lg"
-                    style={{ gridColumn: "span 4" }}
                     title={mostReadArticlesQuerry.data[0].title}
                     image={mostReadArticlesQuerry.data[0].imageMedium}
                     description={mostReadArticlesQuerry.data[0].description}
@@ -168,46 +172,34 @@ export const InformationPortal = () => {
 
             {!mostReadArticlesQuerry.isLoading &&
               mostReadArticlesQuerry.data?.length > 1 && (
-                <GridItem>
-                  <Grid classes="">
-                    <GridItem
-                      md={4}
-                      lg={6}
-                      classes="information-portal__secondary-grid"
-                    >
-                      {mostReadArticlesQuerry.data?.map((article, index) => {
-                        return (
-                          index > 0 && (
-                            <GridItem
-                              md={4}
-                              lg={6}
-                              key={index}
-                              classes="information-portal__secondary-cards"
-                            >
-                              <CardMedia
-                                type="landscape"
-                                size="sm"
-                                style={{ gridColumn: "span 4" }}
-                                title={article.title}
-                                image={article.imageSmall}
-                                description={article.description}
-                                labels={article.labels}
-                                creator={article.creator}
-                                readingTime={article.readingTime}
-                                categoryName={article.categoryName}
-                                showLabels={false}
-                                likes={article.likes}
-                                dislikes={article.dislikes}
-                                t={t}
-                                onClick={() =>
-                                  handleRedirect(article.id, article.title)
-                                }
-                              />
-                            </GridItem>
-                          )
-                        );
-                      })}
-                    </GridItem>
+                <GridItem md={8} lg={6}>
+                  <Grid classes="information-portal__secondary-cards-grid">
+                    {mostReadArticlesQuerry.data?.map((article, index) => {
+                      return (
+                        index > 0 && (
+                          <GridItem md={4} lg={12} key={index}>
+                            <CardMedia
+                              type={isNotDescktop ? "portrait" : "landscape"}
+                              size="sm"
+                              title={article.title}
+                              image={article.imageSmall}
+                              description={article.description}
+                              labels={article.labels}
+                              creator={article.creator}
+                              readingTime={article.readingTime}
+                              categoryName={article.categoryName}
+                              showLabels={false}
+                              likes={article.likes}
+                              dislikes={article.dislikes}
+                              t={t}
+                              onClick={() =>
+                                handleRedirect(article.id, article.title)
+                              }
+                            />
+                          </GridItem>
+                        )
+                      );
+                    })}
                   </Grid>
                 </GridItem>
               )}

@@ -19,7 +19,4 @@
   &__main-grid {
     row-gap: $spacing_4_0;
   }
-  &__secondary-cards:not(:first-child) {
-    margin-top: $spacing_2_0;
-  }
 }

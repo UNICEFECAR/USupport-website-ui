@@ -1,18 +1,26 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
+import * as hy from "./locales/hy.json";
 import * as en from "./locales/en.json";
 import * as kk from "./locales/kk.json";
 import * as pl from "./locales/pl.json";
+import * as ro from "./locales/ro.json";
 import * as ru from "./locales/ru.json";
 import * as uk from "./locales/uk.json";
+import * as ar from "./locales/ar.json";
+import * as tr from "./locales/tr.json";
 
 const resources = {
+  hy,
   en,
   kk,
   pl,
+  ro,
   ru,
   uk,
+  ar,
+  tr,
 };
 
 i18n.use(initReactI18next).init({

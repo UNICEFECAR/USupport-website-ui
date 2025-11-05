@@ -10,12 +10,12 @@ import {
   Videos,
   Podcasts,
 } from "#blocks";
+import { useDebounce, useCustomNavigate as useNavigate } from "#hooks";
 
 import {
   ThemeContext,
   useWindowDimensions,
 } from "@USupport-components-library/utils";
-import { useDebounce } from "#hooks";
 import {
   Block,
   InputSearch,
@@ -25,6 +25,10 @@ import {
 import informationPortalMobile from "./assets/information-portal-mobile.png";
 // import informationPortalLight from "./assets/information-portal-light.jpg";
 import informationPortalDark from "./assets/information-portal.png";
+import informationPortalPs from "./assets/information-portal-ps.png";
+import informationPortalPsDark from "./assets/information-portal-ps-dark.png";
+import informationPortalPsMobile from "./assets/information-portal-ps-mobile.png";
+import informationPortalPsMobileDark from "./assets/information-portal-ps-mobile-dark.png";
 
 import "./information-portal.scss";
 
@@ -33,7 +37,11 @@ export const InformationPortal = () => {
   const { theme, isPodcastsActive, isVideosActive } = useContext(ThemeContext);
   const { width } = useWindowDimensions();
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+
   const tab = searchParams.get("tab");
+  const IS_PS = localStorage.getItem("country") === "PS";
+  const IS_RTL = localStorage.getItem("language") === "ar";
 
   const [contentTypes, setContentTypes] = useState([]);
 
@@ -94,8 +102,21 @@ export const InformationPortal = () => {
       }
     }
     setContentTypes(contentTypesCopy);
-    setSearchParams({ tab: contentTypesCopy[index].value });
+    const newTab = contentTypesCopy[index].value;
+    navigate(`/information-portal?tab=${newTab}`);
   };
+
+  const isDark = theme === "dark";
+  const informationPortalMobileImage = IS_PS
+    ? isDark
+      ? informationPortalPsMobileDark
+      : informationPortalPsMobile
+    : informationPortalMobile;
+  const informationPortalImage = IS_PS
+    ? isDark
+      ? informationPortalPsDark
+      : informationPortalPs
+    : informationPortalDark;
 
   return (
     <Page
@@ -107,14 +128,18 @@ export const InformationPortal = () => {
       {width < 768 ? (
         <div className="page__information-portal__img-container">
           <img
-            src={informationPortalMobile}
+            src={informationPortalMobileImage}
             alt="Information Portal"
             className="information-portal-image information-portal-image--mobile"
           />
           <InputSearch
             onChange={handleInputChange}
             value={searchValue}
-            classes="page__information-portal__img-container__input"
+            classes={`page__information-portal__img-container__input ${
+              IS_RTL
+                ? "page__information-portal__img-container__input--rtl"
+                : ""
+            }`}
             placeholder={t("search")}
           />
         </div>
@@ -124,7 +149,7 @@ export const InformationPortal = () => {
             // src={
             //   theme === "dark" ? informationPortalDark : informationPortalLight
             // }
-            src={informationPortalDark}
+            src={informationPortalImage}
             alt="Information Portal"
             className={`information-portal-image information-portal-image--desktop ${
               theme !== "dark" ? "information-portal-image--visible" : ""
@@ -133,13 +158,21 @@ export const InformationPortal = () => {
           <InputSearch
             onChange={handleInputChange}
             value={searchValue}
-            classes="page__information-portal__img-container__input"
+            classes={`page__information-portal__img-container__input ${
+              IS_RTL
+                ? "page__information-portal__img-container__input--rtl"
+                : ""
+            }`}
             placeholder={t("search")}
           />
         </div>
       )}
       <Block>
-        <div className="page__information-portal__tabs-container">
+        <div
+          className={`page__information-portal__tabs-container ${
+            IS_RTL ? "page__information-portal__tabs-container--rtl" : ""
+          }`}
+        >
           <TabsUnderlined
             options={contentTypes.map((x) => ({
               ...x,
@@ -159,8 +192,8 @@ export const InformationPortal = () => {
       {selectedContentType === "podcasts" && (
         <Podcasts debounceSearchValue={debouncedSearchValue} />
       )}
-      <Question />
-      <DownloadApp />
+      {!IS_PS && <Question />}
+      {!IS_PS && <DownloadApp />}
     </Page>
   );
 };

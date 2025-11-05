@@ -15,6 +15,26 @@
     }
   }
 
+  &--ps {
+    background-image: url("../InformationPortal/assets/information-portal-ps-mobile.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-y: $spacing_1_0;
+    min-width: 35.7rem;
+
+    @media screen and (min-width: $screen-md) {
+      background-position-y: $spacing_7_0;
+      background-image: url("../InformationPortal/assets/information-portal-ps.png");
+    }
+
+    &--dark {
+      background-image: url("../InformationPortal/assets/information-portal-ps-mobile-dark.png");
+      @media screen and (min-width: $screen-md) {
+        background-image: url("../InformationPortal/assets/information-portal-ps-dark.png");
+      }
+    }
+  }
+
   & .contact-us {
     padding-top: 0;
     background-image: none;
@@ -23,4 +43,8 @@
       color: $color_gray_66768d !important;
     }
   }
+}
+
+.theme-highContrast .page__custom-about-us .contact-us__heading {
+  color: yellow !important;
 }

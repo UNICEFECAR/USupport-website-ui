@@ -131,13 +131,14 @@
 
   &__no-results-container {
     text-align: center;
+    padding-top: $spacing_4_0;
 
     @media screen and (min-width: $screen-lg) {
       padding-top: $spacing_15_3;
     }
 
     h3 {
-      color: $color_white_ff !important;
+      // color: $color_white_ff !important;
     }
   }
 }
