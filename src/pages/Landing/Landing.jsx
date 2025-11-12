@@ -34,11 +34,15 @@ export function Landing() {
   const [showProvidersSection, setShowProvidersSection] = React.useState(
     !isGlobalOrRomania
   );
+  const [showMyQASection, setShowMyQASection] = React.useState(
+    localStorage.getItem("country") !== "RO"
+  );
 
   useEventListener("countryChanged", () => {
     const country = localStorage.getItem("country");
     setShowCouponSection(country !== "KZ");
     setShowProvidersSection(!(country === "global" || country === "RO"));
+    setShowMyQASection(country !== "RO");
   });
 
   const IS_PS = localStorage.getItem("country") === "PS";
@@ -62,7 +66,7 @@ export function Landing() {
       {showProvidersSection ? <MeetOurProvidersOverview /> : null}
       {/* <OurPartnersOverview /> */}
       <InformationPortal />
-      <MyQALanding />
+      {showMyQASection ? <MyQALanding /> : null}
       {showCouponSection ? <CouponInformation /> : null}
       <FAQ showLearnMore={true} showMascot={true} showAll={false} />
       <DownloadApp />

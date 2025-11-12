@@ -108,6 +108,7 @@ export const Organizations = () => {
     // Scroll to map when organization is clicked
     interactiveMapRef.current?.scrollIntoView({
       behavior: "smooth",
+      block: "start",
     });
 
     if (
