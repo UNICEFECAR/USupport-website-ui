@@ -11,6 +11,7 @@ import image1 from "./assets/image_1.png";
 import image2 from "./assets/image_2.png";
 import image3 from "./assets/image_3.png";
 import image4 from "./assets/image_4.png";
+import image5 from "./assets/image_5.png";
 
 /**
  * FindYourself
@@ -23,6 +24,7 @@ export const FindYourself = () => {
   const { t } = useTranslation("blocks", { keyPrefix: "find-yourself" });
   const { width } = useWindowDimensions();
   const { theme } = useContext(ThemeContext);
+  const IS_RO = localStorage.getItem("country") === "RO";
 
   return (
     <Block classes="find-yourself" animation="fade-up">
@@ -73,8 +75,12 @@ export const FindYourself = () => {
           } box box-2`}
         >
           <div className="overlay">
-            <img src={image2} className="box__image" alt={t("card_text_2")} />
-            <h3>{t("card_text_2")}</h3>
+            <img
+              src={IS_RO ? image5 : image2}
+              className="box__image"
+              alt={t(IS_RO ? "card_text_5" : "card_text_2")}
+            />
+            <h3>{t(IS_RO ? "card_text_5" : "card_text_2")}</h3>
           </div>
         </GridItem>
         <GridItem
