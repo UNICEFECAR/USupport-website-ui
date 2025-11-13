@@ -20,6 +20,8 @@ import "./about.scss";
  */
 export const About = () => {
   const { t } = useTranslation("blocks", { keyPrefix: "about" });
+  const IS_RO = localStorage.getItem("country") === "RO";
+
   return (
     <Block classes={["about"]} animation="fade-right">
       <Grid classes={["about__main-grid"]}>
@@ -46,7 +48,7 @@ export const About = () => {
               <CardIconAndLabel
                 iconName="community"
                 size="sm"
-                label={t("card_text_2")}
+                label={t(IS_RO ? "card_text_2_ro" : "card_text_2")}
               />
             </GridItem>
 
@@ -54,7 +56,7 @@ export const About = () => {
               <CardIconAndLabel
                 iconName="therapy"
                 size="md"
-                label={t("card_text_3")}
+                label={t(IS_RO ? "card_text_3_ro" : "card_text_3")}
               />
             </GridItem>
             <GridItem md={8} lg={12} classes="about__icon-item forth">
