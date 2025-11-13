@@ -5,7 +5,9 @@
       "paragraph": "uSupport este o platformă de sănătate mintală, psihosocială și bunăstare concepută pentru tineri și îngrijitorii acestora, unde confidențialitatea și siguranța sunt prioritare.",
       "card_text_1": "Conținut pentru autodezvoltare",
       "card_text_2": "Furnizori consacrați",
+      "card_text_2_ro": "Furnizori consacrați",
       "card_text_3": "Asistență online",
+      "card_text_3_ro": "Asistență locală",
       "card_text_4": "Locul în care vă simțiți în siguranță",
       "paragraph_2": "Locul în care vă simțiți în siguranță."
     },
@@ -55,7 +57,8 @@
       "contact_reason_1_pl": "Information about uSupport",
       "contact_reason_2_pl": "Technical problem",
       "contact_reason_3_pl": "Complaint",
-      "contact_reason_4_pl": "Something else"
+      "contact_reason_4_pl": "Something else",
+      "contact_reason_3_ro": "Alăturați-vă rețelei de organizații"
     },
     "download-app": {
       "heading": "Descărcați aplicația",
@@ -74,7 +77,8 @@
       "card_text_1": "Ajutor profesional",
       "card_text_2": "Consultații online",
       "card_text_3": "Resurse gratuite",
-      "card_text_4": "Acces ușor și sigur"
+      "card_text_4": "Acces ușor și sigur",
+      "card_text_5": "Suport recomandat"
     },
     "hero": {
       "heading_1": "Porniți pe drumul către o sănătate mintală și o bunăstare mai bune. <1></1> ",
@@ -91,7 +95,9 @@
       "card_1": "Cu doar câteva clicuri puteți obține ajutorul de care aveți nevoie. Complet anonim.",
       "card_2": "Alegeți țara și limba",
       "card_3": "Creați-vă un cont",
+      "card_3_ro": "Completați evaluarea inițială",
       "card_4": "Alegeți un furnizor",
+      "card_4_ro": "Găsiți sprijin local",
       "download_text": "Programați o sesiune",
       "download_from_web": "Descărcați uSupport de la",
       "web_browser": "Browser web",

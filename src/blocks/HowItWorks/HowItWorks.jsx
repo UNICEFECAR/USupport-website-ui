@@ -37,6 +37,8 @@ export const HowItWorks = ({
   isTitleWhite = true,
 }) => {
   const { t } = useTranslation("blocks", { keyPrefix: "how-it-works" });
+  const IS_RO = localStorage.getItem("country") === "RO";
+
   const { width } = useWindowDimensions();
 
   const { theme } = useContext(ThemeContext);
@@ -94,10 +96,18 @@ export const HowItWorks = ({
               <CardNumber number="2" iconName="coaching" text={t("card_2")} />
             </GridItem>
             <GridItem lg={6}>
-              <CardNumber number="3" iconName="therapy" text={t("card_3")} />
+              <CardNumber
+                number="3"
+                iconName={IS_RO ? "calm" : "therapy"}
+                text={t(IS_RO ? "card_3_ro" : "card_3")}
+              />
             </GridItem>
             <GridItem lg={6}>
-              <CardNumber number="4" iconName="calm" text={t("card_4")} />
+              <CardNumber
+                number="4"
+                iconName={IS_RO ? "community" : "calm"}
+                text={t(IS_RO ? "card_4_ro" : "card_4")}
+              />
             </GridItem>
           </Grid>
         </GridItem>

@@ -29,7 +29,8 @@ export function Landing() {
     localStorage.getItem("country") === "global" ||
     localStorage.getItem("country") === "RO";
   const [showCouponSection, setShowCouponSection] = React.useState(
-    localStorage.getItem("country") !== "KZ"
+    localStorage.getItem("country") !== "KZ" &&
+      localStorage.getItem("country") !== "RO"
   );
   const [showProvidersSection, setShowProvidersSection] = React.useState(
     !isGlobalOrRomania
