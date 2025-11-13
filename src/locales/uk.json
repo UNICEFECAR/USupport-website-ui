@@ -57,7 +57,8 @@
       "contact_reason_1_pl": "Інформація про службу підтримки",
       "contact_reason_2_pl": "Технічна проблема",
       "contact_reason_3_pl": "Скарга",
-      "contact_reason_4_pl": "Щось інше"
+      "contact_reason_4_pl": "Щось інше",
+      "contact_reason_3_ro": "Приєднатися до мережі організацій"
     },
     "download-app": {
       "heading": "Завантаж додаток",
