@@ -20,6 +20,7 @@ import {
 import {
   destructureVideoData,
   ThemeContext,
+  getLikesAndDislikesForContent,
 } from "@USupport-components-library/utils";
 
 import "./video-information.scss";
@@ -69,6 +70,26 @@ export const VideoInformation = () => {
     enabled: !!id,
   });
 
+  const {
+    data: videoContentEngagements,
+    isLoading: isVideoContentEngagementsLoading,
+  } = useQuery(
+    ["videoContentEngagements", id],
+    async () => {
+      const { likes, dislikes } = await getLikesAndDislikesForContent(
+        [Number(id)],
+        "video"
+      );
+      return {
+        likes: likes.get(Number(id)) || 0,
+        dislikes: dislikes.get(Number(id)) || 0,
+      };
+    },
+    {
+      enabled: !!id,
+    }
+  );
+
   const getSimilarVideos = async () => {
     let { data } = await cmsSvc.getVideos({
       limit: 3,
@@ -79,7 +100,9 @@ export const VideoInformation = () => {
       ids: videoIdsQuery.data,
     });
 
-    if (data.length === 0) {
+    let videos = data.data || [];
+
+    if (!videos.length) {
       let { data: newest } = await cmsSvc.getVideos({
         limit: 3,
         sortBy: "createdAt", // Sort by created date
@@ -89,9 +112,25 @@ export const VideoInformation = () => {
         populate: true,
         ids: videoIdsQuery.data,
       });
-      return newest.data;
+      videos = newest.data || [];
     }
-    return data.data;
+
+    if (!videos.length) return [];
+
+    const videoIds = videos.map((video) => video.id);
+    const { likes, dislikes } = await getLikesAndDislikesForContent(
+      videoIds,
+      "video"
+    );
+
+    // Attach aggregated likes/dislikes into attributes so destructureVideoData picks them up
+    videos.forEach((video) => {
+      if (!video.attributes) return;
+      video.attributes.likes = likes.get(video.id) || 0;
+      video.attributes.dislikes = dislikes.get(video.id) || 0;
+    });
+
+    return videos;
   };
 
   const {
@@ -113,6 +152,8 @@ export const VideoInformation = () => {
     window.scrollTo(0, 0);
   };
 
+  const isLoading = isVideoLoading || isVideoContentEngagementsLoading;
+
   if (!isVideosActive) {
     return (
       <Navigate
@@ -125,9 +166,17 @@ export const VideoInformation = () => {
 
   return (
     <Page classes="page__video-information" showGoBackArrow={true}>
-      {videoData ? (
-        <VideoView videoData={videoData} t={t} language={i18n.language} />
-      ) : isFetched ? (
+      {videoData && !isLoading ? (
+        <VideoView
+          videoData={{
+            ...videoData,
+            likes: videoContentEngagements?.likes || 0,
+            dislikes: videoContentEngagements?.dislikes || 0,
+          }}
+          t={t}
+          language={i18n.language}
+        />
+      ) : isFetched && !isLoading ? (
         <h3 className="page__video-information__no-results">
           {t("not_found")}
         </h3>

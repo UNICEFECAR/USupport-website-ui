@@ -12,6 +12,7 @@ import {
   destructureArticleData,
   createArticleSlug,
   useWindowDimensions,
+  getLikesAndDislikesForContent,
 } from "@USupport-components-library/utils";
 import { useTranslation } from "react-i18next";
 import { useEventListener } from "#hooks";
@@ -82,13 +83,27 @@ export const InformationPortal = () => {
       queryParams["global"] = true;
       queryParams["isForAdmin"] = true;
     }
-    let { data } = await cmsSvc.getArticles(queryParams);
 
-    for (let i = 0; i < data.data.length; i++) {
-      data.data[i] = destructureArticleData(data.data[i]);
-    }
+    const { data } = await cmsSvc.getArticles(queryParams);
+    const rawArticles = data.data || [];
+    if (!rawArticles.length) return [];
 
-    return data.data;
+    const ids = rawArticles.map((article) => article.id);
+    const { likes, dislikes } = await getLikesAndDislikesForContent(
+      ids,
+      "article"
+    );
+
+    const processedArticles = rawArticles.map((article) => {
+      const base = destructureArticleData(article);
+      return {
+        ...base,
+        likes: likes.get(base.id) ?? base.likes ?? 0,
+        dislikes: dislikes.get(base.id) ?? base.dislikes ?? 0,
+      };
+    });
+
+    return processedArticles;
   };
 
   const mostReadArticlesQuerry = useQuery(

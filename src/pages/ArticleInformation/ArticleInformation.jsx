@@ -6,6 +6,7 @@ import { Page, ArticleView } from "#blocks";
 import {
   destructureArticleData,
   createArticleSlug,
+  getLikesAndDislikesForContent,
 } from "@USupport-components-library/utils";
 import {
   Block,
@@ -84,9 +85,30 @@ export const ArticleInformation = () => {
     data: articleData,
     isLoading: isArticlesLoading,
     isFetching: isFetchingArticleData,
+    isFetched,
   } = useQuery(["article", i18n.language, id], getArticleData, {
     enabled: !!id,
   });
+
+  const {
+    data: articleContentEngagements,
+    isLoading: isArticleContentEngagementsLoading,
+  } = useQuery(
+    ["articleContentEngagements", id],
+    async () => {
+      const { likes, dislikes } = await getLikesAndDislikesForContent(
+        [Number(id)],
+        "article"
+      );
+      return {
+        likes: likes.get(Number(id)) || 0,
+        dislikes: dislikes.get(Number(id)) || 0,
+      };
+    },
+    {
+      enabled: !!id,
+    }
+  );
 
   const getSimilarArticles = async () => {
     let queryParams = {
@@ -110,15 +132,33 @@ export const ArticleInformation = () => {
       categoryId: articleData.categoryId,
     });
 
-    if (data.length === 0) {
+    let articles = data.data || [];
+
+    if (!articles.length) {
       let { data: newest } = await cmsSvc.getArticles({
         ...queryParams,
         sortBy: "createdAt", // Sort by created date
         sortOrder: "desc", // Sort in descending order
       });
-      return newest.data;
+      articles = newest.data || [];
     }
-    return data.data;
+
+    if (!articles.length) return [];
+
+    const ids = articles.map((article) => article.id);
+    const { likes, dislikes } = await getLikesAndDislikesForContent(
+      ids,
+      "article"
+    );
+
+    // Attach aggregated likes/dislikes into attributes so destructureArticleData picks them up
+    articles.forEach((article) => {
+      if (!article.attributes) return;
+      article.attributes.likes = likes.get(article.id) || 0;
+      article.attributes.dislikes = dislikes.get(article.id) || 0;
+    });
+
+    return articles;
   };
 
   const {
@@ -145,10 +185,24 @@ export const ArticleInformation = () => {
     window.scrollTo(0, 0);
   };
 
+  const isLoading = isArticlesLoading || isArticleContentEngagementsLoading;
+
   return (
     <Page classes="page__article-information" showGoBackArrow>
-      {articleData ? (
-        <ArticleView articleData={articleData} t={t} language={i18n.language} />
+      {articleData && !isLoading ? (
+        <ArticleView
+          articleData={{
+            ...articleData,
+            likes: articleContentEngagements?.likes || 0,
+            dislikes: articleContentEngagements?.dislikes || 0,
+          }}
+          t={t}
+          language={i18n.language}
+        />
+      ) : isFetched && !isLoading ? (
+        <h3 className="page__article-information__no-results">
+          {t("not_found")}
+        </h3>
       ) : (
         <Loading size="lg" />
       )}
