@@ -20,6 +20,7 @@ import {
 import {
   destructurePodcastData,
   ThemeContext,
+  getLikesAndDislikesForContent,
 } from "@USupport-components-library/utils";
 
 import "./podcast-information.scss";
@@ -67,6 +68,26 @@ export const PodcastInformation = () => {
     enabled: !!id,
   });
 
+  const {
+    data: podcastContentEngagements,
+    isLoading: isPodcastContentEngagementsLoading,
+  } = useQuery(
+    ["podcastContentEngagements", id],
+    async () => {
+      const { likes, dislikes } = await getLikesAndDislikesForContent(
+        [Number(id)],
+        "podcast"
+      );
+      return {
+        likes: likes.get(Number(id)) || 0,
+        dislikes: dislikes.get(Number(id)) || 0,
+      };
+    },
+    {
+      enabled: !!id,
+    }
+  );
+
   const getSimilarPodcasts = async () => {
     let { data } = await cmsSvc.getPodcasts({
       limit: 3,
@@ -90,9 +111,25 @@ export const PodcastInformation = () => {
       });
       podcastsData = newest.data || [];
     }
-    // Process podcasts with async destructurePodcastData
+
+    if (!podcastsData.length) return [];
+
+    const podcastIds = podcastsData.map((podcast) => podcast.id);
+    const { likes, dislikes } = await getLikesAndDislikesForContent(
+      podcastIds,
+      "podcast"
+    );
+
+    // Process podcasts with async destructurePodcastData and attach metrics
     const processedPodcasts = await Promise.all(
-      podcastsData.map((podcast) => destructurePodcastData(podcast))
+      podcastsData.map(async (podcast) => {
+        const base = await destructurePodcastData(podcast);
+        return {
+          ...base,
+          likes: likes.get(podcast.id) || 0,
+          dislikes: dislikes.get(podcast.id) || 0,
+        };
+      })
     );
     return processedPodcasts;
   };
@@ -116,6 +153,8 @@ export const PodcastInformation = () => {
     window.scrollTo(0, 0);
   };
 
+  const isLoading = isPodcastLoading || isPodcastContentEngagementsLoading;
+
   if (!isPodcastsActive) {
     return (
       <Navigate
@@ -128,9 +167,17 @@ export const PodcastInformation = () => {
 
   return (
     <Page classes="page__podcast-information" showGoBackArrow={true}>
-      {podcastData ? (
-        <PodcastView podcastData={podcastData} t={t} language={i18n.language} />
-      ) : isFetchingPodcastData ? (
+      {podcastData && !isLoading ? (
+        <PodcastView
+          podcastData={{
+            ...podcastData,
+            likes: podcastContentEngagements?.likes || 0,
+            dislikes: podcastContentEngagements?.dislikes || 0,
+          }}
+          t={t}
+          language={i18n.language}
+        />
+      ) : isFetchingPodcastData || isLoading ? (
         <Loading size="lg" />
       ) : (
         <h3 className="page__podcast-information__no-results">
