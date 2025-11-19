@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import propTypes from "prop-types";
 import { useParams } from "react-router-dom";
 
@@ -24,7 +24,7 @@ export const PodcastView = ({ podcastData, t, language }) => {
   const { name } = useParams();
   const creator = podcastData.creator ? podcastData.creator : null;
 
-  const [hasUpdatedUrl, setHasUpdatedUrl] = React.useState(false);
+  const [hasUpdatedUrl, setHasUpdatedUrl] = useState(false);
 
   useEffect(() => {
     setHasUpdatedUrl(false);
@@ -36,7 +36,7 @@ export const PodcastView = ({ podcastData, t, language }) => {
       const urlSlug = name;
 
       if (currentSlug !== urlSlug) {
-        const newUrl = `/${i18n.language}/information-portal/article/${videoData.id}/${currentSlug}`;
+        const newUrl = `/${language}/information-portal/podcast/${podcastData.id}/${currentSlug}`;
 
         window.history.replaceState(null, "", newUrl);
         setHasUpdatedUrl(true);

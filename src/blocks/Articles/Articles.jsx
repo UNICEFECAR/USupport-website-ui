@@ -22,6 +22,7 @@ import {
   destructureArticleData,
   useWindowDimensions,
   createArticleSlug,
+  getLikesAndDislikesForContent,
 } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 import { useEventListener } from "#hooks";
@@ -78,6 +79,8 @@ export const Articles = ({ debouncedSearchValue }) => {
 
   const [usersLanguage, setUsersLanguage] = useState(i18n.language);
   const [showAgeGroups, setShowAgeGroups] = useState(true);
+  const [articlesLikes, setArticlesLikes] = useState(new Map());
+  const [articlesDislikes, setArticlesDislikes] = useState(new Map());
 
   useEffect(() => {
     async function getArticleCategories() {
@@ -216,6 +219,17 @@ export const Articles = ({ debouncedSearchValue }) => {
   const getArticlesIds = async () => {
     // Request articles ids from the master DB based for website platform
     const articlesIds = await adminSvc.getArticles();
+
+    // Preload likes/dislikes for English from engagements service
+    if (usersLanguage === "en") {
+      const { likes, dislikes } = await getLikesAndDislikesForContent(
+        articlesIds,
+        "article"
+      );
+
+      setArticlesLikes(likes);
+      setArticlesDislikes(dislikes);
+    }
 
     return articlesIds;
   };
@@ -357,6 +371,35 @@ export const Articles = ({ debouncedSearchValue }) => {
     }
   }, [articles]);
 
+  // Fetch likes/dislikes for non-English languages (or missing entries)
+  useEffect(() => {
+    async function getArticlesRatings() {
+      if (usersLanguage !== "en" && articles?.length) {
+        const articleIds = articles.reduce((acc, article) => {
+          const id = article.id;
+          if (!articlesLikes.has(id) && !articlesDislikes.has(id)) {
+            acc.push(id);
+          }
+          return acc;
+        }, []);
+
+        if (!articleIds.length) return;
+
+        const { likes, dislikes } = await getLikesAndDislikesForContent(
+          articleIds,
+          "article"
+        );
+
+        setArticlesLikes((prevLikes) => new Map([...prevLikes, ...likes]));
+        setArticlesDislikes((prevDislikes) =>
+          new Map([...prevDislikes, ...dislikes])
+        );
+      }
+    }
+
+    getArticlesRatings();
+  }, [articles, usersLanguage]);
+
   const getMoreArticles = async () => {
     let ageGroupId = "";
     if (ageGroups) {
@@ -490,8 +533,16 @@ export const Articles = ({ debouncedSearchValue }) => {
                       readingTime={newestArticle.readingTime}
                       categoryName={newestArticle.categoryName}
                       showDescription={true}
-                      likes={newestArticle.likes}
-                      dislikes={newestArticle.dislikes}
+                      likes={
+                        articlesLikes.get(newestArticle.id) ||
+                        newestArticle.likes ||
+                        0
+                      }
+                      dislikes={
+                        articlesDislikes.get(newestArticle.id) ||
+                        newestArticle.dislikes ||
+                        0
+                      }
                       t={t}
                       onClick={() =>
                         handleRedirect(newestArticle.id, newestArticle.title)
@@ -578,8 +629,16 @@ export const Articles = ({ debouncedSearchValue }) => {
                               labels={articleData.labels || []}
                               creator={articleData.creator}
                               readingTime={articleData.readingTime}
-                              likes={articleData.likes || 0}
-                              dislikes={articleData.dislikes || 0}
+                              likes={
+                                articlesLikes.get(articleData.id) ||
+                                articleData.likes ||
+                                0
+                              }
+                              dislikes={
+                                articlesDislikes.get(articleData.id) ||
+                                articleData.dislikes ||
+                                0
+                              }
                               t={t}
                               categoryName={articleData.categoryName}
                               onClick={() =>

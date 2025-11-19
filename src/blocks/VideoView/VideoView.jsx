@@ -45,7 +45,7 @@ export const VideoView = ({ videoData, t, language }) => {
       const urlSlug = name;
 
       if (currentSlug !== urlSlug) {
-        const newUrl = `/${language}/information-portal/article/${videoData.id}/${currentSlug}`;
+        const newUrl = `/${language}/information-portal/video/${videoData.id}/${currentSlug}`;
 
         window.history.replaceState(null, "", newUrl);
         setHasUpdatedUrl(true);
