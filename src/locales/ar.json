@@ -189,7 +189,10 @@
     "podcast-information-page": {
       "more_podcasts": "المزيد من البودكاست",
       "view_more": "عرض المزيد",
-      "not_found": "لم يتم العثور على البودكاست"
+      "not_found": "لم يتم العثور على البودكаст"
     }
+  },
+  "meta": {
+    "description": "The first platform created to make your mental health a priority. uSupport provides personalized, discreet and fast psychological care for your overall well-being."
   }
 }
