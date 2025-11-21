@@ -220,17 +220,6 @@ export const Articles = ({ debouncedSearchValue }) => {
     // Request articles ids from the master DB based for website platform
     const articlesIds = await adminSvc.getArticles();
 
-    // Preload likes/dislikes for English from engagements service
-    if (usersLanguage === "en") {
-      const { likes, dislikes } = await getLikesAndDislikesForContent(
-        articlesIds,
-        "article"
-      );
-
-      setArticlesLikes(likes);
-      setArticlesDislikes(dislikes);
-    }
-
     return articlesIds;
   };
 
@@ -374,27 +363,25 @@ export const Articles = ({ debouncedSearchValue }) => {
   // Fetch likes/dislikes for non-English languages (or missing entries)
   useEffect(() => {
     async function getArticlesRatings() {
-      if (usersLanguage !== "en" && articles?.length) {
-        const articleIds = articles.reduce((acc, article) => {
-          const id = article.id;
-          if (!articlesLikes.has(id) && !articlesDislikes.has(id)) {
-            acc.push(id);
-          }
-          return acc;
-        }, []);
+      const articleIds = articles.reduce((acc, article) => {
+        const id = article.id;
+        if (!articlesLikes.has(id) && !articlesDislikes.has(id)) {
+          acc.push(id);
+        }
+        return acc;
+      }, []);
 
-        if (!articleIds.length) return;
+      if (!articleIds.length) return;
 
-        const { likes, dislikes } = await getLikesAndDislikesForContent(
-          articleIds,
-          "article"
-        );
+      const { likes, dislikes } = await getLikesAndDislikesForContent(
+        articleIds,
+        "article"
+      );
 
-        setArticlesLikes((prevLikes) => new Map([...prevLikes, ...likes]));
-        setArticlesDislikes((prevDislikes) =>
-          new Map([...prevDislikes, ...dislikes])
-        );
-      }
+      setArticlesLikes((prevLikes) => new Map([...prevLikes, ...likes]));
+      setArticlesDislikes(
+        (prevDislikes) => new Map([...prevDislikes, ...dislikes])
+      );
     }
 
     getArticlesRatings();
@@ -494,8 +481,6 @@ export const Articles = ({ debouncedSearchValue }) => {
       )}/information-portal/article/${id}/${createArticleSlug(name)}`
     );
   };
-
-  console.log(categoriesToShow);
 
   return (
     <Block classes="articles">
