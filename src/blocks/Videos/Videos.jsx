@@ -112,18 +112,6 @@ export const Videos = ({ debouncedSearchValue }) => {
 
   const getVideosIds = async () => {
     const ids = await adminSvc.getVideos();
-
-    // Preload likes/dislikes for English from engagements service
-    if (usersLanguage === "en") {
-      const { likes, dislikes } = await getLikesAndDislikesForContent(
-        ids,
-        "video"
-      );
-
-      setVideosLikes(likes);
-      setVideosDislikes(dislikes);
-    }
-
     return ids;
   };
 
@@ -186,27 +174,25 @@ export const Videos = ({ debouncedSearchValue }) => {
   // Fetch likes/dislikes for non-English languages (or missing entries)
   useEffect(() => {
     async function getVideosRatings() {
-      if (usersLanguage !== "en" && videos?.length) {
-        const videoIds = videos.reduce((acc, video) => {
-          const id = video.id;
-          if (!videosLikes.has(id) && !videosDislikes.has(id)) {
-            acc.push(id);
-          }
-          return acc;
-        }, []);
+      const videoIds = videos.reduce((acc, video) => {
+        const id = video.id;
+        if (!videosLikes.has(id) && !videosDislikes.has(id)) {
+          acc.push(id);
+        }
+        return acc;
+      }, []);
 
-        if (!videoIds.length) return;
+      if (!videoIds.length) return;
 
-        const { likes, dislikes } = await getLikesAndDislikesForContent(
-          videoIds,
-          "video"
-        );
+      const { likes, dislikes } = await getLikesAndDislikesForContent(
+        videoIds,
+        "video"
+      );
 
-        setVideosLikes((prevLikes) => new Map([...prevLikes, ...likes]));
-        setVideosDislikes(
-          (prevDislikes) => new Map([...prevDislikes, ...dislikes])
-        );
-      }
+      setVideosLikes((prevLikes) => new Map([...prevLikes, ...likes]));
+      setVideosDislikes(
+        (prevDislikes) => new Map([...prevDislikes, ...dislikes])
+      );
     }
 
     getVideosRatings();

@@ -169,27 +169,25 @@ export const Podcasts = ({ debouncedSearchValue }) => {
   // Fetch likes/dislikes for non-English languages (or missing entries)
   useEffect(() => {
     async function getPodcastsRatings() {
-      if (usersLanguage !== "en" && podcasts?.length) {
-        const podcastIds = podcasts.reduce((acc, podcast) => {
-          const id = podcast.id;
-          if (!podcastsLikes.has(id) && !podcastsDislikes.has(id)) {
-            acc.push(id);
-          }
-          return acc;
-        }, []);
+      const podcastIds = podcasts.reduce((acc, podcast) => {
+        const id = podcast.id;
+        if (!podcastsLikes.has(id) && !podcastsDislikes.has(id)) {
+          acc.push(id);
+        }
+        return acc;
+      }, []);
 
-        if (!podcastIds.length) return;
+      if (!podcastIds.length) return;
 
-        const { likes, dislikes } = await getLikesAndDislikesForContent(
-          podcastIds,
-          "podcast"
-        );
+      const { likes, dislikes } = await getLikesAndDislikesForContent(
+        podcastIds,
+        "podcast"
+      );
 
-        setPodcastsLikes((prevLikes) => new Map([...prevLikes, ...likes]));
-        setPodcastsDislikes(
-          (prevDislikes) => new Map([...prevDislikes, ...dislikes])
-        );
-      }
+      setPodcastsLikes((prevLikes) => new Map([...prevLikes, ...likes]));
+      setPodcastsDislikes(
+        (prevDislikes) => new Map([...prevDislikes, ...dislikes])
+      );
     }
 
     getPodcastsRatings();
