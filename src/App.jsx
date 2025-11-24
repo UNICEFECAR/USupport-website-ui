@@ -60,10 +60,11 @@ function App() {
   const supportsWebP = useWebPSupportCheck();
   document.body.classList.add(`${supportsWebP ? "webp" : "no-webp"}`);
 
-  const { i18n, t } = useTranslation("meta");
+  const { i18n } = useTranslation();
 
   useEffect(() => {
-    const metaDescription = t("description");
+    const fixedT = i18n.getFixedT(i18n.language, "meta");
+    const metaDescription = fixedT("description");
     const metaTag = document.querySelector('meta[name="description"]');
 
     if (metaTag && metaDescription) {
@@ -73,7 +74,7 @@ function App() {
     if (i18n.language) {
       document.documentElement.setAttribute("lang", i18n.language);
     }
-  }, [i18n.language, t]);
+  }, [i18n.language]);
 
   AOS.init({
     offset: 10,

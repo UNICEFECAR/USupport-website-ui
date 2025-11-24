@@ -18,7 +18,9 @@ async function main() {
   try {
     baseHtml = await readFile(indexPath, "utf8");
   } catch (err) {
-    console.error(`Could not read ${indexPath}. Make sure you ran "vite build" first.`);
+    console.error(
+      `Could not read ${indexPath}. Make sure you ran "vite build" first.`
+    );
     process.exit(1);
   }
 
@@ -31,7 +33,9 @@ async function main() {
       const localeJson = JSON.parse(localeRaw);
       description = localeJson.meta?.description || "";
     } catch (err) {
-      console.warn(`Could not load meta.description from ${localePath}, skipping custom description for ${lang}.`);
+      console.warn(
+        `Could not load meta.description from ${localePath}, skipping custom description for ${lang}.`
+      );
     }
 
     let html = baseHtml;
@@ -69,5 +73,4 @@ main().catch((err) => {
   console.error(err);
   process.exit(1);
 });
-
 
