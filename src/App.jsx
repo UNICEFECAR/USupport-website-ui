@@ -15,7 +15,6 @@ import {
 } from "@tanstack/react-query";
 import { useWebPSupportCheck } from "react-use-webp-support-check";
 import { ToastContainer } from "react-toastify";
-import { useTranslation } from "react-i18next";
 import "react-toastify/dist/ReactToastify.css";
 
 import {
@@ -59,22 +58,6 @@ const queryClient = new QueryClient({
 function App() {
   const supportsWebP = useWebPSupportCheck();
   document.body.classList.add(`${supportsWebP ? "webp" : "no-webp"}`);
-
-  const { i18n } = useTranslation();
-
-  useEffect(() => {
-    const fixedT = i18n.getFixedT(i18n.language, "meta");
-    const metaDescription = fixedT("description");
-    const metaTag = document.querySelector('meta[name="description"]');
-
-    if (metaTag && metaDescription) {
-      metaTag.setAttribute("content", metaDescription);
-    }
-
-    if (i18n.language) {
-      document.documentElement.setAttribute("lang", i18n.language);
-    }
-  }, [i18n.language]);
 
   AOS.init({
     offset: 10,
