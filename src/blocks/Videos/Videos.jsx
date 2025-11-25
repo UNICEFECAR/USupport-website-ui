@@ -17,6 +17,7 @@ import {
   destructureVideoData,
   useWindowDimensions,
   createArticleSlug,
+  getLikesAndDislikesForContent,
 } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 import { useEventListener } from "#hooks";
@@ -59,6 +60,8 @@ export const Videos = ({ debouncedSearchValue }) => {
   const [hasMore, setHasMore] = useState(true);
 
   const [videoToPlayUrl, setVideoToPlayUrl] = useState(null);
+  const [videosLikes, setVideosLikes] = useState(new Map());
+  const [videosDislikes, setVideosDislikes] = useState(new Map());
 
   useEffect(() => {
     if (i18n.language !== usersLanguage) {
@@ -167,6 +170,33 @@ export const Videos = ({ debouncedSearchValue }) => {
           : true) && !!selectedCategory,
     }
   );
+
+  // Fetch likes/dislikes for non-English languages (or missing entries)
+  useEffect(() => {
+    async function getVideosRatings() {
+      const videoIds = videos.reduce((acc, video) => {
+        const id = video.id;
+        if (!videosLikes.has(id) && !videosDislikes.has(id)) {
+          acc.push(id);
+        }
+        return acc;
+      }, []);
+
+      if (!videoIds.length) return;
+
+      const { likes, dislikes } = await getLikesAndDislikesForContent(
+        videoIds,
+        "video"
+      );
+
+      setVideosLikes((prevLikes) => new Map([...prevLikes, ...likes]));
+      setVideosDislikes(
+        (prevDislikes) => new Map([...prevDislikes, ...dislikes])
+      );
+    }
+
+    getVideosRatings();
+  }, [videos, usersLanguage]);
 
   const getMoreVideos = async () => {
     let categoryId =
@@ -286,6 +316,8 @@ export const Videos = ({ debouncedSearchValue }) => {
     setVideoToPlayUrl(url);
   };
 
+  console.log(videosLikes, "videosLikes");
+
   return (
     <React.Fragment>
       {videoToPlayUrl && (
@@ -331,8 +363,8 @@ export const Videos = ({ debouncedSearchValue }) => {
                     categoryName={newestVideo.categoryName}
                     contentType="videos"
                     showDescription={true}
-                    likes={newestVideo.likes}
-                    dislikes={newestVideo.dislikes}
+                    likes={videosLikes.get(newestVideo.id) || 0}
+                    dislikes={videosDislikes.get(newestVideo.id) || 0}
                     t={t}
                     onClick={() => {
                       if (IS_PS) {
@@ -426,8 +458,8 @@ export const Videos = ({ debouncedSearchValue }) => {
                               image={videoData.image}
                               description={videoData.description}
                               labels={videoData.labels}
-                              likes={videoData.likes || 0}
-                              dislikes={videoData.dislikes || 0}
+                              likes={videosLikes.get(videoData.id) || 0}
+                              dislikes={videosDislikes.get(videoData.id) || 0}
                               t={t}
                               categoryName={videoData.categoryName}
                               contentType="videos"

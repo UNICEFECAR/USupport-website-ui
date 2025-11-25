@@ -186,5 +186,8 @@
       "view_more": "Daha fazlasını görüntüle",
       "not_found": "Podcast bulunamadı"
     }
+  },
+  "meta": {
+    "description": "Ruh sağlığınızı öncelik haline getirmek için oluşturulmuş ilk platform. uSupport, genel iyilik haliniz için kişiselleştirilmiş, gizli ve hızlı psikolojik destek sunar."
   }
 }

@@ -5,7 +5,9 @@
       "paragraph": "uSupport is a mental health, psychosocial and wellbeing platform designed for young people and their carers where privacy and safety is a priority.",
       "card_text_1": "Content for self-development",
       "card_text_2": "Proven providers",
+      "card_text_2_ro": "Proven organizations",
       "card_text_3": "Online support",
+      "card_text_3_ro": "Local support",
       "card_text_4": "Your safe place",
       "paragraph_2": "Let’s face the stress together and cope with all the challenges of life."
     },
@@ -55,7 +57,8 @@
       "contact_reason_1_pl": "Information about uSupport",
       "contact_reason_2_pl": "Technical problem",
       "contact_reason_3_pl": "Complaint",
-      "contact_reason_4_pl": "Something else"
+      "contact_reason_4_pl": "Something else",
+      "contact_reason_3_ro": "Join the network of organizations"
     },
     "download-app": {
       "heading": "Download the app",
@@ -74,7 +77,8 @@
       "card_text_1": "Professional help",
       "card_text_2": "Online consultations",
       "card_text_3": "Free resources",
-      "card_text_4": "Easy and safe access"
+      "card_text_4": "Easy and safe access",
+      "card_text_5": "Recommended support"
     },
     "hero": {
       "heading_1": "Start your journey towards better<1></1> mental health & wellbeing",
@@ -91,7 +95,9 @@
       "card_1": "Choose your country and language",
       "card_2": "Create your account",
       "card_3": "Choose a provider",
+      "card_3_ro": "Take the baseline assessment",
       "card_4": "Book a session",
+      "card_4_ro": "Find local support",
       "download_text": "Download uSupport from",
       "web_browser": "Web browser",
       "click_to_use": "Click to use",
@@ -302,7 +308,8 @@
       "no_answers": "There are no answered questions",
       "filter": "Filter tags",
       "search_placeholder": "Search",
-      "language": "Language"
+      "language": "Language",
+      "date_answered": "on {{date}}"
     },
     "coupon-information": {
       "heading": "Want free sessions with providers?",
@@ -536,5 +543,8 @@
       "cta_label": "Apply filters",
       "secondary_cta_label": "Reset filters"
     }
+  },
+  "meta": {
+    "description": "The first platform created to make your mental health a priority. uSupport provides personalized, discreet and fast psychological care for your overall well-being."
   }
 }

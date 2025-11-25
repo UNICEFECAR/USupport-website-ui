@@ -7,6 +7,10 @@
   &--rtl {
     direction: rtl;
     text-align: right;
+
+    & .video-view__main-grid {
+      direction: rtl;
+    }
   }
 
   @media screen and (min-width: $screen-md) {
@@ -18,7 +22,6 @@
 
   &__main-grid {
     grid-gap: 0;
-    direction: rtl;
   }
 
   &__image-item {

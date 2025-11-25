@@ -277,7 +277,7 @@ export const Organizations = () => {
 
   return (
     <Block classes="organizations">
-      <div className="organizations__search-container">
+      <div className="organizations__search-container" ref={interactiveMapRef}>
         <Input
           placeholder={t("search_placeholder")}
           value={filters.search}
@@ -301,7 +301,7 @@ export const Organizations = () => {
         {t("reset_filters")}
       </Button>
       {!isOrganizationsKeyLoading && (
-        <div ref={interactiveMapRef}>
+        <div>
           <InteractiveMap
             data={data}
             onMapReady={handleMapReady}
