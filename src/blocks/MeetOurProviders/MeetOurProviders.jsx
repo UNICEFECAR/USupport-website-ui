@@ -52,7 +52,7 @@ export const MeetOurProviders = () => {
 
     setShowContent(!shouldHide);
   });
-  console.log("showContent", showContent);
+
   const providersQuery = useGetProvidersData({
     random: false,
     limit: 3,
