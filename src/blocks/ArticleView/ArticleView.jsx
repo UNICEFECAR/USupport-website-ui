@@ -18,38 +18,10 @@ import { userSvc } from "@USupport-components-library/services";
 import {
   ThemeContext,
   createArticleSlug,
+  constructShareUrl,
 } from "@USupport-components-library/utils";
 
 import "./article-view.scss";
-
-const countriesMap = {
-  global: "global",
-  kz: "kazakhstan",
-  pl: "poland",
-  ro: "romania",
-};
-
-const constructShareUrl = ({ contentType, id, name }) => {
-  const country = localStorage.getItem("country");
-  const language = localStorage.getItem("language");
-  const subdomain = window.location.hostname.split(".")[0];
-  const nameSlug = createArticleSlug(name);
-
-  if (subdomain === "staging") {
-    return `https://staging.usupport.online/${language}/information-portal/${contentType}/${id}/${nameSlug}`;
-  }
-
-  if (country === "global") {
-    return `https://usupport.online/${language}/information-portal/${contentType}/${id}/${nameSlug}`;
-  }
-  const countryName = countriesMap[country.toLocaleLowerCase()];
-
-  if (window.location.hostname.includes("staging")) {
-    return `https://${countryName}.staging.usupport.online/${language}/information-portal/${contentType}/${id}/${nameSlug}`;
-  }
-  const url = `https://${countryName}.usupport.online/${language}/information-portal/${contentType}/${id}/${nameSlug}`;
-  return url;
-};
 
 /**
  * ArticleView
