@@ -6,7 +6,6 @@ import React, {
   useContext,
 } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 
 import {
   Answer,
@@ -25,7 +24,11 @@ import {
   useWindowDimensions,
 } from "@USupport-components-library/utils";
 
-import { useEventListener, useGetLanguages } from "#hooks";
+import {
+  useEventListener,
+  useGetLanguages,
+  useCustomNavigate as useNavigate,
+} from "#hooks";
 
 import "./my-qa.scss";
 
@@ -109,9 +112,7 @@ export const MyQA = ({
 
   const handleProviderClick = (providerId) => {
     if (!providerId) return;
-    navigate(
-      `/${localStorage.getItem("language")}/about-us/provider?id=${providerId}`
-    );
+    navigate(`/provider?id=${providerId}`);
   };
 
   const renderQuestions = () => {
