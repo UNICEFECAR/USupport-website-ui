@@ -308,7 +308,8 @@
       "no_answers": "Немає відповідей на запитання",
       "filter": "Фільтруй теги",
       "search_placeholder": "Пошук",
-      "language": "Мова"
+      "language": "Мова",
+      "date_answered": "від {{date}}"
     },
     "coupon-information": {
       "heading": "Хочеш безкоштовні консультації з фахівцями?",

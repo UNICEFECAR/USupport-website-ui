@@ -300,7 +300,8 @@
       "no_answers": "Нет ответов на вопросы",
       "filter": "Фильтровать теги",
       "search_placeholder": "Поиск",
-      "language": "Язык"
+      "language": "Язык",
+      "date_answered": "от {{date}}"
     },
     "coupon-information": {
       "heading": "Хотите получить бесплатные консультации специалистов?",
