@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 
 import {
   Block,
@@ -11,7 +10,11 @@ import {
   Button,
 } from "@USupport-components-library/src";
 
-import { useGetProvidersData, useEventListener } from "#hooks";
+import {
+  useGetProvidersData,
+  useEventListener,
+  useCustomNavigate as useNavigate,
+} from "#hooks";
 
 import "./meet-our-providers-overview.scss";
 
@@ -44,7 +47,7 @@ export const MeetOurProvidersOverview = () => {
   });
 
   const redirectToDetails = (id) => {
-    navigate(`/${localStorage.getItem("language")}/about-us/provider?id=${id}`);
+    navigate(`/provider?id=${id}`);
   };
 
   return (
