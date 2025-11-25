@@ -108,6 +108,7 @@ export const MyQA = ({
   };
 
   const handleProviderClick = (providerId) => {
+    if (!providerId) return;
     navigate(
       `/${localStorage.getItem("language")}/about-us/provider?id=${providerId}`
     );
