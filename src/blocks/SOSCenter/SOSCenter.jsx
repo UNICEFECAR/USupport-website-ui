@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useContext } from "react";
+import React, { useState, useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
@@ -16,7 +16,7 @@ import {
   clientSvc,
 } from "@USupport-components-library/services";
 
-import { useEventListener, useCustomNavigate as useNavigate } from "#hooks";
+import { useEventListener, useCustomNavigate as useNavigate, useAddSosCenterClick } from "#hooks";
 
 import "./sos-center.scss";
 
@@ -47,6 +47,8 @@ export const SOSCenter = () => {
 
   const shouldFetchIds = !!(currentCountry && currentCountry !== "global");
 
+  const addSosCenterClickMutation = useAddSosCenterClick();
+
   //--------------------- SOS Centers ----------------------//
 
   const getSOSCenterIds = async () => {
@@ -74,6 +76,7 @@ export const SOSCenter = () => {
     getOrganizationSpecializations,
     {
       staleTime: 10 * 60 * 1000, // 10 minutes
+      enabled: currentCountry === "RO",
     }
   );
 
@@ -114,6 +117,25 @@ export const SOSCenter = () => {
         : true,
     }
   );
+
+  const handleSosCenterClick = (sosCenter) => {
+    const { attributes } = sosCenter;
+    let id = sosCenter.id;
+    if (attributes.locale !== "en") {
+      const englishLocalization = attributes.localizations.data.find(
+        (x) => x.attributes.locale === "en"
+      );
+      if (englishLocalization) {
+        id = englishLocalization.id;
+      }
+    }
+
+    addSosCenterClickMutation.mutate({
+      sosCenterId: id,
+      isMain: false,
+      platform: "website",
+    });
+  };
 
   return (
     <Block classes="soscenter" animation="fade-right">
@@ -158,6 +180,7 @@ export const SOSCenter = () => {
                       phone={sosCenter.attributes.phone}
                       btnLabelLink={t("button_link")}
                       btnLabelCall={t("button_call")}
+                      onClick={() => handleSosCenterClick(sosCenter)}
                       image={
                         sosCenter.attributes.image?.data?.attributes?.formats
                           ?.medium?.url

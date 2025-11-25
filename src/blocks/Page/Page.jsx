@@ -24,6 +24,7 @@ import {
   useError,
   useEventListener,
   useCustomNavigate as useNavigate,
+  useAddSosCenterClick,
 } from "#hooks";
 
 import "./page.scss";
@@ -307,6 +308,8 @@ export const Page = ({
     };
   }
 
+  const addSosCenterClickMutation = useAddSosCenterClick();
+
   const handleGoBack = () => navigateTo(-1);
 
   const toggleTheme = () => {
@@ -416,7 +419,15 @@ export const Page = ({
         <CircleIconButton
           iconName="phone-emergency"
           classes="page__emergency-button"
-          onClick={() => navigateTo(`/sos-center`)}
+          onClick={() => {
+            if (country !== "global") {
+              addSosCenterClickMutation.mutate({
+                isMain: true,
+                platform: "website",
+              });
+            }
+            navigateTo("/sos-center");
+          }}
           label={t("emergency_button")}
         />
       )}
