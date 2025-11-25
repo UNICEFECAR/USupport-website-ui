@@ -308,7 +308,8 @@
       "no_answers": "Nu există întrebări cu răspuns",
       "filter": "Filtrați etichetele",
       "search_placeholder": "Căutare",
-      "language": "Limba"
+      "language": "Limba",
+      "date_answered": "la {{date}}"
     },
     "coupon-information": {
       "heading": "Doriți sesiuni gratuite cu furnizorii?",

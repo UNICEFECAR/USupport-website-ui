@@ -300,7 +300,8 @@
       "no_answers": "Сұрақтарға жауап жоқ",
       "filter": "Тегтерді сүзгілеу",
       "search_placeholder": "Іздеу",
-      "language": "Тіл"
+      "language": "Тіл",
+      "date_answered": "{{date}} күні"
     },
     "coupon-information": {
       "heading": "Mамандардан тегін кеңес алғыңыз келе ме?",
