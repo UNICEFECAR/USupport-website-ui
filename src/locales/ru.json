@@ -7,7 +7,27 @@
       "card_text_2": "Проверенные консультанты",
       "card_text_3": "Онлайн поддержка",
       "card_text_4": "Ваше безопасное место",
-      "paragraph_2": "Вместе мы справимся со стрессом и жизненными сложностями."
+      "paragraph_2": "Вместе мы справимся со стрессом и жизненными сложностями.",
+      "card_text_2_ro": "",
+      "card_text_3_ro": ""
+    },
+    "articles": {
+      "heading": "Информационный портал",
+      "no_results": "Ничего не найдено",
+      "could_not_load_content": "Для выбранной страны и языка ничего не найдено",
+      "all": "Все",
+      "read_more_button": "Узнать больше",
+      "min_read": "минут на прочтение",
+      "by": "от {{creator}}",
+      "number_of_more_options": "еще {{count}}",
+      "articles": "Статьи",
+      "videos": "Видео",
+      "podcasts": "Подкасты",
+      "view_more": "Посмотреть больше",
+      "search": "Поиск",
+      "not_found": "Этот ресурс недоступен",
+      "require_cookies": "Чтобы посмотреть это видео, примите все cookie-файлы.",
+      "cookie_preferences": "Настройки cookie"
     },
     "contact-us": {
       "heading_1": "Свяжитесь с нами",
@@ -21,10 +41,6 @@
       "contact_reason_3": "Присоединиться к группе консультантов",
       "contact_reason_4": "Партнерство",
       "contact_reason_5": "Другое",
-      "contact_reason_1_pl": "Информация о uSupport",
-      "contact_reason_2_pl": "Техническая проблема",
-      "contact_reason_3_pl": "Жалоба",
-      "contact_reason_4_pl": "Прочее",
       "email_label": "Электронная почта",
       "reason_label": "Причина обращения к нам",
       "message_label": "Сообщение",
@@ -37,7 +53,12 @@
       "modal_text": "Мы свяжемся с Вами в самое ближайшее время",
       "modal_cta_label": "Вернуться на главную страницу",
       "paragraph": "Мы ответим на Ваше электронное письмо в ближайшее время. Убедитесь, что Вы правильно ввели свой адрес электронной почты",
-      "contact_form": "Контактная форма"
+      "contact_form": "Контактная форма",
+      "contact_reason_1_pl": "Информация о uSupport",
+      "contact_reason_2_pl": "Техническая проблема",
+      "contact_reason_3_pl": "Жалоба",
+      "contact_reason_4_pl": "Прочее",
+      "contact_reason_3_ro": ""
     },
     "download-app": {
       "heading": "Скачать приложение",
@@ -56,7 +77,8 @@
       "card_text_1": "Профессиональная помощь",
       "card_text_2": "Онлайн консультации",
       "card_text_3": "Бесплатные ресурсы",
-      "card_text_4": "Легкий и безопасный доступ"
+      "card_text_4": "Легкий и безопасный доступ",
+      "card_text_5": ""
     },
     "hero": {
       "heading_1": "Начните свой<0></0>путь к улучшению ментального здоровья",
@@ -76,7 +98,11 @@
       "card_4": "Запись на консультацию",
       "download_text": "Скачать с",
       "web_browser": "Веб-браузер",
-      "click_to_use": "Нажмите, чтобы использовать"
+      "click_to_use": "Нажмите, чтобы использовать",
+      "download_from_web": "",
+      "browser": "",
+      "card_3_ro": "",
+      "card_4_ro": ""
     },
     "meet-our-providers": {
       "heading": "Познакомьтесь с нашими консультантами",
@@ -93,7 +119,6 @@
       "page_4": "Инфопортал",
       "page_5": "Контакты",
       "page_6": "Мой Q&A",
-      "page_7": "Организации",
       "footer_1": "О нас",
       "footer_2": "Информационный портал",
       "footer_3": "Как это работает?",
@@ -102,7 +127,7 @@
       "footer_6": "Политика Cookie",
       "footer_7": "Часто задаваемые вопросы",
       "emergency_button": "Экстренная помощь",
-      "button_text": "Перейти к приложению",
+      "button_text": "Зарегистрироваться",
       "language_label": "Язык",
       "country_label": "Страна",
       "contact_us": "Свяжитесь с нами",
@@ -118,6 +143,7 @@
       "reject_all_cookies": "Отклонить все",
       "accept_necessary_cookies": "Принять только необходимые",
       "save": "Сохранить",
+      "page_7": "Организации",
       "high_contrast": "Высокая контрастность"
     },
     "question": {
@@ -150,24 +176,6 @@
       "and": "и",
       "privacy": "политика конфиденциальности",
       "paragraph_7_2": "предусматривают, что родители или законные опекуны должны предоставить согласие для несовершеннолетних пользователей в соответствии с местным законодательством страны. uSupport не несет ответственности за точность предоставленной пользователями информации о возрасте или прочей информации."
-    },
-    "articles": {
-      "heading": "Информационный портал",
-      "no_results": "Ничего не найдено",
-      "could_not_load_content": "Для выбранной страны и языка ничего не найдено",
-      "all": "Все",
-      "read_more_button": "Узнать больше",
-      "min_read": "минут на прочтение",
-      "by": "от {{creator}}",
-      "number_of_more_options": "еще {{count}}",
-      "articles": "Статьи",
-      "videos": "Видео",
-      "podcasts": "Подкасты",
-      "view_more": "Посмотреть больше",
-      "search": "Поиск",
-      "not_found": "Этот ресурс недоступен",
-      "require_cookies": "Чтобы посмотреть это видео, примите все cookie-файлы.",
-      "cookie_preferences": "Настройки cookie"
     },
     "privacy-policy": {
       "heading": "Политика конфиденциальности",
@@ -321,12 +329,10 @@
       "online_interaction": "Онлайн",
       "phone_interaction": "По телефону",
       "hybrid_interaction": "Гибридный формат",
-
       "free_services": "Бесплатные услуги",
       "paid_services": "Платные услуги",
       "co_payment_services": "Услуги с сооплатой",
       "cnas_reimbursed_services": "Услуги, возмещаемые CNAS",
-
       "violence_victim_helpline": "Телефон доверия для жертв насилия",
       "social_information_counseling": "Социальная информация и консультирование",
       "rehab_psycho_neuro_children": "Реабилитация и восстановление детей с психоневромоторными нарушениями",
@@ -340,7 +346,6 @@
       "rehab_autism_children": "Реабилитация и восстановление детей с аутизмом",
       "art_recreational_activities": "Творческие досуговые мероприятия (театр, музыка, поэзия, живопись, рассказывание историй)",
       "addiction_helpline": "Телефон доверия по вопросам зависимостей",
-
       "emergency_situations": "Чрезвычайные ситуации",
       "pediatric_psychiatry": "Детская психиатрия",
       "psychological_evaluation": "Психологическая оценка",
@@ -359,14 +364,12 @@
       "pediatric_neurology": "Детская неврология",
       "special_psychopedagogy": "Специальная психопедагогика",
       "neuropsychomotor_recovery": "Нейропсихомоторное восстановление",
-
       "sector_1": "Сектор 1",
       "sector_2": "Сектор 2",
       "sector_3": "Сектор 3",
       "sector_4": "Сектор 4",
       "sector_5": "Сектор 5",
       "sector_6": "Сектор 6",
-
       "aggression_violence_victim_or_aggressor": "Агрессия/насилие — жертва или агрессор",
       "learning_difficulties_special_educational_needs": "Трудности в обучении/Особые образовательные потребности",
       "behavioral_disorder": "Поведенческие расстройства",
@@ -376,12 +379,10 @@
       "identity_issues": "Проблемы идентичности",
       "illness_oncological_treatment_chronic_diseases": "Заболевание (онкологическое лечение, хронические болезни)",
       "other_situations": "Другие ситуации",
-
       "public": "Государственная",
       "private": "Частная",
       "ong": "НПО",
       "public_private": "Государственно-частная",
-
       "work_with_placeholder": "Выберите категории целевой работы",
       "specialisations_placeholder": "Выберите предлагаемые услуги",
       "district_placeholder": "Выберите сектор",
@@ -389,10 +390,8 @@
       "user_interactions_placeholder": "Выберите форматы взаимодействия",
       "property_types_placeholder": "Выберите типы учреждений",
       "search_placeholder": "Поиск по названию организации",
-
       "no_data_found": "Данные не найдены",
       "reset_filters": "Сбросить фильтры",
-
       "view_organization_details": "Посмотреть детали организации",
       "address": "Адрес",
       "phone": "Телефон",
@@ -410,7 +409,6 @@
       "work_with_label": "С кем работаем",
       "offered_services_label": "Предлагаемые услуги",
       "providers_label": "Поставщики",
-
       "violence_victim_helpline": "Горячая линия для жертв насилия",
       "individual_psychotherapy": "Индивидуальная психотерапия",
       "social_information_counseling": "Социальная информация и консультирование",
@@ -427,7 +425,6 @@
       "art_recreational_activities": "Художественно‑рекреационные мероприятия (театр, музыка, поэзия, живопись, рассказы)",
       "addiction_helpline": "Горячая линия зависимости",
       "group_psychotherapy": "Групповая психотерапия",
-
       "emergency_situations": "Чрезвычайные ситуации",
       "pediatric_psychiatry": "Детская психиатрия",
       "psychological_evaluation": "Психологическое оценивание",
@@ -443,29 +440,24 @@
       "pediatric_neurology": "Детская неврология",
       "special_psychopedagogy": "Специальная психопедагогика",
       "neuropsychomotor_recovery": "Нейропсихомоторная реабилитация",
-
       "in_person_interaction": "Лично",
       "online_interaction": "Онлайн",
       "phone_interaction": "По телефону",
       "hybrid_interaction": "Гибрид",
-
       "free_services": "Бесплатные услуги",
       "paid_services": "Платные услуги",
       "co_payment_services": "Услуги с сооплатой",
       "cnas_reimbursed_services": "Услуги, компенсируемые CNAS",
-
       "public": "Публичный",
       "private": "Частный",
       "ong": "НПО",
       "public_private": "Госсударственно‑частный",
-
       "sector_1": "Сектор 1",
       "sector_2": "Сектор 2",
       "sector_3": "Сектор 3",
       "sector_4": "Сектор 4",
       "sector_5": "Сектор 5",
       "sector_6": "Сектор 6",
-
       "aggression_violence_victim_or_aggressor": "Агрессия/насилие – жертва или агрессор",
       "learning_difficulties_special_educational_needs": "Трудности в обучении/Специальные образовательные потребности",
       "behavioral_disorder": "Поведенческое расстройство",
@@ -475,7 +467,6 @@
       "identity_issues": "Проблемы идентичности",
       "illness_oncological_treatment_chronic_diseases": "Заболевание (онкологическое лечение, хронические болезни)",
       "other_situations": "Другие ситуации",
-
       "copy_link_success": "Ссылка скопирована в буфер!"
     },
     "video-tutorial": {
@@ -506,12 +497,12 @@
     },
     "my-qa-page": {
       "modal_heading": "Войдите на платформу, чтобы задать вопрос",
-      "modal_heading_consultation": "Войдите на платформу, чтобы записаться на консультацию",
       "modal_text": "Войдите на платформу, чтобы задать вопрос и получить ответ от наших специалистов, ваш вопрос будет анонимным.",
-      "modal_text_consultation": "Войдите на платформу, чтобы записаться на консультацию со специалистом.",
       "modal_button_label": "Перейти к приложению",
       "my_qa_answer_title": "Как работает Мой Q&A?",
-      "my_qa_answer_text": "Мой Q&A - это функция, которая позволяет задавать вопросы и получать ответы от поставщиков uSupport."
+      "my_qa_answer_text": "Мой Q&A - это функция, которая позволяет задавать вопросы и получать ответы от поставщиков uSupport.",
+      "modal_heading_consultation": "Войдите на платформу, чтобы записаться на консультацию",
+      "modal_text_consultation": "Войдите на платформу, чтобы записаться на консультацию со специалистом."
     },
     "video-information-page": {
       "more_videos": "Больше видео",
