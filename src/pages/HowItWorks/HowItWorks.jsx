@@ -33,7 +33,7 @@ export const HowItWorks = () => {
   return (
     <Page classes="page__how-it-works">
       <HowItWorksBlock showSummaryBellow={true} onPage={true} />
-      {IS_RO ? <MeetOurProviders /> : null}
+      {!IS_RO ? <MeetOurProviders /> : null}
       <VideoTutorial />
       <div ref={faqRef} />
       <FAQ showLearnMore={false} showMascot={false} />
