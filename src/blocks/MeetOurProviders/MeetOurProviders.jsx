@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import {
   Block,
@@ -12,7 +12,11 @@ import {
 } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 
-import { useGetProvidersData, useEventListener } from "#hooks";
+import {
+  useGetProvidersData,
+  useEventListener,
+  useCustomNavigate as useNavigate,
+} from "#hooks";
 
 import "./meet-our-providers.scss";
 
@@ -57,7 +61,7 @@ export const MeetOurProviders = () => {
   });
 
   const redirectToDetails = (id) => {
-    navigate(`/${language}/about-us/provider?id=${id}`);
+    navigate(`/provider?id=${id}`);
   };
 
   if (!showContent) {

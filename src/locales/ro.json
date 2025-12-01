@@ -308,7 +308,8 @@
       "no_answers": "Nu există întrebări cu răspuns",
       "filter": "Filtrați etichetele",
       "search_placeholder": "Căutare",
-      "language": "Limba"
+      "language": "Limba",
+      "date_answered": "la {{date}}"
     },
     "coupon-information": {
       "heading": "Doriți sesiuni gratuite cu furnizorii?",
@@ -542,5 +543,8 @@
       "cta_label": "Aplicați filtre",
       "secondary_cta_label": "Resetați filtrele"
     }
+  },
+  "meta": {
+    "description": "Prima platformă creată pentru a face din sănătatea ta mintală o prioritate. uSupport oferă îngrijire psihologică personalizată, discretă și rapidă pentru bunăstarea ta generală."
   }
 }

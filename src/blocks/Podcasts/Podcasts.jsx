@@ -16,6 +16,7 @@ import {
   destructurePodcastData,
   useWindowDimensions,
   createArticleSlug,
+  getLikesAndDislikesForContent,
 } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 import { useEventListener } from "#hooks";
@@ -49,6 +50,8 @@ export const Podcasts = ({ debouncedSearchValue }) => {
   const [numberOfPodcasts, setNumberOfPodcasts] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [podcastToPlay, setPodcastToPlay] = useState(null);
+  const [podcastsLikes, setPodcastsLikes] = useState(new Map());
+  const [podcastsDislikes, setPodcastsDislikes] = useState(new Map());
 
   useEffect(() => {
     if (i18n.language !== usersLanguage) {
@@ -98,7 +101,20 @@ export const Podcasts = ({ debouncedSearchValue }) => {
   useEventListener("countryChanged", handler);
 
   const getPodcastsIds = async () => {
-    return await adminSvc.getPodcasts();
+    const ids = await adminSvc.getPodcasts();
+
+    // Preload likes/dislikes for English from engagements service
+    if (usersLanguage === "en") {
+      const { likes, dislikes } = await getLikesAndDislikesForContent(
+        ids,
+        "podcast"
+      );
+
+      setPodcastsLikes(likes);
+      setPodcastsDislikes(dislikes);
+    }
+
+    return ids;
   };
 
   const podcastIdsQuery = useQuery(
@@ -149,6 +165,33 @@ export const Podcasts = ({ debouncedSearchValue }) => {
           : true) && !!selectedCategory,
     }
   );
+
+  // Fetch likes/dislikes for non-English languages (or missing entries)
+  useEffect(() => {
+    async function getPodcastsRatings() {
+      const podcastIds = podcasts.reduce((acc, podcast) => {
+        const id = podcast.id;
+        if (!podcastsLikes.has(id) && !podcastsDislikes.has(id)) {
+          acc.push(id);
+        }
+        return acc;
+      }, []);
+
+      if (!podcastIds.length) return;
+
+      const { likes, dislikes } = await getLikesAndDislikesForContent(
+        podcastIds,
+        "podcast"
+      );
+
+      setPodcastsLikes((prevLikes) => new Map([...prevLikes, ...likes]));
+      setPodcastsDislikes(
+        (prevDislikes) => new Map([...prevDislikes, ...dislikes])
+      );
+    }
+
+    getPodcastsRatings();
+  }, [podcasts, usersLanguage]);
 
   const getMorePodcasts = async () => {
     const categoryId =
@@ -303,8 +346,8 @@ export const Podcasts = ({ debouncedSearchValue }) => {
               contentType="podcasts"
               categoryName={newestPodcast.categoryName}
               showDescription={true}
-              likes={newestPodcast.likes}
-              dislikes={newestPodcast.dislikes}
+              likes={podcastsLikes.get(newestPodcast.id) || 0}
+              dislikes={podcastsDislikes.get(newestPodcast.id) || 0}
               t={t}
               onClick={() =>
                 handleRedirect(newestPodcast.id, newestPodcast.title)
@@ -381,8 +424,8 @@ export const Podcasts = ({ debouncedSearchValue }) => {
                       image={data.imageMedium}
                       description={data.description}
                       labels={data.labels}
-                      likes={data.likes || 0}
-                      dislikes={data.dislikes || 0}
+                      likes={podcastsLikes.get(data.id) || 0}
+                      dislikes={podcastsDislikes.get(data.id) || 0}
                       contentType="podcasts"
                       t={t}
                       categoryName={data.categoryName}

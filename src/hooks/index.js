@@ -22,3 +22,4 @@ export * from "./useGetAllOrganizations.js";
 export * from "./useGetOrganizationMetadata.js";
 export * from "./useGetOrganizationById.js";
 export * from "./useCustomNavigate.js";
+export * from "./useAddSosCenterClick.js";

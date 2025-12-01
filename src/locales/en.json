@@ -308,7 +308,8 @@
       "no_answers": "There are no answered questions",
       "filter": "Filter tags",
       "search_placeholder": "Search",
-      "language": "Language"
+      "language": "Language",
+      "date_answered": "on {{date}}"
     },
     "coupon-information": {
       "heading": "Want free sessions with providers?",
@@ -542,5 +543,8 @@
       "cta_label": "Apply filters",
       "secondary_cta_label": "Reset filters"
     }
+  },
+  "meta": {
+    "description": "The first platform created to make your mental health a priority. uSupport provides personalized, discreet and fast psychological care for your overall well-being."
   }
 }

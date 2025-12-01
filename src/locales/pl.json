@@ -302,7 +302,8 @@
       "no_answers": "Brak odpowiedzi",
       "filter": "Filtruj tagi",
       "search_placeholder": "Wyszukiwanie",
-      "language": "Język"
+      "language": "Język",
+      "date_answered": "dnia {{date}}"
     },
     "coupon-information": {
       "heading": "Chcesz darmowych sesji ze specjalistami?",
@@ -536,5 +537,8 @@
       "cta_label": "Zastosuj filtry",
       "secondary_cta_label": "Zresetuj filtry"
     }
+  },
+  "meta": {
+    "description": "Pierwsza platforma stworzona po to, aby Twoje zdrowie psychiczne było priorytetem. uSupport zapewnia spersonalizowaną, dyskretną i szybką opiekę psychologiczną dla Twojego ogólnego dobrostanu."
   }
 }
