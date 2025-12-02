@@ -7,7 +7,27 @@
       "card_text_2": "Тексерілген консультанттар",
       "card_text_3": "Онлайн қолдау",
       "card_text_4": "Сіздің қауіпсіз жеріңіз",
-      "paragraph_2": "Стресске және өмірлік қиындықтарға бірге төтеп береміз."
+      "paragraph_2": "Стресске және өмірлік қиындықтарға бірге төтеп береміз.",
+      "card_text_2_ro": "",
+      "card_text_3_ro": ""
+    },
+    "articles": {
+      "heading": "Ақпараттық портал",
+      "no_results": "Ештеңе табылмады",
+      "could_not_load_content": "Таңдалған ел мен тіл үшін ештеңе табылмады.",
+      "all": "Барлығы",
+      "read_more_button": "Ары қарай оқу",
+      "min_read": "минут оқуға",
+      "by": "дайындаушы {{creator}}",
+      "number_of_more_options": "тағы {{count}}",
+      "articles": "Мақалалар",
+      "videos": "Видео",
+      "podcasts": "Подкасттар",
+      "view_more": "Көбірек көру",
+      "search": "Іздеу",
+      "not_found": "Бұл ресурс қолжетімді емес",
+      "require_cookies": "Бұл бейнені көру үшін барлық cookie файлдарын қабылдаңыз.",
+      "cookie_preferences": "Cookie параметрлері"
     },
     "contact-us": {
       "heading_1": "Бізге хабарласыңыз",
@@ -21,10 +41,6 @@
       "contact_reason_3": "Консультанттар тобына қосылу",
       "contact_reason_4": "Серіктестік",
       "contact_reason_5": "Басқа",
-      "contact_reason_1_pl": "Usupport туралы ақпарат",
-      "contact_reason_2_pl": "Техникалық мәселе",
-      "contact_reason_3_pl": "Шағым",
-      "contact_reason_4_pl": "Басқа",
       "email_label": "Электронды пошта",
       "reason_label": "Бізге хабарласудың себебі",
       "message_label": "Хабарлама",
@@ -37,7 +53,12 @@
       "modal_text": "Біз Сізге жақын арада хабарласамыз",
       "modal_cta_label": "Бас бетке оралу",
       "paragraph": "Біз Сіздің электрондық хабарлауыңызға мүмкіндігінше тез жауап береміз. Электрондық поштаны дұрыс енгізгеніңізге назар аударыңыз",
-      "contact_form": "Байланыс формасы"
+      "contact_form": "Байланыс формасы",
+      "contact_reason_1_pl": "Usupport туралы ақпарат",
+      "contact_reason_2_pl": "Техникалық мәселе",
+      "contact_reason_3_pl": "Шағым",
+      "contact_reason_4_pl": "Басқа",
+      "contact_reason_3_ro": ""
     },
     "download-app": {
       "heading": "Қосымшаны жүктеп алу",
@@ -56,7 +77,8 @@
       "card_text_1": "Кәсіби көмек",
       "card_text_2": "Онлайн консультациялар",
       "card_text_3": "Тегін ресурстар",
-      "card_text_4": "Жеңіл және қауіпсіз қол жеткізу"
+      "card_text_4": "Жеңіл және қауіпсіз қол жеткізу",
+      "card_text_5": ""
     },
     "hero": {
       "heading_1": "Өз ментал денсаулығыңызды ең<1></1> маңызды басымдығыңызға айналдырыңыз",
@@ -76,7 +98,11 @@
       "card_4": "Консультацияға жазылу",
       "download_text": "Жүктеп алыңыз:",
       "web_browser": "Веб-браузер",
-      "click_to_use": "Қолдану үшін басыңыз"
+      "click_to_use": "Қолдану үшін басыңыз",
+      "download_from_web": "",
+      "browser": "",
+      "card_3_ro": "",
+      "card_4_ro": ""
     },
     "meet-our-providers": {
       "heading": "Біздің консультанттармен танысыңыз",
@@ -93,7 +119,6 @@
       "page_4": "Инфопортал",
       "page_5": "Хабарласу",
       "page_6": "Менің Q&A",
-      "page_7": "Ұйымдар",
       "footer_1": "Біз туралы",
       "footer_2": "Ақпараттық портал",
       "footer_3": "Бұл қалай жұмыс істейді?",
@@ -102,7 +127,7 @@
       "footer_6": "Cookie саясаты",
       "footer_7": "Жиі қойылатын сұрақтар",
       "emergency_button": "SOS-орталық",
-      "button_text": "Қосымшаға өту",
+      "button_text": "Tiркелу",
       "language_label": "Тіл",
       "country_label": "Ел",
       "contact_us": "Бізге хабарласыңыз",
@@ -118,6 +143,7 @@
       "reject_all_cookies": "Барлығын қабылдамау",
       "accept_necessary_cookies": "Тек қажеттілерін қабылдау",
       "save": "Сақтау",
+      "page_7": "Ұйымдар",
       "high_contrast": "Жоғары контраст"
     },
     "question": {
@@ -150,24 +176,6 @@
       "and": "мен",
       "privacy": "Құпиялық саясатына",
       "paragraph_7_2": "сай ата-аналар немесе заңды қамқоршылар елдің жергілікті заңдарына сәйкес кәмелетке толмаған пайдаланушылар үшін келісім беруі керек. uSupport пайдаланушылар берген жасы туралы немесе басқа да ақпараттың дұрыстығына жауап бермейді."
-    },
-    "articles": {
-      "heading": "Ақпараттық портал",
-      "no_results": "Ештеңе табылмады",
-      "could_not_load_content": "Таңдалған ел мен тіл үшін ештеңе табылмады.",
-      "all": "Барлығы",
-      "read_more_button": "Ары қарай оқу",
-      "min_read": "минут оқуға",
-      "by": "дайындаушы {{creator}}",
-      "number_of_more_options": "тағы {{count}}",
-      "articles": "Мақалалар",
-      "videos": "Видео",
-      "podcasts": "Подкасттар",
-      "view_more": "Көбірек көру",
-      "search": "Іздеу",
-      "not_found": "Бұл ресурс қолжетімді емес",
-      "require_cookies": "Бұл бейнені көру үшін барлық cookie файлдарын қабылдаңыз.",
-      "cookie_preferences": "Cookie параметрлері"
     },
     "privacy-policy": {
       "heading": "Құпиялық саясаты",
@@ -322,12 +330,10 @@
       "online_interaction": "Онлайн",
       "phone_interaction": "Телефон арқылы",
       "hybrid_interaction": "Аралас формат",
-
       "free_services": "Тегін қызметтер",
       "paid_services": "Ақылы қызметтер",
       "co_payment_services": "Бірлесіп төленетін қызметтер",
       "cnas_reimbursed_services": "CNAS өтейтін қызметтер",
-
       "violence_victim_helpline": "Зорлық-зомбылық құрбандарына арналған сенім телефоны",
       "social_information_counseling": "Әлеуметтік ақпарат және кеңес беру",
       "rehab_psycho_neuro_children": "Психо-невро-моторлық бұзылыстары бар балаларға арналған оңалту және қалпына келтіру қызметтері",
@@ -341,7 +347,6 @@
       "rehab_autism_children": "Аутизмі бар балаларға арналған оңалту және қалпына келтіру қызметтері",
       "art_recreational_activities": "Шығармашылық-ойын-сауық іс-шаралары (театр, музыка, поэзия, сурет салу, әңгімелеу)",
       "addiction_helpline": "Тәуелділік мәселелері бойынша сенім телефоны",
-
       "emergency_situations": "Төтенше жағдайлар",
       "pediatric_psychiatry": "Педиатриялық психиатрия",
       "psychological_evaluation": "Психологиялық бағалау",
@@ -360,14 +365,12 @@
       "pediatric_neurology": "Балалар неврологиясы",
       "special_psychopedagogy": "Арнайы психопедагогика",
       "neuropsychomotor_recovery": "Нейропсихомоторлық қалпына келтіру",
-
       "sector_1": "1-сектор",
       "sector_2": "2-сектор",
       "sector_3": "3-сектор",
       "sector_4": "4-сектор",
       "sector_5": "5-сектор",
       "sector_6": "6-сектор",
-
       "aggression_violence_victim_or_aggressor": "Агрессия/зорлық-зомбылық – құрбан немесе агрессор",
       "learning_difficulties_special_educational_needs": "Оқу қиындықтары/Арнайы білім беру қажеттіліктері",
       "behavioral_disorder": "Мінез-құлық бұзылыстары",
@@ -377,12 +380,10 @@
       "identity_issues": "Жеке тұлға мәселелері",
       "illness_oncological_treatment_chronic_diseases": "Ауру (онкологиялық ем, созылмалы аурулар)",
       "other_situations": "Басқа жағдайлар",
-
       "public": "Мемлекеттік",
       "private": "Жеке",
       "ong": "ҮЕҰ",
       "public_private": "Мемлекеттік-жеке",
-
       "work_with_placeholder": "Мақсатты санаттарды таңдаңыз",
       "specialisations_placeholder": "Көрсетілетін қызметтерді таңдаңыз",
       "district_placeholder": "Секторды таңдаңыз",
@@ -390,10 +391,8 @@
       "user_interactions_placeholder": "Өзара әрекет форматын таңдаңыз",
       "property_types_placeholder": "Мекеме түрлерін таңдаңыз",
       "search_placeholder": "Ұйым атауы бойынша іздеу",
-
       "no_data_found": "Деректер табылмады",
       "reset_filters": "Сүзгілерді қалпына келтіру",
-
       "view_organization_details": "Ұйым мәліметтерін көру",
       "address": "Мекенжай",
       "phone": "Телефон",
@@ -411,7 +410,6 @@
       "work_with_label": "Кіммен жұмыс істейді",
       "offered_services_label": "Ұсынылатын қызметтер",
       "providers_label": "Ұйымдар",
-
       "violence_victim_helpline": "Зорлық құрбандарына қолдау желісі",
       "individual_psychotherapy": "Жеке психотерапия",
       "social_information_counseling": "Әлеуметтік ақпарат және кеңес",
@@ -428,7 +426,6 @@
       "art_recreational_activities": "Өнерлі рекреациялық іс‑шаралар (театр, музыка, поэзия, сурет, әңгімелеу)",
       "addiction_helpline": "Нашақорлыққа қарсы қолдау желісі",
       "group_psychotherapy": "Топтық психотерапия",
-
       "emergency_situations": "Төтенше жағдайлар",
       "pediatric_psychiatry": "Педиатриялық психиатрия",
       "psychological_evaluation": "Психологиялық бағалау",
@@ -444,29 +441,24 @@
       "pediatric_neurology": "Педиатриялық неврология",
       "special_psychopedagogy": "Арнайы психопедагогика",
       "neuropsychomotor_recovery": "Нейропсихомоторлық қалпына келтіру",
-
       "in_person_interaction": "Жеке (тағы бетпе‑бет)",
       "online_interaction": "Онлайн",
       "phone_interaction": "Телефон арқылы",
       "hybrid_interaction": "Гибрид",
-
       "free_services": "Тегін қызметтер",
       "paid_services": "Төлемді қызметтер",
       "co_payment_services": "Қосымша төлеммен қызметтер",
       "cnas_reimbursed_services": "CNAS өтейтін қызметтер",
-
       "public": "Қоғамдық",
       "private": "Жеке",
       "ong": "ҚҚҰ (ЖҚҚ)",
       "public_private": "Қоғамдық‑жеке",
-
       "sector_1": "1‑ауылдық сектор",
       "sector_2": "2‑ауылдық сектор",
       "sector_3": "3‑ауылдық сектор",
       "sector_4": "4‑ауылдық сектор",
       "sector_5": "5‑ауылдық сектор",
       "sector_6": "6‑ауылдық сектор",
-
       "aggression_violence_victim_or_aggressor": "Агрессия/зорлық – құрбан не қатысушы",
       "learning_difficulties_special_educational_needs": "Оқу қиындықтары/Арнайы білім қажеттіліктері",
       "behavioral_disorder": "Қылық бұзылысы",
@@ -476,7 +468,6 @@
       "identity_issues": "Тұлғалық мәселелер",
       "illness_oncological_treatment_chronic_diseases": "Ауру (онкологиялық емдеу, созылмалы аурулар)",
       "other_situations": "Басқа жағдайлар",
-
       "copy_link_success": "Сілтеме буферге көшірілді!"
     },
     "video-tutorial": {
@@ -507,12 +498,12 @@
     },
     "my-qa-page": {
       "modal_heading": "Сұрақ қою үшін платформаға кіріңіз",
-      "modal_heading_consultation": "Кеңес алу үшін платформаға кіріңіз",
       "modal_text": "Сұрақ қою және провайдерлерден жауап алу үшін платформаға кіріңіз, сіздің сұрағыңыз анонимді болады.",
-      "modal_text_consultation": "Провайдермен кеңес алу үшін платформаға кіріңіз.",
       "modal_button_label": "Қосымшаға өту",
       "my_qa_answer_title": "Менің Q&A қалай жұмыс істейді?",
-      "my_qa_answer_text": "Менің Q&A - бұл uSupport провайдерлерінен сұрақ қоюға және жауап алуға мүмкіндік беретін функция."
+      "my_qa_answer_text": "Менің Q&A - бұл uSupport провайдерлерінен сұрақ қоюға және жауап алуға мүмкіндік беретін функция.",
+      "modal_heading_consultation": "Кеңес алу үшін платформаға кіріңіз",
+      "modal_text_consultation": "Провайдермен кеңес алу үшін платформаға кіріңіз."
     },
     "video-information-page": {
       "more_videos": "Көбірек видеолар",
