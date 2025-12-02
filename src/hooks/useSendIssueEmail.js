@@ -15,14 +15,18 @@ export default function useSendIssueEmail(onSuccess, onError) {
       text: payload.text,
     });
 
-    const addFormPromise = userSvc.addContactForm({
-      subject: payload.subjectValue,
-      email: payload.email,
-      message: payload.text,
-      sentFrom: "website",
-    });
+    const promises = [emailPromise];
+    if (localStorage.getItem("country") !== "global") {
+      const addFormPromise = userSvc.addContactForm({
+        subject: payload.subjectValue,
+        email: payload.email,
+        message: payload.text,
+        sentFrom: "website",
+      });
 
-    await Promise.all([emailPromise, addFormPromise]);
+      promises.push(addFormPromise);
+    }
+    await Promise.all(promises);
     return true;
   };
 
