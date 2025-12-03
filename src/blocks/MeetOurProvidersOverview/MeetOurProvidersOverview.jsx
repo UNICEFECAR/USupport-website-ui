@@ -47,7 +47,7 @@ export const MeetOurProvidersOverview = () => {
   });
 
   const redirectToDetails = (id) => {
-    navigate(`/provider?id=${id}`);
+    navigate(`/provider-overview?id=${id}`);
   };
 
   return (
@@ -101,7 +101,7 @@ export const MeetOurProvidersOverview = () => {
             label={t("button_label")}
             size="lg"
             type="secondary"
-            onClick={() => navigate("/how-it-works")}
+            onClick={() => navigate("/how-it-works?to=providers")}
           />
         </GridItem>
       </Grid>
