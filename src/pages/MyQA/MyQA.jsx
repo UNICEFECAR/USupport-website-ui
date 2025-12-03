@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 
 import {
   FilterQuestions,
@@ -9,7 +8,11 @@ import {
   RedirectToLogin,
 } from "#modals";
 import { MascotHeaderMyQA, MyQA as MyQABlock, Page } from "#blocks";
-import { useGetQuestions, useEventListener } from "#hooks";
+import {
+  useGetQuestions,
+  useEventListener,
+  useCustomNavigate as useNavigate,
+} from "#hooks";
 import "./my-qa.scss";
 
 const getTextAndTitle = (language) => {
@@ -126,9 +129,7 @@ export const MyQA = () => {
   };
 
   const handleProviderClick = (providerId) => {
-    navigate(
-      `/${localStorage.getItem("language")}/about-us/provider?id=${providerId}`
-    );
+    navigate(`/provider-overview?id=${providerId}`);
   };
 
   const handleOpenModal = (type) => {

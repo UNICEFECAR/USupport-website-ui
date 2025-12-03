@@ -19,6 +19,8 @@ import "./how-it-works.scss";
  */
 export const HowItWorks = () => {
   const faqRef = useRef();
+  const providersBlockRef = useRef(null);
+
   const IS_RO = localStorage.getItem("country") === "RO";
 
   useEffect(() => {
@@ -28,11 +30,17 @@ export const HowItWorks = () => {
         behavior: "smooth",
       });
     }
+    if (to === "providers") {
+      providersBlockRef.current.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
   }, []);
 
   return (
     <Page classes="page__how-it-works">
       <HowItWorksBlock showSummaryBellow={true} onPage={true} />
+      <div ref={providersBlockRef} />
       {!IS_RO ? <MeetOurProviders /> : null}
       <VideoTutorial />
       <div ref={faqRef} />
