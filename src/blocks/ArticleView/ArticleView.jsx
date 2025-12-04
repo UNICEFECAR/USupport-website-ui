@@ -19,7 +19,7 @@ import { PDFViewer } from "#blocks/PDFViewer/PDFViewer";
 
 import { useAddContentEngagement } from "#hooks";
 
-import { userSvc } from "@USupport-components-library/services";
+import { userSvc, cmsSvc } from "@USupport-components-library/services";
 import {
   ThemeContext,
   createArticleSlug,
@@ -46,7 +46,7 @@ export const ArticleView = ({ articleData, t, language }) => {
   // const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isExportingPdf, setIsExportingPdf] = useState(false);
   const [hasUpdatedUrl, setHasUpdatedUrl] = useState(false);
-
+  const [isShared, setIsShare] = useState(false);
   const addContentEngagementMutation = useAddContentEngagement();
 
   // Track view when article is loaded using useQuery
@@ -132,14 +132,32 @@ export const ArticleView = ({ articleData, t, language }) => {
       // Clean up
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
+
+      addContentEngagementMutation({
+        contentId: articleData.id,
+        contentType: "article",
+        action: "download",
+      });
     } finally {
       setIsExportingPdf(false);
+
+      cmsSvc.addArticleDownloadCount(articleData.id);
     }
   };
 
   const handleCopyLink = () => {
     navigator?.clipboard?.writeText(url);
     toast(t("share_success"));
+    if (!isShared) {
+      cmsSvc.addArticleShareCount(articleData.id).then(() => {
+        setIsShare(true);
+      });
+    } // Track share engagement
+    addContentEngagementMutation({
+      contentId: articleData.id,
+      contentType: "article",
+      action: "share",
+    });
   };
 
   const SHOW_DOWNLOAD = !articleData.pdfUrl;

@@ -3,8 +3,10 @@ import { useParams } from "react-router-dom";
 import propTypes from "prop-types";
 import ReactHlsPlayer from "react-hls-player";
 import { useQuery } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 import {
+  ActionButton,
   Block,
   Button,
   Grid,
@@ -14,8 +16,10 @@ import {
 } from "@USupport-components-library/src";
 import {
   createArticleSlug,
+  constructShareUrl,
   ThemeContext,
 } from "@USupport-components-library/utils";
+import { cmsSvc } from "@USupport-components-library/services";
 
 import { useAddContentEngagement } from "#hooks";
 
@@ -38,6 +42,7 @@ export const VideoView = ({ videoData, t, language }) => {
   const { name } = useParams();
 
   const [hasUpdatedUrl, setHasUpdatedUrl] = useState(false);
+  const [isShared, setIsShared] = useState(false);
 
   const addContentEngagementMutation = useAddContentEngagement();
 
@@ -134,11 +139,37 @@ export const VideoView = ({ videoData, t, language }) => {
     );
   };
 
+  const url = constructShareUrl({
+    contentType: "video",
+    id: videoData.id,
+    name: videoData.title,
+  });
+
+  const handleCopyLink = () => {
+    navigator?.clipboard?.writeText(url);
+    toast(t("share_success"));
+    if (!isShared) {
+      cmsSvc.addVideoShareCount(videoData.id).then(() => {
+        setIsShared(true);
+      });
+
+      // Track share engagement
+      addContentEngagementMutation({
+        contentId: videoData.id,
+        contentType: "video",
+        action: "share",
+      });
+    }
+  };
+
   return (
     <Block classes={`video-view ${IS_RTL ? "video-view--rtl" : ""}`}>
       <Grid classes="video-view__main-grid">
         <GridItem md={8} lg={12} classes="video-view__title-item">
-          <h3>{videoData.title}</h3>
+          <div className="video-view__title-item__container">
+            <h3>{videoData.title}</h3>
+            <ActionButton onClick={handleCopyLink} iconName="share" />
+          </div>
         </GridItem>
 
         <GridItem md={8} lg={12} classes="video-view__details-item">
