@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import propTypes from "prop-types";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
 import {
+  ActionButton,
   Block,
   Grid,
   GridItem,
   Label,
   Like,
 } from "@USupport-components-library/src";
-import { createArticleSlug } from "@USupport-components-library/utils";
+import {
+  createArticleSlug,
+  constructShareUrl,
+} from "@USupport-components-library/utils";
+import { cmsSvc } from "@USupport-components-library/services";
 
 import { useAddContentEngagement } from "#hooks";
 
@@ -28,6 +34,7 @@ export const PodcastView = ({ podcastData, t, language }) => {
   const creator = podcastData.creator ? podcastData.creator : null;
 
   const [hasUpdatedUrl, setHasUpdatedUrl] = useState(false);
+  const [isShared, setIsShared] = useState(false);
 
   const addContentEngagementMutation = useAddContentEngagement();
 
@@ -65,11 +72,36 @@ export const PodcastView = ({ podcastData, t, language }) => {
     }
   }, [podcastData?.title, name, language, hasUpdatedUrl]);
 
+  const url = constructShareUrl({
+    contentType: "podcast",
+    id: podcastData.id,
+    name: podcastData.title,
+  });
+
+  const handleCopyLink = () => {
+    navigator?.clipboard?.writeText(url);
+    toast(t("share_success"));
+    if (!isShared) {
+      cmsSvc.addPodcastShareCount(podcastData.id).then(() => {
+        setIsShared(true);
+      });
+    }
+    // Track share engagement
+    addContentEngagementMutation({
+      contentId: podcastData.id,
+      contentType: "podcast",
+      action: "share",
+    });
+  };
+
   return (
     <Block classes="podcast-view">
       <Grid classes="podcast-view__main-grid">
         <GridItem md={8} lg={12} classes="podcast-view__title-item">
-          <h3>{podcastData.title}</h3>
+          <div className="podcast-view__title-item__container">
+            <h3>{podcastData.title}</h3>
+            <ActionButton onClick={handleCopyLink} iconName="share" />
+          </div>
         </GridItem>
 
         <GridItem md={8} lg={12} classes="podcast-view__details-item">

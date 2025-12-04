@@ -509,13 +509,15 @@
       "more_videos": "Mai multe videoclipuri",
       "view_more": "Vezi mai mult",
       "not_found": "Videoclipul nu a fost găsit",
+      "share_success": "Linkul videoclipului a fost copiat în clipboard",
       "require_cookies": "Pentru a vizualiza acest videoclip, acceptați toate cookie-urile.",
       "cookie_preferences": "Preferințe cookie"
     },
     "podcast-information-page": {
       "more_podcasts": "Mai multe podcasturi",
       "view_more": "Vezi mai mult",
-      "not_found": "Podcastul nu a fost găsit"
+      "not_found": "Podcastul nu a fost găsit",
+      "share_success": "Link copiat în clipboard!"
     },
     "organizations-page": {
       "heading": "Organizații"
