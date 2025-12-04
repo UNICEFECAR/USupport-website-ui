@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import propTypes from "prop-types";
 import { toast } from "react-toastify";
+import { useQuery } from "@tanstack/react-query";
 
 import {
   Block,
@@ -13,7 +14,11 @@ import {
   Like,
   Loading,
 } from "@USupport-components-library/src";
+
 import { PDFViewer } from "#blocks/PDFViewer/PDFViewer";
+
+import { useAddContentEngagement } from "#hooks";
+
 import { userSvc } from "@USupport-components-library/services";
 import {
   ThemeContext,
@@ -41,6 +46,24 @@ export const ArticleView = ({ articleData, t, language }) => {
   // const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isExportingPdf, setIsExportingPdf] = useState(false);
   const [hasUpdatedUrl, setHasUpdatedUrl] = useState(false);
+
+  const addContentEngagementMutation = useAddContentEngagement();
+
+  // Track view when article is loaded using useQuery
+  useQuery(
+    ["article-view-tracking", articleData.id],
+    async () => {
+      addContentEngagementMutation({
+        contentId: articleData.id,
+        contentType: "article",
+        action: "view",
+      });
+      return true;
+    },
+    {
+      enabled: !!articleData?.id,
+    }
+  );
 
   const url = constructShareUrl({
     contentType: "article",

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import propTypes from "prop-types";
 import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 import {
   Block,
@@ -10,6 +11,8 @@ import {
   Like,
 } from "@USupport-components-library/src";
 import { createArticleSlug } from "@USupport-components-library/utils";
+
+import { useAddContentEngagement } from "#hooks";
 
 import "./podcast-view.scss";
 
@@ -25,6 +28,24 @@ export const PodcastView = ({ podcastData, t, language }) => {
   const creator = podcastData.creator ? podcastData.creator : null;
 
   const [hasUpdatedUrl, setHasUpdatedUrl] = useState(false);
+
+  const addContentEngagementMutation = useAddContentEngagement();
+
+  // Track view when podcast is loaded using useQuery
+  useQuery(
+    ["podcast-view-tracking", podcastData.id],
+    async () => {
+      addContentEngagementMutation({
+        contentId: podcastData.id,
+        contentType: "podcast",
+        action: "view",
+      });
+      return true;
+    },
+    {
+      enabled: !!podcastData?.id,
+    }
+  );
 
   useEffect(() => {
     setHasUpdatedUrl(false);

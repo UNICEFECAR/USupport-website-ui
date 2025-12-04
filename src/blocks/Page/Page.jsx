@@ -105,9 +105,12 @@ export const Page = ({
       localStorageCountry =
         res.data.find((x) => x.name.toLocaleLowerCase() === subdomain)
           ?.alpha2 || localStorageCountry;
-      if (localStorageCountry) {
+      if (
+        localStorageCountry &&
+        localStorageCountry !== localStorage.getItem("country")
+      ) {
         localStorage.setItem("country", localStorageCountry);
-        // window.dispatchEvent(new Event("countryChanged"));
+        window.dispatchEvent(new Event("countryChanged"));
       }
     }
 
