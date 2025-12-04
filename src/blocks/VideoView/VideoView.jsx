@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import propTypes from "prop-types";
+import ReactHlsPlayer from "react-hls-player";
+import { useQuery } from "@tanstack/react-query";
 
 import {
   Block,
@@ -14,8 +16,10 @@ import {
   createArticleSlug,
   ThemeContext,
 } from "@USupport-components-library/utils";
+
+import { useAddContentEngagement } from "#hooks";
+
 import "./video-view.scss";
-import ReactHlsPlayer from "react-hls-player";
 
 /**
  * VideoView
@@ -34,6 +38,24 @@ export const VideoView = ({ videoData, t, language }) => {
   const { name } = useParams();
 
   const [hasUpdatedUrl, setHasUpdatedUrl] = useState(false);
+
+  const addContentEngagementMutation = useAddContentEngagement();
+
+  // Track view when video is loaded using useQuery
+  useQuery(
+    ["video-view-tracking", videoData.id],
+    async () => {
+      addContentEngagementMutation({
+        contentId: videoData.id,
+        contentType: "video",
+        action: "view",
+      });
+      return true;
+    },
+    {
+      enabled: !!videoData?.id,
+    }
+  );
 
   useEffect(() => {
     setHasUpdatedUrl(false);
