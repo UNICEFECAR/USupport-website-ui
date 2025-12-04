@@ -510,12 +510,14 @@
       "view_more": "Толығырақ көру",
       "not_found": "Видео табылмады",
       "require_cookies": "Бұл видео көру үшін, барлық cookie-лерді қабылдаңыз.",
-      "cookie_preferences": "Cookie параметрлері"
+      "cookie_preferences": "Cookie параметрлері",
+      "share_success": "Видео сілтемесі буферге көшірілді"
     },
     "podcast-information-page": {
       "more_podcasts": "Көбірек подкасттар",
       "view_more": "Толығырақ көру",
-      "not_found": "Подкаст табылмады"
+      "not_found": "Подкаст табылмады",
+      "share_success": "Сілтеме көшірілді!"
     },
     "organizations-page": {
       "heading": "Ұйымдар"

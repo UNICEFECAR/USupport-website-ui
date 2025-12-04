@@ -179,12 +179,14 @@
       "view_more": "Daha fazlasını görüntüle",
       "not_found": "Video bulunamadı",
       "require_cookies": "Bu videoyu izlemek için lütfen tüm çerezleri kabul edin.",
-      "cookie_preferences": "Çerez tercihleri"
+      "cookie_preferences": "Çerez tercihleri",
+      "share_success": "Video bağlantısı panoya kopyalandı"
     },
     "podcast-information-page": {
       "more_podcasts": "Daha Fazla Podcast",
       "view_more": "Daha fazlasını görüntüle",
-      "not_found": "Podcast bulunamadı"
+      "not_found": "Podcast bulunamadı",
+      "share_success": "Podcast bağlantısı panoya kopyalandı"
     }
   },
   "meta": {
