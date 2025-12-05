@@ -53,7 +53,7 @@ export default function useGetProvidersData({
   };
 
   const providersDataQuery = useInfiniteQuery(
-    ["providers-data"],
+    ["providers-data", isInGlobalCountry],
     fetchProvidersData,
     {
       enabled,

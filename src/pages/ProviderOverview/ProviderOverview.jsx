@@ -21,7 +21,7 @@ export const ProviderOverview = () => {
   });
   const { width } = useWindowDimensions();
   const providerId = new URLSearchParams(window.location.search).get("id");
-
+  console.log(providerId);
   if (!providerId) return <Navigate to="/about-us" />;
 
   const handleGoBack = () => navigate(-1);

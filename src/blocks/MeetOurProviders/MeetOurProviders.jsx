@@ -61,7 +61,7 @@ export const MeetOurProviders = () => {
   });
 
   const redirectToDetails = (id) => {
-    navigate(`/provider?id=${id}`);
+    navigate(`/provider-overview?id=${id}`);
   };
 
   if (!showContent) {

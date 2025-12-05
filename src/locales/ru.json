@@ -509,13 +509,15 @@
       "more_videos": "Больше видео",
       "view_more": "Посмотреть больше",
       "not_found": "Видео не найдено",
+      "share_success": "Ссылка на видео скопирована в буфер обмена",
       "require_cookies": "Для просмотра этого видео, пожалуйста, примите все файлы cookie.",
       "cookie_preferences": "Настройки файлов cookie"
     },
     "podcast-information-page": {
       "more_podcasts": "Больше подкастов",
       "view_more": "Посмотреть больше",
-      "not_found": "Подкаст не найден"
+      "not_found": "Подкаст не найден",
+      "share_success": "Ссылка скопирована в буфер обмена!"
     },
     "organizations-page": {
       "heading": "Организации"

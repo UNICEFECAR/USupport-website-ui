@@ -509,13 +509,15 @@
       "more_videos": "More videos",
       "view_more": "View more",
       "not_found": "Video not found",
+      "share_success": "Video link copied to clipboard",
       "require_cookies": "To view this video, please accept all cookies.",
       "cookie_preferences": "Cookie preferences"
     },
     "podcast-information-page": {
       "more_podcasts": "More podcasts",
       "view_more": "View more",
-      "not_found": "Podcast not found"
+      "not_found": "Podcast not found",
+      "share_success": "Link copied to clipboard!"
     },
     "organizations-page": {
       "heading": "Organizations"

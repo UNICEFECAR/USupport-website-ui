@@ -112,7 +112,7 @@ export const MyQA = ({
 
   const handleProviderClick = (providerId) => {
     if (!providerId) return;
-    navigate(`/provider?id=${providerId}`);
+    navigate(`/provider-overview?id=${providerId}`);
   };
 
   const renderQuestions = () => {

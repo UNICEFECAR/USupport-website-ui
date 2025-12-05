@@ -34,7 +34,7 @@ export const CustomAboutUs = () => {
   const IS_PS = localStorage.getItem("country") === "PS";
 
   const IS_RTL = localStorage.getItem("language") === "ar";
-  console.log(localStorage.getItem("language"));
+
   const handler = useCallback(() => {
     const newCountry = localStorage.getItem("country");
     if (newCountry) {

@@ -180,7 +180,7 @@ const LanguageLayout = () => {
       <Route path="how-it-works" element={<HowItWorks />} />
       {/* <Route path="/about-us" element={<AboutUs />} /> */}
       <Route path="about-us" element={<CustomAboutUs />} />
-      <Route path="provider" element={<ProviderOverview />} />
+      <Route path="provider-overview" element={<ProviderOverview />} />
       <Route path="contact-us" element={<ContactUs />} />
       <Route path="information-portal" element={<InformationPortal />} />
       <Route

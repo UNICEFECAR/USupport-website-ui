@@ -363,7 +363,7 @@ export const Articles = ({ debouncedSearchValue }) => {
   // Fetch likes/dislikes for non-English languages (or missing entries)
   useEffect(() => {
     async function getArticlesRatings() {
-      const articleIds = articles.reduce((acc, article) => {
+      const articleIds = articles?.reduce((acc, article) => {
         const id = article.id;
         if (!articlesLikes.has(id) && !articlesDislikes.has(id)) {
           acc.push(id);
@@ -371,7 +371,7 @@ export const Articles = ({ debouncedSearchValue }) => {
         return acc;
       }, []);
 
-      if (!articleIds.length) return;
+      if (!articleIds || !articleIds.length) return;
 
       const { likes, dislikes } = await getLikesAndDislikesForContent(
         articleIds,
