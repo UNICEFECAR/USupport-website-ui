@@ -335,17 +335,11 @@ export const Page = ({
   };
 
   const hasPassedValidation = queryClient.getQueryData(["hasPassedValidation"]);
+  const IS_RO = window.location.hostname === "romania.usupport.online";
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(
-    !hasPassedValidation
+    !hasPassedValidation && IS_RO
   );
   const [passwordError, setPasswordError] = useState("");
-
-  useEffect(() => {
-    // check if the domain is 'romania.usupport.online', if so show the password modal
-    if (window.location.hostname === "romania.usupport.online") {
-      setIsPasswordModalOpen(true);
-    }
-  }, []);
 
   const validatePlatformPasswordMutation = useMutation(
     async (value) => {
