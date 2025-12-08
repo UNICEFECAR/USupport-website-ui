@@ -7,7 +7,9 @@
       "card_text_2": "Sprawdzeni specjaliści",
       "card_text_3": "Wsparcie online",
       "card_text_4": "Twoje bezpieczne miejsce",
-      "paragraph_2": "Razem stawmy czoła stresowi i radźmy sobie ze wszystkimi wyzwaniami życia."
+      "paragraph_2": "Razem stawmy czoła stresowi i radźmy sobie ze wszystkimi wyzwaniami życia.",
+      "card_text_2_ro": "",
+      "card_text_3_ro": ""
     },
     "articles": {
       "heading": "Wiedza",
@@ -55,7 +57,8 @@
       "contact_reason_1_pl": "Informacje o uSupport",
       "contact_reason_2_pl": "Problem techniczny",
       "contact_reason_3_pl": "Dołączenie do sieci konsultantów",
-      "contact_reason_4_pl": "Coś innego"
+      "contact_reason_4_pl": "Coś innego",
+      "contact_reason_3_ro": ""
     },
     "download-app": {
       "heading": "Pobierz aplikację",
@@ -74,11 +77,12 @@
       "card_text_1": "Profesjonalna pomoc",
       "card_text_2": "Konsultacje online",
       "card_text_3": "Bezpłatne materiały",
-      "card_text_4": "Łatwy i bezpieczny dostęp"
+      "card_text_4": "Łatwy i bezpieczny dostęp",
+      "card_text_5": ""
     },
     "hero": {
       "heading_1": "Rozpocznij swoją podróż w kierunku lepszego<1></1> zdrowia psychicznego i dobrego samopoczucia",
-      "paragraph_1": "Platforma, która szanuje Twoją prywatność i bezpieczeństwo. Twoje dobro jest dla nas najważniejsze! uSupport oferuje spersonalizowaną i dyskretną opiekę psychologiczną.",
+      "paragraph_1": "Skorzystaj z bezpłatnej pomocy psychologa",
       "paragraph_1_1": "Twoja historia ma znaczenie! Odważ się nią podzielić.",
       "download_text": "Pobierz uSupport z",
       "web_browser": "Przeglądarka internetowa",
@@ -96,7 +100,9 @@
       "web_browser": "Kliknij, aby skorzystać",
       "click_to_use": "Przeglądarka",
       "download_from_web": "",
-      "browser": ""
+      "browser": "",
+      "card_3_ro": "",
+      "card_4_ro": ""
     },
     "meet-our-providers": {
       "heading": "Poznaj naszych konsultantów",
@@ -541,6 +547,7 @@
     }
   },
   "meta": {
+    "title": "uSupport Strona internetowa",
     "description": "Pierwsza platforma stworzona po to, aby Twoje zdrowie psychiczne było priorytetem. uSupport zapewnia spersonalizowaną, dyskretną i szybką opiekę psychologiczną dla Twojego ogólnego dobrostanu."
   }
 }

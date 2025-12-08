@@ -27,14 +27,16 @@ async function main() {
   for (const lang of languages) {
     const localePath = path.join(localesDir, `${lang}.json`);
     let description = "";
+    let title = "";
 
     try {
       const localeRaw = await readFile(localePath, "utf8");
       const localeJson = JSON.parse(localeRaw);
       description = localeJson.meta?.description || "";
+      title = localeJson.meta?.title || "";
     } catch (err) {
       console.warn(
-        `Could not load meta.description from ${localePath}, skipping custom description for ${lang}.`
+        `Could not load meta from ${localePath}, skipping custom meta for ${lang}.`
       );
     }
 
@@ -48,6 +50,14 @@ async function main() {
       html = html.replace(
         /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/,
         `<meta name="description" content="${escapeHtml(description)}" />`
+      );
+    }
+
+    // Replace the content of the existing title tag, if any
+    if (title) {
+      html = html.replace(
+        /<title>[^<]*<\/title>/,
+        `<title>${escapeHtml(title)}</title>`
       );
     }
 
@@ -73,4 +83,3 @@ main().catch((err) => {
   console.error(err);
   process.exit(1);
 });
-
