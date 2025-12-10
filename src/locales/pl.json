@@ -509,15 +509,13 @@
       "more_videos": "Więcej filmów",
       "view_more": "Zobacz więcej",
       "not_found": "Film nie znaleziony",
-      "share_success": "Link do filmu został skopiowany do schowka",
       "require_cookies": "Aby obejrzeć ten film, zaakceptuj wszystkie pliki cookie.",
       "cookie_preferences": "Preferencje plików cookie"
     },
     "podcast-information-page": {
       "more_podcasts": "Więcej podcastów",
       "view_more": "Zobacz więcej",
-      "not_found": "Podcast nie znaleziony",
-      "share_success": "Link został skopiowany do schowka!"
+      "not_found": "Podcast nie znaleziony"
     },
     "organizations-page": {
       "heading": "Organizacje"
