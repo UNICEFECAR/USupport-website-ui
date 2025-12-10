@@ -10,6 +10,7 @@ import * as ru from "./locales/ru.json";
 import * as uk from "./locales/uk.json";
 import * as ar from "./locales/ar.json";
 import * as tr from "./locales/tr.json";
+import * as el from "./locales/el.json";
 
 const resources = {
   hy,
@@ -21,6 +22,7 @@ const resources = {
   uk,
   ar,
   tr,
+  el,
 };
 
 i18n.use(initReactI18next).init({
