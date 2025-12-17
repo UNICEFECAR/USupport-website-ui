@@ -290,7 +290,7 @@ export const Page = ({
     list3: [
       { name: t("footer_3"), url: "/how-it-works" },
       { name: t("footer_7"), url: "/how-it-works?to=faq" },
-      { name: t("contact_us"), url: "/contact-us" },
+      { name: t("contact_us"), url: "/about-us?to=contact-us" },
     ],
   };
 
@@ -335,8 +335,9 @@ export const Page = ({
   };
 
   const hasPassedValidation = queryClient.getQueryData(["hasPassedValidation"]);
+  const IS_RO = window.location.hostname === "romania.usupport.online";
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(
-    !hasPassedValidation
+    !hasPassedValidation && IS_RO
   );
   const [passwordError, setPasswordError] = useState("");
 

@@ -146,7 +146,7 @@ function App() {
 const LanguageLayout = () => {
   const { language } = useParams();
 
-  const allLangs = ["en", "ru", "kk", "pl", "uk", "hy", "ro", "ar", "tr"];
+  const allLangs = ["en", "ru", "kk", "pl", "uk", "hy", "ro", "ar", "tr", "el"];
 
   const IS_PS = localStorage.getItem("country") === "PS";
   const [searchParams, setSearchParams] = useSearchParams();
