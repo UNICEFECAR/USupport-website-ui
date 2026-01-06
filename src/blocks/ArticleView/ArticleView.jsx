@@ -256,9 +256,11 @@ export const ArticleView = ({ articleData, t, language }) => {
           </GridItem>
         )}
 
-        <GridItem md={8} lg={12}>
-          <PDFViewer pdfUrl={articleData.pdfUrl} />
-        </GridItem>
+        {articleData.pdfUrl && (
+          <GridItem md={8} lg={12}>
+            <PDFViewer pdfUrl={articleData.pdfUrl} />
+          </GridItem>
+        )}
 
         <GridItem md={8} lg={12} classes="article-view__body-item">
           <Markdown markDownText={articleData.body} className={"text"} />
