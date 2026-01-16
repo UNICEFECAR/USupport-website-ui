@@ -59,8 +59,6 @@ export const PDFViewer = ({ pdfUrl }) => {
       ? Math.min(window.innerWidth * 0.9, 900)
       : 900;
 
-  console.log(numPages, visiblePages);
-
   return (
     <div className="pdf-viewer-container">
       <Document

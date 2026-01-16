@@ -247,18 +247,21 @@ export const ArticleView = ({ articleData, t, language }) => {
             <img
               className="article-view__image-item"
               src={
-                articleData.imageMedium
-                  ? articleData.imageMedium
-                  : "https://picsum.photos/300/400"
+                articleData.imageMedium ||
+                articleData.imageThumbnail ||
+                articleData.imageSmall ||
+                "https://picsum.photos/300/400"
               }
               alt=""
             />
           </GridItem>
         )}
 
-        <GridItem md={8} lg={12}>
-          <PDFViewer pdfUrl={articleData.pdfUrl} />
-        </GridItem>
+        {articleData.pdfUrl && (
+          <GridItem md={8} lg={12}>
+            <PDFViewer pdfUrl={articleData.pdfUrl} />
+          </GridItem>
+        )}
 
         <GridItem md={8} lg={12} classes="article-view__body-item">
           <Markdown markDownText={articleData.body} className={"text"} />
