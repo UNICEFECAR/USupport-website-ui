@@ -511,7 +511,11 @@ export const Articles = ({ debouncedSearchValue }) => {
                       type={isNotDescktop ? "portrait" : "landscape"}
                       size="lg"
                       title={newestArticle.title}
-                      image={newestArticle.imageMedium}
+                      image={
+                        newestArticle.imageMedium ||
+                        newestArticle.imageThumbnail ||
+                        newestArticle.imageSmall
+                      }
                       description={newestArticle.description}
                       labels={newestArticle.labels}
                       creator={newestArticle.creator}
