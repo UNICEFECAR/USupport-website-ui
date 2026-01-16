@@ -247,9 +247,10 @@ export const ArticleView = ({ articleData, t, language }) => {
             <img
               className="article-view__image-item"
               src={
-                articleData.imageMedium
-                  ? articleData.imageMedium
-                  : "https://picsum.photos/300/400"
+                articleData.imageMedium ||
+                articleData.imageThumbnail ||
+                articleData.imageSmall ||
+                "https://picsum.photos/300/400"
               }
               alt=""
             />
