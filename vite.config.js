@@ -30,7 +30,7 @@ export default defineConfig(({command, mode}) => {
         closeBundle() {
           if (command === "build") {
             generateSitemap({
-              siteUrl: "https://staging.usupport.online",
+              siteUrl: "https://usupport.online",
               defaultLang: "pl",
               languages: languages,
               routes: routes,
