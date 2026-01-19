@@ -19,6 +19,8 @@ const languages = [
   'pl','uk'
 ]
 
+const GENERATE_SITEMAP = false;
+
 // https://vitejs.dev/config/
 export default defineConfig(({command, mode}) => {
   return {
@@ -28,7 +30,7 @@ export default defineConfig(({command, mode}) => {
       {
         name: "generate-sitemap",
         closeBundle() {
-          if (command === "build") {
+          if (command === "build" && GENERATE_SITEMAP) {
             generateSitemap({
               siteUrl: "https://staging.usupport.online",
               defaultLang: "pl",
