@@ -19,7 +19,7 @@ const languages = [
   'pl','uk'
 ]
 
-const GENERATE_SITEMAP = false;
+const GENERATE_SITEMAP = true;
 
 // https://vitejs.dev/config/
 export default defineConfig(({command, mode}) => {
