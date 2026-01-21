@@ -24,7 +24,7 @@ const GENERATE_SITEMAP = true;
 // https://vitejs.dev/config/
 export default defineConfig(({command, mode}) => {
   return {
-    base: mode === "production" ? "/website/" : "/",
+    base: '/website/',
     plugins: [react(),
 
       {
