@@ -15,7 +15,21 @@ const routes = [
   '/cookie-policy',
   '/terms-of-use',
 ];
-const languages = [
+
+const allLanguages = [
+  'hy',
+  'en',
+  'kk',
+  'pl',
+  'ro',
+  'ru',
+  'uk',
+  'ar',
+  'tr',
+  'el',
+]
+
+const polandLanguages = [
   'pl','uk'
 ]
 
@@ -24,19 +38,30 @@ const GENERATE_SITEMAP = true;
 // https://vitejs.dev/config/
 export default defineConfig(({command, mode}) => {
   return {
-    base: mode === "production" ? "/website/" : "/",
+    base: '/website/',
     plugins: [react(),
 
       {
         name: "generate-sitemap",
         closeBundle() {
           if (command === "build" && GENERATE_SITEMAP) {
+
             generateSitemap({
               siteUrl: "https://usupport.online",
-              defaultLang: "pl",
-              languages: languages,
+              defaultLang: "en",
+              languages: allLanguages,
               routes: routes,
               outDir: "dist",
+              fileName: "sitemap.xml",
+            });
+            
+            generateSitemap({
+              siteUrl: "https://poland.usupport.online",
+              defaultLang: "pl",
+              languages: polandLanguages,
+              routes: routes,
+              outDir: "dist",
+              fileName: "sitemap-poland.xml",
             });
           }
         },
