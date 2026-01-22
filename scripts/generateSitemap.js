@@ -7,6 +7,7 @@ export function generateSitemap({
   defaultLang,
   routes,
   outDir,
+  fileName,
 }) {
     const lastmod = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
 
@@ -48,7 +49,7 @@ export function generateSitemap({
   </urlset>`;
 
 
-  fs.writeFileSync(path.join(outDir, "sitemap.xml"), sitemap, "utf8");
+  fs.writeFileSync(path.join(outDir, fileName), sitemap, "utf8");
 
   console.log("✅ sitemap.xml generated");
 }
