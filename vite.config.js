@@ -6,6 +6,7 @@ import path from "path";
 import { generateSitemap } from "./scripts/generateSitemap";
 
 const routes = [
+  "/",
   '/how-it-works',
   '/about-us',
   '/information-portal',
