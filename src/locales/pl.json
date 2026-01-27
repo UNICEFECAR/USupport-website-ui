@@ -127,7 +127,7 @@
       "footer_6": "Polityka plików cookie",
       "footer_7": "Najczęściej zadawane pytania",
       "emergency_button": "Centrum SOS",
-      "button_text": "Umów się konsultację",
+      "button_text": "Umów się na konsultację",
       "language_label": "Język",
       "country_label": "Kraj",
       "contact_us": "Skontaktuj się z nami",
@@ -509,9 +509,9 @@
       "more_videos": "Więcej filmów",
       "view_more": "Zobacz więcej",
       "not_found": "Film nie znaleziony",
-      "share_success": "Link do filmu został skopiowany do schowka",
       "require_cookies": "Aby obejrzeć ten film, zaakceptuj wszystkie pliki cookie.",
-      "cookie_preferences": "Preferencje plików cookie"
+      "cookie_preferences": "Preferencje plików cookie",
+      "share_success": "Link do filmu został skopiowany do schowka"
     },
     "podcast-information-page": {
       "more_podcasts": "Więcej podcastów",
@@ -547,7 +547,7 @@
     }
   },
   "meta": {
-    "title": "uSupport Strona internetowa",
-    "description": "Pierwsza platforma stworzona po to, aby Twoje zdrowie psychiczne było priorytetem. uSupport zapewnia spersonalizowaną, dyskretną i szybką opiekę psychologiczną dla Twojego ogólnego dobrostanu."
+    "description": "Pierwsza platforma stworzona po to, aby Twoje zdrowie psychiczne było priorytetem. uSupport zapewnia spersonalizowaną, dyskretną i szybką opiekę psychologiczną dla Twojego ogólnego dobrostanu.",
+    "title": "uSupport Strona internetowa"
   }
 }
