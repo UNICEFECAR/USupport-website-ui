@@ -38,6 +38,7 @@ import {
   Organizations,
   OrganizationOverview,
 } from "#pages";
+import { Wysa, WysaButton } from "@USupport-components-library/src";
 import {
   ThemeContext,
   generateVisitorId,
@@ -46,13 +47,11 @@ import { userSvc } from "@USupport-components-library/services";
 
 import { useEventListener } from "#hooks";
 
-// AOS imports
 import "aos/dist/aos.css";
 import AOS from "aos";
 
 import "./App.scss";
 
-// Create a react-query client
 const queryClient = new QueryClient({
   defaultOptions: { queries: { refetchOnWindowFocus: false } },
 });
@@ -80,6 +79,10 @@ function App() {
   const [allLanguages, setAllLanguages] = useState([]);
   const [isPodcastsActive, setIsPodcastsActive] = useState(false);
   const [isVideosActive, setIsVideosActive] = useState(false);
+  const [isWysaModalOpen, setIsWysaModalOpen] = useState(false);
+  const [country, setCountry] = useState(
+    localStorage.getItem("country") || null
+  );
 
   const [cookieState, setCookieState] = useState({
     hasAcceptedCookies: false,
@@ -118,6 +121,20 @@ function App() {
     localStorage.setItem("default-theme", theme);
   }, [theme]);
 
+  useEffect(() => {
+    const handler = () => {
+      const currentCountry = localStorage.getItem("country");
+      setCountry(currentCountry);
+    };
+    window.addEventListener("countryChanged", handler);
+
+    return () => {
+      window.removeEventListener("countryChanged", handler);
+    };    
+  }, []);
+
+  const IS_CY = country === "CY";
+
   return (
     <ThemeContext.Provider
       value={{
@@ -131,6 +148,8 @@ function App() {
         setIsVideosActive,
         cookieState,
         setCookieState,
+        isWysaModalOpen,
+        setIsWysaModalOpen,
       }}
     >
       <ToastContainer />
@@ -141,6 +160,12 @@ function App() {
           <ReactQueryDevtools initialOpen />
         </QueryClientProvider>
       </div>
+      {IS_CY && (
+        <>
+          <WysaButton onClick={() => setIsWysaModalOpen(true)}/>
+          <Wysa isOpen={isWysaModalOpen} onClose={() => setIsWysaModalOpen(false)} />
+        </>
+      )}
     </ThemeContext.Provider>
   );
 }
