@@ -81,7 +81,7 @@ function App() {
   const [isVideosActive, setIsVideosActive] = useState(false);
   const [isWysaModalOpen, setIsWysaModalOpen] = useState(false);
   const [country, setCountry] = useState(
-    localStorage.getItem("country") || null
+    localStorage.getItem("country") || null,
   );
 
   const [cookieState, setCookieState] = useState({
@@ -93,10 +93,10 @@ function App() {
   useEffect(() => {
     const lang = localStorage.getItem("language");
     const hasAcceptedCookies = !!Number(
-      localStorage.getItem("acceptAllCookies")
+      localStorage.getItem("acceptAllCookies"),
     );
     const hasHandledCookies = !!Number(
-      localStorage.getItem("hasHandledCookies")
+      localStorage.getItem("hasHandledCookies"),
     );
     const visitorId = localStorage.getItem("visitorId");
 
@@ -130,10 +130,11 @@ function App() {
 
     return () => {
       window.removeEventListener("countryChanged", handler);
-    };    
+    };
   }, []);
 
   const IS_CY = country === "CY";
+  const SHOW_WYSA = import.meta.env.MODE !== "production";
 
   return (
     <ThemeContext.Provider
@@ -160,10 +161,13 @@ function App() {
           <ReactQueryDevtools initialOpen />
         </QueryClientProvider>
       </div>
-      {IS_CY && (
+      {IS_CY && SHOW_WYSA && (
         <>
-          <WysaButton onClick={() => setIsWysaModalOpen(true)}/>
-          <Wysa isOpen={isWysaModalOpen} onClose={() => setIsWysaModalOpen(false)} />
+          <WysaButton onClick={() => setIsWysaModalOpen(true)} />
+          <Wysa
+            isOpen={isWysaModalOpen}
+            onClose={() => setIsWysaModalOpen(false)}
+          />
         </>
       )}
     </ThemeContext.Provider>
@@ -194,7 +198,7 @@ const LanguageLayout = () => {
         eventType,
       });
     },
-    { enabled: IS_PS }
+    { enabled: IS_PS },
   );
 
   if (!allLangs.includes(language) || !language) {
@@ -240,7 +244,7 @@ const LanguageLayout = () => {
 
 const Root = () => {
   const [country, setCountry] = useState(
-    localStorage.getItem("country") || null
+    localStorage.getItem("country") || null,
   );
   const [hasAddedPlatformAccess, setHasAddedPlatformAccess] = useState(false);
   const language = localStorage.getItem("language") || "en";
