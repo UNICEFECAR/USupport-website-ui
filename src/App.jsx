@@ -134,7 +134,9 @@ function App() {
   }, []);
 
   const IS_CY = country === "CY";
-  const SHOW_WYSA = import.meta.env.MODE !== "production";
+  const is_staging = window.location.href.includes("staging");
+  const IS_DEV = import.meta.env.MODE === "development";
+  const SHOW_WYSA = is_staging || IS_DEV;
 
   return (
     <ThemeContext.Provider
