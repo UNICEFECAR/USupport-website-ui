@@ -25,24 +25,28 @@
         window.widgetKey = "unicef";
         window.floating = true;
         window.channel = "sme";
-        window.autoOpen = false;
+
         (function () {
-          const windowAlias = window;
-          const documentAlias = document;
           const init = function () {
-            const scriptElem = documentAlias.createElement("script");
+            const scriptElem = document.createElement("script");
             scriptElem.type = "text/javascript";
             scriptElem.async = true;
             scriptElem.src = "https://widget.wysa.io/wrapper/js/etriage.js";
-            const scriptTag = documentAlias.getElementsByTagName("script")[0];
+
+            scriptElem.onload = function () {
+              if (window.WysaWidget && window.WysaWidget.close) {
+                window.WysaWidget.close();
+              }
+            };
+
+            const scriptTag = document.getElementsByTagName("script")[0];
             scriptTag.parentNode.insertBefore(scriptElem, scriptTag);
           };
+
           if (document.readyState === "complete") {
             init();
-          } else if (windowAlias.attachEvent) {
-            windowAlias.attachEvent("onload", init);
           } else {
-            windowAlias.addEventListener("load", init, false);
+            window.addEventListener("load", init);
           }
         })();
       }
