@@ -205,9 +205,11 @@ async function prerenderRoute(browser, routeInfo, baseUrl) {
     // Update meta tags for this language
     html = await updateHtmlMeta(html, lang);
 
-    // Determine output path - output to dist/website/{lang}/{route}/index.html
-    const routePath = route.slice(1); // Remove leading slash
-    const outputPath = path.join(distDir, "website", routePath, "index.html");
+    // Determine output path - output directly to dist/{lang}/{route}/index.html
+    // This way when deploy.sh syncs dist/ to s3://bucket/website/, 
+    // files will be at s3://bucket/website/{lang}/{route}/index.html
+    const routePath = route.slice(1); // Remove leading slash (e.g., "en" or "en/about-us")
+    const outputPath = path.join(distDir, routePath, "index.html");
     const outputDir = path.dirname(outputPath);
 
     // Create directory if it doesn't exist
@@ -216,7 +218,7 @@ async function prerenderRoute(browser, routeInfo, baseUrl) {
     // Write the prerendered HTML
     await writeFile(outputPath, html, "utf8");
 
-    console.log(`✅ Saved: website/${routePath}/index.html`);
+    console.log(`✅ Saved: ${routePath}/index.html`);
     return true;
   } catch (error) {
     console.error(`❌ Failed to prerender ${route}: ${error.message}`);
@@ -237,18 +239,16 @@ async function prerenderRoute(browser, routeInfo, baseUrl) {
 }
 
 async function cleanupOldFiles() {
-  console.log("🧹 Cleaning up old prerendered files in dist/website/...");
+  console.log("🧹 Cleaning up old prerendered files...");
 
-  // Only remove the prerendered language subdirectories inside dist/website/
-  // Keep dist/{lang}/ folders as they are used by CloudFront function
-  const websiteDir = path.join(distDir, "website");
-  if (existsSync(websiteDir)) {
-    for (const lang of languages) {
-      const langWebsiteDir = path.join(websiteDir, lang);
-      if (existsSync(langWebsiteDir)) {
-        await rm(langWebsiteDir, { recursive: true, force: true });
-        console.log(`   Removed: website/${lang}/`);
-      }
+  // Remove language directories in dist/ that will be replaced with prerendered content
+  // These were created by generate-lang-indexes.mjs with non-prerendered fallbacks
+  // We'll overwrite them with fully prerendered pages
+  for (const lang of languages) {
+    const langDir = path.join(distDir, lang);
+    if (existsSync(langDir)) {
+      await rm(langDir, { recursive: true, force: true });
+      console.log(`   Removed: ${lang}/`);
     }
   }
 }
