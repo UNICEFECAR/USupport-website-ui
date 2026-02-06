@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host --port 5177",
-    "staging": "vite build --mode staging && node scripts/generate-lang-indexes.mjs && PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true react-snap",
-    "build": "vite build && node scripts/generate-lang-indexes.mjs && PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true react-snap",
+    "staging": "vite build --mode staging && node scripts/generate-lang-indexes.mjs && node scripts/prerender.mjs",
+    "build": "vite build && node scripts/generate-lang-indexes.mjs && node scripts/prerender.mjs",
+    "build:no-prerender": "vite build && node scripts/generate-lang-indexes.mjs",
     "preview": "vite preview",
-    "test-snap": "npm run build && npm run preview",
+    "prerender": "node scripts/prerender.mjs",
     "lint": "eslint --ext .js,.jsx src",
     "lint-fix": "eslint --ext .js,.jsx src --fix"
   },
@@ -41,8 +42,7 @@
     "babel-loader": "^8.2.5",
     "eslint": "^8.44.0",
     "eslint-plugin-react": "^7.32.2",
-    "puppeteer-core": "^24.36.1",
-    "react-snap": "^1.23.0",
+    "puppeteer": "^24.0.0",
     "sass": "^1.55.0",
     "typescript": "^4.8.4",
     "vite": "^4.4.7"
@@ -51,49 +51,5 @@
     "glob-parent": "5.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
-  },
-  "reactSnap": {
-    "source": "dist",
-    "minifyHtml": {
-      "collapseWhitespace": true,
-      "removeComments": true
-    },
-    "puppeteerExecutablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-    "puppeteerArgs": [
-      "--no-sandbox",
-      "--disable-setuid-sandbox",
-      "--disable-dev-shm-usage"
-    ],
-    "crawlFrom": [
-      "/website/pl",
-      "/website/uk"
-    ],
-    "include": [
-      "/website/pl",
-      "/website/pl/",
-      "/website/pl/how-it-works",
-      "/website/pl/about-us",
-      "/website/pl/information-portal",
-      "/website/pl/my-qa",
-      "/website/pl/privacy-policy",
-      "/website/pl/sos-center",
-      "/website/pl/cookie-policy",
-      "/website/pl/terms-of-use",
-      "/website/uk",
-      "/website/uk/",
-      "/website/uk/how-it-works",
-      "/website/uk/about-us",
-      "/website/uk/information-portal",
-      "/website/uk/my-qa",
-      "/website/uk/privacy-policy",
-      "/website/uk/sos-center",
-      "/website/uk/cookie-policy",
-      "/website/uk/terms-of-use"
-    ],
-    "skipThirdPartyRequests": true,
-    "cacheAjaxRequests": false,
-    "preloadImages": false,
-    "fixWebpackChunksIssue": false,
-    "puppeteerIgnoreHTTPSErrors": true
   }
 }
