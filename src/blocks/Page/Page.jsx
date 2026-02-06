@@ -80,6 +80,7 @@ export const Page = ({
   const [langs, setLangs] = useState([]);
 
   const IS_PS = localStorageCountry === "PS";
+  const IS_CY = localStorageCountry === "CY";
 
   const changeLanguage = (language) => {
     i18n.changeLanguage(language.value);
@@ -328,7 +329,10 @@ export const Page = ({
       <Icon
         name={theme === "light" ? "dark-mode-switch" : "light-mode"}
         size="lg"
-        classes="page__theme-button"
+        classes={[
+          "page__theme-button",
+          IS_CY ? "page__theme-button--cy" : "",
+        ].join(" ")}
         onClick={toggleTheme}
       />
     );
@@ -422,7 +426,10 @@ export const Page = ({
       {!IS_PS && (
         <CircleIconButton
           iconName="phone-emergency"
-          classes="page__emergency-button"
+          classes={[
+            "page__emergency-button",
+            IS_CY ? "page__emergency-button--cy" : "",
+          ]}
           onClick={() => {
             if (country !== "global") {
               addSosCenterClickMutation.mutate({
