@@ -76,7 +76,9 @@ export const CookiePolicy = () => {
     isFetched: isCookiePolicyFetched,
   } = useQuery(
     ["cookie-policy", currentCountry, i18n.language, IS_PS],
-    getCookiePolicy
+    getCookiePolicy,{
+      enabled: !!currentCountry
+    }
   );
   return (
     <Block classes={`cookie-policy ${IS_RTL ? "cookie-policy--rtl" : ""}`}>
