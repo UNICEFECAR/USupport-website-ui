@@ -58,16 +58,20 @@ const queryClient = new QueryClient({
 
 function App() {
   const supportsWebP = useWebPSupportCheck();
-  document.body.classList.add(`${supportsWebP ? "webp" : "no-webp"}`);
-
-  AOS.init({
-    offset: 10,
-    duration: 1000,
-    easing: "ease-in-sine",
-    delay: 300,
-    anchorPlacement: "top-bottom",
-    once: false,
-  });
+  
+  // Only run browser-specific code when not prerendering
+  useEffect(() => {
+    document.body.classList.add(`${supportsWebP ? "webp" : "no-webp"}`);
+    
+    AOS.init({
+      offset: 10,
+      duration: 1000,
+      easing: "ease-in-sine",
+      delay: 300,
+      anchorPlacement: "top-bottom",
+      once: false,
+    });
+  }, [supportsWebP]);
 
   const getDefaultTheme = () => {
     const localStorageTheme = localStorage.getItem("default-theme");
