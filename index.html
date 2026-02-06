@@ -17,38 +17,33 @@
     <div id="root"></div>
     <script type="module" src="/src/index.jsx"></script>
     <script>
-      if (
-        window.location.hostname.includes("cyprus") &&
-        window.location.hostname.includes("staging")
-      ) {
-        window.partner = "unicef";
-        window.widgetKey = "unicef";
-        window.floating = true;
-        window.channel = "sme";
+      const wysaObserver = new MutationObserver(() => {
+        document
+          .querySelectorAll(
+            'iframe[src*="wysa"], div[id*="wysa"], div[class*="wysa"]'
+          )
+          .forEach((el) => {
+            if (!window.__wysaAllowedToOpen) {
+              el.style.display = "none";
+            }
+          });
+      });
 
-        (function () {
-          const init = function () {
-            const scriptElem = document.createElement("script");
-            scriptElem.type = "text/javascript";
-            scriptElem.async = true;
-            scriptElem.src = "https://widget.wysa.io/wrapper/js/etriage.js";
+      wysaObserver.observe(document.body, {
+        childList: true,
+        subtree: true,
+      });
 
-            scriptElem.onload = function () {
-              if (window.WysaWidget && window.WysaWidget.close) {
-                window.WysaWidget.close();
-              }
-            };
+      function openWysaManually() {
+        window.__wysaAllowedToOpen = true;
 
-            const scriptTag = document.getElementsByTagName("script")[0];
-            scriptTag.parentNode.insertBefore(scriptElem, scriptTag);
-          };
-
-          if (document.readyState === "complete") {
-            init();
-          } else {
-            window.addEventListener("load", init);
-          }
-        })();
+        document
+          .querySelectorAll(
+            'iframe[src*="wysa"], div[id*="wysa"], div[class*="wysa"]'
+          )
+          .forEach((el) => {
+            el.style.display = "block";
+          });
       }
     </script>
   </body>
