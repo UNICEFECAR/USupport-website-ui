@@ -25,6 +25,7 @@
         window.widgetKey = "unicef";
         window.floating = true;
         window.channel = "sme";
+        window.autoOpen = false;
         (function () {
           const windowAlias = window;
           const documentAlias = document;
@@ -35,7 +36,6 @@
             scriptElem.src = "https://widget.wysa.io/wrapper/js/etriage.js";
             const scriptTag = documentAlias.getElementsByTagName("script")[0];
             scriptTag.parentNode.insertBefore(scriptElem, scriptTag);
-            console.log("Wysa script loaded");
           };
           if (document.readyState === "complete") {
             init();
