@@ -74,7 +74,7 @@ export const Page = ({
   let localStorageCountry = localStorage.getItem("country");
   const localStorageLanguage = localStorage.getItem("language") || "en";
   const [selectedLanguage, setSelectedLanguage] = useState(
-    localStorageLanguage ? { value: localStorageLanguage.toUpperCase() } : null
+    localStorageLanguage ? { value: localStorageLanguage.toUpperCase() } : null,
   );
   const [selectedCountry, setSelectedCountry] = useState();
   const [langs, setLangs] = useState([]);
@@ -180,12 +180,12 @@ export const Page = ({
     if (localLanguage || languageFromUrl) {
       let languageObject = allLanguages.find(
         (x) =>
-          x.value?.toLocaleLowerCase() === languageFromUrl.toLocaleLowerCase()
+          x.value?.toLocaleLowerCase() === languageFromUrl.toLocaleLowerCase(),
       );
       if (!languageObject) {
         languageObject = allLanguages.find(
           (x) =>
-            x.value?.toLocaleLowerCase() === localLanguage.toLocaleLowerCase()
+            x.value?.toLocaleLowerCase() === localLanguage.toLocaleLowerCase(),
         );
       }
       if (languageObject) {
@@ -201,7 +201,7 @@ export const Page = ({
     }
 
     allLanguages = allLanguages.filter(
-      (x, index, self) => index === self.findIndex((t) => t.value === x.value)
+      (x, index, self) => index === self.findIndex((t) => t.value === x.value),
     );
 
     if (
@@ -329,10 +329,7 @@ export const Page = ({
       <Icon
         name={theme === "light" ? "dark-mode-switch" : "light-mode"}
         size="lg"
-        classes={[
-          "page__theme-button",
-          IS_CY ? "page__theme-button--cy" : "",
-        ].join(" ")}
+        classes={"page__theme-button"}
         onClick={toggleTheme}
       />
     );
@@ -341,7 +338,7 @@ export const Page = ({
   const hasPassedValidation = queryClient.getQueryData(["hasPassedValidation"]);
   const IS_RO = window.location.hostname === "romania.usupport.online";
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(
-    !hasPassedValidation && IS_RO
+    !hasPassedValidation && IS_RO,
   );
   const [passwordError, setPasswordError] = useState("");
 
@@ -358,7 +355,7 @@ export const Page = ({
         queryClient.setQueryData(["hasPassedValidation"], true);
         setIsPasswordModalOpen(false);
       },
-    }
+    },
   );
 
   const handlePasswordCheck = (value) => {
@@ -426,10 +423,7 @@ export const Page = ({
       {!IS_PS && (
         <CircleIconButton
           iconName="phone-emergency"
-          classes={[
-            "page__emergency-button",
-            IS_CY ? "page__emergency-button--cy" : "",
-          ]}
+          classes={"page__emergency-button"}
           onClick={() => {
             if (country !== "global") {
               addSosCenterClickMutation.mutate({
