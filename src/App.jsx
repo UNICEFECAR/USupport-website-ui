@@ -38,7 +38,7 @@ import {
   Organizations,
   OrganizationOverview,
 } from "#pages";
-import { Wysa, WysaButton } from "@USupport-components-library/src";
+// import { Wysa, WysaButton } from "@USupport-components-library/src";
 import {
   ThemeContext,
   generateVisitorId,
@@ -58,16 +58,20 @@ const queryClient = new QueryClient({
 
 function App() {
   const supportsWebP = useWebPSupportCheck();
-  document.body.classList.add(`${supportsWebP ? "webp" : "no-webp"}`);
-
-  AOS.init({
-    offset: 10,
-    duration: 1000,
-    easing: "ease-in-sine",
-    delay: 300,
-    anchorPlacement: "top-bottom",
-    once: false,
-  });
+  
+  // Only run browser-specific code when not prerendering
+  useEffect(() => {
+    document.body.classList.add(`${supportsWebP ? "webp" : "no-webp"}`);
+    
+    AOS.init({
+      offset: 10,
+      duration: 1000,
+      easing: "ease-in-sine",
+      delay: 300,
+      anchorPlacement: "top-bottom",
+      once: false,
+    });
+  }, [supportsWebP]);
 
   const getDefaultTheme = () => {
     const localStorageTheme = localStorage.getItem("default-theme");
@@ -81,7 +85,7 @@ function App() {
   const [isVideosActive, setIsVideosActive] = useState(false);
   const [isWysaModalOpen, setIsWysaModalOpen] = useState(false);
   const [country, setCountry] = useState(
-    localStorage.getItem("country") || null,
+    localStorage.getItem("country") || null
   );
 
   const [cookieState, setCookieState] = useState({
@@ -93,10 +97,10 @@ function App() {
   useEffect(() => {
     const lang = localStorage.getItem("language");
     const hasAcceptedCookies = !!Number(
-      localStorage.getItem("acceptAllCookies"),
+      localStorage.getItem("acceptAllCookies")
     );
     const hasHandledCookies = !!Number(
-      localStorage.getItem("hasHandledCookies"),
+      localStorage.getItem("hasHandledCookies")
     );
     const visitorId = localStorage.getItem("visitorId");
 
@@ -163,7 +167,7 @@ function App() {
           <ReactQueryDevtools initialOpen />
         </QueryClientProvider>
       </div>
-      {IS_CY && SHOW_WYSA && (
+      {/* {IS_CY && SHOW_WYSA && (
         <>
           <WysaButton onClick={() => setIsWysaModalOpen(true)} />
           <Wysa
@@ -171,7 +175,7 @@ function App() {
             onClose={() => setIsWysaModalOpen(false)}
           />
         </>
-      )}
+      )} */}
     </ThemeContext.Provider>
   );
 }
@@ -200,7 +204,7 @@ const LanguageLayout = () => {
         eventType,
       });
     },
-    { enabled: IS_PS },
+    { enabled: IS_PS }
   );
 
   if (!allLangs.includes(language) || !language) {
@@ -246,7 +250,7 @@ const LanguageLayout = () => {
 
 const Root = () => {
   const [country, setCountry] = useState(
-    localStorage.getItem("country") || null,
+    localStorage.getItem("country") || null
   );
   const [hasAddedPlatformAccess, setHasAddedPlatformAccess] = useState(false);
   const language = localStorage.getItem("language") || "en";

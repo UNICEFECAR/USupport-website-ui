@@ -7,46 +7,44 @@ import { generateSitemap } from "./scripts/generateSitemap";
 
 const routes = [
   "/",
-  '/how-it-works',
-  '/about-us',
-  '/information-portal',
-  '/my-qa',
-  '/privacy-policy',
-  '/sos-center',
-  '/cookie-policy',
-  '/terms-of-use',
+  "/how-it-works",
+  "/about-us",
+  "/information-portal",
+  "/my-qa",
+  "/privacy-policy",
+  "/sos-center",
+  "/cookie-policy",
+  "/terms-of-use",
 ];
 
 const allLanguages = [
-  'hy',
-  'en',
-  'kk',
-  'pl',
-  'ro',
-  'ru',
-  'uk',
-  'ar',
-  'tr',
-  'el',
-]
+  "en",
+  // "hy",
+  // "kk",
+  // "pl",
+  // "ro",
+  // "ru",
+  // "uk",
+  // "ar",
+  // "tr",
+  // "el",
+];
 
-const polandLanguages = [
-  'pl','uk'
-]
+const polandLanguages = ["pl", "uk"];
 
 const GENERATE_SITEMAP = true;
 
 // https://vitejs.dev/config/
-export default defineConfig(({command, mode}) => {
+export default defineConfig(({ command, mode }) => {
   return {
-    base: '/website/',
-    plugins: [react(),
+    base: "/website/",
+    plugins: [
+      react(),
 
       {
         name: "generate-sitemap",
         closeBundle() {
           if (command === "build" && GENERATE_SITEMAP) {
-
             generateSitemap({
               siteUrl: "https://staging.usupport.online",
               defaultLang: "en",
@@ -55,7 +53,7 @@ export default defineConfig(({command, mode}) => {
               outDir: "dist",
               fileName: "sitemap.xml",
             });
-            
+
             generateSitemap({
               siteUrl: "https://poland.staging.usupport.online",
               defaultLang: "pl",
@@ -67,7 +65,6 @@ export default defineConfig(({command, mode}) => {
           }
         },
       },
-
     ],
     resolve: {
       alias: {

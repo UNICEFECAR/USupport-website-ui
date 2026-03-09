@@ -70,7 +70,7 @@ export const CustomAboutUs = () => {
       ) : (
         <Box classes="custom-about-us__box">
           {data ? (
-            <Markdown markDownText={data.content}></Markdown>
+            <Markdown markDownText={data.content || data.content_ck}></Markdown>
           ) : (
             <p>{t("no_data_found")}</p>
           )}
