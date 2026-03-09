@@ -186,7 +186,7 @@ export const ArticleInformation = () => {
   };
 
   const isLoading = isArticlesLoading || isArticleContentEngagementsLoading;
-
+  console.log(articleData);
   return (
     <Page classes="page__article-information" showGoBackArrow>
       {articleData && !isLoading ? (
