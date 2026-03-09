@@ -4,18 +4,11 @@ import {
   Grid,
   GridItem,
   StoreButton,
-  RadialCircle,
-  // StaticImage,
 } from "@USupport-components-library/src";
 import { Trans, useTranslation } from "react-i18next";
 import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./hero.scss";
-
-// import imageSrc from "./assets/PeopleCollage.png";
-// import imageSrcWebp from "./assets/PeopleCollage.webp";
-// import unicefSquareLogoSrc from "./assets/UnicefSquareLogo.png";
-// import unicefSquareLogoSrcWebp from "./assets/UnicefSquareLogo.png";
 
 /**
  * Hero
@@ -106,8 +99,6 @@ export const Hero = () => {
           alt="unicef-round-logo"
         />
       </div> */}
-      <RadialCircle color="purple" />
-      <RadialCircle color="blue" />
     </Block>
   );
 };
