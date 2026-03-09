@@ -82,8 +82,8 @@
     },
     "hero": {
       "heading_1": "Rozpocznij swoją podróż w kierunku lepszego<1></1> zdrowia psychicznego i dobrego samopoczucia",
-      "paragraph_1": "Skorzystaj z bezpłatnej pomocy psychologa",
-      "paragraph_1_1": "Twoja historia ma znaczenie! Odważ się nią podzielić.",
+      "paragraph_1": "Umów się na konsultację psychologiczną ufundowaną przez UNICEF. Podczas spotkania opowiedz psychologowi lub psycholożce co Cię trapi i jakiej pomocy potrzebujesz. Osoba prowadząca konsultację zada kilka pytań, aby lepiej zrozumieć Twoją sytuację, a następnie wspólnie zastanowicie się, jakie kroki mogą pomóc Ci poradzić sobie z trudnościami. W zależności od sytuacji możesz zostać zaproszona lub zaproszony na maksymalnie dwie dodatkowe sesje, jeśli okaże się to pomocne.",
+      "paragraph_1_1": "Spotkanie odbywa się online na platformie uSupport. W dniu sesji, na kilka minut przed umówioną godziną, na pierwszym ekranie Twojej aplikacji, pojawi się przycisk „Dołącz”, który umożliwi rozpoczęcie konsultacji. \n\nJeśli nie masz ochoty na spotkanie, możesz skorzystać z sekcji „Zapytaj psychologa” i zostawić swoje pytanie anonimowo. Specjalista odpowie na nie i umieści odpowiedź na platformie w ciągu 48 h od momentu, w którym wyślesz pytanie. Odpowiedzi szukaj w sekcji \"Zapytaj psychologa\".",
       "download_text": "Pobierz uSupport z",
       "web_browser": "Przeglądarka internetowa",
       "click_to_use": "Kliknij, aby użyć"
@@ -118,7 +118,7 @@
       "page_3": "O nas",
       "page_4": "Wiedza",
       "page_5": "Skontaktuj się z nami",
-      "page_6": "Moje Q&A",
+      "page_6": "Zapytaj psychologa",
       "footer_1": "O nas",
       "footer_2": "Wiedza",
       "footer_3": "Jak to działa?",
@@ -296,7 +296,7 @@
       "how_it_works": "Zobacz, jak to działa"
     },
     "my-qa": {
-      "ask_button_label": "Zadaj pytanie anonimowo",
+      "ask_button_label": "Zapytaj psychologa",
       "answer_by": "Odpowiedział/a:",
       "schedule_consultation": "Zaplanuj konsultację",
       "today": "Dzisiaj",
@@ -500,8 +500,8 @@
       "modal_heading": "Zaloguj się do platformy, aby zadać pytanie",
       "modal_text": "Zaloguj się na platformie, aby zadać pytanie i otrzymać odpowiedź od naszych specjalistów — Twoje pytanie będzie anonimowe.",
       "modal_button_label": "Przejdź do aplikacji",
-      "my_qa_answer_title": "Jak działa Moje Q&A?",
-      "my_qa_answer_text": "Moje Q&A to funkcja, która pozwala zadawać pytania i otrzymywać odpowiedzi od dostawców uSupport.",
+      "my_qa_answer_title": "Jak działa \"Zapytaj psychologa\"?",
+      "my_qa_answer_text": "\"Zapytaj psychologa\" to funkcja, która pozwala zadawać pytania i otrzymywać odpowiedzi od specjalistów uSupport.",
       "modal_heading_consultation": "Zaloguj się na platformie, aby umówić się na konsultację",
       "modal_text_consultation": "Zaloguj się na platformie, aby umówić się na konsultację ze specjalistą."
     },
