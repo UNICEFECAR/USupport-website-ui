@@ -101,26 +101,13 @@
       padding-top: 11rem;
     }
 
-    & h1 {
-      width: 96%;
-      @include themify($themes, "color", "color_3d527b_white");
-    }
-
-    span {
-      // @include themify($themes, "color", "color_blue_yellow");
-      @include themify($themes, "color", "color_purple_blue");
+    &__purple-text {
+      @include themify($themes, "color", "color_6a4ffb_8c90eb");
     }
   }
 
   &__text-item {
     padding-top: $spacing_2_4;
-
-    & p {
-      @media screen and (min-width: $screen-md) {
-        max-width: 75%;
-      }
-      @include themify($themes, "color", "color_66768d_c1d7e0");
-    }
   }
 
   &__buttons-item {
