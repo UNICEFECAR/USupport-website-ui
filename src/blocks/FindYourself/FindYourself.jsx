@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
 
 import { ThemeContext } from "@USupport-components-library/utils";
 import { Block, Grid, GridItem } from "@USupport-components-library/src";
@@ -32,9 +32,17 @@ export const FindYourself = () => {
         <GridItem xs={4} md={8} lg={12} classes="find-yourself__heading-item">
           {width > 768 && (
             <>
-              <h3 className="find-yourself__heading-item__h3">
-                {t("heading")}
-              </h3>
+              <h1 className="find-yourself__heading-item__h3">
+                <Trans
+                  t={t}
+                  i18nKey="heading"
+                  components={{
+                    highlight: (
+                      <span className="find-yourself__heading-highlight" />
+                    ),
+                  }}
+                />
+              </h1>
               <div className="find-yourself__text">
                 <p className="paragraph">{t("paragraph")}</p>
                 <p className="paragraph">{t("paragraph_2")}</p>
@@ -46,7 +54,15 @@ export const FindYourself = () => {
           <GridItem xs={4} md={8} lg={12} classes="find-yourself__text-item">
             <div className="find-yourself__text">
               <h3 className="find-yourself__heading-item__h3">
-                {t("heading")}
+                <Trans
+                  t={t}
+                  i18nKey="heading"
+                  components={{
+                    highlight: (
+                      <span className="find-yourself__heading-highlight" />
+                    ),
+                  }}
+                />
               </h3>
               <div className="find-yourself__text__content">
                 <p className="paragraph">{t("paragraph")}</p>
