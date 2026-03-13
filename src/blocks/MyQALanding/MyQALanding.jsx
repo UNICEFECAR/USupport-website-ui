@@ -82,9 +82,9 @@ export const MyQALanding = () => {
                   size="lg"
                   classes="my-qa-landing__button"
                   onClick={() => {
-                    window.location.href = `${localStorage.getItem(
+                    window.location.href = `/client/${localStorage.getItem(
                       "language"
-                    )}/client/my-qa`;
+                    )}/my-qa`;
                   }}
                 />
               </div>
