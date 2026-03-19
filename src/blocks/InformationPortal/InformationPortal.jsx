@@ -7,6 +7,7 @@ import {
   GridItem,
   Loading,
   CardMedia,
+  NewButton,
 } from "@USupport-components-library/src";
 import {
   destructureArticleData,
@@ -39,7 +40,7 @@ export const InformationPortal = () => {
 
   //--------------------- Country Change Event Listener ----------------------//
   const [currentCountry, setCurrentCountry] = useState(
-    localStorage.getItem("country")
+    localStorage.getItem("country"),
   );
   const shouldFetchIds = !!(currentCountry && currentCountry !== "global");
 
@@ -64,7 +65,7 @@ export const InformationPortal = () => {
     getArticlesIds,
     {
       enabled: shouldFetchIds,
-    }
+    },
   );
 
   //--------------------- Most Read Articles ----------------------//
@@ -91,7 +92,7 @@ export const InformationPortal = () => {
     const ids = rawArticles.map((article) => article.id);
     const { likes, dislikes } = await getLikesAndDislikesForContent(
       ids,
-      "article"
+      "article",
     );
 
     const processedArticles = rawArticles.map((article) => {
@@ -121,14 +122,14 @@ export const InformationPortal = () => {
           setShowBlock(true);
         }
       },
-    }
+    },
   );
 
   const handleRedirect = (id, name) => {
     navigate(
       `/${localStorage.getItem(
-        "language"
-      )}/information-portal/article/${id}/${createArticleSlug(name)}`
+        "language",
+      )}/information-portal/article/${id}/${createArticleSlug(name)}`,
     );
   };
 
@@ -138,13 +139,13 @@ export const InformationPortal = () => {
         <Block classes="information-portal">
           <Grid classes="information-portal__main-grid">
             <GridItem md={8} lg={12}>
-              <h2>{t("heading")}</h2>
+              <h1>{t("heading")}</h1>
             </GridItem>
-            <GridItem md={8} lg={12} classes="information-portal__paragraphs">
+            {/* <GridItem md={8} lg={12} classes="information-portal__paragraphs">
               <p>{t("paragraph_1")}</p>
               <p>{t("paragraph_2")}</p>
               <p>{t("paragraph_3")}</p>
-            </GridItem>
+            </GridItem> */}
             {mostReadArticlesQuerry.isLoading ? (
               <GridItem
                 md={8}
@@ -158,66 +159,62 @@ export const InformationPortal = () => {
               mostReadArticlesQuerry.data?.length > 0 && (
                 <GridItem
                   md={8}
-                  lg={6}
-                  classes="information-portal__main-article-item"
-                  type="portrait"
+                  lg={12}
+                  classes="information-portal__articles-item"
                 >
-                  <CardMedia
-                    // type={isNotDescktop ? "portrait" : "landscape"}
-                    size="lg"
-                    title={mostReadArticlesQuerry.data[0].title}
-                    image={mostReadArticlesQuerry.data[0].imageMedium}
-                    description={mostReadArticlesQuerry.data[0].description}
-                    labels={mostReadArticlesQuerry.data[0].labels}
-                    creator={mostReadArticlesQuerry.data[0].creator}
-                    readingTime={mostReadArticlesQuerry.data[0].readingTime}
-                    categoryName={mostReadArticlesQuerry.data[0].categoryName}
-                    likes={mostReadArticlesQuerry.data[0].likes || 0}
-                    dislikes={mostReadArticlesQuerry.data[0].dislikes || 0}
-                    t={t}
-                    onClick={() =>
-                      handleRedirect(
-                        mostReadArticlesQuerry.data[0].id,
-                        mostReadArticlesQuerry.data[0].name
-                      )
-                    }
-                  />
-                </GridItem>
-              )}
-
-            {!mostReadArticlesQuerry.isLoading &&
-              mostReadArticlesQuerry.data?.length > 1 && (
-                <GridItem md={8} lg={6}>
-                  <Grid classes="information-portal__secondary-cards-grid">
-                    {mostReadArticlesQuerry.data?.map((article, index) => {
-                      return (
-                        index > 0 && (
-                          <GridItem md={4} lg={12} key={index}>
-                            <CardMedia
-                              type={isNotDescktop ? "portrait" : "landscape"}
-                              size="sm"
-                              title={article.title}
-                              image={article.imageSmall}
-                              description={article.description}
-                              labels={article.labels}
-                              creator={article.creator}
-                              readingTime={article.readingTime}
-                              categoryName={article.categoryName}
-                              showLabels={false}
-                              likes={article.likes}
-                              dislikes={article.dislikes}
-                              t={t}
-                              onClick={() =>
-                                handleRedirect(article.id, article.title)
-                              }
-                            />
-                          </GridItem>
-                        )
-                      );
-                    })}
+                  <Grid>
+                    {mostReadArticlesQuerry.data
+                      ?.slice(0, 4)
+                      .map((article, index) => (
+                        <GridItem
+                          md={4}
+                          lg={6}
+                          key={article.id || index}
+                          classes="information-portal__article-item"
+                        >
+                          <CardMedia
+                            type="portrait"
+                            size="lg"
+                            title={article.title}
+                            image={
+                              article.imageMedium ||
+                              article.imageThumbnail ||
+                              article.imageSmall
+                            }
+                            description={article.description}
+                            labels={article.labels}
+                            creator={article.creator}
+                            readingTime={article.readingTime}
+                            categoryName={article.categoryName}
+                            likes={article.likes || 0}
+                            dislikes={article.dislikes || 0}
+                            t={t}
+                            onClick={() =>
+                              handleRedirect(
+                                article.id,
+                                article.title || article.name,
+                              )
+                            }
+                            classes="information-portal__article-item__card-media"
+                            isWhiteBackground={true}
+                          />
+                        </GridItem>
+                      ))}
                   </Grid>
                 </GridItem>
               )}
+            <GridItem md={8} lg={12} classes="information-portal__button-item">
+              <NewButton
+                label={t("button_label")}
+                onClick={() => {
+                  navigate(
+                    `/${localStorage.getItem("language")}/information-portal`,
+                  );
+                }}
+                size="lg"
+                classes="information-portal__button-item__button"
+              />
+            </GridItem>
           </Grid>
         </Block>
       )}

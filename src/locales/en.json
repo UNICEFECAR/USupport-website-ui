@@ -62,6 +62,7 @@
     },
     "download-app": {
       "heading": "Download the app",
+      "text": "Get support anytime, anywhere - fast, secure and easy to use.",
       "paragraph": "Now available for iOS and Android",
       "download_text": "Download from"
     },
@@ -90,8 +91,10 @@
     },
     "how-it-works": {
       "heading": "Easy and Quick",
+      "heading_hero": "Easy and Quick.<0></0> Fully <1>anonymously</1>!",
       "paragraph_summary": "In just a few clicks you can get the help you need. Fully anonymously.",
       "paragraph_normal": "In just a few clicks you can get the help you need. Fully anonymously.",
+      "paragraph_hero": "In just a few clicks you can get the help you need even when you don’t feel like creating a complete profile",
       "card_1": "Choose your country and language",
       "card_2": "Create your account",
       "card_3": "Choose a provider",
@@ -102,7 +105,17 @@
       "web_browser": "Web browser",
       "click_to_use": "Click to use",
       "download_from_web": "",
-      "browser": ""
+      "browser": "We provide anonymously treatment without the needfull registration"
+    },
+    "take-a-step": {
+      "heading": "Just take a step towards peace of mind",
+      "paragraph": "",
+      "card_1": "Choose your country and language",
+      "card_2": "Create your account",
+      "card_3": "Choose a provider",
+      "card_3_ro": "Take the baseline assessment",
+      "card_4": "Book a session",
+      "card_4_ro": "Find local support"
     },
     "meet-our-providers": {
       "heading": "Meet our providers",
@@ -144,7 +157,9 @@
       "accept_necessary_cookies": "Accept only necessary",
       "save": "Save",
       "page_7": "Organizations",
-      "high_contrast": "High Contrast"
+      "high_contrast": "High Contrast",
+      "footer_text": "Your mental health matters—uSupport provides personalized, private, and safe psychological care.",
+      "go_back": "Go back"
     },
     "question": {
       "heading": "Have a question?",
@@ -196,7 +211,8 @@
       "paragraph_3": "Within the portal, you'll discover articles authored by experts, learn self-development techniques, and stay updated with topics that interest you",
       "read_more_button": "Click to read more",
       "min_read": "min read",
-      "by": "by {{creator}}"
+      "by": "by {{creator}}",
+      "button_label": "View more"
     },
     "provider-overview": {
       "earliest_slot_label": "Earliest available slot for consultation",
@@ -309,7 +325,9 @@
       "filter": "Filter tags",
       "search_placeholder": "Search",
       "language": "Language",
-      "date_answered": "on {{date}}"
+      "date_answered": "on {{date}}",
+      "go_back": "Go back",
+      "how_it_works": "See how it works"
     },
     "coupon-information": {
       "heading": "Want free sessions with providers?",
@@ -525,6 +543,10 @@
     "organization-overview-page": {
       "heading": "Organization overview",
       "subheading": "Detailed overview of the profile of the organization you selected"
+    },
+    "sos-center-page": {
+      "heading": "SOS center",
+      "subheading": "Access urgent help and local emergency services when you or someone else is in immediate danger."
     }
   },
   "modals": {

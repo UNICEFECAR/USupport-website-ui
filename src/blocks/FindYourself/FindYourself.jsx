@@ -50,7 +50,7 @@ export const FindYourself = () => {
             </>
           )}
         </GridItem>
-        {width <= 768 && (
+        {/* {width <= 768 && (
           <GridItem xs={4} md={8} lg={12} classes="find-yourself__text-item">
             <div className="find-yourself__text">
               <h3 className="find-yourself__heading-item__h3">
@@ -122,7 +122,7 @@ export const FindYourself = () => {
             <img src={image4} className="box__image" alt={t("card_text_4")} />
             <h3>{t("card_text_4")}</h3>
           </div>
-        </GridItem>
+        </GridItem> */}
       </Grid>
     </Block>
   );

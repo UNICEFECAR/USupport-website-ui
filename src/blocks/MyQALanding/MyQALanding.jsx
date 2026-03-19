@@ -6,7 +6,7 @@ import {
   Grid,
   GridItem,
   Box,
-  Button,
+  NewButton,
 } from "@USupport-components-library/src";
 import {
   useWindowDimensions,
@@ -63,7 +63,7 @@ export const MyQALanding = () => {
     <Block classes="my-qa-landing">
       <Grid>
         <GridItem md={8} lg={12}>
-          <h2 className="my-qa-landing__heading">{t("heading")}</h2>
+          <h1 className="">{t("heading")}</h1>
           <p className="my-qa-landing__subheading-text">{t("subheading")}</p>
         </GridItem>
         <GridItem md={8} lg={12}>
@@ -77,9 +77,10 @@ export const MyQALanding = () => {
                   <h4>{t("ask_anonymous_card_heading")}</h4>
                   <p className="text">{t("ask_anonymous_card_text")}</p>
                 </Box>
-                <Button
+                <NewButton
                   label={t("button_label")}
                   size="lg"
+                  isFullWidth={true}
                   classes="my-qa-landing__button"
                   onClick={() => {
                     window.location.href = "/client/my-qa";

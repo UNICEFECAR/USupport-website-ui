@@ -8,7 +8,7 @@ import {
   StaticImage,
   StoreButton,
 } from "@USupport-components-library/src";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import {
   useWindowDimensions,
   ThemeContext,
@@ -49,13 +49,20 @@ export const HowItWorks = ({
         {width < 1366 && (
           <>
             <GridItem classes="how-it-works__heading" md={8} lg={12}>
-              <h1
-                className={[
-                  "how-it-works__heading-text",
-                  isTitleWhite && "how-it-works__heading-text--white",
-                ].join(" ")}
-              >
+              <h1 className={["how-it-works__heading-text"].join(" ")}>
                 {t("heading")}
+              </h1>
+              <h1 className={["how-it-works__heading-text"].join(" ")}>
+                <Trans
+                  components={[
+                    <span
+                      key="highlight"
+                      className="how-it-works__heading-text__highlight"
+                    ></span>,
+                  ]}
+                >
+                  {t("heading_2")}
+                </Trans>
               </h1>
             </GridItem>
             <GridItem md={8} lg={12} classes="how-it-works__text-item">
@@ -108,9 +115,7 @@ export const HowItWorks = ({
                 {!showSummaryBellow && (
                   <GridItem lg={12} classes="how-it-works__text-item">
                     <p className="paragraph">
-                      {summary
-                        ? t("paragraph_summary")
-                        : t("paragraph_normal")}
+                      {summary ? t("paragraph_summary") : t("paragraph_normal")}
                     </p>
                   </GridItem>
                 )}

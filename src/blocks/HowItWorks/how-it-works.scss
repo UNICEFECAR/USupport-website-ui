@@ -12,6 +12,10 @@
 
   &__heading-text {
     text-align: left;
+
+    &__highlight {
+      color: $color_6a4ffb_8c90eb;
+    }
   }
 
   &__text-item {

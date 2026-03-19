@@ -25,24 +25,20 @@ import { Navigate } from "react-router-dom";
  * @returns {JSX.Element}
  */
 export function Landing() {
-  const isGlobalOrRomania =
-    localStorage.getItem("country") === "global" ||
-    localStorage.getItem("country") === "RO";
   const [showCouponSection, setShowCouponSection] = React.useState(
     localStorage.getItem("country") !== "KZ" &&
-      localStorage.getItem("country") !== "RO"
+      localStorage.getItem("country") !== "RO",
   );
-  const [showProvidersSection, setShowProvidersSection] = React.useState(
-    !isGlobalOrRomania
-  );
+  const [showProvidersSection, setShowProvidersSection] =
+    React.useState(localStorage.getItem("country") !== "RO");
   const [showMyQASection, setShowMyQASection] = React.useState(
-    localStorage.getItem("country") !== "RO"
+    localStorage.getItem("country") !== "RO",
   );
 
   useEventListener("countryChanged", () => {
     const country = localStorage.getItem("country");
     setShowCouponSection(country !== "KZ");
-    setShowProvidersSection(!(country === "global" || country === "RO"));
+    setShowProvidersSection(country !== "RO");
     setShowMyQASection(country !== "RO");
   });
 
@@ -52,7 +48,7 @@ export function Landing() {
     return (
       <Navigate
         to={`/${localStorage.getItem(
-          "language"
+          "language",
         )}/information-portal?tab=articles`}
       />
     );
@@ -61,15 +57,15 @@ export function Landing() {
   return (
     <Page>
       <Hero />
-      <FindYourself />
-      <About />
       <HowItWorks summary isTitleWhite={false} />
       {showProvidersSection ? <MeetOurProvidersOverview /> : null}
-      {/* <OurPartnersOverview /> */}
+      <FindYourself />
+      <FAQ showLearnMore={true} showMascot={true} showAll={false} />
       <InformationPortal />
+      <About />
+      {/* <OurPartnersOverview /> */}
       {showMyQASection ? <MyQALanding /> : null}
       {showCouponSection ? <CouponInformation /> : null}
-      <FAQ showLearnMore={true} showMascot={true} showAll={false} />
       <DownloadApp />
     </Page>
   );

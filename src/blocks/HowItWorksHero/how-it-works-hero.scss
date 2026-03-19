@@ -1,0 +1,100 @@
+@import "@USupport-components-library/styles";
+
+.how-it-works-hero {
+  @media screen and (min-width: $screen-lg) {
+    padding-bottom: $spacing_4_2;
+  }
+
+  &__grid {
+    height: 100%;
+    min-height: 100%;
+
+    @media screen and (min-width: $screen-lg) {
+      align-items: center;
+    }
+  }
+
+  &__heading,
+  &__text-item {
+    width: 100%;
+  }
+
+  &__heading-text {
+    text-align: left;
+
+    &__highlight {
+      color: $color_6a4ffb_8c90eb;
+    }
+  }
+
+  &__text-item {
+    text-align: left;
+
+    @media screen and (min-width: $screen-lg) {
+      padding-top: $spacing_2_4;
+    }
+  }
+
+  &__image-collage-item {
+    padding-top: $spacing_3_2;
+    place-self: center;
+
+    img {
+      width: 55rem;
+    }
+  }
+
+  &__tablet-image-container {
+    padding-top: $spacing_5_4;
+
+    img {
+      max-width: 35rem;
+    }
+  }
+
+  &__download-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    @media screen and (min-width: $screen-lg) {
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    &__store {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      @media screen and (min-width: $screen-lg) {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+
+      & .btn {
+        margin-top: $spacing_2_0;
+
+        @media screen and (min-width: $screen-lg) {
+          margin-right: $spacing_2_0;
+        }
+      }
+    }
+  }
+
+  &__summary-text-bellow {
+    padding-top: $spacing_4_0;
+    @media screen and (min-width: $screen-lg) {
+      padding-top: $spacing_5_4;
+    }
+  }
+
+  .grid {
+    @media screen and (max-width: ($screen-lg - 1px)) {
+      justify-items: center;
+    }
+  }
+}

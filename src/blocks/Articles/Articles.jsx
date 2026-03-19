@@ -36,12 +36,12 @@ const PL_LANGUAGE_AGE_GROUP_IDS = {
 };
 
 /**
- * Calculate grid span for articles based on 2-3-1 pattern
+ * Calculate grid span for articles based on a repeating pattern
  * @param {number} index - Article index
- * @param {number[]} pattern - Array representing items per row [2, 3, 1]
+ * @param {number[]} pattern - Array representing items per row, e.g. [2, 2, 2]
  * @returns {number} Grid span value
  */
-const getGridSpanForIndex = (index, pattern = [2, 3, 1]) => {
+const getGridSpanForIndex = (index, pattern = [2, 2, 2]) => {
   const totalItemsInCycle = pattern.reduce((sum, count) => sum + count, 0);
   const cyclePosition = index % totalItemsInCycle;
 
@@ -76,6 +76,7 @@ export const Articles = ({ debouncedSearchValue }) => {
   const IS_RTL = localStorage.getItem("language") === "ar";
 
   const isNotDescktop = width < 1366;
+  const hasSearch = !!debouncedSearchValue?.trim();
 
   const [usersLanguage, setUsersLanguage] = useState(i18n.language);
   const [showAgeGroups, setShowAgeGroups] = useState(true);
@@ -292,8 +293,8 @@ export const Articles = ({ debouncedSearchValue }) => {
     let queryParams = {
       limit: 6,
       contains: debouncedSearchValue,
-      ageGroupId,
-      categoryId,
+      ...(!hasSearch && { ageGroupId }),
+      ...(!hasSearch && { categoryId }),
       locale: usersLanguage,
       populate: true,
     };
@@ -404,8 +405,8 @@ export const Articles = ({ debouncedSearchValue }) => {
       startFrom: articles?.length,
       limit: 6,
       contains: debouncedSearchValue,
-      ageGroupId: ageGroupId,
-      categoryId,
+      ...(!hasSearch && { ageGroupId }),
+      ...(!hasSearch && { categoryId }),
       locale: usersLanguage,
       populate: true,
     };
@@ -461,15 +462,23 @@ export const Articles = ({ debouncedSearchValue }) => {
     isFetched: isNewestArticleFetched,
     fetchStatus: newestArticleFetchStatus,
   } = useQuery(
-    ["newestArticle", usersLanguage, currentCountry, shouldFetchIds],
+    [
+      "newestArticle",
+      usersLanguage,
+      currentCountry,
+      shouldFetchIds,
+      debouncedSearchValue,
+    ],
     getNewestArticle,
     {
       // Run the query when the getCategories and getAgeGroups queries have finished running
-      enabled: IS_PS
-        ? false
-        : shouldFetchIds
-        ? !articleIdsQuery.isLoading && articleIdsQuery.data?.length > 0
-        : true,
+      enabled:
+        !hasSearch &&
+        (IS_PS
+          ? false
+          : shouldFetchIds
+          ? !articleIdsQuery.isLoading && articleIdsQuery.data?.length > 0
+          : true),
       refetchOnWindowFocus: false,
     }
   );
@@ -484,7 +493,7 @@ export const Articles = ({ debouncedSearchValue }) => {
 
   return (
     <Block classes="articles">
-      {(newestArticle || IS_PS) &&
+      {(hasSearch || newestArticle || IS_PS) &&
         ageGroups?.length > 0 &&
         categories?.length > 0 && (
           <InfiniteScroll
@@ -492,6 +501,7 @@ export const Articles = ({ debouncedSearchValue }) => {
             next={getMoreArticles}
             hasMore={hasMore}
             loader={<Loading size="lg" />}
+            style={{ overflow: "visible" }}
             // endMessage={} // Add end message here if required
           >
             <Grid classes="articles__main-grid">
@@ -500,7 +510,7 @@ export const Articles = ({ debouncedSearchValue }) => {
                   <h2 className="articles__heading-text">{t("heading")}</h2>
                 )}
               </GridItem>
-              {(newestArticle || isNewestArticleFetched) && (
+              {!hasSearch && (newestArticle || isNewestArticleFetched) && (
                 <GridItem
                   md={8}
                   lg={12}
@@ -543,7 +553,7 @@ export const Articles = ({ debouncedSearchValue }) => {
                 </GridItem>
               )}
 
-              {showAgeGroups && !IS_PS && (
+              {showAgeGroups && !IS_PS && !hasSearch && (
                 <GridItem
                   md={8}
                   lg={12}
@@ -563,21 +573,23 @@ export const Articles = ({ debouncedSearchValue }) => {
                 </GridItem>
               )}
 
-              <GridItem
-                md={8}
-                lg={12}
-                classes={`articles__categories-item ${
-                  IS_RTL ? "articles__categories-item--rtl" : ""
-                }`}
-              >
-                {categories && (
-                  <Tabs
-                    options={categoriesToShow}
-                    handleSelect={handleCategoryOnPress}
-                    t={t}
-                  />
-                )}
-              </GridItem>
+              {!hasSearch && (
+                <GridItem
+                  md={8}
+                  lg={12}
+                  classes={`articles__categories-item ${
+                    IS_RTL ? "articles__categories-item--rtl" : ""
+                  }`}
+                >
+                  {categories && (
+                    <Tabs
+                      options={categoriesToShow}
+                      handleSelect={handleCategoryOnPress}
+                      t={t}
+                    />
+                  )}
+                </GridItem>
+              )}
 
               <GridItem md={8} lg={12} classes="articles__articles-item">
                 <div style={{ position: "relative", minHeight: "20rem" }}>
@@ -595,7 +607,7 @@ export const Articles = ({ debouncedSearchValue }) => {
                         const articleData = destructureArticleData(article);
                         const gridSpan = IS_PS
                           ? 3
-                          : getGridSpanForIndex(index, [2, 3, 1]);
+                          : getGridSpanForIndex(index, [2, 2, 2]);
 
                         return (
                           <div

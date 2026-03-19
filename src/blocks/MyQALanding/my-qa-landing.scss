@@ -20,16 +20,13 @@
     padding-bottom: $spacing_7_0;
   }
 
-  & h2 {
-    @include themify($themes, "color", "color_66768d_c1d7e0");
-  }
-
-  & h4 {
-    @include themify($themes, "color", "color_3d527b_20809e");
+  & h1 {
+    text-align: left;
   }
 
   &__subheading-text {
-    margin: $spacing_2_0;
+    margin-top: $spacing_2_0;
+    text-align: left;
   }
 
   &__button-container {
