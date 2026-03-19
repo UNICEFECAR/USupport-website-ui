@@ -76,6 +76,7 @@ export const Articles = ({ debouncedSearchValue }) => {
   const IS_RTL = localStorage.getItem("language") === "ar";
 
   const isNotDescktop = width < 1366;
+  const hasActiveSearch = Boolean(debouncedSearchValue?.trim());
 
   const [usersLanguage, setUsersLanguage] = useState(i18n.language);
   const [showAgeGroups, setShowAgeGroups] = useState(true);
@@ -282,18 +283,19 @@ export const Articles = ({ debouncedSearchValue }) => {
   const [hasMore, setHasMore] = useState(true);
 
   const getArticlesData = async () => {
-    const ageGroupId = ageGroupsQuery.data.find((x) => x.isSelected).id;
-
-    let categoryId = "";
-    if (selectedCategory && selectedCategory.value !== "all") {
-      categoryId = selectedCategory.id;
-    }
+    const ageGroupId = hasActiveSearch
+      ? null
+      : ageGroupsQuery.data.find((x) => x.isSelected).id;
+    const categoryId =
+      hasActiveSearch || !selectedCategory || selectedCategory.value === "all"
+        ? ""
+        : selectedCategory.id;
 
     let queryParams = {
       limit: 6,
       contains: debouncedSearchValue,
-      ageGroupId,
-      categoryId,
+      ...(ageGroupId ? { ageGroupId } : {}),
+      ...(categoryId ? { categoryId } : {}),
       locale: usersLanguage,
       populate: true,
     };
@@ -388,14 +390,14 @@ export const Articles = ({ debouncedSearchValue }) => {
   }, [articles, usersLanguage]);
 
   const getMoreArticles = async () => {
-    let ageGroupId = "";
-    if (ageGroups) {
+    let ageGroupId = null;
+    if (!hasActiveSearch && ageGroups) {
       let selectedAgeGroup = ageGroups.find((o) => o.isSelected === true);
       ageGroupId = selectedAgeGroup.id;
     }
 
     let categoryId = null;
-    if (categories) {
+    if (!hasActiveSearch && categories) {
       let selectedCategory = categories.find((o) => o.isSelected === true);
       categoryId = selectedCategory.id;
     }
@@ -404,8 +406,8 @@ export const Articles = ({ debouncedSearchValue }) => {
       startFrom: articles?.length,
       limit: 6,
       contains: debouncedSearchValue,
-      ageGroupId: ageGroupId,
-      categoryId,
+      ...(ageGroupId ? { ageGroupId } : {}),
+      ...(categoryId ? { categoryId } : {}),
       locale: usersLanguage,
       populate: true,
     };
@@ -500,7 +502,7 @@ export const Articles = ({ debouncedSearchValue }) => {
                   <h2 className="articles__heading-text">{t("heading")}</h2>
                 )}
               </GridItem>
-              {(newestArticle || isNewestArticleFetched) && (
+              {!hasActiveSearch && (newestArticle || isNewestArticleFetched) && (
                 <GridItem
                   md={8}
                   lg={12}
@@ -543,7 +545,7 @@ export const Articles = ({ debouncedSearchValue }) => {
                 </GridItem>
               )}
 
-              {showAgeGroups && !IS_PS && (
+              {showAgeGroups && !IS_PS && !hasActiveSearch && (
                 <GridItem
                   md={8}
                   lg={12}
@@ -563,21 +565,23 @@ export const Articles = ({ debouncedSearchValue }) => {
                 </GridItem>
               )}
 
-              <GridItem
-                md={8}
-                lg={12}
-                classes={`articles__categories-item ${
-                  IS_RTL ? "articles__categories-item--rtl" : ""
-                }`}
-              >
-                {categories && (
-                  <Tabs
-                    options={categoriesToShow}
-                    handleSelect={handleCategoryOnPress}
-                    t={t}
-                  />
-                )}
-              </GridItem>
+              {!hasActiveSearch && (
+                <GridItem
+                  md={8}
+                  lg={12}
+                  classes={`articles__categories-item ${
+                    IS_RTL ? "articles__categories-item--rtl" : ""
+                  }`}
+                >
+                  {categories && (
+                    <Tabs
+                      options={categoriesToShow}
+                      handleSelect={handleCategoryOnPress}
+                      t={t}
+                    />
+                  )}
+                </GridItem>
+              )}
 
               <GridItem md={8} lg={12} classes="articles__articles-item">
                 <div style={{ position: "relative", minHeight: "20rem" }}>
