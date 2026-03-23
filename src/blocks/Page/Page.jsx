@@ -206,6 +206,15 @@ export const Page = ({
       (x, index, self) => index === self.findIndex((t) => t.value === x.value),
     );
 
+    if (localStorageCountry === "global") {
+      localStorage.setItem("country", "global");
+      setSelectedCountry(globalCountry);
+      setLangs(allLanguages);
+      setAllLanguages(allLanguages);
+      setIsPodcastsActive(true);
+      setIsVideosActive(true);
+    }
+
     if (
       subdomain === "staging" &&
       (!localStorageCountry || localStorageCountry === "global")
