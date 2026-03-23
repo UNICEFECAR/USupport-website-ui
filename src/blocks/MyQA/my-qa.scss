@@ -47,8 +47,10 @@
       }
 
       &__dropdown {
-        max-width: 35rem;
+        padding: $spacing_1_2 0;
         @media screen and (min-width: $screen-lg) {
+          max-width: 35rem;
+          padding: 0;
           margin-left: auto;
           margin-right: 0;
         }
@@ -113,6 +115,15 @@
 
     &__no-questions {
       padding-block: 100px;
+    }
+  }
+
+  &__empty-card {
+    width: 100%;
+    padding-top: $spacing_2_0;
+
+    @media screen and (min-width: $screen-lg) {
+      padding-top: $spacing_3_2;
     }
   }
 }

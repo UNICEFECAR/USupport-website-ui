@@ -13,6 +13,7 @@ import {
   Tabs,
   NewButton,
   Icon,
+  NotFoundCard,
 } from "@USupport-components-library/src";
 
 import { useEventListener, useGetLanguages, useGetQuestionsTags } from "#hooks";
@@ -41,9 +42,11 @@ export const MyQA = ({
   setShouldFetchQuestions,
   setIsHowItWorksOpen,
   searchValue,
+  onResetSearch,
 }) => {
   const { t } = useTranslation("blocks", { keyPrefix: "my-qa" });
   const navigate = useNavigate();
+  const IS_RTL = localStorage.getItem("language") === "ar";
   const { data: languages } = useGetLanguages();
   const [tags, setTags] = useState([]);
 
@@ -123,6 +126,44 @@ export const MyQA = ({
     navigate(`/provider-overview?id=${providerId}`);
   };
 
+  const handleResetAllFilters = () => {
+    onResetSearch?.();
+    setFilterTag?.("");
+    if (tabs?.length) {
+      const resetTabs = tabs.map((tab, i) => ({
+        ...tab,
+        isSelected: i === 0,
+      }));
+      setTabs(resetTabs);
+    }
+    setSelectedLanguage?.("all");
+  };
+
+  const handleClearSearchAndBrowse = () => {
+    onResetSearch?.();
+    setFilterTag?.("");
+  };
+
+  const renderEmptyCard = (headingText) => (
+    <GridItem md={8} lg={12}>
+      <div className="my-qa__empty-card">
+        <NotFoundCard
+          mode="illustrated"
+          headingText={headingText}
+          descriptionLine1={t("no_results_line1")}
+          descriptionLine2={t("no_results_line2")}
+          primaryLabel={t("reset_filters")}
+          secondaryLabel={t("browse_all_questions")}
+          onPrimaryClick={handleResetAllFilters}
+          onSecondaryClick={handleClearSearchAndBrowse}
+          imageAlt={t("no_results_image_alt")}
+          isRtl={IS_RTL}
+          radialColor="blue"
+        />
+      </div>
+    </GridItem>
+  );
+
   const renderQuestions = () => {
     const filteredQuestions = questions.filter((question) => {
       if (filterTag) {
@@ -160,12 +201,13 @@ export const MyQA = ({
       return true;
     });
 
-    if (!filteredQuestions.length)
-      return (
-        <GridItem md={8} lg={12}>
-          <p>{t("no_answers_found")}</p>
-        </GridItem>
-      );
+    if (!filteredQuestions.length) {
+      const headingText =
+        searchValue?.trim()?.length > 0
+          ? t("no_results_heading", { query: searchValue.trim() })
+          : t("no_answers");
+      return renderEmptyCard(headingText);
+    }
 
     return filteredQuestions.map((question, index) => {
       return (
@@ -273,9 +315,9 @@ export const MyQA = ({
           ) : isQuestionsDataLoading ? (
             <Loading />
           ) : (
-            <p className="paragraph my-qa__answers-container__no-questions">
-              {t("no_answers_found")}
-            </p>
+            <Grid classes="my-qa__answers-container">
+              {renderEmptyCard(t("no_answers"))}
+            </Grid>
           )}
         </GridItem>
       </Grid>
