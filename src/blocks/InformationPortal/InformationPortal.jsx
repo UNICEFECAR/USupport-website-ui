@@ -12,7 +12,6 @@ import {
 import {
   destructureArticleData,
   createArticleSlug,
-  useWindowDimensions,
   getLikesAndDislikesForContent,
 } from "@USupport-components-library/utils";
 import { useTranslation } from "react-i18next";
@@ -32,10 +31,8 @@ export const InformationPortal = () => {
   const { i18n, t } = useTranslation("blocks", {
     keyPrefix: "information-portal",
   });
-  const { width } = useWindowDimensions();
   const navigate = useNavigate();
 
-  const isNotDescktop = width < 1366;
   const [showBlock, setShowBlock] = useState(false);
 
   //--------------------- Country Change Event Listener ----------------------//
