@@ -231,7 +231,7 @@ export const SOSCenter = ({ description }) => {
                                 {phone && (
                                   <NewButton
                                     size="sm"
-                                    type="outline"
+                                    type="solid"
                                     label={t("button_call")}
                                     onClick={(e) => {
                                       e.stopPropagation();
@@ -246,11 +246,7 @@ export const SOSCenter = ({ description }) => {
                                     label={t("button_link")}
                                     onClick={(e) => {
                                       e.stopPropagation();
-                                      window.open(
-                                        url,
-                                        "_blank",
-                                        "noopener",
-                                      );
+                                      window.open(url, "_blank", "noopener");
                                     }}
                                   />
                                 )}
