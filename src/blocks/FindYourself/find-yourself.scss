@@ -77,6 +77,8 @@
 
   &__heading-highlight {
     @include themify($themes, "color", "color_6a4ffb_8c90eb");
+    -webkit-text-stroke-width: 0.15rem;
+    -webkit-text-stroke-color: #ededed;
   }
 
   &__text-item {
