@@ -137,7 +137,10 @@ export const InformationPortal = () => {
         </Grid>
       </Block>
       {selectedContentType === "articles" && (
-        <Articles debouncedSearchValue={debouncedSearchValue} />
+        <Articles
+          debouncedSearchValue={debouncedSearchValue}
+          onResetSearch={() => setSearchValue("")}
+        />
       )}
       {selectedContentType === "videos" && (
         <Videos debouncedSearchValue={debouncedSearchValue} />
