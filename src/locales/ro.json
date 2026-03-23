@@ -14,7 +14,15 @@
     "articles": {
       "heading": "Portal de informații",
       "no_results": "Nu s-au găsit rezultate",
+      "no_results_heading": "Nu am găsit nimic pentru „{{query}}”",
+      "no_results_line1": "Încearcă să modifici căutarea sau explorează subiectele de mai jos.",
+      "no_results_line2": "Poți reseta și filtrele pentru a vedea mai multe rezultate.",
+      "reset_filters": "Resetează filtrele",
+      "browse_all_articles": "Vezi toate articolele",
+      "no_results_image_alt": "Ilustrație: fără rezultate la căutare",
+      "no_results_hint": "Încearcă alt termen de căutare, schimbă categoria sau grupa de vârstă sau șterge căutarea pentru a vedea tot conținutul disponibil.",
       "could_not_load_content": "Nu există rezultate pentru țara și limba selectate.",
+      "could_not_load_hint": "Poți schimba țara sau limba din meniu sau poți reveni mai târziu — se adaugă frecvent resurse noi.",
       "all": "Toate",
       "read_more_button": "Citește mai mult",
       "min_read": "durata lecturii",
@@ -317,7 +325,13 @@
       "language": "Limba",
       "date_answered": "la {{date}}",
       "go_back": "Înapoi",
-      "how_it_works": "Vezi cum funcționează"
+      "how_it_works": "Vezi cum funcționează",
+      "no_results_heading": "Nu am găsit nimic pentru „{{query}}”",
+      "no_results_line1": "Încearcă să modifici căutarea sau alege alt tag.",
+      "no_results_line2": "Poți reseta filtrele pentru a vedea din nou toate întrebările.",
+      "reset_filters": "Resetează filtrele",
+      "browse_all_questions": "Arată toate întrebările",
+      "no_results_image_alt": "Ilustrație: nu există întrebări potrivite"
     },
     "coupon-information": {
       "heading": "Doriți sesiuni gratuite cu furnizorii?",

@@ -14,7 +14,15 @@
     "articles": {
       "heading": "Wiedza",
       "no_results": "Nie znaleziono wyników",
+      "no_results_heading": "Nie znaleziono nic dla „{{query}}”",
+      "no_results_line1": "Spróbuj zmienić wyszukiwanie lub przejrzyj poniższe tematy.",
+      "no_results_line2": "Możesz też zresetować filtry, aby zobaczyć więcej wyników.",
+      "reset_filters": "Resetuj filtry",
+      "browse_all_articles": "Przeglądaj wszystkie artykuły",
+      "no_results_image_alt": "Ilustracja: brak wyników wyszukiwania",
+      "no_results_hint": "Spróbuj innej frazy, zmień kategorię lub grupę wiekową albo wyczyść wyszukiwanie.",
       "could_not_load_content": "Brak wyników dla aktualnie wybranego kraju i języka.",
+      "could_not_load_hint": "Możesz zmienić kraj lub język w menu albo sprawdzić ponownie później — nowe materiały pojawiają się regularnie.",
       "all": "Wszystkie",
       "read_more_button": "Czytaj więcej",
       "min_read": "min czytania",
@@ -317,7 +325,13 @@
       "language": "Język",
       "date_answered": "dnia {{date}}",
       "go_back": "Wróć",
-      "how_it_works": "Zobacz, jak to działa"
+      "how_it_works": "Zobacz, jak to działa",
+      "no_results_heading": "Nie znaleziono nic dla „{{query}}”",
+      "no_results_line1": "Spróbuj zmienić wyszukiwanie lub wybierz inny tag.",
+      "no_results_line2": "Możesz zresetować filtry, aby zobaczyć wszystkie pytania.",
+      "reset_filters": "Resetuj filtry",
+      "browse_all_questions": "Pokaż wszystkie pytania",
+      "no_results_image_alt": "Ilustracja: brak pasujących pytań"
     },
     "coupon-information": {
       "heading": "Chcesz darmowych sesji ze specjalistami?",
