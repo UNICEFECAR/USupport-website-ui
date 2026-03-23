@@ -29,8 +29,9 @@ export function Landing() {
     localStorage.getItem("country") !== "KZ" &&
       localStorage.getItem("country") !== "RO",
   );
-  const [showProvidersSection, setShowProvidersSection] =
-    React.useState(localStorage.getItem("country") !== "RO");
+  const [showProvidersSection, setShowProvidersSection] = React.useState(
+    localStorage.getItem("country") !== "RO",
+  );
   const [showMyQASection, setShowMyQASection] = React.useState(
     localStorage.getItem("country") !== "RO",
   );
@@ -55,7 +56,7 @@ export function Landing() {
   }
 
   return (
-    <Page>
+    <Page showBackground>
       <Hero />
       <HowItWorks summary isTitleWhite={false} />
       {showProvidersSection ? <MeetOurProvidersOverview /> : null}
