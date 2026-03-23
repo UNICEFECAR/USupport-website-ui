@@ -17,6 +17,7 @@ import {
   TabsUnderlined,
   Tabs,
   Loading,
+  NotFoundCard,
 } from "@USupport-components-library/src";
 import {
   destructureArticleData,
@@ -66,7 +67,7 @@ const getGridSpanForIndex = (index, pattern = [2, 2, 2]) => {
  *
  * @return {jsx}
  */
-export const Articles = ({ debouncedSearchValue }) => {
+export const Articles = ({ debouncedSearchValue, onResetSearch }) => {
   const navigate = useNavigate();
   const { width } = useWindowDimensions();
   const { i18n, t } = useTranslation("blocks", { keyPrefix: "articles" });
@@ -142,7 +143,7 @@ export const Articles = ({ debouncedSearchValue }) => {
       onSuccess: (data) => {
         setAgeGroups([...data]);
       },
-    }
+    },
   );
 
   const handleAgeGroupOnPress = (index) => {
@@ -162,7 +163,7 @@ export const Articles = ({ debouncedSearchValue }) => {
 
   //--------------------- Country Change Event Listener ----------------------//
   const [currentCountry, setCurrentCountry] = useState(
-    localStorage.getItem("country")
+    localStorage.getItem("country"),
   );
 
   const shouldFetchIds = !!(currentCountry && currentCountry !== "global");
@@ -194,7 +195,7 @@ export const Articles = ({ debouncedSearchValue }) => {
           value: category.attributes.name,
           id: category.id,
           isSelected: false,
-        })
+        }),
       );
 
       setSelectedCategory(categoriesData[0]);
@@ -212,7 +213,7 @@ export const Articles = ({ debouncedSearchValue }) => {
       onSuccess: (data) => {
         setCategories([...data]);
       },
-    }
+    },
   );
 
   //--------------------- Articles ----------------------//
@@ -229,7 +230,7 @@ export const Articles = ({ debouncedSearchValue }) => {
     getArticlesIds,
     {
       enabled: shouldFetchIds,
-    }
+    },
   );
 
   const { data: categoryIdsToShow } = useQuery(
@@ -245,14 +246,14 @@ export const Articles = ({ debouncedSearchValue }) => {
       return cmsSvc.getArticleCategoryIds(
         usersLanguage,
         IS_PS ? null : selectedAgeGroup.id,
-        shouldFetchIds ? articleIdsQuery.data : undefined
+        shouldFetchIds ? articleIdsQuery.data : undefined,
       );
     },
     {
       enabled:
         !!selectedAgeGroup?.id &&
         (shouldFetchIds ? !!articleIdsQuery.data : true),
-    }
+    },
   );
 
   const categoriesToShow = useMemo(() => {
@@ -260,7 +261,7 @@ export const Articles = ({ debouncedSearchValue }) => {
 
     return categories.filter(
       (category) =>
-        categoryIdsToShow.includes(category.id) || category.value === "all"
+        categoryIdsToShow.includes(category.id) || category.value === "all",
     );
   }, [categories, categoryIdsToShow]);
 
@@ -352,7 +353,7 @@ export const Articles = ({ debouncedSearchValue }) => {
         setArticles([...data.articles]);
         setNumberOfArticles(data.numberOfArticles);
       },
-    }
+    },
   );
 
   useEffect(() => {
@@ -376,12 +377,12 @@ export const Articles = ({ debouncedSearchValue }) => {
 
       const { likes, dislikes } = await getLikesAndDislikesForContent(
         articleIds,
-        "article"
+        "article",
       );
 
       setArticlesLikes((prevLikes) => new Map([...prevLikes, ...likes]));
       setArticlesDislikes(
-        (prevDislikes) => new Map([...prevDislikes, ...dislikes])
+        (prevDislikes) => new Map([...prevDislikes, ...dislikes]),
       );
     }
 
@@ -477,18 +478,37 @@ export const Articles = ({ debouncedSearchValue }) => {
         (IS_PS
           ? false
           : shouldFetchIds
-          ? !articleIdsQuery.isLoading && articleIdsQuery.data?.length > 0
-          : true),
+            ? !articleIdsQuery.isLoading && articleIdsQuery.data?.length > 0
+            : true),
       refetchOnWindowFocus: false,
-    }
+    },
   );
 
   const handleRedirect = (id, name) => {
     navigate(
       `/${localStorage.getItem(
-        "language"
-      )}/information-portal/article/${id}/${createArticleSlug(name)}`
+        "language",
+      )}/information-portal/article/${id}/${createArticleSlug(name)}`,
     );
+  };
+
+  const handleResetAllFilters = () => {
+    onResetSearch?.();
+    if (ageGroups?.length) {
+      handleAgeGroupOnPress(0);
+    }
+    const allIdx = categoriesToShow?.findIndex((c) => c.value === "all");
+    if (allIdx >= 0) {
+      handleCategoryOnPress(allIdx);
+    }
+  };
+
+  const handleClearSearchAndBrowse = () => {
+    onResetSearch?.();
+    const allIdx = categoriesToShow?.findIndex((c) => c.value === "all");
+    if (allIdx >= 0) {
+      handleCategoryOnPress(allIdx);
+    }
   };
 
   return (
@@ -645,7 +665,7 @@ export const Articles = ({ debouncedSearchValue }) => {
                               onClick={() =>
                                 handleRedirect(
                                   articleData.id,
-                                  articleData.title
+                                  articleData.title,
                                 )
                               }
                             />
@@ -667,8 +687,26 @@ export const Articles = ({ debouncedSearchValue }) => {
                     !isArticlesLoading &&
                     !isArticlesFetching &&
                     isArticlesFetched && (
-                      <div className="articles__no-results-container">
-                        <p>{t("no_results")}</p>
+                      <div className="articles__not-found-card-wrap">
+                        <NotFoundCard
+                          mode="illustrated"
+                          headingText={
+                            hasSearch
+                              ? t("no_results_heading", {
+                                  query: debouncedSearchValue.trim(),
+                                })
+                              : t("no_results")
+                          }
+                          descriptionLine1={t("no_results_line1")}
+                          descriptionLine2={t("no_results_line2")}
+                          primaryLabel={t("reset_filters")}
+                          secondaryLabel={t("browse_all_articles")}
+                          onPrimaryClick={handleResetAllFilters}
+                          onSecondaryClick={handleClearSearchAndBrowse}
+                          imageAlt={t("no_results_image_alt")}
+                          isRtl={IS_RTL}
+                          radialColor="blue"
+                        />
                       </div>
                     )}
                 </div>
@@ -699,9 +737,13 @@ export const Articles = ({ debouncedSearchValue }) => {
           (!articlesQueryData ||
             !articlesQueryData.articles ||
             articlesQueryData.articles.length === 0))) && (
-        <div className="articles__no-results-container">
-          <h3>{t("could_not_load_content")}</h3>
-        </div>
+        <NotFoundCard
+          mode="simple"
+          iconName="info"
+          title={t("could_not_load_content")}
+          subtitle={t("could_not_load_hint")}
+          radialColor="purple"
+        />
       )}
     </Block>
   );
