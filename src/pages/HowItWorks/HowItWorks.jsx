@@ -39,7 +39,7 @@ export const HowItWorks = () => {
   }, []);
 
   return (
-    <Page classes="page__how-it-works">
+    <Page classes="page__how-it-works" showBackground>
       <HowItWorksHero />
       <div ref={providersBlockRef} />
       {!IS_RO ? <MeetOurProviders /> : null}
