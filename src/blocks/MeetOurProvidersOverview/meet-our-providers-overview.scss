@@ -67,6 +67,7 @@
     margin: 0 auto;
     margin-top: $spacing_1_6;
     width: 100%;
+    max-width: calc(100% - 2 * $spacing_2_0);
   }
 
   &__carousel {
