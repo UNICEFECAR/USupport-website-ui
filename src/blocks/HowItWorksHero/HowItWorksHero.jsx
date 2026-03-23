@@ -57,24 +57,15 @@ export const HowItWorksHero = ({
                   <Trans
                     components={[
                       <br key="br"></br>,
-                      <span key="highlight"></span>,
+                      <span
+                        key="highlight"
+                        className="how-it-works-hero__heading-text__highlight"
+                      ></span>,
                     ]}
                   >
                     {t("heading_hero")}
                   </Trans>
                 }
-              </h1>
-              <h1 className={["how-it-works-hero__heading-text"].join(" ")}>
-                <Trans
-                  components={[
-                    <span
-                      key="highlight"
-                      className="how-it-works-hero__heading-text__highlight"
-                    ></span>,
-                  ]}
-                >
-                  {t("heading_2")}
-                </Trans>
               </h1>
             </GridItem>
             <GridItem md={8} lg={12} classes="how-it-works-hero__text-item">
