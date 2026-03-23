@@ -171,6 +171,7 @@ export const MyQA = () => {
         setShouldFetchQuestions={setShouldFetchQuestions}
         setIsHowItWorksOpen={() => setIsHowItWorksOpen(true)}
         searchValue={searchValue}
+        onResetSearch={() => setSearchValue("")}
       />
       <DownloadApp />
       <HowItWorksMyQA
