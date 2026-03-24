@@ -58,10 +58,12 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    padding-bottom: $spacing_3_2;
 
     @media screen and (min-width: $screen-lg) {
       align-items: flex-start;
       justify-content: flex-start;
+      padding-bottom: 0;
     }
 
     &__store {
