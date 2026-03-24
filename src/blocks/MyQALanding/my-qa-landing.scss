@@ -25,7 +25,7 @@
   }
 
   &__subheading-text {
-    margin-top: $spacing_2_0;
+    margin-bottom: $spacing_2_0;
     text-align: left;
   }
 
@@ -37,6 +37,7 @@
     height: 100%;
 
     @media screen and (min-width: $screen-md) {
+      max-width: 54rem;
       align-items: flex-start;
     }
   }
@@ -72,6 +73,19 @@
 
     @media screen and (min-width: $screen-lg) {
       width: 85%;
+    }
+  }
+
+  &__note {
+    width: 100%;
+    text-align: center;
+
+    &.text {
+      @include themify($themes, "color", "color_input_placeholder");
+
+      @media screen and (min-width: $screen-md) {
+        font-size: 1.4rem;
+      }
     }
   }
 }

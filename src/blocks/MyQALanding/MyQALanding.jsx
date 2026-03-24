@@ -64,12 +64,14 @@ export const MyQALanding = () => {
       <Grid>
         <GridItem md={8} lg={12}>
           <h1 className="">{t("heading")}</h1>
-          <p className="my-qa-landing__subheading-text">{t("subheading")}</p>
         </GridItem>
         <GridItem md={8} lg={12}>
           <Grid>
             <GridItem md={4} lg={5}>
               <div className="my-qa-landing__button-container">
+                <p className="my-qa-landing__subheading-text">
+                  {t("subheading")}
+                </p>
                 <Box
                   classes="my-qa-landing__ask-anonymous-card"
                   boxShadow={theme === "dark" ? 2 : 1}
@@ -86,6 +88,7 @@ export const MyQALanding = () => {
                     window.location.href = "/client/my-qa";
                   }}
                 />
+                <p className="text my-qa-landing__note">{t("note")}</p>
               </div>
             </GridItem>
             <GridItem md={4} lg={7}>
