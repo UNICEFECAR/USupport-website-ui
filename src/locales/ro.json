@@ -298,7 +298,8 @@
       "subheading": "Puneți întrebări, iar echipa noastră de profesioniști vă va oferi tot sprijinul necesar.",
       "ask_anonymous_card_heading": "Adresați întrebarea anonim",
       "ask_anonymous_card_text": "Fiecare întrebare este complet anonimă și nimeni nu poate vedea cine a adresat-o",
-      "button_label": "Adresați întrebările acum"
+      "button_label": "Adresați întrebările acum",
+      "note": "Întrebările sunt complet anonime și nimeni nu poate vedea cine le-a adresat."
     },
     "mascot-header-MyQA": {
       "heading": "My Q&A ",

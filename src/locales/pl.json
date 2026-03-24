@@ -298,7 +298,8 @@
       "subheading": "Zadawaj pytania, a nasz zespół profesjonalistów dołoży wszelkich starań, aby Ci pomóc.",
       "ask_anonymous_card_heading": "Zadaj anonimowe pytanie",
       "ask_anonymous_card_text": "Każde pytanie jest w pełni anonimowe i nikt nie może zobaczyć, kto je zadał.",
-      "button_label": "Zadaj pytanie już teraz"
+      "button_label": "Zadaj pytanie już teraz",
+      "note": "Pytania są całkowicie anonimowe i nikt nie może zobaczyć, kto je zadał."
     },
     "mascot-header-MyQA": {
       "heading": "Moje pytania i odpowiedzi",
