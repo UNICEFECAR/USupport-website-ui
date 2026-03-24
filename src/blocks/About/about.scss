@@ -60,11 +60,12 @@
     margin-bottom: -$spacing_0_7;
 
     @media screen and (min-width: $screen-md) {
-      margin-top: -$spacing_14_6;
+      margin-bottom: -$spacing_6_0;
       width: 36rem;
     }
 
     @media screen and (min-width: $screen-lg) {
+      margin-bottom: -$spacing_6_4;
       width: 40rem;
     }
   }
