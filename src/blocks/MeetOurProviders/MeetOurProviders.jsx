@@ -75,7 +75,7 @@ export const MeetOurProviders = () => {
           <h1 className="meet-our-providers__heading">{t("heading")}</h1>
         </GridItem>
         <GridItem md={8} lg={12} classes="meet-our-providers__subheading">
-          <p className="text">{t("paragraph")}</p>
+          <p className="paragraph">{t("paragraph")}</p>
         </GridItem>
 
         <GridItem md={8} lg={12} classes="meet-our-providers__providers-item">
