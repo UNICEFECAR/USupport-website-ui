@@ -140,8 +140,7 @@ export const MyQA = ({
   };
 
   const handleClearSearchAndBrowse = () => {
-    onResetSearch?.();
-    setFilterTag?.("");
+    handleResetAllFilters();
   };
 
   const renderEmptyCard = (headingText) => (
