@@ -4,6 +4,8 @@
   text-align: left;
   padding-top: $spacing_3_2;
   padding-bottom: $spacing_3_2;
+  z-index: 1;
+  overflow: visible;
 
   @media screen and (min-width: $screen-md) {
     padding-top: $spacing_4_8;
