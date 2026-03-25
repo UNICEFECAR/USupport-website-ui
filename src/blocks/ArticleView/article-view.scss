@@ -221,6 +221,15 @@
 
     .text {
       line-height: $line_height_2_8;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      hyphens: auto;
+    }
+
+    a {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      hyphens: auto;
     }
   }
 }

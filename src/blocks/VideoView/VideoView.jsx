@@ -6,11 +6,9 @@ import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
 import {
-  ActionButton,
   Block,
   Button,
-  Grid,
-  GridItem,
+  Icon,
   Label,
   Like,
 } from "@USupport-components-library/src";
@@ -34,7 +32,7 @@ import "./video-view.scss";
  */
 export const VideoView = ({ videoData, t, language }) => {
   const creator = videoData.creator ? videoData.creator : null;
-  const { cookieState, setCookieState } = useContext(ThemeContext);
+  const { cookieState, setCookieState, theme } = useContext(ThemeContext);
   const DISPLAY_VIDEO = cookieState.hasAcceptedCookies;
   const IS_PS = localStorage.getItem("country") === "PS";
   const IS_RTL = localStorage.getItem("language") === "ar";
@@ -164,56 +162,57 @@ export const VideoView = ({ videoData, t, language }) => {
 
   return (
     <Block classes={`video-view ${IS_RTL ? "video-view--rtl" : ""}`}>
-      <Grid classes="video-view__main-grid">
-        <GridItem md={8} lg={12} classes="video-view__title-item">
-          <div className="video-view__title-item__container">
-            <h3>{videoData.title}</h3>
-            <ActionButton onClick={handleCopyLink} iconName="share" />
+      <div className="video-view__content">
+        <h2 className="video-view__title">{videoData.title}</h2>
+
+        <div className="video-view__meta">
+          {videoData.categoryName && (
+            <div className="video-view__category-badge">
+              <p className="small-text">{videoData.categoryName}</p>
+            </div>
+          )}
+          {creator && <p className="text video-view__creator">{t("by", { creator })}</p>}
+        </div>
+
+        {videoData.labels?.length > 0 && (
+          <div className="video-view__labels">
+            {videoData.labels.map((label, index) => (
+              <Label classes={"video-view__label"} text={label.name} key={index} />
+            ))}
           </div>
-        </GridItem>
-
-        <GridItem md={8} lg={12} classes="video-view__details-item">
-          {creator && <p className={"small-text"}>{t("by", { creator })}</p>}
-
-          <div className="video-view__details-item__category">
-            <p className="small-text ">{videoData.categoryName}</p>
-          </div>
-        </GridItem>
-
-        <GridItem xs={3} md={6} lg={8} classes="video-view__labels-item">
-          {videoData.labels &&
-            videoData.labels.map((label, index) => {
-              return (
-                <Label
-                  classes={"video-view__label"}
-                  text={label.name}
-                  key={index}
-                />
-              );
-            })}
-        </GridItem>
-
-        {!IS_PS && (
-          <GridItem xs={1} md={2} lg={4} classes="video-view__like-item">
-            <Like
-              likes={videoData.likes || 0}
-              isLiked={videoData.contentRating?.isLikedByUser || false}
-              dislikes={videoData.dislikes || 0}
-              isDisliked={videoData.contentRating?.isDislikedByUser || false}
-            />
-          </GridItem>
         )}
 
-        <GridItem md={8} lg={12} classes="video-view__embed-item">
-          {renderVideoEmbed()}
-        </GridItem>
+        <div className="video-view__separator" />
 
-        <GridItem md={8} lg={12} classes="video-view__description-item">
-          <p className="video-view__description-text">
-            {videoData.description}
-          </p>
-        </GridItem>
-      </Grid>
+        <div className="video-view__actions">
+          <div className="video-view__actions-left">
+            {!IS_PS && (
+              <Like
+                likes={videoData.likes || 0}
+                isLiked={videoData.contentRating?.isLikedByUser || false}
+                dislikes={videoData.dislikes || 0}
+                isDisliked={videoData.contentRating?.isDislikedByUser || false}
+              />
+            )}
+          </div>
+          <div className="video-view__actions-right">
+            <div className="video-view__action-btn" onClick={handleCopyLink}>
+              <Icon
+                color={theme === "dark" ? "#ffffff" : "#66768d"}
+                name="share"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="video-view__separator" />
+
+        <div className="video-view__embed-item">{renderVideoEmbed()}</div>
+
+        <div className="video-view__body">
+          <p className="video-view__description-text">{videoData.description}</p>
+        </div>
+      </div>
     </Block>
   );
 };

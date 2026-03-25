@@ -9,7 +9,7 @@ import {
   Block,
   Grid,
   GridItem,
-  CardMedia,
+  CardMediaVideo,
   Loading,
 } from "@USupport-components-library/src";
 import {
@@ -21,6 +21,7 @@ import {
   destructurePodcastData,
   ThemeContext,
   getLikesAndDislikesForContent,
+  createArticleSlug,
 } from "@USupport-components-library/utils";
 
 import "./podcast-information.scss";
@@ -76,7 +77,7 @@ export const PodcastInformation = () => {
     async () => {
       const { likes, dislikes } = await getLikesAndDislikesForContent(
         [Number(id)],
-        "podcast"
+        "podcast",
       );
       return {
         likes: likes.get(Number(id)) || 0,
@@ -85,7 +86,7 @@ export const PodcastInformation = () => {
     },
     {
       enabled: !!id,
-    }
+    },
   );
 
   const getSimilarPodcasts = async () => {
@@ -117,7 +118,7 @@ export const PodcastInformation = () => {
     const podcastIds = podcastsData.map((podcast) => podcast.id);
     const { likes, dislikes } = await getLikesAndDislikesForContent(
       podcastIds,
-      "podcast"
+      "podcast",
     );
 
     // Process podcasts with async destructurePodcastData and attach metrics
@@ -129,7 +130,7 @@ export const PodcastInformation = () => {
           likes: likes.get(podcast.id) || 0,
           dislikes: dislikes.get(podcast.id) || 0,
         };
-      })
+      }),
     );
     return processedPodcasts;
   };
@@ -146,7 +147,7 @@ export const PodcastInformation = () => {
         podcastData.categoryId
           ? true
           : false,
-    }
+    },
   );
 
   const onPodcastClick = () => {
@@ -159,7 +160,7 @@ export const PodcastInformation = () => {
     return (
       <Navigate
         to={`/${localStorage.getItem(
-          "language"
+          "language",
         )}/information-portal?tab=articles`}
       />
     );
@@ -199,7 +200,7 @@ export const PodcastInformation = () => {
                   classes="page__podcast-information__more-podcasts-card"
                   key={index}
                 >
-                  <CardMedia
+                  <CardMediaVideo
                     type="portrait"
                     size="sm"
                     style={{ gridColumn: "span 4" }}
@@ -216,8 +217,10 @@ export const PodcastInformation = () => {
                     onClick={() => {
                       navigate(
                         `/${localStorage.getItem(
-                          "language"
-                        )}/information-portal/podcast/${podcastData.id}`
+                          "language",
+                        )}/information-portal/podcast/${podcastData.id}/${createArticleSlug(
+                          podcastData.title,
+                        )}`,
                       );
                       onPodcastClick();
                     }}
