@@ -366,6 +366,7 @@ export const Videos = ({ debouncedSearchValue }) => {
                     showDescription={true}
                     likes={videosLikes.get(newestVideo.id) || 0}
                     dislikes={videosDislikes.get(newestVideo.id) || 0}
+                    viewCount={newestVideo.viewCount}
                     t={t}
                     onClick={() => {
                       handlePlay({
@@ -464,7 +465,8 @@ export const Videos = ({ debouncedSearchValue }) => {
                               onClick={() => {
                                 handlePlay({
                                   id: videoData.id,
-                                  url: videoData.originalUrl || videoData.awsUrl,
+                                  url:
+                                    videoData.originalUrl || videoData.awsUrl,
                                 });
                               }}
                               handlePlay={() => {
@@ -474,6 +476,7 @@ export const Videos = ({ debouncedSearchValue }) => {
                                     videoData.originalUrl || videoData.awsUrl,
                                 });
                               }}
+                              viewCount={videoData.viewCount}
                             />
                           </div>
                         );
