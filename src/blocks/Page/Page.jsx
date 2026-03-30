@@ -477,7 +477,7 @@ const HreflangHelmet = ({ path }) => {
 
   return (
     <Helmet>
-      <link rel="cannonical" href={baseUrl + path} />
+      <link rel="canonical" href={baseUrl + path} />
       <link
         rel="alternate"
         hrefLang="pl"

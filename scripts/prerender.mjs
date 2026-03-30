@@ -149,7 +149,9 @@ async function updateHtmlMeta(html, lang) {
   if (localeData.description) {
     html = html.replace(
       /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/,
-      `<meta name="description" content="${escapeHtml(localeData.description)}" />`
+      `<meta name="description" content="${escapeHtml(
+        localeData.description
+      )}" />`
     );
   }
 
@@ -206,7 +208,7 @@ async function prerenderRoute(browser, routeInfo, baseUrl) {
     html = await updateHtmlMeta(html, lang);
 
     // Determine output path - output directly to dist/{lang}/{route}/index.html
-    // This way when deploy.sh syncs dist/ to s3://bucket/website/, 
+    // This way when deploy.sh syncs dist/ to s3://bucket/website/,
     // files will be at s3://bucket/website/{lang}/{route}/index.html
     const routePath = route.slice(1); // Remove leading slash (e.g., "en" or "en/about-us")
     const outputPath = path.join(distDir, routePath, "index.html");
@@ -272,7 +274,7 @@ async function main() {
     // Wait a bit for server to be fully ready
     await sleep(1000);
 
-    const baseUrl = `http://localhost:${PORT}`;
+    const baseUrl = "https://usupport.online";
     const allRoutes = generateAllRoutes();
 
     console.log(`\n📋 Routes to prerender: ${allRoutes.length}\n`);
