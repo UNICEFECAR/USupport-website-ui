@@ -45,7 +45,11 @@ aws s3 sync ./dist/ $S3_PATH --region $REGION --delete
 # Invalidate CloudFront cache
 if [ -n "$DISTRIBUTION_ID" ]; then
     echo "Invalidating CloudFront cache for distribution: $DISTRIBUTION_ID"
-    aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/${UI}/*"
+    # Invalidate both viewer paths (e.g. /en, /pl) and origin-prefixed paths (/website/*)
+    # so prerendered HTML and static assets are always refreshed.
+    aws cloudfront create-invalidation \
+      --distribution-id $DISTRIBUTION_ID \
+      --paths "/*" "/${UI}/*"
 else
     echo "No matching CloudFront distribution found for $BUCKET_NAME"
 fi
