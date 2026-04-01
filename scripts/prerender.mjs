@@ -274,7 +274,7 @@ async function main() {
     // Wait a bit for server to be fully ready
     await sleep(1000);
 
-    const baseUrl = "https://usupport.online";
+    const baseUrl = "https://poland.usupport.online";
     const allRoutes = generateAllRoutes();
 
     console.log(`\n📋 Routes to prerender: ${allRoutes.length}\n`);
