@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
+
 import { NavLink, Link } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation, Trans } from "react-i18next";
 import classNames from "classnames";
+import { Helmet } from "react-helmet";
 
 import {
   Navbar,
@@ -74,7 +76,7 @@ export const Page = ({
   let localStorageCountry = localStorage.getItem("country");
   const localStorageLanguage = localStorage.getItem("language") || "en";
   const [selectedLanguage, setSelectedLanguage] = useState(
-    localStorageLanguage ? { value: localStorageLanguage.toUpperCase() } : null,
+    localStorageLanguage ? { value: localStorageLanguage.toUpperCase() } : null
   );
   const [selectedCountry, setSelectedCountry] = useState();
   const [langs, setLangs] = useState([]);
@@ -180,12 +182,12 @@ export const Page = ({
     if (localLanguage || languageFromUrl) {
       let languageObject = allLanguages.find(
         (x) =>
-          x.value?.toLocaleLowerCase() === languageFromUrl.toLocaleLowerCase(),
+          x.value?.toLocaleLowerCase() === languageFromUrl.toLocaleLowerCase()
       );
       if (!languageObject) {
         languageObject = allLanguages.find(
           (x) =>
-            x.value?.toLocaleLowerCase() === localLanguage.toLocaleLowerCase(),
+            x.value?.toLocaleLowerCase() === localLanguage.toLocaleLowerCase()
         );
       }
       if (languageObject) {
@@ -201,7 +203,7 @@ export const Page = ({
     }
 
     allLanguages = allLanguages.filter(
-      (x, index, self) => index === self.findIndex((t) => t.value === x.value),
+      (x, index, self) => index === self.findIndex((t) => t.value === x.value)
     );
 
     if (
@@ -338,7 +340,7 @@ export const Page = ({
   const hasPassedValidation = queryClient.getQueryData(["hasPassedValidation"]);
   const IS_RO = window.location.hostname === "romania.usupport.online";
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(
-    !hasPassedValidation && IS_RO,
+    !hasPassedValidation && IS_RO
   );
   const [passwordError, setPasswordError] = useState("");
 
@@ -355,7 +357,7 @@ export const Page = ({
         queryClient.setQueryData(["hasPassedValidation"], true);
         setIsPasswordModalOpen(false);
       },
-    },
+    }
   );
 
   const handlePasswordCheck = (value) => {
@@ -364,6 +366,7 @@ export const Page = ({
 
   return (
     <>
+      <HreflangHelmet path={window.location.pathname} />
       <PasswordModal
         label={t("password")}
         btnLabel={t("submit")}
@@ -465,5 +468,26 @@ export const Page = ({
         t={t}
       />
     </>
+  );
+};
+
+const HreflangHelmet = ({ path }) => {
+  const baseUrl = window.location.origin;
+  const pathWithoutLang = path.slice(3);
+
+  return (
+    <Helmet>
+      <link rel="canonical" href={baseUrl + path} />
+      <link
+        rel="alternate"
+        hrefLang="pl"
+        href={`${baseUrl}/pl${pathWithoutLang}`}
+      />
+      <link
+        rel="alternate"
+        hrefLang="uk"
+        href={`${baseUrl}/uk${pathWithoutLang}`}
+      />
+    </Helmet>
   );
 };

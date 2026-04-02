@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import {
   Block,
+  AudioPlayer,
   Grid,
   GridItem,
   Icon,
@@ -263,6 +264,12 @@ export const ArticleView = ({ articleData, t, language }) => {
           </GridItem>
         )}
 
+        {articleData.ttsUrl && (
+          <GridItem md={8} lg={12} classes="article-view__audio-item">
+            <AudioPlayer src={articleData.ttsUrl} />
+          </GridItem>
+        )}
+
         <GridItem md={8} lg={12} classes="article-view__body-item">
           <Markdown markDownText={articleData.bodyCK || articleData.body} className={"text"} />
         </GridItem>
@@ -290,6 +297,7 @@ ArticleView.propTypes = {
     creator: propTypes.string,
     readingTime: propTypes.string,
     body: propTypes.string,
+    ttsUrl: propTypes.string,
     labels: propTypes.arrayOf(
       propTypes.shape({
         name: propTypes.string,
