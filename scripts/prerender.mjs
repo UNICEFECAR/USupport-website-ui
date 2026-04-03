@@ -1,6 +1,7 @@
+/* eslint-env node */
 import { createServer } from "http";
 import { readFile as fsReadFile, writeFile, mkdir, rm } from "fs/promises";
-import { existsSync } from "fs";
+import { existsSync, readFileSync } from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import puppeteer from "puppeteer";
@@ -12,7 +13,12 @@ const distDir = path.resolve(__dirname, "..", "dist");
 const localesDir = path.resolve(__dirname, "..", "src", "locales");
 
 // All languages supported
-const languages = ["en", "pl", "uk", "ru", "kk", "hy", "ro", "ar", "tr", "el"];
+const languages = [
+  "en",
+  "pl",
+  "uk",
+  // "ru", "kk", "hy", "ro", "ar", "tr", "el"
+];
 
 // Routes to prerender (without language prefix)
 const routes = [
@@ -76,6 +82,55 @@ function escapeHtml(str) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+}
+
+function stripTrailingSlash(url) {
+  return url.replace(/\/$/, "");
+}
+
+/**
+ * Public origin for canonical / og:url / JSON-LD in saved HTML.
+ * Set PRERENDER_PUBLIC_ORIGIN (e.g. https://poland.usupport.online) in CI or deploy.
+ * Falls back to VITE_WEBSITE_URL from .env.production / .env.staging, then Poland URL.
+ */
+function resolvePublicOrigin() {
+  const fromEnv = process.env.PRERENDER_PUBLIC_ORIGIN?.trim();
+  if (fromEnv) return stripTrailingSlash(fromEnv);
+
+  const envDir = path.resolve(__dirname, "..");
+  for (const name of [".env.production", ".env.staging"]) {
+    const envPath = path.join(envDir, name);
+    if (!existsSync(envPath)) continue;
+    const text = readFileSync(envPath, "utf8");
+    const m = text.match(/^\s*VITE_WEBSITE_URL\s*=\s*(\S+)/m);
+    if (m) {
+      let v = m[1].trim();
+      if (
+        (v.startsWith('"') && v.endsWith('"')) ||
+        (v.startsWith("'") && v.endsWith("'"))
+      ) {
+        v = v.slice(1, -1);
+      }
+      return stripTrailingSlash(v);
+    }
+  }
+
+  return "https://poland.usupport.online";
+}
+
+/**
+ * Puppeteer snapshots the preview URL; strip 127.0.0.1 / localhost so "View source"
+ * only shows the real public origin.
+ */
+function rewritePreviewOriginInHtml(html, previewOrigins, publicOrigin) {
+  if (!publicOrigin) return html;
+  let out = html;
+  for (const origin of previewOrigins) {
+    if (!origin || origin === publicOrigin) continue;
+    const escaped = origin.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    out = out.replace(new RegExp(escaped, "g"), publicOrigin);
+  }
+  return out;
 }
 
 // Generate all route combinations
@@ -166,10 +221,16 @@ async function updateHtmlMeta(html, lang) {
   return html;
 }
 
-async function prerenderRoute(browser, routeInfo, baseUrl) {
+async function prerenderRoute(
+  browser,
+  routeInfo,
+  previewBaseUrl,
+  previewOrigins,
+  publicOrigin
+) {
   const { route, lang } = routeInfo;
   const page = await browser.newPage();
-  const url = `${baseUrl}/website${route}`;
+  const url = `${previewBaseUrl}/website${route}`;
 
   try {
     console.log(`📄 Prerendering: ${route}`);
@@ -206,6 +267,8 @@ async function prerenderRoute(browser, routeInfo, baseUrl) {
 
     // Update meta tags for this language
     html = await updateHtmlMeta(html, lang);
+
+    html = rewritePreviewOriginInHtml(html, previewOrigins, publicOrigin);
 
     // Determine output path - output directly to dist/{lang}/{route}/index.html
     // This way when deploy.sh syncs dist/ to s3://bucket/website/,
@@ -274,7 +337,13 @@ async function main() {
     // Wait a bit for server to be fully ready
     await sleep(1000);
 
-    const baseUrl = "https://poland.usupport.online";
+    // Prerender from local dist (served above), not the live site — otherwise
+    // we snapshot stale script hashes from CDN into dist/{lang}/.../index.html.
+    const previewBaseUrl = `http://127.0.0.1:${PORT}`;
+    const previewOrigins = [previewBaseUrl, `http://localhost:${PORT}`];
+    const publicOrigin = resolvePublicOrigin();
+    console.log(`🌐 Rewriting prerender HTML origin to: ${publicOrigin}\n`);
+
     const allRoutes = generateAllRoutes();
 
     console.log(`\n📋 Routes to prerender: ${allRoutes.length}\n`);
@@ -294,7 +363,13 @@ async function main() {
     let failCount = 0;
 
     for (const routeInfo of allRoutes) {
-      const success = await prerenderRoute(browser, routeInfo, baseUrl);
+      const success = await prerenderRoute(
+        browser,
+        routeInfo,
+        previewBaseUrl,
+        previewOrigins,
+        publicOrigin
+      );
       if (success) {
         successCount++;
       } else {
