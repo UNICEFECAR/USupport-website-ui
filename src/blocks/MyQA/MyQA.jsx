@@ -1,4 +1,10 @@
-import React, { useCallback, useMemo, useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useMemo,
+  useEffect,
+  useState,
+  useContext,
+} from "react";
 import { useCustomNavigate as useNavigate } from "#hooks";
 import { useTranslation } from "react-i18next";
 
@@ -15,6 +21,8 @@ import {
   Icon,
   NotFoundCard,
 } from "@USupport-components-library/src";
+
+import { ThemeContext } from "@USupport-components-library/utils";
 
 import { useEventListener, useGetLanguages, useGetQuestionsTags } from "#hooks";
 
@@ -47,6 +55,7 @@ export const MyQA = ({
   const { t } = useTranslation("blocks", { keyPrefix: "my-qa" });
   const navigate = useNavigate();
   const IS_RTL = localStorage.getItem("language") === "ar";
+  const { allLanguages } = useContext(ThemeContext);
   const { data: languages } = useGetLanguages();
   const [tags, setTags] = useState([]);
 
@@ -60,7 +69,7 @@ export const MyQA = ({
     const lang = localStorage.getItem("language");
     const languageId = languages?.find((x) => x.alpha2 === lang)?.language_id;
     setSelectedLanguage(languageId || "all");
-  }, [languages]);
+  }, [languages, setSelectedLanguage]);
 
   useEventListener("languageChanged", handler);
 
@@ -80,14 +89,15 @@ export const MyQA = ({
     };
 
     if (!languages) return [showAllOption];
+    if (!languages.length) return [showAllOption, ...allLanguages];
     return [
       showAllOption,
       ...languages.map((x) => ({
         value: x.language_id,
-        label: x.local_name,
+        label: x.name === "English" ? x.name : `${x.name} (${x.local_name})`,
       })),
     ];
-  }, [languages, t]);
+  }, [languages, allLanguages, t]);
 
   const handleTabChange = (index) => {
     const tabsCopy = [...tabs];
