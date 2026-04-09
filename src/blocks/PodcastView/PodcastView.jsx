@@ -1,20 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import propTypes from "prop-types";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
-import {
-  ActionButton,
-  Block,
-  Grid,
-  GridItem,
-  Label,
-  Like,
-} from "@USupport-components-library/src";
+import { Block, Icon, Label, Like } from "@USupport-components-library/src";
 import {
   createArticleSlug,
   constructShareUrl,
+  ThemeContext,
 } from "@USupport-components-library/utils";
 import { cmsSvc } from "@USupport-components-library/services";
 
@@ -31,6 +25,7 @@ import "./podcast-view.scss";
  */
 export const PodcastView = ({ podcastData, t, language }) => {
   const { name } = useParams();
+  const { theme } = useContext(ThemeContext);
   const creator = podcastData.creator ? podcastData.creator : null;
 
   const [hasUpdatedUrl, setHasUpdatedUrl] = useState(false);
@@ -96,64 +91,69 @@ export const PodcastView = ({ podcastData, t, language }) => {
 
   return (
     <Block classes="podcast-view">
-      <Grid classes="podcast-view__main-grid">
-        <GridItem md={8} lg={12} classes="podcast-view__title-item">
-          <div className="podcast-view__title-item__container">
-            <h3>{podcastData.title}</h3>
-            <ActionButton onClick={handleCopyLink} iconName="share" />
+      <div className="podcast-view__content">
+        <h2 className="podcast-view__title">{podcastData.title}</h2>
+
+        <div className="podcast-view__meta">
+          {podcastData.categoryName && (
+            <div className="podcast-view__category-badge">
+              <p className="small-text">{podcastData.categoryName}</p>
+            </div>
+          )}
+          {creator && <p className="text podcast-view__creator">{t("by", { creator })}</p>}
+        </div>
+
+        {podcastData.labels?.length > 0 && (
+          <div className="podcast-view__labels">
+            {podcastData.labels.map((label, index) => (
+              <Label
+                classes="podcast-view__label"
+                text={label.name}
+                key={index}
+              />
+            ))}
           </div>
-        </GridItem>
+        )}
 
-        <GridItem md={8} lg={12} classes="podcast-view__details-item">
-          {creator && <p className={"small-text"}>{t("by", { creator })}</p>}
+        <div className="podcast-view__separator" />
 
-          <div className="podcast-view__details-item__category">
-            <p className="small-text ">{podcastData.categoryName}</p>
-          </div>
-        </GridItem>
-
-        <GridItem xs={3} md={6} lg={8} classes="podcast-view__labels-item">
-          {podcastData.labels &&
-            podcastData.labels.map((label, index) => {
-              return (
-                <Label
-                  classes={"podcast-view__label"}
-                  text={label.name}
-                  key={index}
-                />
-              );
-            })}
-        </GridItem>
-
-        <GridItem xs={1} md={2} lg={4} classes="podcast-view__like-item">
-          <Like
-            likes={podcastData.likes || 0}
-            isLiked={podcastData.contentRating?.isLikedByUser || false}
-            dislikes={podcastData.dislikes || 0}
-            isDisliked={podcastData.contentRating?.isDislikedByUser || false}
-          />
-        </GridItem>
-
-        <GridItem md={8} lg={12} classes="podcast-view__player-item">
-          <div className="podcast-view__player-container">
-            <iframe
-              src={`https://open.spotify.com/embed/${podcastData.spotifyId}`}
-              width="100%"
-              height="232"
-              frameBorder="0"
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="lazy"
-              title="Spotify Podcast Player"
+        <div className="podcast-view__actions">
+          <div className="podcast-view__actions-left">
+            <Like
+              likes={podcastData.likes || 0}
+              isLiked={podcastData.contentRating?.isLikedByUser || false}
+              dislikes={podcastData.dislikes || 0}
+              isDisliked={podcastData.contentRating?.isDislikedByUser || false}
             />
           </div>
-        </GridItem>
+          <div className="podcast-view__actions-right">
+            <div className="podcast-view__action-btn" onClick={handleCopyLink}>
+              <Icon
+                color={theme === "dark" ? "#ffffff" : "#66768d"}
+                name="share"
+              />
+            </div>
+          </div>
+        </div>
 
-        <GridItem md={8} lg={12} classes="podcast-view__description-item">
-          <p className="podcast-view__description-text">
-            {podcastData.description}
-          </p>
-        </GridItem>
-      </Grid>
+        <div className="podcast-view__separator" />
+
+        <div className="podcast-view__player-container">
+          <iframe
+            src={`https://open.spotify.com/embed/${podcastData.spotifyId}`}
+            width="100%"
+            height="232"
+            frameBorder="0"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+            title="Spotify Podcast Player"
+          />
+        </div>
+
+        <div className="podcast-view__body">
+          <p className="podcast-view__description-text">{podcastData.description}</p>
+        </div>
+      </div>
     </Block>
   );
 };

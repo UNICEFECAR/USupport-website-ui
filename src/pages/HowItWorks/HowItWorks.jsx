@@ -1,11 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import {
   Page,
-  HowItWorks as HowItWorksBlock,
+  HowItWorksHero,
   MeetOurProviders,
   Question,
   FAQ,
   VideoTutorial,
+  TakeAStep,
 } from "#blocks";
 
 import "./how-it-works.scss";
@@ -38,13 +39,14 @@ export const HowItWorks = () => {
   }, []);
 
   return (
-    <Page classes="page__how-it-works">
-      <HowItWorksBlock showSummaryBellow={true} onPage={true} />
+    <Page classes="page__how-it-works" showBackground>
+      <HowItWorksHero />
       <div ref={providersBlockRef} />
       {!IS_RO ? <MeetOurProviders /> : null}
       <VideoTutorial />
       <div ref={faqRef} />
-      <FAQ showLearnMore={false} showMascot={false} />
+      <TakeAStep />
+      <FAQ showLearnMore={false} showMascot hasBackground />
       <Question />
     </Page>
   );

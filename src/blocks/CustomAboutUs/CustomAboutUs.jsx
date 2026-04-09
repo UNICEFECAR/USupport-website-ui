@@ -68,7 +68,12 @@ export const CustomAboutUs = () => {
       {isLoading ? (
         <Loading />
       ) : (
-        <Box classes="custom-about-us__box">
+        <Box
+          classes="custom-about-us__box"
+          borderSize="md"
+          boxShadow="1"
+          liquidGlass
+        >
           {data ? (
             <Markdown markDownText={data.content || data.content_ck}></Markdown>
           ) : (
