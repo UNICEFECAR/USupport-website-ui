@@ -6,7 +6,7 @@ import { providerSvc } from "@USupport-components-library/services";
  */
 export default function useGetProvidersData({
   random = false,
-  limit = 3,
+  limit = 6,
   width,
   enabled = true,
   isInGlobalCountry,
@@ -64,7 +64,7 @@ export default function useGetProvidersData({
         return pages.length + 1;
       },
       onError: (err) => console.log(err, "err"),
-    }
+    },
   );
 
   return providersDataQuery;

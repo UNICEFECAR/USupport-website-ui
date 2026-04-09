@@ -4,16 +4,10 @@
   .no-webp & {
     background-image: url("./assets/BackgroundMobile.png");
   }
-  .webp & {
-    background-image: url("./assets/BackgroundMobile.webp");
-  }
 
   &--dark {
     .no-webp & {
       background-image: url("./assets/BackgroundDarkMobile.png");
-    }
-    .webp & {
-      background-image: url("./assets/BackgroundDarkMobile.webp");
     }
   }
 
@@ -44,9 +38,9 @@
     .no-webp & {
       background-image: url("./assets/BackgroundTablet.png");
     }
-    .webp & {
-      background-image: url("./assets/BackgroundTablet.webp");
-    }
+    // .webp & {
+    //   background-image: url("./assets/BackgroundTablet.webp");
+    // }
 
     &--dark {
       .no-webp & {
@@ -63,9 +57,9 @@
     .no-webp & {
       background-image: url("./assets/BackgroundDesktop.png");
     }
-    .webp & {
-      background-image: url("./assets/BackgroundDesktop.webp");
-    }
+    // .webp & {
+    //   background-image: url("./assets/BackgroundDesktop.webp");
+    // }
     background-size: cover;
     background-position-x: right;
     padding-top: $spacing_10_0;
@@ -101,26 +95,13 @@
       padding-top: 11rem;
     }
 
-    & h1 {
-      width: 96%;
-      @include themify($themes, "color", "color_3d527b_white");
-    }
-
-    span {
-      // @include themify($themes, "color", "color_blue_yellow");
-      @include themify($themes, "color", "color_purple_blue");
+    &__purple-text {
+      @include themify($themes, "color", "color_6a4ffb_8c90eb");
     }
   }
 
   &__text-item {
     padding-top: $spacing_2_4;
-
-    & p {
-      @media screen and (min-width: $screen-md) {
-        max-width: 75%;
-      }
-      @include themify($themes, "color", "color_66768d_c1d7e0");
-    }
   }
 
   &__buttons-item {
@@ -130,6 +111,13 @@
     .btn--store:nth-of-type(2) {
       margin-top: $spacing_1_6;
     }
+  }
+
+  &__store-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
   }
 
   &__collage-item {

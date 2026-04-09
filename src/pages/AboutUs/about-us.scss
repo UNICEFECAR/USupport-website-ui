@@ -2,24 +2,102 @@
 @import "@USupport-components-library/styles";
 
 .page__about-us {
-  background-image: url("./assets/about-us-mobile.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position-y: $spacing_7_0;
   min-width: 40.7rem;
+  position: relative;
 
-  @media screen and (min-width: $screen-md) {
-    background-image: url("./assets/about-us-light.jpg");
-    &--dark {
-      background-image: url("./assets/about-us.png");
+  &__hero {
+    position: relative;
+
+    .theme-dark & {
+      background:
+        radial-gradient(
+          760px 320px at 15% 78%,
+          rgba(63, 81, 132, 0.3),
+          transparent 72%
+        ),
+        radial-gradient(
+          820px 340px at 82% 68%,
+          rgba(46, 65, 112, 0.3),
+          transparent 72%
+        ),
+        radial-gradient(
+          620px 260px at 45% 90%,
+          rgba(38, 52, 91, 0.26),
+          transparent 74%
+        ),
+        radial-gradient(
+          980px 420px at 8% 8%,
+          rgba(78, 100, 162, 0.34),
+          transparent 70%
+        ),
+        radial-gradient(
+          860px 360px at 92% 20%,
+          rgba(108, 88, 180, 0.3),
+          transparent 72%
+        ),
+        linear-gradient(135deg, #0f1728 0%, #122039 42%, #182a46 100%);
+    }
+
+    .theme-highContrast & {
+      background: none;
     }
   }
+
+  &__hero-image {
+    position: relative;
+    width: 100%;
+
+    picture,
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.92) 0%,
+        rgba(255, 255, 255, 0.76) 18%,
+        rgba(255, 255, 255, 0) 52%
+      );
+    }
+
+    .page__about-us--dark &::after {
+      background: linear-gradient(
+        180deg,
+        rgba(5, 20, 28, 0.88) 0%,
+        rgba(5, 20, 28, 0.62) 18%,
+        rgba(5, 20, 28, 0) 52%
+      );
+    }
+
+    .theme-dark &,
+    .theme-highContrast & {
+      display: none;
+    }
+  }
+
   &__radial-circle {
     position: absolute;
     right: 0;
+    top: $spacing_12_8;
+    pointer-events: none;
     & > radial-background {
       width: 50rem;
       height: 50rem;
+    }
+  }
+
+  & .we-help {
+    padding-top: $spacing_4_8;
+
+    @media screen and (min-width: $screen-md) {
+      padding-top: $spacing_3_2;
     }
   }
 

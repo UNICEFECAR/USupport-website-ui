@@ -7,7 +7,7 @@ import {
   Grid,
   GridItem,
   Block,
-  CardMedia,
+  CardMediaVideo,
   Tabs,
   Loading,
   PodcastModal, // Add this import
@@ -24,7 +24,7 @@ import { useEventListener } from "#hooks";
 import "./podcasts.scss";
 
 // 2-3-1 card span logic
-const getGridSpanForIndex = (index, pattern = [2, 3, 1]) => {
+const getGridSpanForIndex = (index, pattern = [3, 3, 3]) => {
   const totalItems = pattern.reduce((sum, count) => sum + count, 0);
   const position = index % totalItems;
   let current = 0;
@@ -89,7 +89,7 @@ export const Podcasts = ({ debouncedSearchValue }) => {
   };
 
   const [currentCountry, setCurrentCountry] = useState(
-    localStorage.getItem("country")
+    localStorage.getItem("country"),
   );
   const shouldFetchIds = !!(currentCountry && currentCountry !== "global");
 
@@ -107,7 +107,7 @@ export const Podcasts = ({ debouncedSearchValue }) => {
     if (usersLanguage === "en") {
       const { likes, dislikes } = await getLikesAndDislikesForContent(
         ids,
-        "podcast"
+        "podcast",
       );
 
       setPodcastsLikes(likes);
@@ -120,7 +120,7 @@ export const Podcasts = ({ debouncedSearchValue }) => {
   const podcastIdsQuery = useQuery(
     ["podcastIds", currentCountry, shouldFetchIds],
     getPodcastsIds,
-    { enabled: true }
+    { enabled: true },
   );
 
   const getPodcastsData = async () => {
@@ -141,7 +141,7 @@ export const Podcasts = ({ debouncedSearchValue }) => {
     const podcastsData = data.data || [];
     // Process podcasts with async destructurePodcastData
     const processedPodcasts = await Promise.all(
-      podcastsData.map((podcast) => destructurePodcastData(podcast))
+      podcastsData.map((podcast) => destructurePodcastData(podcast)),
     );
     setPodcasts(processedPodcasts);
     setNumberOfPodcasts(data.meta?.pagination?.total || podcastsData.length);
@@ -163,7 +163,7 @@ export const Podcasts = ({ debouncedSearchValue }) => {
         (shouldFetchIds
           ? !podcastIdsQuery.isLoading && !!podcastIdsQuery.data
           : true) && !!selectedCategory,
-    }
+    },
   );
 
   // Fetch likes/dislikes for non-English languages (or missing entries)
@@ -181,12 +181,12 @@ export const Podcasts = ({ debouncedSearchValue }) => {
 
       const { likes, dislikes } = await getLikesAndDislikesForContent(
         podcastIds,
-        "podcast"
+        "podcast",
       );
 
       setPodcastsLikes((prevLikes) => new Map([...prevLikes, ...likes]));
       setPodcastsDislikes(
-        (prevDislikes) => new Map([...prevDislikes, ...dislikes])
+        (prevDislikes) => new Map([...prevDislikes, ...dislikes]),
       );
     }
 
@@ -211,7 +211,7 @@ export const Podcasts = ({ debouncedSearchValue }) => {
     const newData = data.data || [];
     // Process new podcasts with async destructurePodcastData
     const processedNewData = await Promise.all(
-      newData.map((podcast) => destructurePodcastData(podcast))
+      newData.map((podcast) => destructurePodcastData(podcast)),
     );
     const currentPodcastsLength = podcasts.length + processedNewData.length;
     setPodcasts((prev) => [...prev, ...processedNewData]);
@@ -244,11 +244,11 @@ export const Podcasts = ({ debouncedSearchValue }) => {
     () =>
       cmsSvc.getPodcastCategoryIds(
         usersLanguage,
-        shouldFetchIds ? podcastIdsQuery.data : undefined
+        shouldFetchIds ? podcastIdsQuery.data : undefined,
       ),
     {
       enabled: shouldFetchIds ? !!podcastIdsQuery.data : true,
-    }
+    },
   );
 
   const categoriesToShow = useMemo(() => {
@@ -257,7 +257,7 @@ export const Podcasts = ({ debouncedSearchValue }) => {
     return categories.filter(
       (category) =>
         podcastCategoryIdsToShow.includes(category.id) ||
-        category.value === "all"
+        category.value === "all",
     );
   }, [categories, podcastCategoryIdsToShow]);
 
@@ -269,14 +269,14 @@ export const Podcasts = ({ debouncedSearchValue }) => {
         ? !podcastIdsQuery.isLoading && !!podcastIdsQuery.data
         : true,
       refetchOnWindowFocus: false,
-    }
+    },
   );
 
   const handleRedirect = (id, name) => {
     navigate(
       `/${localStorage.getItem(
-        "language"
-      )}/information-portal/podcast/${id}/${createArticleSlug(name)}`
+        "language",
+      )}/information-portal/podcast/${id}/${createArticleSlug(name)}`,
     );
   };
 
@@ -335,7 +335,7 @@ export const Podcasts = ({ debouncedSearchValue }) => {
           <Loading />
         ) : (
           hasNewestData && (
-            <CardMedia
+            <CardMediaVideo
               type={isNotDescktop ? "portrait" : "landscape"}
               size="lg"
               title={newestPodcast.title}
@@ -349,12 +349,12 @@ export const Podcasts = ({ debouncedSearchValue }) => {
               likes={podcastsLikes.get(newestPodcast.id) || 0}
               dislikes={podcastsDislikes.get(newestPodcast.id) || 0}
               t={t}
-              onClick={() =>
-                handleRedirect(newestPodcast.id, newestPodcast.title)
-              }
               handlePlay={() => {
                 handlePlay(newestPodcast.spotifyId, newestPodcast.title);
               }}
+              onClick={() =>
+                handleRedirect(newestPodcast.id, newestPodcast.title)
+              }
             />
           )
         )}
@@ -403,6 +403,7 @@ export const Podcasts = ({ debouncedSearchValue }) => {
             next={getMorePodcasts}
             hasMore={hasMore}
             loader={<Loading size="lg" />}
+            style={{ overflow: "visible" }}
           >
             <div className="podcasts__custom-grid">
               {podcasts.map((podcast, index) => {
@@ -415,7 +416,7 @@ export const Podcasts = ({ debouncedSearchValue }) => {
                     className="podcasts__card-wrapper"
                     style={{ gridColumn: `span ${span}` }}
                   >
-                    <CardMedia
+                    <CardMediaVideo
                       type={
                         span === 12 && !isNotDescktop ? "landscape" : "portrait"
                       }

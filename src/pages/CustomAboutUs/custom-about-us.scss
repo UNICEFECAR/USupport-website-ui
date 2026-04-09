@@ -2,49 +2,41 @@
 @import "@USupport-components-library/styles";
 
 .page__custom-about-us {
-  background-image: url("../AboutUs/assets/about-us-mobile.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position-y: $spacing_7_0;
   min-width: 40.7rem;
+  position: relative;
 
-  @media screen and (min-width: $screen-md) {
-    background-image: url("../AboutUs/assets/about-us-light.jpg");
-    &--dark {
-      background-image: url("../AboutUs/assets/about-us.png");
+  &--ps {
+    min-width: 35.7rem;
+  }
+
+  &__hero-image {
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    picture,
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
   }
 
-  &--ps {
-    background-image: url("../InformationPortal/assets/information-portal-ps-mobile.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position-y: $spacing_1_0;
-    min-width: 35.7rem;
+  &--ps &__hero-image {
+    margin-top: $spacing_1_0;
+    z-index: 0;
 
     @media screen and (min-width: $screen-md) {
-      background-position-y: $spacing_7_0;
-      background-image: url("../InformationPortal/assets/information-portal-ps.png");
+      margin-top: $spacing_7_0;
     }
+  }
 
-    &--dark {
-      background-image: url("../InformationPortal/assets/information-portal-ps-mobile-dark.png");
-      @media screen and (min-width: $screen-md) {
-        background-image: url("../InformationPortal/assets/information-portal-ps-dark.png");
-      }
-    }
+  & .custom-about-us {
+    position: relative;
+    z-index: 2;
   }
 
   & .contact-us {
     padding-top: 0;
     background-image: none;
-
-    &__heading {
-      color: $color_gray_66768d !important;
-    }
   }
-}
-
-.theme-highContrast .page__custom-about-us .contact-us__heading {
-  color: yellow !important;
 }

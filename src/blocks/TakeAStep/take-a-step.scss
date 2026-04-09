@@ -1,0 +1,79 @@
+@import "@USupport-components-library/styles";
+
+.take-a-step {
+  text-align: left;
+  padding-top: $spacing_3_2;
+  padding-bottom: $spacing_3_2;
+  z-index: 1;
+  overflow: visible;
+
+  @media screen and (min-width: $screen-md) {
+    padding-top: $spacing_4_8;
+  }
+
+  @media screen and (min-width: $screen-lg) {
+    padding-top: $spacing_6_4;
+    padding-bottom: $spacing_4_8;
+  }
+
+  &__main-grid {
+    justify-items: stretch;
+  }
+
+  &__heading-and-description {
+    @media screen and (min-width: $screen-md) {
+      padding-bottom: $spacing_4_8;
+    }
+
+    &__description {
+      margin-top: $spacing_2_4;
+
+      @media screen and (min-width: $screen-md) {
+        margin-top: $spacing_4_2;
+      }
+    }
+  }
+
+  &__mascot {
+    width: 38rem;
+    height: auto;
+    margin-bottom: -$spacing_0_7;
+
+    @media screen and (min-width: $screen-md) {
+      margin-top: -$spacing_14_6;
+      width: 36rem;
+    }
+
+    @media screen and (min-width: $screen-lg) {
+      width: 40rem;
+    }
+  }
+
+  &__mascot-cell {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .grid {
+    justify-items: stretch;
+  }
+
+  &__cards-grid {
+    gap: $spacing_3_2 $spacing_2_4;
+
+    @media screen and (min-width: $screen-lg) {
+      gap: $spacing_4_0 $spacing_3_2;
+    }
+  }
+
+  .card-number {
+    margin-top: $spacing_4_0;
+    width: 100%;
+
+    @media screen and (min-width: $screen-lg) {
+      margin-top: 0;
+    }
+  }
+}

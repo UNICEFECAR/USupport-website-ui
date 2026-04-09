@@ -165,125 +165,122 @@ export const ArticleView = ({ articleData, t, language }) => {
 
   return (
     <Block classes={`article-view ${IS_RTL ? "article-view--rtl" : ""}`}>
-      <Grid classes="article-view__main-grid">
-        <GridItem md={8} lg={12} classes="article-view__title-item">
-          <div className="article-view__title-row">
-            <h3>{articleData.title}</h3>
-          </div>
-        </GridItem>
+      <div className="article-view__content">
+        {/* Title */}
+        <h2 className="article-view__title">{articleData.title}</h2>
 
-        <GridItem md={8} lg={12} classes="article-view__category-item">
-          <div className="article-view__details-item__category">
-            <p className="small-text ">{articleData.categoryName}</p>
-          </div>
-        </GridItem>
-
-        <GridItem md={8} lg={12} classes="article-view__details-item">
-          {creator && <p className={"small-text"}>{t("by", { creator })}</p>}
-
+        {/* Author & meta row */}
+        <div className="article-view__meta">
+          {articleData.categoryName && (
+            <div className="article-view__category-badge">
+              <p className="small-text">{articleData.categoryName}</p>
+            </div>
+          )}
+          {creator && (
+            <p className="text article-view__creator">{t("by", { creator })}</p>
+          )}
+          <div className="article-view__meta-dot" />
           <Icon
-            color={theme === "dark" ? "#ffffff" : "#66768d"}
-            name={"time"}
+            name="time"
             size="sm"
+            color={theme === "dark" ? "#ffffff" : "#66768d"}
           />
-          <p className={"small-text"}>
-            {" "}
+          <p className="text">
             {articleData.readingTime} {t("min_read")}
           </p>
-          {SHOW_DOWNLOAD && (
-            <React.Fragment>
-              <div
-                onClick={handleExportToPdf}
-                className="article-view__details-item__download"
-              >
-                {isExportingPdf ? (
-                  <Loading padding="0px" size="sm" />
-                ) : (
-                  <Icon
-                    color={theme === "dark" ? "#ffffff" : "#66768d"}
-                    name="download"
-                    size="sm"
-                  />
-                )}
-              </div>
-              <div
-                className="article-view__details-item__download"
-                onClick={handleCopyLink}
-              >
-                <Icon
-                  color={theme === "dark" ? "#ffffff" : "#66768d"}
-                  name="share"
-                  size="sm"
-                />
-              </div>
-            </React.Fragment>
-          )}
-        </GridItem>
+        </div>
 
-        <GridItem xs={3} md={6} lg={8} classes="article-view__labels-item">
-          {articleData.labels.map((label, index) => {
-            return (
+        {/* Labels */}
+        {articleData.labels.length > 0 && (
+          <div className="article-view__labels">
+            {articleData.labels.map((label, index) => (
               <Label
-                classes={"article-view__label"}
+                classes="article-view__label"
                 text={label.name}
                 key={index}
               />
-            );
-          })}
-        </GridItem>
-
-        {SHOW_DOWNLOAD && (
-          <GridItem xs={1} md={2} lg={4} classes="article-view__like-item">
-            <Like
-              likes={articleData.likes || 0}
-              isLiked={articleData.contentRating?.isLikedByUser || false}
-              dislikes={articleData.dislikes || 0}
-              isDisliked={articleData.contentRating?.isDislikedByUser || false}
-            />
-          </GridItem>
+            ))}
+          </div>
         )}
 
+        {/* Separator */}
+        <div className="article-view__separator" />
+
+        {/* Action bar */}
+        <div className="article-view__actions">
+          <div className="article-view__actions-left">
+            {SHOW_DOWNLOAD && (
+              <Like
+                likes={articleData.likes || 0}
+                isLiked={articleData.contentRating?.isLikedByUser || false}
+                dislikes={articleData.dislikes || 0}
+                isDisliked={
+                  articleData.contentRating?.isDislikedByUser || false
+                }
+              />
+            )}
+          </div>
+          <div className="article-view__actions-right">
+            {SHOW_DOWNLOAD && (
+              <>
+                <div
+                  onClick={handleExportToPdf}
+                  className="article-view__action-btn"
+                >
+                  {isExportingPdf ? (
+                    <Loading padding="0px" size="sm" />
+                  ) : (
+                    <Icon
+                      color={theme === "dark" ? "#ffffff" : "#66768d"}
+                      name="download"
+                    />
+                  )}
+                </div>
+                <div
+                  className="article-view__action-btn"
+                  onClick={handleCopyLink}
+                >
+                  <Icon
+                    color={theme === "dark" ? "#ffffff" : "#66768d"}
+                    name="share"
+                  />
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+
+        {/* Separator */}
+        <div className="article-view__separator" />
+
+        {/* Hero image / PDF */}
         {!articleData.pdfUrl && (
-          <GridItem md={8} lg={12}>
-            <img
-              className="article-view__image-item"
-              src={
-                articleData.imageMedium ||
-                articleData.imageThumbnail ||
-                articleData.imageSmall ||
-                "https://picsum.photos/300/400"
-              }
-              alt=""
-            />
-          </GridItem>
+          <img
+            className="article-view__image"
+            src={
+              articleData.imageMedium ||
+              articleData.imageThumbnail ||
+              articleData.imageSmall ||
+              "https://picsum.photos/300/400"
+            }
+            alt={articleData.title}
+          />
         )}
 
-        {articleData.pdfUrl && (
-          <GridItem md={8} lg={12}>
-            <PDFViewer pdfUrl={articleData.pdfUrl} />
-          </GridItem>
-        )}
-
+        {articleData.pdfUrl && <PDFViewer pdfUrl={articleData.pdfUrl} />}
         {articleData.ttsUrl && (
-          <GridItem md={8} lg={12} classes="article-view__audio-item">
+          <div className="article-view__audio-item">
             <AudioPlayer src={articleData.ttsUrl} />
-          </GridItem>
+          </div>
         )}
-
-        <GridItem md={8} lg={12} classes="article-view__body-item">
-          <Markdown markDownText={articleData.bodyCK || articleData.body} className={"text"} />
-        </GridItem>
-      </Grid>
-
-      {/* <ShareModal
-        isOpen={isShareModalOpen}
-        onClose={handleCloseShareModal}
-        contentUrl={url}
-        title={articleData.title}
-        shareTitle={t("share_title")}
-        successText={t("share_success")}
-        copyText={t("copy_link")}
-      /> */}
+        {/* Article body */}
+        <div className="article-view__body">
+          <Markdown
+            markDownText={articleData.bodyCK || articleData.body}
+            className={"text"}
+          />
+        </div>
+      </div>
     </Block>
   );
 };
