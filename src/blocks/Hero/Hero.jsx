@@ -43,7 +43,7 @@ export const Hero = () => {
             <GridItem md={8} lg={12} classes="hero__text-item">
               <p className="paragraph">{t("paragraph_1")}</p>
               <br />
-              <p className="paragraph hero__heading-item__purple-text">
+              <p className="hero__heading-item__purple-text">
                 {t("paragraph_1_1")}
               </p>
             </GridItem>
