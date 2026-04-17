@@ -96,8 +96,15 @@
     }
 
     &__purple-text {
-      // @include themify($themes, "color", "color_6a4ffb_8c90eb");
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: +0.02rem;
+      margin-top: 1.2rem;
     }
+  }
+
+  p.hero__heading-item__purple-text {
+    color: #dc552d;
   }
 
   &__text-item {
