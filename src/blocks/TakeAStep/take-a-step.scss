@@ -39,11 +39,6 @@
     height: auto;
     margin-bottom: -$spacing_0_7;
 
-    @media screen and (min-width: $screen-md) {
-      margin-top: -$spacing_14_6;
-      width: 36rem;
-    }
-
     @media screen and (min-width: $screen-lg) {
       width: 40rem;
     }
