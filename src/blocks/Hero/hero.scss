@@ -1,6 +1,12 @@
 @import "@USupport-components-library/styles";
 
 .hero {
+  .theme-light & {
+    p.hero__heading-item__purple-text {
+      color: #4a5a7a;
+    }
+  }
+
   .no-webp & {
     background-image: url("./assets/BackgroundMobile.png");
   }
@@ -101,10 +107,6 @@
       letter-spacing: +0.02rem;
       margin-top: 1.2rem;
     }
-  }
-
-  p.hero__heading-item__purple-text {
-    color: #dc552d;
   }
 
   &__text-item {
