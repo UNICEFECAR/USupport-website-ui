@@ -217,6 +217,8 @@ const LanguageLayout = () => {
       <Route path="" element={<Landing />} />
 
       <Route path="how-it-works" element={<HowItWorks />} />
+      <Route path="reports" element={<Reports />} />
+
       {/* <Route path="/about-us" element={<AboutUs />} /> */}
       <Route path="about-us" element={<CustomAboutUs />} />
       <Route path="provider-overview" element={<ProviderOverview />} />
@@ -293,7 +295,6 @@ const Root = () => {
     <Router basename="/">
       <Routes>
         <Route path="/sitemap" element={<Sitemap />} />
-        <Route path="/reports" element={<Reports />} />
         <Route path="/" element={<Navigate to={`/${language}`} replace />} />
         <Route path=":language/*" element={<LanguageLayout />} />
         <Route path="*" element={<NotFound />} />
