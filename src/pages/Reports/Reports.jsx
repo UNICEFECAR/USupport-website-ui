@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import { useParams, Navigate } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import { Navigate } from "react-router-dom";
 
 import { PasswordModal } from "@USupport-components-library/src";
 import { userSvc } from "@USupport-components-library/services";
@@ -20,6 +20,7 @@ import "./reports.scss";
 export const Reports = () => {
   const { t } = useTranslation("blocks", { keyPrefix: "page" });
 
+  const { language = "en" } = useParams();
   const queryClient = useQueryClient();
   const hasPassedValidation = queryClient.getQueryData(["hasPassedValidation"]);
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(
@@ -46,9 +47,9 @@ export const Reports = () => {
     validatePlatformPasswordMutation.mutate(value);
   };
 
-  // Add a check if "poland" is in the url, if its not return to home
-  if (!window.location.pathname.includes("poland")) {
-    return <Navigate to="" />;
+  const isPolandDomain = window.location.hostname.includes("poland");
+  if (!isPolandDomain) {
+    return <Navigate to={`/${language}`} />;
   }
 
   if (isPasswordModalOpen)
