@@ -293,7 +293,7 @@ const Root = () => {
     <Router basename="/">
       <Routes>
         <Route path="/sitemap" element={<Sitemap />} />
-        <Route path="reports" element={<Reports />} />
+        <Route path="/reports" element={<Reports />} />
         <Route path="/" element={<Navigate to={`/${language}`} replace />} />
         <Route path=":language/*" element={<LanguageLayout />} />
         <Route path="*" element={<NotFound />} />
