@@ -10,6 +10,8 @@ import { useError } from "#hooks";
 
 import "./reports.scss";
 
+const reportsPageUrl = new URL("../../static/index.html", import.meta.url).href;
+
 /**
  * Reports
  *
@@ -70,7 +72,7 @@ export const Reports = () => {
       <iframe
         className="reports-page__iframe"
         title="Reports"
-        src={`${import.meta.env.BASE_URL}static/index.html`}
+        src={reportsPageUrl}
       />
     </div>
   );
