@@ -10,7 +10,14 @@ import { useError } from "#hooks";
 
 import "./reports.scss";
 
-const reportsPageUrl = new URL("../../static/index.html", import.meta.url).href;
+import reportsHtml from "../../static/index.html?raw";
+
+const reportsStylesUrl = new URL("../../static/styles.css", import.meta.url)
+  .href;
+const reportsScriptUrl = new URL("../../static/app.js", import.meta.url).href;
+const reportsSrcDoc = reportsHtml
+  .replace("./styles.css", reportsStylesUrl)
+  .replace("./app.js", reportsScriptUrl);
 
 /**
  * Reports
@@ -72,7 +79,7 @@ export const Reports = () => {
       <iframe
         className="reports-page__iframe"
         title="Reports"
-        src={reportsPageUrl}
+        srcDoc={reportsSrcDoc}
       />
     </div>
   );
