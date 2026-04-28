@@ -75,7 +75,7 @@ export const CustomAboutUs = () => {
           liquidGlass
         >
           {data ? (
-            <Markdown markDownText={data.content || data.content_ck}></Markdown>
+            <Markdown markDownText={data.content_ck || data.content}></Markdown>
           ) : (
             <p>{t("no_data_found")}</p>
           )}
