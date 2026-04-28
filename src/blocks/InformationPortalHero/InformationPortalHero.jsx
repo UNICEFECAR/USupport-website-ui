@@ -14,8 +14,8 @@ import informationPortalMobile from "../../pages/InformationPortal/assets/inform
 import informationPortalPsMobile from "../../pages/InformationPortal/assets/information-portal-ps-mobile.png";
 import informationPortalPsMobileDark from "../../pages/InformationPortal/assets/information-portal-ps-mobile-dark.png";
 
-import myQaMobile from "../../pages/InformationPortal/assets/my-qa-mobile.png";
-import myQaDesktop from "../../pages/InformationPortal/assets/my-qa.png";
+import myQaMobile from "../../pages/InformationPortal/assets/my-qa-mobile.jpg";
+import myQaDesktop from "../../pages/InformationPortal/assets/my-qa.jpg";
 
 import "./information-portal-hero.scss";
 
@@ -74,9 +74,7 @@ export const InformationPortalHero = ({
           width < 768
             ? "information-portal-hero__image--mobile"
             : "information-portal-hero__image--desktop"
-        } ${
-          theme !== "dark" ? "information-portal-hero__image--visible" : ""
-        }`}
+        } ${theme !== "dark" ? "information-portal-hero__image--visible" : ""}`}
       />
       {showSearch && (
         <InputSearch
@@ -99,4 +97,3 @@ export const InformationPortalHero = ({
     </div>
   );
 };
-
