@@ -48,6 +48,7 @@ export const ArticleView = ({ articleData, t, language }) => {
   const [isExportingPdf, setIsExportingPdf] = useState(false);
   const [hasUpdatedUrl, setHasUpdatedUrl] = useState(false);
   const [isShared, setIsShare] = useState(false);
+  const [hasTrackedAudioPlay, setHasTrackedAudioPlay] = useState(false);
   const addContentEngagementMutation = useAddContentEngagement();
 
   // Track view when article is loaded using useQuery
@@ -75,6 +76,10 @@ export const ArticleView = ({ articleData, t, language }) => {
   useEffect(() => {
     setHasUpdatedUrl(false);
   }, [language]);
+
+  useEffect(() => {
+    setHasTrackedAudioPlay(false);
+  }, [articleData?.id]);
 
   useEffect(() => {
     if (articleData?.title && !hasUpdatedUrl) {
@@ -159,6 +164,17 @@ export const ArticleView = ({ articleData, t, language }) => {
       contentType: "article",
       action: "share",
     });
+  };
+
+  const handleAudioPlay = () => {
+    if (hasTrackedAudioPlay) return;
+
+    addContentEngagementMutation({
+      contentId: articleData.id,
+      contentType: "article",
+      action: "listen",
+    });
+    setHasTrackedAudioPlay(true);
   };
 
   const SHOW_DOWNLOAD = !articleData.pdfUrl;
@@ -270,7 +286,7 @@ export const ArticleView = ({ articleData, t, language }) => {
         {articleData.pdfUrl && <PDFViewer pdfUrl={articleData.pdfUrl} />}
         {articleData.ttsUrl && (
           <div className="article-view__audio-item">
-            <AudioPlayer src={articleData.ttsUrl} />
+            <AudioPlayer src={articleData.ttsUrl} onPlay={handleAudioPlay} />
           </div>
         )}
         {/* Article body */}
