@@ -1,4 +1,5 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import { providerSvc } from "@USupport-components-library/services";
 
 /**
@@ -11,6 +12,9 @@ export default function useGetProvidersData({
   enabled = true,
   isInGlobalCountry,
 }) {
+  const { i18n } = useTranslation();
+  const language = i18n.language;
+
   const fetchProvidersData = async ({ pageParam = 1 }) => {
     let response;
     if (!isInGlobalCountry) {
@@ -53,7 +57,7 @@ export default function useGetProvidersData({
   };
 
   const providersDataQuery = useInfiniteQuery(
-    ["providers-data", isInGlobalCountry],
+    ["providers-data", isInGlobalCountry, language],
     fetchProvidersData,
     {
       enabled,
@@ -64,7 +68,7 @@ export default function useGetProvidersData({
         return pages.length + 1;
       },
       onError: (err) => console.log(err, "err"),
-    },
+    }
   );
 
   return providersDataQuery;

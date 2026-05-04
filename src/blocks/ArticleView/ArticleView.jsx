@@ -286,7 +286,11 @@ export const ArticleView = ({ articleData, t, language }) => {
         {articleData.pdfUrl && <PDFViewer pdfUrl={articleData.pdfUrl} />}
         {articleData.ttsUrl && (
           <div className="article-view__audio-item">
-            <AudioPlayer src={articleData.ttsUrl} onPlay={handleAudioPlay} />
+            <AudioPlayer
+              src={articleData.ttsUrl}
+              onPlay={handleAudioPlay}
+              t={t}
+            />
           </div>
         )}
         {/* Article body */}
