@@ -185,14 +185,14 @@
       "share_title": "مشاركة هذا المحتوى",
       "share_success": "تم نسخ الرابط إلى الحافظة!",
       "copy_link": "نسخ الرابط",
-      "audio_player_title_listen_to_article": "Listen to this article",
-      "audio_player_subtitle_narrated_version": "Prefer audio? Play the narrated version.",
-      "audio_player_badge_listen_time": "{{minutes}} min listen",
-      "audio_player_play_label": "Play audio",
-      "audio_player_pause_label": "Pause audio",
-      "audio_player_seek_back_label": "Seek back {{seconds}} seconds",
-      "audio_player_seek_forward_label": "Seek forward {{seconds}} seconds",
-      "audio_player_helper_read_along": "You can read along while listening or just relax and enjoy."
+      "audio_player_title_listen_to_article": "استمع إلى هذا المقال",
+      "audio_player_subtitle_narrated_version": "تفضّل الصوت؟ شغّل النسخة المسموعة.",
+      "audio_player_badge_listen_time": "{{minutes}} دقيقة استماع",
+      "audio_player_play_label": "تشغيل",
+      "audio_player_pause_label": "إيقاف مؤقت",
+      "audio_player_seek_back_label": "إرجاع {{seconds}} ثانية",
+      "audio_player_seek_forward_label": "تقديم {{seconds}} ثانية",
+      "audio_player_helper_read_along": "يمكنك القراءة أثناء الاستماع أو الاسترخاء والاستمتاع بالصوت فقط."
     },
 
     "video-information-page": {

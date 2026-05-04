@@ -181,14 +181,14 @@
       "share_title": "Bu içeriği paylaş",
       "share_success": "Bağlantı panoya kopyalandı!",
       "copy_link": "Bağlantıyı kopyala",
-      "audio_player_title_listen_to_article": "Listen to this article",
-      "audio_player_subtitle_narrated_version": "Prefer audio? Play the narrated version.",
-      "audio_player_badge_listen_time": "{{minutes}} min listen",
-      "audio_player_play_label": "Play audio",
-      "audio_player_pause_label": "Pause audio",
-      "audio_player_seek_back_label": "Seek back {{seconds}} seconds",
-      "audio_player_seek_forward_label": "Seek forward {{seconds}} seconds",
-      "audio_player_helper_read_along": "You can read along while listening or just relax and enjoy."
+      "audio_player_title_listen_to_article": "Bu makaleyi dinleyin",
+      "audio_player_subtitle_narrated_version": "Sesi tercih ediyor musunuz? Anlatılmış sürümü oynatın.",
+      "audio_player_badge_listen_time": "{{minutes}} dk dinleme",
+      "audio_player_play_label": "Oynat",
+      "audio_player_pause_label": "Duraklat",
+      "audio_player_seek_back_label": "{{seconds}} saniye geri sar",
+      "audio_player_seek_forward_label": "{{seconds}} saniye ileri sar",
+      "audio_player_helper_read_along": "Dinlerken okuyabilir veya sadece dinleyip rahatlayabilirsiniz."
     },
     "video-information-page": {
       "more_videos": "Daha Fazla Video",
