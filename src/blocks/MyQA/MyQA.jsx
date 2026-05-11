@@ -256,7 +256,7 @@ export const MyQA = ({
         </div>
       </div>
       <Grid>
-        <GridItem xs={4} md={8} lg={12}>
+        <GridItem xs={4} md={8} lg={12} classes="my-qa__controls-item">
           <Grid classes="my-qa__tabs-grid">
             <GridItem
               md={8}
@@ -317,7 +317,7 @@ export const MyQA = ({
             </GridItem>
           </Grid>
         </GridItem>
-        <GridItem xs={4} md={8} lg={12}>
+        <GridItem xs={4} md={8} lg={12} classes="my-qa__answers-item">
           {questions?.length > 0 ? (
             <Grid classes="my-qa__answers-container">{renderQuestions()}</Grid>
           ) : isQuestionsDataLoading ? (

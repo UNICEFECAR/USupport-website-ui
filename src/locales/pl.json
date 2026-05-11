@@ -570,6 +570,15 @@
     "sos-center-page": {
       "heading": "Centrum SOS",
       "subheading": "Uzyskaj szybki dostęp do pomocy w sytuacjach nagłych i lokalnych służb ratunkowych, gdy Ty lub ktoś w Twoim otoczeniu jest w bezpośrednim niebezpieczeństwie."
+    },
+    "privacy-policy-page": {
+      "heading": "Polityką prywatności"
+    },
+    "cookie-policy-page": {
+      "heading": "Polityka plików cookies"
+    },
+    "terms-of-use-page": {
+      "heading": "Regulamin"
     }
   },
   "modals": {

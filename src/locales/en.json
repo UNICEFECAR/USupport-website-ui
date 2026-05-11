@@ -570,6 +570,15 @@
     "sos-center-page": {
       "heading": "SOS center",
       "subheading": "Access urgent help and local emergency services when you or someone else is in immediate danger."
+    },
+    "privacy-policy-page": {
+      "heading": "Privacy Policy"
+    },
+    "cookie-policy-page": {
+      "heading": "Cookie Policy"
+    },
+    "terms-of-use-page": {
+      "heading": "Terms of Use"
     }
   },
   "modals": {

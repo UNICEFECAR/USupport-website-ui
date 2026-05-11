@@ -570,6 +570,15 @@
     "sos-center-page": {
       "heading": "Centrul SOS",
       "subheading": "Accesați rapid ajutor de urgență și servicii locale atunci când vă aflați dumneavoastră sau altcineva în pericol imediat."
+    },
+    "privacy-policy-page": {
+      "heading": "Politica de confidențialitate"
+    },
+    "cookie-policy-page": {
+      "heading": "Politica privind cookie-urile"
+    },
+    "terms-of-use-page": {
+      "heading": "Condiții de utilizare"
     }
   },
   "modals": {

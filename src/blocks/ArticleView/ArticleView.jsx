@@ -1,6 +1,13 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, {
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+} from "react";
 import { useParams } from "react-router-dom";
 import propTypes from "prop-types";
+import classNames from "classnames";
 import { toast } from "react-toastify";
 import { useQuery } from "@tanstack/react-query";
 
@@ -18,13 +25,14 @@ import {
 
 import { PDFViewer } from "#blocks/PDFViewer/PDFViewer";
 
-import { useAddContentEngagement } from "#hooks";
+import { useAddContentEngagement, useEventListener } from "#hooks";
 
 import { userSvc, cmsSvc } from "@USupport-components-library/services";
 import {
   ThemeContext,
   createArticleSlug,
   constructShareUrl,
+  getBrandingLogoUrl,
 } from "@USupport-components-library/utils";
 
 import "./article-view.scss";
@@ -43,6 +51,35 @@ export const ArticleView = ({ articleData, t, language }) => {
 
   const creator = articleData.creator ? articleData.creator : null;
   const { theme } = useContext(ThemeContext);
+
+  const readCountryFromStorage = useCallback(
+    () =>
+      typeof localStorage !== "undefined"
+        ? localStorage.getItem("country") || "KZ"
+        : "KZ",
+    [],
+  );
+
+  const [syncedCountry, setSyncedCountry] = useState(readCountryFromStorage);
+
+  const onCountryChanged = useCallback(() => {
+    setSyncedCountry(readCountryFromStorage());
+  }, [readCountryFromStorage]);
+
+  useEventListener("countryChanged", onCountryChanged);
+
+  const heroImageSrc =
+    articleData.imageMedium ||
+    articleData.imageThumbnail ||
+    articleData.imageSmall ||
+    null;
+
+  const hasHeroImage = Boolean(heroImageSrc);
+
+  const heroBrandingFallbackUrl = useMemo(
+    () => getBrandingLogoUrl({ theme, countryCode: syncedCountry }),
+    [theme, syncedCountry],
+  );
 
   // const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isExportingPdf, setIsExportingPdf] = useState(false);
@@ -271,16 +308,19 @@ export const ArticleView = ({ articleData, t, language }) => {
 
         {/* Hero image / PDF */}
         {!articleData.pdfUrl && (
-          <img
-            className="article-view__image"
-            src={
-              articleData.imageMedium ||
-              articleData.imageThumbnail ||
-              articleData.imageSmall ||
-              "https://picsum.photos/300/400"
-            }
-            alt={articleData.title}
-          />
+          <div
+            className={classNames("article-view__hero-slot", {
+              "article-view__hero-slot--branding-fallback": !hasHeroImage,
+            })}
+          >
+            <img
+              className={classNames("article-view__image", {
+                "article-view__image--branding-fallback": !hasHeroImage,
+              })}
+              src={hasHeroImage ? heroImageSrc : heroBrandingFallbackUrl}
+              alt={hasHeroImage ? articleData.title : "Logo"}
+            />
+          </div>
         )}
 
         {articleData.pdfUrl && <PDFViewer pdfUrl={articleData.pdfUrl} />}
