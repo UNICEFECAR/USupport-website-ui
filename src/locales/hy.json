@@ -569,6 +569,15 @@
     "sos-center-page": {
       "heading": "SOS կենտրոն",
       "subheading": "Ստացեք շտապ օգնություն և տեղական արտակարգ ծառայություններ, երբ դուք կամ որևէ մեկը գտնվում է անմիջական վտանգի մեջ։"
+    },
+    "privacy-policy-page": {
+      "heading": "Գաղտնիության քաղաքականություն"
+    },
+    "cookie-policy-page": {
+      "heading": "Cookie-ների քաղաքականություն"
+    },
+    "terms-of-use-page": {
+      "heading": "Օգտվելու պայմանները"
     }
   },
   "modals": {

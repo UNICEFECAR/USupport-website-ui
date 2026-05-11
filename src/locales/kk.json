@@ -570,6 +570,15 @@
     "sos-center-page": {
       "heading": "SOS-орталық",
       "subheading": "Егер сіз немесе қасыңыздағы адам дереу қауіп-қатерде болса, жедел көмек пен жергілікті қызметтерге жылдам қол жеткізіңіз."
+    },
+    "privacy-policy-page": {
+      "heading": "Құпиялық саясаты"
+    },
+    "cookie-policy-page": {
+      "heading": "Cookie саясаты"
+    },
+    "terms-of-use-page": {
+      "heading": "Пайдалану шарттары"
     }
   },
   "modals": {

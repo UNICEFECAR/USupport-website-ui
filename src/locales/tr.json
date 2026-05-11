@@ -203,6 +203,15 @@
       "view_more": "Daha fazlasını görüntüle",
       "not_found": "Podcast bulunamadı",
       "share_success": "Podcast bağlantısı panoya kopyalandı"
+    },
+    "privacy-policy-page": {
+      "heading": "Gizlilik Politikası"
+    },
+    "cookie-policy-page": {
+      "heading": "Çerez Politikası"
+    },
+    "terms-of-use-page": {
+      "heading": "Kullanım Şartları"
     }
   },
   "meta": {

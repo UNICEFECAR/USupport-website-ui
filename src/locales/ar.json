@@ -208,6 +208,15 @@
       "view_more": "عرض المزيد",
       "not_found": "لم يتم العثور على البودكаст",
       "share_success": "تم نسخ الرابط إلى الحافظة!"
+    },
+    "privacy-policy-page": {
+      "heading": "سياسة الخصوصية"
+    },
+    "cookie-policy-page": {
+      "heading": "سياسة ملفات تعريف الارتباط"
+    },
+    "terms-of-use-page": {
+      "heading": "شروط الاستخدام"
     }
   },
   "meta": {

@@ -570,6 +570,15 @@
     "sos-center-page": {
       "heading": "Центр SOS",
       "subheading": "Швидкий доступ до екстреної допомоги та місцевих служб, якщо ти або хтось поруч перебуває в безпосередній небезпеці."
+    },
+    "privacy-policy-page": {
+      "heading": "Політика конфіденційності"
+    },
+    "cookie-policy-page": {
+      "heading": "Політика щодо файлів cookie"
+    },
+    "terms-of-use-page": {
+      "heading": "Умови використання"
     }
   },
   "modals": {
