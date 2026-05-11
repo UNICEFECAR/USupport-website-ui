@@ -570,6 +570,15 @@
     "sos-center-page": {
       "heading": "Κέντρο SOS",
       "subheading": "Αποκτήστε επείγουσα βοήθεια και τοπικές υπηρεσίες έκτακτης ανάγκης όταν εσείς ή κάποιος άλλος βρίσκεται σε άμεσο κίνδυνο."
+    },
+    "privacy-policy-page": {
+      "heading": "Πολιτική απορρήτου"
+    },
+    "cookie-policy-page": {
+      "heading": "Πολιτική cookies"
+    },
+    "terms-of-use-page": {
+      "heading": "Όροι χρήσης"
     }
   },
   "modals": {

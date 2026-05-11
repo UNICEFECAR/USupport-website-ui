@@ -82,12 +82,8 @@ export const CookiePolicy = () => {
   );
   return (
     <Block classes={`cookie-policy ${IS_RTL ? "cookie-policy--rtl" : ""}`}>
-      {" "}
       <Grid>
-        <GridItem xs={4} md={8} lg={12} classes="privacy-policy__heading-item">
-          <h2>{t("heading")}</h2>
-        </GridItem>
-        <GridItem xs={4} md={8} lg={12} classes="privacy-policy__text-item">
+        <GridItem md={8} lg={12}>
           {cookiePolicyData && (
             <Markdown markDownText={cookiePolicyData}></Markdown>
           )}
@@ -95,7 +91,7 @@ export const CookiePolicy = () => {
           {!cookiePolicyData &&
             !cookiePolicyLoading &&
             isCookiePolicyFetched && (
-              <h3 className="privacy-policy__no-results">{t("no_results")}</h3>
+              <h3 className="cookie-policy__no-results">{t("no_results")}</h3>
             )}
         </GridItem>
       </Grid>

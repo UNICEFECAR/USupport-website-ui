@@ -570,6 +570,15 @@
     "sos-center-page": {
       "heading": "Экстренная помощь",
       "subheading": "Быстрый доступ к экстренной помощи и местным службам, если вы или кто-то рядом в непосредственной опасности."
+    },
+    "privacy-policy-page": {
+      "heading": "Политика конфиденциальности"
+    },
+    "cookie-policy-page": {
+      "heading": "Политика Cookie"
+    },
+    "terms-of-use-page": {
+      "heading": "Условия использования"
     }
   },
   "modals": {
