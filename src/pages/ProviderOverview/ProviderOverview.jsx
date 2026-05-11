@@ -31,6 +31,7 @@ export const ProviderOverview = () => {
       heading={t("heading")}
       handleGoBack={handleGoBack}
       showGoBackArrow
+      showBackground
     >
       <ProviderOverviewBlock providerId={providerId} />
       {width < 768 && <RadialCircle />}

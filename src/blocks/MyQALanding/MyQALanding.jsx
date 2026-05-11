@@ -6,7 +6,7 @@ import {
   Grid,
   GridItem,
   Box,
-  Button,
+  NewButton,
 } from "@USupport-components-library/src";
 import {
   useWindowDimensions,
@@ -63,13 +63,15 @@ export const MyQALanding = () => {
     <Block classes="my-qa-landing">
       <Grid>
         <GridItem md={8} lg={12}>
-          <h2 className="my-qa-landing__heading">{t("heading")}</h2>
-          <p className="my-qa-landing__subheading-text">{t("subheading")}</p>
+          <h1 className="">{t("heading")}</h1>
         </GridItem>
         <GridItem md={8} lg={12}>
           <Grid>
             <GridItem md={4} lg={5}>
               <div className="my-qa-landing__button-container">
+                <p className="my-qa-landing__subheading-text">
+                  {t("subheading")}
+                </p>
                 <Box
                   classes="my-qa-landing__ask-anonymous-card"
                   boxShadow={theme === "dark" ? 2 : 1}
@@ -77,9 +79,10 @@ export const MyQALanding = () => {
                   <h4>{t("ask_anonymous_card_heading")}</h4>
                   <p className="text">{t("ask_anonymous_card_text")}</p>
                 </Box>
-                <Button
+                <NewButton
                   label={t("button_label")}
                   size="lg"
+                  isFullWidth={true}
                   classes="my-qa-landing__button"
                   onClick={() => {
                     window.location.href = `/client/${localStorage.getItem(
@@ -87,6 +90,7 @@ export const MyQALanding = () => {
                     )}/my-qa`;
                   }}
                 />
+                <p className="text my-qa-landing__note">{t("note")}</p>
               </div>
             </GridItem>
             <GridItem md={4} lg={7}>

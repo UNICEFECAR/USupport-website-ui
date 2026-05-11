@@ -12,7 +12,15 @@
     "articles": {
       "heading": "Bilgi Portalı",
       "no_results": "Sonuç bulunamadı",
+      "no_results_heading": "“{{query}}” için bir sonuç bulunamadı",
+      "no_results_line1": "Aramanızı değiştirmeyi veya aşağıdaki konulara göz atmayı deneyin.",
+      "no_results_line2": "Daha fazla sonuç görmek için filtreleri de sıfırlayabilirsiniz.",
+      "reset_filters": "Filtreleri sıfırla",
+      "browse_all_articles": "Tüm makalelere göz at",
+      "no_results_image_alt": "Görsel: arama sonucu yok",
+      "no_results_hint": "Farklı bir arama deneyin, kategori veya yaş grubunu değiştirin ya da aramayı temizleyerek tüm içeriği görün.",
       "could_not_load_content": "Belirtilen ülke ve dil için şu anda sonuç bulunmamaktadır.",
+      "could_not_load_hint": "Menüden ülkeyi veya dili değiştirebilir veya daha sonra tekrar bakabilirsiniz; yeni kaynaklar sık sık eklenir.",
       "all": "Tümü",
       "read_more_button": "Daha fazla oku",
       "min_read": "dakika okuma",
@@ -172,7 +180,15 @@
       "by": "{{creator}} tarafından",
       "share_title": "Bu içeriği paylaş",
       "share_success": "Bağlantı panoya kopyalandı!",
-      "copy_link": "Bağlantıyı kopyala"
+      "copy_link": "Bağlantıyı kopyala",
+      "audio_player_title_listen_to_article": "Bu makaleyi dinleyin",
+      "audio_player_subtitle_narrated_version": "Sesi tercih ediyor musunuz? Anlatılmış sürümü oynatın.",
+      "audio_player_badge_listen_time": "{{minutes}} dk dinleme",
+      "audio_player_play_label": "Oynat",
+      "audio_player_pause_label": "Duraklat",
+      "audio_player_seek_back_label": "{{seconds}} saniye geri sar",
+      "audio_player_seek_forward_label": "{{seconds}} saniye ileri sar",
+      "audio_player_helper_read_along": "Dinlerken okuyabilir veya sadece dinleyip rahatlayabilirsiniz."
     },
     "video-information-page": {
       "more_videos": "Daha Fazla Video",

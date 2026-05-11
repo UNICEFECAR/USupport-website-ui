@@ -12,7 +12,15 @@
     "articles": {
       "heading": "بوابة المعلومات",
       "no_results": "لم يتم العثور على نتائج",
+      "no_results_heading": "لم نعثر على شيء لـ \"{{query}}\"",
+      "no_results_line1": "جرّب تعديل البحث أو استكشف المواضيع أدناه.",
+      "no_results_line2": "يمكنك أيضاً إعادة ضبط عوامل التصفية لرؤية المزيد من النتائج.",
+      "reset_filters": "إعادة ضبط عوامل التصفية",
+      "browse_all_articles": "تصفح جميع المقالات",
+      "no_results_image_alt": "رسم توضيحي: لا توجد نتائج للبحث",
+      "no_results_hint": "جرّب كلمات بحث مختلفة، أو غيّر الفئة أو الفئة العمرية، أو امسح البحث لعرض كل المحتوى المتاح.",
       "could_not_load_content": "لا توجد نتائج للبلد واللغة المحددين حاليًا.",
+      "could_not_load_hint": "يمكنك تغيير البلد أو اللغة من القائمة، أو العودة لاحقًا حيث تُضاف موارد جديدة باستمرار.",
       "all": "الكل",
       "read_more_button": "انقر لقراءة المزيد",
       "min_read": "دقيقة قراءة",
@@ -176,7 +184,15 @@
       "by": "بواسطة {{creator}}",
       "share_title": "مشاركة هذا المحتوى",
       "share_success": "تم نسخ الرابط إلى الحافظة!",
-      "copy_link": "نسخ الرابط"
+      "copy_link": "نسخ الرابط",
+      "audio_player_title_listen_to_article": "استمع إلى هذا المقال",
+      "audio_player_subtitle_narrated_version": "تفضّل الصوت؟ شغّل النسخة المسموعة.",
+      "audio_player_badge_listen_time": "{{minutes}} دقيقة استماع",
+      "audio_player_play_label": "تشغيل",
+      "audio_player_pause_label": "إيقاف مؤقت",
+      "audio_player_seek_back_label": "إرجاع {{seconds}} ثانية",
+      "audio_player_seek_forward_label": "تقديم {{seconds}} ثانية",
+      "audio_player_helper_read_along": "يمكنك القراءة أثناء الاستماع أو الاسترخاء والاستمتاع بالصوت فقط."
     },
 
     "video-information-page": {

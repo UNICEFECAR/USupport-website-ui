@@ -30,7 +30,6 @@
 
     @media screen and (min-width: $screen-md) {
       width: auto;
-      margin: auto;
     }
 
     @media screen and (min-width: $screen-lg) {
@@ -39,7 +38,7 @@
 
     &__container {
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       width: 100%;
     }
   }
@@ -99,20 +98,7 @@
 
   @media screen and (min-width: $screen-lg) {
     &__card-wrapper {
-      &:nth-child(6n + 1),
-      &:nth-child(6n + 2) {
-        grid-column: span 6;
-      }
-
-      &:nth-child(6n + 3),
-      &:nth-child(6n + 4),
-      &:nth-child(6n + 5) {
-        grid-column: span 4;
-      }
-
-      &:nth-child(6n + 6) {
-        grid-column: span 12;
-      }
+      grid-column: span 4;
     }
   }
 
