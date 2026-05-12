@@ -77,10 +77,7 @@ export const PrivacyPolicy = () => {
   return (
     <Block classes={`privacy-policy ${IS_RTL ? "privacy-policy--rtl" : ""}`}>
       <Grid>
-        <GridItem xs={4} md={8} lg={12} classes="privacy-policy__heading-item">
-          <h2>{t("heading")}</h2>
-        </GridItem>
-        <GridItem xs={4} md={8} lg={12} classes="privacy-policy__text-item">
+        <GridItem md={8} lg={12}>
           {isLoading ? (
             <Loading />
           ) : (

@@ -1,15 +1,17 @@
 @import "@USupport-components-library/styles";
 
 .information-portal {
-  padding-top: $spacing_8_0;
-  padding-bottom: $spacing_2_4;
+  padding-top: $spacing_3_2;
+  padding-bottom: $spacing_2_6;
+  // background-image: url("./assets/Background.png");
+  // background-size: contain;
+  // background-repeat: no-repeat;
+  // background-position-x: left;
+  // background-position-y: top;
+  @include themify($themes, "background-color", "color_green_transparent_1");
 
-  & h2 {
-    @include themify($themes, "color", "color_66768d_c1d7e0");
-  }
-
-  & h4 {
-    @include themify($themes, "color", "color_3d527b_20809e");
+  & h1 {
+    text-align: left;
   }
 
   &__paragraphs {
@@ -18,5 +20,22 @@
 
   &__main-grid {
     row-gap: $spacing_4_0;
+  }
+
+  @media screen and (min-width: $screen-md) {
+    padding-top: $spacing_3_6;
+    padding-bottom: $spacing_4_8;
+    background-position-y: bottom;
+  }
+
+  @media screen and (min-width: $screen-lg) {
+    padding-top: $spacing_4_8;
+    padding-bottom: $spacing_7_0;
+  }
+
+  &__button-item {
+    &__button {
+      margin: 0 auto;
+    }
   }
 }

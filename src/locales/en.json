@@ -14,9 +14,17 @@
     "articles": {
       "heading": "Information portal",
       "no_results": "No Results Found",
+      "no_results_heading": "We couldn't find anything for \"{{query}}\"",
+      "no_results_line1": "Try adjusting your search or explore topics below.",
+      "no_results_line2": "You can also reset your filters to see more results.",
+      "reset_filters": "Reset filters",
+      "browse_all_articles": "Browse all articles",
+      "no_results_image_alt": "Illustration: people searching, no results",
+      "no_results_hint": "Try a different search term, switch category or age group, or clear the search to see everything available.",
       "could_not_load_content": "There are no results for the current selected country and language.",
+      "could_not_load_hint": "You can change country or language from the menu, or check back later as new resources are added often.",
       "all": "All",
-      "read_more_button": "Click to read more",
+      "read_more_button": "Read more",
       "min_read": "min read",
       "by": "by {{creator}}",
       "number_of_more_options": "{{count}} more",
@@ -62,6 +70,7 @@
     },
     "download-app": {
       "heading": "Download the app",
+      "text": "Get support anytime, anywhere - fast, secure and easy to use.",
       "paragraph": "Now available for iOS and Android",
       "download_text": "Download from"
     },
@@ -90,8 +99,10 @@
     },
     "how-it-works": {
       "heading": "Easy and Quick",
+      "heading_hero": "Easy and Quick.<0></0> Fully <1>anonymously</1>!",
       "paragraph_summary": "In just a few clicks you can get the help you need. Fully anonymously.",
       "paragraph_normal": "In just a few clicks you can get the help you need. Fully anonymously.",
+      "paragraph_hero": "In just a few clicks you can get the help you need even when you don’t feel like creating a complete profile",
       "card_1": "Choose your country and language",
       "card_2": "Create your account",
       "card_3": "Choose a provider",
@@ -102,7 +113,17 @@
       "web_browser": "Web browser",
       "click_to_use": "Click to use",
       "download_from_web": "",
-      "browser": ""
+      "browser": "We provide anonymously treatment without the needfull registration"
+    },
+    "take-a-step": {
+      "heading": "Just take a step towards peace of mind",
+      "paragraph": "",
+      "card_1": "Choose your country and language",
+      "card_2": "Create your account",
+      "card_3": "Choose a provider",
+      "card_3_ro": "Take the baseline assessment",
+      "card_4": "Book a session",
+      "card_4_ro": "Find local support"
     },
     "meet-our-providers": {
       "heading": "Meet our providers",
@@ -144,7 +165,9 @@
       "accept_necessary_cookies": "Accept only necessary",
       "save": "Save",
       "page_7": "Organizations",
-      "high_contrast": "High Contrast"
+      "high_contrast": "High Contrast",
+      "footer_text": "Your mental health matters—uSupport provides personalized, private, and safe psychological care.",
+      "go_back": "Go back"
     },
     "question": {
       "heading": "Have a question?",
@@ -194,9 +217,10 @@
       "paragraph_1": "Access free resources developed with experienced providers in the field of mental health.",
       "paragraph_2": "Our extensive collection of valuable resources is continuously improving to ensure that we address all essential subjects that will support you in reaching your highest potential.",
       "paragraph_3": "Within the portal, you'll discover articles authored by experts, learn self-development techniques, and stay updated with topics that interest you",
-      "read_more_button": "Click to read more",
+      "read_more_button": "Read more",
       "min_read": "min read",
-      "by": "by {{creator}}"
+      "by": "by {{creator}}",
+      "button_label": "View more"
     },
     "provider-overview": {
       "earliest_slot_label": "Earliest available slot for consultation",
@@ -271,7 +295,7 @@
     },
     "our-partners-overview": {
       "heading": "Our partners",
-      "button_label": "Click to read more",
+      "button_label": "Read more",
       "partner_1_title": "Ministry of Health",
       "partner_1_description": "Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.Lorem ipsum dolor sit amet consectetur. Ac augue vel sodales morbi at. Nisi arcu ullamcorper fermentum dignissim id lectus risus in praesent. Erat elementum magna ultrices ultrices id.",
       "partner_1_link": "https://www.gov.kz/memleket/entities/dsm?lang=en",
@@ -284,7 +308,8 @@
       "subheading": "Ask your questions and our team of professionals will try their best to help you",
       "ask_anonymous_card_heading": "Ask your anonymous question",
       "ask_anonymous_card_text": "Each and every question is fully anonymous and no one could see who asked it",
-      "button_label": "Ask your questions now"
+      "button_label": "Ask your questions now",
+      "note": "Questions are completely anonymous and no one can see who asked them"
     },
     "mascot-header-MyQA": {
       "heading": "My Q&A",
@@ -300,7 +325,7 @@
       "answer_by": "Answered by:",
       "schedule_consultation": "Schedule consultation",
       "today": "Today",
-      "read_more": "Click to read more",
+      "read_more": "Read more",
       "all": "All",
       "all_languages": "All languages",
       "most_popular": "Most Popular",
@@ -309,7 +334,15 @@
       "filter": "Filter tags",
       "search_placeholder": "Search",
       "language": "Language",
-      "date_answered": "on {{date}}"
+      "date_answered": "on {{date}}",
+      "go_back": "Go back",
+      "how_it_works": "See how it works",
+      "no_results_heading": "We couldn't find anything for \"{{query}}\"",
+      "no_results_line1": "Try adjusting your search or choosing a different tag.",
+      "no_results_line2": "You can reset filters to see all questions again.",
+      "reset_filters": "Reset filters",
+      "browse_all_questions": "Show all questions",
+      "no_results_image_alt": "Illustration: no matching questions"
     },
     "coupon-information": {
       "heading": "Want free sessions with providers?",
@@ -486,12 +519,20 @@
     "article-information": {
       "heading": "More Articles",
       "no_results": "There are no similar articles for the current selected language.",
-      "read_more_button": "Click to read more",
+      "read_more_button": "Read more",
       "min_read": "min read",
       "by": "by {{creator}}",
       "share_title": "Share this content",
       "share_success": "Link copied to clipboard!",
-      "copy_link": "Copy Link"
+      "copy_link": "Copy Link",
+      "audio_player_title_listen_to_article": "Listen to this article",
+      "audio_player_subtitle_narrated_version": "Prefer audio? Play the narrated version.",
+      "audio_player_badge_listen_time": "{{minutes}} min listen",
+      "audio_player_play_label": "Play audio",
+      "audio_player_pause_label": "Pause audio",
+      "audio_player_seek_back_label": "Seek back {{seconds}} seconds",
+      "audio_player_seek_forward_label": "Seek forward {{seconds}} seconds",
+      "audio_player_helper_read_along": "You can read along while listening or just relax and enjoy."
     },
     "provider-overview-page": {
       "heading": "Provider details"
@@ -525,6 +566,19 @@
     "organization-overview-page": {
       "heading": "Organization overview",
       "subheading": "Detailed overview of the profile of the organization you selected"
+    },
+    "sos-center-page": {
+      "heading": "SOS center",
+      "subheading": "Access urgent help and local emergency services when you or someone else is in immediate danger."
+    },
+    "privacy-policy-page": {
+      "heading": "Privacy Policy"
+    },
+    "cookie-policy-page": {
+      "heading": "Cookie Policy"
+    },
+    "terms-of-use-page": {
+      "heading": "Terms of Use"
     }
   },
   "modals": {

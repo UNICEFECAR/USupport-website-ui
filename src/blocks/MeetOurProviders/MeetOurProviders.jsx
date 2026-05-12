@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 
 import {
   Block,
-  Button,
+  NewButton,
   Grid,
   GridItem,
   Loading,
@@ -72,10 +72,10 @@ export const MeetOurProviders = () => {
     <Block classes="meet-our-providers" id="meet-our-providers">
       <Grid classes="meet-our-providers__main-grid">
         <GridItem md={8} lg={12}>
-          <h2>{t("heading")}</h2>
+          <h1 className="meet-our-providers__heading">{t("heading")}</h1>
         </GridItem>
         <GridItem md={8} lg={12} classes="meet-our-providers__subheading">
-          <p className="text">{t("paragraph")}</p>
+          <p className="paragraph">{t("paragraph")}</p>
         </GridItem>
 
         <GridItem md={8} lg={12} classes="meet-our-providers__providers-item">
@@ -115,10 +115,11 @@ export const MeetOurProviders = () => {
                 lg={12}
                 classes="meet-our-providers__providers-item__load-more"
               >
-                <Button
+                <NewButton
                   onClick={providersQuery.fetchNextPage}
                   size="lg"
                   label={buttonLabel}
+                  classes="meet-our-providers__providers-item__load-more__button"
                 />
               </GridItem>
             ) : null}

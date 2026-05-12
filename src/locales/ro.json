@@ -14,7 +14,15 @@
     "articles": {
       "heading": "Portal de informații",
       "no_results": "Nu s-au găsit rezultate",
+      "no_results_heading": "Nu am găsit nimic pentru „{{query}}”",
+      "no_results_line1": "Încearcă să modifici căutarea sau explorează subiectele de mai jos.",
+      "no_results_line2": "Poți reseta și filtrele pentru a vedea mai multe rezultate.",
+      "reset_filters": "Resetează filtrele",
+      "browse_all_articles": "Vezi toate articolele",
+      "no_results_image_alt": "Ilustrație: fără rezultate la căutare",
+      "no_results_hint": "Încearcă alt termen de căutare, schimbă categoria sau grupa de vârstă sau șterge căutarea pentru a vedea tot conținutul disponibil.",
       "could_not_load_content": "Nu există rezultate pentru țara și limba selectate.",
+      "could_not_load_hint": "Poți schimba țara sau limba din meniu sau poți reveni mai târziu — se adaugă frecvent resurse noi.",
       "all": "Toate",
       "read_more_button": "Citește mai mult",
       "min_read": "durata lecturii",
@@ -63,7 +71,8 @@
     "download-app": {
       "heading": "Descărcați aplicația",
       "paragraph": "Acum disponibilă pentru iOS și Android",
-      "download_text": "Descarcă de la"
+      "download_text": "Descarcă de la",
+      "text": "Primește sprijin oricând, oriunde - rapid, sigur și ușor de folosit."
     },
     "faq": {
       "heading": "Întrebări frecvente",
@@ -102,7 +111,9 @@
       "download_from_web": "Descărcați uSupport de la",
       "web_browser": "Browser web",
       "click_to_use": "Faceți clic pentru a utiliza",
-      "browser": "Browser web"
+      "browser": "Browser web",
+      "heading_hero": "Ușor și rapid.<0></0> Complet <1>anonim</1>!",
+      "paragraph_hero": "În doar câteva clicuri poți primi ajutorul de care ai nevoie, chiar și atunci când nu vrei să creezi un profil complet."
     },
     "meet-our-providers": {
       "heading": "Faceți cunoștință cu furnizorii noștri",
@@ -144,7 +155,9 @@
       "reject_all_cookies": "Respingeți toate",
       "accept_necessary_cookies": "Acceptați doar cele necesare",
       "save": "Salvați",
-      "high_contrast": "Contrast ridicat"
+      "high_contrast": "Contrast ridicat",
+      "footer_text": "Sănătatea ta mintală contează—uSupport oferă îngrijire psihologică personalizată, privată și sigură.",
+      "go_back": "Înapoi"
     },
     "question": {
       "heading": "Aveți o întrebare?",
@@ -196,7 +209,8 @@
       "paragraph_3": "Pe portal veți găsi articole scrise de experți, veți învăța tehnici de autodezvoltare și veți rămâne mereu la curent cu subiectele care vă interesează.",
       "read_more_button": "Citește mai mult",
       "min_read": "durata lecturii",
-      "by": "de {{creator}}"
+      "by": "de {{creator}}",
+      "button_label": "Vezi mai mult"
     },
     "provider-overview": {
       "earliest_slot_label": "Primul interval disponibil pentru consultație",
@@ -284,7 +298,8 @@
       "subheading": "Puneți întrebări, iar echipa noastră de profesioniști vă va oferi tot sprijinul necesar.",
       "ask_anonymous_card_heading": "Adresați întrebarea anonim",
       "ask_anonymous_card_text": "Fiecare întrebare este complet anonimă și nimeni nu poate vedea cine a adresat-o",
-      "button_label": "Adresați întrebările acum"
+      "button_label": "Adresați întrebările acum",
+      "note": "Întrebările sunt complet anonime și nimeni nu poate vedea cine le-a adresat."
     },
     "mascot-header-MyQA": {
       "heading": "My Q&A ",
@@ -309,7 +324,15 @@
       "filter": "Filtrați etichetele",
       "search_placeholder": "Căutare",
       "language": "Limba",
-      "date_answered": "la {{date}}"
+      "date_answered": "la {{date}}",
+      "go_back": "Înapoi",
+      "how_it_works": "Vezi cum funcționează",
+      "no_results_heading": "Nu am găsit nimic pentru „{{query}}”",
+      "no_results_line1": "Încearcă să modifici căutarea sau alege alt tag.",
+      "no_results_line2": "Poți reseta filtrele pentru a vedea din nou toate întrebările.",
+      "reset_filters": "Resetează filtrele",
+      "browse_all_questions": "Arată toate întrebările",
+      "no_results_image_alt": "Ilustrație: nu există întrebări potrivite"
     },
     "coupon-information": {
       "heading": "Doriți sesiuni gratuite cu furnizorii?",
@@ -475,6 +498,16 @@
       "tutorial_video_title": "",
       "require_cookies": "",
       "cookie_preferences": ""
+    },
+    "take-a-step": {
+      "heading": "Fă doar un pas spre liniștea ta",
+      "paragraph": "",
+      "card_1": "Alege-ți țara și limba",
+      "card_2": "Creează-ți contul",
+      "card_3": "Alege un furnizor",
+      "card_3_ro": "Realizează evaluarea de bază",
+      "card_4": "Programează o sesiune",
+      "card_4_ro": "Găsește sprijin local"
     }
   },
   "pages": {
@@ -491,7 +524,15 @@
       "by": "de {{creator}}",
       "share_title": "Distribuiți acest conținut",
       "share_success": "Link copiat în clipboard!",
-      "copy_link": "Copiere link"
+      "copy_link": "Copiere link",
+      "audio_player_title_listen_to_article": "Ascultă acest articol",
+      "audio_player_subtitle_narrated_version": "Preferi audio? Redă versiunea narativă.",
+      "audio_player_badge_listen_time": "{{minutes}} min ascultare",
+      "audio_player_play_label": "Redă audio",
+      "audio_player_pause_label": "Pauză",
+      "audio_player_seek_back_label": "Derulează înapoi cu {{seconds}} secunde",
+      "audio_player_seek_forward_label": "Derulează înainte cu {{seconds}} secunde",
+      "audio_player_helper_read_along": "Poți citi în timp ce asculți sau te poți relaxa pur și simplu ascultând."
     },
     "provider-overview-page": {
       "heading": "Detalii despre furnizor"
@@ -525,6 +566,19 @@
     "organization-overview-page": {
       "heading": "Prezentare organizație",
       "subheading": "Prezentare detaliată a profilului organizației selectate"
+    },
+    "sos-center-page": {
+      "heading": "Centrul SOS",
+      "subheading": "Accesați rapid ajutor de urgență și servicii locale atunci când vă aflați dumneavoastră sau altcineva în pericol imediat."
+    },
+    "privacy-policy-page": {
+      "heading": "Politica de confidențialitate"
+    },
+    "cookie-policy-page": {
+      "heading": "Politica privind cookie-urile"
+    },
+    "terms-of-use-page": {
+      "heading": "Condiții de utilizare"
     }
   },
   "modals": {

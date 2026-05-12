@@ -1,34 +1,30 @@
 import React, {
-  useState,
-  useMemo,
   useCallback,
+  useMemo,
   useEffect,
+  useState,
   useContext,
 } from "react";
+import { useCustomNavigate as useNavigate } from "#hooks";
 import { useTranslation } from "react-i18next";
 
 import {
   Answer,
   Block,
-  Button,
-  ButtonWithIcon,
   Grid,
   GridItem,
-  InputSearch,
-  Tabs,
   Loading,
   Dropdown,
+  TabsUnderlined,
+  Tabs,
+  NewButton,
+  Icon,
+  NotFoundCard,
 } from "@USupport-components-library/src";
-import {
-  ThemeContext,
-  useWindowDimensions,
-} from "@USupport-components-library/utils";
 
-import {
-  useEventListener,
-  useGetLanguages,
-  useCustomNavigate as useNavigate,
-} from "#hooks";
+import { ThemeContext } from "@USupport-components-library/utils";
+
+import { useEventListener, useGetLanguages, useGetQuestionsTags } from "#hooks";
 
 import "./my-qa.scss";
 
@@ -40,7 +36,6 @@ import "./my-qa.scss";
  * @return {jsx}
  */
 export const MyQA = ({
-  handleFilterTags,
   handleReadMore,
   handleScheduleConsultationClick,
   questions,
@@ -48,26 +43,33 @@ export const MyQA = ({
   setTabs,
   isUserQuestionsEnabled,
   filterTag,
-  isLoading,
+  setFilterTag,
+  isQuestionsDataLoading,
   selectedLanguage,
   setSelectedLanguage,
   setShouldFetchQuestions,
+  setIsHowItWorksOpen,
+  searchValue,
+  onResetSearch,
 }) => {
   const { t } = useTranslation("blocks", { keyPrefix: "my-qa" });
-  const { width } = useWindowDimensions();
   const navigate = useNavigate();
-  const { theme } = useContext(ThemeContext);
-
-  const [searchValue, setSearchValue] = useState("");
-
+  const IS_RTL = localStorage.getItem("language") === "ar";
   const { allLanguages } = useContext(ThemeContext);
   const { data: languages } = useGetLanguages();
+  const [tags, setTags] = useState([]);
+
+  const onTagsSuccess = useCallback((data) => {
+    setTags(data);
+  }, []);
+
+  useGetQuestionsTags({ onSuccess: onTagsSuccess, enabled: true });
 
   const handler = useCallback(() => {
     const lang = localStorage.getItem("language");
     const languageId = languages?.find((x) => x.alpha2 === lang)?.language_id;
     setSelectedLanguage(languageId || "all");
-  }, [languages]);
+  }, [languages, setSelectedLanguage]);
 
   useEventListener("languageChanged", handler);
 
@@ -110,121 +112,220 @@ export const MyQA = ({
     setTabs(tabsCopy);
   };
 
+  const getTagsOptions = useMemo(() => {
+    return tags.map((tag) => ({
+      label: tag.label,
+      value: tag.id,
+      isSelected: filterTag === tag.label,
+    }));
+  }, [tags, filterTag]);
+
+  const handleTagSelect = (index) => {
+    const selectedTag = tags[index];
+    if (selectedTag && setFilterTag) {
+      if (filterTag === selectedTag.label) {
+        setFilterTag("");
+      } else {
+        setFilterTag(selectedTag.label);
+      }
+    }
+  };
+
   const handleProviderClick = (providerId) => {
     if (!providerId) return;
     navigate(`/provider-overview?id=${providerId}`);
   };
 
+  const handleResetAllFilters = () => {
+    onResetSearch?.();
+    setFilterTag?.("");
+    if (tabs?.length) {
+      const resetTabs = tabs.map((tab, i) => ({
+        ...tab,
+        isSelected: i === 0,
+      }));
+      setTabs(resetTabs);
+    }
+    setSelectedLanguage?.("all");
+  };
+
+  const handleClearSearchAndBrowse = () => {
+    handleResetAllFilters();
+  };
+
+  const renderEmptyCard = (headingText) => (
+    <GridItem md={8} lg={12}>
+      <div className="my-qa__empty-card">
+        <NotFoundCard
+          mode="illustrated"
+          headingText={headingText}
+          descriptionLine1={t("no_results_line1")}
+          descriptionLine2={t("no_results_line2")}
+          primaryLabel={t("reset_filters")}
+          secondaryLabel={t("browse_all_questions")}
+          onPrimaryClick={handleResetAllFilters}
+          onSecondaryClick={handleClearSearchAndBrowse}
+          imageAlt={t("no_results_image_alt")}
+          isRtl={IS_RTL}
+          radialColor="blue"
+        />
+      </div>
+    </GridItem>
+  );
+
   const renderQuestions = () => {
-    return questions.map((question, index) => {
+    const filteredQuestions = questions.filter((question) => {
       if (filterTag) {
         const tags = question.tags;
         if (!tags.includes(filterTag)) {
           return null;
         }
       }
-
       const value = searchValue.toLowerCase();
 
       if (value) {
-        if (
-          !question.answerTitle?.toLowerCase().includes(value) &&
-          !question.answerText?.toLowerCase().includes(value) &&
-          !question.tags?.find((x) => x.toLowerCase().includes(value))
-        )
-          return null;
+        const isTitleMatching = question.answerTitle
+          ?.toLowerCase()
+          .includes(value);
+        const isTextMatching = question.answerText
+          ?.toLowerCase()
+          .includes(value);
+        const isTagMatching = question.tags?.find((x) =>
+          x.toLowerCase().includes(value),
+        );
+        const isQuestionMatching = question.question
+          ?.toLowerCase()
+          .includes(value);
+
+        const isMatching =
+          isTitleMatching ||
+          isTextMatching ||
+          isTagMatching ||
+          isQuestionMatching
+            ? true
+            : false;
+        return !!isMatching;
       }
 
+      return true;
+    });
+
+    if (!filteredQuestions.length) {
+      const headingText =
+        searchValue?.trim()?.length > 0
+          ? t("no_results_heading", { query: searchValue.trim() })
+          : t("no_answers");
+      return renderEmptyCard(headingText);
+    }
+
+    return filteredQuestions.map((question, index) => {
       return (
-        <Answer
-          question={question}
-          key={index}
-          classes="my-qa__answer"
-          isInYourQuestions={isUserQuestionsEnabled}
-          handleReadMore={() => handleReadMore(question)}
-          handleScheduleConsultationClick={() =>
-            handleScheduleConsultationClick("consultation")
-          }
-          handleProviderClick={handleProviderClick}
-          t={t}
-          renderIn="website"
-        />
+        <GridItem key={index} md={8} lg={6}>
+          <Answer
+            question={question}
+            classes="my-qa__answer"
+            isInYourQuestions={isUserQuestionsEnabled}
+            handleReadMore={() => handleReadMore(question)}
+            handleScheduleConsultationClick={handleScheduleConsultationClick}
+            handleProviderClick={handleProviderClick}
+            t={t}
+            renderIn="website"
+          />
+        </GridItem>
       );
     });
   };
 
   return (
     <Block classes="my-qa">
+      <div>
+        <div className="my-qa__header">
+          <div
+            className="page__header__text-container__go-back"
+            onClick={() => navigate(-1)}
+          >
+            <Icon name="arrow-chevron-back" size="md" color="#20809E" />
+            <p>{t("go_back")}</p>
+          </div>
+          <NewButton
+            size="lg"
+            label={t("how_it_works")}
+            onClick={setIsHowItWorksOpen}
+            classes="my-qa__header__button"
+          />
+        </div>
+      </div>
       <Grid>
-        <GridItem xs={4} md={8} lg={12}>
+        <GridItem xs={4} md={8} lg={12} classes="my-qa__controls-item">
           <Grid classes="my-qa__tabs-grid">
             <GridItem
               md={8}
               lg={12}
               classes="my-qa__tabs-grid__search-container"
             >
-              <InputSearch
-                placeholder={t("search_placeholder")}
-                value={searchValue}
-                onChange={(value) => setSearchValue(value.toLowerCase())}
-                classes="my-qa__tabs-grid__search-container__input"
-              />
-              {languageOptions?.length > 0 && (
-                <Dropdown
-                  options={languageOptions}
-                  selected={selectedLanguage || "all"}
-                  setSelected={(lang) => {
-                    setSelectedLanguage(lang);
-                  }}
-                  classes="my-qa__categories-item__language-dropdown"
-                />
-              )}
+              <Grid>
+                <GridItem md={4} lg={6}>
+                  <div className="my-qa__tabs-grid__search-container__tabs">
+                    <TabsUnderlined
+                      textType="h3"
+                      options={tabs.map((tab) => {
+                        return {
+                          label: t(tab.value),
+                          value: tab.value,
+                          isSelected: tab.isSelected,
+                        };
+                      })}
+                      handleSelect={handleTabChange}
+                    />
+                  </div>
+                </GridItem>
+                <GridItem md={4} lg={6}>
+                  <div className="my-qa__tabs-grid__search-container__dropdown">
+                    <Dropdown
+                      options={languageOptions}
+                      selected={selectedLanguage}
+                      setSelected={(lang) => {
+                        setSelectedLanguage(lang);
+                      }}
+                      placeholder={t("language")}
+                    />
+                  </div>
+                </GridItem>
+              </Grid>
             </GridItem>
-            <GridItem
-              md={8}
-              lg={8}
-              classes="my-qa__tabs-grid__filter-button-item"
-            >
-              <Tabs
-                options={tabs.map((tab) => {
-                  return {
-                    label: t(tab.value),
-                    value: tab.value,
-                    isSelected: tab.isSelected,
-                  };
-                })}
-                handleSelect={handleTabChange}
-              />
-              <div>
-                <ButtonWithIcon
-                  label={t("filter")}
-                  iconName="filter"
-                  iconColor={theme === "highContrast" ? "#ffff00" : "#ffffff"}
-                  iconSize="sm"
-                  color="purple"
-                  size="sm"
-                  onClick={handleFilterTags}
-                  classes="my-qa__tabs-grid__filter-button"
+            {tags.length > 0 && (
+              <GridItem
+                md={8}
+                lg={12}
+                classes="my-qa__tabs-grid__tags-container"
+              >
+                <Tabs
+                  options={getTagsOptions}
+                  handleSelect={handleTagSelect}
+                  t={t}
                 />
-              </div>
-            </GridItem>
-            <GridItem md={8} lg={4} classes="my-qa__button-item">
-              <Button
+              </GridItem>
+            )}
+            <GridItem md={8} lg={12} classes="my-qa__button-item">
+              <NewButton
                 label={t("ask_button_label")}
-                size={width < 980 && width > 768 ? "lg" : "lg"}
-                classes="my-qa__ask-question-button"
+                size="lg"
+                classes="my-qa__button-item__button"
+                isFullWidth={true}
                 onClick={() => handleScheduleConsultationClick("question")}
               />
             </GridItem>
           </Grid>
         </GridItem>
-        <GridItem classes="my-qa__questions-item" xs={4} md={8} lg={12}>
-          {isLoading ? (
+        <GridItem xs={4} md={8} lg={12} classes="my-qa__answers-item">
+          {questions?.length > 0 ? (
+            <Grid classes="my-qa__answers-container">{renderQuestions()}</Grid>
+          ) : isQuestionsDataLoading ? (
             <Loading />
-          ) : questions?.length > 0 ? (
-            <div className="my-qa__answers-container">{renderQuestions()}</div>
           ) : (
-            <p className="my-qa__questions-item__no-data">{t("no_answers")}</p>
+            <Grid classes="my-qa__answers-container">
+              {renderEmptyCard(t("no_answers"))}
+            </Grid>
           )}
         </GridItem>
       </Grid>

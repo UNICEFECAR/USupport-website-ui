@@ -14,7 +14,15 @@
     "articles": {
       "heading": "Wiedza",
       "no_results": "Nie znaleziono wyników",
+      "no_results_heading": "Nie znaleziono nic dla „{{query}}”",
+      "no_results_line1": "Spróbuj zmienić wyszukiwanie lub przejrzyj poniższe tematy.",
+      "no_results_line2": "Możesz też zresetować filtry, aby zobaczyć więcej wyników.",
+      "reset_filters": "Resetuj filtry",
+      "browse_all_articles": "Przeglądaj wszystkie artykuły",
+      "no_results_image_alt": "Ilustracja: brak wyników wyszukiwania",
+      "no_results_hint": "Spróbuj innej frazy, zmień kategorię lub grupę wiekową albo wyczyść wyszukiwanie.",
       "could_not_load_content": "Brak wyników dla aktualnie wybranego kraju i języka.",
+      "could_not_load_hint": "Możesz zmienić kraj lub język w menu albo sprawdzić ponownie później — nowe materiały pojawiają się regularnie.",
       "all": "Wszystkie",
       "read_more_button": "Czytaj więcej",
       "min_read": "min czytania",
@@ -63,7 +71,8 @@
     "download-app": {
       "heading": "Pobierz aplikację",
       "paragraph": "Teraz dostępne dla systemów iOS i Android",
-      "download_text": "Pobierz z"
+      "download_text": "Pobierz z",
+      "text": "Otrzymaj wsparcie zawsze i wszędzie - szybko, bezpiecznie i łatwo w użyciu."
     },
     "faq": {
       "heading": "Często zadawane pytania",
@@ -102,7 +111,9 @@
       "download_from_web": "",
       "browser": "",
       "card_3_ro": "",
-      "card_4_ro": ""
+      "card_4_ro": "",
+      "heading_hero": "Łatwo i szybko.<0></0> W pełni <1>anonimowo</1>!",
+      "paragraph_hero": "W kilku kliknięciach możesz otrzymać potrzebną pomoc, nawet gdy nie chcesz tworzyć pełnego profilu."
     },
     "meet-our-providers": {
       "heading": "Poznaj naszych konsultantów",
@@ -144,7 +155,9 @@
       "accept_necessary_cookies": "Akceptuj tylko wymagane",
       "save": "Zapisz",
       "page_7": "Organizacje",
-      "high_contrast": "Wysoki kontrast"
+      "high_contrast": "Wysoki kontrast",
+      "footer_text": "Twoje zdrowie psychiczne ma znaczenie—uSupport zapewnia spersonalizowaną, prywatną i bezpieczną opiekę psychologiczną.",
+      "go_back": "Wróć"
     },
     "question": {
       "heading": "Masz pytanie?",
@@ -196,7 +209,8 @@
       "paragraph_3": "W ramach portalu odkryjesz artykuły autorstwa ekspertów, poznasz techniki samorozwoju i będziesz na bieżąco z interesującymi Cię tematami.",
       "read_more_button": "Czytaj więcej",
       "min_read": "min czytać",
-      "by": "Przez {{creator}}"
+      "by": "Przez {{creator}}",
+      "button_label": "Zobacz więcej"
     },
     "provider-overview": {
       "earliest_slot_label": "Najbliższy dostępny termin konsultacji",
@@ -284,7 +298,8 @@
       "subheading": "Zadawaj pytania, a nasz zespół profesjonalistów dołoży wszelkich starań, aby Ci pomóc.",
       "ask_anonymous_card_heading": "Zadaj anonimowe pytanie",
       "ask_anonymous_card_text": "Każde pytanie jest w pełni anonimowe i nikt nie może zobaczyć, kto je zadał.",
-      "button_label": "Zadaj pytanie już teraz"
+      "button_label": "Zadaj pytanie już teraz",
+      "note": "Pytania są całkowicie anonimowe i nikt nie może zobaczyć, kto je zadał."
     },
     "mascot-header-MyQA": {
       "heading": "Moje pytania i odpowiedzi",
@@ -309,7 +324,15 @@
       "filter": "Filtruj tagi",
       "search_placeholder": "Wyszukiwanie",
       "language": "Język",
-      "date_answered": "dnia {{date}}"
+      "date_answered": "dnia {{date}}",
+      "go_back": "Wróć",
+      "how_it_works": "Zobacz, jak to działa",
+      "no_results_heading": "Nie znaleziono nic dla „{{query}}”",
+      "no_results_line1": "Spróbuj zmienić wyszukiwanie lub wybierz inny tag.",
+      "no_results_line2": "Możesz zresetować filtry, aby zobaczyć wszystkie pytania.",
+      "reset_filters": "Resetuj filtry",
+      "browse_all_questions": "Pokaż wszystkie pytania",
+      "no_results_image_alt": "Ilustracja: brak pasujących pytań"
     },
     "coupon-information": {
       "heading": "Chcesz darmowych sesji ze specjalistami?",
@@ -475,6 +498,16 @@
       "tutorial_video_title": "",
       "require_cookies": "",
       "cookie_preferences": ""
+    },
+    "take-a-step": {
+      "heading": "Po prostu zrób krok w stronę spokoju ducha",
+      "paragraph": "",
+      "card_1": "Wybierz kraj i język",
+      "card_2": "Utwórz konto",
+      "card_3": "Wybierz konsultanta/kę",
+      "card_3_ro": "Wypełnij ocenę bazową",
+      "card_4": "Umów sesję",
+      "card_4_ro": "Znajdź lokalne wsparcie"
     }
   },
   "pages": {
@@ -491,7 +524,15 @@
       "by": "Przez {{creator}}",
       "share_title": "Udostępnij ten materiał",
       "share_success": "Link skopiowany do schowka!",
-      "copy_link": "Skopiuj link"
+      "copy_link": "Skopiuj link",
+      "audio_player_title_listen_to_article": "Posłuchaj tego artykułu",
+      "audio_player_subtitle_narrated_version": "Wolisz audio? Odtwórz wersję nagraną głosem.",
+      "audio_player_badge_listen_time": "{{minutes}} min słuchania",
+      "audio_player_play_label": "Odtwórz",
+      "audio_player_pause_label": "Wstrzymaj",
+      "audio_player_seek_back_label": "Przewiń do tyłu o {{seconds}} s",
+      "audio_player_seek_forward_label": "Przewiń do przodu o {{seconds}} s",
+      "audio_player_helper_read_along": "Możesz czytać równolegle ze słuchaniem lub po prostu słuchać i się zrelaksować."
     },
     "provider-overview-page": {
       "heading": "Szczegóły dotyczące konsultantów"
@@ -525,6 +566,19 @@
     "organization-overview-page": {
       "heading": "Przegląd organizacji",
       "subheading": "Szczegółowy przegląd profilu wybranej organizacji"
+    },
+    "sos-center-page": {
+      "heading": "Centrum SOS",
+      "subheading": "Uzyskaj szybki dostęp do pomocy w sytuacjach nagłych i lokalnych służb ratunkowych, gdy Ty lub ktoś w Twoim otoczeniu jest w bezpośrednim niebezpieczeństwie."
+    },
+    "privacy-policy-page": {
+      "heading": "Polityką prywatności"
+    },
+    "cookie-policy-page": {
+      "heading": "Polityka plików cookies"
+    },
+    "terms-of-use-page": {
+      "heading": "Regulamin"
     }
   },
   "modals": {

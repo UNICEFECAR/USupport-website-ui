@@ -17,6 +17,7 @@ import {
   TabsUnderlined,
   Tabs,
   Loading,
+  NotFoundCard,
 } from "@USupport-components-library/src";
 import {
   destructureArticleData,
@@ -36,12 +37,12 @@ const PL_LANGUAGE_AGE_GROUP_IDS = {
 };
 
 /**
- * Calculate grid span for articles based on 2-3-1 pattern
+ * Calculate grid span for articles based on a repeating pattern
  * @param {number} index - Article index
- * @param {number[]} pattern - Array representing items per row [2, 3, 1]
+ * @param {number[]} pattern - Array representing items per row, e.g. [2, 2, 2]
  * @returns {number} Grid span value
  */
-const getGridSpanForIndex = (index, pattern = [2, 3, 1]) => {
+const getGridSpanForIndex = (index, pattern = [2, 2, 2]) => {
   const totalItemsInCycle = pattern.reduce((sum, count) => sum + count, 0);
   const cyclePosition = index % totalItemsInCycle;
 
@@ -66,7 +67,7 @@ const getGridSpanForIndex = (index, pattern = [2, 3, 1]) => {
  *
  * @return {jsx}
  */
-export const Articles = ({ debouncedSearchValue }) => {
+export const Articles = ({ debouncedSearchValue, onResetSearch }) => {
   const navigate = useNavigate();
   const { width } = useWindowDimensions();
   const { i18n, t } = useTranslation("blocks", { keyPrefix: "articles" });
@@ -296,6 +297,8 @@ export const Articles = ({ debouncedSearchValue }) => {
       contains: debouncedSearchValue,
       ...(ageGroupId ? { ageGroupId } : {}),
       ...(categoryId ? { categoryId } : {}),
+      ...(!hasActiveSearch && { ageGroupId }),
+      ...(!hasActiveSearch && { categoryId }),
       locale: usersLanguage,
       populate: true,
     };
@@ -408,6 +411,8 @@ export const Articles = ({ debouncedSearchValue }) => {
       contains: debouncedSearchValue,
       ...(ageGroupId ? { ageGroupId } : {}),
       ...(categoryId ? { categoryId } : {}),
+      ...(!hasActiveSearch && { ageGroupId }),
+      ...(!hasActiveSearch && { categoryId }),
       locale: usersLanguage,
       populate: true,
     };
@@ -463,15 +468,23 @@ export const Articles = ({ debouncedSearchValue }) => {
     isFetched: isNewestArticleFetched,
     fetchStatus: newestArticleFetchStatus,
   } = useQuery(
-    ["newestArticle", usersLanguage, currentCountry, shouldFetchIds],
+    [
+      "newestArticle",
+      usersLanguage,
+      currentCountry,
+      shouldFetchIds,
+      debouncedSearchValue,
+    ],
     getNewestArticle,
     {
       // Run the query when the getCategories and getAgeGroups queries have finished running
-      enabled: IS_PS
-        ? false
-        : shouldFetchIds
-        ? !articleIdsQuery.isLoading && articleIdsQuery.data?.length > 0
-        : true,
+      enabled:
+        !hasActiveSearch &&
+        (IS_PS
+          ? false
+          : shouldFetchIds
+          ? !articleIdsQuery.isLoading && articleIdsQuery.data?.length > 0
+          : true),
       refetchOnWindowFocus: false,
     }
   );
@@ -484,9 +497,28 @@ export const Articles = ({ debouncedSearchValue }) => {
     );
   };
 
+  const handleResetAllFilters = () => {
+    onResetSearch?.();
+    if (ageGroups?.length) {
+      handleAgeGroupOnPress(0);
+    }
+    const allIdx = categoriesToShow?.findIndex((c) => c.value === "all");
+    if (allIdx >= 0) {
+      handleCategoryOnPress(allIdx);
+    }
+  };
+
+  const handleClearSearchAndBrowse = () => {
+    onResetSearch?.();
+    const allIdx = categoriesToShow?.findIndex((c) => c.value === "all");
+    if (allIdx >= 0) {
+      handleCategoryOnPress(allIdx);
+    }
+  };
+
   return (
     <Block classes="articles">
-      {(newestArticle || IS_PS) &&
+      {(hasActiveSearch || newestArticle || IS_PS) &&
         ageGroups?.length > 0 &&
         categories?.length > 0 && (
           <InfiniteScroll
@@ -494,6 +526,7 @@ export const Articles = ({ debouncedSearchValue }) => {
             next={getMoreArticles}
             hasMore={hasMore}
             loader={<Loading size="lg" />}
+            style={{ overflow: "visible" }}
             // endMessage={} // Add end message here if required
           >
             <Grid classes="articles__main-grid">
@@ -502,48 +535,49 @@ export const Articles = ({ debouncedSearchValue }) => {
                   <h2 className="articles__heading-text">{t("heading")}</h2>
                 )}
               </GridItem>
-              {!hasActiveSearch && (newestArticle || isNewestArticleFetched) && (
-                <GridItem
-                  md={8}
-                  lg={12}
-                  classes="articles__most-important-item"
-                >
-                  {newestArticle ? (
-                    <CardMedia
-                      type={isNotDescktop ? "portrait" : "landscape"}
-                      size="lg"
-                      title={newestArticle.title}
-                      image={
-                        newestArticle.imageMedium ||
-                        newestArticle.imageThumbnail ||
-                        newestArticle.imageSmall
-                      }
-                      description={newestArticle.description}
-                      labels={newestArticle.labels}
-                      creator={newestArticle.creator}
-                      readingTime={newestArticle.readingTime}
-                      categoryName={newestArticle.categoryName}
-                      showDescription={true}
-                      likes={
-                        articlesLikes.get(newestArticle.id) ||
-                        newestArticle.likes ||
-                        0
-                      }
-                      dislikes={
-                        articlesDislikes.get(newestArticle.id) ||
-                        newestArticle.dislikes ||
-                        0
-                      }
-                      t={t}
-                      onClick={() =>
-                        handleRedirect(newestArticle.id, newestArticle.title)
-                      }
-                    />
-                  ) : isNewestArticleLoading ? (
-                    <Loading size="lg" />
-                  ) : null}
-                </GridItem>
-              )}
+              {!hasActiveSearch &&
+                (newestArticle || isNewestArticleFetched) && (
+                  <GridItem
+                    md={8}
+                    lg={12}
+                    classes="articles__most-important-item"
+                  >
+                    {newestArticle ? (
+                      <CardMedia
+                        type={isNotDescktop ? "portrait" : "landscape"}
+                        size="lg"
+                        title={newestArticle.title}
+                        image={
+                          newestArticle.imageMedium ||
+                          newestArticle.imageThumbnail ||
+                          newestArticle.imageSmall
+                        }
+                        description={newestArticle.description}
+                        labels={newestArticle.labels}
+                        creator={newestArticle.creator}
+                        readingTime={newestArticle.readingTime}
+                        categoryName={newestArticle.categoryName}
+                        showDescription={true}
+                        likes={
+                          articlesLikes.get(newestArticle.id) ||
+                          newestArticle.likes ||
+                          0
+                        }
+                        dislikes={
+                          articlesDislikes.get(newestArticle.id) ||
+                          newestArticle.dislikes ||
+                          0
+                        }
+                        t={t}
+                        onClick={() =>
+                          handleRedirect(newestArticle.id, newestArticle.title)
+                        }
+                      />
+                    ) : isNewestArticleLoading ? (
+                      <Loading size="lg" />
+                    ) : null}
+                  </GridItem>
+                )}
 
               {showAgeGroups && !IS_PS && !hasActiveSearch && (
                 <GridItem
@@ -599,7 +633,7 @@ export const Articles = ({ debouncedSearchValue }) => {
                         const articleData = destructureArticleData(article);
                         const gridSpan = IS_PS
                           ? 3
-                          : getGridSpanForIndex(index, [2, 3, 1]);
+                          : getGridSpanForIndex(index, [2, 2, 2]);
 
                         return (
                           <div
@@ -659,8 +693,26 @@ export const Articles = ({ debouncedSearchValue }) => {
                     !isArticlesLoading &&
                     !isArticlesFetching &&
                     isArticlesFetched && (
-                      <div className="articles__no-results-container">
-                        <p>{t("no_results")}</p>
+                      <div className="articles__not-found-card-wrap">
+                        <NotFoundCard
+                          mode="illustrated"
+                          headingText={
+                            hasActiveSearch
+                              ? t("no_results_heading", {
+                                  query: debouncedSearchValue.trim(),
+                                })
+                              : t("no_results")
+                          }
+                          descriptionLine1={t("no_results_line1")}
+                          descriptionLine2={t("no_results_line2")}
+                          primaryLabel={t("reset_filters")}
+                          secondaryLabel={t("browse_all_articles")}
+                          onPrimaryClick={handleResetAllFilters}
+                          onSecondaryClick={handleClearSearchAndBrowse}
+                          imageAlt={t("no_results_image_alt")}
+                          isRtl={IS_RTL}
+                          radialColor="blue"
+                        />
                       </div>
                     )}
                 </div>
@@ -691,9 +743,13 @@ export const Articles = ({ debouncedSearchValue }) => {
           (!articlesQueryData ||
             !articlesQueryData.articles ||
             articlesQueryData.articles.length === 0))) && (
-        <div className="articles__no-results-container">
-          <h3>{t("could_not_load_content")}</h3>
-        </div>
+        <NotFoundCard
+          mode="simple"
+          iconName="info"
+          title={t("could_not_load_content")}
+          subtitle={t("could_not_load_hint")}
+          radialColor="purple"
+        />
       )}
     </Block>
   );

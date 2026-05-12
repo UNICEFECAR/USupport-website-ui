@@ -4,18 +4,11 @@ import {
   Grid,
   GridItem,
   StoreButton,
-  RadialCircle,
-  // StaticImage,
 } from "@USupport-components-library/src";
 import { Trans, useTranslation } from "react-i18next";
 import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./hero.scss";
-
-// import imageSrc from "./assets/PeopleCollage.png";
-// import imageSrcWebp from "./assets/PeopleCollage.webp";
-// import unicefSquareLogoSrc from "./assets/UnicefSquareLogo.png";
-// import unicefSquareLogoSrcWebp from "./assets/UnicefSquareLogo.png";
 
 /**
  * Hero
@@ -42,23 +35,20 @@ export const Hero = () => {
           >
             <GridItem md={8} lg={12} classes="hero__heading-item">
               <h1>
-                <Trans components={[<br></br>]}>{t("heading_1")}</Trans>
+                <Trans components={[<br key="br"></br>]}>
+                  {t("heading_1")}
+                </Trans>
               </h1>
             </GridItem>
             <GridItem md={8} lg={12} classes="hero__text-item">
               <p className="paragraph">{t("paragraph_1")}</p>
               <br />
-              <p className="paragraph">{t("paragraph_1_1")}</p>
+              <p className="hero__heading-item__purple-text">
+                {t("paragraph_1_1")}
+              </p>
             </GridItem>
             <GridItem md={8} lg={12} classes="hero__buttons-item">
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  flexWrap: "wrap",
-                  gap: "1rem",
-                }}
-              >
+              <div className="hero__store-buttons">
                 <div>
                   <StoreButton
                     downloadText={t("download_text")}
@@ -104,8 +94,6 @@ export const Hero = () => {
           alt="unicef-round-logo"
         />
       </div> */}
-      <RadialCircle color="purple" />
-      <RadialCircle color="blue" />
     </Block>
   );
 };

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
+import { HowItWorksMyQA, QuestionDetails, RedirectToLogin } from "#modals";
 import {
-  FilterQuestions,
-  HowItWorksMyQA,
-  QuestionDetails,
-  RedirectToLogin,
-} from "#modals";
-import { MascotHeaderMyQA, MyQA as MyQABlock, Page } from "#blocks";
+  DownloadApp,
+  InformationPortalHero,
+  MyQA as MyQABlock,
+  Page,
+} from "#blocks";
 import {
   useGetQuestions,
   useEventListener,
@@ -66,7 +66,6 @@ export const MyQA = () => {
   const [redirectType, setRedirectType] = useState("");
   const [isQuestionDetailsOpen, setIsQuestionDetailsOpen] = useState(false);
   const [isHowItWorksOpen, setIsHowItWorksOpen] = useState(false);
-  const [isFilterQuestionsOpen, setIsFilterQuestionsOpen] = useState(false);
   const [selectedQuestion, setSelectedQuestion] = useState();
   const [questions, setQuestions] = useState([]);
   const [tabs, setTabs] = useState([
@@ -77,8 +76,9 @@ export const MyQA = () => {
   const [filterTag, setFilterTag] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState();
   const [shouldFetchQuestions, setShouldFetchQuestions] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
   const [selectedCountry, setSelectedCountry] = useState(
-    localStorage.getItem("country")
+    localStorage.getItem("country"),
   );
   const isInGlobalCountry = selectedCountry === "global";
 
@@ -109,7 +109,7 @@ export const MyQA = () => {
   const allQuestions = useGetQuestions(
     tabs.find((tab) => tab.isSelected).value,
     isInGlobalCountry ? false : !isUserQuestionsEnabled,
-    selectedLanguage
+    selectedLanguage,
   );
 
   useEffect(() => {
@@ -119,7 +119,7 @@ export const MyQA = () => {
   useEffect(() => {
     if (selectedQuestion)
       setSelectedQuestion(
-        questions.find((question) => question.answerId === question.answerId)
+        questions.find((question) => question.answerId === question.answerId),
       );
   }, [questions]);
 
@@ -140,13 +140,14 @@ export const MyQA = () => {
   };
 
   return (
-    <Page classes="page__my-qa" showGoBackArrow={false}>
-      <MascotHeaderMyQA
-        handleSeeHowItWorksClick={() => setIsHowItWorksOpen(true)}
-        handleHowItWorks={() => setIsHowItWorksOpen(true)}
+    <Page classes="page__my-qa" showGoBackArrow={false} showBackground={true}>
+      <InformationPortalHero
+        showSearch={true}
+        searchValue={searchValue}
+        onSearchChange={setSearchValue}
+        heroType="my-qa"
       />
       <MyQABlock
-        // handleAskAnonymous={() => setIsCreateQuestionOpen(true)}
         handleReadMore={handleSetIsQuestionDetailsOpen}
         handleScheduleConsultationClick={handleOpenModal}
         questions={
@@ -164,12 +165,16 @@ export const MyQA = () => {
         setTabs={setTabs}
         isUserQuestionsEnabled={isUserQuestionsEnabled}
         filterTag={filterTag}
-        handleFilterTags={() => setIsFilterQuestionsOpen(true)}
-        isLoading={allQuestions.isFetching}
+        setFilterTag={setFilterTag}
+        isQuestionsDataLoading={allQuestions.isFetching}
         selectedLanguage={selectedLanguage}
         setSelectedLanguage={setSelectedLanguage}
         setShouldFetchQuestions={setShouldFetchQuestions}
+        setIsHowItWorksOpen={() => setIsHowItWorksOpen(true)}
+        searchValue={searchValue}
+        onResetSearch={() => setSearchValue("")}
       />
+      <DownloadApp />
       <HowItWorksMyQA
         isOpen={isHowItWorksOpen}
         onClose={() => setIsHowItWorksOpen(false)}
@@ -190,25 +195,21 @@ export const MyQA = () => {
         heading={t(
           redirectType === "question"
             ? "modal_heading"
-            : "modal_heading_consultation"
+            : "modal_heading_consultation",
         )}
         text={t(
-          redirectType === "question" ? "modal_text" : "modal_text_consultation"
+          redirectType === "question"
+            ? "modal_text"
+            : "modal_text_consultation",
         )}
         buttonLabel={t("modal_button_label")}
         isOpen={isRedirectToLoginBackdropOpen}
         onClose={() => setIsRedirectToLoginBackdropOpen(false)}
         handleLoginRedirect={() => {
           window.location.href = `/client/${localStorage.getItem(
-            "language"
+            "language",
           )}/login`;
         }}
-      />
-      <FilterQuestions
-        isOpen={isFilterQuestionsOpen}
-        onClose={() => setIsFilterQuestionsOpen(false)}
-        setTag={setFilterTag}
-        isInGlobalCountry={isInGlobalCountry}
       />
     </Page>
   );
