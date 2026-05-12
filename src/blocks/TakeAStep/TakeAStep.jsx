@@ -27,7 +27,7 @@ export const TakeAStep = () => {
       <Grid classes="take-a-step__main-grid">
         <GridItem md={8} lg={12} classes="take-a-step__heading-and-description">
           <Grid>
-            <GridItem md={8} lg={6}>
+            <GridItem md={4} lg={6}>
               <GridItem md={8} lg={12}>
                 <h1 className="take-a-step__heading">{t("heading")}</h1>
                 <p className="paragraph take-a-step__heading-and-description__description">
@@ -35,7 +35,7 @@ export const TakeAStep = () => {
                 </p>
               </GridItem>
             </GridItem>
-            <GridItem md={8} lg={6}>
+            <GridItem md={4} lg={6}>
               <div className="take-a-step__mascot-cell">
                 <Animation
                   name="MascotBlueQuestions"
