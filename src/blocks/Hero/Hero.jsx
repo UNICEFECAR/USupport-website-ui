@@ -20,6 +20,7 @@ import "./hero.scss";
 export const Hero = () => {
   const { t } = useTranslation("blocks", { keyPrefix: "hero" });
   const { theme } = useContext(ThemeContext);
+  const IS_PL = localStorage.getItem("country") === "PL";
 
   return (
     <Block
@@ -43,7 +44,11 @@ export const Hero = () => {
             <GridItem md={8} lg={12} classes="hero__text-item">
               <p className="paragraph">{t("paragraph_1")}</p>
               <br />
-              <p className="hero__heading-item__purple-text">
+              <p
+                className={
+                  IS_PL ? "paragraph" : "hero__heading-item__purple-text"
+                }
+              >
                 {t("paragraph_1_1")}
               </p>
             </GridItem>
