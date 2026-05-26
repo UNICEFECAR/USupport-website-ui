@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 
-import { NavLink, Link, useParams, useLocation } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation, Trans } from "react-i18next";
 import classNames from "classnames";
@@ -379,7 +379,7 @@ export const Page = ({
 
   return (
     <>
-      <HreflangHelmet />
+      <HreflangHelmet path={window.location.pathname} />
       <PasswordModal
         label={t("password")}
         btnLabel={t("submit")}
@@ -488,39 +488,23 @@ export const Page = ({
   );
 };
 
-const HreflangHelmet = () => {
-  const { language: routeLanguage } = useParams();
-  const { pathname } = useLocation();
+const HreflangHelmet = ({ path }) => {
   const baseUrl = window.location.origin;
-  const isPolandSite = window.location.hostname.includes("poland");
-
-  const language = (routeLanguage || getLanguageFromUrl() || "en").toLowerCase();
-  const pathSuffix =
-    pathname.replace(new RegExp(`^/${language}(?=/|$)`), "") || "";
-
-  const canonical = `${baseUrl}/${language}${pathSuffix}`;
-  const hrefForLang = (lang) => `${baseUrl}/${lang}${pathSuffix}`;
-
-  const alternateLangs = isPolandSite ? ["pl", "uk"] : ["en"];
+  const pathWithoutLang = path.slice(3);
 
   return (
     <Helmet>
-      <link rel="canonical" href={canonical} />
-      {alternateLangs.map((lang) => (
-        <link
-          key={lang}
-          rel="alternate"
-          hrefLang={lang}
-          href={hrefForLang(lang)}
-        />
-      ))}
-      {isPolandSite && (
-        <link
-          rel="alternate"
-          hrefLang="x-default"
-          href={hrefForLang("pl")}
-        />
-      )}
+      <link rel="canonical" href={baseUrl + path} />
+      <link
+        rel="alternate"
+        hrefLang="pl"
+        href={`${baseUrl}/pl${pathWithoutLang}`}
+      />
+      <link
+        rel="alternate"
+        hrefLang="uk"
+        href={`${baseUrl}/uk${pathWithoutLang}`}
+      />
     </Helmet>
   );
 };
