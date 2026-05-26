@@ -37,7 +37,7 @@ const GENERATE_SITEMAP = true;
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   return {
-    base: command === "serve" ? "/" : "/website/",
+    base: "/website/",
     plugins: [
       react(),
 

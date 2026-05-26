@@ -290,10 +290,8 @@ const Root = () => {
       country !== "global" &&
       country !== "PS",
   });
-  const routerBasename = import.meta.env.BASE_URL.replace(/\/$/, "");
-
   return (
-    <Router basename={routerBasename || "/"}>
+    <Router basename="/">
       <Routes>
         <Route path="/sitemap" element={<Sitemap />} />
         <Route path="/reports" element={<Reports />} />
