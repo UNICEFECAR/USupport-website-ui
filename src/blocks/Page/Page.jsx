@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useParams, useLocation } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation, Trans } from "react-i18next";
 import classNames from "classnames";
@@ -379,7 +379,7 @@ export const Page = ({
 
   return (
     <>
-      <HreflangHelmet path={window.location.pathname} />
+      <HreflangHelmet />
       <PasswordModal
         label={t("password")}
         btnLabel={t("submit")}
@@ -488,23 +488,39 @@ export const Page = ({
   );
 };
 
-const HreflangHelmet = ({ path }) => {
+const HreflangHelmet = () => {
+  const { language: routeLanguage } = useParams();
+  const { pathname } = useLocation();
   const baseUrl = window.location.origin;
-  const pathWithoutLang = path.slice(3);
+  const isPolandSite = window.location.hostname.includes("poland");
+
+  const language = (routeLanguage || getLanguageFromUrl() || "en").toLowerCase();
+  const pathSuffix =
+    pathname.replace(new RegExp(`^/${language}(?=/|$)`), "") || "";
+
+  const canonical = `${baseUrl}/${language}${pathSuffix}`;
+  const hrefForLang = (lang) => `${baseUrl}/${lang}${pathSuffix}`;
+
+  const alternateLangs = isPolandSite ? ["pl", "uk"] : ["en"];
 
   return (
     <Helmet>
-      <link rel="canonical" href={baseUrl + path} />
-      <link
-        rel="alternate"
-        hrefLang="pl"
-        href={`${baseUrl}/pl${pathWithoutLang}`}
-      />
-      <link
-        rel="alternate"
-        hrefLang="uk"
-        href={`${baseUrl}/uk${pathWithoutLang}`}
-      />
+      <link rel="canonical" href={canonical} />
+      {alternateLangs.map((lang) => (
+        <link
+          key={lang}
+          rel="alternate"
+          hrefLang={lang}
+          href={hrefForLang(lang)}
+        />
+      ))}
+      {isPolandSite && (
+        <link
+          rel="alternate"
+          hrefLang="x-default"
+          href={hrefForLang("pl")}
+        />
+      )}
     </Helmet>
   );
 };
