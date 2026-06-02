@@ -21,16 +21,18 @@
   }
 
   &__heading-and-description {
-    @media screen and (min-width: $screen-md) {
-      padding-bottom: $spacing_4_8;
-    }
-
     &__description {
       margin-top: $spacing_2_4;
 
       @media screen and (min-width: $screen-md) {
         margin-top: $spacing_4_2;
       }
+    }
+  }
+
+  &__heading {
+    @media screen and (min-width: $screen-md) {
+      margin-top: $spacing_4_8;
     }
   }
 
@@ -49,6 +51,12 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
+  }
+
+  &__mascot-grid-item {
+    @media screen and (min-width: $screen-lg) {
+      order: -1;
+    }
   }
 
   .grid {

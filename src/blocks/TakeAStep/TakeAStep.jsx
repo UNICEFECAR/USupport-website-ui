@@ -35,7 +35,7 @@ export const TakeAStep = () => {
                 </p>
               </GridItem>
             </GridItem>
-            <GridItem md={4} lg={6}>
+            <GridItem md={4} lg={6} classes="take-a-step__mascot-grid-item">
               <div className="take-a-step__mascot-cell">
                 <Animation
                   name="MascotBlueQuestions"
