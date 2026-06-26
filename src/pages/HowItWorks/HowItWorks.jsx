@@ -44,8 +44,8 @@ export const HowItWorks = () => {
       <div ref={providersBlockRef} />
       {!IS_RO ? <MeetOurProviders /> : null}
       <VideoTutorial />
-      <div ref={faqRef} />
       <TakeAStep />
+      <div ref={faqRef} />
       <FAQ showLearnMore={false} showMascot hasBackground />
       <Question />
     </Page>
