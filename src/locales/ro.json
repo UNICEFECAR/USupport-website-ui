@@ -5,24 +5,16 @@
       "paragraph": "uSupport este o platformă de sănătate mintală, psihosocială și bunăstare concepută pentru tineri și îngrijitorii acestora, unde confidențialitatea și siguranța sunt prioritare.",
       "card_text_1": "Conținut pentru autodezvoltare",
       "card_text_2": "Furnizori consacrați",
-      "card_text_2_ro": "Organizații consacrate",
       "card_text_3": "Asistență online",
-      "card_text_3_ro": "Asistență locală",
       "card_text_4": "Locul în care vă simțiți în siguranță",
-      "paragraph_2": "Locul în care vă simțiți în siguranță."
+      "paragraph_2": "Locul în care vă simțiți în siguranță.",
+      "card_text_2_ro": "Organizații consacrate",
+      "card_text_3_ro": "Asistență locală"
     },
     "articles": {
       "heading": "Portal de informații",
       "no_results": "Nu s-au găsit rezultate",
-      "no_results_heading": "Nu am găsit nimic pentru „{{query}}”",
-      "no_results_line1": "Încearcă să modifici căutarea sau explorează subiectele de mai jos.",
-      "no_results_line2": "Poți reseta și filtrele pentru a vedea mai multe rezultate.",
-      "reset_filters": "Resetează filtrele",
-      "browse_all_articles": "Vezi toate articolele",
-      "no_results_image_alt": "Ilustrație: fără rezultate la căutare",
-      "no_results_hint": "Încearcă alt termen de căutare, schimbă categoria sau grupa de vârstă sau șterge căutarea pentru a vedea tot conținutul disponibil.",
       "could_not_load_content": "Nu există rezultate pentru țara și limba selectate.",
-      "could_not_load_hint": "Poți schimba țara sau limba din meniu sau poți reveni mai târziu — se adaugă frecvent resurse noi.",
       "all": "Toate",
       "read_more_button": "Citește mai mult",
       "min_read": "durata lecturii",
@@ -35,7 +27,15 @@
       "search": "Căutare",
       "not_found": "Această resursă nu este disponibilă",
       "require_cookies": "Pentru a vizualiza acest videoclip, acceptați toate cookie-urile.",
-      "cookie_preferences": "Preferințe cookie"
+      "cookie_preferences": "Preferințe cookie",
+      "no_results_heading": "Nu am găsit nimic pentru „{{query}}”",
+      "no_results_line1": "Încearcă să modifici căutarea sau explorează subiectele de mai jos.",
+      "no_results_line2": "Poți reseta și filtrele pentru a vedea mai multe rezultate.",
+      "reset_filters": "Resetează filtrele",
+      "browse_all_articles": "Vezi toate articolele",
+      "no_results_image_alt": "Ilustrație: fără rezultate la căutare",
+      "no_results_hint": "Încearcă alt termen de căutare, schimbă categoria sau grupa de vârstă sau șterge căutarea pentru a vedea tot conținutul disponibil.",
+      "could_not_load_hint": "Poți schimba țara sau limba din meniu sau poți reveni mai târziu — se adaugă frecvent resurse noi."
     },
     "contact-us": {
       "heading_1": "Contactați-ne",
@@ -104,14 +104,14 @@
       "card_1": "Cu doar câteva clicuri puteți obține ajutorul de care aveți nevoie. Complet anonim.",
       "card_2": "Alegeți țara și limba",
       "card_3": "Creați-vă un cont",
-      "card_3_ro": "Completați evaluarea inițială",
       "card_4": "Alegeți un furnizor",
-      "card_4_ro": "Găsiți sprijin local",
       "download_text": "Programați o sesiune",
-      "download_from_web": "Descărcați uSupport de la",
       "web_browser": "Browser web",
       "click_to_use": "Faceți clic pentru a utiliza",
+      "download_from_web": "Descărcați uSupport de la",
       "browser": "Browser web",
+      "card_3_ro": "Completați evaluarea inițială",
+      "card_4_ro": "Găsiți sprijin local",
       "heading_hero": "Ușor și rapid.<0></0> Complet <1>anonim</1>!",
       "paragraph_hero": "În doar câteva clicuri poți primi ajutorul de care ai nevoie, chiar și atunci când nu vrei să creezi un profil complet."
     },
@@ -130,7 +130,6 @@
       "page_4": "Portal de informații",
       "page_5": "Contactați-ne",
       "page_6": "My Q&A ",
-      "page_7": "Organizații",
       "footer_1": "Despre noi",
       "footer_2": "Portal de informații",
       "footer_3": "Cum funcționează?",
@@ -155,6 +154,7 @@
       "reject_all_cookies": "Respingeți toate",
       "accept_necessary_cookies": "Acceptați doar cele necesare",
       "save": "Salvați",
+      "page_7": "Organizații",
       "high_contrast": "Contrast ridicat",
       "footer_text": "Sănătatea ta mintală contează—uSupport oferă îngrijire psihologică personalizată, privată și sigură.",
       "go_back": "Înapoi"
@@ -550,9 +550,9 @@
       "more_videos": "Mai multe videoclipuri",
       "view_more": "Vezi mai mult",
       "not_found": "Videoclipul nu a fost găsit",
-      "share_success": "Linkul videoclipului a fost copiat în clipboard",
       "require_cookies": "Pentru a vizualiza acest videoclip, acceptați toate cookie-urile.",
-      "cookie_preferences": "Preferințe cookie"
+      "cookie_preferences": "Preferințe cookie",
+      "share_success": "Linkul videoclipului a fost copiat în clipboard"
     },
     "podcast-information-page": {
       "more_podcasts": "Mai multe podcasturi",
@@ -601,7 +601,7 @@
     }
   },
   "meta": {
-    "title": "uSupport Site web",
-    "description": "Prima platformă creată pentru a face din sănătatea ta mintală o prioritate. uSupport oferă îngrijire psihologică personalizată, discretă și rapidă pentru bunăstarea ta generală."
+    "description": "Prima platformă creată pentru a face din sănătatea ta mintală o prioritate. uSupport oferă îngrijire psihologică personalizată, discretă și rapidă pentru bunăstarea ta generală.",
+    "title": "uSupport Site web"
   }
 }
