@@ -5,8 +5,8 @@ import {
   Block,
   Grid,
   GridItem,
-  Loading,
   CardMedia,
+  CardMediaSkeleton,
   NewButton,
 } from "@USupport-components-library/src";
 import {
@@ -37,7 +37,7 @@ export const InformationPortal = () => {
 
   //--------------------- Country Change Event Listener ----------------------//
   const [currentCountry, setCurrentCountry] = useState(
-    localStorage.getItem("country"),
+    localStorage.getItem("country")
   );
   const shouldFetchIds = !!(currentCountry && currentCountry !== "global");
 
@@ -62,7 +62,7 @@ export const InformationPortal = () => {
     getArticlesIds,
     {
       enabled: shouldFetchIds,
-    },
+    }
   );
 
   //--------------------- Most Read Articles ----------------------//
@@ -89,7 +89,7 @@ export const InformationPortal = () => {
     const ids = rawArticles.map((article) => article.id);
     const { likes, dislikes } = await getLikesAndDislikesForContent(
       ids,
-      "article",
+      "article"
     );
 
     const processedArticles = rawArticles.map((article) => {
@@ -119,14 +119,14 @@ export const InformationPortal = () => {
           setShowBlock(true);
         }
       },
-    },
+    }
   );
 
   const handleRedirect = (id, name) => {
     navigate(
       `/${localStorage.getItem(
-        "language",
-      )}/information-portal/article/${id}/${createArticleSlug(name)}`,
+        "language"
+      )}/information-portal/article/${id}/${createArticleSlug(name)}`
     );
   };
 
@@ -143,15 +143,22 @@ export const InformationPortal = () => {
               <p>{t("paragraph_2")}</p>
               <p>{t("paragraph_3")}</p>
             </GridItem> */}
-            {mostReadArticlesQuerry.isLoading ? (
-              <GridItem
-                md={8}
-                lg={12}
-                classes="information-portal__loading-item"
-              >
-                <Loading />
-              </GridItem>
-            ) : null}
+            {mostReadArticlesQuerry.isLoading
+              ? [0, 1, 2, 3].map((index) => (
+                  <GridItem
+                    md={4}
+                    lg={6}
+                    key={`article-skeleton-${index}`}
+                    classes="information-portal__article-item"
+                  >
+                    <CardMediaSkeleton
+                      type="portrait"
+                      size="lg"
+                      classes="information-portal__article-item__card-media"
+                    />
+                  </GridItem>
+                ))
+              : null}
             {!mostReadArticlesQuerry.isLoading &&
               mostReadArticlesQuerry.data?.length > 0 && (
                 <GridItem
@@ -189,7 +196,7 @@ export const InformationPortal = () => {
                             onClick={() =>
                               handleRedirect(
                                 article.id,
-                                article.title || article.name,
+                                article.title || article.name
                               )
                             }
                             classes="information-portal__article-item__card-media"
@@ -205,7 +212,7 @@ export const InformationPortal = () => {
                 label={t("button_label")}
                 onClick={() => {
                   navigate(
-                    `/${localStorage.getItem("language")}/information-portal`,
+                    `/${localStorage.getItem("language")}/information-portal`
                   );
                 }}
                 size="lg"
