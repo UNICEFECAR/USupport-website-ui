@@ -74,7 +74,7 @@ export const MyQA = () => {
     { label: "New", value: "newest", isSelected: false },
   ]);
   const [filterTag, setFilterTag] = useState("");
-  const [selectedLanguage, setSelectedLanguage] = useState();
+  const [selectedLanguage, setSelectedLanguage] = useState("all");
   const [shouldFetchQuestions, setShouldFetchQuestions] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [selectedCountry, setSelectedCountry] = useState(
