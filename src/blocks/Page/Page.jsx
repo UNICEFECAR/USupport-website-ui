@@ -70,6 +70,9 @@ export const Page = ({
   const queryClient = useQueryClient();
   const { t, i18n } = useTranslation("blocks", { keyPrefix: "page" });
   const IS_DEV = process.env.NODE_ENV === "development";
+  const addCountryEventMutation = useMutation(
+    async (payload) => await userSvc.addCountryEvent(payload),
+  );
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -269,6 +272,10 @@ export const Page = ({
           name: t("page_6"),
           url: "/my-qa",
           icon: "document",
+          onClick: () =>
+            addCountryEventMutation.mutate({
+              eventType: "web_my_qa_nav_click",
+            }),
         },
   ];
 
@@ -294,7 +301,14 @@ export const Page = ({
         url: "/about-us",
       },
       { name: t("footer_2"), url: "/information-portal?tab=articles" },
-      { name: t("page_6"), url: "/my-qa" },
+      {
+        name: t("page_6"),
+        url: "/my-qa",
+        onClick: () =>
+          addCountryEventMutation.mutate({
+            eventType: "web_my_qa_nav_click",
+          }),
+      },
     ],
     list2: [
       { name: t("footer_4"), url: "/terms-of-use", exact: true },
