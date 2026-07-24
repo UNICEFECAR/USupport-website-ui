@@ -14,6 +14,7 @@ import {
   GridItem,
   Block,
   CardMedia,
+  CardMediaSkeleton,
   TabsUnderlined,
   Tabs,
   Loading,
@@ -327,7 +328,6 @@ export const Articles = ({ debouncedSearchValue, onResetSearch }) => {
     isLoading: isArticlesLoading,
     isFetching: isArticlesFetching,
     isFetched: isArticlesFetched,
-    fetchStatus: articlesFetchStatus,
     data: articlesQueryData,
   } = useQuery(
     [
@@ -466,7 +466,6 @@ export const Articles = ({ debouncedSearchValue, onResetSearch }) => {
     isLoading: isNewestArticleLoading,
     isFetching: isNewestArticleFetching,
     isFetched: isNewestArticleFetched,
-    fetchStatus: newestArticleFetchStatus,
   } = useQuery(
     [
       "newestArticle",
@@ -683,8 +682,31 @@ export const Articles = ({ debouncedSearchValue, onResetSearch }) => {
 
                   {/* Show initial loading state when no articles yet */}
                   {isArticlesLoading && !articles?.length && (
-                    <div style={{ padding: "2rem", textAlign: "center" }}>
-                      <Loading size="lg" />
+                    <div className="articles__custom-grid">
+                      {[0, 1, 2, 3, 4, 5].map((index) => {
+                        const gridSpan = IS_PS
+                          ? 3
+                          : getGridSpanForIndex(index, [2, 2, 2]);
+
+                        return (
+                          <div
+                            key={`article-skeleton-${index}`}
+                            className="articles__card-wrapper"
+                            style={{ gridColumn: `span ${gridSpan}` }}
+                          >
+                            <CardMediaSkeleton
+                              type={
+                                gridSpan === 12 && !isNotDescktop
+                                  ? "landscape"
+                                  : "portrait"
+                              }
+                              size={
+                                gridSpan === 12 && !isNotDescktop ? "lg" : "sm"
+                              }
+                            />
+                          </div>
+                        );
+                      })}
                     </div>
                   )}
 

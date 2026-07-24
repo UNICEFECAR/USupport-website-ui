@@ -221,6 +221,35 @@ async function updateHtmlMeta(html, lang) {
   return html;
 }
 
+function getPathWithoutLanguage(route) {
+  const segments = route.split("/").filter(Boolean);
+  if (segments.length <= 1) return "";
+  return `/${segments.slice(1).join("/")}`;
+}
+
+function injectSeoLinks(html, route, publicOrigin) {
+  const pathWithoutLang = getPathWithoutLanguage(route);
+  const canonical = `${publicOrigin}${route}`;
+
+  html = html.replace(/<link[^>]*\srel="canonical"[^>]*>/gi, "");
+  html = html.replace(/<link[^>]*\srel="alternate"[^>]*hreflang[^>]*>/gi, "");
+
+  const seoTags = [
+    `<link rel="canonical" href="${escapeHtml(canonical)}" />`,
+    ...languages.map(
+      (lang) =>
+        `<link rel="alternate" hreflang="${lang}" href="${escapeHtml(
+          `${publicOrigin}/${lang}${pathWithoutLang}`
+        )}" />`
+    ),
+    `<link rel="alternate" hreflang="x-default" href="${escapeHtml(
+      `${publicOrigin}/en${pathWithoutLang}`
+    )}" />`,
+  ].join("\n      ");
+
+  return html.replace("</head>", `      ${seoTags}\n    </head>`);
+}
+
 async function prerenderRoute(
   browser,
   routeInfo,
@@ -269,6 +298,7 @@ async function prerenderRoute(
     html = await updateHtmlMeta(html, lang);
 
     html = rewritePreviewOriginInHtml(html, previewOrigins, publicOrigin);
+    html = injectSeoLinks(html, route, publicOrigin);
 
     // Determine output path - output directly to dist/{lang}/{route}/index.html
     // This way when deploy.sh syncs dist/ to s3://bucket/website/,
