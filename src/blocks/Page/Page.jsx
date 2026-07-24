@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation, Trans } from "react-i18next";
 import classNames from "classnames";
@@ -70,6 +70,9 @@ export const Page = ({
   const queryClient = useQueryClient();
   const { t, i18n } = useTranslation("blocks", { keyPrefix: "page" });
   const IS_DEV = process.env.NODE_ENV === "development";
+  const addCountryEventMutation = useMutation(
+    async (payload) => await userSvc.addCountryEvent(payload),
+  );
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -269,6 +272,10 @@ export const Page = ({
           name: t("page_6"),
           url: "/my-qa",
           icon: "document",
+          onClick: () =>
+            addCountryEventMutation.mutate({
+              eventType: "web_my_qa_nav_click",
+            }),
         },
   ];
 
@@ -294,7 +301,14 @@ export const Page = ({
         url: "/about-us",
       },
       { name: t("footer_2"), url: "/information-portal?tab=articles" },
-      { name: t("page_6"), url: "/my-qa" },
+      {
+        name: t("page_6"),
+        url: "/my-qa",
+        onClick: () =>
+          addCountryEventMutation.mutate({
+            eventType: "web_my_qa_nav_click",
+          }),
+      },
     ],
     list2: [
       { name: t("footer_4"), url: "/terms-of-use", exact: true },
@@ -379,7 +393,11 @@ export const Page = ({
 
   return (
     <>
-      <HreflangHelmet path={window.location.pathname} />
+      <HreflangHelmet
+        alternateLanguages={
+          langs.length ? langs.map((lang) => lang.value) : undefined
+        }
+      />
       <PasswordModal
         label={t("password")}
         btnLabel={t("submit")}
@@ -488,22 +506,35 @@ export const Page = ({
   );
 };
 
-const HreflangHelmet = ({ path }) => {
+const DEFAULT_ALTERNATE_LANGUAGES = ["en", "pl", "uk"];
+
+const getPathWithoutLanguage = (pathname) => {
+  const segments = pathname.split("/").filter(Boolean);
+  if (segments.length <= 1) return "";
+  return `/${segments.slice(1).join("/")}`;
+};
+
+const HreflangHelmet = ({ alternateLanguages = DEFAULT_ALTERNATE_LANGUAGES }) => {
+  const { pathname, search } = useLocation();
   const baseUrl = window.location.origin;
-  const pathWithoutLang = path.slice(3);
+  const pathWithoutLang = getPathWithoutLanguage(pathname);
+  const canonicalUrl = `${baseUrl}${pathname}${search}`;
 
   return (
     <Helmet>
-      <link rel="canonical" href={baseUrl + path} />
+      <link rel="canonical" href={canonicalUrl} />
+      {alternateLanguages.map((lang) => (
+        <link
+          key={lang}
+          rel="alternate"
+          hrefLang={lang}
+          href={`${baseUrl}/${lang}${pathWithoutLang}${search}`}
+        />
+      ))}
       <link
         rel="alternate"
-        hrefLang="pl"
-        href={`${baseUrl}/pl${pathWithoutLang}`}
-      />
-      <link
-        rel="alternate"
-        hrefLang="uk"
-        href={`${baseUrl}/uk${pathWithoutLang}`}
+        hrefLang="x-default"
+        href={`${baseUrl}/en${pathWithoutLang}${search}`}
       />
     </Helmet>
   );

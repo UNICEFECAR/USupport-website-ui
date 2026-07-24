@@ -24,7 +24,7 @@ import {
 
 import { ThemeContext } from "@USupport-components-library/utils";
 
-import { useEventListener, useGetLanguages, useGetQuestionsTags } from "#hooks";
+import { useGetLanguages, useGetQuestionsTags } from "#hooks";
 
 import "./my-qa.scss";
 
@@ -63,24 +63,18 @@ export const MyQA = ({
     setTags(data);
   }, []);
 
-  useGetQuestionsTags({ onSuccess: onTagsSuccess, enabled: true });
-
-  const handler = useCallback(() => {
-    const lang = localStorage.getItem("language");
-    const languageId = languages?.find((x) => x.alpha2 === lang)?.language_id;
-    setSelectedLanguage(languageId || "all");
-  }, [languages, setSelectedLanguage]);
-
-  useEventListener("languageChanged", handler);
+  useGetQuestionsTags({
+    languageId: selectedLanguage,
+    onSuccess: onTagsSuccess,
+    enabled: true,
+  });
 
   useEffect(() => {
     if (languages?.length) {
-      const currentLang = localStorage.getItem("language");
-      const langObject = languages.find((x) => x.alpha2 === currentLang);
-      setSelectedLanguage(langObject?.language_id || "all");
+      setSelectedLanguage("all");
       setShouldFetchQuestions(true);
     }
-  }, [languages]);
+  }, [languages, setSelectedLanguage, setShouldFetchQuestions]);
 
   const languageOptions = useMemo(() => {
     const showAllOption = {
@@ -286,6 +280,7 @@ export const MyQA = ({
                       selected={selectedLanguage}
                       setSelected={(lang) => {
                         setSelectedLanguage(lang);
+                        setFilterTag("");
                       }}
                       placeholder={t("language")}
                     />
