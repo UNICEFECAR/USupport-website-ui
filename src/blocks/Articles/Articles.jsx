@@ -650,7 +650,11 @@ export const Articles = ({ debouncedSearchValue, onResetSearch }) => {
                                 gridSpan === 12 && !isNotDescktop ? "lg" : "sm"
                               }
                               title={articleData.title}
-                              image={articleData.imageMedium}
+                              image={
+                                articleData.imageMedium ||
+                                articleData.imageThumbnail ||
+                                articleData.imageSmall
+                              }
                               description={articleData.description}
                               labels={articleData.labels || []}
                               creator={articleData.creator}
