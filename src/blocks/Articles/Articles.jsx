@@ -309,6 +309,11 @@ export const Articles = ({ debouncedSearchValue, onResetSearch }) => {
       delete queryParams["ageGroupId"];
     }
 
+    if (isPLCountry) {
+      queryParams["sortBy"] = "createdAt";
+      queryParams["sortOrder"] = "desc";
+    }
+
     if (shouldFetchIds) {
       queryParams["ids"] = articleIdsQuery.data;
     } else {
@@ -338,6 +343,7 @@ export const Articles = ({ debouncedSearchValue, onResetSearch }) => {
       articleIdsQuery.data,
       usersLanguage,
       shouldFetchIds,
+      isPLCountry,
     ],
     getArticlesData,
     {
@@ -428,6 +434,11 @@ export const Articles = ({ debouncedSearchValue, onResetSearch }) => {
       queryParams["sortBy"] = "title";
       queryParams["sortOrder"] = "asc";
       delete queryParams["ageGroupId"];
+    }
+
+    if (isPLCountry) {
+      queryParams["sortBy"] = "createdAt";
+      queryParams["sortOrder"] = "desc";
     }
 
     const { data } = await cmsSvc.getArticles(queryParams);
