@@ -37,6 +37,7 @@ import {
   PodcastInformation,
   Organizations,
   OrganizationOverview,
+  Reports,
 } from "#pages";
 // import { Wysa, WysaButton } from "@USupport-components-library/src";
 import {
@@ -58,11 +59,11 @@ const queryClient = new QueryClient({
 
 function App() {
   const supportsWebP = useWebPSupportCheck();
-  
+
   // Only run browser-specific code when not prerendering
   useEffect(() => {
     document.body.classList.add(`${supportsWebP ? "webp" : "no-webp"}`);
-    
+
     AOS.init({
       offset: 10,
       duration: 1000,
@@ -216,6 +217,7 @@ const LanguageLayout = () => {
       <Route path="" element={<Landing />} />
 
       <Route path="how-it-works" element={<HowItWorks />} />
+
       {/* <Route path="/about-us" element={<AboutUs />} /> */}
       <Route path="about-us" element={<CustomAboutUs />} />
       <Route path="provider-overview" element={<ProviderOverview />} />
@@ -292,6 +294,7 @@ const Root = () => {
     <Router basename="/">
       <Routes>
         <Route path="/sitemap" element={<Sitemap />} />
+        <Route path="/reports" element={<Reports />} />
         <Route path="/" element={<Navigate to={`/${language}`} replace />} />
         <Route path=":language/*" element={<LanguageLayout />} />
         <Route path="*" element={<NotFound />} />

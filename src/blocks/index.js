@@ -33,3 +33,6 @@ export * from "./Organizations";
 export * from "./OrganizationOverview";
 export * from "./VideoTutorial";
 export * from "./PDFViewer";
+export * from "./InformationPortalHero";
+export * from "./HowItWorksHero";
+export * from "./TakeAStep";

@@ -1,23 +1,17 @@
 @import "@USupport-components-library/styles";
 
 .faq {
-  .no-webp & {
-    background-image: url("./assets/Background.png");
-  }
-  .webp & {
-    background-image: url("./assets/Background.webp");
+  padding-top: $spacing_3_2;
+  padding-bottom: $spacing_3_2;
+
+  &--background {
+    @include themify($themes, "background", "color_green_transparent_1");
   }
 
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-blend-mode: lighten;
-  background-position: right;
-  padding-top: $spacing_7_0;
-  padding-bottom: $spacing_5_0;
-
-  & h2 {
-    @include themify($themes, "color", "color_66768d_c1d7e0");
+  & h1 {
+    text-align: left;
   }
+
   &__content-item {
     margin-top: $spacing_8_0;
   }
@@ -30,10 +24,10 @@
   &__mascot-item {
     display: flex;
     justify-content: flex-end;
-    align-items: center;
+    align-items: flex-start;
+    align-self: flex-start;
     max-width: 40rem;
-    margin: auto;
-    padding-top: $spacing_7_2;
+    margin: 0 auto;
 
     @media screen and (min-width: $screen_lg) {
       max-width: 50rem;

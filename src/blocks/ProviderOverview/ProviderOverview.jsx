@@ -22,7 +22,7 @@ import "./provider-overview.scss";
 export const ProviderOverview = ({ providerId }) => {
   const { t } = useTranslation("blocks", { keyPrefix: "provider-overview" });
 
-  const { cookieState, setCookieState } = useContext(ThemeContext);
+  const { cookieState, setCookieState, theme } = useContext(ThemeContext);
 
   const [providerDataQuery] = useGetProviderData(providerId);
   const provider = providerDataQuery.data;
@@ -40,6 +40,7 @@ export const ProviderOverview = ({ providerId }) => {
           renderIn="website"
           cookieState={cookieState}
           setCookieState={setCookieState}
+          iconColor={theme === "dark" || theme === "highContrast" ? "#ededed" : "#66768D"}
         />
       )}
     </Block>

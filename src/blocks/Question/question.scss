@@ -1,7 +1,6 @@
 @import "@USupport-components-library/styles";
 
 .question {
-  background: $gradient_block;
   padding: $spacing_4_0 $spacing_1_6 $spacing_5_6 $spacing_1_6;
 
   .grid {
@@ -12,14 +11,10 @@
     place-self: center;
     text-align: center;
 
-    p {
-      margin-top: $spacing_0_8;
-      margin-bottom: $spacing_4_0;
-
-      @media screen and (min-width: $screen-md) {
-        margin-top: $spacing_0_4;
-        margin-bottom: 0;
-      }
+    & p {
+      text-align: center;
+      margin-top: $spacing_2_4;
+      margin-bottom: $spacing_2_4;
     }
 
     @media screen and (min-width: $screen-md) {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
@@ -24,6 +24,7 @@ import {
 } from "@USupport-components-library/src";
 
 import { userSvc } from "@USupport-components-library/services";
+import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./organizations.scss";
 
@@ -46,6 +47,7 @@ const INITIAL_FILTERS = {
 export const Organizations = () => {
   const { t } = useTranslation("blocks", { keyPrefix: "organizations" });
   const navigate = useNavigate();
+  const { theme } = useContext(ThemeContext);
   const [mapControls, setMapControls] = useState(null);
 
   const [filters, setFilters] = useState(INITIAL_FILTERS);
@@ -123,7 +125,7 @@ export const Organizations = () => {
         mapControls.zoomToLocation(
           organization.location.latitude,
           organization.location.longitude,
-          14 // Zoom level for organization location
+          14, // Zoom level for organization location
         );
       }
 
@@ -159,6 +161,11 @@ export const Organizations = () => {
             address={organization.address}
             onClick={() => handleOrganizationClick(organization)}
             t={t}
+            iconColor={
+              theme === "dark" || theme === "highContrast"
+                ? "#ededed"
+                : "#20809E"
+            }
           />
         </GridItem>
       );
@@ -255,7 +262,7 @@ export const Organizations = () => {
                   label: t(spec.name),
                   value: spec.organizationSpecialisationId,
                   selected: filters.specialisations.includes(
-                    spec.organizationSpecialisationId
+                    spec.organizationSpecialisationId,
                   ),
                 }))
                 .sort((a, b) => a.label.localeCompare(b.label))}

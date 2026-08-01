@@ -1,57 +1,39 @@
 @import "@USupport-components-library/styles";
 
 .about {
-  padding: $spacing_3_2 $spacing_1_6 0 $spacing_1_6;
   text-align: left;
-  // background-color: $color_white_ff;
-  // @include themify($themes, "background", "color_white_ff");
-  position: relative;
+  padding-top: $spacing_3_2;
+  padding-bottom: $spacing_3_2;
 
-  & h2 {
-    @include themify($themes, "color", "color_66768d_c1d7e0");
+  @media screen and (min-width: $screen-md) {
+    padding-top: $spacing_4_8;
+  }
+
+  @media screen and (min-width: $screen-lg) {
+    padding-top: $spacing_6_4;
+    padding-bottom: $spacing_4_8;
   }
 
   &__main-grid {
-    justify-items: center;
+    justify-items: stretch;
   }
 
-  &__description-item {
-    padding-top: $spacing_2_4;
-    place-self: center;
-    &__paragraph {
-      max-width: 60rem;
+  &__heading-and-description {
+    @media screen and (min-width: $screen-md) {
+      padding-bottom: $spacing_4_8;
+    }
+
+    &__description {
+      margin-top: $spacing_2_4;
+
+      @media screen and (min-width: $screen-md) {
+        margin-top: $spacing_4_2;
+      }
     }
   }
 
   &__description-item-2 {
     padding-top: $spacing_2_4;
-
-    @media screen and (min-width: $screen-md) {
-      place-self: end;
-    }
-
-    &__paragraph {
-      max-width: 60rem;
-    }
-
-    @media screen and (min-width: $screen-lg) {
-      justify-self: center;
-    }
-  }
-
-  &__icons-grid {
-    margin-top: $spacing_2_4;
-    max-width: 40rem;
-    width: 100%;
-    justify-self: center;
-
-    @media screen and (min-width: $screen-md) {
-    }
-
-    @media screen and (min-width: $screen-lg) {
-      justify-self: center;
-      margin-top: 0;
-    }
   }
 
   &__icon-item {
@@ -78,19 +60,24 @@
     margin-bottom: -$spacing_0_7;
 
     @media screen and (min-width: $screen-md) {
-      margin-top: -$spacing_14_6;
+      margin-bottom: -$spacing_6_0;
       width: 36rem;
     }
 
     @media screen and (min-width: $screen-lg) {
+      margin-bottom: -$spacing_6_4;
       width: 40rem;
     }
   }
 
-  .radial-background {
-    @media screen and (min-width: $screen-md) {
-      height: 60rem;
-      width: 60rem;
-    }
+  &__mascot-cell {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  &__card-icon-and-label {
+    margin: 0 auto;
   }
 }

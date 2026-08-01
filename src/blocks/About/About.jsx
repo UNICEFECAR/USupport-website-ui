@@ -24,45 +24,61 @@ export const About = () => {
 
   return (
     <Block classes={["about"]} animation="fade-right">
-      <Grid classes={["about__main-grid"]}>
-        <GridItem md={8} lg={12}>
-          <h2 className="about__heading">{t("heading")}</h2>
-        </GridItem>
-        <GridItem md={8} lg={7} classes="about__description-item">
-          <p className="paragraph about__description-item__paragraph">
-            {t("paragraph")}
-          </p>
+      <Grid classes="about__main-grid">
+        <GridItem md={8} lg={12} classes="about__heading-and-description">
+          <Grid>
+            <GridItem md={8} lg={6}>
+              <GridItem md={8} lg={12}>
+                <h1 className="about__heading">{t("heading")}</h1>
+                <p className="paragraph about__heading-and-description__description">
+                  {t("paragraph")}
+                </p>
+              </GridItem>
+            </GridItem>
+            <GridItem md={8} lg={6}>
+              <div className="about__mascot-cell">
+                <Animation
+                  name="MascotBlueWavingCutOff"
+                  classes="about__mascot"
+                />
+              </div>
+            </GridItem>
+          </Grid>
         </GridItem>
 
-        <GridItem xs={4} md={8} lg={5} classes="about__icons-grid">
+        <GridItem xs={4} md={8} lg={12}>
           <Grid>
-            <GridItem xs={4} md={8} lg={12} classes="about__icon-item first">
+            <GridItem xs={4} md={4} lg={3}>
               <CardIconAndLabel
                 iconName="self-care"
                 size="lg"
+                classes="about__card-icon-and-label"
                 label={t("card_text_1")}
               />
             </GridItem>
 
-            <GridItem md={8} lg={12} classes="about__icon-item second">
+            <GridItem md={4} lg={3}>
               <CardIconAndLabel
                 iconName="community"
-                size="sm"
+                size="lg"
+                classes="about__card-icon-and-label"
                 label={t(IS_RO ? "card_text_2_ro" : "card_text_2")}
               />
             </GridItem>
 
-            <GridItem md={8} lg={12} classes="about__icon-item third">
+            <GridItem md={4} lg={3}>
               <CardIconAndLabel
                 iconName="therapy"
-                size="md"
+                size="lg"
+                classes="about__card-icon-and-label"
                 label={t(IS_RO ? "card_text_3_ro" : "card_text_3")}
               />
             </GridItem>
-            <GridItem md={8} lg={12} classes="about__icon-item forth">
+            <GridItem md={4} lg={3}>
               <CardIconAndLabel
                 iconName="dedicated-space"
-                size="md"
+                size="lg"
+                classes="about__card-icon-and-label"
                 label={t("card_text_4")}
               />
             </GridItem>
@@ -75,7 +91,6 @@ export const About = () => {
           </p>
         </GridItem>
       </Grid>
-      <Animation name="MascotBlueWavingCutOff" classes="about__mascot" />
       <RadialCircle color="blue" />
     </Block>
   );

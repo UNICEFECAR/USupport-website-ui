@@ -20,16 +20,13 @@
     padding-bottom: $spacing_7_0;
   }
 
-  & h2 {
-    @include themify($themes, "color", "color_66768d_c1d7e0");
-  }
-
-  & h4 {
-    @include themify($themes, "color", "color_3d527b_20809e");
+  & h1 {
+    text-align: left;
   }
 
   &__subheading-text {
-    margin: $spacing_2_0;
+    margin-bottom: $spacing_2_0;
+    text-align: left;
   }
 
   &__button-container {
@@ -40,19 +37,22 @@
     height: 100%;
 
     @media screen and (min-width: $screen-md) {
+      max-width: 54rem;
       align-items: flex-start;
     }
   }
 
   &__ask-anonymous-card {
-    padding: $spacing_1_6 $spacing_1_2;
+    padding: $spacing_1_6;
     text-align: left;
     @include themify($themes, "background-color", "color_white_ff");
 
     & > p {
       margin-top: $spacing_0_4;
-      // color: $color_gray_66768d;
-      @include themify($themes, "color", "color_66768d_c1d7e0");
+    }
+
+    @media screen and (min-width: $screen-md) {
+      padding: $spacing_2_0;
     }
   }
 
@@ -73,6 +73,19 @@
 
     @media screen and (min-width: $screen-lg) {
       width: 85%;
+    }
+  }
+
+  &__note {
+    width: 100%;
+    text-align: center;
+
+    &.text {
+      @include themify($themes, "color", "color_input_placeholder");
+
+      @media screen and (min-width: $screen-md) {
+        font-size: 1.4rem;
+      }
     }
   }
 }

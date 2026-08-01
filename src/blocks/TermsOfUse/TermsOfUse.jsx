@@ -77,10 +77,7 @@ export const TermsOfUse = () => {
   return (
     <Block classes={`terms-of-use ${IS_RTL ? "terms-of-use--rtl" : ""}`}>
       <Grid>
-        <GridItem xs={4} md={8} lg={12} classes="privacy-policy__heading-item">
-          <h2>{t("heading")}</h2>
-        </GridItem>
-        <GridItem xs={4} md={8} lg={12} classes="privacy-policy__text-item">
+        <GridItem md={8} lg={12}>
           {isLoading ? (
             <Loading />
           ) : (
@@ -88,7 +85,7 @@ export const TermsOfUse = () => {
               {data ? (
                 <Markdown markDownText={data} />
               ) : (
-                <h3 className="privacy-policy__no-results">
+                <h3 className="terms-of-use__no-results">
                   {t("no_results")}
                 </h3>
               )}

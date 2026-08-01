@@ -9,7 +9,7 @@ import {
   Block,
   Grid,
   GridItem,
-  CardMedia,
+  CardMediaVideo,
   Loading,
 } from "@USupport-components-library/src";
 import {
@@ -78,7 +78,7 @@ export const VideoInformation = () => {
     async () => {
       const { likes, dislikes } = await getLikesAndDislikesForContent(
         [Number(id)],
-        "video"
+        "video",
       );
       return {
         likes: likes.get(Number(id)) || 0,
@@ -87,7 +87,7 @@ export const VideoInformation = () => {
     },
     {
       enabled: !!id,
-    }
+    },
   );
 
   const getSimilarVideos = async () => {
@@ -120,7 +120,7 @@ export const VideoInformation = () => {
     const videoIds = videos.map((video) => video.id);
     const { likes, dislikes } = await getLikesAndDislikesForContent(
       videoIds,
-      "video"
+      "video",
     );
 
     // Attach aggregated likes/dislikes into attributes so destructureVideoData picks them up
@@ -158,7 +158,7 @@ export const VideoInformation = () => {
     return (
       <Navigate
         to={`/${localStorage.getItem(
-          "language"
+          "language",
         )}/information-portal?tab=articles`}
       />
     );
@@ -198,7 +198,7 @@ export const VideoInformation = () => {
                   classes="page__video-information__more-videos-card"
                   key={index}
                 >
-                  <CardMedia
+                  <CardMediaVideo
                     type="portrait"
                     size="sm"
                     style={{ gridColumn: "span 4" }}
@@ -215,8 +215,8 @@ export const VideoInformation = () => {
                     onClick={() => {
                       navigate(
                         `/${localStorage.getItem(
-                          "language"
-                        )}/information-portal/video/${videoData.id}`
+                          "language",
+                        )}/information-portal/video/${videoData.id}`,
                       );
                       onVideoClick();
                     }}

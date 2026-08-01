@@ -1,73 +1,25 @@
 @import "@USupport-components-library/styles";
 
 .how-it-works {
-  .no-webp & {
-    background-image: url("./assets/Background.png");
-  }
-  .webp & {
-    background-image: url("./assets/Background.webp");
-  }
-
-  padding-top: $spacing_8_0;
-  padding-bottom: $spacing_5_6;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-blend-mode: lighten;
-  background-position: left;
-
   @media screen and (min-width: $screen-lg) {
-    padding-top: $spacing_12_0;
-    padding-bottom: $spacing_11_5;
+    padding-bottom: $spacing_10_0;
   }
 
-  & h2 {
-    @include themify($themes, "color", "color_66768d_c1d7e0");
+  &__heading,
+  &__text-item {
+    width: 100%;
   }
 
-  &__grid {
-    padding-top: $spacing_20_0;
+  &__heading-text {
+    text-align: left;
 
-    @media screen and (min-width: 490px) {
-      .how-it-works & {
-        padding-top: $spacing_25_0;
-        padding-bottom: $spacing_5_6;
-      }
-
-      .how-it-works__heading {
-        padding-bottom: $spacing_7_2;
-      }
+    &__highlight {
+      color: $color_6a4ffb_8c90eb;
     }
-
-    @media screen and (min-width: 650px) {
-      .how-it-works & {
-        padding-top: $spacing_35_0;
-      }
-
-      .how-it-works__heading {
-        padding-bottom: $spacing_10_0;
-      }
-    }
-
-    @media screen and (min-width: $screen-md) {
-      .how-it-works & {
-        padding-top: $spacing_1_0;
-      }
-    }
-    @media screen and (min-width: $screen-lg) {
-      .how-it-works & {
-        padding-top: $spacing_5_0;
-        padding-bottom: $spacing_11_5;
-      }
-    }
-  }
-
-  &__heading-text--white {
-    color: $color_white_ff !important;
   }
 
   &__text-item {
     text-align: left;
-    max-width: 94rem;
 
     @media screen and (min-width: $screen-lg) {
       padding-top: $spacing_2_4;
@@ -115,11 +67,6 @@
       }
     }
 
-    &__normal {
-      margin-top: $spacing_2_0;
-      max-width: 34rem;
-    }
-
     @media screen and (min-width: $screen-lg) {
       margin-top: $spacing_5_4;
     }
@@ -140,7 +87,7 @@
     margin-top: $spacing_8_0;
 
     @media screen and (min-width: $screen-lg) {
-      margin-top: $spacing_9_0;
+      margin-top: $spacing_5_6;
     }
   }
 }

@@ -1,0 +1,17 @@
+@import "@USupport-components-library/styles";
+
+.reports-page {
+  &__iframe-container {
+    width: 100%;
+    min-height: 100vh;
+    // min-height: calc(100vh - $spacing_12_0);
+  }
+
+  &__iframe {
+    width: 100%;
+    // min-height: calc(100vh - $spacing_12_0);
+    min-height: 100vh;
+    border: 0;
+    background: transparent;
+  }
+}

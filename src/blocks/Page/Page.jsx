@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation, Trans } from "react-i18next";
 import classNames from "classnames";
@@ -13,6 +13,7 @@ import {
   Icon,
   CookieBanner,
   AccessibilityController,
+  Block,
 } from "@USupport-components-library/src";
 import { countrySvc, userSvc } from "@USupport-components-library/services";
 import {
@@ -50,6 +51,7 @@ const globalCountry = {
 export const Page = ({
   additionalPadding = true,
   showGoBackArrow = false,
+  showBackground = false,
   heading,
   headingButton,
   classes,
@@ -68,6 +70,9 @@ export const Page = ({
   const queryClient = useQueryClient();
   const { t, i18n } = useTranslation("blocks", { keyPrefix: "page" });
   const IS_DEV = process.env.NODE_ENV === "development";
+  const addCountryEventMutation = useMutation(
+    async (payload) => await userSvc.addCountryEvent(payload),
+  );
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -206,6 +211,15 @@ export const Page = ({
       (x, index, self) => index === self.findIndex((t) => t.value === x.value)
     );
 
+    if (localStorageCountry === "global") {
+      localStorage.setItem("country", "global");
+      setSelectedCountry(globalCountry);
+      setLangs(allLanguages);
+      setAllLanguages(allLanguages);
+      setIsPodcastsActive(true);
+      setIsVideosActive(true);
+    }
+
     if (
       subdomain === "staging" &&
       (!localStorageCountry || localStorageCountry === "global")
@@ -258,6 +272,10 @@ export const Page = ({
           name: t("page_6"),
           url: "/my-qa",
           icon: "document",
+          onClick: () =>
+            addCountryEventMutation.mutate({
+              eventType: "web_my_qa_nav_click",
+            }),
         },
   ];
 
@@ -283,7 +301,14 @@ export const Page = ({
         url: "/about-us",
       },
       { name: t("footer_2"), url: "/information-portal?tab=articles" },
-      { name: t("page_6"), url: "/my-qa" },
+      {
+        name: t("page_6"),
+        url: "/my-qa",
+        onClick: () =>
+          addCountryEventMutation.mutate({
+            eventType: "web_my_qa_nav_click",
+          }),
+      },
     ],
     list2: [
       { name: t("footer_4"), url: "/terms-of-use", exact: true },
@@ -338,7 +363,9 @@ export const Page = ({
   };
 
   const hasPassedValidation = queryClient.getQueryData(["hasPassedValidation"]);
-  const IS_RO = window.location.hostname === "romania.usupport.online";
+  const IS_RO =
+    window.location.hostname === "romania.usupport.online" ||
+    window.location.hostname === "romania.staging.usupport.online";
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(
     !hasPassedValidation && IS_RO
   );
@@ -366,7 +393,11 @@ export const Page = ({
 
   return (
     <>
-      <HreflangHelmet path={window.location.pathname} />
+      <HreflangHelmet
+        alternateLanguages={
+          langs.length ? langs.map((lang) => lang.value) : undefined
+        }
+      />
       <PasswordModal
         label={t("password")}
         btnLabel={t("submit")}
@@ -401,24 +432,27 @@ export const Page = ({
       <div
         className={[
           "page",
+          `${showBackground ? "page--with-background" : ""}`,
           `${additionalPadding ? "" : "page--no-additional-top-padding"}`,
           `${classNames(classes)}`,
         ].join(" ")}
       >
         {(heading || showGoBackArrow || headingButton) && (
-          <div className="page__header">
-            {showGoBackArrow && (
-              <Icon
-                classes="page__header-icon"
-                name="arrow-chevron-back"
-                size="md"
-                color="#20809E"
-                onClick={handleGoBack}
-              />
-            )}
-            {heading && <h3 className="page__header-heading">{heading}</h3>}
+          <Block classes="page__header">
+            <div className="page__header__text-container">
+              {showGoBackArrow && (
+                <div
+                  className="page__header__text-container__go-back"
+                  onClick={handleGoBack}
+                >
+                  <Icon name="arrow-chevron-back" size="md" color="#20809E" />
+                  <p>{t("go_back")}</p>
+                </div>
+              )}
+              {heading && <h3 className="page__header-heading">{heading}</h3>}
+            </div>
             {headingButton && headingButton}
-          </div>
+          </Block>
         )}
         {children}
       </div>
@@ -445,6 +479,7 @@ export const Page = ({
         navigate={navigateTo}
         Link={Link}
         renderIn="website"
+        t={t}
       />
       <CookieBanner
         cookieState={cookieState}
@@ -471,22 +506,35 @@ export const Page = ({
   );
 };
 
-const HreflangHelmet = ({ path }) => {
+const DEFAULT_ALTERNATE_LANGUAGES = ["en", "pl", "uk"];
+
+const getPathWithoutLanguage = (pathname) => {
+  const segments = pathname.split("/").filter(Boolean);
+  if (segments.length <= 1) return "";
+  return `/${segments.slice(1).join("/")}`;
+};
+
+const HreflangHelmet = ({ alternateLanguages = DEFAULT_ALTERNATE_LANGUAGES }) => {
+  const { pathname, search } = useLocation();
   const baseUrl = window.location.origin;
-  const pathWithoutLang = path.slice(3);
+  const pathWithoutLang = getPathWithoutLanguage(pathname);
+  const canonicalUrl = `${baseUrl}${pathname}${search}`;
 
   return (
     <Helmet>
-      <link rel="canonical" href={baseUrl + path} />
+      <link rel="canonical" href={canonicalUrl} />
+      {alternateLanguages.map((lang) => (
+        <link
+          key={lang}
+          rel="alternate"
+          hrefLang={lang}
+          href={`${baseUrl}/${lang}${pathWithoutLang}${search}`}
+        />
+      ))}
       <link
         rel="alternate"
-        hrefLang="pl"
-        href={`${baseUrl}/pl${pathWithoutLang}`}
-      />
-      <link
-        rel="alternate"
-        hrefLang="uk"
-        href={`${baseUrl}/uk${pathWithoutLang}`}
+        hrefLang="x-default"
+        href={`${baseUrl}/en${pathWithoutLang}${search}`}
       />
     </Helmet>
   );

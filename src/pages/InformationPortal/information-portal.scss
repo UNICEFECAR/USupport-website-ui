@@ -1,69 +1,22 @@
-/* HowItWorks styles */
 @import "@USupport-components-library/styles";
 
 .page__information-portal {
   min-width: 40.7rem;
 
-  .information-portal-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
-  @media screen and (min-width: $screen-md) {
-    .information-portal-image {
-      &--mobile {
-        display: none;
-      }
-
-      &--desktop {
-        display: block;
-        opacity: 1;
-      }
-    }
-  }
-
-  &__img-container {
-    position: relative;
-
-    &__input {
-      position: absolute;
-      bottom: 20%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80%;
-      z-index: 1;
-
-      &--rtl {
-        direction: rtl;
-
-        & .pre-input-wrapper {
-          margin-left: 0;
-          margin-right: $spacing_1_8;
-        }
-      }
-
-      // Mobile specific adjustments if needed
-      @media (max-width: 767px) {
-        width: 90%;
-        bottom: 15%; // Different position for mobile if desired
-      }
-
-      @media screen and (min-width: $screen-md) {
-        max-width: 50%;
-      }
-
-      @media screen and (min-width: $screen-lg) {
-        max-width: 30%;
-      }
-    }
+  &__tabs-block {
+    padding-top: $spacing_6_0;
+    text-align: left;
   }
 
   &__tabs-container {
-    display: flex;
+    margin-inline: auto;
 
-    &--rtl {
-      flex-direction: row-reverse;
+    &__inner {
+      display: flex;
+
+      &--rtl {
+        flex-direction: row-reverse;
+      }
     }
   }
 

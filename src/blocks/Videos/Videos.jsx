@@ -8,7 +8,7 @@ import {
   Grid,
   GridItem,
   Block,
-  CardMedia,
+  CardMediaVideo,
   Tabs,
   Loading,
   VideoModal,
@@ -24,7 +24,7 @@ import { useEventListener } from "#hooks";
 
 import "./videos.scss";
 
-const getGridSpanForIndex = (index, pattern = [2, 3, 1]) => {
+const getGridSpanForIndex = (index, pattern = [3, 3, 3]) => {
   const totalItemsInCycle = pattern.reduce((sum, count) => sum + count, 0);
   const cyclePosition = index % totalItemsInCycle;
 
@@ -78,7 +78,7 @@ export const Videos = ({ debouncedSearchValue }) => {
         value: category.attributes.name,
         id: category.id,
         isSelected: false,
-      })
+      }),
     );
     setSelectedCategory(data[0]);
     return data;
@@ -99,7 +99,7 @@ export const Videos = ({ debouncedSearchValue }) => {
   };
 
   const [currentCountry, setCurrentCountry] = useState(
-    localStorage.getItem("country")
+    localStorage.getItem("country"),
   );
   const shouldFetchIds = !!(currentCountry && currentCountry !== "global");
 
@@ -120,7 +120,7 @@ export const Videos = ({ debouncedSearchValue }) => {
     getVideosIds,
     {
       enabled: true,
-    }
+    },
   );
 
   const getVideosData = async () => {
@@ -168,7 +168,7 @@ export const Videos = ({ debouncedSearchValue }) => {
             !!videoIdsQuery.data &&
             videoIdsQuery.data.length > 0
           : true) && !!selectedCategory,
-    }
+    },
   );
 
   // Fetch likes/dislikes for non-English languages (or missing entries)
@@ -186,12 +186,12 @@ export const Videos = ({ debouncedSearchValue }) => {
 
       const { likes, dislikes } = await getLikesAndDislikesForContent(
         videoIds,
-        "video"
+        "video",
       );
 
       setVideosLikes((prevLikes) => new Map([...prevLikes, ...likes]));
       setVideosDislikes(
-        (prevDislikes) => new Map([...prevDislikes, ...dislikes])
+        (prevDislikes) => new Map([...prevDislikes, ...dislikes]),
       );
     }
 
@@ -252,11 +252,11 @@ export const Videos = ({ debouncedSearchValue }) => {
     () =>
       cmsSvc.getVideoCategoryIds(
         usersLanguage,
-        shouldFetchIds ? videoIdsQuery.data : undefined
+        shouldFetchIds ? videoIdsQuery.data : undefined,
       ),
     {
       enabled: shouldFetchIds ? !!videoIdsQuery.data : true,
-    }
+    },
   );
 
   const categoriesToShow = useMemo(() => {
@@ -264,7 +264,8 @@ export const Videos = ({ debouncedSearchValue }) => {
 
     return categories.filter(
       (category) =>
-        videoCategoryIdsToShow.includes(category.id) || category.value === "all"
+        videoCategoryIdsToShow.includes(category.id) ||
+        category.value === "all",
     );
   }, [categories, videoCategoryIdsToShow]);
 
@@ -275,19 +276,19 @@ export const Videos = ({ debouncedSearchValue }) => {
       enabled: IS_PS
         ? false
         : shouldFetchIds
-        ? !videoIdsQuery.isLoading &&
-          !!videoIdsQuery.data &&
-          videoIdsQuery.data.length > 0
-        : true,
+          ? !videoIdsQuery.isLoading &&
+            !!videoIdsQuery.data &&
+            videoIdsQuery.data.length > 0
+          : true,
       refetchOnWindowFocus: false,
-    }
+    },
   );
 
   const handleRedirect = (id, name) => {
     navigate(
       `/${localStorage.getItem(
-        "language"
-      )}/information-portal/video/${id}/${createArticleSlug(name)}`
+        "language",
+      )}/information-portal/video/${id}/${createArticleSlug(name)}`,
     );
   };
 
@@ -352,7 +353,7 @@ export const Videos = ({ debouncedSearchValue }) => {
                 <Loading />
               ) : (
                 newestVideo && (
-                  <CardMedia
+                  <CardMediaVideo
                     type={isNotDescktop ? "portrait" : "landscape"}
                     size="lg"
                     title={newestVideo.title}
@@ -365,16 +366,13 @@ export const Videos = ({ debouncedSearchValue }) => {
                     showDescription={true}
                     likes={videosLikes.get(newestVideo.id) || 0}
                     dislikes={videosDislikes.get(newestVideo.id) || 0}
+                    viewCount={newestVideo.viewCount}
                     t={t}
                     onClick={() => {
-                      if (IS_PS) {
-                        handlePlay({
-                          id: newestVideo.id,
-                          url: newestVideo.originalUrl || newestVideo.awsUrl,
-                        });
-                      } else {
-                        handleRedirect(newestVideo.id, newestVideo.title);
-                      }
+                      handlePlay({
+                        id: newestVideo.id,
+                        url: newestVideo.originalUrl || newestVideo.awsUrl,
+                      });
                     }}
                     handlePlay={() => {
                       handlePlay({
@@ -434,18 +432,19 @@ export const Videos = ({ debouncedSearchValue }) => {
                     next={getMoreVideos}
                     hasMore={hasMore}
                     loader={<Loading size="lg" />}
+                    style={{ overflow: "visible" }}
                   >
                     <div className="videos__custom-grid">
                       {videos?.map((video, index) => {
                         const videoData = destructureVideoData(video);
-                        const gridSpan = getGridSpanForIndex(index, [2, 3, 1]);
+                        const gridSpan = getGridSpanForIndex(index, [3, 3, 3]);
                         return (
                           <div
                             key={index}
                             className="videos__card-wrapper"
                             style={{ gridColumn: `span ${gridSpan}` }}
                           >
-                            <CardMedia
+                            <CardMediaVideo
                               type={
                                 gridSpan === 12 && !isNotDescktop
                                   ? "landscape"
@@ -464,15 +463,11 @@ export const Videos = ({ debouncedSearchValue }) => {
                               categoryName={videoData.categoryName}
                               contentType="videos"
                               onClick={() => {
-                                if (IS_PS) {
-                                  handlePlay({
-                                    id: videoData.id,
-                                    url:
-                                      videoData.originalUrl || videoData.awsUrl,
-                                  });
-                                } else {
-                                  handleRedirect(videoData.id, videoData.title);
-                                }
+                                handlePlay({
+                                  id: videoData.id,
+                                  url:
+                                    videoData.originalUrl || videoData.awsUrl,
+                                });
                               }}
                               handlePlay={() => {
                                 handlePlay({
@@ -481,6 +476,7 @@ export const Videos = ({ debouncedSearchValue }) => {
                                     videoData.originalUrl || videoData.awsUrl,
                                 });
                               }}
+                              viewCount={videoData.viewCount}
                             />
                           </div>
                         );

@@ -20,9 +20,8 @@ export default function useGetLanguages() {
     );
     return languagesSorted;
   };
-  const query = useQuery(["all-languages", country], fetchLanguages, {
-    enabled: !!country,
-  });
+  // Fetch even when no country is selected, but refetch when country changes.
+  const query = useQuery(["all-languages", country || "no-country"], fetchLanguages);
 
   return query;
 }

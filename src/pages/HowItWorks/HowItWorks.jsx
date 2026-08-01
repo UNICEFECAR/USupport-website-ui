@@ -1,14 +1,25 @@
 import React, { useEffect, useRef } from "react";
 import {
   Page,
-  HowItWorks as HowItWorksBlock,
+  HowItWorksHero,
   MeetOurProviders,
   Question,
   FAQ,
   VideoTutorial,
+  TakeAStep,
 } from "#blocks";
 
 import "./how-it-works.scss";
+
+const getNavbarHeight = () =>
+  document.querySelector(".nav")?.offsetHeight ?? 96;
+
+const scrollToSection = (element) => {
+  const top =
+    element.getBoundingClientRect().top + window.scrollY - getNavbarHeight();
+
+  window.scrollTo({ top: Math.max(top, 0), behavior: "smooth" });
+};
 
 /**
  * HowItWorks
@@ -25,26 +36,28 @@ export const HowItWorks = () => {
 
   useEffect(() => {
     const to = new URLSearchParams(window.location.search).get("to");
-    if (to === "faq") {
-      faqRef.current.scrollIntoView({
-        behavior: "smooth",
-      });
-    }
-    if (to === "providers") {
-      providersBlockRef.current.scrollIntoView({
-        behavior: "smooth",
-      });
-    }
+    if (to !== "faq" && to !== "providers") return;
+
+    const targetRef = to === "faq" ? faqRef : providersBlockRef;
+
+    const timeoutId = window.setTimeout(() => {
+      if (targetRef.current) {
+        scrollToSection(targetRef.current);
+      }
+    }, 0);
+
+    return () => window.clearTimeout(timeoutId);
   }, []);
 
   return (
-    <Page classes="page__how-it-works">
-      <HowItWorksBlock showSummaryBellow={true} onPage={true} />
+    <Page classes="page__how-it-works" showBackground>
+      <HowItWorksHero />
       <div ref={providersBlockRef} />
       {!IS_RO ? <MeetOurProviders /> : null}
       <VideoTutorial />
+      <TakeAStep />
       <div ref={faqRef} />
-      <FAQ showLearnMore={false} showMascot={false} />
+      <FAQ showLearnMore={false} showMascot hasBackground />
       <Question />
     </Page>
   );

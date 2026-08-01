@@ -1,5 +1,6 @@
 import React from "react";
 import { Page, CookiePolicy as CookiePolicyBlock } from "#blocks";
+import { useTranslation } from "react-i18next";
 
 /**
  * CookiePolicy
@@ -9,8 +10,14 @@ import { Page, CookiePolicy as CookiePolicyBlock } from "#blocks";
  * @returns {JSX.Element}
  */
 export const CookiePolicy = () => {
+  const { t } = useTranslation("pages", { keyPrefix: "cookie-policy-page" });
+
   return (
-    <Page classes="page__cookie-policy">
+    <Page
+      classes="page__cookie-policy"
+      heading={t("heading")}
+      showBackground
+    >
       <CookiePolicyBlock />
     </Page>
   );

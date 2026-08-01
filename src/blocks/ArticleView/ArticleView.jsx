@@ -1,6 +1,13 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, {
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+} from "react";
 import { useParams } from "react-router-dom";
 import propTypes from "prop-types";
+import classNames from "classnames";
 import { toast } from "react-toastify";
 import { useQuery } from "@tanstack/react-query";
 
@@ -18,13 +25,14 @@ import {
 
 import { PDFViewer } from "#blocks/PDFViewer/PDFViewer";
 
-import { useAddContentEngagement } from "#hooks";
+import { useAddContentEngagement, useEventListener } from "#hooks";
 
 import { userSvc, cmsSvc } from "@USupport-components-library/services";
 import {
   ThemeContext,
   createArticleSlug,
   constructShareUrl,
+  getBrandingLogoUrl,
 } from "@USupport-components-library/utils";
 
 import "./article-view.scss";
@@ -44,10 +52,40 @@ export const ArticleView = ({ articleData, t, language }) => {
   const creator = articleData.creator ? articleData.creator : null;
   const { theme } = useContext(ThemeContext);
 
+  const readCountryFromStorage = useCallback(
+    () =>
+      typeof localStorage !== "undefined"
+        ? localStorage.getItem("country") || "KZ"
+        : "KZ",
+    [],
+  );
+
+  const [syncedCountry, setSyncedCountry] = useState(readCountryFromStorage);
+
+  const onCountryChanged = useCallback(() => {
+    setSyncedCountry(readCountryFromStorage());
+  }, [readCountryFromStorage]);
+
+  useEventListener("countryChanged", onCountryChanged);
+
+  const heroImageSrc =
+    articleData.imageMedium ||
+    articleData.imageThumbnail ||
+    articleData.imageSmall ||
+    null;
+
+  const hasHeroImage = Boolean(heroImageSrc);
+
+  const heroBrandingFallbackUrl = useMemo(
+    () => getBrandingLogoUrl({ theme, countryCode: syncedCountry }),
+    [theme, syncedCountry],
+  );
+
   // const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isExportingPdf, setIsExportingPdf] = useState(false);
   const [hasUpdatedUrl, setHasUpdatedUrl] = useState(false);
   const [isShared, setIsShare] = useState(false);
+  const [hasTrackedAudioPlay, setHasTrackedAudioPlay] = useState(false);
   const addContentEngagementMutation = useAddContentEngagement();
 
   // Track view when article is loaded using useQuery
@@ -75,6 +113,10 @@ export const ArticleView = ({ articleData, t, language }) => {
   useEffect(() => {
     setHasUpdatedUrl(false);
   }, [language]);
+
+  useEffect(() => {
+    setHasTrackedAudioPlay(false);
+  }, [articleData?.id]);
 
   useEffect(() => {
     if (articleData?.title && !hasUpdatedUrl) {
@@ -161,129 +203,144 @@ export const ArticleView = ({ articleData, t, language }) => {
     });
   };
 
+  const handleAudioPlay = () => {
+    if (hasTrackedAudioPlay) return;
+
+    addContentEngagementMutation({
+      contentId: articleData.id,
+      contentType: "article",
+      action: "listen",
+    });
+    setHasTrackedAudioPlay(true);
+  };
+
   const SHOW_DOWNLOAD = !articleData.pdfUrl;
 
   return (
     <Block classes={`article-view ${IS_RTL ? "article-view--rtl" : ""}`}>
-      <Grid classes="article-view__main-grid">
-        <GridItem md={8} lg={12} classes="article-view__title-item">
-          <div className="article-view__title-row">
-            <h3>{articleData.title}</h3>
-          </div>
-        </GridItem>
+      <div className="article-view__content">
+        {/* Title */}
+        <h2 className="article-view__title">{articleData.title}</h2>
 
-        <GridItem md={8} lg={12} classes="article-view__category-item">
-          <div className="article-view__details-item__category">
-            <p className="small-text ">{articleData.categoryName}</p>
-          </div>
-        </GridItem>
-
-        <GridItem md={8} lg={12} classes="article-view__details-item">
-          {creator && <p className={"small-text"}>{t("by", { creator })}</p>}
-
+        {/* Author & meta row */}
+        <div className="article-view__meta">
+          {articleData.categoryName && (
+            <div className="article-view__category-badge">
+              <p className="small-text">{articleData.categoryName}</p>
+            </div>
+          )}
+          {creator && (
+            <p className="text article-view__creator">{t("by", { creator })}</p>
+          )}
+          <div className="article-view__meta-dot" />
           <Icon
-            color={theme === "dark" ? "#ffffff" : "#66768d"}
-            name={"time"}
+            name="time"
             size="sm"
+            color={theme === "dark" ? "#ffffff" : "#66768d"}
           />
-          <p className={"small-text"}>
-            {" "}
+          <p className="text">
             {articleData.readingTime} {t("min_read")}
           </p>
-          {SHOW_DOWNLOAD && (
-            <React.Fragment>
-              <div
-                onClick={handleExportToPdf}
-                className="article-view__details-item__download"
-              >
-                {isExportingPdf ? (
-                  <Loading padding="0px" size="sm" />
-                ) : (
-                  <Icon
-                    color={theme === "dark" ? "#ffffff" : "#66768d"}
-                    name="download"
-                    size="sm"
-                  />
-                )}
-              </div>
-              <div
-                className="article-view__details-item__download"
-                onClick={handleCopyLink}
-              >
-                <Icon
-                  color={theme === "dark" ? "#ffffff" : "#66768d"}
-                  name="share"
-                  size="sm"
-                />
-              </div>
-            </React.Fragment>
-          )}
-        </GridItem>
+        </div>
 
-        <GridItem xs={3} md={6} lg={8} classes="article-view__labels-item">
-          {articleData.labels.map((label, index) => {
-            return (
+        {/* Labels */}
+        {articleData.labels.length > 0 && (
+          <div className="article-view__labels">
+            {articleData.labels.map((label, index) => (
               <Label
-                classes={"article-view__label"}
+                classes="article-view__label"
                 text={label.name}
                 key={index}
               />
-            );
-          })}
-        </GridItem>
-
-        {SHOW_DOWNLOAD && (
-          <GridItem xs={1} md={2} lg={4} classes="article-view__like-item">
-            <Like
-              likes={articleData.likes || 0}
-              isLiked={articleData.contentRating?.isLikedByUser || false}
-              dislikes={articleData.dislikes || 0}
-              isDisliked={articleData.contentRating?.isDislikedByUser || false}
-            />
-          </GridItem>
+            ))}
+          </div>
         )}
 
+        {/* Separator */}
+        <div className="article-view__separator" />
+
+        {/* Action bar */}
+        <div className="article-view__actions">
+          <div className="article-view__actions-left">
+            {SHOW_DOWNLOAD && (
+              <Like
+                likes={articleData.likes || 0}
+                isLiked={articleData.contentRating?.isLikedByUser || false}
+                dislikes={articleData.dislikes || 0}
+                isDisliked={
+                  articleData.contentRating?.isDislikedByUser || false
+                }
+              />
+            )}
+          </div>
+          <div className="article-view__actions-right">
+            {SHOW_DOWNLOAD && (
+              <>
+                <div
+                  onClick={handleExportToPdf}
+                  className="article-view__action-btn"
+                >
+                  {isExportingPdf ? (
+                    <Loading padding="0px" size="sm" />
+                  ) : (
+                    <Icon
+                      color={theme === "dark" ? "#ffffff" : "#66768d"}
+                      name="download"
+                    />
+                  )}
+                </div>
+                <div
+                  className="article-view__action-btn"
+                  onClick={handleCopyLink}
+                >
+                  <Icon
+                    color={theme === "dark" ? "#ffffff" : "#66768d"}
+                    name="share"
+                  />
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+
+        {/* Separator */}
+        <div className="article-view__separator" />
+
+        {/* Hero image / PDF */}
         {!articleData.pdfUrl && (
-          <GridItem md={8} lg={12}>
+          <div
+            className={classNames("article-view__hero-slot", {
+              "article-view__hero-slot--branding-fallback": !hasHeroImage,
+            })}
+          >
             <img
-              className="article-view__image-item"
-              src={
-                articleData.imageMedium ||
-                articleData.imageThumbnail ||
-                articleData.imageSmall ||
-                "https://picsum.photos/300/400"
-              }
-              alt=""
+              className={classNames("article-view__image", {
+                "article-view__image--branding-fallback": !hasHeroImage,
+              })}
+              src={hasHeroImage ? heroImageSrc : heroBrandingFallbackUrl}
+              alt={hasHeroImage ? articleData.title : "Logo"}
             />
-          </GridItem>
+          </div>
         )}
 
-        {articleData.pdfUrl && (
-          <GridItem md={8} lg={12}>
-            <PDFViewer pdfUrl={articleData.pdfUrl} />
-          </GridItem>
-        )}
-
+        {articleData.pdfUrl && <PDFViewer pdfUrl={articleData.pdfUrl} />}
         {articleData.ttsUrl && (
-          <GridItem md={8} lg={12} classes="article-view__audio-item">
-            <AudioPlayer src={articleData.ttsUrl} />
-          </GridItem>
+          <div className="article-view__audio-item">
+            <AudioPlayer
+              src={articleData.ttsUrl}
+              onPlay={handleAudioPlay}
+              t={t}
+            />
+          </div>
         )}
-
-        <GridItem md={8} lg={12} classes="article-view__body-item">
-          <Markdown markDownText={articleData.bodyCK || articleData.body} className={"text"} />
-        </GridItem>
-      </Grid>
-
-      {/* <ShareModal
-        isOpen={isShareModalOpen}
-        onClose={handleCloseShareModal}
-        contentUrl={url}
-        title={articleData.title}
-        shareTitle={t("share_title")}
-        successText={t("share_success")}
-        copyText={t("copy_link")}
-      /> */}
+        {/* Article body */}
+        <div className="article-view__body">
+          <Markdown
+            markDownText={articleData.bodyCK || articleData.body}
+            className={"text"}
+          />
+        </div>
+      </div>
     </Block>
   );
 };

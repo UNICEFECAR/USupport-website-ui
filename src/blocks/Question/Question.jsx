@@ -5,7 +5,7 @@ import {
   Block,
   Grid,
   GridItem,
-  Button,
+  NewButton,
 } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 
@@ -27,14 +27,14 @@ export const Question = () => {
   return (
     <Block classes="question" animation="fade-left">
       <Grid>
-        <GridItem md={4} lg={6} classes="question__heading-item">
-          <h3>{t("heading")}</h3>
-          <p className="text">{t("paragraph")}</p>
+        <GridItem md={8} lg={12} classes="question__heading-item">
+          <h1>{t("heading")}</h1>
+          <p>{t("paragraph")}</p>
         </GridItem>
-        <GridItem md={4} lg={6}>
-          <Button
+        <GridItem md={8} lg={12}>
+          <NewButton
             label={t("button")}
-            size={width > 768 ? "sm" : "lg"}
+            size="lg"
             web={width > 768}
             classes="question__button"
             onClick={() =>
