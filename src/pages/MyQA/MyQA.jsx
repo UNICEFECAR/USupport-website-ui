@@ -78,7 +78,7 @@ export const MyQA = () => {
   const [shouldFetchQuestions, setShouldFetchQuestions] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [selectedCountry, setSelectedCountry] = useState(
-    localStorage.getItem("country"),
+    localStorage.getItem("country")
   );
   const isInGlobalCountry = selectedCountry === "global";
 
@@ -109,7 +109,7 @@ export const MyQA = () => {
   const allQuestions = useGetQuestions(
     tabs.find((tab) => tab.isSelected).value,
     isInGlobalCountry ? false : !isUserQuestionsEnabled,
-    selectedLanguage,
+    selectedLanguage
   );
 
   useEffect(() => {
@@ -117,9 +117,9 @@ export const MyQA = () => {
   }, [tabs, allQuestions.data]);
 
   useEffect(() => {
-    if (selectedQuestion)
+    if (selectedQuestion && questions.length > 0)
       setSelectedQuestion(
-        questions.find((question) => question.answerId === question.answerId),
+        questions.find((question) => question.answerId === question.answerId)
       );
   }, [questions]);
 
@@ -195,19 +195,17 @@ export const MyQA = () => {
         heading={t(
           redirectType === "question"
             ? "modal_heading"
-            : "modal_heading_consultation",
+            : "modal_heading_consultation"
         )}
         text={t(
-          redirectType === "question"
-            ? "modal_text"
-            : "modal_text_consultation",
+          redirectType === "question" ? "modal_text" : "modal_text_consultation"
         )}
         buttonLabel={t("modal_button_label")}
         isOpen={isRedirectToLoginBackdropOpen}
         onClose={() => setIsRedirectToLoginBackdropOpen(false)}
         handleLoginRedirect={() => {
           window.location.href = `/client/${localStorage.getItem(
-            "language",
+            "language"
           )}/login`;
         }}
       />
