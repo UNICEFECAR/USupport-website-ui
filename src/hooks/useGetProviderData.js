@@ -7,7 +7,7 @@ import { staticProvidersData } from "./useGetProvidersData";
 /**
  * Reuseable hook to get and transform the provider data in a desired format
  */
-export default function useGetProviderData(id = null) {
+export default function useGetProviderData(id = null, country = null) {
   //   const queryClient = useQueryClient();
   const [providersData, setProvidersData] = useState();
   const fetchProvidersData = async () => {
@@ -19,7 +19,12 @@ export default function useGetProviderData(id = null) {
 
     if (!data) {
       if (id) {
-        const response = await providerSvc.getProviderById(id);
+        const response = await providerSvc.getProviderById(
+          id,
+          undefined,
+          undefined,
+          country
+        );
         data = response.data;
       } else {
         const response = await providerSvc.getProviderData();
@@ -48,14 +53,18 @@ export default function useGetProviderData(id = null) {
     return formattedData;
   };
 
-  const providersDataQuery = useQuery(["provider-data"], fetchProvidersData, {
-    onSuccess: (data) => {
-      const dataCopy = JSON.parse(JSON.stringify(data));
-      setProvidersData({ ...dataCopy });
-    },
-    onError: (err) => console.log(err, "err"),
-    notifyOnChangeProps: ["data"],
-  });
+  const providersDataQuery = useQuery(
+    ["provider-data", id, country],
+    fetchProvidersData,
+    {
+      onSuccess: (data) => {
+        const dataCopy = JSON.parse(JSON.stringify(data));
+        setProvidersData({ ...dataCopy });
+      },
+      onError: (err) => console.log(err, "err"),
+      notifyOnChangeProps: ["data"],
+    }
+  );
 
   return [providersDataQuery, providersData, setProvidersData];
 }

@@ -19,12 +19,12 @@ import "./provider-overview.scss";
  *
  * @return {jsx}
  */
-export const ProviderOverview = ({ providerId }) => {
+export const ProviderOverview = ({ providerId, country }) => {
   const { t } = useTranslation("blocks", { keyPrefix: "provider-overview" });
 
   const { cookieState, setCookieState, theme } = useContext(ThemeContext);
 
-  const [providerDataQuery] = useGetProviderData(providerId);
+  const [providerDataQuery] = useGetProviderData(providerId, country);
   const provider = providerDataQuery.data;
   const image = AMAZON_S3_BUCKET + "/" + (provider?.image || "default");
 
