@@ -316,8 +316,26 @@ export const Page = ({
       { name: t("footer_6"), url: "/cookie-policy" },
     ],
     list3: [
-      { name: t("footer_3"), url: "/how-it-works" },
-      { name: t("footer_7"), url: "/how-it-works?to=faq" },
+      {
+        name: t("footer_3"),
+        url: "/how-it-works",
+        onClick: () => {
+          if (!window.location.pathname.includes("/how-it-works")) return;
+          window.dispatchEvent(
+            new CustomEvent("how-it-works-nav", { detail: null })
+          );
+        },
+      },
+      {
+        name: t("footer_7"),
+        url: "/how-it-works?to=faq",
+        onClick: () => {
+          if (!window.location.pathname.includes("/how-it-works")) return;
+          window.dispatchEvent(
+            new CustomEvent("how-it-works-nav", { detail: "faq" })
+          );
+        },
+      },
       { name: t("contact_us"), url: "/about-us?to=contact-us" },
     ],
   };
