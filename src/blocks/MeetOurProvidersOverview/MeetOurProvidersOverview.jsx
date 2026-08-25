@@ -47,8 +47,9 @@ export const MeetOurProvidersOverview = () => {
     isInGlobalCountry,
   });
 
-  const redirectToDetails = (id) => {
-    navigate(`/provider-overview?id=${id}`);
+  const redirectToDetails = (id, country) => {
+    const countryQuery = country ? `&country=${country}` : "";
+    navigate(`/provider-overview?id=${id}${countryQuery}`);
   };
 
   const providers =
@@ -102,7 +103,10 @@ export const MeetOurProvidersOverview = () => {
                           description={specializations}
                           image={provider.image}
                           onClick={() =>
-                            redirectToDetails(provider.providerDetailId)
+                            redirectToDetails(
+                              provider.providerDetailId,
+                              provider.country
+                            )
                           }
                           classes="meet-our-providers-overview__card"
                         />

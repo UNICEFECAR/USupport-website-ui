@@ -21,6 +21,9 @@ export const ProviderOverview = () => {
   });
   const { width } = useWindowDimensions();
   const providerId = new URLSearchParams(window.location.search).get("id");
+  const providerCountry = new URLSearchParams(window.location.search).get(
+    "country"
+  );
   console.log(providerId);
   if (!providerId) return <Navigate to="/about-us" />;
 
@@ -33,7 +36,10 @@ export const ProviderOverview = () => {
       showGoBackArrow
       showBackground
     >
-      <ProviderOverviewBlock providerId={providerId} />
+      <ProviderOverviewBlock
+        providerId={providerId}
+        country={providerCountry}
+      />
       {width < 768 && <RadialCircle />}
     </Page>
   );
