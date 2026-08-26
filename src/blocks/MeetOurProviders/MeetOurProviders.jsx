@@ -39,29 +39,25 @@ export const MeetOurProviders = () => {
     return t("show_more_btn");
   }, [i18n.language, language]);
 
-  const isGlobalOrRomania =
-    localStorage.getItem("country") === "global" ||
-    localStorage.getItem("country") === "RO";
-
-  const [showContent, setShowContent] = useState(!isGlobalOrRomania);
+  const [country, setCountry] = useState(localStorage.getItem("country"));
+  const isInGlobalCountry = country === "global" || !country;
+  const showContent = country !== "RO";
 
   useEventListener("countryChanged", () => {
-    const country = localStorage.getItem("country");
-
-    const shouldHide = country === "global" || country === "RO";
-
-    setShowContent(!shouldHide);
+    setCountry(localStorage.getItem("country"));
   });
 
   const providersQuery = useGetProvidersData({
     random: false,
-    limit: 3,
+    limit: width >= 1366 ? 12 : 10,
     width,
     enabled: showContent,
+    isInGlobalCountry,
   });
 
-  const redirectToDetails = (id) => {
-    navigate(`/provider-overview?id=${id}`);
+  const redirectToDetails = (id, providerCountry) => {
+    const countryQuery = providerCountry ? `&country=${providerCountry}` : "";
+    navigate(`/provider-overview?id=${id}${countryQuery}`);
   };
 
   if (!showContent) {
@@ -91,13 +87,20 @@ export const MeetOurProviders = () => {
                   : "";
 
                 return (
-                  <GridItem md={4} lg={4} key={index}>
+                  <GridItem
+                    md={4}
+                    lg={4}
+                    key={provider.providerDetailId || index}
+                  >
                     <CardProviderSmall
                       providerName={`${provider.name} ${provider.patronym} ${provider.surname}`}
                       description={specializations}
                       image={provider.image}
                       onClick={() =>
-                        redirectToDetails(provider.providerDetailId)
+                        redirectToDetails(
+                          provider.providerDetailId,
+                          provider.country
+                        )
                       }
                     />
                   </GridItem>
@@ -109,7 +112,7 @@ export const MeetOurProviders = () => {
                 <Loading padding="5rem" />
               </GridItem>
             )}
-            {providersQuery.hasNextPage ? (
+            {!isInGlobalCountry && providersQuery.hasNextPage ? (
               <GridItem
                 md={8}
                 lg={12}
