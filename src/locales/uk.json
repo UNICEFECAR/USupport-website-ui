@@ -261,7 +261,15 @@
       "body_image": "Образ тіла та самооцінка",
       "hour_consultation": "за 1 годину консультації",
       "organizations_label": "Організації",
-      "free": "безкоштовно"
+      "free": "безкоштовно",
+      "consultations": "консультації",
+      "monday": "Понеділок",
+      "tuesday": "Вівторок",
+      "wednesday": "Середа",
+      "thursday": "Четвер",
+      "friday": "Пʼятниця",
+      "saturday": "Субота",
+      "sunday": "Неділя"
     },
     "meet-our-providers-overview": {
       "heading": "Познайомся з фахівцями, з якими можеш проконсультуватися",

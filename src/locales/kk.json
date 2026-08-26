@@ -261,7 +261,15 @@
       "body_image": "Өзін-өзі бағалау және келбет бейнесі",
       "hour_consultation": "1 сағаттық консултация үшін",
       "organizations_label": "Ұйымдар",
-      "free": "тегін"
+      "free": "тегін",
+      "consultations": "консультациялар",
+      "monday": "Дүйсенбі",
+      "tuesday": "Сейсенбі",
+      "wednesday": "Сәрсенбі",
+      "thursday": "Бейсенбі",
+      "friday": "Жұма",
+      "saturday": "Сенбі",
+      "sunday": "Жексенбі"
     },
     "meet-our-providers-overview": {
       "heading": "Сіз жүгіне алатын консультанттармен танысыңыз",

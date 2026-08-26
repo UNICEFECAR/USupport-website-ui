@@ -81,12 +81,12 @@ export default function useGetProvidersData({
   };
 
   const providersDataQuery = useInfiniteQuery(
-    ["providers-data", isInGlobalCountry, language],
+    ["providers-data", isInGlobalCountry, language, random, limit],
     fetchProvidersData,
     {
       enabled,
       getNextPageParam: (lastPage, pages) => {
-        if (lastPage.length === 0) {
+        if (isInGlobalCountry || lastPage.length === 0) {
           return undefined;
         }
         return pages.length + 1;
