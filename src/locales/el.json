@@ -261,7 +261,15 @@
       "body_image": "Εικόνα σώματος και αυτοεκτίμηση",
       "hour_consultation": "για συνεδρία 1 ώρας",
       "organizations_label": "Οργανισμοί",
-      "free": "δωρεάν"
+      "free": "δωρεάν",
+      "consultations": "συνεδρίες",
+      "monday": "Δευτέρα",
+      "tuesday": "Τρίτη",
+      "wednesday": "Τετάρτη",
+      "thursday": "Πέμπτη",
+      "friday": "Παρασκευή",
+      "saturday": "Σάββατο",
+      "sunday": "Κυριακή"
     },
     "meet-our-providers-overview": {
       "heading": "Γνωρίστε τους παρόχους με τους οποίους μπορείτε να κάνετε συνεδρίες",

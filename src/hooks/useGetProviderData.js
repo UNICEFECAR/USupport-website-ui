@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { providerSvc } from "@USupport-components-library/services";
 
 import { staticProvidersData } from "./useGetProvidersData";
@@ -9,6 +10,8 @@ import { staticProvidersData } from "./useGetProvidersData";
  */
 export default function useGetProviderData(id = null, country = null) {
   //   const queryClient = useQueryClient();
+  const { i18n } = useTranslation();
+  const language = i18n.language;
   const [providersData, setProvidersData] = useState();
   const fetchProvidersData = async () => {
     let data;
@@ -54,7 +57,7 @@ export default function useGetProviderData(id = null, country = null) {
   };
 
   const providersDataQuery = useQuery(
-    ["provider-data", id, country],
+    ["provider-data", id, country, language],
     fetchProvidersData,
     {
       onSuccess: (data) => {

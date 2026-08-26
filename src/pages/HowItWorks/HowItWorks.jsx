@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import {
   Page,
@@ -41,7 +41,11 @@ export const HowItWorks = () => {
   const providersBlockRef = useRef(null);
   const hasMountedRef = useRef(false);
 
-  const IS_RO = localStorage.getItem("country") === "RO";
+  const [isRo, setIsRo] = useState(localStorage.getItem("country") === "RO");
+
+  useEventListener("countryChanged", () => {
+    setIsRo(localStorage.getItem("country") === "RO");
+  });
 
   const scrollToTarget = useCallback((target) => {
     if (target === "faq" && faqRef.current) {
@@ -78,7 +82,7 @@ export const HowItWorks = () => {
     <Page classes="page__how-it-works" showBackground>
       <HowItWorksHero />
       <div id="how-it-works-providers" ref={providersBlockRef} />
-      {!IS_RO ? <MeetOurProviders /> : null}
+      {!isRo ? <MeetOurProviders /> : null}
       <VideoTutorial />
       <TakeAStep />
       <div id="how-it-works-faq" ref={faqRef} />

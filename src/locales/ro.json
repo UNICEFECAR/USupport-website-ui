@@ -261,7 +261,15 @@
       "body_image": "Imaginea corporală și stima de sine",
       "hour_consultation": "pentru o consultație de o oră",
       "organizations_label": "Organizații",
-      "free": "gratuit"
+      "free": "gratuit",
+      "consultations": "consultații",
+      "monday": "Luni",
+      "tuesday": "Marți",
+      "wednesday": "Miercuri",
+      "thursday": "Joi",
+      "friday": "Vineri",
+      "saturday": "Sâmbătă",
+      "sunday": "Duminică"
     },
     "meet-our-providers-overview": {
       "heading": "Faceți cunoștință cu furnizorii pe care îi puteți consulta",
