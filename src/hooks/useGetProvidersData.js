@@ -28,7 +28,30 @@ export default function useGetProvidersData({
         response = await providerSvc.getRandomProviders(limit);
       }
     } else {
-      response = { data: staticProvidersData };
+      const preferredCountry =
+        language === "hy" ? "AM" : language === "pl" || language === "uk" ? "PL" : "AM";
+      const otherCountry = preferredCountry === "AM" ? "PL" : "AM";
+      const half = Math.ceil(limit / 2);
+
+      const [preferred, other] = await Promise.all(
+        [preferredCountry, otherCountry].map((country) =>
+          providerSvc
+            .getRandomProviders(limit, country)
+            .then((res) =>
+              (res.data || []).map((provider) => ({ ...provider, country }))
+            )
+            .catch((err) => {
+              console.log(err, "err");
+              return [];
+            })
+        )
+      );
+
+      const mixed = [
+        ...preferred.slice(0, half),
+        ...other.slice(0, limit - half),
+      ];
+      response = { data: mixed.length > 0 ? mixed : staticProvidersData };
     }
     const { data } = response;
     const formattedData = [];
@@ -50,6 +73,7 @@ export default function useGetProvidersData({
         workWith: providerData.work_with || [],
         totalConsultations: providerData.total_consultations || 0,
         earliestAvailableSlot: providerData.earliest_available_slot || "",
+        country: providerData.country || "",
       };
       formattedData.push(formattedProvider);
     }
@@ -57,12 +81,12 @@ export default function useGetProvidersData({
   };
 
   const providersDataQuery = useInfiniteQuery(
-    ["providers-data", isInGlobalCountry, language],
+    ["providers-data", isInGlobalCountry, language, random, limit],
     fetchProvidersData,
     {
       enabled,
       getNextPageParam: (lastPage, pages) => {
-        if (lastPage.length === 0) {
+        if (isInGlobalCountry || lastPage.length === 0) {
           return undefined;
         }
         return pages.length + 1;

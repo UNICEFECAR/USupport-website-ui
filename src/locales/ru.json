@@ -261,7 +261,15 @@
       "body_image": "Самооценка и образ тела",
       "hour_consultation": "за 1 часовую консультацию",
       "organizations_label": "Организации",
-      "free": "бесплатно"
+      "free": "бесплатно",
+      "consultations": "консультации",
+      "monday": "Понедельник",
+      "tuesday": "Вторник",
+      "wednesday": "Среда",
+      "thursday": "Четверг",
+      "friday": "Пятница",
+      "saturday": "Суббота",
+      "sunday": "Воскресенье"
     },
     "meet-our-providers-overview": {
       "heading": "Познакомьтесь с консультантами, к которым Вы можете обратиться",

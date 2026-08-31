@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { providerSvc } from "@USupport-components-library/services";
 
 import { staticProvidersData } from "./useGetProvidersData";
@@ -7,8 +8,10 @@ import { staticProvidersData } from "./useGetProvidersData";
 /**
  * Reuseable hook to get and transform the provider data in a desired format
  */
-export default function useGetProviderData(id = null) {
+export default function useGetProviderData(id = null, country = null) {
   //   const queryClient = useQueryClient();
+  const { i18n } = useTranslation();
+  const language = i18n.language;
   const [providersData, setProvidersData] = useState();
   const fetchProvidersData = async () => {
     let data;
@@ -19,7 +22,12 @@ export default function useGetProviderData(id = null) {
 
     if (!data) {
       if (id) {
-        const response = await providerSvc.getProviderById(id);
+        const response = await providerSvc.getProviderById(
+          id,
+          undefined,
+          undefined,
+          country
+        );
         data = response.data;
       } else {
         const response = await providerSvc.getProviderData();
@@ -48,14 +56,18 @@ export default function useGetProviderData(id = null) {
     return formattedData;
   };
 
-  const providersDataQuery = useQuery(["provider-data"], fetchProvidersData, {
-    onSuccess: (data) => {
-      const dataCopy = JSON.parse(JSON.stringify(data));
-      setProvidersData({ ...dataCopy });
-    },
-    onError: (err) => console.log(err, "err"),
-    notifyOnChangeProps: ["data"],
-  });
+  const providersDataQuery = useQuery(
+    ["provider-data", id, country, language],
+    fetchProvidersData,
+    {
+      onSuccess: (data) => {
+        const dataCopy = JSON.parse(JSON.stringify(data));
+        setProvidersData({ ...dataCopy });
+      },
+      onError: (err) => console.log(err, "err"),
+      notifyOnChangeProps: ["data"],
+    }
+  );
 
   return [providersDataQuery, providersData, setProvidersData];
 }

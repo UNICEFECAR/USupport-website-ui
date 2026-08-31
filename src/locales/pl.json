@@ -261,7 +261,15 @@
       "body_image": "Obraz ciała i poczucie własnej wartości",
       "hour_consultation": "za 1 godzinę konsultacji",
       "organizations_label": "Organizacje",
-      "free": "bezpłatnie"
+      "free": "bezpłatnie",
+      "consultations": "konsultacje",
+      "monday": "Poniedziałek",
+      "tuesday": "Wtorek",
+      "wednesday": "Środa",
+      "thursday": "Czwartek",
+      "friday": "Piątek",
+      "saturday": "Sobota",
+      "sunday": "Niedziela"
     },
     "meet-our-providers-overview": {
       "heading": "Poznaj specjalistów, z którymi możesz się skonsultować",
