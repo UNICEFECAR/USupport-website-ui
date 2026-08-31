@@ -4,12 +4,12 @@ import React, {
   useEffect,
   useCallback,
   useMemo,
+  useRef,
 } from "react";
 import { useParams } from "react-router-dom";
 import propTypes from "prop-types";
 import classNames from "classnames";
 import { toast } from "react-toastify";
-import { useQuery } from "@tanstack/react-query";
 
 import {
   Block,
@@ -33,6 +33,7 @@ import {
   createArticleSlug,
   constructShareUrl,
   getBrandingLogoUrl,
+  shouldTrackContentView,
 } from "@USupport-components-library/utils";
 
 import "./article-view.scss";
@@ -88,21 +89,28 @@ export const ArticleView = ({ articleData, t, language }) => {
   const [hasTrackedAudioPlay, setHasTrackedAudioPlay] = useState(false);
   const addContentEngagementMutation = useAddContentEngagement();
 
-  // Track view when article is loaded using useQuery
-  useQuery(
-    ["article-view-tracking", articleData.id],
-    async () => {
-      addContentEngagementMutation({
-        contentId: articleData.id,
-        contentType: "article",
-        action: "view",
-      });
-      return true;
-    },
-    {
-      enabled: !!articleData?.id,
+  // Track view once per article per session window. The block is remounted on
+  // every background refetch of the article data, so the ref alone is not
+  // enough - the sessionStorage stamp is what survives the remount.
+  const trackedArticleIdRef = useRef(null);
+
+  useEffect(() => {
+    const articleId = articleData?.id;
+    if (!articleId) return;
+    if (trackedArticleIdRef.current === articleId) return;
+
+    if (!shouldTrackContentView("article", articleId)) {
+      trackedArticleIdRef.current = articleId;
+      return;
     }
-  );
+
+    trackedArticleIdRef.current = articleId;
+    addContentEngagementMutation({
+      contentId: articleId,
+      contentType: "article",
+      action: "view",
+    });
+  }, [articleData?.id]);
 
   const url = constructShareUrl({
     contentType: "article",

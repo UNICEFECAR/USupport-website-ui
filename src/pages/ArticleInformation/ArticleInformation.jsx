@@ -87,10 +87,7 @@ export const ArticleInformation = () => {
     enabled: !!id,
   });
 
-  const {
-    data: articleContentEngagements,
-    isLoading: isArticleContentEngagementsLoading,
-  } = useQuery(
+  const { data: articleContentEngagements } = useQuery(
     ["articleContentEngagements", id],
     async () => {
       const { likes, dislikes } = await getLikesAndDislikesForContent(
@@ -224,7 +221,10 @@ export const ArticleInformation = () => {
     window.scrollTo(0, 0);
   };
 
-  const isLoading = isArticlesLoading || isArticleContentEngagementsLoading;
+  // Only gate on the article's own initial load. Including the engagements
+  // query here unmounted ArticleView once its data settled, which re-fired
+  // the view tracking event.
+  const isLoading = isArticlesLoading;
 
   const renderSidebar = () => {
     if (!isMoreArticlesLoading && moreArticles?.length > 0) {
