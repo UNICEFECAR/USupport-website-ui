@@ -121,6 +121,7 @@
       "psychologist": "Psychologist",
       "psychiatrist": "Psychiatrist",
       "psychotherapist": "Psychotherapist",
+      "peer_support": "U-FRIEND",
       "show_more_btn": "Show more"
     },
     "page": {
@@ -259,6 +260,7 @@
       "love": "Love and Romantic Relationships",
       "social_skills": "Social Skills and Friendship",
       "body_image": "Body Image and Self-Esteem",
+      "peer_to_peer_emotional_support": "Peer-to-peer emotional support",
       "hour_consultation": "for 1 hour consultation",
       "organizations_label": "Organizations",
       "free": "free of charge",
@@ -269,7 +271,8 @@
       "thursday": "Thursday",
       "friday": "Friday",
       "saturday": "Saturday",
-      "sunday": "Sunday"
+      "sunday": "Sunday",
+      "peer_support": "U-FRIEND"
     },
     "meet-our-providers-overview": {
       "heading": "Meet providers you can consult with",
@@ -277,7 +280,8 @@
       "button_label": "View all",
       "psychologist": "Psychologist",
       "psychiatrist": "Psychiatrist",
-      "psychotherapist": "Psychotherapist"
+      "psychotherapist": "Psychotherapist",
+      "peer_support": "U-FRIEND"
     },
     "our-partners": {
       "heading": "Our Partners",
