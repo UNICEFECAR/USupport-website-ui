@@ -87,12 +87,6 @@ export const MeetOurProvidersOverview = () => {
                   breakpointItems={responsiveItems}
                 >
                   {providers.map((provider, index) => {
-                    const specializations = Array.isArray(
-                      provider.specializations,
-                    )
-                      ? provider.specializations.map((x) => t(x)).join(", ")
-                      : "";
-
                     return (
                       <div
                         key={provider.providerDetailId || index}
@@ -100,8 +94,9 @@ export const MeetOurProvidersOverview = () => {
                       >
                         <CardProviderSmall
                           providerName={`${provider.name} ${provider.patronym} ${provider.surname}`}
-                          description={specializations}
+                          specializationKeys={provider.specializations}
                           image={provider.image}
+                          t={t}
                           onClick={() =>
                             redirectToDetails(
                               provider.providerDetailId,
