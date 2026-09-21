@@ -32,6 +32,8 @@ export const QuestionDetails = ({
 
   const isInMyQuestions = question?.isAskedByCurrentClient;
   const providerInfo = question.providerData;
+  // Deactivated providers can't take bookings, so don't offer the option
+  const isProviderActive = providerInfo?.status !== "inactive";
 
   const getDateText = () => {
     const date = new Date(question.answerCreatedAt || question.questionCreatedAt);
@@ -118,16 +120,18 @@ export const QuestionDetails = ({
               {providerInfo.name} {providerInfo.surname}
             </p>
           </div>
-          <div
-            className="question-details__schedule-button"
-            onClick={() => {
-              onClose();
-              handleScheduleClick(question);
-            }}
-          >
-            <Icon name="calendar" color="#20809e" />
-            <p className="text">{t("schedule_consultation")}</p>
-          </div>
+          {isProviderActive && (
+            <div
+              className="question-details__schedule-button"
+              onClick={() => {
+                onClose();
+                handleScheduleClick(question);
+              }}
+            >
+              <Icon name="calendar" color="#20809e" />
+              <p className="text">{t("schedule_consultation")}</p>
+            </div>
+          )}
         </div>
       )}
     </Modal>
