@@ -41,9 +41,19 @@ export const InformationPortal = () => {
   useEffect(() => {
     let selectedTab = tab || "articles";
 
-    if (!isPodcastsActive && !isVideosActive && selectedTab !== "articles") {
+    // Wait for the country settings before deciding if the tab is available
+    const isCountrySettingsLoading =
+      isPodcastsActive === null || isVideosActive === null;
+    if (isCountrySettingsLoading && selectedTab !== "articles") return;
+
+    const isTabAvailable =
+      selectedTab === "articles" ||
+      (selectedTab === "videos" && isVideosActive) ||
+      (selectedTab === "podcasts" && isPodcastsActive);
+
+    if (!isTabAvailable) {
       selectedTab = "articles";
-      setSearchParams({ tab: "articles" });
+      setSearchParams({ tab: "articles" }, { replace: true });
     }
 
     const initialTabs = [

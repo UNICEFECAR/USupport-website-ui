@@ -254,7 +254,7 @@ export const PodcastInformation = () => {
     return null;
   };
 
-  if (!isPodcastsActive) {
+  if (isPodcastsActive === false) {
     return (
       <Navigate
         to={`/${localStorage.getItem(
