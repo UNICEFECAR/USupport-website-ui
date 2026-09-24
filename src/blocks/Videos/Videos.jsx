@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 
@@ -44,6 +44,7 @@ const getGridSpanForIndex = (index, pattern = [3, 3, 3]) => {
 
 export const Videos = ({ debouncedSearchValue }) => {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { width } = useWindowDimensions();
   const { i18n, t } = useTranslation("blocks", { keyPrefix: "articles" });
 
@@ -284,6 +285,46 @@ export const Videos = ({ debouncedSearchValue }) => {
     },
   );
 
+  //--------------------- Open video from URL ----------------------//
+  // ?videoId=<index> opens the video at that index of the country's video ids
+  const videoIdParam = searchParams.get("videoId");
+  const videoIndex = /^\d+$/.test(videoIdParam || "")
+    ? Number(videoIdParam)
+    : null;
+  const videoIdFromParam =
+    videoIndex !== null && Array.isArray(videoIdsQuery.data)
+      ? videoIdsQuery.data[videoIndex]
+      : undefined;
+
+  const { data: videoFromParam } = useQuery(
+    ["video-from-param", videoIdFromParam, usersLanguage],
+    async () => {
+      const { data } = await cmsSvc.getVideoById(
+        videoIdFromParam,
+        usersLanguage,
+      );
+      return destructureVideoData(data);
+    },
+    {
+      enabled: !!videoIdFromParam,
+      refetchOnWindowFocus: false,
+    },
+  );
+
+  useEffect(() => {
+    const url = videoFromParam?.originalUrl || videoFromParam?.awsUrl;
+    if (url) setVideoToPlayUrl(url);
+  }, [videoFromParam]);
+
+  const handleCloseVideoModal = () => {
+    setVideoToPlayUrl(null);
+    if (searchParams.has("videoId")) {
+      const newSearchParams = new URLSearchParams(searchParams);
+      newSearchParams.delete("videoId");
+      setSearchParams(newSearchParams, { replace: true });
+    }
+  };
+
   const handleRedirect = (id, name) => {
     navigate(
       `/${localStorage.getItem(
@@ -324,7 +365,7 @@ export const Videos = ({ debouncedSearchValue }) => {
       {videoToPlayUrl && (
         <VideoModal
           isOpen={!!videoToPlayUrl}
-          onClose={() => setVideoToPlayUrl(null)}
+          onClose={handleCloseVideoModal}
           videoUrl={videoToPlayUrl}
           t={t}
         />
