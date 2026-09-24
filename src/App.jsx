@@ -82,8 +82,9 @@ function App() {
   const [theme, setTheme] = useState(getDefaultTheme());
   const [showContent, setShowContent] = useState(false);
   const [allLanguages, setAllLanguages] = useState([]);
-  const [isPodcastsActive, setIsPodcastsActive] = useState(false);
-  const [isVideosActive, setIsVideosActive] = useState(false);
+  // null until the country settings are fetched in Page
+  const [isPodcastsActive, setIsPodcastsActive] = useState(null);
+  const [isVideosActive, setIsVideosActive] = useState(null);
   const [isWysaModalOpen, setIsWysaModalOpen] = useState(false);
   const [country, setCountry] = useState(
     localStorage.getItem("country") || null

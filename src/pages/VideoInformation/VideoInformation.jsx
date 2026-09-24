@@ -154,7 +154,7 @@ export const VideoInformation = () => {
 
   const isLoading = isVideoLoading || isVideoContentEngagementsLoading;
 
-  if (!isVideosActive) {
+  if (isVideosActive === false) {
     return (
       <Navigate
         to={`/${localStorage.getItem(
