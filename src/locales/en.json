@@ -637,6 +637,8 @@
       "on_usupport": "on uSupport",
       "language_label": "Language",
       "navigation_label": "Main navigation",
+      "menu_open": "Open menu",
+      "menu_close": "Close menu",
       "logo_alt": "Play and Heal - home"
     },
     "footer": {
