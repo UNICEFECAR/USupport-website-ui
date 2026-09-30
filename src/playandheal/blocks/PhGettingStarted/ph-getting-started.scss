@@ -1,0 +1,111 @@
+@import "../../styles/ph";
+
+.ph-getting-started {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  padding: 3.2rem 2.4rem;
+  border: 1px solid var(--ph-border);
+  border-radius: var(--ph-radius-xl);
+  background: var(--ph-surface-subtle);
+
+  @include ph-tablet-up {
+    padding: 4rem;
+  }
+
+  @include ph-desktop-up {
+    flex-direction: row;
+    align-items: center;
+    gap: 6rem;
+  }
+
+  &__intro,
+  &__steps {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  &__intro {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+  }
+
+  &__eyebrow {
+    @include ph-eyebrow;
+  }
+
+  &__heading {
+    @include ph-h2;
+    font-size: 2.6rem;
+
+    @include ph-desktop-up {
+      font-size: 3.2rem;
+      line-height: 4.2rem;
+    }
+  }
+
+  &__text {
+    @include ph-body;
+  }
+
+  // The getting-started CTA uses the green brand tone in the design
+  &__cta.ph-button--primary {
+    margin-top: 1.2rem;
+    background: var(--ph-link);
+
+    &:hover {
+      background: #2d432c;
+    }
+  }
+
+  &__steps {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__step {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  &__number {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.6rem;
+    height: 3.6rem;
+    border: 1px solid var(--ph-border);
+    border-radius: var(--ph-radius-pill);
+    background: transparent;
+    font-family: var(--ph-font);
+    font-weight: 600;
+    font-size: 1.2rem;
+    line-height: 1;
+    color: var(--ph-primary);
+  }
+
+  &__step-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  &__step-title {
+    font-family: var(--ph-font);
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 2.2rem;
+    color: var(--ph-foreground);
+  }
+
+  &__step-text {
+    @include ph-body-sm;
+  }
+}

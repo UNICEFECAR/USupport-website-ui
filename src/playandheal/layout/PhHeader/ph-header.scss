@@ -1,0 +1,125 @@
+@import "../../styles/ph";
+
+.ph-header {
+  position: relative;
+  z-index: $z_index_navbar;
+  background: var(--ph-background);
+
+  &__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.2rem 2rem;
+    padding-block: 1.6rem;
+
+    @include ph-desktop-up {
+      flex-wrap: nowrap;
+      padding-block: 2rem;
+    }
+  }
+
+  &__brand {
+    @include ph-focus-ring;
+    flex-shrink: 0;
+    border-radius: var(--ph-radius-sm);
+
+    img {
+      width: 5.2rem;
+      height: 5.2rem;
+      object-fit: contain;
+
+      @include ph-desktop-up {
+        width: 6.2rem;
+        height: 6.2rem;
+      }
+    }
+  }
+
+  // Mobile/tablet: nav takes its own full-width row below the brand
+  &__nav {
+    order: 3;
+    flex-basis: 100%;
+    display: flex;
+    gap: 0.4rem;
+
+    // Four items don't fit one row on small phones - use a 2 x 2 grid
+    @media (max-width: 599px) {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include ph-desktop-up {
+      order: 0;
+      flex-basis: auto;
+      gap: 0.8rem;
+      margin-inline-start: auto;
+    }
+  }
+
+  &__link {
+    @include ph-focus-ring;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 4.8rem;
+    padding: 1.2rem 1.2rem;
+    border-radius: var(--ph-radius-pill);
+    font-family: var(--ph-font);
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 2.2rem;
+    color: var(--ph-foreground);
+    white-space: nowrap;
+    transition: background-color 0.15s ease;
+
+    @include ph-tablet-up {
+      flex: 0 1 auto;
+      padding-inline: 2rem;
+      font-size: 1.6rem;
+      line-height: 2.6rem;
+    }
+
+    @include ph-desktop-up {
+      min-width: 12rem;
+      justify-content: flex-start;
+      padding-inline: 1.6rem;
+    }
+
+    &:hover {
+      background: var(--ph-surface-soft);
+    }
+
+    &--active,
+    &--active:hover {
+      background: var(--ph-surface-nav);
+      color: var(--ph-primary);
+    }
+  }
+
+  &__utilities {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+
+    @include ph-desktop-up {
+      gap: 2rem;
+      margin-inline-start: 2rem;
+    }
+  }
+
+  &__host {
+    @include ph-focus-ring;
+    font-family: var(--ph-font);
+    font-size: 1.2rem;
+    line-height: 2rem;
+    color: var(--ph-text-secondary);
+    white-space: nowrap;
+    border-radius: var(--ph-radius-sm);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

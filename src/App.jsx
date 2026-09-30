@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  lazy,
+  Suspense,
+} from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -47,6 +53,10 @@ import {
 import { userSvc } from "@USupport-components-library/services";
 
 import { useEventListener } from "#hooks";
+import { isPlayAndHeal } from "./playandheal/config";
+
+// Play and Heal (PS) has its own design system and pages
+const PlayAndHealRoutes = lazy(() => import("./playandheal"));
 
 import "aos/dist/aos.css";
 import AOS from "aos";
@@ -187,7 +197,7 @@ const LanguageLayout = () => {
 
   const allLangs = ["en", "ru", "kk", "pl", "uk", "hy", "ro", "ar", "tr", "el"];
 
-  const IS_PS = localStorage.getItem("country") === "PS";
+  const IS_PS = isPlayAndHeal();
   const [searchParams, setSearchParams] = useSearchParams();
   const source = searchParams.get("source");
 
@@ -208,6 +218,14 @@ const LanguageLayout = () => {
     },
     { enabled: IS_PS }
   );
+
+  if (IS_PS) {
+    return (
+      <Suspense fallback={null}>
+        <PlayAndHealRoutes />
+      </Suspense>
+    );
+  }
 
   if (!allLangs.includes(language) || !language) {
     return <Navigate to="/en" />;

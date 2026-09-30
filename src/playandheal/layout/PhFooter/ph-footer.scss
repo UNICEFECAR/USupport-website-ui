@@ -1,0 +1,69 @@
+@import "../../styles/ph";
+
+.ph-footer {
+  border-top: 1px solid var(--ph-border);
+  background: var(--ph-background);
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2.8rem;
+    padding-block: 3.2rem 4rem;
+
+    @include ph-tablet-up {
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 4rem;
+    }
+  }
+
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    img {
+      width: 6.2rem;
+      height: 6.2rem;
+      object-fit: contain;
+    }
+  }
+
+  &__tagline {
+    @include ph-body-sm;
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+
+    @include ph-tablet-up {
+      width: 50%;
+    }
+  }
+
+  &__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 2.4rem;
+
+    a {
+      @include ph-body;
+      @include ph-focus-ring;
+      display: inline-flex;
+      align-items: center;
+      min-height: 4.4rem;
+      border-radius: var(--ph-radius-sm);
+
+      &:hover {
+        color: var(--ph-foreground);
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__host {
+    @include ph-body-sm;
+  }
+}

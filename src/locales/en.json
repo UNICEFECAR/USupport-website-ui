@@ -615,5 +615,368 @@
   "meta": {
     "description": "The first platform created to make your mental health a priority. uSupport provides personalized, discreet and fast psychological care for your overall well-being.",
     "title": "uSupport Website"
+  },
+  "playandheal": {
+    "common": {
+      "site_title": "Play and Heal",
+      "site_description": "A toolkit for facilitators helping children in crisis settings find connection, expression, and joy through play.",
+      "skip_to_content": "Skip to content",
+      "close": "Close",
+      "back_to_home": "Back to home",
+      "back_to_toolkit": "Back to the toolkit",
+      "explore_booklet": "Explore the booklet",
+      "how_to_use": "How to use the toolkit",
+      "artwork_caption": "Original characters from the final Play and Heal toolkit.",
+      "artwork_alt": "The five Play and Heal characters flying kites together in a sunny field."
+    },
+    "header": {
+      "home": "Home",
+      "how_to": "How to",
+      "about_us": "About us",
+      "caregivers": "For caregivers",
+      "on_usupport": "on uSupport",
+      "language_label": "Language",
+      "navigation_label": "Main navigation",
+      "logo_alt": "Play and Heal - home"
+    },
+    "footer": {
+      "tagline": "Play and Heal · Tools for connection through play.",
+      "navigation_label": "Footer navigation",
+      "about_us": "About us",
+      "how_to_use": "How to use the toolkit",
+      "cookie_policy": "Cookie policy",
+      "hosted_on": "Hosted on uSupport · Available in English and Arabic"
+    },
+    "home": {
+      "hero": {
+        "eyebrow": "Play. Connect. Grow.",
+        "heading_1": "Small moments of play.",
+        "heading_2": "Meaningful connection.",
+        "text": "A toolkit for facilitators helping children in crisis settings find connection, expression, and joy through play.",
+        "explore_toolkit": "Explore the toolkit",
+        "discover": "Discover Play and Heal",
+        "reassurance": "Built with and for facilitators.",
+        "artwork_alt": "The five Play and Heal characters flying kites together in a sunny field.",
+        "caption": "Everyone has a place in play."
+      },
+      "intro_video": {
+        "eyebrow": "Learn by watching",
+        "heading": "Welcome to Play and Heal.",
+        "text": "Discover the toolkit and how playful moments can help children connect, express themselves and grow.",
+        "video_title": "Introducing Play and Heal"
+      },
+      "toolkit": {
+        "eyebrow": "Your toolkit",
+        "heading": "A little guidance. A lot to explore.",
+        "text": "Start with the foundations, or find the resource you need today.",
+        "search_label": "Search the toolkit",
+        "search_placeholder": "Find a resource…",
+        "search_clear": "Clear search",
+        "search_results_zero": "No resources match “{{- query}}”. Try another word.",
+        "search_results_one": "{{count}} resource matches “{{- query}}”",
+        "search_results_two": "{{count}} resources match “{{- query}}”",
+        "search_results_few": "{{count}} resources match “{{- query}}”",
+        "search_results_many": "{{count}} resources match “{{- query}}”",
+        "search_results_other": "{{count}} resources match “{{- query}}”",
+        "booklet_title": "Foundational booklet",
+        "booklet_text": "Understand the approach, the five characteristics of healing, and your role as a facilitator.",
+        "cards_title": "Activity cards",
+        "cards_text": "Flexible ideas for everyday materials and LEGO® bricks. Find the collection that fits your session.",
+        "videos_title": "Competency microvideos",
+        "videos_text": "Build your confidence with five core competencies for healing play.",
+        "explore_collection": "Explore the collection",
+        "complementary_title": "Complementary resources",
+        "complementary_text": "Colouring books, posters and a jingle to enrich everyday moments of play.",
+        "complementary_eyebrow": "More ways to play",
+        "complementary_status": "More resources coming soon",
+        "caregivers_eyebrow": "Play at home",
+        "caregivers_title": "For caregivers",
+        "caregivers_text": "Simple ways to connect with your child and continue playful learning at home.",
+        "caregivers_cta": "Explore caregiver guidance"
+      },
+      "getting_started": {
+        "eyebrow": "New to Play and Heal?",
+        "heading": "You don’t have to figure it all out on your own.",
+        "text": "Get to know the toolkit, how it fits your setting, and where to begin.",
+        "cta": "Find your starting point",
+        "step_1_title": "Get to know the toolkit",
+        "step_1_text": "Start with the foundational booklet.",
+        "step_2_title": "Build your confidence",
+        "step_2_text": "Explore the core competency microvideos.",
+        "step_3_title": "Bring play into your sessions",
+        "step_3_text": "Choose activity cards that fit your group."
+      },
+      "stories": {
+        "eyebrow": "Made with people",
+        "heading": "Shaped by experience.",
+        "previous": "Previous",
+        "next": "More stories"
+      }
+    },
+    "characters": {
+      "hint": "Hover or tap to explore",
+      "home": {
+        "eyebrow": "Small moments. Meaningful change.",
+        "heading": "Five ways play supports healing.",
+        "text": "Meet the characters. Hover or tap to explore each characteristic."
+      },
+      "about": {
+        "eyebrow": "The foundations",
+        "heading": "Five characteristics of healing."
+      },
+      "safety": {
+        "name": "Safety",
+        "quote": "“Even the tallest tree starts small — and grows stronger with care.”"
+      },
+      "connection": {
+        "name": "Connection & belonging",
+        "quote": "“The invisible thread that binds us together.”"
+      },
+      "expression": {
+        "name": "Expression",
+        "quote": "“All feelings are welcome.”"
+      },
+      "mastery": {
+        "name": "Mastery",
+        "quote": "“I can try, I can choose, I can succeed.”"
+      },
+      "self": {
+        "name": "Sense of self",
+        "quote": "“The real me is my greatest strength.”"
+      }
+    },
+    "network_invite": {
+      "eyebrow": "Coming soon",
+      "heading": "Play connects children. And us.",
+      "text": "A future community for facilitators to share, learn, and grow together.",
+      "cta": "Join waiting list"
+    },
+    "waitlist": {
+      "heading": "A community, in the making.",
+      "badge": "Coming soon",
+      "text": "Our facilitators network is coming soon. Join the waiting list and be the first to hear when it opens.",
+      "benefit_1": "Share experiences and adaptations",
+      "benefit_2": "Discover new resources and updates",
+      "benefit_3": "Connect through learning opportunities",
+      "label_fullName": "Full name",
+      "label_email": "Email address",
+      "label_location": "Country / city",
+      "placeholder_fullName": "Your name",
+      "placeholder_email": "you@example.com",
+      "placeholder_location": "Where you’re based",
+      "privacy_hint": "We’ll use these details to contact you about the facilitators network.",
+      "submit": "Join the waiting list",
+      "submitting": "Joining…",
+      "error_name": "Please enter your name.",
+      "error_email": "Please enter a valid email address.",
+      "error_submit": "Something went wrong and we couldn’t add you to the list. Please try again.",
+      "success_title": "You’re on the list.",
+      "success_text": "Thank you for your interest. We’ll let you know as soon as the facilitators network opens.",
+      "close": "Close"
+    },
+    "reader": {
+      "modal_description": "Read, zoom, or save a copy for later.",
+      "viewport_label": "Document. Click a page, swipe or use the arrow keys to turn pages.",
+      "spread": "Spread",
+      "page": "Page",
+      "position": "{{unit}} {{current}} of {{total}}",
+      "pages_range": "Pages {{from}}–{{to}} of {{total}}",
+      "previous": "Previous page",
+      "next": "Next page",
+      "zoom_in": "Zoom in",
+      "zoom_out": "Zoom out",
+      "download": "Download PDF",
+      "fullscreen": "Full screen",
+      "exit_fullscreen": "Exit full screen",
+      "meta_spreads_zero": "Original PDF · {{count}} landscape spreads · {{language}}",
+      "meta_spreads_one": "Original PDF · {{count}} landscape spread · {{language}}",
+      "meta_spreads_two": "Original PDF · {{count}} landscape spreads · {{language}}",
+      "meta_spreads_few": "Original PDF · {{count}} landscape spreads · {{language}}",
+      "meta_spreads_many": "Original PDF · {{count}} landscape spreads · {{language}}",
+      "meta_spreads_other": "Original PDF · {{count}} landscape spreads · {{language}}",
+      "meta_pages_zero": "Original PDF · {{count}} pages · {{language}}",
+      "meta_pages_one": "Original PDF · {{count}} page · {{language}}",
+      "meta_pages_two": "Original PDF · {{count}} pages · {{language}}",
+      "meta_pages_few": "Original PDF · {{count}} pages · {{language}}",
+      "meta_pages_many": "Original PDF · {{count}} pages · {{language}}",
+      "meta_pages_other": "Original PDF · {{count}} pages · {{language}}",
+      "download_original": "Download original PDF",
+      "loading": "Loading document…",
+      "error": "We couldn’t load this document. Please try downloading it instead."
+    },
+    "video_player": {
+      "play": "Play",
+      "pause": "Pause",
+      "mute": "Mute",
+      "unmute": "Unmute",
+      "fullscreen": "Full screen",
+      "seek": "Video progress",
+      "coming_soon": "Video coming soon",
+      "open_external": "Open video in a new tab"
+    },
+    "collection": {
+      "eyebrow": "Play and Heal toolkit",
+      "explore": "Explore the collection",
+      "resource_count_zero": "{{count}} resources",
+      "resource_count_one": "{{count}} resource",
+      "resource_count_two": "{{count}} resources",
+      "resource_count_few": "{{count}} resources",
+      "resource_count_many": "{{count}} resources",
+      "resource_count_other": "{{count}} resources",
+      "video_count_zero": "{{count}} videos",
+      "video_count_one": "{{count}} video",
+      "video_count_two": "{{count}} videos",
+      "video_count_few": "{{count}} videos",
+      "video_count_many": "{{count}} videos",
+      "video_count_other": "{{count}} videos",
+      "hint_documents": "Read on this page, zoom for comfort, or download a copy for later.",
+      "hint_videos": "Watch here in English or Arabic, with a full-screen option.",
+      "loading": "Loading resources…",
+      "error": "We couldn’t load the resources. Please refresh the page to try again.",
+      "empty": "New resources are on their way. Please check back soon.",
+      "watch_video": "Watch video",
+      "open_document": "Open document",
+      "booklet": {
+        "title": "Foundational booklet",
+        "text": "Understand the approach, the five characteristics of healing, and your role as a facilitator.",
+        "read_here": "Read the booklet here",
+        "callout_title": "Inside the foundational booklet",
+        "callout_text": "The five characteristics of healing, facilitator core competencies, the Prepare → Play → Reflect learning loop, and practical tips for your sessions."
+      },
+      "cards": {
+        "title": "Activity cards",
+        "text": "Flexible ideas for everyday materials and LEGO® bricks. Find the collection that fits your session.",
+        "callout_title": "Choose what fits your group",
+        "callout_text": "The full collection includes introduction, preparation and energy-shift sets alongside activities. The two focused collections separate everyday-material and brick activities."
+      },
+      "videos": {
+        "title": "Competency microvideos",
+        "text": "Build your confidence with five core competencies for healing play.",
+        "callout_title": "Keep the learning loop close",
+        "callout_text": "Prepare before the session, stay present as you play, and reflect afterwards. The booklet brings these competencies together."
+      }
+    },
+    "how_to": {
+      "banner": {
+        "eyebrow": "A place to begin",
+        "heading": "Make the toolkit your own.",
+        "text": "Explore the foundations, build your confidence, and find resources for your sessions."
+      },
+      "story": {
+        "heading_1": "Start with the foundations",
+        "text_1": "The toolkit is a flexible set of resources, rather than a rigid script. Begin with the booklet and competency videos, then choose activities that fit your group.",
+        "heading_2": "Use it within your setting",
+        "text_2": "Play and Heal is intended for humanitarian emergencies and safe community spaces, schools and other group settings, under the care of trained adults. It complements existing mental health and psychosocial support services."
+      },
+      "safeguarding": {
+        "title": "Safeguarding comes first",
+        "text": "Facilitators should have adequate safeguarding training and access to supervision and referral pathways. Always use your organisation’s child safeguarding and referral systems."
+      },
+      "guidance": {
+        "heading": "Guidance for facilitators",
+        "selection_title": "Facilitator selection",
+        "selection_text": "Confirm the programme’s facilitator selection criteria, training requirements and support arrangements with your coordinating team.",
+        "age_groups_title": "Age groups & adaptations",
+        "age_groups_text": "Adapt materials and activities to children’s abilities and needs. Confirm programme age ranges with your coordinating team.",
+        "partnership_title": "PlayBoxes partnership",
+        "partnership_text": "Dedicated partnership guidance will be added here when supplied by the Play and Heal team.",
+        "support_title": "Facilitator support",
+        "support_text": "Stay connected with your supervisor and co-facilitators. Programme contact details will be added once confirmed."
+      },
+      "faq": {
+        "eyebrow": "A little clarity",
+        "heading": "Questions, answered.",
+        "questions": {
+          "who_for": {
+            "question": "Who is Play and Heal for?",
+            "answer": "Play and Heal is for trained facilitators working with children affected by crises - in humanitarian emergencies, child-friendly and community spaces, schools and other group settings. It is part of a wider response that supports children’s basic needs and wellbeing, alongside existing mental health and psychosocial support services."
+          },
+          "where_to_start": {
+            "question": "Where should I start?",
+            "answer": "Begin with the foundational booklet to understand the approach and the five characteristics of healing. Then watch the competency microvideos, and choose activity cards that fit your group."
+          },
+          "lego": {
+            "question": "Do all activities need LEGO® bricks?",
+            "answer": "No. The activity cards include a collection that uses everyday materials and a separate collection of brick activities, so you can choose what fits the materials you have."
+          },
+          "phone": {
+            "question": "Can I read and watch on my phone?",
+            "answer": "Yes. The booklet, activity cards and videos all work on phones and tablets. You can zoom into documents, watch videos full screen, and download PDFs to use offline."
+          },
+          "network": {
+            "question": "How do I join the facilitators network?",
+            "answer": "The facilitators network is coming soon. Join the waiting list and we’ll let you know as soon as it opens."
+          }
+        }
+      }
+    },
+    "about": {
+      "banner": {
+        "eyebrow": "Our story",
+        "heading": "Built together.",
+        "text": "A psychosocial support toolkit built with and for facilitators working with children in crisis settings."
+      },
+      "story": {
+        "heading_1": "Shaped by real experience",
+        "text_1": "Play and Heal brings together the experiences of facilitators and children. Field testing in Lebanon and Gaza informed the next version of the toolkit and its digital home.",
+        "heading_2": "A participatory approach",
+        "text_2": "Play is a way for children to explore, express themselves and connect. The toolkit invites facilitators to notice children’s needs, adapt activities and reflect on what they learn."
+      },
+      "developed": {
+        "title": "Developed together",
+        "text": "The final toolkit credits UNICEF, The LEGO Foundation and Care for Education. Full acknowledgements and the development story will be expanded with the team’s approved text."
+      }
+    },
+    "caregivers": {
+      "welcome": {
+        "eyebrow": "For caregivers",
+        "heading": "Keep play going at home.",
+        "text": "Small moments together help your child connect, express themselves and learn. Explore simple ways to bring Play and Heal into everyday life.",
+        "cta": "Explore ideas for home"
+      },
+      "play": {
+        "eyebrow": "01 · Make time for play",
+        "heading": "Play matters for learning and recovery.",
+        "text": "Make time for play at home and let your child’s interests guide the moment. You don’t need special materials to play and connect together.",
+        "start_small_title": "Start small",
+        "start_small_text": "Draw, sing or make a game with materials you already have.",
+        "follow_lead_title": "Follow their lead",
+        "follow_lead_text": "Let your child choose what to try and how to play.",
+        "be_present_title": "Be present",
+        "be_present_text": "Listen, join in and make room for a pause when they need one."
+      },
+      "learn": {
+        "eyebrow": "02 · In a Play and Heal session",
+        "heading": "What does your child learn through play?",
+        "text": "Activities make room for the five characteristics of healing. Every child joins in and explores in their own way.",
+        "safety": "Feeling safe enough to join in and try.",
+        "connection": "Playing together and feeling included.",
+        "expression": "Sharing ideas and feelings through play.",
+        "mastery": "Trying, practising and discovering what they can do.",
+        "self": "Making choices and noticing their strengths."
+      },
+      "questions": {
+        "eyebrow": "03 · After the session",
+        "heading": "Three questions to start a conversation.",
+        "text": "Invite your child to share, and let them choose how much to say. They can show you or draw their answer too.",
+        "label": "Question {{number}}",
+        "question_1": "What did you enjoy playing today?",
+        "question_2": "What did you try or discover?",
+        "question_3": "What would you like to play together at home?"
+      },
+      "videos": {
+        "eyebrow": "04 · Watch and try",
+        "heading": "The competency videos are for you, too.",
+        "text": "Watch the five short competency videos, then choose an idea to practise while playing with your child.",
+        "loading": "Loading videos…"
+      },
+      "games": {
+        "eyebrow": "05 · Games across generations",
+        "heading": "What did you love to play as a child?",
+        "text": "Think of a game you enjoyed when you were young. Did it help you feel safe, connect and belong, express yourself, master something or discover who you are?",
+        "text_2": "Share the memory with your child. Teach them the game or play it together, then make it your own.",
+        "explore_cards": "Explore activity cards"
+      }
+    }
   }
 }

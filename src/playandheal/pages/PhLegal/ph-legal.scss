@@ -1,0 +1,13 @@
+@import "../../styles/ph";
+
+.ph-legal {
+  &__heading {
+    @include ph-h1;
+  }
+
+  // The legal content is rendered by the shared uSupport blocks
+  &__content {
+    font-family: var(--ph-font);
+    color: var(--ph-foreground);
+  }
+}

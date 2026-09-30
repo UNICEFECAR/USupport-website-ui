@@ -51,6 +51,8 @@ export default function useGetProviderData(id = null, country = null) {
       workWith: data.work_with || [],
       totalConsultations: data.total_consultations || 0,
       earliestAvailableSlot: data.earliest_available_slot || "",
+      earliestAvailableSlotDurationMinutes:
+        data.earliest_available_slot_duration_minutes,
       videoLink: data.video_link || "",
     };
     return formattedData;
