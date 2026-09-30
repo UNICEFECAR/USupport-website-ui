@@ -244,6 +244,8 @@
       "on_usupport": "على منصة uSupport",
       "language_label": "اللغة",
       "navigation_label": "القائمة الرئيسية",
+      "menu_open": "فتح القائمة",
+      "menu_close": "إغلاق القائمة",
       "logo_alt": "اللعب للتعافي - الصفحة الرئيسية"
     },
     "footer": {
