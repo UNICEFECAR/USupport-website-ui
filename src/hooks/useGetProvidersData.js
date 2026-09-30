@@ -73,6 +73,8 @@ export default function useGetProvidersData({
         workWith: providerData.work_with || [],
         totalConsultations: providerData.total_consultations || 0,
         earliestAvailableSlot: providerData.earliest_available_slot || "",
+        earliestAvailableSlotDurationMinutes:
+          providerData.earliest_available_slot_duration_minutes,
         country: providerData.country || "",
       };
       formattedData.push(formattedProvider);

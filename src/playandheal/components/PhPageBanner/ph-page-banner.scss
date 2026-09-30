@@ -1,0 +1,77 @@
+@import "../../styles/ph";
+
+.ph-page-banner {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2.8rem 2.4rem;
+  border-radius: var(--ph-radius-2xl);
+
+  @include ph-tablet-up {
+    flex-direction: row;
+    align-items: center;
+    gap: 3.6rem;
+    padding: 4.8rem;
+  }
+
+  &--lavender {
+    background: var(--ph-surface-lavender);
+  }
+
+  &--mint {
+    background: var(--ph-surface-mint);
+  }
+
+  &--sand {
+    background: var(--ph-surface-sand);
+  }
+
+  &--pink {
+    background: var(--ph-surface-pink);
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 6.4rem;
+    height: 6.4rem;
+    border-radius: var(--ph-radius-lg);
+    background: var(--ph-background);
+    color: var(--ph-foreground);
+
+    svg {
+      width: 3.2rem;
+      height: 3.2rem;
+    }
+
+    @include ph-tablet-up {
+      width: 8rem;
+      height: 8rem;
+
+      svg {
+        width: 4rem;
+        height: 4rem;
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  &__eyebrow {
+    @include ph-eyebrow;
+  }
+
+  &__heading {
+    @include ph-h1;
+  }
+
+  &__description {
+    @include ph-body-lg;
+  }
+}

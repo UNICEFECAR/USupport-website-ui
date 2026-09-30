@@ -1,0 +1,14 @@
+@import "../../styles/ph";
+
+// The homepage hero is wider than the content column (1320 vs 1190 on desktop)
+.ph-home__hero {
+  width: 100%;
+  max-width: 132rem;
+  margin-inline: auto;
+  padding-inline: var(--ph-gutter);
+
+  @include ph-desktop-up {
+    padding-inline: 6rem;
+    max-width: calc(132rem + 12rem);
+  }
+}

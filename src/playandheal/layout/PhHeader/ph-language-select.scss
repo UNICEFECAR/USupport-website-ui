@@ -1,0 +1,136 @@
+@import "../../styles/ph";
+
+.ph-language {
+  position: relative;
+
+  &__button {
+    @include ph-reset-button;
+    @include ph-focus-ring;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-height: 4.8rem;
+    padding-inline: 1.2rem;
+    border-radius: var(--ph-radius-pill);
+    color: var(--ph-foreground);
+    transition: background-color 0.15s ease;
+
+    &:hover {
+      background: var(--ph-surface-soft);
+    }
+  }
+
+  &--open &__button {
+    background: var(--ph-surface-nav);
+  }
+
+  &__value {
+    min-width: 2.4rem;
+    font-family: var(--ph-font);
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+  }
+
+  &__chevron {
+    transition: transform 0.2s ease;
+  }
+
+  &--open &__chevron {
+    transform: rotate(180deg);
+  }
+
+  &__list {
+    position: absolute;
+    top: calc(100% + 0.8rem);
+    inset-inline-end: 0;
+    z-index: $z_index_navbar;
+    min-width: 20rem;
+    margin: 0;
+    padding: 0.8rem;
+    list-style: none;
+    border: 1px solid var(--ph-border);
+    border-radius: var(--ph-radius-md);
+    background: var(--ph-background);
+    box-shadow: 0 1.2rem 3.2rem rgba(41, 54, 78, 0.16);
+    animation: ph-language-in 0.14s ease-out;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    min-height: 4.4rem;
+    padding: 0.8rem 1.2rem;
+    border-radius: var(--ph-radius-sm);
+    font-family: var(--ph-font);
+    font-size: 1.5rem;
+    line-height: 2.2rem;
+    color: var(--ph-foreground);
+    cursor: pointer;
+    outline: none;
+
+    // Keyboard and mouse highlight share the focused state
+    &:hover,
+    &:focus-visible,
+    &:focus {
+      background: var(--ph-surface-soft);
+    }
+
+    &:focus-visible {
+      box-shadow: inset 0 0 0 2px var(--ph-focus);
+    }
+
+    &--selected {
+      font-weight: 600;
+      color: var(--ph-primary);
+    }
+  }
+
+  // Each language name is shown in its own script, so Arabic uses the Arabic font
+  &__option-name {
+    flex: 1;
+    // Align with the row, not the name's own direction
+    text-align: start;
+
+    [dir="ltr"] &[dir="rtl"] {
+      text-align: left;
+    }
+
+    [dir="rtl"] &[dir="ltr"] {
+      text-align: right;
+    }
+
+    &[lang="ar"] {
+      font-family: "IBM Plex Sans Arabic", var(--ph-font);
+    }
+  }
+
+  &__option-code {
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.06rem;
+    color: var(--ph-text-secondary);
+  }
+
+  &__check {
+    display: flex;
+    width: 1.6rem;
+    color: var(--ph-primary);
+  }
+}
+
+@keyframes ph-language-in {
+  from {
+    opacity: 0;
+    transform: translateY(-0.4rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

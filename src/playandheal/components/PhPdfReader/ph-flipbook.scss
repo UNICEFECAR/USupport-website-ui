@@ -1,0 +1,191 @@
+@import "../../styles/ph";
+
+// Issuu-style book. Every page is absolutely positioned inside the book and
+// turns around the spine with two half-rotations: the outgoing page lifts to
+// edge-on, then the incoming page lands.
+.ph-flipbook {
+  position: relative;
+  flex-shrink: 0;
+  margin-inline: auto;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+
+  &--interactive {
+    cursor: pointer;
+  }
+
+  // Arabic books are bound on the right: mirror the book, then un-mirror
+  // each page's content so the pages themselves read normally
+  &--rtl {
+    transform: scaleX(-1);
+
+    .ph-flipbook__content {
+      transform: scaleX(-1);
+    }
+  }
+
+  &__book {
+    position: absolute;
+    inset: 0;
+    perspective: 2600px;
+    transition: transform var(--ph-turn-duration) ease-in-out;
+  }
+
+  &__page {
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+    border-radius: 0.6rem;
+    background: var(--ph-background);
+    box-shadow: 0 0.6rem 2rem rgba(41, 54, 78, 0.16);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+    // Spine shading, so two pages read as one open book
+    &--left::after,
+    &--right::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 12%;
+      pointer-events: none;
+    }
+
+    &--left {
+      border-radius: 0.6rem 0 0 0.6rem;
+
+      &::after {
+        right: 0;
+        background: linear-gradient(
+          to left,
+          rgba(0, 0, 0, 0.14),
+          rgba(0, 0, 0, 0)
+        );
+      }
+    }
+
+    &--right {
+      border-radius: 0 0.6rem 0.6rem 0;
+
+      &::after {
+        left: 0;
+        background: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.14),
+          rgba(0, 0, 0, 0)
+        );
+      }
+    }
+
+    &--hidden {
+      visibility: hidden;
+    }
+
+    // Forward: the right page lifts off around the spine, then the next
+    // left page lands
+    &--out-next {
+      transform-origin: left center;
+      animation: ph-turn-out-next calc(var(--ph-turn-duration) / 2) ease-in
+        both;
+    }
+
+    &--in-next {
+      transform-origin: right center;
+      animation: ph-turn-in-next calc(var(--ph-turn-duration) / 2) ease-out
+        calc(var(--ph-turn-duration) / 2) both;
+    }
+
+    // Backward: mirror of the above
+    &--out-prev {
+      transform-origin: right center;
+      animation: ph-turn-out-prev calc(var(--ph-turn-duration) / 2) ease-in
+        both;
+    }
+
+    &--in-prev {
+      transform-origin: left center;
+      animation: ph-turn-in-prev calc(var(--ph-turn-duration) / 2) ease-out
+        calc(var(--ph-turn-duration) / 2) both;
+    }
+
+    // Single page (small screens, landscape documents): the page turns away
+    // around its left edge, or turns back into view
+    &--out-single {
+      transform-origin: left center;
+      animation: ph-turn-out-next var(--ph-turn-duration) ease-in both;
+    }
+
+    &--in-single {
+      transform-origin: left center;
+      animation: ph-turn-in-prev var(--ph-turn-duration) ease-out both;
+    }
+
+    &--out-next,
+    &--in-next,
+    &--out-prev,
+    &--in-prev,
+    &--out-single,
+    &--in-single {
+      box-shadow: 0 1.2rem 3.2rem rgba(41, 54, 78, 0.28);
+    }
+  }
+
+  &__content {
+    width: 100%;
+    height: 100%;
+
+    canvas {
+      display: block;
+    }
+  }
+
+  &__placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--ph-surface-soft);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__book {
+      transition: none;
+    }
+  }
+}
+
+@keyframes ph-turn-out-next {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(-90deg);
+  }
+}
+
+@keyframes ph-turn-in-next {
+  from {
+    transform: rotateY(90deg);
+  }
+  to {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes ph-turn-out-prev {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(90deg);
+  }
+}
+
+@keyframes ph-turn-in-prev {
+  from {
+    transform: rotateY(-90deg);
+  }
+  to {
+    transform: rotateY(0deg);
+  }
+}

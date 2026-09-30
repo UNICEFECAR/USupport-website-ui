@@ -1,0 +1,94 @@
+@import "../../styles/ph";
+
+.ph-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  padding: 3.2rem 2.4rem;
+  border-radius: var(--ph-radius-2xl);
+  background: var(--ph-surface-lavender);
+
+  @include ph-tablet-up {
+    padding: 4.8rem;
+  }
+
+  @include ph-desktop-up {
+    flex-direction: row;
+    align-items: center;
+    gap: 4.8rem;
+  }
+
+  &__copy,
+  &__artwork {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  &__copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2.2rem;
+  }
+
+  &__eyebrow {
+    @include ph-eyebrow;
+  }
+
+  &__heading {
+    @include ph-display;
+
+    span {
+      display: block;
+    }
+  }
+
+  &__heading-accent {
+    color: var(--ph-primary);
+  }
+
+  &__text {
+    @include ph-body-lg;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  &__reassurance {
+    @include ph-body;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+
+    svg {
+      flex-shrink: 0;
+    }
+  }
+
+  &__artwork {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+
+    img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 850 / 570;
+      object-fit: cover;
+      border-radius: var(--ph-radius-xl);
+    }
+
+    figcaption {
+      @include ph-body;
+      padding: 1.6rem;
+      border-radius: var(--ph-radius-md);
+      background: var(--ph-background);
+      color: var(--ph-link);
+      text-align: center;
+    }
+  }
+}

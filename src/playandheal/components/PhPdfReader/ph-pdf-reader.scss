@@ -1,0 +1,139 @@
+@import "../../styles/ph";
+
+.ph-pdf-reader {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  width: 100%;
+
+  &:fullscreen {
+    padding: 2.4rem;
+    background: var(--ph-background);
+    justify-content: center;
+
+    .ph-pdf-reader__viewport {
+      flex: 1;
+    }
+  }
+
+  &__viewport {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    min-height: 24rem;
+    padding-block: 0.8rem 1.6rem;
+    overflow: auto;
+    border-radius: var(--ph-radius-md);
+
+    @include ph-focus-ring;
+
+    .react-pdf__Document {
+      display: flex;
+      justify-content: center;
+      min-width: min-content;
+      margin-inline: auto;
+    }
+  }
+
+  &__status {
+    @include ph-body;
+    align-self: center;
+    padding: 4rem 1.6rem;
+    text-align: center;
+  }
+
+  &__toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.2rem 2.4rem;
+  }
+
+  &__pagination,
+  &__tools {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  &__pagination {
+    flex: 1 1 28rem;
+    justify-content: space-between;
+
+    @include ph-tablet-up {
+      flex: 0 1 31rem;
+    }
+  }
+
+  &__tools {
+    flex-wrap: wrap;
+  }
+
+  &__button {
+    @include ph-reset-button;
+    @include ph-focus-ring;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4.8rem;
+    height: 4.8rem;
+    border-radius: var(--ph-radius-pill);
+    background: var(--ph-surface-lavender);
+    color: var(--ph-foreground);
+    transition: background-color 0.15s ease;
+
+    &:hover:not(:disabled) {
+      background: var(--ph-blue-strong);
+    }
+
+    &:disabled {
+      background: var(--ph-surface-soft);
+      color: var(--ph-border);
+      cursor: default;
+    }
+  }
+
+  &__position {
+    @include ph-body;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__zoom {
+    @include ph-body-sm;
+    min-width: 7.2rem;
+    padding: 0.4rem 1.2rem;
+    border-radius: var(--ph-radius-pill);
+    background: var(--ph-surface-lavender);
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__meta {
+    @include ph-body-sm;
+    font-size: 1.5rem;
+  }
+
+  &__download-link {
+    @include ph-focus-ring;
+    display: inline-flex;
+    align-items: center;
+    gap: 2.4rem;
+    align-self: flex-start;
+    min-height: 4.8rem;
+    padding: 1.2rem 2.4rem;
+    border-radius: var(--ph-radius-pill);
+    font-family: var(--ph-font);
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 2.5rem;
+    color: var(--ph-link);
+
+    &:hover {
+      background: var(--ph-surface-soft);
+    }
+  }
+}
