@@ -4,29 +4,35 @@
   border-top: 1px solid var(--ph-border);
   background: var(--ph-background);
 
+  // Logo and links on one row, the tagline on its own row below
   &__inner {
     display: flex;
     flex-direction: column;
     gap: 2.8rem;
-    padding-block: 3.2rem 4rem;
+    padding-block: 3.6rem 4rem;
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
 
     @include ph-tablet-up {
       flex-direction: row;
+      align-items: center;
       justify-content: space-between;
       gap: 4rem;
+      // Same in both languages, as in the designs: logo on the left, links
+      // on the right. The links keep their own reading direction below.
+      direction: ltr;
     }
   }
 
-  &__brand {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-
-    img {
-      width: 6.2rem;
-      height: 6.2rem;
-      object-fit: contain;
-    }
+  &__logo {
+    flex-shrink: 0;
+    width: 6.2rem;
+    height: 6.2rem;
+    object-fit: contain;
   }
 
   &__tagline {
@@ -38,8 +44,12 @@
     flex-direction: column;
     gap: 1.2rem;
 
+    :where([dir="rtl"]) & {
+      direction: rtl;
+    }
+
     @include ph-tablet-up {
-      width: 50%;
+      width: 48%;
     }
   }
 
@@ -65,5 +75,15 @@
 
   &__host {
     @include ph-body-sm;
+  }
+
+  // Arabic frames set the footer's small print at 16px bold
+  :where([dir="rtl"]) & {
+    &__host,
+    &__tagline {
+      font-size: 1.6rem;
+      line-height: 2.6rem;
+      font-weight: 700;
+    }
   }
 }

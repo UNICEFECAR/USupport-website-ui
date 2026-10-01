@@ -66,6 +66,14 @@
   --ph-surface-video: #233453;
   --ph-overlay: rgba(41, 54, 78, 0.8);
 
+  // Official character colours - one per characteristic of healing
+  --ph-character-safety: #59de73;
+  --ph-character-connection: #72c9e1;
+  --ph-character-expression: #fcbf64;
+  --ph-character-mastery: #8e5da3;
+  --ph-character-self: #f7ca3a;
+  --ph-character-text: #2d3748;
+
   // Radius
   --ph-radius-sm: 1.2rem;
   --ph-radius-md: 1.6rem;
@@ -82,9 +90,23 @@
   --ph-font: "Poppins", sans-serif;
   --ph-font-display: "Poppins", sans-serif;
 
+  --ph-weight-semibold: 600;
+  --ph-tracking: 1;
+  --ph-eyebrow-size: 1.2rem;
+  --ph-eyebrow-line-height: 1.9rem;
+  --ph-h2-size-desktop: 3.6rem;
+
+  // Arabic type from the Variant 2.2 AR frames: no 600 weight, larger bold
+  // eyebrows (uppercase has no effect), smaller section headings, and no
+  // letter-spacing, which would pull joined letters apart
   &[dir="rtl"] {
     --ph-font: "IBM Plex Sans Arabic", "Poppins", sans-serif;
     --ph-font-display: "IBM Plex Sans Arabic", "Poppins", sans-serif;
+    --ph-weight-semibold: 700;
+    --ph-tracking: 0;
+    --ph-eyebrow-size: 1.6rem;
+    --ph-eyebrow-line-height: 2.6rem;
+    --ph-h2-size-desktop: 3.2rem;
   }
 
   @include ph-tablet-up {
@@ -125,7 +147,7 @@
     border-radius: var(--ph-radius-pill);
     background: var(--ph-primary);
     color: var(--ph-background);
-    font-weight: 600;
+    font-weight: var(--ph-weight-semibold);
     font-size: 1.6rem;
 
     &:focus {

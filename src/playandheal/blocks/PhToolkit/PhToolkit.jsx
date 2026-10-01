@@ -157,7 +157,7 @@ export const PhToolkit = ({ resources = [], onOpenResource }) => {
                 {t("complementary_status")}
               </p>
             </li>
-            <li className="ph-toolkit__extra ph-toolkit__extra--mint">
+            <li className="ph-toolkit__extra ph-toolkit__extra--sand">
               <p className="ph-toolkit__extra-eyebrow">
                 {t("caregivers_eyebrow")}
               </p>

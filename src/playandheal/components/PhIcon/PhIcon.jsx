@@ -66,7 +66,7 @@ const PATHS = {
 };
 
 // Icons that indicate reading direction and must be mirrored for RTL
-const DIRECTIONAL = ["arrow", "arrow-back", "arrow-up-right"];
+const DIRECTIONAL = ["arrow", "arrow-back"];
 
 /**
  * PhIcon

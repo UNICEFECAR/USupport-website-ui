@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 
 import { PhButton } from "../../components/PhButton/PhButton";
 import { PhIcon } from "../../components/PhIcon/PhIcon";
+import { usePhPath } from "../../hooks/usePhPath";
+import { PH_COLLECTIONS } from "../../config";
 
 import heroArtwork from "../../assets/hero-artwork.jpg";
 
@@ -17,6 +19,7 @@ import "./ph-hero.scss";
  */
 export const PhHero = () => {
   const { t } = useTranslation("playandheal", { keyPrefix: "home.hero" });
+  const toPath = usePhPath();
 
   return (
     <section className="ph-hero" aria-labelledby="ph-hero-heading">
@@ -31,8 +34,12 @@ export const PhHero = () => {
           <PhButton href="#ph-toolkit" icon="arrow">
             {t("explore_toolkit")}
           </PhButton>
-          <PhButton tone="text" href="#ph-intro-video" icon="play">
-            {t("discover")}
+          <PhButton
+            tone="text"
+            to={toPath(`/toolkit/${PH_COLLECTIONS.videos.slug}`)}
+            icon="play"
+          >
+            {t("explore_competencies")}
           </PhButton>
         </div>
         <p className="ph-hero__reassurance">

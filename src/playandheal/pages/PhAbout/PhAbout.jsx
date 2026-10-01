@@ -19,6 +19,9 @@ import { usePhPath } from "../../hooks/usePhPath";
 export const PhAbout = () => {
   const { t } = useTranslation("playandheal", { keyPrefix: "about" });
   const { t: tCommon } = useTranslation("playandheal", { keyPrefix: "common" });
+  const { t: tCharacters } = useTranslation("playandheal", {
+    keyPrefix: "characters",
+  });
   const toPath = usePhPath();
 
   return (
@@ -47,7 +50,14 @@ export const PhAbout = () => {
         artworkAlt={tCommon("artwork_alt")}
       />
 
-      <PhCharacters copyKey="about" />
+      <PhCharacters
+        copyKey="about"
+        showDescriptions
+        cta={{
+          label: tCharacters("about.cta"),
+          to: toPath("/toolkit/booklet"),
+        }}
+      />
 
       <PhCallout tone="subtle" icon="people" title={t("developed.title")}>
         {t("developed.text")}

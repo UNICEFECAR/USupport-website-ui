@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 
 import { PhSectionIntro } from "../../components/PhSectionIntro/PhSectionIntro";
+import { PhButton } from "../../components/PhButton/PhButton";
 
 import safetyImage from "../../assets/character-safety.png";
 import connectionImage from "../../assets/character-connection.png";
@@ -12,25 +13,33 @@ import selfImage from "../../assets/character-self.png";
 
 import "./ph-characters.scss";
 
-// The five characteristics of healing and their official characters
+// The five characteristics of healing and their official characters.
+// Each card uses its character's colour (--ph-character-<key>).
 const CHARACTERS = [
-  { key: "safety", image: safetyImage, tone: "mint" },
-  { key: "connection", image: connectionImage, tone: "lavender" },
-  { key: "expression", image: expressionImage, tone: "pink" },
-  { key: "mastery", image: masteryImage, tone: "lavender" },
-  { key: "self", image: selfImage, tone: "sand" },
+  { key: "safety", image: safetyImage },
+  { key: "connection", image: connectionImage },
+  { key: "expression", image: expressionImage },
+  { key: "mastery", image: masteryImage },
+  { key: "self", image: selfImage },
 ];
 
 /**
  * PhCharacters
  *
- * Five characteristics of healing. Hover or tap a character to reveal its
- * characteristic; tap again to close.
+ * Five characteristics of healing. By default, hover or tap a character to
+ * reveal its quote; tap again to close. With `showDescriptions` each card
+ * shows a short description of its characteristic instead.
  *
  * @param {string} copyKey - translation group for the intro, "home" or "about"
+ * @param {boolean} showDescriptions - static cards with descriptions
+ * @param {Object} cta - optional { label, to } button below the cards
  * @returns {JSX.Element}
  */
-export const PhCharacters = ({ copyKey = "home" }) => {
+export const PhCharacters = ({
+  copyKey = "home",
+  showDescriptions = false,
+  cta,
+}) => {
   const { t } = useTranslation("playandheal", { keyPrefix: "characters" });
   const [revealed, setRevealed] = useState(null);
 
@@ -49,7 +58,26 @@ export const PhCharacters = ({ copyKey = "home" }) => {
       />
 
       <ul className="ph-characters__list">
-        {CHARACTERS.map(({ key, image, tone }) => {
+        {CHARACTERS.map(({ key, image }) => {
+          if (showDescriptions) {
+            return (
+              <li
+                key={key}
+                className={classNames(
+                  "ph-characters__card",
+                  "ph-characters__card--static",
+                  `ph-characters__card--${key}`
+                )}
+              >
+                <img src={image} alt="" loading="lazy" />
+                <h3 className="ph-characters__name">{t(`${key}.name`)}</h3>
+                <p className="ph-characters__description">
+                  {t(`${key}.description`)}
+                </p>
+              </li>
+            );
+          }
+
           const isRevealed = revealed === key;
           const detailsId = `ph-character-${copyKey}-${key}`;
 
@@ -59,7 +87,7 @@ export const PhCharacters = ({ copyKey = "home" }) => {
                 type="button"
                 className={classNames(
                   "ph-characters__card",
-                  `ph-characters__card--${tone}`,
+                  `ph-characters__card--${key}`,
                   isRevealed && "ph-characters__card--revealed"
                 )}
                 onClick={() => toggle(key)}
@@ -83,6 +111,12 @@ export const PhCharacters = ({ copyKey = "home" }) => {
           );
         })}
       </ul>
+
+      {cta && (
+        <PhButton to={cta.to} icon="arrow" classes="ph-characters__cta">
+          {cta.label}
+        </PhButton>
+      )}
     </section>
   );
 };

@@ -654,22 +654,22 @@
         "eyebrow": "Play. Connect. Grow.",
         "heading_1": "Small moments of play.",
         "heading_2": "Meaningful connection.",
-        "text": "A toolkit for facilitators helping children in crisis settings find connection, expression, and joy through play.",
+        "text": "A flexible, trauma-sensitive toolkit that helps facilitators create safe, playful spaces where children can connect, express themselves, build confidence and experience the healing power of play.",
         "explore_toolkit": "Explore the toolkit",
-        "discover": "Discover Play and Heal",
         "reassurance": "Built with and for facilitators.",
         "artwork_alt": "The five Play and Heal characters flying kites together in a sunny field.",
-        "caption": "Everyone has a place in play."
+        "caption": "Every child has a place in play.",
+        "explore_competencies": "Learn about the facilitator competencies"
       },
       "intro_video": {
         "eyebrow": "Learn by watching",
-        "heading": "Welcome to Play and Heal.",
-        "text": "Discover the toolkit and how playful moments can help children connect, express themselves and grow.",
+        "heading": "New to Play & Heal? Start here.",
+        "text": "Watch this short introduction to learn what Play & Heal is, explore what the toolkit includes, and see how its different resources can support your work with children.",
         "video_title": "Introducing Play and Heal"
       },
       "toolkit": {
         "eyebrow": "Your toolkit",
-        "heading": "A little guidance. A lot to explore.",
+        "heading": "Everything you need to get started.",
         "text": "Start with the foundations, or find the resource you need today.",
         "search_label": "Search the toolkit",
         "search_placeholder": "Find a resource…",
@@ -681,11 +681,11 @@
         "search_results_many": "{{count}} resources match “{{- query}}”",
         "search_results_other": "{{count}} resources match “{{- query}}”",
         "booklet_title": "Foundational booklet",
-        "booklet_text": "Understand the approach, the five characteristics of healing, and your role as a facilitator.",
+        "booklet_text": "Understand the Play & Heal approach, the five characteristics of healing, and your role as a facilitator.",
         "cards_title": "Activity cards",
         "cards_text": "Flexible ideas for everyday materials and LEGO® bricks. Find the collection that fits your session.",
-        "videos_title": "Competency microvideos",
-        "videos_text": "Build your confidence with five core competencies for healing play.",
+        "videos_title": "Facilitator competency microvideos",
+        "videos_text": "Build the practical skills that help you create safe, responsive and supportive play experiences with children.",
         "explore_collection": "Explore the collection",
         "complementary_title": "Complementary resources",
         "complementary_text": "Colouring books, posters and a jingle to enrich everyday moments of play.",
@@ -702,17 +702,21 @@
         "text": "Get to know the toolkit, how it fits your setting, and where to begin.",
         "cta": "Find your starting point",
         "step_1_title": "Get to know the toolkit",
-        "step_1_text": "Start with the foundational booklet.",
-        "step_2_title": "Build your confidence",
-        "step_2_text": "Explore the core competency microvideos.",
+        "step_1_text": "Start with the Foundational Booklet.",
+        "step_2_title": "Build your facilitation skills",
+        "step_2_text": "Explore the five facilitator competency microvideos.",
         "step_3_title": "Bring play into your sessions",
-        "step_3_text": "Choose activity cards that fit your group."
+        "step_3_text": "Choose and adapt activities based on the children, the context and what you notice in the moment."
       },
       "stories": {
         "eyebrow": "Made with people",
         "heading": "Shaped by experience.",
         "previous": "Previous",
         "next": "More stories"
+      },
+      "power_of_play": {
+        "heading": "The Power of Play",
+        "text": "During emergencies and difficult experiences, children can lose access to the safety, connection and freedom that play can bring. Play & Heal helps facilitators create spaces where children can return to play; supporting their wellbeing through five characteristics of healing: Safety, Connection & Belonging, Expression, Mastery, and Sense of Self."
       }
     },
     "characters": {
@@ -724,27 +728,34 @@
       },
       "about": {
         "eyebrow": "The foundations",
-        "heading": "Five characteristics of healing."
+        "heading": "Five characteristics of healing.",
+        "text": "At the heart of Play & Heal are five characteristics that help facilitators understand how play can support children’s wellbeing and healing.",
+        "cta": "Explore the five characteristics"
       },
       "safety": {
         "name": "Safety",
-        "quote": "“Even the tallest tree starts small — and grows stronger with care.”"
+        "quote": "“Even the tallest tree starts small — and grows stronger with care.”",
+        "description": "Helping children feel physically and emotionally safe."
       },
       "connection": {
         "name": "Connection & belonging",
-        "quote": "“The invisible thread that binds us together.”"
+        "quote": "“The invisible thread that binds us together.”",
+        "description": "Creating opportunities to connect, participate and belong."
       },
       "expression": {
         "name": "Expression",
-        "quote": "“All feelings are welcome.”"
+        "quote": "“All feelings are welcome.”",
+        "description": "Giving children different ways to express thoughts, feelings and experiences."
       },
       "mastery": {
         "name": "Mastery",
-        "quote": "“I can try, I can choose, I can succeed.”"
+        "quote": "“I can try, I can choose, I can succeed.”",
+        "description": "Supporting children to try, practise, make choices and experience success."
       },
       "self": {
         "name": "Sense of self",
-        "quote": "“The real me is my greatest strength.”"
+        "quote": "“The real me is my greatest strength.”",
+        "description": "Helping children recognise their strengths, identity and sense of who they are."
       }
     },
     "network_invite": {
@@ -840,29 +851,31 @@
       "open_document": "Open document",
       "booklet": {
         "title": "Foundational booklet",
-        "text": "Understand the approach, the five characteristics of healing, and your role as a facilitator.",
+        "text": "Discover the Play & Heal approach, the five characteristics of healing, and practical guidance to support you in your role as a facilitator.",
         "read_here": "Read the booklet here",
         "callout_title": "Inside the foundational booklet",
         "callout_text": "The five characteristics of healing, facilitator core competencies, the Prepare → Play → Reflect learning loop, and practical tips for your sessions."
       },
       "cards": {
         "title": "Activity cards",
-        "text": "Flexible ideas for everyday materials and LEGO® bricks. Find the collection that fits your session.",
+        "text": "Explore flexible, playful activities using everyday materials and LEGO® bricks. Choose and adapt activities based on your group, context and what children need in the moment.",
         "callout_title": "Choose what fits your group",
-        "callout_text": "The full collection includes introduction, preparation and energy-shift sets alongside activities. The two focused collections separate everyday-material and brick activities."
+        "callout_text": "The full collection includes introduction, preparation and energy-shift sets alongside activities. The two focused collections separate everyday-material and brick activities.",
+        "guidance": "There’s no single way to use the cards. Start by noticing what your group needs, then choose activities that support one or more of the five characteristics of healing. Adapt as you go. You know your group and context best."
       },
       "videos": {
-        "title": "Competency microvideos",
-        "text": "Build your confidence with five core competencies for healing play.",
-        "callout_title": "Keep the learning loop close",
-        "callout_text": "Prepare before the session, stay present as you play, and reflect afterwards. The booklet brings these competencies together."
-      }
+        "title": "Facilitator competency microvideos",
+        "text": "Explore five practical competencies to strengthen how you connect with, respond to and support children through Play & Heal.",
+        "callout_title": "Bring the competencies into practice",
+        "callout_text": "The Play & Heal Learning Path helps you put the five competencies into practice, as you prepare, facilitate and reflect on your sessions with children."
+      },
+      "explore_videos": "Explore the videos"
     },
     "how_to": {
       "banner": {
         "eyebrow": "A place to begin",
         "heading": "Make the toolkit your own.",
-        "text": "Explore the foundations, build your confidence, and find resources for your sessions."
+        "text": "Explore the foundations, understand how the toolkit works, and choose and adapt resources to support your sessions."
       },
       "story": {
         "heading_1": "Start with the foundations",
@@ -872,18 +885,18 @@
       },
       "safeguarding": {
         "title": "Safeguarding comes first",
-        "text": "Facilitators should have adequate safeguarding training and access to supervision and referral pathways. Always use your organisation’s child safeguarding and referral systems."
+        "text": "Before facilitating Play & Heal, make sure you understand your organisation’s safeguarding procedures and know how to access supervision and referral pathways. Always follow your organisation’s child safeguarding and reporting procedures."
       },
       "guidance": {
         "heading": "Guidance for facilitators",
         "selection_title": "Facilitator selection",
-        "selection_text": "Confirm the programme’s facilitator selection criteria, training requirements and support arrangements with your coordinating team.",
+        "selection_text": "Facilitators should have experience working with children, basic child protection or MHPSS knowledge, and the skills to create safe, inclusive and playful spaces.",
         "age_groups_title": "Age groups & adaptations",
-        "age_groups_text": "Adapt materials and activities to children’s abilities and needs. Confirm programme age ranges with your coordinating team.",
+        "age_groups_text": "Adapt activities to children’s ages, abilities, needs and context. Consider group size, available materials and the support children may need to participate.",
         "partnership_title": "PlayBoxes partnership",
         "partnership_text": "Dedicated partnership guidance will be added here when supplied by the Play and Heal team.",
         "support_title": "Facilitator support",
-        "support_text": "Stay connected with your supervisor and co-facilitators. Programme contact details will be added once confirmed."
+        "support_text": "Stay connected with supervisors and fellow facilitators, and use reflection, feedback and support to develop your practice over time."
       },
       "faq": {
         "eyebrow": "A little clarity",
@@ -898,11 +911,11 @@
             "answer": "Begin with the foundational booklet to understand the approach and the five characteristics of healing. Then watch the competency microvideos, and choose activity cards that fit your group."
           },
           "lego": {
-            "question": "Do all activities need LEGO® bricks?",
+            "question": "Do I need LEGO® bricks to use Play & Heal?",
             "answer": "No. The activity cards include a collection that uses everyday materials and a separate collection of brick activities, so you can choose what fits the materials you have."
           },
           "phone": {
-            "question": "Can I read and watch on my phone?",
+            "question": "Can I access the resources on my phone?",
             "answer": "Yes. The booklet, activity cards and videos all work on phones and tablets. You can zoom into documents, watch videos full screen, and download PDFs to use offline."
           },
           "network": {
@@ -920,13 +933,13 @@
       },
       "story": {
         "heading_1": "Shaped by real experience",
-        "text_1": "Play and Heal brings together the experiences of facilitators and children. Field testing in Lebanon and Gaza informed the next version of the toolkit and its digital home.",
-        "heading_2": "A participatory approach",
-        "text_2": "Play is a way for children to explore, express themselves and connect. The toolkit invites facilitators to notice children’s needs, adapt activities and reflect on what they learn."
+        "text_1": "Play & Heal has been developed and refined through collaboration, field testing and learning with children and facilitators. Their experiences and feedback continue to shape the toolkit and how it is used in different contexts.",
+        "heading_2": "A flexible, child-centred approach",
+        "text_2": "Children experience and respond to play in different ways. Play & Heal encourages facilitators to notice, listen and adapt - choosing activities based on children’s needs, the materials available, the group’s energy levels, and what feels right in the moment."
       },
       "developed": {
         "title": "Developed together",
-        "text": "The final toolkit credits UNICEF, The LEGO Foundation and Care for Education. Full acknowledgements and the development story will be expanded with the team’s approved text."
+        "text": "Play & Heal was developed through a collaboration between UNICEF, the LEGO Foundation and Care for Education, bringing together expertise in child protection, psychosocial support, learning through play and facilitator practice."
       }
     },
     "caregivers": {
