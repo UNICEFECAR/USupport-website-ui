@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { PhSectionIntro } from "../../components/PhSectionIntro/PhSectionIntro";
 import { PhIcon } from "../../components/PhIcon/PhIcon";
+import { PH_SHOW_WAITLIST } from "../../config";
 
 import "./ph-faq.scss";
 
@@ -14,7 +15,8 @@ const FAQ_KEYS = [
   "training",
   "lego",
   "phone",
-  "network",
+  // Points to the waiting list, so it is shown only while that is enabled
+  ...(PH_SHOW_WAITLIST ? ["network"] : []),
 ];
 
 const EMAIL_PATTERN = /([\w.+-]+@[\w-]+(?:\.[\w-]+)+)/;

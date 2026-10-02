@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { PhButton } from "../../components/PhButton/PhButton";
 import { PhIcon } from "../../components/PhIcon/PhIcon";
 import { usePhLayout } from "../../layout/PhLayout/PhLayout";
+import { PH_SHOW_WAITLIST } from "../../config";
 
 import "./ph-network-invite.scss";
 
@@ -18,6 +19,8 @@ import "./ph-network-invite.scss";
 export const PhNetworkInvite = () => {
   const { t } = useTranslation("playandheal", { keyPrefix: "network_invite" });
   const { openWaitlist } = usePhLayout();
+
+  if (!PH_SHOW_WAITLIST) return null;
 
   return (
     <section
