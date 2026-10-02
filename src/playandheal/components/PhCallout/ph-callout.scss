@@ -1,0 +1,52 @@
+@import "../../styles/ph";
+
+.ph-callout {
+  display: flex;
+  gap: 1.6rem;
+  padding: 2rem;
+  border-radius: var(--ph-radius-xl);
+
+  @include ph-tablet-up {
+    gap: 2.4rem;
+    padding: 2.4rem;
+  }
+
+  &--lavender {
+    background: var(--ph-surface-lavender);
+  }
+
+  &--mint {
+    background: var(--ph-surface-mint);
+  }
+
+  &--sand {
+    background: var(--ph-surface-sand);
+  }
+
+  &--subtle {
+    background: var(--ph-surface-subtle);
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    color: var(--ph-foreground);
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  &__title {
+    font-family: var(--ph-font);
+    font-weight: var(--ph-weight-semibold);
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    color: var(--ph-foreground);
+  }
+
+  &__text {
+    @include ph-body;
+  }
+}

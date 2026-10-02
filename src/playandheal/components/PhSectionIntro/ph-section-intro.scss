@@ -1,0 +1,19 @@
+@import "../../styles/ph";
+
+.ph-section-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+
+  &__eyebrow {
+    @include ph-eyebrow;
+  }
+
+  &__heading {
+    @include ph-h2;
+  }
+
+  &__description {
+    @include ph-body-lg;
+  }
+}

@@ -1,0 +1,80 @@
+@import "../../styles/ph";
+
+.ph-button {
+  @include ph-reset-button;
+  @include ph-focus-ring;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  min-height: 4.8rem;
+  padding: 1.2rem 2.4rem;
+  border-radius: var(--ph-radius-pill);
+  font-family: var(--ph-font);
+  font-weight: var(--ph-weight-semibold);
+  font-size: 1.6rem;
+  line-height: 2.5rem;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+
+  &--primary {
+    background: var(--ph-primary);
+    color: var(--ph-background);
+
+    &:hover {
+      background: var(--ph-primary-hover);
+    }
+  }
+
+  // Variant 2.2 buttons: navy fill and white outline, bold centred label
+  &--dark,
+  &--outline {
+    justify-content: center;
+    padding: 1.2rem 4rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  &--dark {
+    background: var(--ph-foreground);
+    color: var(--ph-background);
+
+    &:hover {
+      background: var(--ph-primary-hover);
+    }
+  }
+
+  &--outline {
+    border: 1px solid var(--ph-border);
+    background: var(--ph-background);
+    color: var(--ph-foreground);
+
+    &:hover {
+      background: var(--ph-surface-soft);
+    }
+  }
+
+  &--text {
+    color: var(--ph-link);
+
+    &:hover {
+      background: var(--ph-surface-soft);
+    }
+  }
+
+  &--full-width {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &__label {
+    flex: 1;
+  }
+}

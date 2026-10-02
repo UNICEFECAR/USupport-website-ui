@@ -1,0 +1,211 @@
+@import "./ph";
+
+// Base resets. `.ph` sits inside :where() so these keep plain element
+// specificity - they override the global uSupport element styles but never
+// out-rank Play and Heal component classes.
+:where(.ph, .ph *, .ph *::before, .ph *::after) {
+  box-sizing: border-box;
+}
+
+:where(.ph) h1,
+:where(.ph) h2,
+:where(.ph) h3,
+:where(.ph) h4,
+:where(.ph) p,
+:where(.ph) ul,
+:where(.ph) ol,
+:where(.ph) figure,
+:where(.ph) blockquote {
+  margin: 0;
+}
+
+:where(.ph) img {
+  max-width: 100%;
+  display: block;
+}
+
+:where(.ph) a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:where(.ph) button,
+:where(.ph) input,
+:where(.ph) select {
+  font-family: inherit;
+}
+
+// Play and Heal tokens - taken from the "Delivery" screens in Figma.
+.ph {
+  // Brand palette
+  --ph-blue: #cdd6e9;
+  --ph-beige: #c4b3a1;
+  --ph-pink: #ecb0d0;
+  --ph-blue-strong: #9eb9e1;
+  --ph-green: #d9e4ad;
+
+  // Semantic colours
+  --ph-primary: #31456d;
+  --ph-primary-hover: #243555;
+  --ph-foreground: #29364e;
+  --ph-text-secondary: #3b465c;
+  --ph-link: #3c583b;
+  --ph-background: #ffffff;
+  --ph-border: #d7dee9;
+  --ph-focus: #9eb9e1;
+
+  // Surfaces
+  --ph-surface-nav: var(--ph-blue);
+  --ph-surface-lavender: var(--ph-blue);
+  --ph-surface-mint: var(--ph-green);
+  --ph-surface-sand: var(--ph-beige);
+  --ph-surface-pink: var(--ph-pink);
+  --ph-surface-soft: #f7f8fc;
+  --ph-surface-subtle: #f5f4f1;
+  --ph-surface-testimonial: #eae2f3;
+  --ph-surface-video: #233453;
+  --ph-overlay: rgba(41, 54, 78, 0.8);
+
+  // Official character colours - one per characteristic of healing
+  --ph-character-safety: #59de73;
+  --ph-character-connection: #72c9e1;
+  --ph-character-expression: #fcbf64;
+  --ph-character-mastery: #8e5da3;
+  --ph-character-self: #f7ca3a;
+  --ph-character-text: #2d3748;
+
+  // Radius
+  --ph-radius-sm: 1.2rem;
+  --ph-radius-md: 1.6rem;
+  --ph-radius-lg: 2rem;
+  --ph-radius-xl: 2.4rem;
+  --ph-radius-2xl: 2.8rem;
+  --ph-radius-pill: 999px;
+
+  // Layout
+  --ph-content-width: 119rem;
+  --ph-gutter: 1.6rem;
+
+  // Typography
+  --ph-font: "Poppins", sans-serif;
+  --ph-font-display: "Poppins", sans-serif;
+
+  --ph-weight-semibold: 600;
+  --ph-tracking: 1;
+  --ph-eyebrow-size: 1.2rem;
+  --ph-eyebrow-line-height: 1.9rem;
+  --ph-h2-size-desktop: 3.6rem;
+
+  // Arabic type from the Variant 2.2 AR frames: no 600 weight, larger bold
+  // eyebrows (uppercase has no effect), smaller section headings, and no
+  // letter-spacing, which would pull joined letters apart
+  &[dir="rtl"] {
+    --ph-font: "IBM Plex Sans Arabic", "Poppins", sans-serif;
+    --ph-font-display: "IBM Plex Sans Arabic", "Poppins", sans-serif;
+    --ph-weight-semibold: 700;
+    --ph-tracking: 0;
+    --ph-eyebrow-size: 1.6rem;
+    --ph-eyebrow-line-height: 2.6rem;
+    --ph-h2-size-desktop: 3.2rem;
+  }
+
+  @include ph-tablet-up {
+    --ph-gutter: 3.2rem;
+  }
+
+  @include ph-desktop-up {
+    --ph-gutter: 6rem;
+  }
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--ph-background);
+  color: var(--ph-foreground);
+  font-family: var(--ph-font);
+  text-align: start;
+  // Long unbroken strings (emails, URLs, missing translation keys) wrap
+  // instead of pushing content outside its container
+  overflow-wrap: anywhere;
+  -webkit-font-smoothing: antialiased;
+
+  &__main {
+    flex: 1;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__skip-link {
+    position: absolute;
+    inset-inline-start: 1.6rem;
+    top: -10rem;
+    z-index: $z_index_modal;
+    padding: 1.2rem 2rem;
+    border-radius: var(--ph-radius-pill);
+    background: var(--ph-primary);
+    color: var(--ph-background);
+    font-weight: var(--ph-weight-semibold);
+    font-size: 1.6rem;
+
+    &:focus {
+      top: 1.6rem;
+    }
+  }
+
+  // Centered content column used by every section
+  &__container {
+    width: 100%;
+    max-width: calc(var(--ph-content-width) + 2 * var(--ph-gutter));
+    margin-inline: auto;
+    padding-inline: var(--ph-gutter);
+  }
+
+  // Vertical rhythm between page sections
+  &__stack {
+    display: flex;
+    flex-direction: column;
+    gap: 5.6rem;
+    padding-block: 2.4rem 6.4rem;
+
+    @include ph-desktop-up {
+      gap: 7.2rem;
+    }
+  }
+
+  // Home: breathing room below the hero banner
+  .ph-home &__stack {
+    padding-top: 5.6rem;
+  }
+
+  // Back link + banner at the top of inner pages
+  .ph-page-top {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+
+    > header {
+      align-self: stretch;
+    }
+  }
+
+  &__visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  // Directional icons (arrows) point the other way in Arabic
+  &[dir="rtl"] .ph-icon--flip-rtl {
+    transform: scaleX(-1);
+  }
+}

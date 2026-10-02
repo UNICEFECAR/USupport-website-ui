@@ -1,0 +1,20 @@
+@import "../../styles/ph";
+
+.ph-intro-video {
+  display: flex;
+  flex-direction: column;
+  gap: 2.8rem;
+  scroll-margin-top: 2.4rem;
+
+  @include ph-desktop-up {
+    flex-direction: row;
+    align-items: center;
+    gap: 4.8rem;
+  }
+
+  &__intro,
+  &__player {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}

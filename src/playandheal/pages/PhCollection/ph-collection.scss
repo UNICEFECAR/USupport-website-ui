@@ -1,0 +1,106 @@
+@import "../../styles/ph";
+
+.ph-collection {
+  &.ph__stack {
+    gap: 3.6rem;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+  }
+
+  &__heading-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.8rem 2.4rem;
+  }
+
+  &__heading {
+    @include ph-h2;
+  }
+
+  &__count {
+    @include ph-body;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.4rem;
+    padding: 0;
+    list-style: none;
+
+    @include ph-tablet-up {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include ph-desktop-up {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  &__reader {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+    padding: 2rem 1.6rem;
+    border: 1px solid var(--ph-border);
+    border-radius: var(--ph-radius-xl);
+    background: var(--ph-surface-soft);
+
+    @include ph-tablet-up {
+      padding: 3.2rem;
+    }
+  }
+
+  &__reader-heading {
+    @include ph-h3;
+  }
+
+  &__status {
+    @include ph-body;
+    padding: 4rem 2.4rem;
+    border-radius: var(--ph-radius-xl);
+    background: var(--ph-surface-soft);
+    text-align: center;
+  }
+
+  &__hint {
+    @include ph-body;
+  }
+
+  // Callout, plus a short note on choosing activities for the cards
+  &__guidance {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+  }
+
+  &__guidance-text {
+    @include ph-body-lg;
+  }
+
+  &__how-to {
+    @include ph-focus-ring;
+    display: inline-flex;
+    align-items: center;
+    gap: 2.4rem;
+    align-self: center;
+    min-height: 4.8rem;
+    padding: 1.2rem 2.4rem;
+    border-radius: var(--ph-radius-pill);
+    font-family: var(--ph-font);
+    font-weight: var(--ph-weight-semibold);
+    font-size: 1.6rem;
+    line-height: 2.5rem;
+    color: var(--ph-link);
+
+    &:hover {
+      background: var(--ph-surface-soft);
+    }
+  }
+}
