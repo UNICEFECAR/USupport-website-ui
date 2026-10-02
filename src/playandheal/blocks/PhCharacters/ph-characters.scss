@@ -36,10 +36,10 @@
     display: block;
     width: 100%;
     height: 100%;
-    min-height: 26rem;
+    // Room for the hover introduction on two-column phones
+    min-height: 30rem;
     overflow: hidden;
     border-radius: var(--ph-radius-lg);
-    color: var(--ph-foreground);
     text-align: center;
 
     @include ph-tablet-up {
@@ -50,21 +50,57 @@
       min-height: 40rem;
     }
 
-    &--mint {
-      background: var(--ph-surface-mint);
+    color: var(--ph-character-text);
+
+    @each $character in safety, connection, expression, mastery, self {
+      &--#{$character} {
+        background: var(--ph-character-#{$character});
+      }
     }
 
-    &--lavender {
-      background: var(--ph-surface-lavender);
+    // Purple card - white text for contrast
+    &--mastery {
+      color: var(--ph-background);
     }
 
-    &--pink {
-      background: var(--ph-surface-pink);
-    }
+    // About page: always-visible description, no flip
+    &--static {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 2.4rem 1.6rem;
 
-    &--sand {
-      background: var(--ph-surface-sand);
+      @include ph-tablet-up {
+        padding: 3.2rem 2rem;
+      }
+
+      img {
+        width: 11rem;
+        height: 11rem;
+        object-fit: contain;
+
+        @include ph-desktop-up {
+          width: 16rem;
+          height: 17rem;
+        }
+      }
     }
+  }
+
+  &__description {
+    font-family: var(--ph-font);
+    font-size: 1.4rem;
+    line-height: 2.1rem;
+
+    @include ph-desktop-up {
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+    }
+  }
+
+  &__cta {
+    align-self: flex-start;
   }
 
   &__front,
@@ -124,14 +160,14 @@
 
   &__hint {
     @include ph-body-sm;
+    color: inherit;
     font-size: 1.3rem;
     line-height: 2rem;
   }
 
-  &__quote {
+  &__intro {
     font-family: var(--ph-font);
     font-weight: 500;
-    font-style: italic;
     font-size: 1.4rem;
     line-height: 2.1rem;
 

@@ -9,7 +9,7 @@ import { usePhPath } from "../../hooks/usePhPath";
 import { PH_LANGUAGES } from "../../config";
 import { PhLanguageSelect } from "./PhLanguageSelect";
 
-import logo from "../../assets/logo.png";
+import { getPhLogo } from "../../assets/logos";
 
 import "./ph-header.scss";
 
@@ -104,7 +104,12 @@ export const PhHeader = ({ language, onLanguageChange }) => {
       >
         <div className="ph__container ph-header__inner">
           <Link to={toPath("")} className="ph-header__brand">
-            <img src={logo} alt={t("logo_alt")} width="62" height="62" />
+            <img
+              src={getPhLogo(language)}
+              alt={t("logo_alt")}
+              width="62"
+              height="62"
+            />
           </Link>
 
           <nav

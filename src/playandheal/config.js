@@ -36,10 +36,10 @@ export const PH_COLLECTIONS = {
   },
 };
 
-// The final introductory film is still pending from the client. Until it is
-// delivered, the homepage plays the first competency video (the introduction).
-// Set this to a CMS video id to use a specific video instead.
-export const PH_INTRO_VIDEO_ID = null;
+// The homepage introduction video is the CMS video in this category (matched
+// on the category's English name, case-insensitive). It is kept out of the
+// competency microvideos collection.
+export const PH_INTRO_VIDEO_CATEGORY = "p&h introduction";
 
 export const isPlayAndHeal = () => {
   if (typeof window === "undefined") return false;

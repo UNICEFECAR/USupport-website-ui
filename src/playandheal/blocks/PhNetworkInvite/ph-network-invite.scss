@@ -14,6 +14,14 @@
     align-items: center;
     gap: 2rem;
     padding: 3.6rem 2.8rem;
+    // Same order in both languages, as in the designs: icon on the left,
+    // button on the right. The copy and button keep their reading direction.
+    direction: ltr;
+  }
+
+  :where([dir="rtl"]) & &__content,
+  :where([dir="rtl"]) & &__button {
+    direction: rtl;
   }
 
   &__icon {

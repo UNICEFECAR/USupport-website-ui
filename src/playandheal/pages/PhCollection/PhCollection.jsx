@@ -122,7 +122,9 @@ export const PhCollection = () => {
       >
         <div className="ph-collection__heading-row">
           <h2 className="ph-collection__heading" id="ph-collection-heading">
-            {isBooklet ? t("booklet.title") : t("explore")}
+            {isBooklet
+              ? t("booklet.title")
+              : t(isVideos ? "explore_videos" : "explore")}
           </h2>
           {!resources.isLoading && items.length > 0 && (
             <p className="ph-collection__count">
@@ -140,13 +142,18 @@ export const PhCollection = () => {
         </p>
       </section>
 
-      <PhCallout
-        tone={collection.tone}
-        icon={CALLOUT_ICONS[collectionKey]}
-        title={t(`${collectionKey}.callout_title`)}
-      >
-        {t(`${collectionKey}.callout_text`)}
-      </PhCallout>
+      <div className="ph-collection__guidance">
+        <PhCallout
+          tone={collection.tone}
+          icon={CALLOUT_ICONS[collectionKey]}
+          title={t(`${collectionKey}.callout_title`)}
+        >
+          {t(`${collectionKey}.callout_text`)}
+        </PhCallout>
+        {collectionKey === "cards" && (
+          <p className="ph-collection__guidance-text">{t("cards.guidance")}</p>
+        )}
+      </div>
 
       <Link to={toPath("/how-it-works")} className="ph-collection__how-to">
         <span>{tCommon("how_to_use")}</span>

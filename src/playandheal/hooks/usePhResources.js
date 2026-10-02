@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { adminSvc, cmsSvc } from "@USupport-components-library/services";
 
-import { PH_COLLECTIONS } from "../config";
+import { PH_COLLECTIONS, PH_INTRO_VIDEO_CATEGORY } from "../config";
 
 const LIMIT = 100;
 
@@ -86,46 +86,91 @@ const fetchArticles = async (language) => {
     .filter((article) => article.collection && article.pdfUrl);
 };
 
+const isIntroCategory = (categoryName = "") =>
+  categoryName.trim().toLowerCase() === PH_INTRO_VIDEO_CATEGORY;
+
+const mapVideo = (video) => {
+  const { attributes } = video;
+  return {
+    id: video.id,
+    type: "video",
+    collection: "videos",
+    title: cleanTitle(attributes.title),
+    description: attributes.description || "",
+    image: getThumbnailUrl(attributes.thumbnail),
+    videoUrl: attributes.aws_url || attributes.url || null,
+    externalUrl: attributes.url || null,
+    keywords: (attributes.labels?.data || [])
+      .map((label) => label.attributes.name)
+      .join(" "),
+  };
+};
+
+/**
+ * Competency videos plus the homepage introduction video, which is the one
+ * whose English category is PH_INTRO_VIDEO_CATEGORY
+ */
 const fetchVideos = async (language) => {
   const ids = await adminSvc.getVideos();
-  if (!ids || ids.length === 0) return [];
+  if (!ids || ids.length === 0) return { videos: [], intro: null };
 
-  const { data: res } = await cmsSvc.getVideos({
+  const query = {
     ids,
-    locale: language,
     populate: true,
     limit: LIMIT,
     sortBy: "title",
     sortOrder: "asc",
+  };
+
+  // Categories are classified by their English name
+  const { data: englishRes } = await cmsSvc.getVideos({
+    ...query,
+    locale: "en",
   });
 
-  return res.data
-    .map((video) => {
-      const { attributes } = video;
-      return {
-        id: video.id,
-        type: "video",
-        collection: "videos",
-        title: cleanTitle(attributes.title),
-        description: attributes.description || "",
-        image: getThumbnailUrl(attributes.thumbnail),
-        videoUrl: attributes.aws_url || attributes.url || null,
-        externalUrl: attributes.url || null,
-        keywords: (attributes.labels?.data || [])
-          .map((label) => label.attributes.name)
-          .join(" "),
-      };
-    })
-    .filter((video) => video.videoUrl);
+  const introEnglishIds = new Set(
+    englishRes.data
+      .filter((video) =>
+        isIntroCategory(video.attributes.category?.data?.attributes?.name)
+      )
+      .map((video) => String(video.id))
+  );
+
+  const localizedRes =
+    language === "en"
+      ? englishRes
+      : (await cmsSvc.getVideos({ ...query, locale: language })).data;
+
+  const videos = [];
+  let intro = null;
+  localizedRes.data.forEach((video) => {
+    const englishId = getEnglishId(localizedRes.meta, video.id);
+    const mapped = mapVideo(video);
+    if (!mapped.videoUrl) return;
+    if (introEnglishIds.has(englishId)) intro = intro || mapped;
+    else videos.push(mapped);
+  });
+
+  // No translation of the introduction yet - fall back to the English one
+  if (!intro && introEnglishIds.size > 0) {
+    const englishIntro = englishRes.data
+      .filter((video) => introEnglishIds.has(String(video.id)))
+      .map(mapVideo)
+      .find((video) => video.videoUrl);
+    intro = englishIntro || null;
+  }
+
+  return { videos, intro };
 };
 
 /**
  * usePhResources
  *
  * Fetches the Play and Heal toolkit resources for the current language:
- * booklet and activity-card PDFs (CMS articles) and competency videos.
+ * booklet and activity-card PDFs (CMS articles), competency videos and the
+ * homepage introduction video.
  *
- * @returns {{ booklet: Array, cards: Array, videos: Array, all: Array, isLoading: boolean, isError: boolean }}
+ * @returns {{ booklet: Array, cards: Array, videos: Array, introVideo: Object|null, all: Array, isLoading: boolean, isError: boolean }}
  */
 export const usePhResources = () => {
   const { i18n } = useTranslation();
@@ -139,12 +184,13 @@ export const usePhResources = () => {
   );
 
   const articles = articlesQuery.data || [];
-  const videos = videosQuery.data || [];
+  const videos = videosQuery.data?.videos || [];
 
   return {
     booklet: articles.filter((x) => x.collection === "booklet"),
     cards: articles.filter((x) => x.collection === "cards"),
     videos,
+    introVideo: videosQuery.data?.intro || null,
     all: [...articles, ...videos],
     isLoading: articlesQuery.isLoading || videosQuery.isLoading,
     isError: articlesQuery.isError || videosQuery.isError,

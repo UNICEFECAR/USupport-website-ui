@@ -27,7 +27,7 @@
   &__value {
     min-width: 2.4rem;
     font-family: var(--ph-font);
-    font-weight: 600;
+    font-weight: var(--ph-weight-semibold);
     font-size: 1.4rem;
     line-height: 2.2rem;
   }
@@ -86,7 +86,7 @@
     }
 
     &--selected {
-      font-weight: 600;
+      font-weight: var(--ph-weight-semibold);
       color: var(--ph-primary);
     }
   }
@@ -112,8 +112,8 @@
 
   &__option-code {
     font-size: 1.2rem;
-    font-weight: 600;
-    letter-spacing: 0.06rem;
+    font-weight: var(--ph-weight-semibold);
+    letter-spacing: calc(0.06rem * var(--ph-tracking));
     color: var(--ph-text-secondary);
   }
 
