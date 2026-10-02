@@ -16,7 +16,11 @@ import { ThemeContext } from "@USupport-components-library/utils";
 import { PhHeader } from "../PhHeader/PhHeader";
 import { PhFooter } from "../PhFooter/PhFooter";
 import { PhWaitlistModal } from "../../modals/PhWaitlistModal/PhWaitlistModal";
-import { PH_COUNTRY, PH_RTL_LANGUAGES } from "../../config";
+import {
+  PH_COUNTRY,
+  PH_RTL_LANGUAGES,
+  PH_SHOW_WAITLIST,
+} from "../../config";
 
 import "../../styles/ph-theme.scss";
 
@@ -133,10 +137,12 @@ export const PhLayout = ({ children }) => {
           {children}
         </main>
         <PhFooter />
-        <PhWaitlistModal
-          isOpen={isWaitlistOpen}
-          onClose={() => setIsWaitlistOpen(false)}
-        />
+        {PH_SHOW_WAITLIST && (
+          <PhWaitlistModal
+            isOpen={isWaitlistOpen}
+            onClose={() => setIsWaitlistOpen(false)}
+          />
+        )}
       </div>
 
       <CookieBanner

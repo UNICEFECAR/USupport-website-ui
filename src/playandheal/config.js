@@ -41,6 +41,11 @@ export const PH_COLLECTIONS = {
 // competency microvideos collection.
 export const PH_INTRO_VIDEO_CATEGORY = "p&h introduction";
 
+// Facilitators network waiting list - hidden until the UNICEF team confirms
+// it. Turning this on brings back the invitation card (Home, How to, About),
+// its sign-up dialog and the "How do I join the facilitators network?" FAQ.
+export const PH_SHOW_WAITLIST = false;
+
 export const isPlayAndHeal = () => {
   if (typeof window === "undefined") return false;
   const subdomain = window.location.hostname.split(".")[0];
