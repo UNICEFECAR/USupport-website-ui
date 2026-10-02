@@ -22,6 +22,8 @@ import {
   PH_SHOW_WAITLIST,
 } from "../../config";
 
+import favicon from "../../assets/favicon.png";
+
 import "../../styles/ph-theme.scss";
 
 const PhLayoutContext = createContext({ openWaitlist: () => {} });
@@ -53,6 +55,20 @@ export const PhLayout = ({ children }) => {
   const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
 
   const dir = PH_RTL_LANGUAGES.includes(language) ? "rtl" : "ltr";
+
+  // Play and Heal logo in the browser tab; the uSupport icon comes back when
+  // leaving the Play and Heal pages
+  useEffect(() => {
+    const icon = document.querySelector("link[rel~='icon']");
+    if (!icon) return;
+    const original = { href: icon.getAttribute("href"), type: icon.type };
+    icon.type = "image/png";
+    icon.href = favicon;
+    return () => {
+      icon.type = original.type;
+      icon.setAttribute("href", original.href);
+    };
+  }, []);
 
   // Visitors reaching the site through the subdomain may not have a country yet
   useEffect(() => {

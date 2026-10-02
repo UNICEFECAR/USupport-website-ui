@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import { PhSectionIntro } from "../../components/PhSectionIntro/PhSectionIntro";
 import { PhVideoPlayer } from "../../components/PhVideoPlayer/PhVideoPlayer";
 
+import introPoster from "../../assets/intro-video-poster.webp";
+
 import "./ph-intro-video.scss";
 
 /**
@@ -33,7 +35,7 @@ export const PhIntroVideo = ({ video }) => {
       <div className="ph-intro-video__player">
         <PhVideoPlayer
           src={video?.videoUrl}
-          poster={video?.image}
+          poster={introPoster}
           title={t("video_title")}
         />
       </div>
