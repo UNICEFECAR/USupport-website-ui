@@ -23,7 +23,7 @@ import "./ph-home.scss";
  */
 export const PhHome = () => {
   const { t } = useTranslation("playandheal", { keyPrefix: "home" });
-  const { all, videos } = usePhResources();
+  const { all, introVideo } = usePhResources();
   const { openResource, viewer } = useResourceViewer();
 
   return (
@@ -32,7 +32,7 @@ export const PhHome = () => {
         <PhHero />
       </div>
       <div className="ph__container ph__stack">
-        <PhIntroVideo videos={videos} />
+        <PhIntroVideo video={introVideo} />
         <PhToolkit resources={all} onOpenResource={openResource} />
         <PhCharacters copyKey="home" />
         <section

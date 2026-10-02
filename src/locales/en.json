@@ -734,27 +734,27 @@
       },
       "safety": {
         "name": "Safety",
-        "quote": "“Even the tallest tree starts small — and grows stronger with care.”",
+        "intro": "Hi! I’m Safety. I'm here to help you feel safe, calm, and ready to play.",
         "description": "Helping children feel physically and emotionally safe."
       },
       "connection": {
         "name": "Connection & belonging",
-        "quote": "“The invisible thread that binds us together.”",
+        "intro": "Hi! We’re Connection & Belonging. We help you feel close to others and remind you that you belong, here.",
         "description": "Creating opportunities to connect, participate and belong."
       },
       "expression": {
         "name": "Expression",
-        "quote": "“All feelings are welcome.”",
+        "intro": "Hi! I’m Expression. I help you share what’s inside through play, words, movement, and creativity. You name it!",
         "description": "Giving children different ways to express thoughts, feelings and experiences."
       },
       "mastery": {
         "name": "Mastery",
-        "quote": "“I can try, I can choose, I can succeed.”",
+        "intro": "Hi! I’m Mastery. I help you try, practise, solve problems, and discover your full potential!",
         "description": "Supporting children to try, practise, make choices and experience success."
       },
       "self": {
         "name": "Sense of self",
-        "quote": "“The real me is my greatest strength.”",
+        "intro": "Hi! I’m Sense of Self. I help you discover who you are, what matters to you, and what makes you so special.",
         "description": "Helping children recognise their strengths, identity and sense of who they are."
       }
     },

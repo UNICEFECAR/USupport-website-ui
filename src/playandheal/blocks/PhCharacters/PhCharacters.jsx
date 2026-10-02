@@ -27,7 +27,7 @@ const CHARACTERS = [
  * PhCharacters
  *
  * Five characteristics of healing. By default, hover or tap a character to
- * reveal its quote; tap again to close. With `showDescriptions` each card
+ * reveal its introduction; tap again to close. With `showDescriptions` each card
  * shows a short description of its characteristic instead.
  *
  * @param {string} copyKey - translation group for the intro, "home" or "about"
@@ -102,8 +102,8 @@ export const PhCharacters = ({
                 <span className="ph-characters__back" id={detailsId}>
                   <img src={image} alt="" loading="lazy" />
                   <span className="ph-characters__name">{t(`${key}.name`)}</span>
-                  <span className="ph-characters__quote">
-                    {t(`${key}.quote`)}
+                  <span className="ph-characters__intro">
+                    {t(`${key}.intro`)}
                   </span>
                 </span>
               </button>

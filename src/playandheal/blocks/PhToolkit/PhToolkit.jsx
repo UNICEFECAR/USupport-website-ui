@@ -10,16 +10,17 @@ import { PhResourceCard } from "../../components/PhResourceCard/PhResourceCard";
 import { usePhPath } from "../../hooks/usePhPath";
 import { PH_COLLECTIONS } from "../../config";
 
-import bookletArtwork from "../../assets/booklet-artwork.jpg";
-import cardsArtwork from "../../assets/cards-artwork.jpg";
-import heroArtwork from "../../assets/hero-artwork.jpg";
+import bookletArtwork from "../../assets/category-booklet.webp";
+import cardsArtwork from "../../assets/category-cards.webp";
+import videosArtwork from "../../assets/category-videos.webp";
 
 import "./ph-toolkit.scss";
 
+// 16:9 character scenes, the same ratio as the card media area
 const CATEGORY_ARTWORK = {
-  booklet: { src: bookletArtwork, fit: "contain" },
-  cards: { src: cardsArtwork, fit: "contain" },
-  videos: { src: heroArtwork, fit: "cover" },
+  booklet: { src: bookletArtwork, fit: "cover" },
+  cards: { src: cardsArtwork, fit: "cover" },
+  videos: { src: videosArtwork, fit: "cover" },
 };
 
 const normalize = (value = "") => value.toLocaleLowerCase().trim();

@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 
 import { PhSectionIntro } from "../../components/PhSectionIntro/PhSectionIntro";
 import { PhVideoPlayer } from "../../components/PhVideoPlayer/PhVideoPlayer";
-import { PH_INTRO_VIDEO_ID } from "../../config";
 
 import "./ph-intro-video.scss";
 
@@ -12,15 +11,11 @@ import "./ph-intro-video.scss";
  *
  * "Welcome to Play and Heal" - introductory video on the homepage
  *
- * @param {Array} videos - competency videos from usePhResources
+ * @param {Object} video - introduction video from usePhResources
  * @returns {JSX.Element}
  */
-export const PhIntroVideo = ({ videos = [] }) => {
+export const PhIntroVideo = ({ video }) => {
   const { t } = useTranslation("playandheal", { keyPrefix: "home.intro_video" });
-
-  const video =
-    videos.find((x) => String(x.id) === String(PH_INTRO_VIDEO_ID)) ||
-    videos[0];
 
   return (
     <section
