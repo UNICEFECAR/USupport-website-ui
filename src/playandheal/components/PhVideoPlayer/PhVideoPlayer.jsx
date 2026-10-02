@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import classNames from "classnames";
 import ReactHlsPlayer from "react-hls-player";
 
 import { PhIcon } from "../PhIcon/PhIcon";
@@ -131,7 +132,11 @@ export const PhVideoPlayer = ({ src, poster, title }) => {
         {!hasStarted && (
           <button
             type="button"
-            className="ph-video-player__poster"
+            className={classNames(
+              "ph-video-player__poster",
+              poster && "ph-video-player__poster--image"
+            )}
+            style={poster ? { backgroundImage: `url(${poster})` } : undefined}
             onClick={togglePlay}
             disabled={!src}
             aria-label={src ? `${t("play")}: ${title}` : t("coming_soon")}
