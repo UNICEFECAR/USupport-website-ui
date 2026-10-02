@@ -8,7 +8,33 @@ import "./ph-faq.scss";
 
 // Questions live under how_to.faq.questions.<key> in the locale files.
 // Keyed entries (not an array) keep them compatible with POEditor.
-const FAQ_KEYS = ["who_for", "where_to_start", "lego", "phone", "network"];
+const FAQ_KEYS = [
+  "who_for",
+  "where_to_start",
+  "training",
+  "lego",
+  "phone",
+  "network",
+];
+
+const EMAIL_PATTERN = /([\w.+-]+@[\w-]+(?:\.[\w-]+)+)/;
+
+// Answers can hold several paragraphs, separated by a blank line, and email
+// addresses in them become mailto links
+const renderAnswer = (answer) =>
+  answer.split(/\n\s*\n/).map((paragraph, index) => (
+    <p key={index}>
+      {paragraph.split(EMAIL_PATTERN).map((part, partIndex) =>
+        partIndex % 2 === 1 ? (
+          <a key={partIndex} href={`mailto:${part}`} dir="ltr">
+            {part}
+          </a>
+        ) : (
+          part
+        )
+      )}
+    </p>
+  ));
 
 /**
  * PhFaq
@@ -64,7 +90,7 @@ export const PhFaq = () => {
                 className="ph-faq__answer"
                 hidden={!isOpen}
               >
-                <p>{item.answer}</p>
+                {renderAnswer(item.answer)}
               </div>
             </div>
           );
