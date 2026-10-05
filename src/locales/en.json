@@ -798,7 +798,6 @@
       "next": "Next page",
       "zoom_in": "Zoom in",
       "zoom_out": "Zoom out",
-      "download": "Download PDF",
       "fullscreen": "Full screen",
       "exit_fullscreen": "Exit full screen",
       "meta_spreads_zero": "Original PDF · {{count}} landscape spreads · {{language}}",
@@ -813,9 +812,8 @@
       "meta_pages_few": "Original PDF · {{count}} pages · {{language}}",
       "meta_pages_many": "Original PDF · {{count}} pages · {{language}}",
       "meta_pages_other": "Original PDF · {{count}} pages · {{language}}",
-      "download_original": "Download original PDF",
       "loading": "Loading document…",
-      "error": "We couldn’t load this document. Please try downloading it instead."
+      "error": "We couldn’t load this document. Please try again later."
     },
     "video_player": {
       "play": "Play",
@@ -842,7 +840,7 @@
       "video_count_few": "{{count}} videos",
       "video_count_many": "{{count}} videos",
       "video_count_other": "{{count}} videos",
-      "hint_documents": "Read on this page, zoom for comfort, or download a copy for later.",
+      "hint_documents": "Read on this page and zoom for comfort.",
       "hint_videos": "Watch here in English or Arabic, with a full-screen option.",
       "loading": "Loading resources…",
       "error": "We couldn’t load the resources. Please refresh the page to try again.",
@@ -920,7 +918,7 @@
           },
           "phone": {
             "question": "Can I access the resources on my phone?",
-            "answer": "Yes. The booklet, activity cards and videos all work on phones and tablets. You can zoom into documents, watch videos full screen, and download PDFs to use offline."
+            "answer": "Yes. The booklet, activity cards and videos all work on phones and tablets. You can zoom into documents and watch videos full screen."
           },
           "network": {
             "question": "How do I join the facilitators network?",
