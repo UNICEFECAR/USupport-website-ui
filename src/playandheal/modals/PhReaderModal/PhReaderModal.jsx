@@ -36,9 +36,6 @@ export const PhReaderModal = ({ resource, onClose }) => {
         <PhPdfReader
           pdfUrl={resource.pdfUrl}
           language={language}
-          onDownload={() =>
-            cmsSvc.addArticleDownloadCount(resource.id).catch(() => {})
-          }
         />
       )}
     </PhModal>
