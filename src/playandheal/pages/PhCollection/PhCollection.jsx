@@ -2,8 +2,6 @@ import React from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import { cmsSvc } from "@USupport-components-library/services";
-
 import { PhBackLink } from "../../components/PhBackLink/PhBackLink";
 import { PhPageBanner } from "../../components/PhPageBanner/PhPageBanner";
 import { PhCallout } from "../../components/PhCallout/PhCallout";
@@ -82,9 +80,6 @@ export const PhCollection = () => {
             pdfUrl={booklet.pdfUrl}
             language={languageName}
             showMeta={false}
-            onDownload={() =>
-              cmsSvc.addArticleDownloadCount(booklet.id).catch(() => {})
-            }
           />
         </div>
       );

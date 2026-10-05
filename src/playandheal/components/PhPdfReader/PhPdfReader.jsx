@@ -33,18 +33,16 @@ const prefersReducedMotion = () =>
  *
  * Issuu-style PDF reader. Portrait documents open as a book with two-page
  * spreads and a page-turn animation; landscape documents and small screens
- * show one page at a time. Includes zoom, download and fullscreen.
+ * show one page at a time. Includes zoom and fullscreen.
  *
  * @param {string} pdfUrl - url of the PDF
  * @param {string} language - language label shown in the meta line
- * @param {function} onDownload - called when the user downloads the PDF
  * @param {boolean} showMeta - show the "Original PDF · n pages" line
  * @returns {JSX.Element}
  */
 export const PhPdfReader = ({
   pdfUrl,
   language,
-  onDownload,
   showMeta = true,
 }) => {
   const { t } = useTranslation("playandheal", { keyPrefix: "reader" });
@@ -281,17 +279,6 @@ export const PhPdfReader = ({
           >
             <PhIcon name="plus" size={20} />
           </button>
-          <a
-            className="ph-pdf-reader__button"
-            href={pdfUrl}
-            target="_blank"
-            rel="noreferrer"
-            download
-            onClick={onDownload}
-            aria-label={t("download")}
-          >
-            <PhIcon name="download" size={20} />
-          </a>
           <button
             type="button"
             className="ph-pdf-reader__button"
@@ -311,18 +298,6 @@ export const PhPdfReader = ({
           })}
         </p>
       )}
-
-      <a
-        className="ph-pdf-reader__download-link"
-        href={pdfUrl}
-        target="_blank"
-        rel="noreferrer"
-        download
-        onClick={onDownload}
-      >
-        <span>{t("download_original")}</span>
-        <PhIcon name="download" size={20} />
-      </a>
     </div>
   );
 };
