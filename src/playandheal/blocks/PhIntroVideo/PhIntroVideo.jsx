@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { PhSectionIntro } from "../../components/PhSectionIntro/PhSectionIntro";
 import { PhVideoPlayer } from "../../components/PhVideoPlayer/PhVideoPlayer";
+import { usePhTrackView } from "../../hooks/usePhTrackView";
 
 import introPoster from "../../assets/intro-video-poster.webp";
 
@@ -18,6 +19,7 @@ import "./ph-intro-video.scss";
  */
 export const PhIntroVideo = ({ video }) => {
   const { t } = useTranslation("playandheal", { keyPrefix: "home.intro_video" });
+  const trackView = usePhTrackView();
 
   return (
     <section
@@ -37,6 +39,7 @@ export const PhIntroVideo = ({ video }) => {
           src={video?.videoUrl}
           poster={introPoster}
           title={t("video_title")}
+          onStart={() => trackView(video)}
         />
       </div>
     </section>
