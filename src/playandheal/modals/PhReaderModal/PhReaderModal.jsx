@@ -6,6 +6,7 @@ import { cmsSvc } from "@USupport-components-library/services";
 import { PhModal } from "../../components/PhModal/PhModal";
 import { PhPdfReader } from "../../components/PhPdfReader/PhPdfReader";
 import { PH_LANGUAGES } from "../../config";
+import { usePhTrackView } from "../../hooks/usePhTrackView";
 
 /**
  * PhReaderModal
@@ -18,9 +19,12 @@ import { PH_LANGUAGES } from "../../config";
  */
 export const PhReaderModal = ({ resource, onClose }) => {
   const { t, i18n } = useTranslation("playandheal", { keyPrefix: "reader" });
+  const trackView = usePhTrackView();
 
   useEffect(() => {
-    if (resource?.id) cmsSvc.addArticleReadCount(resource.id).catch(() => {});
+    if (!resource?.id) return;
+    cmsSvc.addArticleReadCount(resource.id).catch(() => {});
+    trackView(resource);
   }, [resource?.id]);
 
   const language = PH_LANGUAGES.find((x) => x.value === i18n.language)?.name;

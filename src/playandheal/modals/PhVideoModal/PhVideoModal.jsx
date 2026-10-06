@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import { PhModal } from "../../components/PhModal/PhModal";
 import { PhVideoPlayer } from "../../components/PhVideoPlayer/PhVideoPlayer";
 import { PhIcon } from "../../components/PhIcon/PhIcon";
+import { usePhTrackView } from "../../hooks/usePhTrackView";
 
 import "./ph-video-modal.scss";
 
@@ -18,6 +19,11 @@ import "./ph-video-modal.scss";
  */
 export const PhVideoModal = ({ resource, onClose }) => {
   const { t } = useTranslation("playandheal", { keyPrefix: "video_player" });
+  const trackView = usePhTrackView();
+
+  useEffect(() => {
+    if (resource?.id) trackView(resource);
+  }, [resource?.id]);
 
   return (
     <PhModal
