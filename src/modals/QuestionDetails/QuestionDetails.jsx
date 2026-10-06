@@ -35,6 +35,12 @@ export const QuestionDetails = ({
   // Deactivated providers can't take bookings, so don't offer the option
   const isProviderActive = providerInfo?.status !== "inactive";
 
+  // Deactivated providers' profiles can't be opened
+  const openProviderProfile = () =>
+    handleProviderClick(
+      providerInfo.providerId || providerInfo.provider_detail_id,
+    );
+
   const getDateText = () => {
     const date = new Date(question.answerCreatedAt || question.questionCreatedAt);
 
@@ -96,26 +102,24 @@ export const QuestionDetails = ({
       </pre>
       {question.answerId && (
         <div className="question-details__bottom-container">
-          <div className="question-details__answered-by-container">
+          <div
+            className={`question-details__answered-by-container ${
+              isProviderActive
+                ? ""
+                : "question-details__answered-by-container--not-clickable"
+            }`}
+          >
             <p className="text">{t("answered_by")}</p>
             <Avatar
               image={AMAZON_S3_BUCKET + "/" + providerInfo.image}
               alt="Specialist avatar"
               size="xs"
               classes="question-details__answered-by-container__avatar"
-              onClick={() =>
-                handleProviderClick(
-                  providerInfo.providerId || providerInfo.provider_detail_id,
-                )
-              }
+              onClick={isProviderActive ? openProviderProfile : undefined}
             />
             <p
               className="text question-details__answered-by-container__provider-name"
-              onClick={() =>
-                handleProviderClick(
-                  providerInfo.providerId || providerInfo.provider_detail_id,
-                )
-              }
+              onClick={isProviderActive ? openProviderProfile : undefined}
             >
               {providerInfo.name} {providerInfo.surname}
             </p>

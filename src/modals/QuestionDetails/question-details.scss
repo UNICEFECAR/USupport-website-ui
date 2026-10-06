@@ -80,6 +80,11 @@
     &__provider-name {
       cursor: pointer;
     }
+
+    &--not-clickable &__avatar,
+    &--not-clickable &__provider-name {
+      cursor: default;
+    }
   }
 
   &__schedule-button {
