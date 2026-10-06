@@ -23,9 +23,10 @@ const formatTime = (seconds) => {
  * @param {string} src - video url
  * @param {string} poster - poster image url
  * @param {string} title - shown on the poster before playback
+ * @param {function} onStart - called once, when playback is first started
  * @returns {JSX.Element}
  */
-export const PhVideoPlayer = ({ src, poster, title }) => {
+export const PhVideoPlayer = ({ src, poster, title, onStart }) => {
   const { t } = useTranslation("playandheal", { keyPrefix: "video_player" });
   const containerRef = useRef(null);
   const videoRef = useRef(null);
@@ -71,6 +72,7 @@ export const PhVideoPlayer = ({ src, poster, title }) => {
     const video = videoRef.current;
     if (!video || !src) return;
 
+    if (!hasStarted) onStart?.();
     setHasStarted(true);
     if (video.paused) {
       video.play().catch(() => setIsPlaying(false));
