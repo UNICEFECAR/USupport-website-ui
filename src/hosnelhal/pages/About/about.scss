@@ -1,0 +1,47 @@
+@import "../../styles/hosn";
+
+.hosn-about {
+  h2 {
+    font-size: var(--hh-font-size-section);
+    font-weight: $font_semi_bold;
+  }
+
+  &__copy h2 {
+    font-size: var(--hh-font-size-heading);
+  }
+
+  p {
+    font-size: var(--hh-font-size-lead);
+    line-height: 1.5;
+    color: var(--hh-color-text-muted);
+  }
+
+  &__programme {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing_3_2;
+    align-items: center;
+
+    @include hh-desktop-up {
+      grid-template-columns: minmax(0, 47fr) minmax(0, 81fr);
+    }
+  }
+
+  &__illustration {
+    width: 100%;
+    aspect-ratio: 47 / 35;
+    border-radius: var(--hh-radius-lg);
+    object-fit: cover;
+  }
+
+  &__copy,
+  &__hub {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_1_6;
+  }
+
+  &__explore {
+    align-self: flex-start;
+  }
+}
