@@ -1,0 +1,9 @@
+@import "../../styles/hosn";
+
+.hosn-main {
+  padding-block: $spacing_2_8;
+
+  &:focus {
+    outline: none;
+  }
+}

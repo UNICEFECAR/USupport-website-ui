@@ -1,0 +1,24 @@
+@import "../../styles/hosn";
+
+.hosn-asset-viewer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $spacing_1_2;
+
+  > .hh-media-frame {
+    align-self: stretch;
+  }
+}
+
+.hosn-asset-viewer__status {
+  padding: $spacing_6_4 $spacing_2_4;
+  text-align: center;
+  font-size: var(--hh-font-size-lead);
+  color: var(--hh-color-text-muted);
+}
+
+// PDF page placeholder, sized like the rendered page
+.hosn-asset-viewer__page {
+  max-width: 100%;
+}
