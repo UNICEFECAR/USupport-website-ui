@@ -19,7 +19,7 @@ import {
 import { cmsSvc } from "@USupport-components-library/services";
 import { ThemeContext } from "@USupport-components-library/utils";
 
-import { HOSN_LANGUAGES, HOSN_RTL_LANGUAGES } from "../../config";
+import { HOSN_LANGUAGES, HOSN_RTL_LANGUAGES, USUPPORT_THEME_CLASS } from "../../config";
 import { useHosnPath } from "../../hooks/useHosnPath";
 
 import logoHosnElHal from "../../assets/logo-hosnelhal.png";
@@ -154,18 +154,20 @@ export const HosnLayout = ({ children }) => {
         />
       </HHRoot>
 
-      <CookieBanner
-        cookieState={cookieState}
-        setCookieState={setCookieState}
-        text={
-          <Trans
-            components={[<Link key="cookie-policy" to={toPath("cookie-policy")} />]}
-          >
-            {tPage("cookie_banner_text")}
-          </Trans>
-        }
-        t={tPage}
-      />
+      <div className={USUPPORT_THEME_CLASS}>
+        <CookieBanner
+          cookieState={cookieState}
+          setCookieState={setCookieState}
+          text={
+            <Trans
+              components={[<Link key="cookie-policy" to={toPath("cookie-policy")} />]}
+            >
+              {tPage("cookie_banner_text")}
+            </Trans>
+          }
+          t={tPage}
+        />
+      </div>
     </>
   );
 };

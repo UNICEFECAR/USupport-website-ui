@@ -176,7 +176,7 @@ function App() {
     >
       <ToastContainer />
 
-      <div className={`theme-${theme}`}>
+      <div className={isHosnElHal() ? undefined : `theme-${theme}`}>
         <QueryClientProvider client={queryClient}>
           {showContent && <Root />}
           <ReactQueryDevtools initialOpen />
