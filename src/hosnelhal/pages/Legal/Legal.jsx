@@ -12,7 +12,7 @@ import {
 } from "@USupport-components-library/src/hosnelhal";
 import { cmsSvc } from "@USupport-components-library/services";
 
-import { HOSN_PROGRAM } from "../../config";
+import { HOSN_PROGRAM, USUPPORT_THEME_CLASS } from "../../config";
 import { useHosnPath } from "../../hooks/useHosnPath";
 
 import "./legal.scss";
@@ -50,7 +50,7 @@ export const Legal = ({ page }) => {
           <HHSkeleton lines={8} height="1.5rem" />
         </HHLoadingRegion>
       ) : data ? (
-        <div className="hosn-legal__content">
+        <div className={`hosn-legal__content ${USUPPORT_THEME_CLASS}`}>
           <Markdown markDownText={data} />
         </div>
       ) : (

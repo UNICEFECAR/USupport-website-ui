@@ -26,7 +26,7 @@ export const HowToUse = () => {
     <div className="hh__container hh__stack hosn-how-to-use">
       <HHPageIntro title={t("title")} lead={t("lead")} />
 
-      <UsageGuidance title={t("ways_title")} />
+      <UsageGuidance />
 
       <section aria-labelledby="hosn-steps-title">
         <h2 className="hh__visually-hidden" id="hosn-steps-title">
@@ -43,7 +43,11 @@ export const HowToUse = () => {
         </ol>
       </section>
 
-      <HHPanel className="hosn-how-to-use__practical" aria-labelledby="hosn-practical-title">
+      <HHPanel
+        variant="bordered"
+        className="hosn-how-to-use__practical"
+        aria-labelledby="hosn-practical-title"
+      >
         <h2 id="hosn-practical-title">{t("practical_title")}</h2>
         <p>{t("practical_text")}</p>
         <HHButton to={toPath("resources")}>{t("browse")}</HHButton>
