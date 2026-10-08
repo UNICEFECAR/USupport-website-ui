@@ -7,7 +7,35 @@
       "card_text_2": "Тексерілген консультанттар",
       "card_text_3": "Онлайн қолдау",
       "card_text_4": "Сіздің қауіпсіз жеріңіз",
-      "paragraph_2": "Стресске және өмірлік қиындықтарға бірге төтеп береміз."
+      "paragraph_2": "Стресске және өмірлік қиындықтарға бірге төтеп береміз.",
+      "card_text_2_ro": "",
+      "card_text_3_ro": ""
+    },
+    "articles": {
+      "heading": "Ақпараттық портал",
+      "no_results": "Ештеңе табылмады",
+      "could_not_load_content": "Таңдалған ел мен тіл үшін ештеңе табылмады.",
+      "all": "Барлығы",
+      "read_more_button": "Ары қарай оқу",
+      "min_read": "минут оқуға",
+      "by": "дайындаушы {{creator}}",
+      "number_of_more_options": "тағы {{count}}",
+      "articles": "Мақалалар",
+      "videos": "Видео",
+      "podcasts": "Подкасттар",
+      "view_more": "Көбірек көру",
+      "search": "Іздеу",
+      "not_found": "Бұл ресурс қолжетімді емес",
+      "require_cookies": "Бұл бейнені көру үшін барлық cookie файлдарын қабылдаңыз.",
+      "cookie_preferences": "Cookie параметрлері",
+      "no_results_heading": "«{{query}}» бойынша ештеңе табылмады",
+      "no_results_line1": "Іздеуді өзгертіп көріңіз немесе төмендегі тақырыптарды ашыңыз.",
+      "no_results_line2": "Көбірек нәтиже көрсету үшін сүзгілерді де қалпына келтіруге болады.",
+      "reset_filters": "Сүзгілерді қалпына келтіру",
+      "browse_all_articles": "Барлық мақалалар",
+      "no_results_image_alt": "Сурет: іздеу нәтижесі жоқ",
+      "no_results_hint": "Басқа сөздермен іздеп көріңіз, санат немесе жас топты өзгертіңіз немесе іздеуді тазалап барлық материалды көріңіз.",
+      "could_not_load_hint": "Мәзірден елді немесе тілді өзгертуге болады немесе кейінірек қайта кіріңіз — жаңа материалдар жиі қосылады."
     },
     "contact-us": {
       "heading_1": "Бізге хабарласыңыз",
@@ -33,12 +61,18 @@
       "modal_text": "Біз Сізге жақын арада хабарласамыз",
       "modal_cta_label": "Бас бетке оралу",
       "paragraph": "Біз Сіздің электрондық хабарлауыңызға мүмкіндігінше тез жауап береміз. Электрондық поштаны дұрыс енгізгеніңізге назар аударыңыз",
-      "contact_form": "Байланыс формасы"
+      "contact_form": "Байланыс формасы",
+      "contact_reason_1_pl": "Usupport туралы ақпарат",
+      "contact_reason_2_pl": "Техникалық мәселе",
+      "contact_reason_3_pl": "Шағым",
+      "contact_reason_4_pl": "Басқа",
+      "contact_reason_3_ro": ""
     },
     "download-app": {
       "heading": "Қосымшаны жүктеп алу",
       "paragraph": "Енді iOS және Android үшін қолжетімді",
-      "download_text": "Жүктеп алыңыз:"
+      "download_text": "Жүктеп алыңыз:",
+      "text": "Қолдауды кез келген уақытта, кез келген жерден алыңыз - жылдам, қауіпсіз және қолдануға оңай."
     },
     "faq": {
       "heading": "Жиі қойылатын сұрақтар",
@@ -52,7 +86,8 @@
       "card_text_1": "Кәсіби көмек",
       "card_text_2": "Онлайн консультациялар",
       "card_text_3": "Тегін ресурстар",
-      "card_text_4": "Жеңіл және қауіпсіз қол жеткізу"
+      "card_text_4": "Жеңіл және қауіпсіз қол жеткізу",
+      "card_text_5": ""
     },
     "hero": {
       "heading_1": "Өз ментал денсаулығыңызды ең<1></1> маңызды басымдығыңызға айналдырыңыз",
@@ -72,7 +107,13 @@
       "card_4": "Консультацияға жазылу",
       "download_text": "Жүктеп алыңыз:",
       "web_browser": "Веб-браузер",
-      "click_to_use": "Қолдану үшін басыңыз"
+      "click_to_use": "Қолдану үшін басыңыз",
+      "download_from_web": "",
+      "browser": "",
+      "card_3_ro": "",
+      "card_4_ro": "",
+      "heading_hero": "Оңай және тез.<0></0> Толығымен <1>анонимді</1>!",
+      "paragraph_hero": "Толық профиль жасағыңыз келмесе де, бірнеше қадам арқылы қажет көмекті ала аласыз."
     },
     "meet-our-providers": {
       "heading": "Біздің консультанттармен танысыңыз",
@@ -97,7 +138,7 @@
       "footer_6": "Cookie саясаты",
       "footer_7": "Жиі қойылатын сұрақтар",
       "emergency_button": "SOS-орталық",
-      "button_text": "Қосымшаға өту",
+      "button_text": "Tiркелу",
       "language_label": "Тіл",
       "country_label": "Ел",
       "contact_us": "Бізге хабарласыңыз",
@@ -112,7 +153,11 @@
       "accept_all_cookies": "Барлығын қабылдау",
       "reject_all_cookies": "Барлығын қабылдамау",
       "accept_necessary_cookies": "Тек қажеттілерін қабылдау",
-      "save": "Сақтау"
+      "save": "Сақтау",
+      "page_7": "Ұйымдар",
+      "high_contrast": "Жоғары контраст",
+      "footer_text": "Сіздің психикалық денсаулығыңыз маңызды—uSupport жеке, құпия және қауіпсіз психологиялық қолдау ұсынады.",
+      "go_back": "Артқа"
     },
     "question": {
       "heading": "Сұрақ бар ма?",
@@ -123,7 +168,9 @@
       "heading": "SOS-орталық",
       "button_link": "Веб-сайтқа кіру",
       "button_call": "Қазір хабарласі",
-      "no_results": "Таңдалған ел мен тіл үшін ештеңе табылмады."
+      "no_results": "Таңдалған ел мен тіл үшін ештеңе табылмады.",
+      "other_emergency_services": "Other emergency service providers",
+      "browse": "Browse"
     },
     "we-help": {
       "heading_1": "Біз туралы",
@@ -142,20 +189,6 @@
       "and": "мен",
       "privacy": "Құпиялық саясатына",
       "paragraph_7_2": "сай ата-аналар немесе заңды қамқоршылар елдің жергілікті заңдарына сәйкес кәмелетке толмаған пайдаланушылар үшін келісім беруі керек. uSupport пайдаланушылар берген жасы туралы немесе басқа да ақпараттың дұрыстығына жауап бермейді."
-    },
-    "articles": {
-      "heading": "Ақпараттық портал",
-      "no_results": "Ештеңе табылмады",
-      "could_not_load_content": "Таңдалған ел мен тіл үшін ештеңе табылмады.",
-      "all": "Барлығы",
-      "read_more_button": "Ары қарай оқу",
-      "min_read": "минут оқуға",
-      "by": "дайындаушы {{creator}}",
-      "number_of_more_options": "тағы {{count}}",
-      "articles": "Мақалалар",
-      "videos": "Видео",
-      "podcasts": "Подкасттар",
-      "view_more": "Көбірек көру"
     },
     "privacy-policy": {
       "heading": "Құпиялық саясаты",
@@ -176,7 +209,8 @@
       "paragraph_3": "Порталда сарапшылар жазған мақалаларды табасыз, өз-өзіңізді дамыту әдістерін үйренесіз, өзіңізді қызықтыратын тақырыптардан хабардар боласыз.",
       "read_more_button": "Ары қарай оқу",
       "min_read": "минут оқуға",
-      "by": "дайындаушы {{creator}}"
+      "by": "дайындаушы {{creator}}",
+      "button_label": "Көбірек көру"
     },
     "provider-overview": {
       "earliest_slot_label": "Консультация алу үшін жақын арадағы бос уақыт",
@@ -225,9 +259,18 @@
       "love": "Махаббат және романтикалық қатынастар",
       "social_skills": "Әлеуметтік дағдылар және достық",
       "body_image": "Өзін-өзі бағалау және келбет бейнесі",
+      "peer_to_peer_emotional_support": "Арнатас-тәрелес эмоционалды қолдау",
       "hour_consultation": "1 сағаттық консултация үшін",
       "organizations_label": "Ұйымдар",
-      "free": "тегін"
+      "free": "тегін",
+      "consultations": "консультациялар",
+      "monday": "Дүйсенбі",
+      "tuesday": "Сейсенбі",
+      "wednesday": "Сәрсенбі",
+      "thursday": "Бейсенбі",
+      "friday": "Жұма",
+      "saturday": "Сенбі",
+      "sunday": "Жексенбі"
     },
     "meet-our-providers-overview": {
       "heading": "Сіз жүгіне алатын консультанттармен танысыңыз",
@@ -264,7 +307,8 @@
       "subheading": "Сұрақтарыңызды қойыңыз және біздің кәсіби мамандар тобы Сізге көмектесуге тырысады",
       "ask_anonymous_card_heading": "Сұрағыңызды анонимді түрде қойыңыз",
       "ask_anonymous_card_text": "Әр сұрақ толығымен анонимді – оны кім қойғанын ешкім көре алмайды",
-      "button_label": "Сұрақтарыңызды қазір қойыңыз"
+      "button_label": "Сұрақтарыңызды қазір қойыңыз",
+      "note": "Сұрақтар толықтай анонимді, оларды кім қойғанын ешкім көре алмайды."
     },
     "mascot-header-MyQA": {
       "heading": "Менің Q&A (Сұрақ/Жауап)",
@@ -288,7 +332,16 @@
       "no_answers": "Сұрақтарға жауап жоқ",
       "filter": "Тегтерді сүзгілеу",
       "search_placeholder": "Іздеу",
-      "language": "Тіл"
+      "language": "Тіл",
+      "date_answered": "{{date}} күні",
+      "go_back": "Артқа",
+      "how_it_works": "Бұл қалай жұмыс істейді",
+      "no_results_heading": "«{{query}}» бойынша ештеңе табылмады",
+      "no_results_line1": "Іздеуді өзгертіңіз немесе басқа тегті таңдаңыз.",
+      "no_results_line2": "Барлық сұрақтарды қайта көру үшін сүзгілерді қалпына келтіруге болады.",
+      "reset_filters": "Сүзгілерді қалпына келтіру",
+      "browse_all_questions": "Барлық сұрақтарды көрсету",
+      "no_results_image_alt": "Сурет: сәйкес сұрақтар жоқ"
     },
     "coupon-information": {
       "heading": "Mамандардан тегін кеңес алғыңыз келе ме?",
@@ -305,108 +358,165 @@
       "no_data_found": "Деректер жоқ"
     },
     "organizations": {
-      "in_person_interaction": "Жеке кездесу",
+      "in_person_interaction": "Жеке",
       "online_interaction": "Онлайн",
-      "phone_interaction": "Телефон",
-      "hybrid_interaction": "Аралас",
-
-      "cash": "Қолма-қол ақша",
-      "bank_transfer": "Банк аударымы",
-      "card": "Карта",
-      "free": "Тегін",
-
+      "phone_interaction": "Телефон арқылы",
+      "hybrid_interaction": "Аралас формат",
+      "free_services": "Тегін қызметтер",
+      "paid_services": "Ақылы қызметтер",
+      "co_payment_services": "Бірлесіп төленетін қызметтер",
+      "cnas_reimbursed_services": "CNAS өтейтін қызметтер",
+      "violence_victim_helpline": "Зорлық-зомбылық құрбандарына арналған сенім телефоны",
+      "social_information_counseling": "Әлеуметтік ақпарат және кеңес беру",
+      "rehab_psycho_neuro_children": "Психо-невро-моторлық бұзылыстары бар балаларға арналған оңалту және қалпына келтіру қызметтері",
+      "individual_psychological_counseling": "Жеке психологиялық кеңес беру",
+      "personal_development_counseling": "Жеке даму бойынша кеңес беру",
+      "child_helpline": "Балаларға арналған сенім телефоны",
+      "suicide_prevention_helpline": "Өз-өзіне қол жұмсаудың алдын алу сенім телефоны",
+      "child_psychiatry": "Балалар психиатриясы",
+      "group_psychological_counseling": "Топтық психологиялық кеңес беру",
+      "sport_recreational_activities": "Спорттық-ойын-сауық іс-шаралары (спорт, ойындар, би)",
+      "rehab_autism_children": "Аутизмі бар балаларға арналған оңалту және қалпына келтіру қызметтері",
+      "art_recreational_activities": "Шығармашылық-ойын-сауық іс-шаралары (театр, музыка, поэзия, сурет салу, әңгімелеу)",
+      "addiction_helpline": "Тәуелділік мәселелері бойынша сенім телефоны",
+      "emergency_situations": "Төтенше жағдайлар",
+      "pediatric_psychiatry": "Педиатриялық психиатрия",
+      "psychological_evaluation": "Психологиялық бағалау",
+      "psychological_counseling": "Психологиялық кеңес беру",
       "individual_psychotherapy": "Жеке психотерапия",
       "group_psychotherapy": "Топтық психотерапия",
-      "individual_psychological_counseling": "Жеке психологиялық кеңес беру",
-      "group_psychological_counseling": "Топтық психологиялық кеңес беру",
-      "personal_development_counseling": "Жеке дамуды кеңес беру",
+      "support_groups": "Қолдау топтары",
+      "social_assistance_and_counseling": "Әлеуметтік көмек және кеңес беру",
+      "personal_development": "Жеке даму",
+      "vocational_counseling_and_career_guidance": "Кәсіби кеңес беру және мансапты жоспарлау",
       "speech_therapy": "Сөйлеу терапиясы",
-      "social_information_counseling": "Әлеуметтік ақпарат және кеңес беру",
-      "rehab_autism_children": "Аутизммен ауыратын балаларға оңалту және емдеу қызметтері",
-      "rehab_psycho_neuro_children": "Психо-неврологиялық-қимылдық бұзылыстары бар балаларға оңалту және емдеу қызметтері",
-      "suicide_prevention_helpline": "Өзін-өзі өлтіруді болдырмау көмек желісі",
-      "addiction_helpline": "Тәуелділік көмек желісі",
-      "violence_victim_helpline": "Зорлық-зомбылық құрбандарына көмек желісі",
-      "child_helpline": "Балалар көмек желісі",
-      "child_psychiatry": "Балалар психиатриясы",
-      "art_recreational_activities": "Көркем демалыс іс-шаралары (театр, музыка, поэзия, сурет, ауызша дастан)",
-      "sport_recreational_activities": "Спорттық демалыс іс-шаралары (спорт, ойындар, би)",
-
+      "occupational_therapy_ergotherapy": "Еңбек терапиясы/Эрготерапия",
+      "physiotherapy_physical_recovery": "Физиотерапия/Физикалық қалпына келтіру",
+      "autism_spectrum_disorder_therapies": "Аутизм спектрі бұзылыстары бойынша терапиялар",
+      "disability_assessment": "Мүгедектікті анықтау",
+      "pediatric_neurology": "Балалар неврологиясы",
+      "special_psychopedagogy": "Арнайы психопедагогика",
+      "neuropsychomotor_recovery": "Нейропсихомоторлық қалпына келтіру",
       "sector_1": "1-сектор",
       "sector_2": "2-сектор",
       "sector_3": "3-сектор",
       "sector_4": "4-сектор",
       "sector_5": "5-сектор",
       "sector_6": "6-сектор",
-
-      "children": "Балалар",
-      "children_disabilities": "Мүмкіндігі шектеулі балалар",
-      "adults": "Ересектер",
-      "adults_disabilities": "Мүмкіндігі шектеулі ересектер",
-
-      "work_with_placeholder": "Жұмыс жасайтын топты таңдаңыз",
-      "specialisation_placeholder": "Мамандандыруды таңдаңыз",
-      "district_placeholder": "Аудан таңдаңыз",
-      "payment_method_placeholder": "Төлем әдісін таңдаңыз",
-      "user_interaction_placeholder": "Пайдаланушы өзара әрекеттесуін таңдаңыз",
-      "search_placeholder": "Атауы немесе бөлім атауы бойынша іздеу",
-
+      "aggression_violence_victim_or_aggressor": "Агрессия/зорлық-зомбылық – құрбан немесе агрессор",
+      "learning_difficulties_special_educational_needs": "Оқу қиындықтары/Арнайы білім беру қажеттіліктері",
+      "behavioral_disorder": "Мінез-құлық бұзылыстары",
+      "eating_disorder": "Тамақтану бұзылыстары",
+      "suicide_self_harm": "Өз-өзіне қол жұмсау/Өзін-өзі жарақаттау",
+      "addiction": "Тәуелділік",
+      "identity_issues": "Жеке тұлға мәселелері",
+      "illness_oncological_treatment_chronic_diseases": "Ауру (онкологиялық ем, созылмалы аурулар)",
+      "other_situations": "Басқа жағдайлар",
+      "public": "Мемлекеттік",
+      "private": "Жеке",
+      "ong": "ҮЕҰ",
+      "public_private": "Мемлекеттік-жеке",
+      "work_with_placeholder": "Мақсатты санаттарды таңдаңыз",
+      "specialisations_placeholder": "Көрсетілетін қызметтерді таңдаңыз",
+      "district_placeholder": "Секторды таңдаңыз",
+      "payment_methods_placeholder": "Төлем әдістерін таңдаңыз",
+      "user_interactions_placeholder": "Өзара әрекет форматын таңдаңыз",
+      "property_types_placeholder": "Мекеме түрлерін таңдаңыз",
+      "search_placeholder": "Ұйым атауы бойынша іздеу",
       "no_data_found": "Деректер табылмады",
       "reset_filters": "Сүзгілерді қалпына келтіру",
-
       "view_organization_details": "Ұйым мәліметтерін көру",
-      "address": "Мекен-жай",
+      "address": "Мекенжай",
       "phone": "Телефон",
-      "email": "Электрондық пошта"
+      "email": "E-mail",
+      "any": "Кез келген"
     },
-    "organizations-overview": {
-      "error-loading-data": "Ұйым деректерін жүктеу кезінде қате орын алды",
-      "description_label": "Сипаттама",
+    "organization-overview": {
+      "error_loading_data": "Деректерді жүктеу кезінде қате пайда болды",
+      "other_services_label": "Басқа қызметтер",
       "address_label": "Мекен-жай",
-      "district_label": "Аудан",
-      "payment_method_label": "Төлем әдісі",
-      "work_with_label": "Жұмыс жасайды",
-      "specialisations_label": "Мамандандырулар",
-      "providers_label": "Провайдерлер",
-
+      "sector_label": "Сектор",
+      "payment_methods_label": "Төлем әдістері",
+      "user_interactions_label": "Өзара әрекеттесу режимдері",
+      "property_types_label": "Меншік түрлері",
+      "work_with_label": "Кіммен жұмыс істейді",
+      "offered_services_label": "Ұсынылатын қызметтер",
+      "providers_label": "Ұйымдар",
+      "violence_victim_helpline": "Зорлық құрбандарына қолдау желісі",
       "individual_psychotherapy": "Жеке психотерапия",
-      "group_psychotherapy": "Топтық психотерапия",
-      "individual_psychological_counseling": "Жеке психологиялық кеңес беру",
-      "group_psychological_counseling": "Топтық психологиялық кеңес беру",
-      "personal_development_counseling": "Жеке дамуды кеңес беру",
+      "social_information_counseling": "Әлеуметтік ақпарат және кеңес",
+      "rehab_psycho_neuro_children": "Психо‑нейро‑қозғалыс бұзылыстары бар балаларға арналған оңалту және қалпына келтіру қызметтері",
+      "individual_psychological_counseling": "Жеке психологиялық кеңес",
+      "personal_development_counseling": "Жеке даму кеңесі",
+      "child_helpline": "Балалар қолдау желісі",
       "speech_therapy": "Сөйлеу терапиясы",
-      "social_information_counseling": "Әлеуметтік ақпарат және кеңес беру",
-      "rehab_autism_children": "Аутизммен ауыратын балаларға оңалту және емдеу қызметтері",
-      "rehab_psycho_neuro_children": "Психо-неврологиялық-қимылдық бұзылыстары бар балаларға оңалту және емдеу қызметтері",
-      "suicide_prevention_helpline": "Өзін-өзі өлтіруді болдырмау көмек желісі",
-      "addiction_helpline": "Тәуелділік көмек желісі",
-      "violence_victim_helpline": "Зорлық-зомбылық құрбандарына көмек желісі",
-      "child_helpline": "Балалар көмек желісі",
+      "suicide_prevention_helpline": "Өзін‑өзі өлтіруден қорғау желісі",
       "child_psychiatry": "Балалар психиатриясы",
-      "art_recreational_activities": "Көркем демалыс іс-шаралары (театр, музыка, поэзия, сурет, ауызша дастан)",
-      "sport_recreational_activities": "Спорттық демалыс іс-шаралары (спорт, ойындар, би)",
-
-      "in_person_interaction": "Жеке кездесу",
+      "group_psychological_counseling": "Топтық психологиялық кеңес",
+      "sport_recreational_activities": "Спорттық рекреациялық іс‑шаралар (спорт, ойын, би)",
+      "rehab_autism_children": "Аутизмі бар балаларға арналған оңалту және қалпына келтіру қызметтері",
+      "art_recreational_activities": "Өнерлі рекреациялық іс‑шаралар (театр, музыка, поэзия, сурет, әңгімелеу)",
+      "addiction_helpline": "Нашақорлыққа қарсы қолдау желісі",
+      "group_psychotherapy": "Топтық психотерапия",
+      "emergency_situations": "Төтенше жағдайлар",
+      "pediatric_psychiatry": "Педиатриялық психиатрия",
+      "psychological_evaluation": "Психологиялық бағалау",
+      "psychological_counseling": "Психологиялық кеңес",
+      "support_groups": "Қолдау топтары",
+      "social_assistance_and_counseling": "Әлеуметтік көмек және кеңес",
+      "personal_development": "Жеке даму",
+      "vocational_counseling_and_career_guidance": "Кәсіби кеңес және мансапқа бағдарлау",
+      "occupational_therapy_ergotherapy": "Еңбекті терапия/эрготерапия",
+      "physiotherapy_physical_recovery": "Физиотерапия/Денені қалпына келтіру",
+      "autism_spectrum_disorder_therapies": "Аутизм спектрінің бұзылыстарын емдеу",
+      "disability_assessment": "Мүгедектікты бағалау",
+      "pediatric_neurology": "Педиатриялық неврология",
+      "special_psychopedagogy": "Арнайы психопедагогика",
+      "neuropsychomotor_recovery": "Нейропсихомоторлық қалпына келтіру",
+      "in_person_interaction": "Жеке (тағы бетпе‑бет)",
       "online_interaction": "Онлайн",
-      "phone_interaction": "Телефон",
-      "hybrid_interaction": "Аралас",
-
-      "cash": "Қолма-қол ақша",
-      "bank_transfer": "Банк аударымы",
-      "card": "Карта",
-      "free": "Тегін",
-
-      "sector_1": "1-сектор",
-      "sector_2": "2-сектор",
-      "sector_3": "3-сектор",
-      "sector_4": "4-сектор",
-      "sector_5": "5-сектор",
-      "sector_6": "6-сектор",
-
-      "children": "Балалар",
-      "children_disabilities": "Мүмкіндігі шектеулі балалар",
-      "adults": "Ересектер",
-      "adults_disabilities": "Мүмкіндігі шектеулі ересектер"
+      "phone_interaction": "Телефон арқылы",
+      "hybrid_interaction": "Гибрид",
+      "free_services": "Тегін қызметтер",
+      "paid_services": "Төлемді қызметтер",
+      "co_payment_services": "Қосымша төлеммен қызметтер",
+      "cnas_reimbursed_services": "CNAS өтейтін қызметтер",
+      "public": "Қоғамдық",
+      "private": "Жеке",
+      "ong": "ҚҚҰ (ЖҚҚ)",
+      "public_private": "Қоғамдық‑жеке",
+      "sector_1": "1‑ауылдық сектор",
+      "sector_2": "2‑ауылдық сектор",
+      "sector_3": "3‑ауылдық сектор",
+      "sector_4": "4‑ауылдық сектор",
+      "sector_5": "5‑ауылдық сектор",
+      "sector_6": "6‑ауылдық сектор",
+      "aggression_violence_victim_or_aggressor": "Агрессия/зорлық – құрбан не қатысушы",
+      "learning_difficulties_special_educational_needs": "Оқу қиындықтары/Арнайы білім қажеттіліктері",
+      "behavioral_disorder": "Қылық бұзылысы",
+      "eating_disorder": "Азықтану бұзылысы",
+      "suicide_self_harm": "Өзін‑өзі өлтіру/Өзін‑өзі зардаптау",
+      "addiction": "Нашақорлық",
+      "identity_issues": "Тұлғалық мәселелер",
+      "illness_oncological_treatment_chronic_diseases": "Ауру (онкологиялық емдеу, созылмалы аурулар)",
+      "other_situations": "Басқа жағдайлар",
+      "copy_link_success": "Сілтеме буферге көшірілді!"
+    },
+    "video-tutorial": {
+      "title": "Платформаны қалай пайдалану керек",
+      "tutorial_video_title": "Платформаны қалай пайдалану керек",
+      "require_cookies": "Бұл видео көру үшін, барлық cookie-лерді қабылдаңыз.",
+      "cookie_preferences": "Cookie параметрлері"
+    },
+    "take-a-step": {
+      "heading": "Жай ғана жан тыныштығына қарай бір қадам жаса",
+      "paragraph": "",
+      "card_1": "Еліңіз бен тіліңізді таңдаңыз",
+      "card_2": "Аккаунтыңызды жасаңыз",
+      "card_3": "Кеңесшіні таңдаңыз",
+      "card_3_ro": "Бастапқы бағалаудан өтіңіз",
+      "card_4": "Сеансты брондаңыз",
+      "card_4_ro": "Жергілікті қолдауды табыңыз"
     }
   },
   "pages": {
@@ -423,27 +533,41 @@
       "by": "дайындаушы {{creator}}",
       "share_title": "Бұл контентті бөліс",
       "share_success": "Сілтеме көшірілді!",
-      "copy_link": "Сілтемені көшіру"
+      "copy_link": "Сілтемені көшіру",
+      "audio_player_title_listen_to_article": "Бұл мақаланы тыңдаңыз",
+      "audio_player_subtitle_narrated_version": "Аудио қалайсыз ба? Дыбысталған нұсқасын қосыңыз.",
+      "audio_player_badge_listen_time": "{{minutes}} мин тыңдау",
+      "audio_player_play_label": "Қосу",
+      "audio_player_pause_label": "Кідірту",
+      "audio_player_seek_back_label": "{{seconds}} с артқа айналдыру",
+      "audio_player_seek_forward_label": "{{seconds}} с алға айналдыру",
+      "audio_player_helper_read_along": "Аудиомен бірге оқи аласыз немесе тек тыңдап дем ала аласыз."
     },
     "provider-overview-page": {
       "heading": "Консультант туралы мәліметтер"
     },
     "my-qa-page": {
       "modal_heading": "Сұрақ қою үшін платформаға кіріңіз",
-      "modal_text": "Сұрақ қою және жауап алу үшін Сізде аккаунт болуы және жүйеге кіру қажет",
+      "modal_text": "Сұрақ қою және провайдерлерден жауап алу үшін платформаға кіріңіз, сіздің сұрағыңыз анонимді болады.",
       "modal_button_label": "Қосымшаға өту",
       "my_qa_answer_title": "Менің Q&A қалай жұмыс істейді?",
-      "my_qa_answer_text": "Менің Q&A - бұл uSupport провайдерлерінен сұрақ қоюға және жауап алуға мүмкіндік беретін функция."
+      "my_qa_answer_text": "Менің Q&A - бұл uSupport провайдерлерінен сұрақ қоюға және жауап алуға мүмкіндік беретін функция.",
+      "modal_heading_consultation": "Кеңес алу үшін платформаға кіріңіз",
+      "modal_text_consultation": "Провайдермен кеңес алу үшін платформаға кіріңіз."
     },
     "video-information-page": {
       "more_videos": "Көбірек видеолар",
       "view_more": "Толығырақ көру",
-      "not_found": "Видео табылмады"
+      "not_found": "Видео табылмады",
+      "require_cookies": "Бұл видео көру үшін, барлық cookie-лерді қабылдаңыз.",
+      "cookie_preferences": "Cookie параметрлері",
+      "share_success": "Видео сілтемесі буферге көшірілді"
     },
     "podcast-information-page": {
       "more_podcasts": "Көбірек подкасттар",
       "view_more": "Толығырақ көру",
-      "not_found": "Подкаст табылмады"
+      "not_found": "Подкаст табылмады",
+      "share_success": "Сілтеме көшірілді!"
     },
     "organizations-page": {
       "heading": "Ұйымдар"
@@ -451,6 +575,19 @@
     "organization-overview-page": {
       "heading": "Ұйымға шолу",
       "subheading": "Сіз таңдаған ұйымның профиліне толық шолу"
+    },
+    "sos-center-page": {
+      "heading": "SOS-орталық",
+      "subheading": "Егер сіз немесе қасыңыздағы адам дереу қауіп-қатерде болса, жедел көмек пен жергілікті қызметтерге жылдам қол жеткізіңіз."
+    },
+    "privacy-policy-page": {
+      "heading": "Құпиялық саясаты"
+    },
+    "cookie-policy-page": {
+      "heading": "Cookie саясаты"
+    },
+    "terms-of-use-page": {
+      "heading": "Пайдалану шарттары"
     }
   },
   "modals": {
@@ -471,5 +608,9 @@
       "cta_label": "Сүзгілерді қолданыңыз",
       "secondary_cta_label": "Сүзгілерді қалпына келтіру"
     }
+  },
+  "meta": {
+    "description": "Психикалық денсаулығыңызды басты орынға қою үшін жасалған алғашқы платформа. uSupport сіздің жалпы әл-ауқатыңыз үшін жекелендірілген, құпия және жедел психологиялық көмекті ұсынады.",
+    "title": "uSupport Веб-сайты"
   }
 }

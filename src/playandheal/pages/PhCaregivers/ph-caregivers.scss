@@ -1,0 +1,259 @@
+@import "../../styles/ph";
+
+// Variant 2.2 caregivers page
+.ph-caregivers {
+  color: var(--ph-foreground);
+
+  &__eyebrow {
+    font-family: var(--ph-font);
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+    text-transform: uppercase;
+    color: var(--ph-foreground);
+  }
+
+  &__text {
+    @include ph-body-lg;
+    color: var(--ph-foreground);
+  }
+
+  &__title {
+    font-family: var(--ph-font-display);
+    font-weight: 700;
+    font-size: 2.8rem;
+    line-height: 3.6rem;
+
+    @include ph-desktop-up {
+      font-size: 3.6rem;
+      line-height: 4.5rem;
+    }
+  }
+
+  &__card-title {
+    font-family: var(--ph-font-display);
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 2.8rem;
+    color: var(--ph-foreground);
+
+    @include ph-desktop-up {
+      font-size: 2.4rem;
+      line-height: 3.8rem;
+    }
+  }
+
+  &__heading {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  // Welcome banner
+  &__welcome {
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+    align-self: stretch;
+    padding: 2.8rem 2.4rem;
+    border-radius: var(--ph-radius-2xl);
+    background: var(--ph-surface-mint);
+
+    @include ph-desktop-up {
+      flex-direction: row;
+      align-items: center;
+      gap: 4rem;
+      padding: 4rem;
+    }
+  }
+
+  &__welcome-copy {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.6rem;
+  }
+
+  &__welcome-title {
+    @include ph-h1;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  &__welcome-artwork {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 38 / 30;
+    object-fit: cover;
+    border-radius: var(--ph-radius-xl);
+
+    @include ph-desktop-up {
+      flex-shrink: 0;
+      width: 38rem;
+    }
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+    scroll-margin-top: 2.4rem;
+  }
+
+  // Tinted panels (sections 03 and 05)
+  &__panel {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+    padding: 2.8rem 2rem;
+    border-radius: var(--ph-radius-2xl);
+
+    @include ph-tablet-up {
+      padding: 3.2rem;
+    }
+
+    &--lavender {
+      background: var(--ph-surface-lavender);
+    }
+
+    &--sand {
+      background: var(--ph-surface-sand);
+
+      @include ph-desktop-up {
+        padding: 4rem;
+      }
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    &--three {
+      @include ph-tablet-up {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 2.4rem;
+      }
+    }
+
+    &--five {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+
+      @include ph-tablet-up {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      @include ph-desktop-up {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+
+      // Odd last card spans the full row on the two-column mobile grid
+      > li:last-child:nth-child(odd) {
+        @include ph-mobile-only {
+          grid-column: 1 / -1;
+        }
+      }
+    }
+
+    &--videos {
+      gap: 2.4rem;
+
+      @include ph-tablet-up {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      @include ph-desktop-up {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+  }
+
+  &__invitation {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    padding: 2.4rem;
+    border-radius: var(--ph-radius-xl);
+    background: var(--ph-surface-soft);
+  }
+
+  &__characteristic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.6rem;
+    border: 1px solid var(--ph-border);
+    border-radius: var(--ph-radius-xl);
+    background: var(--ph-background);
+    text-align: center;
+
+    img {
+      width: 8rem;
+      height: 8.8rem;
+      object-fit: contain;
+
+      @include ph-desktop-up {
+        width: 10rem;
+        height: 11rem;
+      }
+    }
+
+    .ph-caregivers__card-title {
+      font-size: 1.8rem;
+      line-height: 2.6rem;
+
+      @include ph-desktop-up {
+        font-size: 2.4rem;
+        line-height: 3.8rem;
+      }
+    }
+
+    .ph-caregivers__text {
+      font-size: 1.5rem;
+      line-height: 2.4rem;
+
+      @include ph-desktop-up {
+        font-size: 1.8rem;
+        line-height: 2.8rem;
+      }
+    }
+  }
+
+  &__question {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    padding: 2.4rem;
+    border-radius: var(--ph-radius-xl);
+    background: var(--ph-background);
+  }
+
+  &__status {
+    @include ph-body;
+    padding: 4rem 2.4rem;
+    border-radius: var(--ph-radius-xl);
+    background: var(--ph-surface-soft);
+    text-align: center;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+    padding-top: 0.4rem;
+
+    .ph-button {
+      min-width: 24rem;
+
+      @include ph-mobile-only {
+        width: 100%;
+      }
+    }
+  }
+}

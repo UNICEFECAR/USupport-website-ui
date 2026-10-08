@@ -1,10 +1,10 @@
 import React, { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import {
   Block,
-  Button,
+  NewButton,
   Grid,
   GridItem,
   Loading,
@@ -12,7 +12,11 @@ import {
 } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 
-import { useGetProvidersData, useEventListener } from "#hooks";
+import {
+  useGetProvidersData,
+  useEventListener,
+  useCustomNavigate as useNavigate,
+} from "#hooks";
 
 import "./meet-our-providers.scss";
 
@@ -35,29 +39,25 @@ export const MeetOurProviders = () => {
     return t("show_more_btn");
   }, [i18n.language, language]);
 
-  const isGlobalOrRomania =
-    localStorage.getItem("country") === "global" ||
-    localStorage.getItem("country") === "RO";
-
-  const [showContent, setShowContent] = useState(!isGlobalOrRomania);
+  const [country, setCountry] = useState(localStorage.getItem("country"));
+  const isInGlobalCountry = country === "global" || !country;
+  const showContent = country !== "RO";
 
   useEventListener("countryChanged", () => {
-    const country = localStorage.getItem("country");
-
-    const shouldHide = country === "global" || country === "RO";
-
-    setShowContent(!shouldHide);
+    setCountry(localStorage.getItem("country"));
   });
 
   const providersQuery = useGetProvidersData({
     random: false,
-    limit: 3,
+    limit: width >= 1366 ? 12 : 10,
     width,
     enabled: showContent,
+    isInGlobalCountry,
   });
 
-  const redirectToDetails = (id) => {
-    navigate(`/${language}/about-us/provider?id=${id}`);
+  const redirectToDetails = (id, providerCountry) => {
+    const countryQuery = providerCountry ? `&country=${providerCountry}` : "";
+    navigate(`/provider-overview?id=${id}${countryQuery}`);
   };
 
   if (!showContent) {
@@ -68,10 +68,10 @@ export const MeetOurProviders = () => {
     <Block classes="meet-our-providers" id="meet-our-providers">
       <Grid classes="meet-our-providers__main-grid">
         <GridItem md={8} lg={12}>
-          <h2>{t("heading")}</h2>
+          <h1 className="meet-our-providers__heading">{t("heading")}</h1>
         </GridItem>
         <GridItem md={8} lg={12} classes="meet-our-providers__subheading">
-          <p className="text">{t("paragraph")}</p>
+          <p className="paragraph">{t("paragraph")}</p>
         </GridItem>
 
         <GridItem md={8} lg={12} classes="meet-our-providers__providers-item">
@@ -82,18 +82,22 @@ export const MeetOurProviders = () => {
               </GridItem>
             ) : (
               providersQuery.data?.pages.flat().map((provider, index) => {
-                const specializations = Array.isArray(provider.specializations)
-                  ? provider.specializations.map((x) => t(x)).join(", ")
-                  : "";
-
                 return (
-                  <GridItem md={4} lg={4} key={index}>
+                  <GridItem
+                    md={4}
+                    lg={4}
+                    key={provider.providerDetailId || index}
+                  >
                     <CardProviderSmall
                       providerName={`${provider.name} ${provider.patronym} ${provider.surname}`}
-                      description={specializations}
+                      specializationKeys={provider.specializations}
                       image={provider.image}
+                      t={t}
                       onClick={() =>
-                        redirectToDetails(provider.providerDetailId)
+                        redirectToDetails(
+                          provider.providerDetailId,
+                          provider.country
+                        )
                       }
                     />
                   </GridItem>
@@ -105,16 +109,17 @@ export const MeetOurProviders = () => {
                 <Loading padding="5rem" />
               </GridItem>
             )}
-            {providersQuery.hasNextPage ? (
+            {!isInGlobalCountry && providersQuery.hasNextPage ? (
               <GridItem
                 md={8}
                 lg={12}
                 classes="meet-our-providers__providers-item__load-more"
               >
-                <Button
+                <NewButton
                   onClick={providersQuery.fetchNextPage}
                   size="lg"
                   label={buttonLabel}
+                  classes="meet-our-providers__providers-item__load-more__button"
                 />
               </GridItem>
             ) : null}

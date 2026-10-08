@@ -1,10 +1,17 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  lazy,
+  Suspense,
+} from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   useParams,
   Navigate,
+  useSearchParams,
 } from "react-router-dom";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import {
@@ -16,13 +23,14 @@ import { useWebPSupportCheck } from "react-use-webp-support-check";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import Sitemap from "./Sitemap";
+
 import {
   Landing,
   SOSCenter,
   ContactUs,
   HowItWorks,
   NotFound,
-  AboutUs,
   InformationPortal,
   ArticleInformation,
   PrivacyPolicy,
@@ -35,35 +43,49 @@ import {
   PodcastInformation,
   Organizations,
   OrganizationOverview,
+  Reports,
 } from "#pages";
-import { ThemeContext } from "@USupport-components-library/utils";
+// import { Wysa, WysaButton } from "@USupport-components-library/src";
+import {
+  ThemeContext,
+  generateVisitorId,
+} from "@USupport-components-library/utils";
 import { userSvc } from "@USupport-components-library/services";
 
 import { useEventListener } from "#hooks";
+import { isPlayAndHeal } from "./playandheal/config";
+import { isHosnElHal } from "./hosnelhal/config";
 
-// AOS imports
+// Play and Heal (PS) has its own design system and pages
+const PlayAndHealRoutes = lazy(() => import("./playandheal"));
+// Hosn El Hal is served on its own domain with the program kit design
+const HosnElHalRoutes = lazy(() => import("./hosnelhal"));
+
 import "aos/dist/aos.css";
 import AOS from "aos";
 
 import "./App.scss";
 
-// Create a react-query client
 const queryClient = new QueryClient({
   defaultOptions: { queries: { refetchOnWindowFocus: false } },
 });
 
 function App() {
   const supportsWebP = useWebPSupportCheck();
-  document.body.classList.add(`${supportsWebP ? "webp" : "no-webp"}`);
 
-  AOS.init({
-    offset: 10,
-    duration: 1000,
-    easing: "ease-in-sine",
-    delay: 300,
-    anchorPlacement: "top-bottom",
-    once: false,
-  });
+  // Only run browser-specific code when not prerendering
+  useEffect(() => {
+    document.body.classList.add(`${supportsWebP ? "webp" : "no-webp"}`);
+
+    AOS.init({
+      offset: 10,
+      duration: 1000,
+      easing: "ease-in-sine",
+      delay: 300,
+      anchorPlacement: "top-bottom",
+      once: false,
+    });
+  }, [supportsWebP]);
 
   const getDefaultTheme = () => {
     const localStorageTheme = localStorage.getItem("default-theme");
@@ -73,9 +95,41 @@ function App() {
   const [theme, setTheme] = useState(getDefaultTheme());
   const [showContent, setShowContent] = useState(false);
   const [allLanguages, setAllLanguages] = useState([]);
+  // null until the country settings are fetched in Page
+  const [isPodcastsActive, setIsPodcastsActive] = useState(null);
+  const [isVideosActive, setIsVideosActive] = useState(null);
+  const [isWysaModalOpen, setIsWysaModalOpen] = useState(false);
+  const [country, setCountry] = useState(
+    localStorage.getItem("country") || null
+  );
+
+  const [cookieState, setCookieState] = useState({
+    hasAcceptedCookies: false,
+    hasHandledCookies: false,
+    isBannerOpen: false,
+  });
 
   useEffect(() => {
     const lang = localStorage.getItem("language");
+    const hasAcceptedCookies = !!Number(
+      localStorage.getItem("acceptAllCookies")
+    );
+    const hasHandledCookies = !!Number(
+      localStorage.getItem("hasHandledCookies")
+    );
+    const visitorId = localStorage.getItem("visitorId");
+
+    if (!visitorId) {
+      const visitorId = generateVisitorId();
+      localStorage.setItem("visitorId", visitorId);
+    }
+
+    setCookieState({
+      hasAcceptedCookies,
+      hasHandledCookies,
+      isBannerOpen: hasHandledCookies ? false : true,
+    });
+
     if (!lang) {
       localStorage.setItem("language", "en");
     }
@@ -86,18 +140,57 @@ function App() {
     localStorage.setItem("default-theme", theme);
   }, [theme]);
 
+  useEffect(() => {
+    const handler = () => {
+      const currentCountry = localStorage.getItem("country");
+      setCountry(currentCountry);
+    };
+    window.addEventListener("countryChanged", handler);
+
+    return () => {
+      window.removeEventListener("countryChanged", handler);
+    };
+  }, []);
+
+  const IS_CY = country === "CY";
+  const is_staging = window.location.href.includes("staging");
+  const IS_DEV = import.meta.env.MODE === "development";
+  const SHOW_WYSA = is_staging || IS_DEV;
+
   return (
     <ThemeContext.Provider
-      value={{ theme, setTheme, allLanguages, setAllLanguages }}
+      value={{
+        theme,
+        setTheme,
+        allLanguages,
+        setAllLanguages,
+        isPodcastsActive,
+        setIsPodcastsActive,
+        isVideosActive,
+        setIsVideosActive,
+        cookieState,
+        setCookieState,
+        isWysaModalOpen,
+        setIsWysaModalOpen,
+      }}
     >
       <ToastContainer />
 
-      <div className={`theme-${theme}`}>
+      <div className={isHosnElHal() ? undefined : `theme-${theme}`}>
         <QueryClientProvider client={queryClient}>
           {showContent && <Root />}
           <ReactQueryDevtools initialOpen />
         </QueryClientProvider>
       </div>
+      {/* {IS_CY && SHOW_WYSA && (
+        <>
+          <WysaButton onClick={() => setIsWysaModalOpen(true)} />
+          <Wysa
+            isOpen={isWysaModalOpen}
+            onClose={() => setIsWysaModalOpen(false)}
+          />
+        </>
+      )} */}
     </ThemeContext.Provider>
   );
 }
@@ -105,7 +198,45 @@ function App() {
 const LanguageLayout = () => {
   const { language } = useParams();
 
-  const allLangs = ["en", "ru", "kk", "pl", "uk"];
+  const allLangs = ["en", "ru", "kk", "pl", "uk", "hy", "ro", "ar", "tr", "el"];
+
+  const IS_PS = isPlayAndHeal();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const source = searchParams.get("source");
+
+  useQuery(
+    ["playandheal-visit"],
+    () => {
+      const eventType =
+        source === "qr" ? "playandheal_visit_qr" : "playandheal_visit";
+      if (source === "qr") {
+        setSearchParams((prev) => {
+          prev.delete("source");
+          return prev;
+        });
+      }
+      return userSvc.addCountryEvent({
+        eventType,
+      });
+    },
+    { enabled: IS_PS }
+  );
+
+  if (isHosnElHal()) {
+    return (
+      <Suspense fallback={null}>
+        <HosnElHalRoutes />
+      </Suspense>
+    );
+  }
+
+  if (IS_PS) {
+    return (
+      <Suspense fallback={null}>
+        <PlayAndHealRoutes />
+      </Suspense>
+    );
+  }
 
   if (!allLangs.includes(language) || !language) {
     return <Navigate to="/en" />;
@@ -114,22 +245,24 @@ const LanguageLayout = () => {
   return (
     <Routes>
       <Route path="" element={<Landing />} />
+
       <Route path="how-it-works" element={<HowItWorks />} />
+
       {/* <Route path="/about-us" element={<AboutUs />} /> */}
       <Route path="about-us" element={<CustomAboutUs />} />
-      <Route path="about-us/provider" element={<ProviderOverview />} />
+      <Route path="provider-overview" element={<ProviderOverview />} />
       <Route path="contact-us" element={<ContactUs />} />
       <Route path="information-portal" element={<InformationPortal />} />
       <Route
-        path="information-portal/article/:id"
+        path="information-portal/article/:id/:name"
         element={<ArticleInformation />}
       />
       <Route
-        path="information-portal/video/:id"
+        path="information-portal/video/:id/:name"
         element={<VideoInformation />}
       />
       <Route
-        path="information-portal/podcast/:id"
+        path="information-portal/podcast/:id/:name"
         element={<PodcastInformation />}
       />
       <Route path="my-qa" element={<MyQA />} />
@@ -164,17 +297,34 @@ const Root = () => {
   useEventListener("countryChanged", handler);
 
   useQuery({
+    queryKey: ["addGlobalVisit", country],
+    queryFn: async () => {
+      await userSvc.addCountryEvent({
+        eventType: "global_visit",
+      });
+      return true;
+    },
+    enabled: country === "global",
+  });
+
+  useQuery({
     queryKey: ["addPlatformAccess", country],
     queryFn: async () => {
       await userSvc.addPlatformAccess("website");
       setHasAddedPlatformAccess(true);
       return true;
     },
-    enabled: !!country && !hasAddedPlatformAccess && country !== "global",
+    enabled:
+      !!country &&
+      !hasAddedPlatformAccess &&
+      country !== "global" &&
+      country !== "PS",
   });
   return (
     <Router basename="/">
       <Routes>
+        <Route path="/sitemap" element={<Sitemap />} />
+        <Route path="/reports" element={<Reports />} />
         <Route path="/" element={<Navigate to={`/${language}`} replace />} />
         <Route path=":language/*" element={<LanguageLayout />} />
         <Route path="*" element={<NotFound />} />

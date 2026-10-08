@@ -3,23 +3,21 @@
 .meet-our-providers {
   padding-top: $spacing_6_4;
   padding-bottom: $spacing_4_0;
+  @include themify($themes, "background", "color_green_transparent_1");
 
   @media screen and (min-width: $screen-lg) {
     padding-top: $spacing_10_0;
     padding-bottom: $spacing_9_6;
   }
 
-  &__main-grid {
-    place-items: center;
+  &__heading {
+    text-align: left;
   }
 
   &__subheading {
-    align-self: center;
-    justify-self: center;
-    max-width: $screen-sm;
     padding-top: $spacing_3_2;
     place-self: center;
-    text-align: center;
+    text-align: left;
 
     @media screen and (min-width: $screen-md) {
       padding-top: $spacing_2_4;
@@ -37,10 +35,20 @@
 
     &__load-more {
       padding-top: $spacing_1_8;
+
+      &__button {
+        margin: 0 auto;
+      }
     }
   }
 
   &__secondary-grid {
-    place-items: center;
+    justify-items: stretch;
+    align-items: stretch;
+    grid-gap: $spacing_2_4;
+
+    @media screen and (min-width: $screen-lg) {
+      grid-gap: $spacing_3_2;
+    }
   }
 }

@@ -3,72 +3,24 @@
 .contact-us {
   @include full-height-page-navbar;
 
-  background-image: url("./assets/Background.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-blend-mode: lighten;
-  background-position: center;
-  padding-top: $spacing_3_2;
+  background-color: #e6f4fb;
   padding-bottom: $spacing_6_4;
   position: relative;
   text-align: left;
 
+  .theme-dark &,
+  .theme-highContrast & {
+    background-color: transparent;
+  }
+
   @media screen and (min-width: $screen-lg) {
-    padding-top: $spacing_5_6;
+    padding-top: $spacing_6_4;
   }
 
   &__main-grid {
-    row-gap: 0;
-    place-items: center;
-    padding-top: $spacing_20_0;
-    @media screen and (min-width: $screen-md) {
-      padding-top: $spacing_5_0;
-    }
-  }
-
-  &__secondary-grid {
-    row-gap: 0;
-    padding-top: $spacing_5_0;
-  }
-
-  &__heading-item {
-    text-align: center;
-    place-self: center;
-  }
-
-  &__heading {
-    color: $color_white_ff !important;
-  }
-
-  &__subheading-item {
-    padding-top: $spacing_2_4;
-    max-width: 34.3rem;
-    @media screen and (min-width: $screen-md) {
-      max-width: 36.8rem;
-    }
-  }
-
-  &__form-item {
-    margin-top: $spacing_2_4;
-
-    @media screen and (min-width: $screen-md) {
-      width: calc(100% + 8rem);
-      margin-right: $spacing_12_0;
-    }
-
-    .contact-us__form {
-      // background-color: $color_white_ff;
-      @include themify($themes, "background-color", "color_white_ff");
-      border-radius: $border_radius_3_2;
-      padding: $spacing_3_2 $spacing_1_2 $spacing_1_6 $spacing_1_2;
-      box-shadow: $shadow_1;
-      margin: 0 auto;
-
-      @media screen and (min-width: $screen-md) {
-        padding: $spacing_2_4 $spacing_4_0 $spacing_2_0 $spacing_4_0;
-        margin-left: 0;
-      }
-    }
+    row-gap: $spacing_4_0;
+    padding-top: $spacing_6_4;
+    align-items: center;
   }
 
   &__mascot-item {
@@ -77,15 +29,20 @@
     align-items: center;
     max-width: 38rem;
     margin-left: auto;
-    margin-top: $spacing_3_0;
+    margin-top: $spacing_3_2;
 
     @media screen and (min-width: $screen_md) {
       max-width: 34rem;
-      margin-top: $spacing_24_0;
+      margin-top: $spacing_6_4;
     }
 
     @media screen and (min-width: $screen_lg) {
       max-width: 56rem;
     }
+  }
+
+  &__form {
+    padding-top: $spacing_2_0;
+    max-width: 54rem;
   }
 }

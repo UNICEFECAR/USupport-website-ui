@@ -8,6 +8,10 @@
     padding: $spacing_3_4 $spacing_40_3 $spacing_4_0 $spacing_40_3;
   }
 
+  &--rtl {
+    direction: rtl;
+  }
+
   &__no-results {
     padding: $spacing_10_0;
   }

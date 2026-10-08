@@ -13,16 +13,21 @@ export default function useSendIssueEmail(onSuccess, onError) {
       subject: payload.subjectLabel,
       title: payload.title,
       text: payload.text,
-    });
-
-    const addFormPromise = userSvc.addContactForm({
-      subject: payload.subjectValue,
       email: payload.email,
-      message: payload.text,
-      sentFrom: "website",
     });
 
-    await Promise.all([emailPromise, addFormPromise]);
+    const promises = [emailPromise];
+    if (localStorage.getItem("country") !== "global") {
+      const addFormPromise = userSvc.addContactForm({
+        subject: payload.subjectValue,
+        email: payload.email,
+        message: payload.text,
+        sentFrom: "website",
+      });
+
+      promises.push(addFormPromise);
+    }
+    await Promise.all(promises);
     return true;
   };
 

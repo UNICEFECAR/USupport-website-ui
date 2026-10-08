@@ -1,0 +1,156 @@
+{
+  "common": {
+    "site_title": "Hosn El Hal · Teacher wellbeing resources",
+    "site_description": "A wellbeing resource hub for teachers, by UNICEF: short videos, audios, worksheets and visual messages.",
+    "skip_to_content": "Skip to content",
+    "nav_label": "Main navigation",
+    "nav_home": "Home",
+    "nav_resources": "Resources",
+    "nav_how_to_use": "How to Use",
+    "nav_about": "About",
+    "language_label": "Language",
+    "logo_hosnelhal": "Hosn El Hal - home",
+    "logo_unicef": "UNICEF",
+    "footer_text": "Hosn El Hal · Teacher wellbeing resources",
+    "footer_links_label": "Legal",
+    "privacy_policy": "Privacy Policy",
+    "terms_of_use": "Terms of Use",
+    "cookie_policy": "Cookie Policy",
+    "loading": "Loading…",
+    "error": "Something went wrong. Please try again later."
+  },
+  "formats": {
+    "video": "Video",
+    "audio": "Audio",
+    "worksheet": "PDF",
+    "thumbnail": "Visual message"
+  },
+  "open": {
+    "video": "Watch →",
+    "audio": "Listen →",
+    "worksheet": "View PDF →",
+    "thumbnail": "View →"
+  },
+  "card": {
+    "download": "Download ↓",
+    "download_aria": "Download {{title}}",
+    "minutes": "{{count}} min",
+    "pages_one": "{{count}} page",
+    "pages_other": "{{count}} pages"
+  },
+  "filters": {
+    "label": "Filter resources",
+    "search_label": "Search resources",
+    "search_placeholder": "Search resources…",
+    "search_submit": "Search",
+    "topic": "Topic",
+    "all_topics": "All Topics",
+    "format": "Format",
+    "all_formats": "All Formats",
+    "length": "Length",
+    "any_length": "Any Length",
+    "length_short": "Under 5 min",
+    "length_medium": "5–15 min",
+    "length_long": "Over 15 min",
+    "language": "Language",
+    "all_languages": "All Languages",
+    "reset": "Reset ↺",
+    "no_results": "No resources match your search. Try other filters.",
+    "results_count": "{{count}} resources",
+    "no_resources": "No resources have been published yet."
+  },
+  "usage": {
+    "title": "How to Use Hosn el Hal",
+    "me_title": "For myself",
+    "me_text": "Use a resource whenever you need a wellbeing moment.",
+    "team_title": "With colleagues",
+    "team_text": "Share or experience a resource together.",
+    "school_title": "Within existing spaces",
+    "school_text": "Integrate a resource into a meeting, training, orientation or other professional learning/support space."
+  },
+  "home": {
+    "eyebrow": "Welcome to Hosn el Hal · حسن الحال",
+    "title": "A wellbeing resource hub for teachers, by UNICEF",
+    "lead": "Hosn el Hal is a curated collection of wellbeing resources designed to support teachers' mental health and self-care. Here you can find practical tools, guided moments, and reassuring reminders to help you care for yourself and support your school community.",
+    "explore": "Explore Hosn el Hal",
+    "view_all": "View all ›"
+  },
+  "resources": {
+    "title": "Resources",
+    "lead": "Browse audio, video, PDFs and visual messages. No account needed.",
+    "all": "All Resources"
+  },
+  "how_to_use": {
+    "title": "How to Use Hosn el Hal",
+    "lead": "Hosn el Hal is flexible. There is no required sequence and no standalone training needed. Resources can be used independently or combined.",
+    "steps_title": "Using the resources",
+    "step_find_title": "1. Find a resource",
+    "step_find_text": "Search or filter by topic, format, length and language.",
+    "step_open_title": "2. Open and use",
+    "step_open_text": "Watch videos, listen to audio, and view visual messages or PDFs in your browser.",
+    "step_download_title": "3. Download for later",
+    "step_download_text": "Download resources for offline use. Print-ready and mobile-friendly versions support different settings.",
+    "practical_title": "In trainings and staff meetings",
+    "practical_text": "Use a resource on your own, with a small group of colleagues, or with the wider school team. The short notes with each resource provide practical suggestions.",
+    "browse": "Browse resources"
+  },
+  "about": {
+    "title": "About Hosn El Hal",
+    "lead": "Simple, practical wellbeing resources for teachers and education personnel.",
+    "background_title": "Supporting teacher wellbeing",
+    "background_text_1": "Hosn el Hal is a teacher wellbeing resource developed by UNICEF to support teachers and education personnel in caring for their own wellbeing.",
+    "background_text_2": "It brings together short, practical and accessible resources in different formats, including videos, audio, visual messages and PDFs. The resources offer simple moments for reflection, self-awareness, regulation and connection, and can be used flexibly depending on what feels useful at the time.",
+    "background_text_3": "Hosn el Hal was developed with input from teachers and education professionals across the region, helping ensure that the resources are relevant, relatable and grounded in their everyday realities.",
+    "hub_title": "A simple, accessible space",
+    "hub_text": "This hub brings all Hosn el Hal resources together in one place. There is no required sequence and no need to complete everything. Explore the resources, choose what feels useful to you, and return whenever you need a moment for your wellbeing.",
+    "explore": "Explore resources →"
+  },
+  "asset": {
+    "back": "Back to resources",
+    "not_found": "This resource could not be found.",
+    "video_processing": "This video is being prepared. Please check back soon.",
+    "audio_processing": "This audio is being prepared. Please check back soon.",
+    "download_title": "Download resource",
+    "download_text": "Keep a copy to use offline.",
+    "download_video": "Download video ↓",
+    "download_audio": "Download audio ↓",
+    "download_worksheet": "Download PDF ↓",
+    "download_thumbnail": "Download visual ↓",
+    "download_print": "Print-ready version ↓",
+    "no_account": "No account required",
+    "how_title": "How to use this resource",
+    "how_text": "Use this material on your own, with colleagues, or with your school team. See How to Use for guidance on using resources in trainings and staff meetings.",
+    "setting_alone": "On your own",
+    "setting_small_group": "With colleagues",
+    "setting_school_team": "With your school team",
+    "download_mobile": "Mobile-friendly version ↓",
+    "how_link": "How to Use →"
+  },
+  "pdf": {
+    "previous_page": "Previous page",
+    "next_page": "Next page",
+    "page_of": "Page {{page}} of {{total}}",
+    "zoom_in": "Zoom in",
+    "zoom_out": "Zoom out",
+    "print": "Print",
+    "download": "Download ↓",
+    "loading": "Loading PDF…",
+    "error": "The PDF could not be displayed. You can still download it."
+  },
+  "legal": {
+    "no_content": "This page is not available yet."
+  },
+  "media": {
+    "play": "Play",
+    "pause": "Pause",
+    "play_audio": "Play audio",
+    "pause_audio": "Pause audio",
+    "seek": "Playback position",
+    "mute": "Mute",
+    "unmute": "Unmute",
+    "fullscreen": "Full screen",
+    "playback_mode": "Playback",
+    "with_visuals": "Video",
+    "listen_only": "Listen only (uses less data)"
+  }
+}

@@ -2,15 +2,8 @@
 @import "@USupport-components-library/styles";
 
 .page__how-it-works {
-  background-image: url("./assets/how-it-works-mobile.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position-y: $spacing_7_0;
-  min-width: 40.7rem;
+  padding-top: $spacing_12_8;
 
-  @media screen and (min-width: $screen-md) {
-    background-image: url("./assets/how-it-works.png");
-  }
   &__faq-item {
     padding-top: $spacing_5_6;
     padding-bottom: $spacing_6_4;
@@ -20,5 +13,9 @@
     @media screen and (min-width: $screen-lg) {
       width: 93rem;
     }
+  }
+
+  & .faq {
+    padding-bottom: $spacing_4_8;
   }
 }

@@ -1,0 +1,68 @@
+@import "../../styles/ph";
+
+.ph-network-invite {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 2.8rem 2.4rem;
+  border-radius: var(--ph-radius-xl);
+  background: var(--ph-surface-lavender);
+
+  @include ph-tablet-up {
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    padding: 3.6rem 2.8rem;
+    // Same order in both languages, as in the designs: icon on the left,
+    // button on the right. The copy and button keep their reading direction.
+    direction: ltr;
+  }
+
+  :where([dir="rtl"]) & &__content,
+  :where([dir="rtl"]) & &__button {
+    direction: rtl;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 6.4rem;
+    height: 6.4rem;
+    border-radius: var(--ph-radius-pill);
+    background: var(--ph-background);
+    color: var(--ph-foreground);
+
+    @include ph-tablet-up {
+      width: 8rem;
+      height: 8rem;
+    }
+  }
+
+  &__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  &__eyebrow {
+    @include ph-eyebrow;
+    color: var(--ph-foreground);
+  }
+
+  &__heading {
+    @include ph-h2;
+  }
+
+  &__text {
+    @include ph-body;
+  }
+
+  &__button {
+    flex-shrink: 0;
+    min-width: 20rem;
+  }
+}

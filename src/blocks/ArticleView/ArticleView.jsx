@@ -1,9 +1,19 @@
-import React, { useContext, useState } from "react";
+import React, {
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+  useRef,
+} from "react";
+import { useParams } from "react-router-dom";
 import propTypes from "prop-types";
+import classNames from "classnames";
 import { toast } from "react-toastify";
 
 import {
   Block,
+  AudioPlayer,
   Grid,
   GridItem,
   Icon,
@@ -12,39 +22,21 @@ import {
   Like,
   Loading,
 } from "@USupport-components-library/src";
-import { userSvc } from "@USupport-components-library/services";
-import { ThemeContext } from "@USupport-components-library/utils";
-// import { ShareModal } from "#modals";
+
+import { PDFViewer } from "#blocks/PDFViewer/PDFViewer";
+
+import { useAddContentEngagement, useEventListener } from "#hooks";
+
+import { userSvc, cmsSvc } from "@USupport-components-library/services";
+import {
+  ThemeContext,
+  createArticleSlug,
+  constructShareUrl,
+  getBrandingLogoUrl,
+  shouldTrackContentView,
+} from "@USupport-components-library/utils";
 
 import "./article-view.scss";
-
-const countriesMap = {
-  global: "global",
-  kz: "kazakhstan",
-  pl: "poland",
-  ro: "romania",
-};
-
-const constructShareUrl = ({ contentType, id }) => {
-  const country = localStorage.getItem("country");
-  const language = localStorage.getItem("language");
-  const subdomain = window.location.hostname.split(".")[0];
-
-  if (subdomain === "staging") {
-    return `https://staging.usupport.online/${language}/information-portal/${contentType}/${id}`;
-  }
-
-  if (country === "global") {
-    return `https://usupport.online/${language}/information-portal/${contentType}/${id}`;
-  }
-  const countryName = countriesMap[country.toLocaleLowerCase()];
-
-  if (window.location.hostname.includes("staging")) {
-    return `https://${countryName}.staging.usupport.online/${language}/information-portal/${contentType}/${id}`;
-  }
-  const url = `https://${countryName}.usupport.online/${language}/information-portal/${contentType}/${id}`;
-  return url;
-};
 
 /**
  * ArticleView
@@ -53,17 +45,100 @@ const constructShareUrl = ({ contentType, id }) => {
  *
  * @return {jsx}
  */
-export const ArticleView = ({ articleData, t }) => {
+export const ArticleView = ({ articleData, t, language }) => {
+  const { name } = useParams();
+
+  const IS_RTL = localStorage.getItem("language") === "ar";
+
   const creator = articleData.creator ? articleData.creator : null;
   const { theme } = useContext(ThemeContext);
 
+  const readCountryFromStorage = useCallback(
+    () =>
+      typeof localStorage !== "undefined"
+        ? localStorage.getItem("country") || "KZ"
+        : "KZ",
+    [],
+  );
+
+  const [syncedCountry, setSyncedCountry] = useState(readCountryFromStorage);
+
+  const onCountryChanged = useCallback(() => {
+    setSyncedCountry(readCountryFromStorage());
+  }, [readCountryFromStorage]);
+
+  useEventListener("countryChanged", onCountryChanged);
+
+  const heroImageSrc =
+    articleData.imageMedium ||
+    articleData.imageThumbnail ||
+    articleData.imageSmall ||
+    null;
+
+  const hasHeroImage = Boolean(heroImageSrc);
+
+  const heroBrandingFallbackUrl = useMemo(
+    () => getBrandingLogoUrl({ theme, countryCode: syncedCountry }),
+    [theme, syncedCountry],
+  );
+
   // const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isExportingPdf, setIsExportingPdf] = useState(false);
+  const [hasUpdatedUrl, setHasUpdatedUrl] = useState(false);
+  const [isShared, setIsShare] = useState(false);
+  const [hasTrackedAudioPlay, setHasTrackedAudioPlay] = useState(false);
+  const addContentEngagementMutation = useAddContentEngagement();
+
+  // Track view once per article per session window. The block is remounted on
+  // every background refetch of the article data, so the ref alone is not
+  // enough - the sessionStorage stamp is what survives the remount.
+  const trackedArticleIdRef = useRef(null);
+
+  useEffect(() => {
+    const articleId = articleData?.id;
+    if (!articleId) return;
+    if (trackedArticleIdRef.current === articleId) return;
+
+    if (!shouldTrackContentView("article", articleId)) {
+      trackedArticleIdRef.current = articleId;
+      return;
+    }
+
+    trackedArticleIdRef.current = articleId;
+    addContentEngagementMutation({
+      contentId: articleId,
+      contentType: "article",
+      action: "view",
+    });
+  }, [articleData?.id]);
 
   const url = constructShareUrl({
     contentType: "article",
     id: articleData.id,
+    name: articleData.title,
   });
+
+  useEffect(() => {
+    setHasUpdatedUrl(false);
+  }, [language]);
+
+  useEffect(() => {
+    setHasTrackedAudioPlay(false);
+  }, [articleData?.id]);
+
+  useEffect(() => {
+    if (articleData?.title && !hasUpdatedUrl) {
+      const currentSlug = createArticleSlug(articleData.title);
+      const urlSlug = name;
+
+      if (currentSlug !== urlSlug) {
+        const newUrl = `/${language}/information-portal/article/${articleData.id}/${currentSlug}`;
+
+        window.history.replaceState(null, "", newUrl);
+        setHasUpdatedUrl(true);
+      }
+    }
+  }, [articleData?.title, name, language, hasUpdatedUrl]);
 
   const handleExportToPdf = async () => {
     const language = localStorage.getItem("language") || "en";
@@ -108,117 +183,172 @@ export const ArticleView = ({ articleData, t }) => {
       // Clean up
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
+
+      addContentEngagementMutation({
+        contentId: articleData.id,
+        contentType: "article",
+        action: "download",
+      });
     } finally {
       setIsExportingPdf(false);
+
+      cmsSvc.addArticleDownloadCount(articleData.id);
     }
   };
 
   const handleCopyLink = () => {
     navigator?.clipboard?.writeText(url);
     toast(t("share_success"));
+    if (!isShared) {
+      cmsSvc.addArticleShareCount(articleData.id).then(() => {
+        setIsShare(true);
+      });
+    } // Track share engagement
+    addContentEngagementMutation({
+      contentId: articleData.id,
+      contentType: "article",
+      action: "share",
+    });
   };
 
+  const handleAudioPlay = () => {
+    if (hasTrackedAudioPlay) return;
+
+    addContentEngagementMutation({
+      contentId: articleData.id,
+      contentType: "article",
+      action: "listen",
+    });
+    setHasTrackedAudioPlay(true);
+  };
+
+  const SHOW_DOWNLOAD = !articleData.pdfUrl;
+
   return (
-    <Block classes="article-view">
-      <Grid classes="article-view__main-grid">
-        <GridItem md={8} lg={12} classes="article-view__title-item">
-          <div className="article-view__title-row">
-            <h3>{articleData.title}</h3>
-          </div>
-        </GridItem>
+    <Block classes={`article-view ${IS_RTL ? "article-view--rtl" : ""}`}>
+      <div className="article-view__content">
+        {/* Title */}
+        <h2 className="article-view__title">{articleData.title}</h2>
 
-        <GridItem md={8} lg={12} classes="article-view__category-item">
-          <div className="article-view__details-item__category">
-            <p className="small-text ">{articleData.categoryName}</p>
-          </div>
-        </GridItem>
-
-        <GridItem md={8} lg={12} classes="article-view__details-item">
-          {creator && <p className={"small-text"}>{t("by", { creator })}</p>}
-
+        {/* Author & meta row */}
+        <div className="article-view__meta">
+          {articleData.categoryName && (
+            <div className="article-view__category-badge">
+              <p className="small-text">{articleData.categoryName}</p>
+            </div>
+          )}
+          {creator && (
+            <p className="text article-view__creator">{t("by", { creator })}</p>
+          )}
+          <div className="article-view__meta-dot" />
           <Icon
-            color={theme === "dark" ? "#ffffff" : "#66768d"}
-            name={"time"}
+            name="time"
             size="sm"
+            color={theme === "dark" ? "#ffffff" : "#66768d"}
           />
-          <p className={"small-text"}>
-            {" "}
+          <p className="text">
             {articleData.readingTime} {t("min_read")}
           </p>
+        </div>
 
-          <div
-            onClick={handleExportToPdf}
-            className="article-view__details-item__download"
-          >
-            {isExportingPdf ? (
-              <Loading padding="0px" size="sm" />
-            ) : (
-              <Icon
-                color={theme === "dark" ? "#ffffff" : "#66768d"}
-                name="download"
-                size="sm"
-              />
-            )}
-          </div>
-          <div
-            className="article-view__details-item__download"
-            onClick={handleCopyLink}
-          >
-            <Icon
-              color={theme === "dark" ? "#ffffff" : "#66768d"}
-              name="share"
-              size="sm"
-            />
-          </div>
-        </GridItem>
-
-        <GridItem xs={3} md={6} lg={8} classes="article-view__labels-item">
-          {articleData.labels.map((label, index) => {
-            return (
+        {/* Labels */}
+        {articleData.labels.length > 0 && (
+          <div className="article-view__labels">
+            {articleData.labels.map((label, index) => (
               <Label
-                classes={"article-view__label"}
+                classes="article-view__label"
                 text={label.name}
                 key={index}
               />
-            );
-          })}
-        </GridItem>
+            ))}
+          </div>
+        )}
 
-        <GridItem xs={1} md={2} lg={4} classes="article-view__like-item">
-          <Like
-            likes={articleData.likes || 0}
-            isLiked={articleData.contentRating?.isLikedByUser || false}
-            dislikes={articleData.dislikes || 0}
-            isDisliked={articleData.contentRating?.isDislikedByUser || false}
+        {/* Separator */}
+        <div className="article-view__separator" />
+
+        {/* Action bar */}
+        <div className="article-view__actions">
+          <div className="article-view__actions-left">
+            {SHOW_DOWNLOAD && (
+              <Like
+                likes={articleData.likes || 0}
+                isLiked={articleData.contentRating?.isLikedByUser || false}
+                dislikes={articleData.dislikes || 0}
+                isDisliked={
+                  articleData.contentRating?.isDislikedByUser || false
+                }
+              />
+            )}
+          </div>
+          <div className="article-view__actions-right">
+            {SHOW_DOWNLOAD && (
+              <>
+                <div
+                  onClick={handleExportToPdf}
+                  className="article-view__action-btn"
+                >
+                  {isExportingPdf ? (
+                    <Loading padding="0px" size="sm" />
+                  ) : (
+                    <Icon
+                      color={theme === "dark" ? "#ffffff" : "#66768d"}
+                      name="download"
+                    />
+                  )}
+                </div>
+                <div
+                  className="article-view__action-btn"
+                  onClick={handleCopyLink}
+                >
+                  <Icon
+                    color={theme === "dark" ? "#ffffff" : "#66768d"}
+                    name="share"
+                  />
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+
+        {/* Separator */}
+        <div className="article-view__separator" />
+
+        {/* Hero image / PDF */}
+        {!articleData.pdfUrl && (
+          <div
+            className={classNames("article-view__hero-slot", {
+              "article-view__hero-slot--branding-fallback": !hasHeroImage,
+            })}
+          >
+            <img
+              className={classNames("article-view__image", {
+                "article-view__image--branding-fallback": !hasHeroImage,
+              })}
+              src={hasHeroImage ? heroImageSrc : heroBrandingFallbackUrl}
+              alt={hasHeroImage ? articleData.title : "Logo"}
+            />
+          </div>
+        )}
+
+        {articleData.pdfUrl && <PDFViewer pdfUrl={articleData.pdfUrl} />}
+        {articleData.ttsUrl && (
+          <div className="article-view__audio-item">
+            <AudioPlayer
+              src={articleData.ttsUrl}
+              onPlay={handleAudioPlay}
+              t={t}
+            />
+          </div>
+        )}
+        {/* Article body */}
+        <div className="article-view__body">
+          <Markdown
+            markDownText={articleData.bodyCK || articleData.body}
+            className={"text"}
           />
-        </GridItem>
-
-        <GridItem md={8} lg={12}>
-          <img
-            className="article-view__image-item"
-            src={
-              articleData.imageMedium
-                ? articleData.imageMedium
-                : "https://picsum.photos/300/400"
-            }
-            alt=""
-          />
-        </GridItem>
-
-        <GridItem md={8} lg={12} classes="article-view__body-item">
-          <Markdown markDownText={articleData.body} className={"text"} />
-        </GridItem>
-      </Grid>
-
-      {/* <ShareModal
-        isOpen={isShareModalOpen}
-        onClose={handleCloseShareModal}
-        contentUrl={url}
-        title={articleData.title}
-        shareTitle={t("share_title")}
-        successText={t("share_success")}
-        copyText={t("copy_link")}
-      /> */}
+        </div>
+      </div>
     </Block>
   );
 };
@@ -232,6 +362,7 @@ ArticleView.propTypes = {
     creator: propTypes.string,
     readingTime: propTypes.string,
     body: propTypes.string,
+    ttsUrl: propTypes.string,
     labels: propTypes.arrayOf(
       propTypes.shape({
         name: propTypes.string,

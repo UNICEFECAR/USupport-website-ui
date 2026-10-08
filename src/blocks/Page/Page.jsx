@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useNavigate, NavLink, Link } from "react-router-dom";
+
+import { NavLink, Link, useLocation } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation, Trans } from "react-i18next";
 import classNames from "classnames";
+import { Helmet } from "react-helmet";
 
 import {
   Navbar,
@@ -10,6 +12,8 @@ import {
   Footer,
   Icon,
   CookieBanner,
+  AccessibilityController,
+  Block,
 } from "@USupport-components-library/src";
 import { countrySvc, userSvc } from "@USupport-components-library/services";
 import {
@@ -19,7 +23,12 @@ import {
 } from "@USupport-components-library/utils";
 import { PasswordModal } from "@USupport-components-library/src";
 
-import { useError, useEventListener } from "#hooks";
+import {
+  useError,
+  useEventListener,
+  useCustomNavigate as useNavigate,
+  useAddSosCenterClick,
+} from "#hooks";
 
 import "./page.scss";
 
@@ -28,6 +37,8 @@ const globalCountry = {
   label: "Global",
   countryID: "global",
   iconName: "global",
+  podcastsActive: true,
+  videosActive: true,
 };
 
 /**
@@ -40,16 +51,28 @@ const globalCountry = {
 export const Page = ({
   additionalPadding = true,
   showGoBackArrow = false,
+  showBackground = false,
   heading,
   headingButton,
   classes,
   children,
 }) => {
-  const { theme, setTheme, setAllLanguages } = useContext(ThemeContext);
+  const {
+    theme,
+    setTheme,
+    setAllLanguages,
+    setIsPodcastsActive,
+    setIsVideosActive,
+    cookieState,
+    setCookieState,
+  } = useContext(ThemeContext);
   const navigateTo = useNavigate();
   const queryClient = useQueryClient();
   const { t, i18n } = useTranslation("blocks", { keyPrefix: "page" });
   const IS_DEV = process.env.NODE_ENV === "development";
+  const addCountryEventMutation = useMutation(
+    async (payload) => await userSvc.addCountryEvent(payload),
+  );
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -62,6 +85,9 @@ export const Page = ({
   );
   const [selectedCountry, setSelectedCountry] = useState();
   const [langs, setLangs] = useState([]);
+
+  const IS_PS = localStorageCountry === "PS";
+  const IS_CY = localStorageCountry === "CY";
 
   const changeLanguage = (language) => {
     i18n.changeLanguage(language.value);
@@ -78,7 +104,6 @@ export const Page = ({
     const subdomain = window.location.hostname.split(".")[0];
     const res = await countrySvc.getActiveCountriesWithLanguages();
     let hasSetDefaultCountry = false;
-
     if (
       subdomain &&
       subdomain !== "www" &&
@@ -88,14 +113,22 @@ export const Page = ({
       localStorageCountry =
         res.data.find((x) => x.name.toLocaleLowerCase() === subdomain)
           ?.alpha2 || localStorageCountry;
-      if (localStorageCountry) {
+      if (
+        localStorageCountry &&
+        localStorageCountry !== localStorage.getItem("country")
+      ) {
         localStorage.setItem("country", localStorageCountry);
+        window.dispatchEvent(new Event("countryChanged"));
       }
     }
 
     let shouldSelectCountry = true;
     if (subdomain === "usupport" || subdomain === "staging") {
       localStorage.setItem("country", "global");
+
+      setIsPodcastsActive(true);
+      setIsVideosActive(true);
+
       setSelectedCountry(globalCountry);
       shouldSelectCountry = false;
       const allLanguages = res.data.reduce((acc, x) => {
@@ -135,11 +168,15 @@ export const Page = ({
         currencySymbol: x["symbol"],
         localName: x["local_name"],
         languages: currentLanguages,
+        podcastsActive: x.podcasts_active,
+        videosActive: x.videos_active,
       };
 
       if (localStorageCountry === x.alpha2 && shouldSelectCountry) {
         setSelectedCountry(countryObject);
         setLangs(countryObject.languages);
+        setIsPodcastsActive(countryObject.podcastsActive);
+        setIsVideosActive(countryObject.videosActive);
         localStorage.setItem("currency_symbol", countryObject.currencySymbol);
       }
       return countryObject;
@@ -174,19 +211,34 @@ export const Page = ({
       (x, index, self) => index === self.findIndex((t) => t.value === x.value)
     );
 
+    if (localStorageCountry === "global") {
+      localStorage.setItem("country", "global");
+      setSelectedCountry(globalCountry);
+      setLangs(allLanguages);
+      setAllLanguages(allLanguages);
+      setIsPodcastsActive(true);
+      setIsVideosActive(true);
+    }
+
     if (
       subdomain === "staging" &&
       (!localStorageCountry || localStorageCountry === "global")
     ) {
+      localStorage.setItem("country", "global");
       setAllLanguages(allLanguages);
       setLangs(allLanguages);
+      setIsPodcastsActive(true);
+      setIsVideosActive(true);
     }
+
     if (!hasSetDefaultCountry && !localStorageCountry) {
       localStorage.setItem("country", "global");
       window.dispatchEvent(new Event("countryChanged"));
       setSelectedCountry(globalCountry);
       setLangs(allLanguages);
       setAllLanguages(allLanguages);
+      setIsPodcastsActive(true);
+      setIsVideosActive(true);
     }
 
     countries.unshift(globalCountry);
@@ -199,26 +251,64 @@ export const Page = ({
   });
 
   const { data: countries } = useQuery(["countries"], fetchCountries);
+  const country = localStorage.getItem("country");
 
-  const pages = [
-    { name: t("page_1"), url: "/", exact: true },
-    { name: t("page_2"), url: "/how-it-works" },
+  let pages = [
+    { name: t("page_1"), url: "/", exact: true, icon: "home" },
+    { name: t("page_2"), url: "/how-it-works", icon: "info" },
     {
       name: t("page_3"),
       url: "/about-us",
+      icon: "two-people",
     },
-    { name: t("page_4"), url: "/information-portal?tab=articles" },
-    { name: t("page_6"), url: "/my-qa" },
+    {
+      name: t("page_4"),
+      url: "/information-portal?tab=articles",
+      icon: "activities",
+    },
+    country === "RO"
+      ? { name: t("page_7"), url: "/organizations", icon: "home" }
+      : {
+          name: t("page_6"),
+          url: "/my-qa",
+          icon: "document",
+          onClick: () =>
+            addCountryEventMutation.mutate({
+              eventType: "web_my_qa_nav_click",
+            }),
+        },
   ];
 
-  const footerLists = {
+  if (IS_PS) {
+    pages = [
+      {
+        name: t("page_3"),
+        url: "/about-us",
+        icon: "two-people",
+      },
+      {
+        name: t("page_4"),
+        url: "/information-portal?tab=articles",
+        icon: "activities",
+      },
+    ];
+  }
+
+  let footerLists = {
     list1: [
       {
         name: t("footer_1"),
-        url: `/about-us`,
+        url: "/about-us",
       },
       { name: t("footer_2"), url: "/information-portal?tab=articles" },
-      { name: t("page_6"), url: "/my-qa" },
+      {
+        name: t("page_6"),
+        url: "/my-qa",
+        onClick: () =>
+          addCountryEventMutation.mutate({
+            eventType: "web_my_qa_nav_click",
+          }),
+      },
     ],
     list2: [
       { name: t("footer_4"), url: "/terms-of-use", exact: true },
@@ -226,11 +316,48 @@ export const Page = ({
       { name: t("footer_6"), url: "/cookie-policy" },
     ],
     list3: [
-      { name: t("footer_3"), url: "/how-it-works" },
-      { name: t("footer_7"), url: "/how-it-works?to=faq" },
-      { name: t("contact_us"), url: "/contact-us" },
+      {
+        name: t("footer_3"),
+        url: "/how-it-works",
+        onClick: () => {
+          if (!window.location.pathname.includes("/how-it-works")) return;
+          window.dispatchEvent(
+            new CustomEvent("how-it-works-nav", { detail: null })
+          );
+        },
+      },
+      {
+        name: t("footer_7"),
+        url: "/how-it-works?to=faq",
+        onClick: () => {
+          if (!window.location.pathname.includes("/how-it-works")) return;
+          window.dispatchEvent(
+            new CustomEvent("how-it-works-nav", { detail: "faq" })
+          );
+        },
+      },
+      { name: t("contact_us"), url: "/about-us?to=contact-us" },
     ],
   };
+
+  if (IS_PS) {
+    footerLists = {
+      list1: [
+        {
+          name: t("footer_1"),
+          url: "/about-us",
+        },
+        { name: t("footer_2"), url: "/information-portal?tab=articles" },
+        // { name: t("footer_4"), url: "/terms-of-use", exact: true },
+        // { name: t("footer_5"), url: "/privacy-policy" },
+        { name: t("footer_6"), url: "/cookie-policy" },
+      ],
+      list2: [],
+      list3: [],
+    };
+  }
+
+  const addSosCenterClickMutation = useAddSosCenterClick();
 
   const handleGoBack = () => navigateTo(-1);
 
@@ -247,16 +374,18 @@ export const Page = ({
       <Icon
         name={theme === "light" ? "dark-mode-switch" : "light-mode"}
         size="lg"
-        classes="page__theme-button"
+        classes={"page__theme-button"}
         onClick={toggleTheme}
       />
     );
   };
 
   const hasPassedValidation = queryClient.getQueryData(["hasPassedValidation"]);
-
+  const IS_RO =
+    window.location.hostname === "romania.usupport.online" ||
+    window.location.hostname === "romania.staging.usupport.online";
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(
-    IS_DEV ? false : !hasPassedValidation
+    !hasPassedValidation && IS_RO
   );
   const [passwordError, setPasswordError] = useState("");
 
@@ -282,6 +411,11 @@ export const Page = ({
 
   return (
     <>
+      <HreflangHelmet
+        alternateLanguages={
+          langs.length ? langs.map((lang) => lang.value) : undefined
+        }
+      />
       <PasswordModal
         label={t("password")}
         btnLabel={t("submit")}
@@ -294,10 +428,10 @@ export const Page = ({
       <Navbar
         pages={pages}
         showCta
-        showCountries
+        showCountries={!IS_PS}
         languageLabel={t("language_label")}
         countryLabel={t("country_label")}
-        buttonText={t("button_text")}
+        buttonText={IS_PS ? null : t("button_text")}
         i18n={i18n}
         navigate={navigateTo}
         NavLink={NavLink}
@@ -310,49 +444,75 @@ export const Page = ({
         renderIn="website"
         hasThemeButton
         t={t}
+        setIsPodcastsActive={setIsPodcastsActive}
+        setIsVideosActive={setIsVideosActive}
       />
       <div
         className={[
           "page",
+          `${showBackground ? "page--with-background" : ""}`,
           `${additionalPadding ? "" : "page--no-additional-top-padding"}`,
           `${classNames(classes)}`,
         ].join(" ")}
       >
         {(heading || showGoBackArrow || headingButton) && (
-          <div className="page__header">
-            {showGoBackArrow && (
-              <Icon
-                classes="page__header-icon"
-                name="arrow-chevron-back"
-                size="md"
-                color="#20809E"
-                onClick={handleGoBack}
-              />
-            )}
-            {heading && <h3 className="page__header-heading">{heading}</h3>}
+          <Block classes="page__header">
+            <div className="page__header__text-container">
+              {showGoBackArrow && (
+                <div
+                  className="page__header__text-container__go-back"
+                  onClick={handleGoBack}
+                >
+                  <Icon name="arrow-chevron-back" size="md" color="#20809E" />
+                  <p>{t("go_back")}</p>
+                </div>
+              )}
+              {heading && <h3 className="page__header-heading">{heading}</h3>}
+            </div>
             {headingButton && headingButton}
-          </div>
+          </Block>
         )}
         {children}
       </div>
       {themeButton()}
-      <CircleIconButton
-        iconName="phone-emergency"
-        classes="page__emergency-button"
-        onClick={() => navigateTo(`/${localStorageLanguage}/sos-center`)}
-        label={t("emergency_button")}
-      />
+      {!IS_PS && (
+        <CircleIconButton
+          iconName="phone-emergency"
+          classes={"page__emergency-button"}
+          onClick={() => {
+            if (country !== "global") {
+              addSosCenterClickMutation.mutate({
+                isMain: true,
+                platform: "website",
+              });
+            }
+            navigateTo("/sos-center");
+          }}
+          label={t("emergency_button")}
+        />
+      )}
       <Footer
+        showSocials={!IS_PS}
         lists={footerLists}
         navigate={navigateTo}
         Link={Link}
         renderIn="website"
+        t={t}
       />
       <CookieBanner
+        cookieState={cookieState}
+        setCookieState={setCookieState}
         text={
           <Trans
             components={[
-              <Link to={`/${localStorageLanguage}/cookie-policy`} />,
+              <Link
+                to={`/${localStorageLanguage}/cookie-policy`}
+                className={
+                  theme === "highContrast"
+                    ? "page__cookie-policy-banner__link--hc"
+                    : ""
+                }
+              />,
             ]}
           >
             {t("cookie_banner_text")}
@@ -361,5 +521,39 @@ export const Page = ({
         t={t}
       />
     </>
+  );
+};
+
+const DEFAULT_ALTERNATE_LANGUAGES = ["en", "pl", "uk"];
+
+const getPathWithoutLanguage = (pathname) => {
+  const segments = pathname.split("/").filter(Boolean);
+  if (segments.length <= 1) return "";
+  return `/${segments.slice(1).join("/")}`;
+};
+
+const HreflangHelmet = ({ alternateLanguages = DEFAULT_ALTERNATE_LANGUAGES }) => {
+  const { pathname, search } = useLocation();
+  const baseUrl = window.location.origin;
+  const pathWithoutLang = getPathWithoutLanguage(pathname);
+  const canonicalUrl = `${baseUrl}${pathname}${search}`;
+
+  return (
+    <Helmet>
+      <link rel="canonical" href={canonicalUrl} />
+      {alternateLanguages.map((lang) => (
+        <link
+          key={lang}
+          rel="alternate"
+          hrefLang={lang}
+          href={`${baseUrl}/${lang}${pathWithoutLang}${search}`}
+        />
+      ))}
+      <link
+        rel="alternate"
+        hrefLang="x-default"
+        href={`${baseUrl}/en${pathWithoutLang}${search}`}
+      />
+    </Helmet>
   );
 };

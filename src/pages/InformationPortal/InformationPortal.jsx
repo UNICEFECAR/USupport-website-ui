@@ -2,59 +2,97 @@ import React, { useContext, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import { Page, Articles, Videos, Podcasts } from "#blocks";
+import {
+  Page,
+  DownloadApp,
+  Articles,
+  Videos,
+  Podcasts,
+  InformationPortalHero,
+} from "#blocks";
+import { useDebounce, useCustomNavigate as useNavigate } from "#hooks";
 
 import {
   ThemeContext,
   useWindowDimensions,
 } from "@USupport-components-library/utils";
-import { TabsUnderlined } from "@USupport-components-library/src";
-
-import informationPortalMobile from "./assets/information-portal-mobile.png";
-import informationPortalLight from "./assets/information-portal-light.jpg";
-import informationPortalDark from "./assets/information-portal.png";
+import {
+  Block,
+  TabsUnderlined,
+  Grid,
+  GridItem,
+} from "@USupport-components-library/src";
 
 import "./information-portal.scss";
 
 export const InformationPortal = () => {
   const { t } = useTranslation("blocks", { keyPrefix: "articles" });
-  const { theme } = useContext(ThemeContext);
+  const { theme, isPodcastsActive, isVideosActive } = useContext(ThemeContext);
   const { width } = useWindowDimensions();
   const [searchParams, setSearchParams] = useSearchParams();
-  const tab = searchParams.get("tab");
+  const navigate = useNavigate();
 
-  const [contentTypes, setContentTypes] = useState([
-    {
-      label: "articles",
-      value: "articles",
-      isSelected: tab === "articles",
-    },
-    {
-      label: "videos",
-      value: "videos",
-      isSelected: tab === "videos",
-    },
-    {
-      label: "podcasts",
-      value: "podcasts",
-      isSelected: tab === "podcasts",
-    },
-  ]);
+  const tab = searchParams.get("tab");
+  const IS_PS = localStorage.getItem("country") === "PS";
+  const IS_RTL = localStorage.getItem("language") === "ar";
+
+  const [contentTypes, setContentTypes] = useState([]);
 
   useEffect(() => {
-    if (!tab) {
-      setSearchParams({ tab: "articles" });
-      setContentTypes(
-        contentTypes.map((contentType) => ({
-          ...contentType,
-          isSelected: contentType.value === "articles",
-        }))
-      );
+    let selectedTab = tab || "articles";
+
+    // Wait for the country settings before deciding if the tab is available
+    const isCountrySettingsLoading =
+      isPodcastsActive === null || isVideosActive === null;
+    if (isCountrySettingsLoading && selectedTab !== "articles") return;
+
+    const isTabAvailable =
+      selectedTab === "articles" ||
+      (selectedTab === "videos" && isVideosActive) ||
+      (selectedTab === "podcasts" && isPodcastsActive);
+
+    if (!isTabAvailable) {
+      selectedTab = "articles";
+      setSearchParams({ tab: "articles" }, { replace: true });
     }
-  }, [tab]);
+
+    const initialTabs = [
+      {
+        label: "articles",
+        value: "articles",
+        isSelected: selectedTab === "articles",
+      },
+    ];
+
+    if (isVideosActive) {
+      initialTabs.push({
+        label: "videos",
+        value: "videos",
+        isSelected: selectedTab === "videos",
+      });
+    }
+
+    if (isPodcastsActive) {
+      initialTabs.push({
+        label: "podcasts",
+        value: "podcasts",
+        isSelected: selectedTab === "podcasts",
+      });
+    }
+
+    setContentTypes(initialTabs);
+  }, [isPodcastsActive, isVideosActive, tab]);
+
+  //--------------------- Search Input ----------------------//
+  const [searchValue, setSearchValue] = useState("");
+  const debouncedSearchValue = useDebounce(searchValue, 500);
+
+  const handleInputChange = (newValue) => {
+    setSearchValue(newValue);
+  };
 
   const selectedContentType = contentTypes.find(
-    (contentType) => contentType.isSelected
+    (contentType) => contentType.isSelected,
   )?.value;
 
   const handleContentTypeOnPress = (index) => {
@@ -67,7 +105,8 @@ export const InformationPortal = () => {
       }
     }
     setContentTypes(contentTypesCopy);
-    setSearchParams({ tab: contentTypesCopy[index].value });
+    const newTab = contentTypesCopy[index].value;
+    navigate(`/information-portal?tab=${newTab}`);
   };
 
   return (
@@ -76,34 +115,51 @@ export const InformationPortal = () => {
         "page__information-portal",
         theme === "dark" ? "page__information-portal--dark" : "",
       ].join(" ")}
+      showBackground={true}
     >
-      {width < 768 ? (
-        <img
-          src={informationPortalMobile}
-          alt="Information Portal"
-          className="information-portal-image information-portal-image--mobile"
-        />
-      ) : (
-        <img
-          src={
-            theme === "dark" ? informationPortalDark : informationPortalLight
-          }
-          alt="Information Portal"
-          className={`information-portal-image information-portal-image--desktop ${
-            theme !== "dark" ? "information-portal-image--visible" : ""
-          }`}
+      <InformationPortalHero
+        showSearch={true}
+        searchValue={searchValue}
+        onSearchChange={handleInputChange}
+        placeholder={t("search")}
+      />
+      <Block classes="page__information-portal__tabs-block">
+        <Grid classes="page__information-portal__tabs-container">
+          <GridItem md={8} lg={12}>
+            <div
+              className={`page__information-portal__tabs-container__inner ${
+                IS_RTL
+                  ? "page__information-portal__tabs-container__inner--rtl"
+                  : ""
+              }`}
+            >
+              <TabsUnderlined
+                options={contentTypes.map((x) => ({
+                  ...x,
+                  label: t(x.label),
+                }))}
+                handleSelect={handleContentTypeOnPress}
+                textType={width < 768 ? "h3" : "h2"}
+                classes="page__information-portal__tabs"
+              />
+            </div>
+          </GridItem>
+        </Grid>
+      </Block>
+      {selectedContentType === "articles" && (
+        <Articles
+          debouncedSearchValue={debouncedSearchValue}
+          onResetSearch={() => setSearchValue("")}
         />
       )}
-      <TabsUnderlined
-        options={contentTypes.map((x) => ({
-          ...x,
-          label: t(x.label),
-        }))}
-        handleSelect={handleContentTypeOnPress}
-      />
-      {selectedContentType === "articles" && <Articles />}
-      {selectedContentType === "videos" && <Videos />}
-      {selectedContentType === "podcasts" && <Podcasts />}
+      {selectedContentType === "videos" && (
+        <Videos debouncedSearchValue={debouncedSearchValue} />
+      )}
+      {selectedContentType === "podcasts" && (
+        <Podcasts debounceSearchValue={debouncedSearchValue} />
+      )}
+      {/* {!IS_PS && <Question />} */}
+      {!IS_PS && <DownloadApp />}
     </Page>
   );
 };

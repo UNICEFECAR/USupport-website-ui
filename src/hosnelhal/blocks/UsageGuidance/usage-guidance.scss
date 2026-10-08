@@ -1,0 +1,22 @@
+@import "../../styles/hosn";
+
+.hosn-usage-guidance {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing_2_2;
+
+  &__title {
+    font-size: var(--hh-font-size-section);
+    font-weight: $font_semi_bold;
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing_2_4;
+
+    @include hh-desktop-up {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+}

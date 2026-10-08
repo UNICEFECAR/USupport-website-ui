@@ -37,6 +37,8 @@ export const HowItWorks = ({
   isTitleWhite = true,
 }) => {
   const { t } = useTranslation("blocks", { keyPrefix: "how-it-works" });
+  const IS_RO = localStorage.getItem("country") === "RO";
+
   const { width } = useWindowDimensions();
 
   const { theme } = useContext(ThemeContext);
@@ -44,23 +46,27 @@ export const HowItWorks = ({
   return (
     <Block classes="how-it-works" animation="fade-left">
       <Grid classes={onPage ? "how-it-works__grid" : ""}>
-        <GridItem classes="how-it-works__heading" md={8} lg={12}>
-          <h2
-            className={[
-              "how-it-works__heading-text",
-              isTitleWhite && "how-it-works__heading-text--white",
-            ].join(" ")}
-          >
-            {t("heading")}
-          </h2>
-        </GridItem>
-        <GridItem md={8} lg={12} classes="how-it-works__text-item">
-          {!showSummaryBellow && (
-            <p className="paragraph">
-              {summary ? t("paragraph_summary") : t("paragraph_normal")}
-            </p>
-          )}
-        </GridItem>
+        {width < 1366 && (
+          <>
+            <GridItem classes="how-it-works__heading" md={8} lg={12}>
+              <h1
+                className={[
+                  "how-it-works__heading-text",
+                  isTitleWhite && "how-it-works__heading-text--white",
+                ].join(" ")}
+              >
+                {t("heading")}
+              </h1>
+            </GridItem>
+            <GridItem md={8} lg={12} classes="how-it-works__text-item">
+              {!showSummaryBellow && (
+                <p className="paragraph">
+                  {summary ? t("paragraph_summary") : t("paragraph_normal")}
+                </p>
+              )}
+            </GridItem>
+          </>
+        )}
         {width > 768 && width < 1366 && (
           <GridItem md={8}>
             <Grid classes="how-it-works__images-grid">
@@ -87,6 +93,27 @@ export const HowItWorks = ({
         )}
         <GridItem md={8} lg={6}>
           <Grid>
+            {width >= 1366 && (
+              <>
+                <GridItem lg={12} classes="how-it-works__heading">
+                  <h1
+                    className={[
+                      "how-it-works__heading-text",
+                      isTitleWhite && "how-it-works__heading-text--white",
+                    ].join(" ")}
+                  >
+                    {t("heading")}
+                  </h1>
+                </GridItem>
+                {!showSummaryBellow && (
+                  <GridItem lg={12} classes="how-it-works__text-item">
+                    <p className="paragraph">
+                      {summary ? t("paragraph_summary") : t("paragraph_normal")}
+                    </p>
+                  </GridItem>
+                )}
+              </>
+            )}
             <GridItem lg={6}>
               <CardNumber number="1" iconName="community" text={t("card_1")} />
             </GridItem>
@@ -94,10 +121,18 @@ export const HowItWorks = ({
               <CardNumber number="2" iconName="coaching" text={t("card_2")} />
             </GridItem>
             <GridItem lg={6}>
-              <CardNumber number="3" iconName="therapy" text={t("card_3")} />
+              <CardNumber
+                number="3"
+                iconName={IS_RO ? "calm" : "therapy"}
+                text={t(IS_RO ? "card_3_ro" : "card_3")}
+              />
             </GridItem>
             <GridItem lg={6}>
-              <CardNumber number="4" iconName="calm" text={t("card_4")} />
+              <CardNumber
+                number="4"
+                iconName={IS_RO ? "community" : "calm"}
+                text={t(IS_RO ? "card_4_ro" : "card_4")}
+              />
             </GridItem>
           </Grid>
         </GridItem>

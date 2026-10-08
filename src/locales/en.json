@@ -7,7 +7,35 @@
       "card_text_2": "Proven providers",
       "card_text_3": "Online support",
       "card_text_4": "Your safe place",
-      "paragraph_2": "Let’s face the stress together and cope with all the challenges of life."
+      "paragraph_2": "Let’s face the stress together and cope with all the challenges of life.",
+      "card_text_2_ro": "Proven organizations",
+      "card_text_3_ro": "Local support"
+    },
+    "articles": {
+      "heading": "Information portal",
+      "no_results": "No Results Found",
+      "could_not_load_content": "There are no results for the current selected country and language.",
+      "all": "All",
+      "read_more_button": "Read more",
+      "min_read": "min read",
+      "by": "by {{creator}}",
+      "number_of_more_options": "{{count}} more",
+      "articles": "Articles",
+      "videos": "Videos",
+      "podcasts": "Podcasts",
+      "view_more": "View more",
+      "search": "Search",
+      "not_found": "This resource is not available",
+      "require_cookies": "To view this video, please accept all cookies.",
+      "cookie_preferences": "Cookie preferences",
+      "no_results_heading": "We couldn't find anything for \"{{query}}\"",
+      "no_results_line1": "Try adjusting your search or explore topics below.",
+      "no_results_line2": "You can also reset your filters to see more results.",
+      "reset_filters": "Reset filters",
+      "browse_all_articles": "Browse all articles",
+      "no_results_image_alt": "Illustration: people searching, no results",
+      "no_results_hint": "Try a different search term, switch category or age group, or clear the search to see everything available.",
+      "could_not_load_hint": "You can change country or language from the menu, or check back later as new resources are added often."
     },
     "contact-us": {
       "heading_1": "Contact us",
@@ -33,12 +61,18 @@
       "modal_text": "We will get back to you as soon as possible",
       "modal_cta_label": "Go back to Home",
       "paragraph": "We will reply to your email shortly. Make sure you enter your email address correctly",
-      "contact_form": "Contact form"
+      "contact_form": "Contact form",
+      "contact_reason_1_pl": "Information about uSupport",
+      "contact_reason_2_pl": "Technical problem",
+      "contact_reason_3_pl": "Complaint",
+      "contact_reason_4_pl": "Something else",
+      "contact_reason_3_ro": "Join the network of organizations"
     },
     "download-app": {
       "heading": "Download the app",
       "paragraph": "Now available for iOS and Android",
-      "download_text": "Download from"
+      "download_text": "Download from",
+      "text": "Get support anytime, anywhere - fast, secure and easy to use."
     },
     "faq": {
       "heading": "Frequently asked questions",
@@ -52,7 +86,8 @@
       "card_text_1": "Professional help",
       "card_text_2": "Online consultations",
       "card_text_3": "Free resources",
-      "card_text_4": "Easy and safe access"
+      "card_text_4": "Easy and safe access",
+      "card_text_5": "Recommended support"
     },
     "hero": {
       "heading_1": "Start your journey towards better<1></1> mental health & wellbeing",
@@ -72,7 +107,13 @@
       "card_4": "Book a session",
       "download_text": "Download uSupport from",
       "web_browser": "Web browser",
-      "click_to_use": "Click to use"
+      "click_to_use": "Click to use",
+      "download_from_web": "",
+      "browser": "We provide anonymously treatment without the needfull registration",
+      "card_3_ro": "Take the baseline assessment",
+      "card_4_ro": "Find local support",
+      "heading_hero": "Easy and Quick.<0></0> Fully <1>anonymously</1>!",
+      "paragraph_hero": "In just a few clicks you can get the help you need even when you don’t feel like creating a complete profile"
     },
     "meet-our-providers": {
       "heading": "Meet our providers",
@@ -80,6 +121,7 @@
       "psychologist": "Psychologist",
       "psychiatrist": "Psychiatrist",
       "psychotherapist": "Psychotherapist",
+      "peer_support": "U-FRIEND",
       "show_more_btn": "Show more"
     },
     "page": {
@@ -112,7 +154,11 @@
       "accept_all_cookies": "Accept all",
       "reject_all_cookies": "Reject all",
       "accept_necessary_cookies": "Accept only necessary",
-      "save": "Save"
+      "save": "Save",
+      "page_7": "Organizations",
+      "high_contrast": "High Contrast",
+      "footer_text": "Your mental health matters—uSupport provides personalized, private, and safe psychological care.",
+      "go_back": "Go back"
     },
     "question": {
       "heading": "Have a question?",
@@ -123,7 +169,9 @@
       "heading": "SOS center",
       "button_link": "Visit website",
       "button_call": "Contact now",
-      "no_results": "There are no results for the current selected country and language."
+      "no_results": "There are no results for the current selected country and language.",
+      "other_emergency_services": "Other emergency service providers",
+      "browse": "Browse"
     },
     "we-help": {
       "heading_1": "About Us",
@@ -142,20 +190,6 @@
       "and": "and",
       "privacy": "privacy policy",
       "paragraph_7_2": "stipulate that parents or legal guardians are expected to provide consent for users who are minors – in accordance to local country legislation. uSupport cannot be held responsible for the accuracy of age-related or other information provided by users. "
-    },
-    "articles": {
-      "heading": "Information portal",
-      "no_results": "No Results Found",
-      "could_not_load_content": "There are no results for the current selected country and language.",
-      "all": "All",
-      "read_more_button": "Read more",
-      "min_read": "min read",
-      "by": "by {{creator}}",
-      "number_of_more_options": "{{count}} more",
-      "articles": "Articles",
-      "videos": "Videos",
-      "podcasts": "Podcasts",
-      "view_more": "View more"
     },
     "privacy-policy": {
       "heading": "Privacy Policy",
@@ -176,7 +210,8 @@
       "paragraph_3": "Within the portal, you'll discover articles authored by experts, learn self-development techniques, and stay updated with topics that interest you",
       "read_more_button": "Read more",
       "min_read": "min read",
-      "by": "by {{creator}}"
+      "by": "by {{creator}}",
+      "button_label": "View more"
     },
     "provider-overview": {
       "earliest_slot_label": "Earliest available slot for consultation",
@@ -225,9 +260,19 @@
       "love": "Love and Romantic Relationships",
       "social_skills": "Social Skills and Friendship",
       "body_image": "Body Image and Self-Esteem",
+      "peer_to_peer_emotional_support": "Peer-to-peer emotional support",
       "hour_consultation": "for 1 hour consultation",
       "organizations_label": "Organizations",
-      "free": "free of charge"
+      "free": "free of charge",
+      "consultations": "consultations",
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday",
+      "peer_support": "U-FRIEND"
     },
     "meet-our-providers-overview": {
       "heading": "Meet providers you can consult with",
@@ -235,7 +280,8 @@
       "button_label": "View all",
       "psychologist": "Psychologist",
       "psychiatrist": "Psychiatrist",
-      "psychotherapist": "Psychotherapist"
+      "psychotherapist": "Psychotherapist",
+      "peer_support": "U-FRIEND"
     },
     "our-partners": {
       "heading": "Our Partners",
@@ -264,7 +310,8 @@
       "subheading": "Ask your questions and our team of professionals will try their best to help you",
       "ask_anonymous_card_heading": "Ask your anonymous question",
       "ask_anonymous_card_text": "Each and every question is fully anonymous and no one could see who asked it",
-      "button_label": "Ask your questions now"
+      "button_label": "Ask your questions now",
+      "note": "Questions are completely anonymous and no one can see who asked them"
     },
     "mascot-header-MyQA": {
       "heading": "My Q&A",
@@ -288,7 +335,16 @@
       "no_answers": "There are no answered questions",
       "filter": "Filter tags",
       "search_placeholder": "Search",
-      "language": "Language"
+      "language": "Language",
+      "date_answered": "on {{date}}",
+      "go_back": "Go back",
+      "how_it_works": "See how it works",
+      "no_results_heading": "We couldn't find anything for \"{{query}}\"",
+      "no_results_line1": "Try adjusting your search or choosing a different tag.",
+      "no_results_line2": "You can reset filters to see all questions again.",
+      "reset_filters": "Reset filters",
+      "browse_all_questions": "Show all questions",
+      "no_results_image_alt": "Illustration: no matching questions"
     },
     "coupon-information": {
       "heading": "Want free sessions with providers?",
@@ -309,104 +365,161 @@
       "online_interaction": "Online",
       "phone_interaction": "Phone",
       "hybrid_interaction": "Hybrid",
-
-      "cash": "Cash",
-      "bank_transfer": "Bank transfer",
-      "card": "Card",
-      "free": "Free",
-
+      "free_services": "Free services",
+      "paid_services": "Paid services",
+      "co_payment_services": "Co-payment services",
+      "cnas_reimbursed_services": "CNAS reimbursed services",
+      "violence_victim_helpline": "Violence victims helpline",
+      "social_information_counseling": "Social information and counseling",
+      "rehab_psycho_neuro_children": "Rehabilitation and recovery services for children with psycho-neuro-motor disorders",
+      "individual_psychological_counseling": "Individual psychological counseling",
+      "personal_development_counseling": "Personal development counseling",
+      "child_helpline": "Child helpline",
+      "suicide_prevention_helpline": "Suicide prevention helpline",
+      "child_psychiatry": "Child psychiatry",
+      "group_psychological_counseling": "Group psychological counseling",
+      "sport_recreational_activities": "Sports recreational activities (sports, games, dance)",
+      "rehab_autism_children": "Rehabilitation and recovery services for children with autism",
+      "art_recreational_activities": "Artistic recreational activities (theatre, music, poetry, painting, storytelling)",
+      "addiction_helpline": "Addiction helpline",
+      "emergency_situations": "Emergency situations",
+      "pediatric_psychiatry": "Pediatric psychiatry",
+      "psychological_evaluation": "Psychological evaluation",
+      "psychological_counseling": "Psychological counseling",
       "individual_psychotherapy": "Individual psychotherapy",
       "group_psychotherapy": "Group psychotherapy",
-      "individual_psychological_counseling": "Individual psychological counseling",
-      "group_psychological_counseling": "Group psychological counseling",
-      "personal_development_counseling": "Personal development counseling",
+      "support_groups": "Support groups",
+      "social_assistance_and_counseling": "Social assistance and counseling",
+      "personal_development": "Personal development",
+      "vocational_counseling_and_career_guidance": "Vocational counseling and career guidance",
       "speech_therapy": "Speech therapy",
-      "social_information_counseling": "Social information and counseling",
-      "rehab_autism_children": "Rehabilitation and recovery services for children with autism",
-      "rehab_psycho_neuro_children": "Rehabilitation and recovery services for children with psycho-neuro-motor disorders",
-      "suicide_prevention_helpline": "Suicide prevention helpline",
-      "addiction_helpline": "Addiction helpline",
-      "violence_victim_helpline": "Violence victims helpline",
-      "child_helpline": "Child helpline",
-      "child_psychiatry": "Child psychiatry",
-      "art_recreational_activities": "Artistic recreational activities (theatre, music, poetry, painting, storytelling)",
-      "sport_recreational_activities": "Sports recreational activities (sports, games, dance)",
-
+      "occupational_therapy_ergotherapy": "Occupational therapy/Ergotherapy",
+      "physiotherapy_physical_recovery": "Physiotherapy/Physical recovery",
+      "autism_spectrum_disorder_therapies": "Autism spectrum disorder therapies",
+      "disability_assessment": "Disability assessment",
+      "pediatric_neurology": "Pediatric neurology",
+      "special_psychopedagogy": "Special psychopedagogy",
+      "neuropsychomotor_recovery": "Neuropsychomotor recovery",
       "sector_1": "Sector 1",
       "sector_2": "Sector 2",
       "sector_3": "Sector 3",
       "sector_4": "Sector 4",
       "sector_5": "Sector 5",
       "sector_6": "Sector 6",
-
-      "children": "Children",
-      "children_disabilities": "Children with disabilities",
-      "adults": "Adults",
-      "adults_disabilities": "Adults with disabilities",
-
-      "work_with_placeholder": "Select work with",
-      "specialisation_placeholder": "Select specialisations",
-      "district_placeholder": "Select district",
-      "payment_method_placeholder": "Select payment method",
-      "user_interaction_placeholder": "Select user interaction",
-      "search_placeholder": "Search by name or unit name",
-
+      "aggression_violence_victim_or_aggressor": "Aggression/violence - victim or aggressor",
+      "learning_difficulties_special_educational_needs": "Learning difficulties/Special educational needs",
+      "behavioral_disorder": "Behavioral disorder",
+      "eating_disorder": "Eating disorder",
+      "suicide_self_harm": "Suicide/Self-harm",
+      "addiction": "Addiction",
+      "identity_issues": "Identity issues",
+      "illness_oncological_treatment_chronic_diseases": "Illness (oncological treatment, chronic diseases)",
+      "other_situations": "Other situations",
+      "public": "Public",
+      "private": "Private",
+      "ong": "NGO",
+      "public_private": "Public-private",
+      "work_with_placeholder": "Select work with categories",
+      "specialisations_placeholder": "Select offered services",
+      "district_placeholder": "Select sector",
+      "payment_methods_placeholder": "Select payment methods",
+      "user_interactions_placeholder": "Select interaction modes",
+      "property_types_placeholder": "Select property types",
+      "search_placeholder": "Search by organization name",
       "no_data_found": "No data found",
       "reset_filters": "Reset filters",
-
-      "view_organization_details": "View Organization Details",
+      "view_organization_details": "Read more",
       "address": "Address",
       "phone": "Phone",
-      "email": "Email"
+      "email": "Email",
+      "any": "Any"
     },
-    "organizations-overview": {
-      "error-loading-data": "An error occurred while loading the organization data",
-      "description_label": "Description",
+    "organization-overview": {
+      "error_loading_data": "An error occurred while loading the organization data",
+      "other_services_label": "Other services",
       "address_label": "Address",
-      "district_label": "District",
-      "payment_method_label": "Payment Method",
-      "work_with_label": "Works With",
-      "specialisations_label": "Specialisations",
+      "sector_label": "District",
+      "payment_methods_label": "Payment methods",
+      "user_interactions_label": "Interaction modes",
+      "property_types_label": "Property type",
+      "work_with_label": "Work with",
+      "offered_services_label": "Offered services",
       "providers_label": "Providers",
-
-      "individual_psychotherapy": "Individual psychotherapy",
-      "group_psychotherapy": "Group psychotherapy",
-      "individual_psychological_counseling": "Individual psychological counseling",
-      "group_psychological_counseling": "Group psychological counseling",
-      "personal_development_counseling": "Personal development counseling",
-      "speech_therapy": "Speech therapy",
-      "social_information_counseling": "Social information and counseling",
-      "rehab_autism_children": "Rehabilitation and recovery services for children with autism",
-      "rehab_psycho_neuro_children": "Rehabilitation and recovery services for children with psycho-neuro-motor disorders",
-      "suicide_prevention_helpline": "Suicide prevention helpline",
-      "addiction_helpline": "Addiction helpline",
       "violence_victim_helpline": "Violence victims helpline",
+      "individual_psychotherapy": "Individual psychotherapy",
+      "social_information_counseling": "Social information and counseling",
+      "rehab_psycho_neuro_children": "Rehabilitation and recovery services for children with psycho-neuro-motor disorders",
+      "individual_psychological_counseling": "Individual psychological counseling",
+      "personal_development_counseling": "Personal development counseling",
       "child_helpline": "Child helpline",
+      "speech_therapy": "Speech therapy",
+      "suicide_prevention_helpline": "Suicide prevention helpline",
       "child_psychiatry": "Child psychiatry",
-      "art_recreational_activities": "Artistic recreational activities (theatre, music, poetry, painting, storytelling)",
+      "group_psychological_counseling": "Group psychological counseling",
       "sport_recreational_activities": "Sports recreational activities (sports, games, dance)",
-
+      "rehab_autism_children": "Rehabilitation and recovery services for children with autism",
+      "art_recreational_activities": "Artistic recreational activities (theatre, music, poetry, painting, storytelling)",
+      "addiction_helpline": "Addiction helpline",
+      "group_psychotherapy": "Group psychotherapy",
+      "emergency_situations": "Emergency situations",
+      "pediatric_psychiatry": "Pediatric psychiatry",
+      "psychological_evaluation": "Psychological evaluation",
+      "psychological_counseling": "Psychological counseling",
+      "support_groups": "Support groups",
+      "social_assistance_and_counseling": "Social assistance and counseling",
+      "personal_development": "Personal development",
+      "vocational_counseling_and_career_guidance": "Vocational counseling and career guidance",
+      "occupational_therapy_ergotherapy": "Occupational therapy/Ergotherapy",
+      "physiotherapy_physical_recovery": "Physiotherapy/Physical recovery",
+      "autism_spectrum_disorder_therapies": "Autism spectrum disorder therapies",
+      "disability_assessment": "Disability assessment",
+      "pediatric_neurology": "Pediatric neurology",
+      "special_psychopedagogy": "Special psychopedagogy",
+      "neuropsychomotor_recovery": "Neuropsychomotor recovery",
       "in_person_interaction": "In person",
       "online_interaction": "Online",
       "phone_interaction": "Phone",
       "hybrid_interaction": "Hybrid",
-
-      "cash": "Cash",
-      "bank_transfer": "Bank transfer",
-      "card": "Card",
-      "free": "Free",
-
+      "free_services": "Free services",
+      "paid_services": "Paid services",
+      "co_payment_services": "Co-payment services",
+      "cnas_reimbursed_services": "CNAS reimbursed services",
+      "public": "Public",
+      "private": "Private",
+      "ong": "NGO",
+      "public_private": "Public-private",
       "sector_1": "Sector 1",
       "sector_2": "Sector 2",
       "sector_3": "Sector 3",
       "sector_4": "Sector 4",
       "sector_5": "Sector 5",
       "sector_6": "Sector 6",
-
-      "children": "Children",
-      "children_disabilities": "Children with disabilities",
-      "adults": "Adults",
-      "adults_disabilities": "Adults with disabilities"
+      "aggression_violence_victim_or_aggressor": "Aggression/violence - victim or aggressor",
+      "learning_difficulties_special_educational_needs": "Learning difficulties/Special educational needs",
+      "behavioral_disorder": "Behavioral disorder",
+      "eating_disorder": "Eating disorder",
+      "suicide_self_harm": "Suicide/Self-harm",
+      "addiction": "Addiction",
+      "identity_issues": "Identity issues",
+      "illness_oncological_treatment_chronic_diseases": "Illness (oncological treatment, chronic diseases)",
+      "other_situations": "Other situations",
+      "copy_link_success": "Link copied to clipboard!"
+    },
+    "video-tutorial": {
+      "title": "",
+      "tutorial_video_title": "",
+      "require_cookies": "",
+      "cookie_preferences": ""
+    },
+    "take-a-step": {
+      "heading": "Just take a step towards peace of mind",
+      "paragraph": "",
+      "card_1": "Choose your country and language",
+      "card_2": "Create your account",
+      "card_3": "Choose a provider",
+      "card_3_ro": "Take the baseline assessment",
+      "card_4": "Book a session",
+      "card_4_ro": "Find local support"
     }
   },
   "pages": {
@@ -423,27 +536,41 @@
       "by": "by {{creator}}",
       "share_title": "Share this content",
       "share_success": "Link copied to clipboard!",
-      "copy_link": "Copy Link"
+      "copy_link": "Copy Link",
+      "audio_player_title_listen_to_article": "Listen to this article",
+      "audio_player_subtitle_narrated_version": "Prefer audio? Play the narrated version.",
+      "audio_player_badge_listen_time": "{{minutes}} min listen",
+      "audio_player_play_label": "Play audio",
+      "audio_player_pause_label": "Pause audio",
+      "audio_player_seek_back_label": "Seek back {{seconds}} seconds",
+      "audio_player_seek_forward_label": "Seek forward {{seconds}} seconds",
+      "audio_player_helper_read_along": "You can read along while listening or just relax and enjoy."
     },
     "provider-overview-page": {
       "heading": "Provider details"
     },
     "my-qa-page": {
       "modal_heading": "Login to the platform to ask a question",
-      "modal_text": "You need to have an account and to login into the system to ask a question and to receive an answer",
+      "modal_text": "Login to the platform to ask a question and get an answer from our providers, your question will be anonymous.",
       "modal_button_label": "Go to app",
       "my_qa_answer_title": "How does the My Q&A work?",
-      "my_qa_answer_text": "The My Q&A is a feature that allows you to ask questions and receive answers from the uSupport providers."
+      "my_qa_answer_text": "The My Q&A is a feature that allows you to ask questions and receive answers from the uSupport providers.",
+      "modal_heading_consultation": "Login to the platform to schedule a consultation",
+      "modal_text_consultation": "Login to the platform to schedule a consultation with a provider."
     },
     "video-information-page": {
       "more_videos": "More videos",
       "view_more": "View more",
-      "not_found": "Video not found"
+      "not_found": "Video not found",
+      "require_cookies": "To view this video, please accept all cookies.",
+      "cookie_preferences": "Cookie preferences",
+      "share_success": "Video link copied to clipboard"
     },
     "podcast-information-page": {
       "more_podcasts": "More podcasts",
       "view_more": "View more",
-      "not_found": "Podcast not found"
+      "not_found": "Podcast not found",
+      "share_success": "Link copied to clipboard!"
     },
     "organizations-page": {
       "heading": "Organizations"
@@ -451,6 +578,19 @@
     "organization-overview-page": {
       "heading": "Organization overview",
       "subheading": "Detailed overview of the profile of the organization you selected"
+    },
+    "sos-center-page": {
+      "heading": "SOS center",
+      "subheading": "Access urgent help and local emergency services when you or someone else is in immediate danger."
+    },
+    "privacy-policy-page": {
+      "heading": "Privacy Policy"
+    },
+    "cookie-policy-page": {
+      "heading": "Cookie Policy"
+    },
+    "terms-of-use-page": {
+      "heading": "Terms of Use"
     }
   },
   "modals": {
@@ -470,6 +610,390 @@
       "dropdown_label": "Select a tag",
       "cta_label": "Apply filters",
       "secondary_cta_label": "Reset filters"
+    }
+  },
+  "meta": {
+    "description": "The first platform created to make your mental health a priority. uSupport provides personalized, discreet and fast psychological care for your overall well-being.",
+    "title": "uSupport Website"
+  },
+  "playandheal": {
+    "common": {
+      "site_title": "Play and Heal",
+      "site_description": "A toolkit for facilitators helping children in crisis settings find connection, expression, and joy through play.",
+      "skip_to_content": "Skip to content",
+      "close": "Close",
+      "back_to_home": "Back to home",
+      "back_to_toolkit": "Back to the toolkit",
+      "explore_booklet": "Explore the booklet",
+      "how_to_use": "How to use the toolkit",
+      "artwork_caption": "Original characters from the final Play and Heal toolkit.",
+      "artwork_alt": "The five Play and Heal characters flying kites together in a sunny field."
+    },
+    "header": {
+      "home": "Home",
+      "how_to": "How to",
+      "about_us": "About us",
+      "caregivers": "For caregivers",
+      "on_usupport": "on uSupport",
+      "language_label": "Language",
+      "navigation_label": "Main navigation",
+      "menu_open": "Open menu",
+      "menu_close": "Close menu",
+      "logo_alt": "Play and Heal - home"
+    },
+    "footer": {
+      "tagline": "Play and Heal · Tools for connection through play.",
+      "navigation_label": "Footer navigation",
+      "about_us": "About us",
+      "how_to_use": "How to use the toolkit",
+      "cookie_policy": "Cookie policy",
+      "hosted_on": "Hosted on uSupport · Available in English and Arabic"
+    },
+    "home": {
+      "hero": {
+        "eyebrow": "Play. Connect. Grow.",
+        "heading_1": "Small moments of play.",
+        "heading_2": "Meaningful connection.",
+        "text": "A flexible, trauma-sensitive toolkit that helps facilitators create safe, playful spaces where children can connect, express themselves, build confidence and experience the healing power of play.",
+        "explore_toolkit": "Explore the toolkit",
+        "reassurance": "Built with and for facilitators.",
+        "artwork_alt": "The five Play and Heal characters flying kites together in a sunny field.",
+        "caption": "Every child has a place in play.",
+        "explore_competencies": "Learn about the facilitator competencies"
+      },
+      "intro_video": {
+        "eyebrow": "Learn by watching",
+        "heading": "New to Play & Heal? Start here.",
+        "text": "Watch this short introduction to learn what Play & Heal is, explore what the toolkit includes, and see how its different resources can support your work with children.",
+        "video_title": "Introducing Play and Heal"
+      },
+      "toolkit": {
+        "eyebrow": "Your toolkit",
+        "heading": "Everything you need to get started.",
+        "text": "Start with the foundations, or find the resource you need today.",
+        "search_label": "Search the toolkit",
+        "search_placeholder": "Find a resource…",
+        "search_clear": "Clear search",
+        "search_results_zero": "No resources match “{{- query}}”. Try another word.",
+        "search_results_one": "{{count}} resource matches “{{- query}}”",
+        "search_results_two": "{{count}} resources match “{{- query}}”",
+        "search_results_few": "{{count}} resources match “{{- query}}”",
+        "search_results_many": "{{count}} resources match “{{- query}}”",
+        "search_results_other": "{{count}} resources match “{{- query}}”",
+        "booklet_title": "Foundational booklet",
+        "booklet_text": "Understand the Play & Heal approach, the five characteristics of healing, and your role as a facilitator.",
+        "cards_title": "Activity cards",
+        "cards_text": "Flexible ideas for everyday materials and LEGO® bricks. Find the collection that fits your session.",
+        "videos_title": "Facilitator competency microvideos",
+        "videos_text": "Build the practical skills that help you create safe, responsive and supportive play experiences with children.",
+        "explore_collection": "Explore the collection",
+        "complementary_title": "Complementary resources",
+        "complementary_text": "Colouring books, posters and a jingle to enrich everyday moments of play.",
+        "complementary_eyebrow": "More ways to play",
+        "complementary_status": "More resources coming soon",
+        "caregivers_eyebrow": "Play at home",
+        "caregivers_title": "For caregivers",
+        "caregivers_text": "Simple ways to connect with your child and continue playful learning at home.",
+        "caregivers_cta": "Explore caregiver guidance"
+      },
+      "getting_started": {
+        "eyebrow": "New to Play and Heal?",
+        "heading": "You don’t have to figure it all out on your own.",
+        "text": "Get to know the toolkit, how it fits your setting, and where to begin.",
+        "cta": "Find your starting point",
+        "step_1_title": "Get to know the toolkit",
+        "step_1_text": "Start with the Foundational Booklet.",
+        "step_2_title": "Build your facilitation skills",
+        "step_2_text": "Explore the five facilitator competency microvideos.",
+        "step_3_title": "Bring play into your sessions",
+        "step_3_text": "Choose and adapt activities based on the children, the context and what you notice in the moment."
+      },
+      "stories": {
+        "eyebrow": "Made with people",
+        "heading": "Shaped by experience.",
+        "previous": "Previous",
+        "next": "More stories"
+      },
+      "power_of_play": {
+        "heading": "The Power of Play",
+        "text": "During emergencies and difficult experiences, children can lose access to the safety, connection and freedom that play can bring. Play & Heal helps facilitators create spaces where children can return to play; supporting their wellbeing through five characteristics of healing: Safety, Connection & Belonging, Expression, Mastery, and Sense of Self."
+      }
+    },
+    "characters": {
+      "hint": "Hover or tap to explore",
+      "home": {
+        "eyebrow": "Small moments. Meaningful change.",
+        "heading": "Five ways play supports healing.",
+        "text": "Meet the characters. Hover or tap to explore each characteristic."
+      },
+      "about": {
+        "eyebrow": "The foundations",
+        "heading": "Five characteristics of healing.",
+        "text": "At the heart of Play & Heal are five characteristics that help facilitators understand how play can support children’s wellbeing and healing.",
+        "cta": "Explore the five characteristics"
+      },
+      "safety": {
+        "name": "Safety",
+        "intro": "Hi! I’m Safety. I'm here to help you feel safe, calm, and ready to play.",
+        "description": "Helping children feel physically and emotionally safe."
+      },
+      "connection": {
+        "name": "Connection & belonging",
+        "intro": "Hi! We’re Connection & Belonging. We help you feel close to others and remind you that you belong, here.",
+        "description": "Creating opportunities to connect, participate and belong."
+      },
+      "expression": {
+        "name": "Expression",
+        "intro": "Hi! I’m Expression. I help you share what’s inside through play, words, movement, and creativity. You name it!",
+        "description": "Giving children different ways to express thoughts, feelings and experiences."
+      },
+      "mastery": {
+        "name": "Mastery",
+        "intro": "Hi! I’m Mastery. I help you try, practise, solve problems, and discover your full potential!",
+        "description": "Supporting children to try, practise, make choices and experience success."
+      },
+      "self": {
+        "name": "Sense of self",
+        "intro": "Hi! I’m Sense of Self. I help you discover who you are, what matters to you, and what makes you so special.",
+        "description": "Helping children recognise their strengths, identity and sense of who they are."
+      }
+    },
+    "network_invite": {
+      "eyebrow": "Coming soon",
+      "heading": "Play connects children. And us.",
+      "text": "A future community for facilitators to share, learn, and grow together.",
+      "cta": "Join waiting list"
+    },
+    "waitlist": {
+      "heading": "A community, in the making.",
+      "badge": "Coming soon",
+      "text": "Our facilitators network is coming soon. Join the waiting list and be the first to hear when it opens.",
+      "benefit_1": "Share experiences and adaptations",
+      "benefit_2": "Discover new resources and updates",
+      "benefit_3": "Connect through learning opportunities",
+      "label_fullName": "Full name",
+      "label_email": "Email address",
+      "label_location": "Country / city",
+      "placeholder_fullName": "Your name",
+      "placeholder_email": "you@example.com",
+      "placeholder_location": "Where you’re based",
+      "privacy_hint": "We’ll use these details to contact you about the facilitators network.",
+      "submit": "Join the waiting list",
+      "submitting": "Joining…",
+      "error_name": "Please enter your name.",
+      "error_email": "Please enter a valid email address.",
+      "error_submit": "Something went wrong and we couldn’t add you to the list. Please try again.",
+      "success_title": "You’re on the list.",
+      "success_text": "Thank you for your interest. We’ll let you know as soon as the facilitators network opens.",
+      "close": "Close"
+    },
+    "reader": {
+      "modal_description": "Read, zoom, or save a copy for later.",
+      "viewport_label": "Document. Click a page, swipe or use the arrow keys to turn pages.",
+      "spread": "Spread",
+      "page": "Page",
+      "position": "{{unit}} {{current}} of {{total}}",
+      "pages_range": "Pages {{from}}–{{to}} of {{total}}",
+      "previous": "Previous page",
+      "next": "Next page",
+      "zoom_in": "Zoom in",
+      "zoom_out": "Zoom out",
+      "fullscreen": "Full screen",
+      "exit_fullscreen": "Exit full screen",
+      "meta_spreads_zero": "Original PDF · {{count}} landscape spreads · {{language}}",
+      "meta_spreads_one": "Original PDF · {{count}} landscape spread · {{language}}",
+      "meta_spreads_two": "Original PDF · {{count}} landscape spreads · {{language}}",
+      "meta_spreads_few": "Original PDF · {{count}} landscape spreads · {{language}}",
+      "meta_spreads_many": "Original PDF · {{count}} landscape spreads · {{language}}",
+      "meta_spreads_other": "Original PDF · {{count}} landscape spreads · {{language}}",
+      "meta_pages_zero": "Original PDF · {{count}} pages · {{language}}",
+      "meta_pages_one": "Original PDF · {{count}} page · {{language}}",
+      "meta_pages_two": "Original PDF · {{count}} pages · {{language}}",
+      "meta_pages_few": "Original PDF · {{count}} pages · {{language}}",
+      "meta_pages_many": "Original PDF · {{count}} pages · {{language}}",
+      "meta_pages_other": "Original PDF · {{count}} pages · {{language}}",
+      "loading": "Loading document…",
+      "error": "We couldn’t load this document. Please try again later."
+    },
+    "video_player": {
+      "play": "Play",
+      "pause": "Pause",
+      "mute": "Mute",
+      "unmute": "Unmute",
+      "fullscreen": "Full screen",
+      "seek": "Video progress",
+      "coming_soon": "Video coming soon",
+      "open_external": "Open video in a new tab"
+    },
+    "collection": {
+      "eyebrow": "Play and Heal toolkit",
+      "explore": "Explore the collection",
+      "resource_count_zero": "{{count}} resources",
+      "resource_count_one": "{{count}} resource",
+      "resource_count_two": "{{count}} resources",
+      "resource_count_few": "{{count}} resources",
+      "resource_count_many": "{{count}} resources",
+      "resource_count_other": "{{count}} resources",
+      "video_count_zero": "{{count}} videos",
+      "video_count_one": "{{count}} video",
+      "video_count_two": "{{count}} videos",
+      "video_count_few": "{{count}} videos",
+      "video_count_many": "{{count}} videos",
+      "video_count_other": "{{count}} videos",
+      "hint_documents": "Read on this page and zoom for comfort.",
+      "hint_videos": "Watch here in English or Arabic, with a full-screen option.",
+      "loading": "Loading resources…",
+      "error": "We couldn’t load the resources. Please refresh the page to try again.",
+      "empty": "New resources are on their way. Please check back soon.",
+      "watch_video": "Watch video",
+      "open_document": "Open document",
+      "booklet": {
+        "title": "Foundational booklet",
+        "text": "Discover the Play & Heal approach, the five characteristics of healing, and practical guidance to support you in your role as a facilitator.",
+        "read_here": "Read the booklet here",
+        "callout_title": "Inside the foundational booklet",
+        "callout_text": "The five characteristics of healing, facilitator core competencies, the Prepare → Play → Reflect learning loop, and practical tips for your sessions."
+      },
+      "cards": {
+        "title": "Activity cards",
+        "text": "Explore flexible, playful activities using everyday materials and LEGO® bricks. Choose and adapt activities based on your group, context and what children need in the moment.",
+        "callout_title": "Choose what fits your group",
+        "callout_text": "The full collection includes introduction, preparation and energy-shift sets alongside activities. The two focused collections separate everyday-material and brick activities.",
+        "guidance": "There’s no single way to use the cards. Start by noticing what your group needs, then choose activities that support one or more of the five characteristics of healing. Adapt as you go. You know your group and context best."
+      },
+      "videos": {
+        "title": "Facilitator competency microvideos",
+        "text": "Explore five practical competencies to strengthen how you connect with, respond to and support children through Play & Heal.",
+        "callout_title": "Bring the competencies into practice",
+        "callout_text": "The Play & Heal Learning Path helps you put the five competencies into practice, as you prepare, facilitate and reflect on your sessions with children."
+      },
+      "explore_videos": "Explore the videos"
+    },
+    "how_to": {
+      "banner": {
+        "eyebrow": "A place to begin",
+        "heading": "Make the toolkit your own.",
+        "text": "Explore the foundations, understand how the toolkit works, and choose and adapt resources to support your sessions."
+      },
+      "story": {
+        "heading_1": "Start with the foundations",
+        "text_1": "The toolkit is a flexible set of resources, rather than a rigid script. Begin with the booklet and competency videos, then choose activities that fit your group.",
+        "heading_2": "Use it within your setting",
+        "text_2": "Play and Heal is intended for humanitarian emergencies and safe community spaces, schools and other group settings, under the care of trained adults. It complements existing mental health and psychosocial support services."
+      },
+      "safeguarding": {
+        "title": "Safeguarding comes first",
+        "text": "Before facilitating Play & Heal, make sure you understand your organisation’s safeguarding procedures and know how to access supervision and referral pathways. Always follow your organisation’s child safeguarding and reporting procedures."
+      },
+      "guidance": {
+        "heading": "Guidance for facilitators",
+        "selection_title": "Facilitator selection",
+        "selection_text": "Facilitators should have experience working with children, basic child protection or MHPSS knowledge, and the skills to create safe, inclusive and playful spaces.",
+        "age_groups_title": "Age groups & adaptations",
+        "age_groups_text": "Adapt activities to children’s ages, abilities, needs and context. Consider group size, available materials and the support children may need to participate.",
+        "partnership_title": "PlayBoxes partnership",
+        "partnership_text": "Dedicated partnership guidance will be added here when supplied by the Play and Heal team.",
+        "support_title": "Facilitator support",
+        "support_text": "Stay connected with supervisors and fellow facilitators, and use reflection, feedback and support to develop your practice over time."
+      },
+      "faq": {
+        "eyebrow": "A little clarity",
+        "heading": "Questions, answered.",
+        "questions": {
+          "who_for": {
+            "question": "Who is Play and Heal for?",
+            "answer": "Play and Heal is for trained facilitators working with children affected by crises - in humanitarian emergencies, child-friendly and community spaces, schools and other group settings. It is part of a wider response that supports children’s basic needs and wellbeing, alongside existing mental health and psychosocial support services."
+          },
+          "where_to_start": {
+            "question": "Where should I start?",
+            "answer": "Begin with the foundational booklet to understand the approach and the five characteristics of healing. Then watch the competency microvideos, and choose activity cards that fit your group."
+          },
+          "training": {
+            "question": "Does Play & Heal require training?",
+            "answer": "Play & Heal is designed to be flexible and can be used in different ways depending on the context.\n\nIn emergency settings, where training may not be possible, facilitators can use the Play & Heal resources directly. The toolkit includes simple, practical activities designed to be used without formal training, with guidance to help facilitators get started.\n\nIn non-emergency settings, we highly recommend completing a Play & Heal training. The training helps facilitators deepen their understanding of the approach, strengthen their facilitation skills, and use the resources more intentionally and effectively with children.\n\nPlay & Heal is designed to be used by organizations as part of a coordinated MHPSS response. It is not a standalone program and should be integrated within a broader, multi-layered MHPSS response, complementing other services and supports available to children, families and communities.\n\nIf your organization is interested in organizing or joining a Play & Heal training, please contact Johanna Cunningham, UNICEF Health Specialist, at jcunningham@unicef.org."
+          },
+          "lego": {
+            "question": "Do I need LEGO® bricks to use Play & Heal?",
+            "answer": "No. The activity cards include a collection that uses everyday materials and a separate collection of brick activities, so you can choose what fits the materials you have."
+          },
+          "phone": {
+            "question": "Can I access the resources on my phone?",
+            "answer": "Yes. The booklet, activity cards and videos all work on phones and tablets. You can zoom into documents and watch videos full screen."
+          },
+          "network": {
+            "question": "How do I join the facilitators network?",
+            "answer": "The facilitators network is coming soon. Join the waiting list and we’ll let you know as soon as it opens."
+          }
+        }
+      }
+    },
+    "about": {
+      "banner": {
+        "eyebrow": "Our story",
+        "heading": "Built together.",
+        "text": "A psychosocial support toolkit built with and for facilitators working with children in crisis settings."
+      },
+      "story": {
+        "heading_1": "Shaped by real experience",
+        "text_1": "Play & Heal has been developed and refined through collaboration, field testing and learning with children and facilitators. Their experiences and feedback continue to shape the toolkit and how it is used in different contexts.",
+        "heading_2": "A flexible, child-centred approach",
+        "text_2": "Children experience and respond to play in different ways. Play & Heal encourages facilitators to notice, listen and adapt - choosing activities based on children’s needs, the materials available, the group’s energy levels, and what feels right in the moment."
+      },
+      "developed": {
+        "title": "Developed together",
+        "text": "Play & Heal was developed through a collaboration between UNICEF, the LEGO Foundation and Care for Education, bringing together expertise in child protection, psychosocial support, learning through play and facilitator practice."
+      }
+    },
+    "caregivers": {
+      "welcome": {
+        "eyebrow": "For caregivers",
+        "heading": "Keep play going at home.",
+        "text": "Small moments together help your child connect, express themselves and learn. Explore simple ways to bring Play and Heal into everyday life.",
+        "cta": "Explore ideas for home"
+      },
+      "play": {
+        "eyebrow": "01 · Make time for play",
+        "heading": "Play matters for learning and recovery.",
+        "text": "Make time for play at home and let your child’s interests guide the moment. You don’t need special materials to play and connect together.",
+        "start_small_title": "Start small",
+        "start_small_text": "Draw, sing or make a game with materials you already have.",
+        "follow_lead_title": "Follow their lead",
+        "follow_lead_text": "Let your child choose what to try and how to play.",
+        "be_present_title": "Be present",
+        "be_present_text": "Listen, join in and make room for a pause when they need one."
+      },
+      "learn": {
+        "eyebrow": "02 · In a Play and Heal session",
+        "heading": "What does your child learn through play?",
+        "text": "Activities make room for the five characteristics of healing. Every child joins in and explores in their own way.",
+        "safety": "Feeling safe enough to join in and try.",
+        "connection": "Playing together and feeling included.",
+        "expression": "Sharing ideas and feelings through play.",
+        "mastery": "Trying, practising and discovering what they can do.",
+        "self": "Making choices and noticing their strengths."
+      },
+      "questions": {
+        "eyebrow": "03 · After the session",
+        "heading": "Three questions to start a conversation.",
+        "text": "Invite your child to share, and let them choose how much to say. They can show you or draw their answer too.",
+        "label": "Question {{number}}",
+        "question_1": "What did you enjoy playing today?",
+        "question_2": "What did you try or discover?",
+        "question_3": "What would you like to play together at home?"
+      },
+      "videos": {
+        "eyebrow": "04 · Watch and try",
+        "heading": "The competency videos are for you, too.",
+        "text": "Watch the five short competency videos, then choose an idea to practise while playing with your child.",
+        "loading": "Loading videos…"
+      },
+      "games": {
+        "eyebrow": "05 · Games across generations",
+        "heading": "What did you love to play as a child?",
+        "text": "Think of a game you enjoyed when you were young. Did it help you feel safe, connect and belong, express yourself, master something or discover who you are?",
+        "text_2": "Share the memory with your child. Teach them the game or play it together, then make it your own.",
+        "explore_cards": "Explore activity cards"
+      }
     }
   }
 }

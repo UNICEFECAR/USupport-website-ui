@@ -1,20 +1,34 @@
 import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
+import { useMutation } from "@tanstack/react-query";
 
 import {
   Block,
   Grid,
   GridItem,
   Box,
-  Button,
+  NewButton,
 } from "@USupport-components-library/src";
 import {
   useWindowDimensions,
   ThemeContext,
 } from "@USupport-components-library/utils";
+import { userSvc } from "@USupport-components-library/services";
 
-import image from "./assets/image.png";
-import imageSmall from "./assets/image-small.png";
+import en from "./assets/en.png";
+import enSmall from "./assets/en-small.png";
+import kk from "./assets/kk.png";
+import kkSmall from "./assets/kk-small.png";
+import pl from "./assets/pl.png";
+import plSmall from "./assets/pl-small.png";
+import ru from "./assets/ru.png";
+import ruSmall from "./assets/ru-small.png";
+import ro from "./assets/ro.png";
+import roSmall from "./assets/ro-small.png";
+import uk from "./assets/uk.png";
+import ukSmall from "./assets/uk-small.png";
+import hy from "./assets/hy.png";
+import hySmall from "./assets/hy-small.png";
 
 import "./my-qa-landing.scss";
 
@@ -27,21 +41,42 @@ import "./my-qa-landing.scss";
  */
 export const MyQALanding = () => {
   const { theme } = useContext(ThemeContext);
-  const { t } = useTranslation("blocks", { keyPrefix: "my-qa-landing" });
+  const { t, i18n } = useTranslation("blocks", { keyPrefix: "my-qa-landing" });
+  const addCountryEventMutation = useMutation(
+    async (payload) => await userSvc.addCountryEvent(payload),
+  );
 
   const { width } = useWindowDimensions();
+
+  const languageImages = {
+    en: { large: en, small: enSmall },
+    kk: { large: kk, small: kkSmall },
+    pl: { large: pl, small: plSmall },
+    ru: { large: ru, small: ruSmall },
+    ro: { large: ro, small: roSmall },
+    uk: { large: uk, small: ukSmall },
+    hy: { large: hy, small: hySmall },
+  };
+
+  const currentLanguage = i18n.language;
+
+  const currentImages = languageImages[currentLanguage] || languageImages.en;
+  const image = currentImages.large;
+  const imageSmall = currentImages.small;
 
   return (
     <Block classes="my-qa-landing">
       <Grid>
         <GridItem md={8} lg={12}>
-          <h2 className="my-qa-landing__heading">{t("heading")}</h2>
-          <p className="my-qa-landing__subheading-text">{t("subheading")}</p>
+          <h1 className="">{t("heading")}</h1>
         </GridItem>
         <GridItem md={8} lg={12}>
           <Grid>
             <GridItem md={4} lg={5}>
               <div className="my-qa-landing__button-container">
+                <p className="my-qa-landing__subheading-text">
+                  {t("subheading")}
+                </p>
                 <Box
                   classes="my-qa-landing__ask-anonymous-card"
                   boxShadow={theme === "dark" ? 2 : 1}
@@ -49,14 +84,25 @@ export const MyQALanding = () => {
                   <h4>{t("ask_anonymous_card_heading")}</h4>
                   <p className="text">{t("ask_anonymous_card_text")}</p>
                 </Box>
-                <Button
+                <NewButton
                   label={t("button_label")}
                   size="lg"
+                  isFullWidth={true}
                   classes="my-qa-landing__button"
-                  onClick={() => {
-                    window.location.href = "/client/my-qa";
+                  onClick={async () => {
+                    try {
+                      await addCountryEventMutation.mutateAsync({
+                        eventType: "web_my_qa_nav_click",
+                      });
+                    } catch (_) {
+                      // Still navigate even if tracking fails
+                    }
+                    window.location.href = `/client/${localStorage.getItem(
+                      "language"
+                    )}/my-qa`;
                   }}
                 />
+                <p className="text my-qa-landing__note">{t("note")}</p>
               </div>
             </GridItem>
             <GridItem md={4} lg={7}>

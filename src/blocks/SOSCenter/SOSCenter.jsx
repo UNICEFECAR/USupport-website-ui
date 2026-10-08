@@ -3,15 +3,25 @@ import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
 import {
+  useEventListener,
+  useCustomNavigate as useNavigate,
+  useAddSosCenterClick,
+} from "#hooks";
+
+import {
   Block,
+  Box,
+  NewButton,
   Grid,
   GridItem,
   EmergencyCenter,
   Loading,
 } from "@USupport-components-library/src";
-import { cmsSvc, adminSvc } from "@USupport-components-library/services";
-
-import { useEventListener } from "#hooks";
+import {
+  cmsSvc,
+  adminSvc,
+  clientSvc,
+} from "@USupport-components-library/services";
 
 import "./sos-center.scss";
 
@@ -22,12 +32,15 @@ import "./sos-center.scss";
  *
  * @return {jsx}
  */
-export const SOSCenter = () => {
+export const SOSCenter = ({ description }) => {
   const { i18n, t } = useTranslation("blocks", { keyPrefix: "sos-center" });
+  const navigate = useNavigate();
+
+  const IS_RO = localStorage.getItem("country") === "RO";
 
   //--------------------- Country Change Event Listener ----------------------//
   const [currentCountry, setCurrentCountry] = useState(
-    localStorage.getItem("country")
+    localStorage.getItem("country"),
   );
 
   const handler = useCallback(() => {
@@ -36,6 +49,10 @@ export const SOSCenter = () => {
 
   // Add event listener
   useEventListener("countryChanged", handler);
+
+  const shouldFetchIds = !!(currentCountry && currentCountry !== "global");
+
+  const addSosCenterClickMutation = useAddSosCenterClick();
 
   //--------------------- SOS Centers ----------------------//
 
@@ -47,16 +64,45 @@ export const SOSCenter = () => {
   };
 
   const sosCenterIdsQuerry = useQuery(
-    ["sosCenterIds", currentCountry],
-    getSOSCenterIds
+    ["sosCenterIds", currentCountry, shouldFetchIds],
+    getSOSCenterIds,
+    {
+      enabled: shouldFetchIds,
+    },
+  );
+
+  const getOrganizationSpecializations = async () => {
+    const { data } = await clientSvc.getOrganizationSpecializations();
+    return data;
+  };
+
+  const { data: specializationsData } = useQuery(
+    ["organizationSpecializations", currentCountry],
+    getOrganizationSpecializations,
+    {
+      staleTime: 10 * 60 * 1000, // 10 minutes
+      enabled: currentCountry === "RO",
+    },
+  );
+
+  const emergencyServiceSpecialization = specializationsData?.find(
+    (specialization) => specialization.name === "emergency_situations",
   );
 
   const getSOSCenters = async () => {
-    let { data } = await cmsSvc.getSOSCenters({
+    let queryParams = {
       locale: i18n.language,
-      ids: sosCenterIdsQuerry.data,
       populate: true,
-    });
+    };
+
+    if (shouldFetchIds) {
+      queryParams["ids"] = sosCenterIdsQuerry.data;
+    } else {
+      queryParams["global"] = true;
+      queryParams["isForAdmin"] = true;
+    }
+
+    let { data } = await cmsSvc.getSOSCenters(queryParams);
 
     const sosCenters = data.data;
 
@@ -68,47 +114,152 @@ export const SOSCenter = () => {
     isLoading: SOSCentersLoading,
     isFetched: isSOSCentersFetched,
   } = useQuery(
-    ["SOSCenters", sosCenterIdsQuerry.data, i18n.language],
+    ["SOSCenters", sosCenterIdsQuerry.data, i18n.language, shouldFetchIds],
     getSOSCenters,
     {
-      enabled:
-        !sosCenterIdsQuerry.isLoading && sosCenterIdsQuerry.data?.length > 0,
-    }
+      enabled: shouldFetchIds
+        ? !sosCenterIdsQuerry.isLoading && sosCenterIdsQuerry.data?.length > 0
+        : true,
+    },
   );
+
+  const handleSosCenterClick = (sosCenter) => {
+    const { attributes } = sosCenter;
+    let id = sosCenter.id;
+    if (attributes.locale !== "en") {
+      const englishLocalization = attributes.localizations.data.find(
+        (x) => x.attributes.locale === "en",
+      );
+      if (englishLocalization) {
+        id = englishLocalization.id;
+      }
+    }
+
+    addSosCenterClickMutation.mutate({
+      sosCenterId: id,
+      isMain: false,
+      platform: "website",
+    });
+  };
 
   return (
     <Block classes="soscenter" animation="fade-right">
       {SOSCentersData && (
         <Grid classes="soscenter__grid">
-          <GridItem xs={4} md={8} lg={12} classes="soscenter__heading-item">
-            <h2>{t("heading")}</h2>
-          </GridItem>
           <GridItem xs={4} md={8} lg={12} classes="soscenter__text-item">
-            <Grid classes="soscenter__secondary-grid" xs={4} md={8} lg={12}>
-              {SOSCentersData.map((sosCenter, index) => {
-                return (
+            <Box classes="soscenter__box" liquidGlass>
+              {description && (
+                <div className="soscenter__box-heading">
+                  <p className="soscenter__box-heading-text text">
+                    {description}
+                  </p>
+                </div>
+              )}
+              <Grid classes="soscenter__secondary-grid" xs={4} md={8} lg={12}>
+                {IS_RO && emergencyServiceSpecialization && (
                   <GridItem
                     classes="soscenter__secondary-grid__item"
                     md={4}
-                    lg={12}
-                    key={index}
+                    lg={6}
                   >
-                    <EmergencyCenter
-                      title={sosCenter.attributes.title}
-                      text={sosCenter.attributes.text}
-                      link={sosCenter.attributes.url}
-                      phone={sosCenter.attributes.phone}
-                      btnLabelLink={t("button_link")}
-                      btnLabelCall={t("button_call")}
-                      image={
-                        sosCenter.attributes.image?.data?.attributes?.formats
-                          ?.medium?.url
-                      }
-                    />
+                    <div className="soscenter__card soscenter__card--romania">
+                      <div className="soscenter__card__content">
+                        <div className="soscenter__card__text">
+                          <p className="soscenter__card__title paragraph">
+                            {t("other_emergency_services")}
+                          </p>
+                          <div className="soscenter__card__actions">
+                            <NewButton
+                              size="sm"
+                              type="gradient"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                navigate(
+                                  `/organizations?specialisations=[${emergencyServiceSpecialization.id}]`,
+                                );
+                              }}
+                              label={t("browse")}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </GridItem>
-                );
-              })}
-            </Grid>
+                )}
+                {SOSCentersData.map((sosCenter, index) => {
+                  const { title, text, url, phone, image } =
+                    sosCenter.attributes;
+
+                  return (
+                    <GridItem
+                      classes="soscenter__secondary-grid__item"
+                      md={4}
+                      lg={6}
+                      key={index}
+                    >
+                      <div
+                        className="soscenter__card"
+                        onClick={() => handleSosCenterClick(sosCenter)}
+                      >
+                        <div className="soscenter__card__content">
+                          {image?.data?.attributes?.formats?.medium?.url && (
+                            <div className="soscenter__card__image">
+                              <img
+                                src={image.data.attributes.formats.medium.url}
+                                alt={title}
+                              />
+                            </div>
+                          )}
+
+                          <div className="soscenter__card__text">
+                            <p className="soscenter__card__title paragraph">
+                              {title}
+                            </p>
+
+                            {text ? (
+                              <p className="soscenter__card__description text">
+                                {text}
+                              </p>
+                            ) : (
+                              (phone || url) && (
+                                <div className="soscenter__card__divider" />
+                              )
+                            )}
+
+                            {(phone || url) && (
+                              <div className="soscenter__card__actions">
+                                {phone && (
+                                  <NewButton
+                                    size="sm"
+                                    type="solid"
+                                    label={t("button_call")}
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      window.open(`tel:${phone}`, "_self");
+                                    }}
+                                  />
+                                )}
+                                {url && (
+                                  <NewButton
+                                    size="sm"
+                                    type="gradient"
+                                    label={t("button_link")}
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      window.open(url, "_blank", "noopener");
+                                    }}
+                                  />
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </GridItem>
+                  );
+                })}
+              </Grid>
+            </Box>
           </GridItem>
         </Grid>
       )}

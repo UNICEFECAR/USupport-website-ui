@@ -1,0 +1,62 @@
+@import "../../styles/ph";
+
+.ph-story {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+
+  @include ph-desktop-up {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 6.4rem;
+  }
+
+  &__copy,
+  &__artwork {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  &__copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3.2rem;
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  &__heading {
+    @include ph-h2;
+  }
+
+  &__text {
+    @include ph-body-lg;
+  }
+
+  &__cta {
+    min-width: 24rem;
+  }
+
+  &__artwork {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+
+    img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 850 / 570;
+      object-fit: cover;
+      border-radius: var(--ph-radius-xl);
+    }
+
+    figcaption {
+      @include ph-body-sm;
+    }
+  }
+}

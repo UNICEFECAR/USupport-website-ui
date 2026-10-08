@@ -9,10 +9,13 @@ UI="website"
 REGION="eu-central-1"
 
 DISTRIBUTION_ID=""
+PRERENDER_PUBLIC_ORIGIN=""
 if [ "$ENV" == "prod" ]; then
     DISTRIBUTION_ID="E3TJSAS4CKYLUZ"
+    PRERENDER_PUBLIC_ORIGIN="https://poland.usupport.online"
 else
     DISTRIBUTION_ID="EABVZK2ZLR1CI"
+    PRERENDER_PUBLIC_ORIGIN="https://poland.staging.usupport.online"
 fi
 
 # Ensure correct parameters
@@ -31,9 +34,9 @@ npm install
 cd ..
 
 if [ "$ENV" == "prod" ]; then
-    npm run build --prod
+    PRERENDER_PUBLIC_ORIGIN=$PRERENDER_PUBLIC_ORIGIN npm run build --prod
 else
-    npm run staging
+    PRERENDER_PUBLIC_ORIGIN=$PRERENDER_PUBLIC_ORIGIN npm run staging
 fi
 
 # Sync to the appropriate S3 bucket
@@ -45,7 +48,11 @@ aws s3 sync ./dist/ $S3_PATH --region $REGION --delete
 # Invalidate CloudFront cache
 if [ -n "$DISTRIBUTION_ID" ]; then
     echo "Invalidating CloudFront cache for distribution: $DISTRIBUTION_ID"
-    aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/${UI}/*"
+    # Invalidate both viewer paths (e.g. /en, /pl) and origin-prefixed paths (/website/*)
+    # so prerendered HTML and static assets are always refreshed.
+    aws cloudfront create-invalidation \
+      --distribution-id $DISTRIBUTION_ID \
+      --paths "/*" "/${UI}/*"
 else
     echo "No matching CloudFront distribution found for $BUCKET_NAME"
 fi

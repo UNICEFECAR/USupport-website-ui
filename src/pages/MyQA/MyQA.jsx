@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 
+import { HowItWorksMyQA, QuestionDetails, RedirectToLogin } from "#modals";
 import {
-  FilterQuestions,
-  HowItWorksMyQA,
-  QuestionDetails,
-  RedirectToLogin,
-} from "#modals";
-import { MascotHeaderMyQA, MyQA as MyQABlock, Page } from "#blocks";
-import { useGetQuestions, useEventListener } from "#hooks";
+  DownloadApp,
+  InformationPortalHero,
+  MyQA as MyQABlock,
+  Page,
+} from "#blocks";
+import {
+  useGetQuestions,
+  useEventListener,
+  useCustomNavigate as useNavigate,
+} from "#hooks";
 import "./my-qa.scss";
 
 const getTextAndTitle = (language) => {
@@ -60,9 +63,9 @@ export const MyQA = () => {
 
   const [isRedirectToLoginBackdropOpen, setIsRedirectToLoginBackdropOpen] =
     useState(false);
+  const [redirectType, setRedirectType] = useState("");
   const [isQuestionDetailsOpen, setIsQuestionDetailsOpen] = useState(false);
   const [isHowItWorksOpen, setIsHowItWorksOpen] = useState(false);
-  const [isFilterQuestionsOpen, setIsFilterQuestionsOpen] = useState(false);
   const [selectedQuestion, setSelectedQuestion] = useState();
   const [questions, setQuestions] = useState([]);
   const [tabs, setTabs] = useState([
@@ -71,8 +74,9 @@ export const MyQA = () => {
     { label: "New", value: "newest", isSelected: false },
   ]);
   const [filterTag, setFilterTag] = useState("");
-  const [selectedLanguage, setSelectedLanguage] = useState();
+  const [selectedLanguage, setSelectedLanguage] = useState("all");
   const [shouldFetchQuestions, setShouldFetchQuestions] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
   const [selectedCountry, setSelectedCountry] = useState(
     localStorage.getItem("country")
   );
@@ -113,7 +117,7 @@ export const MyQA = () => {
   }, [tabs, allQuestions.data]);
 
   useEffect(() => {
-    if (selectedQuestion)
+    if (selectedQuestion && questions.length > 0)
       setSelectedQuestion(
         questions.find((question) => question.answerId === question.answerId)
       );
@@ -125,23 +129,27 @@ export const MyQA = () => {
   };
 
   const handleProviderClick = (providerId) => {
-    navigate(
-      `/${localStorage.getItem("language")}/about-us/provider?id=${providerId}`
-    );
+    navigate(`/provider-overview?id=${providerId}`);
+  };
+
+  const handleOpenModal = (type) => {
+    setRedirectType(type);
+    setTimeout(() => {
+      setIsRedirectToLoginBackdropOpen(true);
+    }, 100);
   };
 
   return (
-    <Page classes="page__my-qa" showGoBackArrow={false}>
-      <MascotHeaderMyQA
-        handleSeeHowItWorksClick={() => setIsHowItWorksOpen(true)}
-        handleHowItWorks={() => setIsHowItWorksOpen(true)}
+    <Page classes="page__my-qa" showGoBackArrow={false} showBackground={true}>
+      <InformationPortalHero
+        showSearch={true}
+        searchValue={searchValue}
+        onSearchChange={setSearchValue}
+        heroType="my-qa"
       />
       <MyQABlock
-        // handleAskAnonymous={() => setIsCreateQuestionOpen(true)}
         handleReadMore={handleSetIsQuestionDetailsOpen}
-        handleScheduleConsultationClick={() =>
-          setIsRedirectToLoginBackdropOpen(true)
-        }
+        handleScheduleConsultationClick={handleOpenModal}
         questions={
           isInGlobalCountry
             ? [
@@ -157,12 +165,16 @@ export const MyQA = () => {
         setTabs={setTabs}
         isUserQuestionsEnabled={isUserQuestionsEnabled}
         filterTag={filterTag}
-        handleFilterTags={() => setIsFilterQuestionsOpen(true)}
-        isLoading={allQuestions.isFetching}
+        setFilterTag={setFilterTag}
+        isQuestionsDataLoading={allQuestions.isFetching}
         selectedLanguage={selectedLanguage}
         setSelectedLanguage={setSelectedLanguage}
         setShouldFetchQuestions={setShouldFetchQuestions}
+        setIsHowItWorksOpen={() => setIsHowItWorksOpen(true)}
+        searchValue={searchValue}
+        onResetSearch={() => setSearchValue("")}
       />
+      <DownloadApp />
       <HowItWorksMyQA
         isOpen={isHowItWorksOpen}
         onClose={() => setIsHowItWorksOpen(false)}
@@ -180,8 +192,14 @@ export const MyQA = () => {
         />
       )}
       <RedirectToLogin
-        heading={t("modal_heading")}
-        text={t("modal_text")}
+        heading={t(
+          redirectType === "question"
+            ? "modal_heading"
+            : "modal_heading_consultation"
+        )}
+        text={t(
+          redirectType === "question" ? "modal_text" : "modal_text_consultation"
+        )}
         buttonLabel={t("modal_button_label")}
         isOpen={isRedirectToLoginBackdropOpen}
         onClose={() => setIsRedirectToLoginBackdropOpen(false)}
@@ -190,12 +208,6 @@ export const MyQA = () => {
             "language"
           )}/login`;
         }}
-      />
-      <FilterQuestions
-        isOpen={isFilterQuestionsOpen}
-        onClose={() => setIsFilterQuestionsOpen(false)}
-        setTag={setFilterTag}
-        isInGlobalCountry={isInGlobalCountry}
       />
     </Page>
   );

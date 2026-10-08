@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useTranslation, Trans } from "react-i18next";
+
+import { ThemeContext } from "@USupport-components-library/utils";
 import { Block, Grid, GridItem } from "@USupport-components-library/src";
-import { useTranslation } from "react-i18next";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 
 import "./find-yourself.scss";
@@ -9,6 +11,7 @@ import image1 from "./assets/image_1.png";
 import image2 from "./assets/image_2.png";
 import image3 from "./assets/image_3.png";
 import image4 from "./assets/image_4.png";
+import image5 from "./assets/image_5.png";
 
 /**
  * FindYourself
@@ -20,6 +23,8 @@ import image4 from "./assets/image_4.png";
 export const FindYourself = () => {
   const { t } = useTranslation("blocks", { keyPrefix: "find-yourself" });
   const { width } = useWindowDimensions();
+  const { theme } = useContext(ThemeContext);
+  const IS_RO = localStorage.getItem("country") === "RO";
 
   return (
     <Block classes="find-yourself" animation="fade-up">
@@ -27,9 +32,17 @@ export const FindYourself = () => {
         <GridItem xs={4} md={8} lg={12} classes="find-yourself__heading-item">
           {width > 768 && (
             <>
-              <h3 className="find-yourself__heading-item__h3">
-                {t("heading")}
-              </h3>
+              <h1 className="find-yourself__heading-item__h3">
+                <Trans
+                  t={t}
+                  i18nKey="heading"
+                  components={{
+                    highlight: (
+                      <span className="find-yourself__heading-highlight" />
+                    ),
+                  }}
+                />
+              </h1>
               <div className="find-yourself__text">
                 <p className="paragraph">{t("paragraph")}</p>
                 <p className="paragraph">{t("paragraph_2")}</p>
@@ -37,11 +50,19 @@ export const FindYourself = () => {
             </>
           )}
         </GridItem>
-        {width <= 768 && (
+        {/* {width <= 768 && (
           <GridItem xs={4} md={8} lg={12} classes="find-yourself__text-item">
             <div className="find-yourself__text">
               <h3 className="find-yourself__heading-item__h3">
-                {t("heading")}
+                <Trans
+                  t={t}
+                  i18nKey="heading"
+                  components={{
+                    highlight: (
+                      <span className="find-yourself__heading-highlight" />
+                    ),
+                  }}
+                />
               </h3>
               <div className="find-yourself__text__content">
                 <p className="paragraph">{t("paragraph")}</p>
@@ -50,30 +71,58 @@ export const FindYourself = () => {
             </div>
           </GridItem>
         )}
-        <GridItem md={4} lg={6} classes="find-yourself__image-item box box-1">
+        <GridItem
+          md={4}
+          lg={6}
+          classes={`find-yourself__image-item ${
+            theme === "highContrast" ? "find-yourself__image-item--hc" : ""
+          } box box-1`}
+        >
           <div className="overlay">
-            <img src={image1} className="box__image" />
+            <img src={image1} className="box__image" alt={t("card_text_1")} />
             <h3>{t("card_text_1")}</h3>
           </div>
         </GridItem>
-        <GridItem md={4} lg={6} classes="find-yourself__image-item box box-2">
+        <GridItem
+          md={4}
+          lg={6}
+          classes={`find-yourself__image-item ${
+            theme === "highContrast" ? "find-yourself__image-item--hc" : ""
+          } box box-2`}
+        >
           <div className="overlay">
-            <img src={image2} className="box__image" />
-            <h3>{t("card_text_2")}</h3>
+            <img
+              src={IS_RO ? image5 : image2}
+              className="box__image"
+              alt={t(IS_RO ? "card_text_5" : "card_text_2")}
+            />
+            <h3>{t(IS_RO ? "card_text_5" : "card_text_2")}</h3>
           </div>
         </GridItem>
-        <GridItem md={4} lg={6} classes="find-yourself__image-item box box-3">
+        <GridItem
+          md={4}
+          lg={6}
+          classes={`find-yourself__image-item ${
+            theme === "highContrast" ? "find-yourself__image-item--hc" : ""
+          } box box-3`}
+        >
           <div className="overlay">
-            <img src={image3} className="box__image" />
+            <img src={image3} className="box__image" alt={t("card_text_3")} />
             <h3>{t("card_text_3")}</h3>
           </div>
         </GridItem>
-        <GridItem md={4} lg={6} classes="find-yourself__image-item box box-4">
+        <GridItem
+          md={4}
+          lg={6}
+          classes={`find-yourself__image-item ${
+            theme === "highContrast" ? "find-yourself__image-item--hc" : ""
+          } box box-4`}
+        >
           <div className="overlay">
-            <img src={image4} className="box__image" />
+            <img src={image4} className="box__image" alt={t("card_text_4")} />
             <h3>{t("card_text_4")}</h3>
           </div>
-        </GridItem>
+        </GridItem> */}
       </Grid>
     </Block>
   );

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>uSupport Poland Pilot Dashboard</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero panel">
+      <div class="hero-copy">
+        <p class="eyebrow">uSupport Poland pilot report | UNICEF management dashboard</p>
+        <div class="reporting-period" aria-label="Reporting period">
+          <span class="reporting-label">Reporting period</span>
+          <strong>11 August 2025 to 21 March 2026</strong>
+        </div>
+        <h1>Young people are engaging with uSupport, returning to it, and taking steps to understand and act on their mental health, reporting a credible positive experience.</h1>
+        <p class="hero-summary">
+          Across 126 booked sessions and 69 unique clients, the pilot shows strong satisfaction,
+          meaningful emotional benefit, and clear signals that young people are willing to seek
+          support and take action in a safe, remote setting.
+        </p>
+        <div class="hero-chips" aria-label="Key summary points">
+          <span>126 bookings</span>
+          <span>69 unique clients</span>
+          <span>93.7% satisfied</span>
+          <span>0% dissatisfied</span>
+          <span>0 unsafe reports</span>
+        </div>
+      </div>
+
+      <aside class="hero-scorecard">
+        <p class="score-label">Average sessions per client</p>
+        <p class="score-number" data-target="1.83" data-decimals="2">0</p>
+        <p class="score-detail">126 booked sessions divided by 69 unique clients</p>
+        <p class="score-explainer">
+          This suggests the pilot was not just attracting one-time visits. Some young people
+          returned for additional support, indicating growing trust and a willingness to re-engage
+          and take further steps in managing their mental health.
+        </p>
+      </aside>
+    </header>
+
+    <main>
+      <section class="kpi-grid" aria-label="Key performance indicators">
+        <article class="kpi-card">
+          <p class="kpi-label">Booked sessions</p>
+          <p class="kpi-value" data-target="126">0</p>
+          <p class="kpi-note">Total demand generated during the pilot</p>
+        </article>
+        <article class="kpi-card">
+          <p class="kpi-label">Unique clients</p>
+          <p class="kpi-value" data-target="69">0</p>
+          <p class="kpi-note">Distinct young people reached and engaged</p>
+        </article>
+        <article class="kpi-card">
+          <p class="kpi-label">Valid attended sessions with feedback</p>
+          <p class="kpi-value" data-target="63">0</p>
+          <p class="kpi-note">Evidence base for experience and outcome data</p>
+        </article>
+        <article class="kpi-card">
+          <p class="kpi-label">Satisfied or very satisfied</p>
+          <p class="kpi-value" data-target="93.7" data-decimals="1">0</p>
+          <p class="kpi-note">Strong validation of user experience and perceived support value</p>
+        </article>
+        <article class="kpi-card">
+          <p class="kpi-label">Needs addressed</p>
+          <p class="kpi-value" data-target="88.9" data-decimals="1">0</p>
+          <p class="kpi-note">Share indicating their needs were understood and addressed</p>
+        </article>
+        <article class="kpi-card">
+          <p class="kpi-label">Wellbeing improved</p>
+          <p class="kpi-value" data-target="71.4" data-decimals="1">0</p>
+          <p class="kpi-note">Reported improvement after taking part in support</p>
+        </article>
+        <article class="kpi-card">
+          <p class="kpi-label">Immediate positive change in feelings</p>
+          <p class="kpi-value" data-target="61.9" data-decimals="1">0</p>
+          <p class="kpi-note">Immediate emotional shift following engagement with support</p>
+        </article>
+        <article class="kpi-card">
+          <p class="kpi-label">Boundary issue flags</p>
+          <p class="kpi-value" data-target="4.8" data-decimals="1">0</p>
+          <p class="kpi-note">3 total flags across 63 sessions, with zero unsafe reports</p>
+        </article>
+      </section>
+
+      <section class="main-grid">
+        <article class="panel chart-panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Interactive lens</p>
+              <h2>Switch between usage, perception, and safety</h2>
+            </div>
+            <div class="segmented-control" aria-label="Dashboard chart views">
+              <button class="segmented-button is-active" type="button" data-view="usage" aria-pressed="true">Usage</button>
+              <button class="segmented-button" type="button" data-view="experience" aria-pressed="false">Perception</button>
+              <button class="segmented-button" type="button" data-view="safety" aria-pressed="false">Safety</button>
+            </div>
+          </div>
+
+          <div class="chart-layout">
+            <div id="mainChart" class="bar-chart" aria-live="polite"></div>
+            <aside class="chart-context">
+              <p class="context-kicker" id="contextKicker">Usage</p>
+              <h3 id="contextTitle">The pilot reached young people and showed repeat engagement and continued use.</h3>
+              <p id="contextBody">
+                Sessions booked outnumber unique clients, which suggests repeat engagement rather
+                than one-off trial use. For an early pilot, this is an encouraging signal of trust
+                and willingness to re-engage with support.
+              </p>
+              <p class="context-note" id="contextNote">Hover, focus, or tap a bar for details.</p>
+            </aside>
+          </div>
+        </article>
+
+        <aside class="panel meaning-panel">
+          <p class="eyebrow">Management reading</p>
+          <h2>What 1.83 sessions per client actually means</h2>
+          <p>
+            The average is based on bookings, not only completed feedback sessions, so it should be
+            read as a usage signal rather than a retention rate. Even so, it indicates that the
+            platform was revisited by part of the cohort.
+          </p>
+          <div class="meaning-metrics">
+            <div>
+              <span class="meaning-number" data-target="57">0</span>
+              <p>additional bookings beyond one session per client</p>
+            </div>
+            <div>
+              <span class="meaning-number" data-target="54.8" data-decimals="1">0</span>
+              <p>more bookings than a one-session-only pattern would produce</p>
+            </div>
+          </div>
+          <p class="meaning-summary">
+            For UNICEF management, this points to two things: the service is attracting demand, and
+            at least some users find enough value to return.
+          </p>
+          <p class="meaning-followup">
+            This pattern suggests that some users are not only accessing support, but choosing to
+            return as they navigate their mental health needs.
+          </p>
+        </aside>
+      </section>
+
+      <section class="donut-grid" aria-label="Outcome highlights">
+        <article class="panel donut-card">
+          <div class="donut" data-percent="93.7" data-color="var(--unicef-blue)"></div>
+          <div>
+            <p class="eyebrow">Service experience</p>
+            <h2>93.7% satisfied or very satisfied</h2>
+            <p>The platform is clearly delivering on its baseline promise: young people feel heard and leave with a positive experience, supporting continued engagement and openness to seeking help.</p>
+          </div>
+        </article>
+
+        <article class="panel donut-card">
+          <div class="donut" data-percent="71.4" data-color="#69c8ee"></div>
+          <div>
+            <p class="eyebrow">Reported impact</p>
+            <h2>71.4% showed improved wellbeing</h2>
+            <p>The emotional effect is positive without looking overstated, suggesting that users are experiencing meaningful changes following engagement with support.</p>
+          </div>
+        </article>
+
+        <article class="panel donut-card">
+          <div class="donut" data-percent="95.2" data-color="var(--unicef-blue-deep)"></div>
+          <div>
+            <p class="eyebrow">Safety signal</p>
+            <h2>95.2% of sessions had no boundary issue flag</h2>
+            <p>There were zero reports of feeling unsafe and only three total provider-boundary flags across 63 sessions.</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="lower-grid">
+        <article class="panel safety-panel">
+          <p class="eyebrow">Child protection and safety</p>
+          <h2>Very strong safety signal for a remote mental health platform</h2>
+          <div id="safetyList" class="safety-list"></div>
+          <p class="safety-summary">
+            Zero reports of feeling unsafe is the clearest signal in this section. The remaining
+            flags are few in number and should be read as low-level boundary concerns that still
+            deserve active monitoring as the service scales.
+          </p>
+          <p class="safety-summary">
+            Anonymous and remote access likely contributed to reducing stigma-related barriers,
+            enabling young people to seek support in a way that feels safe and accessible.
+          </p>
+        </article>
+
+        <article class="panel narrative-panel">
+          <p class="eyebrow">Executive interpretation</p>
+          <p>
+            The data suggests that young people are not only accessing support, but are willing to
+            engage, return, and take steps toward managing their mental health.
+          </p>
+          <h2>The real story is consistent engagement and positive user response.</h2>
+          <div class="alignment-grid">
+            <div class="alignment-item">
+              <span>High satisfaction</span>
+              <strong>93.7%</strong>
+            </div>
+            <div class="alignment-item">
+              <span>Needs addressed</span>
+              <strong>88.9%</strong>
+            </div>
+            <div class="alignment-item">
+              <span>Wellbeing improved</span>
+              <strong>71.4%</strong>
+            </div>
+            <div class="alignment-item">
+              <span>Unsafe reports</span>
+              <strong>0</strong>
+            </div>
+          </div>
+          <p>
+            There are no major contradictions in the data. High satisfaction aligns with strong
+            needs-addressed scores, positive emotional outcomes, and clean safety signals. That is
+            what makes this pilot dataset credible.
+          </p>
+        </article>
+      </section>
+
+      <section class="insight-grid" aria-label="Management insights">
+        <article class="panel insight-card">
+          <p class="insight-number">1</p>
+          <h2>The platform is delivering on its core purpose</h2>
+          <p>Clients feel heard, their needs are addressed, and they are willing to engage with and return to support. That baseline appears clearly met in the pilot data.</p>
+        </article>
+
+        <article class="panel insight-card">
+          <p class="insight-number">2</p>
+          <h2>Emotional impact is positive but not overstated</h2>
+          <p>Improvement is real without looking inflated, suggesting genuine user-reported benefit following engagement. That balance adds credibility and suggests the feedback is not artificially optimistic.</p>
+        </article>
+
+        <article class="panel insight-card">
+          <p class="insight-number">3</p>
+          <h2>The safety framework is working</h2>
+          <p>No respondents reported feeling unsafe, and provider-behaviour concerns were minimal. For a remote support service, this is a critical validation point, which supports user trust and willingness to seek support.</p>
+        </article>
+
+        <article class="panel insight-card">
+          <p class="insight-number">4</p>
+          <h2>The dataset is internally aligned</h2>
+          <p>Usage, satisfaction, impact, and safety do not tell conflicting stories. That consistency strengthens confidence that the platform is delivering a reliable and trusted support experience.</p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer-note">
+      <p>
+        Data note: outcome and safety percentages are based on 63 valid attended sessions with
+        feedback unless otherwise stated. Average sessions per client is based on 126 booked
+        sessions divided by 69 unique clients.
+      </p>
+      <p>
+        Overall, the pilot indicates that when barriers such as stigma and access are reduced,
+        young people are willing to seek support, engage with care, and take steps to address
+        their mental health needs.
+      </p>
+    </footer>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

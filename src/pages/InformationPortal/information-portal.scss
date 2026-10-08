@@ -1,24 +1,21 @@
-/* HowItWorks styles */
 @import "@USupport-components-library/styles";
 
 .page__information-portal {
   min-width: 40.7rem;
 
-  .information-portal-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+  &__tabs-block {
+    padding-top: $spacing_6_0;
+    text-align: left;
   }
 
-  @media screen and (min-width: $screen-md) {
-    .information-portal-image {
-      &--mobile {
-        display: none;
-      }
+  &__tabs-container {
+    margin-inline: auto;
 
-      &--desktop {
-        display: block;
-        opacity: 1;
+    &__inner {
+      display: flex;
+
+      &--rtl {
+        flex-direction: row-reverse;
       }
     }
   }

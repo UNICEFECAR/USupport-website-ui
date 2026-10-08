@@ -1,0 +1,63 @@
+@import "../../styles/ph";
+
+.ph-faq {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+
+  &__item {
+    border-bottom: 1px solid var(--ph-border);
+  }
+
+  &__question button {
+    @include ph-reset-button;
+    @include ph-focus-ring;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    width: 100%;
+    min-height: 6.8rem;
+    padding: 1.6rem 0.4rem;
+    border-radius: var(--ph-radius-sm);
+    font-family: var(--ph-font);
+    font-weight: var(--ph-weight-semibold);
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    color: var(--ph-foreground);
+  }
+
+  &__chevron {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+
+    [aria-expanded="true"] & {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__answer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    padding: 0 0.4rem 2rem;
+
+    // display: flex would otherwise override the hidden attribute
+    &[hidden] {
+      display: none;
+    }
+
+    p {
+      @include ph-body;
+      max-width: 80rem;
+    }
+
+    a {
+      @include ph-focus-ring;
+      color: var(--ph-link);
+      font-weight: var(--ph-weight-semibold);
+      text-decoration: underline;
+      border-radius: 0.4rem;
+    }
+  }
+}

@@ -14,6 +14,8 @@ export default function useGetOrganizationById(organizationId) {
       phone: data?.phone,
       email: data?.email,
       description: data?.description,
+      descriptionRO: data?.description_ro,
+      descriptionUK: data?.description_uk,
       location: {
         longitude: data?.longitude,
         latitude: data?.latitude,
@@ -30,7 +32,6 @@ export default function useGetOrganizationById(organizationId) {
         id: data?.user_interaction_id,
         name: data?.user_interaction,
       },
-      workWith: data?.work_with || [],
       providers: data?.providers || [],
       createdBy: data?.created_by,
       createdAt: data?.created_at,

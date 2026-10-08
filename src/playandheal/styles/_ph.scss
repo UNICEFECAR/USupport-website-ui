@@ -1,0 +1,150 @@
+// Play and Heal design system helpers.
+// Everything here is scoped to the `.ph` root, so the uSupport design system
+// in USupport-components-library stays untouched. Only the shared variables
+// are imported - the full styles entry would re-emit global CSS in every file.
+@import "@USupport-components-library/src/styles/variables";
+
+// Breakpoints (aligned with the shared screen sizes)
+$ph-bp-md: $screen-md; // 768px - tablet
+$ph-bp-lg: $navbar-spread; // 1100px - desktop
+
+@mixin ph-tablet-up {
+  @media (min-width: $ph-bp-md) {
+    @content;
+  }
+}
+
+@mixin ph-desktop-up {
+  @media (min-width: $ph-bp-lg) {
+    @content;
+  }
+}
+
+@mixin ph-mobile-only {
+  @media (max-width: ($ph-bp-md - 1px)) {
+    @content;
+  }
+}
+
+@mixin ph-focus-ring {
+  &:focus-visible {
+    outline: 3px solid var(--ph-focus);
+    outline-offset: 2px;
+  }
+}
+
+@mixin ph-reset-button {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-align: inherit;
+}
+
+// Typography
+@mixin ph-eyebrow {
+  font-family: var(--ph-font);
+  font-weight: var(--ph-weight-semibold);
+  font-size: var(--ph-eyebrow-size);
+  line-height: var(--ph-eyebrow-line-height);
+  letter-spacing: calc(0.12rem * var(--ph-tracking));
+  text-transform: uppercase;
+  color: var(--ph-text-secondary);
+}
+
+@mixin ph-display {
+  font-family: var(--ph-font-display);
+  font-weight: 700;
+  font-size: 3.6rem;
+  line-height: 4.4rem;
+  letter-spacing: calc(-0.08rem * var(--ph-tracking));
+  color: var(--ph-foreground);
+
+  @include ph-tablet-up {
+    font-size: 4.8rem;
+    line-height: 5.8rem;
+  }
+
+  @include ph-desktop-up {
+    font-size: 6rem;
+    line-height: 7.5rem;
+    letter-spacing: calc(-0.18rem * var(--ph-tracking));
+  }
+}
+
+@mixin ph-h1 {
+  font-family: var(--ph-font-display);
+  font-weight: 700;
+  font-size: 3.2rem;
+  line-height: 4rem;
+  letter-spacing: calc(-0.06rem * var(--ph-tracking));
+  color: var(--ph-foreground);
+
+  @include ph-desktop-up {
+    font-size: 4.8rem;
+    line-height: 6rem;
+    letter-spacing: calc(-0.12rem * var(--ph-tracking));
+  }
+}
+
+@mixin ph-h2 {
+  font-family: var(--ph-font-display);
+  font-weight: var(--ph-weight-semibold);
+  font-size: 2.6rem;
+  line-height: 3.4rem;
+  letter-spacing: calc(-0.04rem * var(--ph-tracking));
+  color: var(--ph-foreground);
+
+  @include ph-desktop-up {
+    font-size: var(--ph-h2-size-desktop);
+    line-height: 4.5rem;
+    letter-spacing: calc(-0.06rem * var(--ph-tracking));
+  }
+}
+
+@mixin ph-h3 {
+  font-family: var(--ph-font-display);
+  font-weight: var(--ph-weight-semibold);
+  font-size: 2rem;
+  line-height: 2.8rem;
+  letter-spacing: calc(-0.02rem * var(--ph-tracking));
+  color: var(--ph-foreground);
+
+  @include ph-desktop-up {
+    font-size: 2.4rem;
+    line-height: 3.6rem;
+  }
+}
+
+@mixin ph-body-lg {
+  font-family: var(--ph-font);
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 2.6rem;
+  color: var(--ph-text-secondary);
+
+  @include ph-desktop-up {
+    font-size: 1.8rem;
+    line-height: 2.8rem;
+  }
+}
+
+@mixin ph-body {
+  font-family: var(--ph-font);
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 2.5rem;
+  color: var(--ph-text-secondary);
+}
+
+@mixin ph-body-sm {
+  font-family: var(--ph-font);
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 2.2rem;
+  color: var(--ph-text-secondary);
+}

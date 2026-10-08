@@ -6,7 +6,7 @@ import {
   Grid,
   GridItem,
   CollapsibleFAQ,
-  Button,
+  NewButton,
   Loading,
   Animation,
 } from "@USupport-components-library/src";
@@ -24,13 +24,18 @@ import "./faq.scss";
  *
  * @return {jsx}
  */
-export const FAQ = ({ showMascot, showLearnMore, showAll = true }) => {
+export const FAQ = ({
+  showMascot,
+  showLearnMore,
+  showAll = true,
+  hasBackground = false,
+}) => {
   const { i18n, t } = useTranslation("blocks", { keyPrefix: "faq" });
   const navigateTo = useNavigate();
 
   //--------------------- Country Change Event Listener ----------------------//
   const [currentCountry, setCurrentCountry] = useState(
-    localStorage.getItem("country")
+    localStorage.getItem("country"),
   );
 
   const handler = useCallback(() => {
@@ -55,7 +60,7 @@ export const FAQ = ({ showMascot, showLearnMore, showAll = true }) => {
     getFAQIds,
     {
       enabled: fetchFaqIds,
-    }
+    },
   );
 
   const getFAQs = async () => {
@@ -97,14 +102,17 @@ export const FAQ = ({ showMascot, showLearnMore, showAll = true }) => {
       enabled: fetchFaqIds
         ? !faqIdsQuery.isLoading && faqIdsQuery.data?.length > 0
         : true,
-    }
+    },
   );
 
   return (
-    <Block classes="faq" animation="fade-right">
+    <Block
+      classes={["faq", hasBackground ? "faq--background" : ""].join(" ")}
+      animation="fade-right"
+    >
       <Grid>
         <GridItem md={8} lg={12}>
-          <h2>{t("heading")}</h2>
+          <h1>{t("heading")}</h1>
         </GridItem>
         <GridItem md={8} lg={12} classes="faq__content-item">
           <Grid>
@@ -125,13 +133,13 @@ export const FAQ = ({ showMascot, showLearnMore, showAll = true }) => {
                 </GridItem>
                 {showLearnMore && (
                   <GridItem md={8} lg={12} classes="faq__button-item">
-                    <Button
+                    <NewButton
                       size="lg"
-                      type="secondary"
+                      // type="outline"
                       label={t("button")}
                       onClick={() => {
                         navigateTo(`/${localStorage.getItem(
-                          "language"
+                          "language",
                         )}/how-it-works
                           `);
                       }}

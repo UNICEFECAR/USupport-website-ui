@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 import {
   Block,
   Grid,
@@ -21,47 +22,74 @@ import "./terms-of-use.scss";
  * @return {jsx}
  */
 export const TermsOfUse = () => {
+  const queryClient = useQueryClient();
   const { i18n, t } = useTranslation("blocks", { keyPrefix: "terms-of-use" });
+  const navigate = useNavigate();
+
+  const IS_PS = localStorage.getItem("country") === "PS";
+  const IS_RTL = localStorage.getItem("language") === "ar";
 
   //--------------------- Country Change Event Listener ----------------------//
-  const [currentCountry, setCurrentCountry] = useState(
-    localStorage.getItem("country")
+  const [selectedCountry, setSelectedCountry] = useState(
+    localStorage.getItem("country") || "KZ"
   );
 
+  const country = window.location.hostname.split(".")[0];
+  const countries = queryClient.getQueryData(["countries"]);
+
   const handler = useCallback(() => {
-    setCurrentCountry(localStorage.getItem("country"));
-  }, []);
+    const newCountry = localStorage.getItem("country");
+    if (newCountry) {
+      if (newCountry === selectedCountry) return;
+      navigate(
+        `/terms-of-use/${localStorage.getItem("country").toLowerCase()}`
+      );
+      setSelectedCountry(localStorage.getItem("country"));
+    }
+  }, [selectedCountry, navigate]);
 
   // Add event listener
   useEventListener("countryChanged", handler);
 
   //--------------------- Terms of Use ----------------------//
-  const getTermsOfUse = async () => {
-    const { data } = await cmsSvc.getTermsOfUse(
+  const { isLoading, data } = useQuery({
+    queryKey: [
+      "terms-of-use",
+      country,
+      selectedCountry,
       i18n.language,
-      currentCountry,
-      "website"
-    );
+      countries,
+      IS_PS,
+    ],
+    queryFn: async () => {
+      const localStorageCountry = localStorage.getItem("country");
+      const { data } = await cmsSvc.getTermsOfUse(
+        i18n.language,
+        localStorageCountry.toLocaleUpperCase(),
+        "website",
+        IS_PS
+      );
+      return data;
+    },
+    enabled: !!countries,
+  });
 
-    return data;
-  };
-
-  const {
-    data: termsOfUseData,
-    isLoading: termsOfUseLoading,
-    isFetched: isTermsOfUseFetched,
-  } = useQuery(["terms-of-use", currentCountry, i18n.language], getTermsOfUse);
   return (
-    <Block classes="terms-of-use">
+    <Block classes={`terms-of-use ${IS_RTL ? "terms-of-use--rtl" : ""}`}>
       <Grid>
-        <GridItem xs={4} md={8} lg={12} classes="privacy-policy__heading-item">
-          <h2>{t("heading")}</h2>
-        </GridItem>
-        <GridItem xs={4} md={8} lg={12} classes="privacy-policy__text-item">
-          {termsOfUseData && <Markdown markDownText={termsOfUseData} />}
-          {!termsOfUseData && termsOfUseLoading && <Loading />}
-          {!termsOfUseData && !termsOfUseLoading && isTermsOfUseFetched && (
-            <h3 className="privacy-policy__no-results">{t("no_results")}</h3>
+        <GridItem md={8} lg={12}>
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <>
+              {data ? (
+                <Markdown markDownText={data} />
+              ) : (
+                <h3 className="terms-of-use__no-results">
+                  {t("no_results")}
+                </h3>
+              )}
+            </>
           )}
         </GridItem>
       </Grid>

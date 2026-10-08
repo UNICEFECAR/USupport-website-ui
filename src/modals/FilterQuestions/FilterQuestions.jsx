@@ -31,6 +31,7 @@ export const FilterQuestions = ({
     setTags(data);
   };
   const tagsQuery = useGetQuestionsTags({
+    languageId: "all",
     enabled: !isInGlobalCountry,
     onSuccess,
   });
