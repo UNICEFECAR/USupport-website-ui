@@ -1,0 +1,34 @@
+@import "../../styles/hosn";
+
+.hosn-how-to-use {
+  &__steps {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing_2_4;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @include hh-desktop-up {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  &__practical {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing_1_6;
+
+    h2 {
+      font-size: var(--hh-font-size-section);
+      font-weight: $font_semi_bold;
+    }
+
+    p {
+      font-size: var(--hh-font-size-lead);
+      line-height: 1.5;
+      color: var(--hh-color-text-muted);
+    }
+  }
+}

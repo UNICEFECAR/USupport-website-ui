@@ -54,9 +54,12 @@ import { userSvc } from "@USupport-components-library/services";
 
 import { useEventListener } from "#hooks";
 import { isPlayAndHeal } from "./playandheal/config";
+import { isHosnElHal } from "./hosnelhal/config";
 
 // Play and Heal (PS) has its own design system and pages
 const PlayAndHealRoutes = lazy(() => import("./playandheal"));
+// Hosn El Hal is served on its own domain with the program kit design
+const HosnElHalRoutes = lazy(() => import("./hosnelhal"));
 
 import "aos/dist/aos.css";
 import AOS from "aos";
@@ -218,6 +221,14 @@ const LanguageLayout = () => {
     },
     { enabled: IS_PS }
   );
+
+  if (isHosnElHal()) {
+    return (
+      <Suspense fallback={null}>
+        <HosnElHalRoutes />
+      </Suspense>
+    );
+  }
 
   if (IS_PS) {
     return (

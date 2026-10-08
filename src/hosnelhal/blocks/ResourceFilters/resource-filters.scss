@@ -1,0 +1,33 @@
+@import "../../styles/hosn";
+
+.hosn-resource-filters {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing_2_8;
+
+  &__panel {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing_1_8;
+    align-items: center;
+    padding: $spacing_1_8;
+
+    @include hh-tablet-up {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding: $spacing_1_8;
+    }
+
+    @include hh-desktop-up {
+      grid-template-columns: repeat(4, minmax(0, 27rem)) auto;
+    }
+
+    // Centred under the stacked filters on phones, after them on desktop
+    > .hh-button {
+      justify-self: center;
+
+      @include hh-tablet-up {
+        justify-self: start;
+      }
+    }
+  }
+}
