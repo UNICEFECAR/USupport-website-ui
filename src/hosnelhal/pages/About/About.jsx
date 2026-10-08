@@ -5,7 +5,7 @@ import { HHButton, HHPageIntro, HHPanel } from "@USupport-components-library/src
 
 import { useHosnPath } from "../../hooks/useHosnPath";
 
-import illustration from "../../assets/about-illustration.jpg";
+import illustration from "../../assets/about-illustration.png";
 
 import "./about.scss";
 
@@ -30,6 +30,7 @@ export const About = () => {
           <h2 id="hosn-about-background">{t("background_title")}</h2>
           <p>{t("background_text_1")}</p>
           <p>{t("background_text_2")}</p>
+          <p className="hosn-about__closing">{t("background_text_3")}</p>
         </div>
       </section>
 

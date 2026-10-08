@@ -2,43 +2,71 @@
 
 .hosn-about {
   h2 {
-    font-size: var(--hh-font-size-section);
     font-weight: $font_semi_bold;
+    line-height: 1.45;
   }
 
-  &__copy h2 {
-    font-size: var(--hh-font-size-heading);
-  }
-
-  p {
-    font-size: var(--hh-font-size-lead);
-    line-height: 1.5;
-    color: var(--hh-color-text-muted);
+  &__copy p,
+  &__hub p {
+    line-height: 1.45;
+    color: var(--hh-color-text);
   }
 
   &__programme {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     gap: $spacing_3_2;
-    align-items: center;
 
-    @include hh-desktop-up {
-      grid-template-columns: minmax(0, 47fr) minmax(0, 81fr);
+    @include hh-tablet-up {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: $spacing_4_0;
     }
   }
 
   &__illustration {
     width: 100%;
     aspect-ratio: 47 / 35;
-    border-radius: var(--hh-radius-lg);
     object-fit: cover;
+
+    @include hh-tablet-up {
+      flex: 0 0 min(47rem, 40%);
+    }
   }
 
-  &__copy,
+  &__copy {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_2_0;
+    max-width: 77rem;
+
+    h2 {
+      font-size: var(--hh-font-size-subheading);
+      color: var(--hh-color-primary);
+    }
+
+    p {
+      font-size: var(--hh-font-size-subtitle);
+    }
+  }
+
+  // Set apart from the paragraphs above by an extra line, as in the design
+  &__closing {
+    margin-top: $spacing_2_6;
+  }
+
   &__hub {
     display: flex;
     flex-direction: column;
-    gap: $spacing_1_6;
+    gap: $spacing_0_9;
+
+    h2 {
+      font-size: $font_size_2_0;
+    }
+
+    p {
+      font-size: $font_size_1_6;
+    }
   }
 
   &__explore {

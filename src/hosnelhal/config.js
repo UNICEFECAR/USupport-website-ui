@@ -21,6 +21,11 @@ export const HOSN_LENGTHS = {
 
 export const HOSN_FEATURED_COUNT = 4;
 
+// Hosn El Hal is not wrapped in the uSupport theme (its global p / heading
+// colours would override the HH styles). uSupport components it still uses
+// (cookie banner, legal Markdown) get this class around them instead.
+export const USUPPORT_THEME_CLASS = "theme-light";
+
 // Domains serving Hosn El Hal, comma separated, e.g. "hosnelhal.org,staging.hosnelhal.org"
 const HOSN_HOSTNAMES = (import.meta.env.VITE_HOSN_HOSTNAMES || "")
   .split(",")

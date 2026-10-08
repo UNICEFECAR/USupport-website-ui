@@ -60,13 +60,13 @@
     "no_resources": "No resources have been published yet."
   },
   "usage": {
-    "title": "How to Use This Hub",
-    "me_title": "For Me",
-    "me_text": "Explore resources for your personal wellbeing and growth.",
-    "team_title": "For My Team",
-    "team_text": "Use in team meetings or professional learning and peer support.",
-    "school_title": "For My School",
-    "school_text": "Share resources across the school community to support everyone."
+    "title": "How to Use Hosn el Hal",
+    "me_title": "For myself",
+    "me_text": "Use a resource whenever you need a wellbeing moment.",
+    "team_title": "With colleagues",
+    "team_text": "Share or experience a resource together.",
+    "school_title": "Within existing spaces",
+    "school_text": "Integrate a resource into a meeting, training, orientation or other professional learning/support space."
   },
   "home": {
     "eyebrow": "Welcome to Hosn el Hal · حسن الحال",
@@ -81,9 +81,8 @@
     "all": "All Resources"
   },
   "how_to_use": {
-    "title": "How to Use This Hub",
-    "lead": "Find a resource that fits your needs, view it online or download it to use later.",
-    "ways_title": "Three ways to use the hub",
+    "title": "How to Use Hosn el Hal",
+    "lead": "Hosn el Hal is flexible. There is no required sequence and no standalone training needed. Resources can be used independently or combined.",
     "steps_title": "Using the resources",
     "step_find_title": "1. Find a resource",
     "step_find_text": "Search or filter by topic, format, length and language.",
@@ -97,12 +96,13 @@
   },
   "about": {
     "title": "About Hosn El Hal",
-    "lead": "Simple, practical wellbeing resources for teachers in crisis-affected contexts.",
+    "lead": "Simple, practical wellbeing resources for teachers and education personnel.",
     "background_title": "Supporting teacher wellbeing",
-    "background_text_1": "Hosn El Hal is a UNICEF programme providing teachers with short psychosocial support resources in audio, video, visual-message and PDF worksheet formats.",
-    "background_text_2": "The first phase developed and validated content with teachers and school counsellors in Lebanon, Palestine, Jordan and Syria. Its visual identity is rooted in the shared landscape of the region.",
-    "hub_title": "How to use this resource",
-    "hub_text": "This hub brings the materials together in a simple space where teachers can find, use and revisit resources in their own time, with no account required.",
+    "background_text_1": "Hosn el Hal is a teacher wellbeing resource developed by UNICEF to support teachers and education personnel in caring for their own wellbeing.",
+    "background_text_2": "It brings together short, practical and accessible resources in different formats, including videos, audio, visual messages and PDFs. The resources offer simple moments for reflection, self-awareness, regulation and connection, and can be used flexibly depending on what feels useful at the time.",
+    "background_text_3": "Hosn el Hal was developed with input from teachers and education professionals across the region, helping ensure that the resources are relevant, relatable and grounded in their everyday realities.",
+    "hub_title": "A simple, accessible space",
+    "hub_text": "This hub brings all Hosn el Hal resources together in one place. There is no required sequence and no need to complete everything. Explore the resources, choose what feels useful to you, and return whenever you need a moment for your wellbeing.",
     "explore": "Explore resources →"
   },
   "asset": {
