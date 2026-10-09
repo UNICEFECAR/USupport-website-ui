@@ -201,6 +201,7 @@ const LanguageLayout = () => {
   const allLangs = ["en", "ru", "kk", "pl", "uk", "hy", "ro", "ar", "tr", "el"];
 
   const IS_PS = isPlayAndHeal();
+  const IS_HOSN = isHosnElHal();
   const [searchParams, setSearchParams] = useSearchParams();
   const source = searchParams.get("source");
 
@@ -222,7 +223,13 @@ const LanguageLayout = () => {
     { enabled: IS_PS }
   );
 
-  if (isHosnElHal()) {
+  useQuery(
+    ["hosnelhal-visit"],
+    () => userSvc.addCountryEvent({ eventType: "hosnelhal_visit" }),
+    { enabled: IS_HOSN }
+  );
+
+  if (IS_HOSN) {
     return (
       <Suspense fallback={null}>
         <HosnElHalRoutes />
@@ -296,6 +303,9 @@ const Root = () => {
 
   useEventListener("countryChanged", handler);
 
+  // Hosn El Hal records its own visits (hosnelhal_visit in LanguageLayout)
+  const IS_HOSN = isHosnElHal();
+
   useQuery({
     queryKey: ["addGlobalVisit", country],
     queryFn: async () => {
@@ -304,7 +314,7 @@ const Root = () => {
       });
       return true;
     },
-    enabled: country === "global",
+    enabled: country === "global" && !IS_HOSN,
   });
 
   useQuery({
@@ -315,6 +325,7 @@ const Root = () => {
       return true;
     },
     enabled:
+      !IS_HOSN &&
       !!country &&
       !hasAddedPlatformAccess &&
       country !== "global" &&
