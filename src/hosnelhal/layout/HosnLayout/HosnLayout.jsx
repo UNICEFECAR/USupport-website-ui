@@ -9,8 +9,8 @@ import {
 import { Trans, useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 
-import { CookieBanner } from "@USupport-components-library/src";
 import {
+  HHCookieBanner,
   HHRoot,
   HHSiteFooter,
   HHSiteHeader,
@@ -19,7 +19,7 @@ import {
 import { cmsSvc } from "@USupport-components-library/services";
 import { ThemeContext } from "@USupport-components-library/utils";
 
-import { HOSN_LANGUAGES, HOSN_RTL_LANGUAGES, USUPPORT_THEME_CLASS } from "../../config";
+import { HOSN_LANGUAGES, HOSN_RTL_LANGUAGES } from "../../config";
 import { useHosnPath } from "../../hooks/useHosnPath";
 
 import logoHosnElHal from "../../assets/logo-hosnelhal.png";
@@ -99,6 +99,17 @@ export const HosnLayout = ({ children }) => {
     navigate(`${path}${matchPath("/:language/resources/:id", pathname) ? "" : search}`);
   };
 
+  const handleCookieChoice = (hasAccepted) => {
+    localStorage.setItem("acceptAllCookies", hasAccepted ? 1 : 0);
+    localStorage.setItem("hasHandledCookies", 1);
+    setCookieState({
+      ...cookieState,
+      hasAcceptedCookies: hasAccepted,
+      hasHandledCookies: true,
+      isBannerOpen: false,
+    });
+  };
+
   const isActive = (path) => {
     const target = toPath(path);
     return path ? pathname.startsWith(target) : pathname === target || pathname === `${target}/`;
@@ -152,22 +163,24 @@ export const HosnLayout = ({ children }) => {
           linksLabel={t("footer_links_label")}
           links={LEGAL_ITEMS.map(({ path, key }) => ({ to: toPath(path), label: t(key) }))}
         />
-      </HHRoot>
 
-      <div className={USUPPORT_THEME_CLASS}>
-        <CookieBanner
-          cookieState={cookieState}
-          setCookieState={setCookieState}
-          text={
-            <Trans
-              components={[<Link key="cookie-policy" to={toPath("cookie-policy")} />]}
-            >
-              {tPage("cookie_banner_text")}
-            </Trans>
-          }
-          t={tPage}
-        />
-      </div>
+        {cookieState.isBannerOpen && (
+          <HHCookieBanner
+            title={tPage("cookie_banner_header")}
+            text={
+              <Trans
+                components={[<Link key="cookie-policy" to={toPath("cookie-policy")} />]}
+              >
+                {tPage("cookie_banner_text")}
+              </Trans>
+            }
+            acceptLabel={tPage("accept_all_cookies")}
+            rejectLabel={tPage("reject_all_cookies")}
+            onAccept={() => handleCookieChoice(true)}
+            onReject={() => handleCookieChoice(false)}
+          />
+        )}
+      </HHRoot>
     </>
   );
 };

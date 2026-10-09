@@ -23,10 +23,12 @@ export const HOSN_FEATURED_COUNT = 4;
 
 // Hosn El Hal is not wrapped in the uSupport theme (its global p / heading
 // colours would override the HH styles). uSupport components it still uses
-// (cookie banner, legal Markdown) get this class around them instead.
+// (legal Markdown) get this class around them instead.
 export const USUPPORT_THEME_CLASS = "theme-light";
 
-// Domains serving Hosn El Hal, comma separated, e.g. "hosnelhal.org,staging.hosnelhal.org"
+// Domains serving Hosn El Hal, comma separated. Each entry is either a full
+// hostname ("hosnelhal.org") or a subdomain ("hosnelhal" matches
+// hosnelhal.usupport.online).
 const HOSN_HOSTNAMES = (import.meta.env.VITE_HOSN_HOSTNAMES || "")
   .split(",")
   .map((hostname) => hostname.trim())
@@ -43,7 +45,13 @@ const PREVIEW_STORAGE_KEY = "program";
  */
 export const isHosnElHal = () => {
   if (typeof window === "undefined") return false;
-  if (HOSN_HOSTNAMES.includes(window.location.hostname)) return true;
+  const { hostname } = window.location;
+  if (
+    HOSN_HOSTNAMES.includes(hostname) ||
+    HOSN_HOSTNAMES.includes(hostname.split(".")[0])
+  ) {
+    return true;
+  }
 
   try {
     const preview = new URLSearchParams(window.location.search).get("program");
