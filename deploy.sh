@@ -43,6 +43,13 @@ fi
 BUCKET_NAME="${BUCKET_PREFIX}-${ENV}"
 S3_PATH="s3://${BUCKET_NAME}/${UI}/"
 echo "Uploading to S3 bucket: $S3_PATH"
+# 1. New hashed assets first, so no uploaded page points at a missing bundle
+aws s3 sync ./dist/ $S3_PATH --region $REGION --exclude "*.html"
+# 2. Always upload the HTML. Every build's index.html has the same size (the
+#    bundle hash is fixed length), so sync's size/timestamp check can skip it
+#    and leave pages pointing at a bundle step 3 deletes.
+aws s3 cp ./dist/ $S3_PATH --region $REGION --recursive --exclude "*" --include "*.html"
+# 3. Remove files that are no longer part of the build
 aws s3 sync ./dist/ $S3_PATH --region $REGION --delete
 
 # Invalidate CloudFront cache
