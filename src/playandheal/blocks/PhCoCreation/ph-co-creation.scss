@@ -1,0 +1,27 @@
+@import "../../styles/ph";
+
+// Long-form copy, shown in the About page story column
+.ph-co-creation {
+  display: flex;
+  flex-direction: column;
+  gap: 4.8rem;
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  &__heading {
+    @include ph-h2;
+  }
+
+  &__subheading {
+    @include ph-h3;
+    margin-top: 0.8rem;
+  }
+
+  &__text {
+    @include ph-body-lg;
+  }
+}

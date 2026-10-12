@@ -933,15 +933,33 @@
         "heading": "Built together.",
         "text": "A psychosocial support toolkit built with and for facilitators working with children in crisis settings."
       },
-      "story": {
-        "heading_1": "Shaped by real experience",
-        "text_1": "Play & Heal has been developed and refined through collaboration, field testing and learning with children and facilitators. Their experiences and feedback continue to shape the toolkit and how it is used in different contexts.",
-        "heading_2": "A flexible, child-centred approach",
-        "text_2": "Children experience and respond to play in different ways. Play & Heal encourages facilitators to notice, listen and adapt - choosing activities based on children’s needs, the materials available, the group’s energy levels, and what feels right in the moment."
-      },
       "developed": {
         "title": "Developed together",
         "text": "Play & Heal was developed through a collaboration between UNICEF, the LEGO Foundation and Care for Education, bringing together expertise in child protection, psychosocial support, learning through play and facilitator practice."
+      },
+      "co_creation": {
+        "built": {
+          "heading": "Built together, through play",
+          "paragraph_1": "Play and Heal has been nurtured and shaped by many minds, hands, and hearts over three years of iterative design and co-creation.",
+          "paragraph_2": "Recognizing how crises can disrupt children’s opportunities to play, connect, express themselves and feel a sense of control, the LEGO Foundation joined partners UNICEF and Care for Education to explore how healing play could be made more accessible to children living through and recovering from crisis.",
+          "paragraph_3": "From 2023–2026, the Play and Heal co-creation process brought together expertise in play, child protection and mental health and psychosocial support, alongside the experiences and perspectives of facilitators, partners and children across different contexts. Together, they explored what happens to children’s play when conflict, displacement and other crises disrupt their lives, and how play can help create experiences of safety, connection and belonging, expression, mastery, and a positive sense of self.",
+          "paragraph_4": "The result is a flexible toolkit designed to support facilitators to create safe, playful spaces that respond to the children in front of them. Play and Heal is not a rigid script: its activities and tools can be adapted to the context, the moment, and the needs of each group."
+        },
+        "communities": {
+          "heading": "Co-created with communities",
+          "paragraph_1": "Play and Heal would not exist in its current form without the people and organizations who generously shared their knowledge, creativity and experience throughout its development.",
+          "paragraph_2": "Facilitators and children in Lebanon were central to the development, testing and refinement of Play and Heal, often between or during conflict escalations. Their practical experiences have grounded the Toolkit’s design in lived realities when crises hit.",
+          "paragraph_3": "With appreciation to:",
+          "paragraph_3_names": "Ali Dokmak, Amel Association – Bekaa; Eliza Farah and Samah Houri, Amel Association – Beirut; Hiam Fakih, Sawa; Rachelle Abdayem, Himaya; Amina Hamade, RMF; Samar Khazaal, SHIFT; Mariam Alwan, Save the Children; Fidaa Othman, LOST; Marwa Kahil, AFA; Mouna Al Sayyed, NISCVT, SHAHD, and Fraternity; Hiba Idris and Fayza Al Safadi, GUPW; and Zaynab Hayek, Mouvement Social.",
+          "paragraph_4": "We extend our sincere thanks to every facilitator, child, partner and colleague who shared an idea, challenged our thinking, tried an activity, offered feedback, or helped us learn along the way. Play and Heal is stronger because it was built together."
+        },
+        "team": {
+          "heading": "The Play and Heal Co-Creation Team",
+          "paragraph_1": "The Play and Heal Co-Creation Team includes",
+          "paragraph_1_names": "Emilie Brix, LEGO Foundation; Johanna Cunningham, UNICEF; Abigail Friedman, Care for Education; Riwa Maktabi, UNICEF; Laura Ospina, LEGO Foundation; and Jana Sauer, Care for Education.",
+          "contributors_heading": "With Special Thanks to Contributors:",
+          "contributors": "Maria Altamirano, LEGO Foundation; Gabriella Brent and Crystal Palacio Yumar, Amna; and Joseph Khattar, Ruth O’Connell, Rania Sammour, Jihad Taha, and Nisrine Tawily, UNICEF."
+        }
       }
     },
     "caregivers": {
