@@ -8,7 +8,7 @@ import { useHosnPath } from "../../hooks/useHosnPath";
 
 import "./how-to-use.scss";
 
-const STEPS = ["find", "open", "download"];
+const STEPS = ["find", "open"];
 
 /**
  * HowToUse

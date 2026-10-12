@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { PhHero } from "../../blocks/PhHero/PhHero";
 import { PhIntroVideo } from "../../blocks/PhIntroVideo/PhIntroVideo";
+import { PhFeaturedVideo } from "../../blocks/PhFeaturedVideo/PhFeaturedVideo";
 import { PhToolkit } from "../../blocks/PhToolkit/PhToolkit";
 import { PhCharacters } from "../../blocks/PhCharacters/PhCharacters";
 import { PhGettingStarted } from "../../blocks/PhGettingStarted/PhGettingStarted";
@@ -23,7 +24,7 @@ import "./ph-home.scss";
  */
 export const PhHome = () => {
   const { t } = useTranslation("playandheal", { keyPrefix: "home" });
-  const { all, introVideo } = usePhResources();
+  const { all, introVideo, featuredVideo } = usePhResources();
   const { openResource, viewer } = useResourceViewer();
 
   return (
@@ -34,6 +35,7 @@ export const PhHome = () => {
       <div className="ph__container ph__stack">
         <PhIntroVideo video={introVideo} />
         <PhToolkit resources={all} onOpenResource={openResource} />
+        <PhFeaturedVideo video={featuredVideo} />
         <PhCharacters copyKey="home" />
         <section
           className="ph-home__power-of-play"

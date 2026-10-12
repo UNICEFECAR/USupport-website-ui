@@ -23,10 +23,17 @@ const formatTime = (seconds) => {
  * @param {string} src - video url
  * @param {string} poster - poster image url
  * @param {string} title - shown on the poster before playback
+ * @param {boolean} showTitle - false keeps the title for screen readers only
  * @param {function} onStart - called once, when playback is first started
  * @returns {JSX.Element}
  */
-export const PhVideoPlayer = ({ src, poster, title, onStart }) => {
+export const PhVideoPlayer = ({
+  src,
+  poster,
+  title,
+  showTitle = true,
+  onStart,
+}) => {
   const { t } = useTranslation("playandheal", { keyPrefix: "video_player" });
   const containerRef = useRef(null);
   const videoRef = useRef(null);
@@ -146,9 +153,11 @@ export const PhVideoPlayer = ({ src, poster, title, onStart }) => {
             <span className="ph-video-player__poster-button">
               <PhIcon name="play" size={32} />
             </span>
-            <span className="ph-video-player__poster-title">
-              {src ? title : t("coming_soon")}
-            </span>
+            {(showTitle || !src) && (
+              <span className="ph-video-player__poster-title">
+                {src ? title : t("coming_soon")}
+              </span>
+            )}
           </button>
         )}
       </div>

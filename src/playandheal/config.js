@@ -41,6 +41,11 @@ export const PH_COLLECTIONS = {
 // competency microvideos collection.
 export const PH_INTRO_VIDEO_CATEGORY = "p&h introduction";
 
+// The homepage featured video (between the toolkit and the characters) is the
+// CMS video in this category. Unlike the introduction it has no English
+// fallback, so the section only shows in languages whose entry has a video.
+export const PH_FEATURED_VIDEO_CATEGORY = "p&h featured";
+
 // Facilitators network waiting list - hidden until the UNICEF team confirms
 // it. Turning this on brings back the invitation card (Home, How to, About),
 // its sign-up dialog and the "How do I join the facilitators network?" FAQ.

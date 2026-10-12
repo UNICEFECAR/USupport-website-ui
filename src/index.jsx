@@ -7,10 +7,16 @@ import "./i18n";
 
 const rootElement = document.getElementById("root");
 
+// The prerendered HTML is the uSupport site: Hosn El Hal drops it (index.html
+// keeps it hidden until now) and renders fresh
+if (isHosnElHal()) {
+  rootElement.replaceChildren();
+  rootElement.setAttribute("data-mounted", "");
+}
+
 // Check if the root has children (prerendered by react-snap)
 // If so, hydrate instead of render for SEO benefits.
-// The prerendered HTML is the uSupport site, so Hosn El Hal renders fresh.
-if (rootElement.hasChildNodes() && !isHosnElHal()) {
+if (rootElement.hasChildNodes()) {
   hydrateRoot(
     rootElement,
     <React.StrictMode>

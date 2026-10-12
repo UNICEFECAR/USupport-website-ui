@@ -32,8 +32,6 @@
     "thumbnail": "View →"
   },
   "card": {
-    "download": "Download ↓",
-    "download_aria": "Download {{title}}",
     "minutes": "{{count}} min",
     "pages_one": "{{count}} page",
     "pages_other": "{{count}} pages"
@@ -69,9 +67,12 @@
     "school_text": "Integrate a resource into a meeting, training, orientation or other professional learning/support space."
   },
   "home": {
-    "eyebrow": "Welcome to Hosn el Hal · حسن الحال",
-    "title": "A wellbeing resource hub for teachers, by UNICEF",
-    "lead": "Hosn el Hal is a curated collection of wellbeing resources designed to support teachers' mental health and self-care. Here you can find practical tools, guided moments, and reassuring reminders to help you care for yourself and support your school community.",
+    "title": "Welcome to Hosn el Hal",
+    "subtitle": "Taking Time for Teachers’ Wellbeing",
+    "lead": [
+      "In emergencies, teachers care for and support children while often facing the same challenges, stress and uncertainty themselves. Their wellbeing matters, too.",
+      "Hosn el Hal is a collection of practical, accessible wellbeing resources designed for teachers and education personnel. Through simple tools, guided moments and gentle reminders, it offers opportunities to pause, reflect, reconnect and care for themselves, so they can continue caring for others."
+    ],
     "explore": "Explore Hosn el Hal",
     "view_all": "View all ›"
   },
@@ -88,8 +89,6 @@
     "step_find_text": "Search or filter by topic, format, length and language.",
     "step_open_title": "2. Open and use",
     "step_open_text": "Watch videos, listen to audio, and view visual messages or PDFs in your browser.",
-    "step_download_title": "3. Download for later",
-    "step_download_text": "Download resources for offline use. Print-ready and mobile-friendly versions support different settings.",
     "practical_title": "In trainings and staff meetings",
     "practical_text": "Use a resource on your own, with a small group of colleagues, or with the wider school team. The short notes with each resource provide practical suggestions.",
     "browse": "Browse resources"
@@ -110,20 +109,11 @@
     "not_found": "This resource could not be found.",
     "video_processing": "This video is being prepared. Please check back soon.",
     "audio_processing": "This audio is being prepared. Please check back soon.",
-    "download_title": "Download resource",
-    "download_text": "Keep a copy to use offline.",
-    "download_video": "Download video ↓",
-    "download_audio": "Download audio ↓",
-    "download_worksheet": "Download PDF ↓",
-    "download_thumbnail": "Download visual ↓",
-    "download_print": "Print-ready version ↓",
-    "no_account": "No account required",
     "how_title": "How to use this resource",
     "how_text": "Use this material on your own, with colleagues, or with your school team. See How to Use for guidance on using resources in trainings and staff meetings.",
     "setting_alone": "On your own",
     "setting_small_group": "With colleagues",
     "setting_school_team": "With your school team",
-    "download_mobile": "Mobile-friendly version ↓",
     "how_link": "How to Use →"
   },
   "pdf": {
@@ -133,9 +123,8 @@
     "zoom_in": "Zoom in",
     "zoom_out": "Zoom out",
     "print": "Print",
-    "download": "Download ↓",
     "loading": "Loading PDF…",
-    "error": "The PDF could not be displayed. You can still download it."
+    "error": "The PDF could not be displayed. Please try again later."
   },
   "legal": {
     "no_content": "This page is not available yet."

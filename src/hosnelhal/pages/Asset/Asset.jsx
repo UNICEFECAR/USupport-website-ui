@@ -11,23 +11,21 @@ import {
   HHSkeleton,
   HHPageIntro,
   HHPanel,
-  HHSplitLayout,
 } from "@USupport-components-library/src/hosnelhal";
 import { cmsSvc } from "@USupport-components-library/services";
 
-import { AssetDownloads } from "../../blocks/AssetDownloads/AssetDownloads";
 import { AssetViewer } from "../../blocks/AssetViewer/AssetViewer";
 import { HOSN_RTL_LANGUAGES } from "../../config";
 import { useHosnAsset } from "../../hooks/useHosnAssets";
 import { useHosnPath } from "../../hooks/useHosnPath";
-import { getLengthLabel, trackDownload } from "../../utils/assets";
+import { getLengthLabel } from "../../utils/assets";
 
 import "./asset.scss";
 
 /**
  * Asset
  *
- * A single resource: viewer, download options and how to use it
+ * A single resource: viewer and how to use it
  *
  * @returns {JSX.Element}
  */
@@ -52,14 +50,9 @@ export const Asset = () => {
           <HHSkeleton width="min(60rem, 80%)" height="3.2rem" />
           <HHSkeleton width="min(44rem, 60%)" height="1.7rem" />
         </div>
-        <HHSplitLayout
-          main={
-            <HHMediaFrame>
-              <HHSkeleton aspectRatio="880 / 493" radius="none" />
-            </HHMediaFrame>
-          }
-          aside={<HHSkeleton height="22.8rem" radius="lg" />}
-        />
+        <HHMediaFrame>
+          <HHSkeleton aspectRatio="880 / 493" radius="none" />
+        </HHMediaFrame>
       </HHLoadingRegion>
     );
   }
@@ -91,10 +84,7 @@ export const Asset = () => {
         dir={HOSN_RTL_LANGUAGES.includes(asset.locale) ? "rtl" : "ltr"}
       >
         <HHPageIntro title={asset.title} lead={asset.description} />
-        <HHSplitLayout
-          main={<AssetViewer asset={asset} onDownload={() => trackDownload(asset.id)} />}
-          aside={<AssetDownloads asset={asset} />}
-        />
+        <AssetViewer asset={asset} />
       </div>
 
       <HHPanel className="hosn-asset__how" aria-labelledby="hosn-asset-how">
