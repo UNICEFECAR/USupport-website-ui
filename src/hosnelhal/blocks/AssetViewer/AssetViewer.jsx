@@ -30,10 +30,9 @@ const HHPdfViewer = lazy(() =>
  * with a picture play as video, with a switch to listen only (less data).
  *
  * @param {object} asset - see utils/assets
- * @param {function} onDownload - called when the PDF toolbar download is used
  * @returns {JSX.Element}
  */
-export const AssetViewer = ({ asset, onDownload }) => {
+export const AssetViewer = ({ asset }) => {
   const { t } = useTranslation("hosnelhal");
   const [isListenOnly, setIsListenOnly] = useState(false);
   const status = (message) => <p className="hosn-asset-viewer__status">{message}</p>;
@@ -88,7 +87,6 @@ export const AssetViewer = ({ asset, onDownload }) => {
           return (
             <HHPdfViewer
               url={asset.view.url}
-              onDownload={onDownload}
               loading={
                 <HHLoadingRegion label={t("pdf.loading")}>
                   <HHSkeleton width="55rem" aspectRatio="595 / 842" className="hosn-asset-viewer__page" />
@@ -102,7 +100,6 @@ export const AssetViewer = ({ asset, onDownload }) => {
                 zoomIn: t("pdf.zoom_in"),
                 zoomOut: t("pdf.zoom_out"),
                 print: t("pdf.print"),
-                download: t("pdf.download"),
               }}
             />
           );

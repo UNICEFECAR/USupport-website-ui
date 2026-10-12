@@ -3,7 +3,11 @@ import { useTranslation } from "react-i18next";
 
 import { adminSvc, cmsSvc } from "@USupport-components-library/services";
 
-import { PH_COLLECTIONS, PH_INTRO_VIDEO_CATEGORY } from "../config";
+import {
+  PH_COLLECTIONS,
+  PH_FEATURED_VIDEO_CATEGORY,
+  PH_INTRO_VIDEO_CATEGORY,
+} from "../config";
 
 const LIMIT = 100;
 
@@ -86,8 +90,17 @@ const fetchArticles = async (language) => {
     .filter((article) => article.collection && article.pdfUrl);
 };
 
-const isIntroCategory = (categoryName = "") =>
-  categoryName.trim().toLowerCase() === PH_INTRO_VIDEO_CATEGORY;
+const isCategory = (video, categoryName) =>
+  (video.attributes.category?.data?.attributes?.name || "")
+    .trim()
+    .toLowerCase() === categoryName;
+
+const getEnglishIdsInCategory = (englishRes, categoryName) =>
+  new Set(
+    englishRes.data
+      .filter((video) => isCategory(video, categoryName))
+      .map((video) => String(video.id))
+  );
 
 const mapVideo = (video) => {
   const { attributes } = video;
@@ -107,12 +120,15 @@ const mapVideo = (video) => {
 };
 
 /**
- * Competency videos plus the homepage introduction video, which is the one
- * whose English category is PH_INTRO_VIDEO_CATEGORY
+ * Competency videos plus the homepage introduction and featured videos, which
+ * are the ones whose English category is PH_INTRO_VIDEO_CATEGORY and
+ * PH_FEATURED_VIDEO_CATEGORY
  */
 const fetchVideos = async (language) => {
   const ids = await adminSvc.getVideos();
-  if (!ids || ids.length === 0) return { videos: [], intro: null };
+  if (!ids || ids.length === 0) {
+    return { videos: [], intro: null, featured: null };
+  }
 
   const query = {
     ids,
@@ -128,12 +144,13 @@ const fetchVideos = async (language) => {
     locale: "en",
   });
 
-  const introEnglishIds = new Set(
-    englishRes.data
-      .filter((video) =>
-        isIntroCategory(video.attributes.category?.data?.attributes?.name)
-      )
-      .map((video) => String(video.id))
+  const introEnglishIds = getEnglishIdsInCategory(
+    englishRes,
+    PH_INTRO_VIDEO_CATEGORY
+  );
+  const featuredEnglishIds = getEnglishIdsInCategory(
+    englishRes,
+    PH_FEATURED_VIDEO_CATEGORY
   );
 
   const localizedRes =
@@ -143,11 +160,13 @@ const fetchVideos = async (language) => {
 
   const videos = [];
   let intro = null;
+  let featured = null;
   localizedRes.data.forEach((video) => {
     const englishId = getEnglishId(localizedRes.meta, video.id);
     const mapped = mapVideo(video);
     if (!mapped.videoUrl) return;
     if (introEnglishIds.has(englishId)) intro = intro || mapped;
+    else if (featuredEnglishIds.has(englishId)) featured = featured || mapped;
     else videos.push(mapped);
   });
 
@@ -160,7 +179,7 @@ const fetchVideos = async (language) => {
     intro = englishIntro || null;
   }
 
-  return { videos, intro };
+  return { videos, intro, featured };
 };
 
 /**
@@ -168,9 +187,9 @@ const fetchVideos = async (language) => {
  *
  * Fetches the Play and Heal toolkit resources for the current language:
  * booklet and activity-card PDFs (CMS articles), competency videos and the
- * homepage introduction video.
+ * homepage introduction and featured videos.
  *
- * @returns {{ booklet: Array, cards: Array, videos: Array, introVideo: Object|null, all: Array, isLoading: boolean, isError: boolean }}
+ * @returns {{ booklet: Array, cards: Array, videos: Array, introVideo: Object|null, featuredVideo: Object|null, all: Array, isLoading: boolean, isError: boolean }}
  */
 export const usePhResources = () => {
   const { i18n } = useTranslation();
@@ -191,6 +210,7 @@ export const usePhResources = () => {
     cards: articles.filter((x) => x.collection === "cards"),
     videos,
     introVideo: videosQuery.data?.intro || null,
+    featuredVideo: videosQuery.data?.featured || null,
     all: [...articles, ...videos],
     isLoading: articlesQuery.isLoading || videosQuery.isLoading,
     isError: articlesQuery.isError || videosQuery.isError,

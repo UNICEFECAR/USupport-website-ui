@@ -38,7 +38,12 @@ export const Home = () => {
 
   return (
     <div className="hh__container hh__stack">
-      <HHPageIntro variant="hero" eyebrow={t("eyebrow")} title={t("title")} lead={t("lead")} />
+      <HHPageIntro
+        variant="hero"
+        title={t("title")}
+        subtitle={t("subtitle")}
+        lead={t("lead", { returnObjects: true })}
+      />
 
       <ResourceFilters filters={NO_FILTERS} onChange={goToResources} onReset={() => {}} />
 
