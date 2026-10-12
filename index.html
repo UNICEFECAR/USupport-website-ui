@@ -18,6 +18,56 @@
     />
 
     <title>uSupport Website</title>
+
+    <!--
+      Hosn El Hal detection. It runs before the first paint because every host
+      is served the same prerendered uSupport HTML, which must not flash on
+      Hosn El Hal. The app reads the result through isHosnElHal()
+      (src/hosnelhal/config.js); src/index.jsx clears the hidden markup.
+      Hosn El Hal is on: a hostname, or its first label, listed in
+      VITE_HOSN_HOSTNAMES; or, anywhere, after ?program=hosnelhal (remembered
+      in this browser until ?program= turns it off).
+    -->
+    <script>
+      (function () {
+        var PROGRAM = "hosnelhal";
+        var STORAGE_KEY = "program";
+        var hostnames = "%VITE_HOSN_HOSTNAMES%"
+          .split(",")
+          .map(function (hostname) {
+            return hostname.trim();
+          })
+          .filter(function (hostname) {
+            return hostname && hostname.charAt(0) !== "%";
+          });
+        var hostname = window.location.hostname;
+        var isHosn =
+          hostnames.indexOf(hostname) !== -1 ||
+          hostnames.indexOf(hostname.split(".")[0]) !== -1;
+
+        if (!isHosn) {
+          try {
+            var preview = new URLSearchParams(window.location.search).get(
+              "program"
+            );
+            if (preview === PROGRAM) localStorage.setItem(STORAGE_KEY, PROGRAM);
+            else if (preview !== null) localStorage.removeItem(STORAGE_KEY);
+            isHosn = localStorage.getItem(STORAGE_KEY) === PROGRAM;
+          } catch (e) {
+            isHosn = false;
+          }
+        }
+
+        if (isHosn) {
+          document.documentElement.setAttribute("data-program", PROGRAM);
+        }
+      })();
+    </script>
+    <style>
+      html[data-program="hosnelhal"] #root:not([data-mounted]) {
+        display: none;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>

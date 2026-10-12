@@ -9,7 +9,7 @@ import {
 } from "@USupport-components-library/src/hosnelhal";
 
 import { useHosnPath } from "../../hooks/useHosnPath";
-import { getLengthLabel, trackDownload } from "../../utils/assets";
+import { getLengthLabel } from "../../utils/assets";
 
 import "./resource-grid.scss";
 
@@ -62,29 +62,18 @@ export const ResourceGrid = ({
 
   return (
     <HHCardGrid labelledBy={labelledBy}>
-      {assets.map((asset) => {
-        const [mainDownload] = asset.downloads;
-        return (
-          <HHResourceCard
-            key={asset.id}
-            to={toPath(`resources/${asset.id}`)}
-            image={asset.image}
-            label={t(`formats.${asset.format}`)}
-            meta={getLengthLabel(asset, t)}
-            title={asset.title}
-            description={asset.description}
-            openLabel={t(`open.${asset.format}`)}
-            download={
-              mainDownload && {
-                href: mainDownload.url,
-                label: t("card.download"),
-                ariaLabel: t("card.download_aria", { title: asset.title }),
-                onClick: () => trackDownload(asset.id),
-              }
-            }
-          />
-        );
-      })}
+      {assets.map((asset) => (
+        <HHResourceCard
+          key={asset.id}
+          to={toPath(`resources/${asset.id}`)}
+          image={asset.image}
+          label={t(`formats.${asset.format}`)}
+          meta={getLengthLabel(asset, t)}
+          title={asset.title}
+          description={asset.description}
+          openLabel={t(`open.${asset.format}`)}
+        />
+      ))}
     </HHCardGrid>
   );
 };

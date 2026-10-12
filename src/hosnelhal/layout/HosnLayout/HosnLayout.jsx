@@ -138,7 +138,7 @@ export const HosnLayout = ({ children }) => {
         <HHSiteHeader
           logos={[
             { src: logoHosnElHal, alt: t("logo_hosnelhal"), to: toPath("") },
-            { src: logoUnicef, alt: t("logo_unicef"), size: "md", href: UNICEF_URL },
+            { src: logoUnicef, alt: t("logo_unicef"), size: "sm", href: UNICEF_URL },
           ]}
           navLabel={t("nav_label")}
           links={NAV_ITEMS.map(({ path, key }) => ({

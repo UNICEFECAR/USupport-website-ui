@@ -1,6 +1,4 @@
 // Maps Strapi hosn-asset entries to the shape used by the Hosn El Hal pages
-import { cmsSvc } from "@USupport-components-library/services";
-
 const getMediaUrl = (media) => media?.data?.attributes?.url || null;
 
 const getMediaMime = (media) => media?.data?.attributes?.mime || "";
@@ -18,32 +16,6 @@ const getDurationMinutes = (attributes) => {
   const seconds =
     attributes.video?.duration_seconds || attributes.audio?.duration_seconds;
   return seconds ? Math.max(1, Math.round(seconds / 60)) : null;
-};
-
-/**
- * Download options per format, the first one is the main download
- */
-const getDownloads = ({
-  format,
-  video,
-  audio,
-  file_web,
-  file_print,
-  file_mobile,
-}) => {
-  if (format === "video") {
-    return video?.download_url ? [{ type: "video", url: video.download_url }] : [];
-  }
-  if (format === "audio") {
-    return audio?.audio_url ? [{ type: "audio", url: audio.audio_url }] : [];
-  }
-
-  // Main file, then the print-ready and mobile-friendly versions
-  return [
-    { type: format, url: getMediaUrl(file_web) },
-    { type: "print", url: getMediaUrl(file_print) },
-    { type: "mobile", url: getMediaUrl(file_mobile) },
-  ].filter(({ url }, index, all) => url && all.findIndex((x) => x.url === url) === index);
 };
 
 /**
@@ -77,7 +49,6 @@ export const toAsset = ({ id, attributes }) => {
       isPdf: getMediaMime(viewFile) === "application/pdf",
       isImage: isImage(viewFile),
     },
-    downloads: getDownloads(attributes),
     usageTips: attributes.how_to_use || [],
   };
 };
@@ -96,11 +67,3 @@ export const getLengthLabel = (asset, t) => {
   return asset.durationMinutes ? t("card.minutes", { count: asset.durationMinutes }) : null;
 };
 
-/**
- * Count a download; failures must never block the download itself
- *
- * @param {number} id - asset id
- */
-export const trackDownload = (id) => {
-  cmsSvc.addHosnAssetDownloadCount(id).catch(() => {});
-};
