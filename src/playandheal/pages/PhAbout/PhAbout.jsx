@@ -6,6 +6,7 @@ import { PhPageBanner } from "../../components/PhPageBanner/PhPageBanner";
 import { PhCallout } from "../../components/PhCallout/PhCallout";
 import { PhStory } from "../../blocks/PhStory/PhStory";
 import { PhCharacters } from "../../blocks/PhCharacters/PhCharacters";
+import { PhCoCreation } from "../../blocks/PhCoCreation/PhCoCreation";
 import { PhNetworkInvite } from "../../blocks/PhNetworkInvite/PhNetworkInvite";
 import { usePhPath } from "../../hooks/usePhPath";
 
@@ -38,17 +39,15 @@ export const PhAbout = () => {
       </div>
 
       <PhStory
-        sections={[
-          { heading: t("story.heading_1"), text: t("story.text_1") },
-          { heading: t("story.heading_2"), text: t("story.text_2") },
-        ]}
         cta={{
           label: tCommon("explore_booklet"),
           to: toPath("/toolkit/booklet"),
         }}
         caption={tCommon("artwork_caption")}
         artworkAlt={tCommon("artwork_alt")}
-      />
+      >
+        <PhCoCreation />
+      </PhStory>
 
       <PhCharacters
         copyKey="about"
