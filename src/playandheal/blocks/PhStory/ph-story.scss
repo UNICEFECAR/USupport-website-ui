@@ -47,6 +47,12 @@
     flex-direction: column;
     gap: 1.6rem;
 
+    // Stays in view next to longer copy, like the About us story
+    @include ph-desktop-up {
+      position: sticky;
+      top: 2.4rem;
+    }
+
     img {
       width: 100%;
       height: auto;
