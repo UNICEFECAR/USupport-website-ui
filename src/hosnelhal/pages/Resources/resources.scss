@@ -55,10 +55,19 @@
     }
   }
 
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: $spacing_1_6;
+  }
+
   &__intro {
     display: flex;
+    flex: 1;
     flex-direction: column;
     gap: $spacing_1_2;
+    min-width: 0;
 
     h2 {
       font-size: var(--hh-font-size-section);
@@ -91,11 +100,6 @@
   }
 
   &__cards {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    align-items: center;
-    gap: $spacing_2_0;
     min-width: 0;
 
     .hh-card-grid {
@@ -110,12 +114,15 @@
 
   &__view-all {
     @include hh-focus-ring;
+    flex-shrink: 0;
+    margin-inline-start: auto;
     font-size: var(--hh-font-size-body);
     font-weight: $font_semi_bold;
     color: var(--hh-color-primary);
     text-decoration: underline;
     text-underline-offset: 0.3rem;
     border-radius: var(--hh-radius-sm);
+    white-space: nowrap;
   }
 
   &__status {
@@ -126,14 +133,8 @@
 
   @include hh-desktop-up {
     &__category {
-      flex-direction: row;
-      align-items: flex-start;
       gap: $spacing_3_2;
       padding: $spacing_3_2;
-    }
-
-    &__intro {
-      flex: 0 0 26rem;
     }
   }
 }

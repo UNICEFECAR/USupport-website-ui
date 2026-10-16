@@ -52,10 +52,13 @@ const formatSummary = (items, t, tFormats, separator) =>
 
 const CategorySkeleton = () => (
   <div className="hosn-resources__category" aria-hidden="true">
-    <div className="hosn-resources__intro">
-      <HHSkeleton width="16rem" height="2.3rem" />
-      <HHSkeleton lines={4} height="1.5rem" />
-      <HHSkeleton width="10rem" height="1.5rem" />
+    <div className="hosn-resources__header">
+      <div className="hosn-resources__intro">
+        <HHSkeleton width="16rem" height="2.3rem" />
+        <HHSkeleton lines={3} height="1.5rem" />
+        <HHSkeleton width="10rem" height="1.5rem" />
+      </div>
+      <HHSkeleton width="8rem" height="1.5rem" />
     </div>
     <div className="hosn-resources__cards">
       <HHCardGrid>
@@ -143,24 +146,22 @@ export const Resources = () => {
                 data-pillar={pillar.value}
                 aria-labelledby={headingId}
               >
-                <div className="hosn-resources__intro">
-                  <h2 id={headingId}>{pillar.label}</h2>
-                  {description &&
-                    description.split(/\n\n+/).map((paragraph, index) => (
-                      <p key={index} className="hosn-resources__description">
-                        {paragraph}
+                <div className="hosn-resources__header">
+                  <div className="hosn-resources__intro">
+                    <h2 id={headingId}>{pillar.label}</h2>
+                    {description &&
+                      description.split(/\n\n+/).map((paragraph, index) => (
+                        <p key={index} className="hosn-resources__description">
+                          {paragraph}
+                        </p>
+                      ))}
+                    <div className="hosn-resources__stats">
+                      <p className="hosn-resources__count">
+                        {t("resources.count", { count: items.length })}
                       </p>
-                    ))}
-                  <div className="hosn-resources__stats">
-                    <p className="hosn-resources__count">
-                      {t("resources.count", { count: items.length })}
-                    </p>
-                    {summary && <p className="hosn-resources__formats">{summary}</p>}
+                      {summary && <p className="hosn-resources__formats">{summary}</p>}
+                    </div>
                   </div>
-                </div>
-
-                <div className="hosn-resources__cards">
-                  <ResourceGrid assets={preview} labelledBy={headingId} />
                   <HHLink
                     className="hosn-resources__view-all"
                     to={`${toPath(HOSN_LIBRARY_PATH)}${toSearchString({ topic: pillar.value })}`}
@@ -171,6 +172,10 @@ export const Resources = () => {
                   >
                     {t("resources.view_all", { count: items.length })}
                   </HHLink>
+                </div>
+
+                <div className="hosn-resources__cards">
+                  <ResourceGrid assets={preview} labelledBy={headingId} />
                 </div>
               </section>
             );
