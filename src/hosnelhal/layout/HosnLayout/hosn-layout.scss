@@ -1,9 +1,49 @@
 @import "../../styles/hosn";
 
 .hosn-main {
-  padding-block: $spacing_2_8;
+  padding-top: $spacing_2_8;
+  padding-bottom: $spacing_4_8;
 
   &:focus {
     outline: none;
+  }
+
+  @include hh-desktop-up {
+    padding-bottom: $spacing_6_4;
+  }
+}
+
+// Both files are exported faint, so each is stacked until it reads on the
+// olive block. The plant stays on the left edge and the vine on the right.
+.hh-page-intro--hero,
+.hh-page-intro--page {
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    background-image: url("../../assets/hero-bg-illustration-left.png"),
+      url("../../assets/hero-bg-illustration-left.png"),
+      url("../../assets/hero-bg-illustration-left.png"),
+      url("../../assets/hero-bg-illustration-left.png"),
+      url("../../assets/hero-bg-illustration-left.png"),
+      url("../../assets/hero-bg-illustration-left.png"),
+      url("../../assets/hero-vine-right.png"), url("../../assets/hero-vine-right.png"),
+      url("../../assets/hero-vine-right.png"), url("../../assets/hero-vine-right.png");
+    background-repeat: no-repeat;
+    // Mobile: only the plant, full height and centered. The vine is hidden.
+    background-position: center, center, center, center, center, center, right center,
+      right center, right center, right center;
+    background-size: auto 100%, auto 100%, auto 100%, auto 100%, auto 100%, auto 100%,
+      0 0, 0 0, 0 0, 0 0;
+    pointer-events: none;
+  }
+
+  @include hh-tablet-up {
+    &::after {
+      background-position: left center, left center, left center, left center, left center,
+        left center, right center, right center, right center, right center;
+      background-size: auto 100%;
+    }
   }
 }

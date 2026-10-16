@@ -1,0 +1,26 @@
+@import "../../styles/hosn";
+
+.hosn-support-note {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing_1_6;
+
+  h2 {
+    font-size: var(--hh-font-size-section);
+    font-weight: $font_semi_bold;
+    line-height: 1.45;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_1_2;
+
+    p {
+      margin: 0;
+      font-size: var(--hh-font-size-body);
+      line-height: 1.5;
+      color: var(--hh-color-text);
+    }
+  }
+}

@@ -4,9 +4,11 @@ import { Navigate, Route, Routes, useLocation, useParams } from "react-router-do
 import { HosnLayout } from "./layout/HosnLayout/HosnLayout";
 import { Home } from "./pages/Home/Home";
 import { Resources } from "./pages/Resources/Resources";
+import { ResourceLibrary } from "./pages/Resources/ResourceLibrary";
 import { Asset } from "./pages/Asset/Asset";
 import { HowToUse } from "./pages/HowToUse/HowToUse";
 import { About } from "./pages/About/About";
+import { WhenYouNeedMoreSupport } from "./pages/WhenYouNeedMoreSupport/WhenYouNeedMoreSupport";
 import { Legal } from "./pages/Legal/Legal";
 import { HOSN_LANGUAGES } from "./config";
 
@@ -32,9 +34,14 @@ export default function HosnElHalRoutes() {
       <Routes>
         <Route path="" element={<Home />} />
         <Route path="resources" element={<Resources />} />
+        <Route path="resources/all" element={<ResourceLibrary />} />
         <Route path="resources/:id" element={<Asset />} />
         <Route path="how-to-use" element={<HowToUse />} />
         <Route path="about" element={<About />} />
+        <Route
+          path="when-you-need-more-support"
+          element={<WhenYouNeedMoreSupport />}
+        />
         <Route path="privacy-policy" element={<Legal page="privacy-policy" />} />
         <Route path="terms-of-use" element={<Legal page="terms-of-use" />} />
         <Route path="cookie-policy" element={<Legal page="cookie-policy" />} />

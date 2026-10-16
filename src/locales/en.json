@@ -150,9 +150,10 @@
       "dark": "Dark",
       "light": "Light",
       "cookie_banner_header": "We value your privacy",
-      "cookie_banner_text": "This website uses cookies to enhance and secure your browsing experience. By using our website, you agree to our <0>Cookie Policy</0>.",
+      "cookie_banner_text": "This site uses necessary cookies to work. Analytics cookies, including session recording, are used only if you choose Accept all. See our <0>Cookie Policy</0>.",
       "accept_all_cookies": "Accept all",
       "reject_all_cookies": "Reject all",
+      "cookie_settings": "Cookie settings",
       "accept_necessary_cookies": "Accept only necessary",
       "save": "Save",
       "page_7": "Organizations",
@@ -647,6 +648,7 @@
       "about_us": "About us",
       "how_to_use": "How to use the toolkit",
       "cookie_policy": "Cookie policy",
+      "cookie_settings": "Cookie settings",
       "hosted_on": "Hosted on uSupport · Available in English and Arabic"
     },
     "home": {

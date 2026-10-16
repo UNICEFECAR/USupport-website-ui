@@ -28,8 +28,20 @@ export const useHosnAsset = (id) => {
   );
 };
 
+const toPlainText = (value) => {
+  if (typeof value === "string") return value.trim();
+  if (!Array.isArray(value)) return "";
+  return value
+    .map((block) =>
+      (block?.children || []).map((child) => child?.text || "").join("")
+    )
+    .filter(Boolean)
+    .join("\n\n");
+};
+
 /**
- * Pillars, offered as the topics in the topic filter
+ * Pillars, offered as the topics in the topic filter and as the categories
+ * on the resources overview
  *
  * @param {string} language
  */
@@ -39,6 +51,9 @@ export const useHosnPillars = (language) => {
     return data.data.map(({ attributes }) => ({
       value: attributes.key,
       label: attributes.name,
+      description: toPlainText(
+        attributes.description || attributes.summary || attributes.intro
+      ),
     }));
   });
 };

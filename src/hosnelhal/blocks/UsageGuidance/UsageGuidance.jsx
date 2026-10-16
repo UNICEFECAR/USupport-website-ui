@@ -1,11 +1,14 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { HHGuidanceItem, HHPanel } from "@USupport-components-library/src/hosnelhal";
+import {
+  HHGuidanceItem,
+  HHPanel,
+} from "@USupport-components-library/src/hosnelhal";
 
-import iconMe from "../../assets/icon-me.png";
-import iconTeam from "../../assets/icon-team.png";
-import iconSchool from "../../assets/icon-school.png";
+import iconMe from "../../assets/icon-me.svg";
+import iconTeam from "../../assets/icon-team.svg";
+import iconSchool from "../../assets/icon-school.svg";
 
 import "./usage-guidance.scss";
 

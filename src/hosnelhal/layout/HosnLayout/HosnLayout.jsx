@@ -161,7 +161,24 @@ export const HosnLayout = ({ children }) => {
           logoEnd={{ src: logoUnicefFooter, alt: t("logo_unicef"), href: UNICEF_URL }}
           text={t("footer_text")}
           linksLabel={t("footer_links_label")}
-          links={LEGAL_ITEMS.map(({ path, key }) => ({ to: toPath(path), label: t(key) }))}
+          links={[
+            {
+              to: toPath("when-you-need-more-support"),
+              label: t("footer_support"),
+            },
+            ...LEGAL_ITEMS.map(({ path, key }) => ({
+              to: toPath(path),
+              label: t(key),
+            })),
+            {
+              label: t("cookie_settings"),
+              onClick: () =>
+                setCookieState({
+                  ...cookieState,
+                  isBannerOpen: true,
+                }),
+            },
+          ]}
         />
 
         {cookieState.isBannerOpen && (

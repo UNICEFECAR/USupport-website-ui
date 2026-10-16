@@ -84,6 +84,7 @@ export const InformationPortalHero = ({
             IS_RTL ? "information-portal-hero__input--rtl" : ""
           }`}
           placeholder={placeholder}
+          data-clarity-mask="true"
         />
       )}
       {buttonLabel && buttonOnClick && (

@@ -143,7 +143,7 @@ export const SOSCenter = ({ description }) => {
   };
 
   return (
-    <Block classes="soscenter" animation="fade-right">
+    <Block classes="soscenter" animation="fade-right" data-clarity-mask="true">
       {SOSCentersData && (
         <Grid classes="soscenter__grid">
           <GridItem xs={4} md={8} lg={12} classes="soscenter__text-item">

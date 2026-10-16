@@ -57,6 +57,7 @@ export const QuestionDetails = ({
 
   return (
     <Modal classes="question-details" isOpen={isOpen} closeModal={onClose}>
+      <div data-clarity-mask="true">
       <div className="question-details__date-container">
         <Icon name="calendar" color="#92989B" />
         <p className="text question-details__date-container__text">
@@ -138,6 +139,7 @@ export const QuestionDetails = ({
           )}
         </div>
       )}
+      </div>
     </Modal>
   );
 };
