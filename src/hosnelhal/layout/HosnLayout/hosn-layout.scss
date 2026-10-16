@@ -13,6 +13,23 @@
   }
 }
 
+// Corner vines for the redesigned footer (assets live in the website app)
+.hh-site-footer {
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("../../assets/hero-bg-illustration-left.png"),
+      url("../../assets/how-to-vine-right.png");
+    background-repeat: no-repeat;
+    background-position: left bottom, right bottom;
+    background-size: min(22rem, 38%) auto, min(18rem, 32%) auto;
+    opacity: 0.35;
+  }
+}
+
 // Both files are exported faint, so each is stacked until it reads on the
 // olive block. The plant stays on the left edge and the vine on the right.
 .hh-page-intro--hero,

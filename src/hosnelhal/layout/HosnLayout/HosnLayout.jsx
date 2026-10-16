@@ -157,15 +157,24 @@ export const HosnLayout = ({ children }) => {
         </main>
 
         <HHSiteFooter
-          logoStart={{ src: logoHosnElHal, alt: t("logo_hosnelhal"), to: toPath("") }}
-          logoEnd={{ src: logoUnicefFooter, alt: t("logo_unicef"), href: UNICEF_URL }}
-          text={t("footer_text")}
+          logoStart={{
+            src: logoHosnElHal,
+            alt: t("logo_hosnelhal"),
+            to: toPath(""),
+            size: "md",
+          }}
+          logoEnd={{
+            src: logoUnicefFooter,
+            alt: t("logo_unicef"),
+            href: UNICEF_URL,
+            size: "md",
+          }}
+
+          tagline={t("footer_tagline")}
+          supportedByLabel={t("footer_supported_by")}
+          linksTitle={t("footer_quick_links")}
           linksLabel={t("footer_links_label")}
           links={[
-            {
-              to: toPath("when-you-need-more-support"),
-              label: t("footer_support"),
-            },
             ...LEGAL_ITEMS.map(({ path, key }) => ({
               to: toPath(path),
               label: t(key),
@@ -179,6 +188,13 @@ export const HosnLayout = ({ children }) => {
                 }),
             },
           ]}
+          action={{
+            to: toPath("when-you-need-more-support"),
+            title: t("footer_support"),
+            description: t("footer_support_description"),
+            label: t("footer_support"),
+          }}
+          copyright={t("footer_copyright")}
         />
 
         {cookieState.isBannerOpen && (
