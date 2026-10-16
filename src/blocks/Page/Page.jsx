@@ -294,6 +294,13 @@ export const Page = ({
     ];
   }
 
+  const openCookieSettings = () => {
+    setCookieState({
+      ...cookieState,
+      isBannerOpen: true,
+    });
+  };
+
   let footerLists = {
     list1: [
       {
@@ -314,6 +321,7 @@ export const Page = ({
       { name: t("footer_4"), url: "/terms-of-use", exact: true },
       { name: t("footer_5"), url: "/privacy-policy" },
       { name: t("footer_6"), url: "/cookie-policy" },
+      { name: t("cookie_settings"), onClick: openCookieSettings },
     ],
     list3: [
       {
@@ -351,6 +359,7 @@ export const Page = ({
         // { name: t("footer_4"), url: "/terms-of-use", exact: true },
         // { name: t("footer_5"), url: "/privacy-policy" },
         { name: t("footer_6"), url: "/cookie-policy" },
+        { name: t("cookie_settings"), onClick: openCookieSettings },
       ],
       list2: [],
       list3: [],

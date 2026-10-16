@@ -284,7 +284,11 @@ export const Organizations = () => {
 
   return (
     <Block classes="organizations">
-      <div className="organizations__search-container" ref={interactiveMapRef}>
+      <div
+        className="organizations__search-container"
+        ref={interactiveMapRef}
+        data-clarity-mask="true"
+      >
         <Input
           placeholder={t("search_placeholder")}
           value={filters.search}

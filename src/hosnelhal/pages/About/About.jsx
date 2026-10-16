@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { HHButton, HHPageIntro, HHPanel } from "@USupport-components-library/src/hosnelhal";
 
+import { SupportNote } from "../../blocks/SupportNote/SupportNote";
 import { useHosnPath } from "../../hooks/useHosnPath";
 
 import illustration from "../../assets/about-illustration.png";
@@ -22,7 +23,7 @@ export const About = () => {
 
   return (
     <div className="hh__container hh__stack hosn-about">
-      <HHPageIntro title={t("title")} lead={t("lead")} />
+      <HHPageIntro eyebrow={t("eyebrow")} title={t("title")} lead={t("lead")} />
 
       <section className="hosn-about__programme" aria-labelledby="hosn-about-background">
         <img className="hosn-about__illustration" src={illustration} alt="" />
@@ -38,6 +39,8 @@ export const About = () => {
         <h2 id="hosn-about-hub">{t("hub_title")}</h2>
         <p>{t("hub_text")}</p>
       </HHPanel>
+
+      <SupportNote idPrefix="hosn-about-support" />
 
       <HHButton className="hosn-about__explore" to={toPath("resources")}>
         {t("explore")}

@@ -71,28 +71,32 @@ export const ResourceFilters = ({ filters, onChange, onReset }) => {
 
   return (
     <div className="hosn-resource-filters">
-      <HHSearchInput
-        value={filters.q}
-        label={t("search_label")}
-        placeholder={t("search_placeholder")}
-        submitLabel={t("search_submit")}
-        onSubmit={(q) => onChange({ q })}
-      />
-
       <HHPanel className="hosn-resource-filters__panel" aria-label={t("label")}>
-        {selects.map(({ key, label, options }) => (
-          <HHSelectField
-            key={key}
-            id={`hosn-filter-${key}`}
-            label={label || t(key)}
-            value={filters[key]}
-            options={options}
-            onChange={(value) => onChange({ [key]: value })}
+        <div className="hosn-resource-filters__search" data-clarity-mask="true">
+          <HHSearchInput
+            value={filters.q}
+            label={t("search_label")}
+            placeholder={t("search_placeholder")}
+            submitLabel={t("search_submit")}
+            onSubmit={(q) => onChange({ q })}
           />
-        ))}
-        <HHButton variant="soft" onClick={onReset}>
-          {t("reset")}
-        </HHButton>
+        </div>
+
+        <div className="hosn-resource-filters__fields">
+          {selects.map(({ key, label, options }) => (
+            <HHSelectField
+              key={key}
+              id={`hosn-filter-${key}`}
+              label={label || t(key)}
+              value={filters[key]}
+              options={options}
+              onChange={(value) => onChange({ [key]: value })}
+            />
+          ))}
+          <HHButton variant="soft" onClick={onReset}>
+            {t("reset")}
+          </HHButton>
+        </div>
       </HHPanel>
     </div>
   );

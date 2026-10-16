@@ -64,7 +64,7 @@ export const PhToolkit = ({ resources = [], onOpenResource }) => {
           heading={t("heading")}
           description={t("text")}
         />
-        <div className="ph-toolkit__search" role="search">
+        <div className="ph-toolkit__search" role="search" data-clarity-mask="true">
           <PhIcon name="search" size={20} />
           <label htmlFor="ph-toolkit-search" className="ph__visually-hidden">
             {t("search_label")}
@@ -92,7 +92,11 @@ export const PhToolkit = ({ resources = [], onOpenResource }) => {
 
       {query ? (
         <div className="ph-toolkit__results">
-          <p className="ph-toolkit__results-count" role="status">
+          <p
+            className="ph-toolkit__results-count"
+            role="status"
+            data-clarity-mask="true"
+          >
             {t("search_results", { count: results.length, query: search })}
           </p>
           {results.length > 0 && (

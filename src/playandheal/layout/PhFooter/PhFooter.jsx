@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+
+import { ThemeContext } from "@USupport-components-library/utils";
 
 import { usePhPath } from "../../hooks/usePhPath";
 
@@ -17,7 +19,15 @@ import "./ph-footer.scss";
  */
 export const PhFooter = () => {
   const { t, i18n } = useTranslation("playandheal", { keyPrefix: "footer" });
+  const { cookieState, setCookieState } = useContext(ThemeContext);
   const toPath = usePhPath();
+
+  const openCookieSettings = () => {
+    setCookieState({
+      ...cookieState,
+      isBannerOpen: true,
+    });
+  };
 
   return (
     <footer className="ph-footer">
@@ -38,6 +48,9 @@ export const PhFooter = () => {
               <Link to={toPath("/about-us")}>{t("about_us")}</Link>
               <Link to={toPath("/how-it-works")}>{t("how_to_use")}</Link>
               <Link to={toPath("/cookie-policy")}>{t("cookie_policy")}</Link>
+              <button type="button" onClick={openCookieSettings}>
+                {t("cookie_settings")}
+              </button>
             </nav>
             <p className="ph-footer__host">{t("hosted_on")}</p>
           </div>

@@ -1,9 +1,43 @@
 @import "../../styles/hosn";
 
 .hosn-usage-guidance {
-  display: flex;
-  flex-direction: column;
-  gap: $spacing_2_2;
+  // Contained card. The olive fill stays inside the page column instead of
+  // painting a band across the viewport.
+  // When this card closes the page, keep the page background visible before
+  // the footer band.
+  .hh__stack > &:last-child {
+    margin-bottom: $spacing_4_0;
+  }
+
+  &.hh-panel {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_2_2;
+    padding: $spacing_2_4;
+    border-radius: 2rem;
+    background: var(--hh-color-hero);
+    color: var(--hh-color-on-hero);
+
+    @include hh-tablet-up {
+      padding: $spacing_3_2 $spacing_4_0;
+    }
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__title,
+  .hh-guidance-item__title {
+    color: var(--hh-color-on-hero);
+  }
+
+  .hh-guidance-item__text {
+    color: var(--hh-color-sand-text);
+  }
 
   &__title {
     font-size: var(--hh-font-size-section);
@@ -17,6 +51,58 @@
 
     @include hh-desktop-up {
       grid-template-columns: repeat(3, minmax(0, 1fr));
+      column-gap: $spacing_3_2;
     }
+  }
+
+  // Organic shapes sit on the card edges and are clipped by the radius.
+  // The file is faint, so it is drawn twice.
+  &::before,
+  &::after {
+    content: none;
+  }
+
+  @include hh-desktop-up {
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      bottom: 0;
+      background-image: url("../../assets/how-to-vine-right.png"),
+        url("../../assets/how-to-vine-right.png");
+      background-repeat: no-repeat;
+      pointer-events: none;
+    }
+
+    &::before {
+      left: 0;
+      width: min(28rem, 24%);
+      background-position: left center;
+      background-size: auto 120%;
+      transform: scaleX(-1);
+    }
+
+    &::after {
+      right: 0;
+      width: min(48rem, 38%);
+      background-position: right center;
+      background-size: auto 100%;
+    }
+  }
+}
+
+.hh[dir="rtl"] .hosn-usage-guidance {
+  &::before {
+    left: auto;
+    right: 0;
+    transform: none;
+  }
+
+  &::after {
+    right: auto;
+    left: 0;
+    transform: scaleX(-1);
   }
 }

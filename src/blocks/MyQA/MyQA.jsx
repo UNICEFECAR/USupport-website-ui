@@ -231,7 +231,7 @@ export const MyQA = ({
   };
 
   return (
-    <Block classes="my-qa">
+    <Block classes="my-qa" data-clarity-mask="true">
       <div>
         <div className="my-qa__header">
           <div

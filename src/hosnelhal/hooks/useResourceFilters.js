@@ -6,7 +6,7 @@ export const FILTER_KEYS = ["q", "topic", "format", "length", "lang"];
 
 /**
  * Resource filters, kept in the URL so filtered lists can be shared and the
- * home page search can hand over to the resources page.
+ * home page search can hand over to the full library.
  *
  * @returns {{filters: object, setFilters: function, resetFilters: function}}
  */
