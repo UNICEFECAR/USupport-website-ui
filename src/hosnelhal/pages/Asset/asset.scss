@@ -47,23 +47,12 @@
     font-size: var(--hh-font-size-nav);
   }
 
-  &__tips {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: $spacing_1_6;
+  &__support-reminder {
     margin: 0;
-
-    @include hh-desktop-up {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    dt {
-      font-size: var(--hh-font-size-subtitle);
-      font-weight: $font_semi_bold;
-    }
-
-    dd {
-      margin: $spacing_0_4 0 0;
-    }
+    padding-top: $spacing_0_8;
+    border-top: 1px solid var(--hh-color-border, rgba(0, 0, 0, 0.08));
+    font-size: var(--hh-font-size-body);
+    line-height: 1.5;
+    color: var(--hh-color-text-muted);
   }
 }

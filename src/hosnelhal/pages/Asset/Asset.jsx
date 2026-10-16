@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import { Markdown } from "@USupport-components-library/src";
 import {
   HHBackLink,
   HHButton,
@@ -39,11 +38,16 @@ export const Asset = () => {
     if (asset?.id) cmsSvc.addHosnAssetViewCount(asset.id).catch(() => {});
   }, [asset?.id]);
 
-  const backLink = <HHBackLink to={toPath("resources")}>{t("asset.back")}</HHBackLink>;
+  const backLink = (
+    <HHBackLink to={toPath("resources")}>{t("asset.back")}</HHBackLink>
+  );
 
   if (isLoading) {
     return (
-      <HHLoadingRegion label={t("common.loading")} className="hh__container hh__stack">
+      <HHLoadingRegion
+        label={t("common.loading")}
+        className="hh__container hh__stack"
+      >
         {backLink}
         <HHSkeleton width="9rem" height="1.4rem" />
         <div className="hosn-asset__intro-skeleton">
@@ -83,29 +87,37 @@ export const Asset = () => {
         lang={asset.locale}
         dir={HOSN_RTL_LANGUAGES.includes(asset.locale) ? "rtl" : "ltr"}
       >
-        <HHPageIntro title={asset.title} lead={asset.description} />
+        <HHPageIntro
+          eyebrow={t("asset.eyebrow")}
+          title={asset.title}
+          lead={asset.description}
+        />
         <AssetViewer asset={asset} />
       </div>
 
       <HHPanel className="hosn-asset__how" aria-labelledby="hosn-asset-how">
         <h2 id="hosn-asset-how">{t("asset.how_title")}</h2>
-        {asset.usageTips.length > 0 ? (
-          <dl className="hosn-asset__tips">
-            {asset.usageTips.map((tip) => (
-              <div key={tip.id} className="hosn-asset__tip">
-                <dt>{t(`asset.setting_${tip.setting}`)}</dt>
-                <dd>
-                  <Markdown markDownText={tip.text} />
-                </dd>
-              </div>
-            ))}
-          </dl>
-        ) : (
-          <p>{t("asset.how_text")}</p>
-        )}
+        <p>{asset.howToUse || t("asset.how_text")}</p>
+        {asset.supportReminder ? (
+          <p className="hosn-asset__support-reminder">{asset.supportReminder}</p>
+        ) : null}
       </HHPanel>
 
-      <HHButton variant="text" to={toPath("how-to-use")} className="hosn-asset__how-link">
+      {asset.supportReminder ? (
+        <HHButton
+          variant="text"
+          to={toPath("when-you-need-more-support")}
+          className="hosn-asset__how-link"
+        >
+          {t("support_note.link")}
+        </HHButton>
+      ) : null}
+
+      <HHButton
+        variant="text"
+        to={toPath("how-to-use")}
+        className="hosn-asset__how-link"
+      >
         {t("asset.how_link")}
       </HHButton>
     </div>

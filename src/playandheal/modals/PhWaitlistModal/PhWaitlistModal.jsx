@@ -131,7 +131,12 @@ export const PhWaitlistModal = ({ isOpen, onClose }) => {
               ))}
             </ul>
 
-            <form className="ph-waitlist__form" onSubmit={handleSubmit} noValidate>
+            <form
+              className="ph-waitlist__form"
+              onSubmit={handleSubmit}
+              noValidate
+              data-clarity-mask="true"
+            >
               {renderField("fullName", "text", "name")}
               {renderField("email", "email", "email")}
               {renderField("location", "text", "address-level2")}

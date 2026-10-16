@@ -52,7 +52,7 @@ import {
 } from "@USupport-components-library/utils";
 import { userSvc } from "@USupport-components-library/services";
 
-import { useEventListener } from "#hooks";
+import { useClarity, useEventListener } from "#hooks";
 import { isPlayAndHeal } from "./playandheal/config";
 import { isHosnElHal } from "./hosnelhal/config";
 
@@ -108,6 +108,9 @@ function App() {
     hasHandledCookies: false,
     isBannerOpen: false,
   });
+  const [isCookiePreferenceReady, setIsCookiePreferenceReady] = useState(false);
+
+  useClarity(cookieState.hasAcceptedCookies, isCookiePreferenceReady);
 
   useEffect(() => {
     const lang = localStorage.getItem("language");
@@ -129,6 +132,7 @@ function App() {
       hasHandledCookies,
       isBannerOpen: hasHandledCookies ? false : true,
     });
+    setIsCookiePreferenceReady(true);
 
     if (!lang) {
       localStorage.setItem("language", "en");

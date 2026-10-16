@@ -23,6 +23,12 @@ const TITLE_KEYS = {
   "cookie-policy": "cookie_policy",
 };
 
+const EYEBROW_KEYS = {
+  "privacy-policy": "eyebrow_privacy",
+  "terms-of-use": "eyebrow_terms",
+  "cookie-policy": "eyebrow_cookies",
+};
+
 /**
  * Legal
  *
@@ -44,7 +50,10 @@ export const Legal = ({ page }) => {
   return (
     <div className="hh__container hh__stack hosn-legal">
       <HHBackLink to={toPath("")}>{t("common.nav_home")}</HHBackLink>
-      <HHPageIntro title={t(`common.${TITLE_KEYS[page]}`)} />
+      <HHPageIntro
+        eyebrow={t(`common.${EYEBROW_KEYS[page]}`)}
+        title={t(`common.${TITLE_KEYS[page]}`)}
+      />
       {isLoading ? (
         <HHLoadingRegion label={t("common.loading")} className="hosn-legal__content">
           <HHSkeleton lines={8} height="1.5rem" />

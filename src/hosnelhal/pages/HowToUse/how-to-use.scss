@@ -12,23 +12,53 @@
     @include hh-desktop-up {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    > li {
+      display: flex;
+    }
+
+    .hh-info-card {
+      flex: 1;
+      border: 1px solid #c8c9aa;
+      border-radius: 2rem;
+      background: var(--hh-color-surface);
+    }
   }
 
-  &__practical {
+  &__practical.hh-panel {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: $spacing_1_6;
+    padding: $spacing_2_4;
+    border-radius: 2rem;
+    background: var(--hh-color-hero);
+    color: var(--hh-color-on-hero);
+
+    @include hh-tablet-up {
+      padding: $spacing_3_2 $spacing_4_0;
+    }
 
     h2 {
       font-size: var(--hh-font-size-section);
       font-weight: $font_semi_bold;
+      color: var(--hh-color-on-hero);
     }
 
     p {
+      max-width: 96rem;
       font-size: var(--hh-font-size-lead);
       line-height: 1.5;
-      color: var(--hh-color-text-muted);
+      color: var(--hh-color-hero-text);
+    }
+  }
+
+  &__browse.hh-button {
+    background: var(--hh-color-hero-eyebrow);
+    color: var(--hh-color-text);
+
+    &:hover {
+      filter: brightness(0.96);
     }
   }
 }

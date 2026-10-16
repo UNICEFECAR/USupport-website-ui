@@ -21,6 +21,12 @@ export const HOSN_LENGTHS = {
 
 export const HOSN_FEATURED_COUNT = 4;
 
+// Cards shown for each category on the resources overview
+export const HOSN_CATEGORY_PREVIEW = 4;
+
+// Full library. The overview at /resources links here with ?topic= preselected.
+export const HOSN_LIBRARY_PATH = "resources/all";
+
 // Hosn El Hal is not wrapped in the uSupport theme (its global p / heading
 // colours would override the HH styles). uSupport components it still uses
 // (legal Markdown) get this class around them instead.

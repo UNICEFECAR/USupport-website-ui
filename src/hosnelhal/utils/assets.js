@@ -49,7 +49,13 @@ export const toAsset = ({ id, attributes }) => {
       isPdf: getMediaMime(viewFile) === "application/pdf",
       isImage: isImage(viewFile),
     },
-    usageTips: attributes.how_to_use || [],
+    howToUse:
+      typeof attributes.how_to_use === "string" ? attributes.how_to_use.trim() : "",
+    supportReminder:
+      typeof attributes.support_reminder === "string"
+        ? attributes.support_reminder.trim()
+        : "",
+    pillar: attributes.pillar?.data?.attributes?.key || null,
   };
 };
 

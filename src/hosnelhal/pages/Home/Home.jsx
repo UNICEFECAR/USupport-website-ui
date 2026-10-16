@@ -7,7 +7,7 @@ import { HHPageIntro, HHSectionHeader } from "@USupport-components-library/src/h
 import { ResourceFilters } from "../../blocks/ResourceFilters/ResourceFilters";
 import { ResourceGrid } from "../../blocks/ResourceGrid/ResourceGrid";
 import { UsageGuidance } from "../../blocks/UsageGuidance/UsageGuidance";
-import { HOSN_FEATURED_COUNT } from "../../config";
+import { HOSN_FEATURED_COUNT, HOSN_LIBRARY_PATH } from "../../config";
 import { useHosnAssets } from "../../hooks/useHosnAssets";
 import { useHosnPath } from "../../hooks/useHosnPath";
 import { FILTER_KEYS, toSearchString } from "../../hooks/useResourceFilters";
@@ -18,7 +18,7 @@ const NO_FILTERS = Object.fromEntries(FILTER_KEYS.map((key) => [key, ""]));
  * Home
  *
  * Introduction, search, the latest resources and how to use the hub.
- * Searching or filtering continues on the resources page.
+ * Searching or filtering continues on the full library.
  *
  * @returns {JSX.Element}
  */
@@ -34,7 +34,7 @@ export const Home = () => {
   });
 
   const goToResources = (filters) =>
-    navigate(`${toPath("resources")}${toSearchString(filters)}`);
+    navigate(`${toPath(HOSN_LIBRARY_PATH)}${toSearchString(filters)}`);
 
   return (
     <div className="hh__container hh__stack">
@@ -51,7 +51,7 @@ export const Home = () => {
         <HHSectionHeader
           id="hosn-explore-title"
           title={t("explore")}
-          action={{ to: toPath("resources"), label: t("view_all") }}
+          action={{ to: toPath(HOSN_LIBRARY_PATH), label: t("view_all") }}
         />
         <ResourceGrid
           assets={data}

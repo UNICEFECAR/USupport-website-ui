@@ -1,0 +1,139 @@
+@import "../../styles/hosn";
+
+.hosn-resources {
+  &__explore {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_1_6;
+    max-width: 110rem;
+
+    h2 {
+      font-size: var(--hh-font-size-section);
+      font-weight: $font_semi_bold;
+      line-height: 1.3;
+    }
+
+    p {
+      font-size: var(--hh-font-size-lead);
+      line-height: 1.5;
+      color: var(--hh-color-text-muted);
+    }
+  }
+
+  &__categories {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_4_8;
+  }
+
+  &__category {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_2_4;
+    padding: $spacing_2_4;
+    border-radius: var(--hh-radius-lg);
+    background: var(--hh-color-surface-soft);
+
+    &[data-pillar="psychoeducation"] {
+      background: var(--hh-color-pillar-psychoeducation);
+    }
+
+    &[data-pillar="self-awareness"] {
+      background: var(--hh-color-pillar-self-awareness);
+    }
+
+    &[data-pillar="realistic-self-care"] {
+      background: var(--hh-color-pillar-realistic-self-care);
+    }
+
+    &[data-pillar="peer-support"] {
+      background: var(--hh-color-pillar-peer-support);
+    }
+
+    &[data-pillar="reconnecting-with-purpose"] {
+      background: var(--hh-color-pillar-reconnecting-with-purpose);
+    }
+  }
+
+  &__intro {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_1_2;
+
+    h2 {
+      font-size: var(--hh-font-size-section);
+      font-weight: $font_semi_bold;
+      line-height: 1.3;
+      color: var(--hh-color-text);
+    }
+  }
+
+  &__description {
+    line-height: 1.5;
+    color: var(--hh-color-text-muted);
+  }
+
+  &__stats {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_0_4;
+    margin-top: $spacing_0_4;
+  }
+
+  &__count {
+    font-weight: $font_semi_bold;
+  }
+
+  &__formats {
+    font-size: var(--hh-font-size-body);
+    line-height: 1.5;
+    color: var(--hh-color-text-muted);
+  }
+
+  &__cards {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing_2_0;
+    min-width: 0;
+
+    .hh-card-grid {
+      width: 100%;
+    }
+
+    // White cards sit on the pillar pastel bands
+    .hh-resource-card {
+      background: #ffffff;
+    }
+  }
+
+  &__view-all {
+    @include hh-focus-ring;
+    font-size: var(--hh-font-size-body);
+    font-weight: $font_semi_bold;
+    color: var(--hh-color-primary);
+    text-decoration: underline;
+    text-underline-offset: 0.3rem;
+    border-radius: var(--hh-radius-sm);
+  }
+
+  &__status {
+    padding: $spacing_4_0 0;
+    font-size: var(--hh-font-size-lead);
+    color: var(--hh-color-text-muted);
+  }
+
+  @include hh-desktop-up {
+    &__category {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: $spacing_3_2;
+      padding: $spacing_3_2;
+    }
+
+    &__intro {
+      flex: 0 0 26rem;
+    }
+  }
+}

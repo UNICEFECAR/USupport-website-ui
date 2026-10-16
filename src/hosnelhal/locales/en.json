@@ -12,10 +12,15 @@
     "logo_hosnelhal": "Hosn El Hal - home",
     "logo_unicef": "UNICEF",
     "footer_text": "Hosn El Hal · Teacher wellbeing resources",
-    "footer_links_label": "Legal",
+    "footer_links_label": "Site links",
+    "footer_support": "When you need more support",
     "privacy_policy": "Privacy Policy",
     "terms_of_use": "Terms of Use",
     "cookie_policy": "Cookie Policy",
+    "eyebrow_privacy": "Privacy Policy · حسن الحال",
+    "eyebrow_terms": "Terms of Use · حسن الحال",
+    "eyebrow_cookies": "Cookie Policy · حسن الحال",
+    "cookie_settings": "Cookie settings",
     "loading": "Loading…",
     "error": "Something went wrong. Please try again later."
   },
@@ -77,23 +82,45 @@
     "view_all": "View all ›"
   },
   "resources": {
+    "eyebrow": "Resources · حسن الحال",
     "title": "Resources",
     "lead": "Browse audio, video, PDFs and visual messages. No account needed.",
-    "all": "All Resources"
+    "all": "All Resources",
+    "explore_title": "Explore Hosn el Hal",
+    "explore_lead": [
+      "Explore the five Hosn el Hal pillars, each offering simple, practical resources to support your wellbeing in different ways. From understanding your emotions and caring for yourself, to connecting with others and finding meaning in everyday moments, each pillar brings together videos, audios, visual messages and PDFs for you to explore.",
+      "There's no right place to start. Choose what feels most relevant to you today, and explore at your own pace."
+    ],
+    "count_one": "{{count}} resource",
+    "count_other": "{{count}} resources",
+    "format_count": "{{count}} {{format}}",
+    "view_all": "View all {{count}}",
+    "view_all_label": "View all {{count}} {{category}}",
+    "pillars": {
+      "psychoeducation": "Build understanding about mental health and wellbeing, and explore what helps us feel and cope better.",
+      "self-awareness": "Notice and understand our thoughts, feelings, body sensations and behaviours with kindness and curiosity.",
+      "realistic-self-care": "Explore simple and realistic ways to take care of ourselves in daily life, even in challenging times.",
+      "peer-support": "Explore how we can support and connect with each other, listen with care, and create safer, more supportive spaces.",
+      "reconnecting-with-purpose": "Reconnect with what matters to us, explore our strengths, and find small ways to bring meaning into everyday life."
+    }
   },
   "how_to_use": {
+    "eyebrow": "How to Use This Hub",
     "title": "How to Use Hosn el Hal",
     "lead": "Hosn el Hal is flexible. There is no required sequence and no standalone training needed. Resources can be used independently or combined.",
     "steps_title": "Using the resources",
-    "step_find_title": "1. Find a resource",
+    "step_find_title": "Find a resource",
     "step_find_text": "Search or filter by topic, format, length and language.",
-    "step_open_title": "2. Open and use",
+    "step_open_title": "Open and use",
     "step_open_text": "Watch videos, listen to audio, and view visual messages or PDFs in your browser.",
+    "step_download_title": "Download for later",
+    "step_download_text": "Download resources for offline use. Print-ready and mobile-friendly versions support different settings.",
     "practical_title": "In trainings and staff meetings",
     "practical_text": "Use a resource on your own, with a small group of colleagues, or with the wider school team. The short notes with each resource provide practical suggestions.",
     "browse": "Browse resources"
   },
   "about": {
+    "eyebrow": "About Hosn el Hal · حسن الحال",
     "title": "About Hosn El Hal",
     "lead": "Simple, practical wellbeing resources for teachers and education personnel.",
     "background_title": "Supporting teacher wellbeing",
@@ -104,7 +131,21 @@
     "hub_text": "This hub brings all Hosn el Hal resources together in one place. There is no required sequence and no need to complete everything. Explore the resources, choose what feels useful to you, and return whenever you need a moment for your wellbeing.",
     "explore": "Explore resources →"
   },
+  "support_note": {
+    "eyebrow": "Support · حسن الحال",
+    "title": "When you need more support",
+    "lead": "Hosn el Hal can help you pause and care for yourself, and sometimes more support is needed too.",
+    "body": [
+      "We all go through difficult moments, and sometimes we need a little more support to get through them. That's okay.",
+      "Hosn el Hal offers simple moments to pause, reconnect with yourself, and care for your wellbeing. While these resources can be helpful, they are not a replacement for professional mental health and psychosocial support.",
+      "If things are feeling particularly difficult, or if your feelings are making everyday life harder, please remember that you don't have to go through it alone. Reaching out to someone you trust, a school counsellor, a supervisor, or a support service available through your organisation can be an important first step.",
+      "If you're worried about someone else, whether a student or a colleague, sometimes the most helpful thing you can do is listen calmly, with care and without judgement. You don't need to have all the answers. Avoid investigating or promising to keep things secret, and follow your organisation's referral procedures to help connect them with the right support. If someone is at immediate risk of harm, follow your organisation's protection or emergency procedures right away.",
+      "Remember, caring for your wellbeing also means knowing when to reach out for support."
+    ],
+    "link": "When you need more support →"
+  },
   "asset": {
+    "eyebrow": "Resources · حسن الحال",
     "back": "Back to resources",
     "not_found": "This resource could not be found.",
     "video_processing": "This video is being prepared. Please check back soon.",
