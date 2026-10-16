@@ -1,17 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useTranslation, Trans } from "react-i18next";
 
-import { ThemeContext } from "@USupport-components-library/utils";
 import { Block, Grid, GridItem } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 
 import "./find-yourself.scss";
-
-import image1 from "./assets/image_1.png";
-import image2 from "./assets/image_2.png";
-import image3 from "./assets/image_3.png";
-import image4 from "./assets/image_4.png";
-import image5 from "./assets/image_5.png";
 
 /**
  * FindYourself
@@ -23,8 +16,6 @@ import image5 from "./assets/image_5.png";
 export const FindYourself = () => {
   const { t } = useTranslation("blocks", { keyPrefix: "find-yourself" });
   const { width } = useWindowDimensions();
-  const { theme } = useContext(ThemeContext);
-  const IS_RO = localStorage.getItem("country") === "RO";
 
   return (
     <Block classes="find-yourself" animation="fade-up">

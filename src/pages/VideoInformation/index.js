@@ -1,1 +1,1 @@
-export * from './VideoInformation.jsx';
+export * from "./VideoInformation.jsx";

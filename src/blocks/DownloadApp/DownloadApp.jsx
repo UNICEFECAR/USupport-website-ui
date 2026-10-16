@@ -40,7 +40,10 @@ export const DownloadApp = () => {
               <h1>
                 <Trans
                   components={[
-                    <span className="download-app__heading-item__highlight"></span>,
+                    <span
+                      key="highlight"
+                      className="download-app__heading-item__highlight"
+                    ></span>,
                   ]}
                 >
                   {t("heading")}

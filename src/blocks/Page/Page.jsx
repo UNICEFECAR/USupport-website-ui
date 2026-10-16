@@ -12,7 +12,6 @@ import {
   Footer,
   Icon,
   CookieBanner,
-  AccessibilityController,
   Block,
 } from "@USupport-components-library/src";
 import { countrySvc, userSvc } from "@USupport-components-library/services";
@@ -69,7 +68,6 @@ export const Page = ({
   const navigateTo = useNavigate();
   const queryClient = useQueryClient();
   const { t, i18n } = useTranslation("blocks", { keyPrefix: "page" });
-  const IS_DEV = process.env.NODE_ENV === "development";
   const addCountryEventMutation = useMutation(
     async (payload) => await userSvc.addCountryEvent(payload),
   );
@@ -87,7 +85,6 @@ export const Page = ({
   const [langs, setLangs] = useState([]);
 
   const IS_PS = localStorageCountry === "PS";
-  const IS_CY = localStorageCountry === "CY";
 
   const changeLanguage = (language) => {
     i18n.changeLanguage(language.value);
@@ -515,6 +512,7 @@ export const Page = ({
           <Trans
             components={[
               <Link
+                key="cookie-policy"
                 to={`/${localStorageLanguage}/cookie-policy`}
                 className={
                   theme === "highContrast"

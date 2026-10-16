@@ -99,9 +99,6 @@ function App() {
   const [isPodcastsActive, setIsPodcastsActive] = useState(null);
   const [isVideosActive, setIsVideosActive] = useState(null);
   const [isWysaModalOpen, setIsWysaModalOpen] = useState(false);
-  const [country, setCountry] = useState(
-    localStorage.getItem("country") || null
-  );
 
   const [cookieState, setCookieState] = useState({
     hasAcceptedCookies: false,
@@ -143,23 +140,6 @@ function App() {
   useEffect(() => {
     localStorage.setItem("default-theme", theme);
   }, [theme]);
-
-  useEffect(() => {
-    const handler = () => {
-      const currentCountry = localStorage.getItem("country");
-      setCountry(currentCountry);
-    };
-    window.addEventListener("countryChanged", handler);
-
-    return () => {
-      window.removeEventListener("countryChanged", handler);
-    };
-  }, []);
-
-  const IS_CY = country === "CY";
-  const is_staging = window.location.href.includes("staging");
-  const IS_DEV = import.meta.env.MODE === "development";
-  const SHOW_WYSA = is_staging || IS_DEV;
 
   return (
     <ThemeContext.Provider

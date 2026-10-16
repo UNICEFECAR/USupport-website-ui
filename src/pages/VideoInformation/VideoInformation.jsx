@@ -136,7 +136,6 @@ export const VideoInformation = () => {
   const {
     data: moreVideos,
     isLoading: isMoreVideosLoading,
-    isFetched: isMoreVideosFetched,
   } = useQuery(["more-videos", id, i18n.language], getSimilarVideos, {
     enabled:
       !isFetchingVideoData &&
