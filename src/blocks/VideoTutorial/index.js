@@ -1,1 +1,1 @@
-export * from './VideoTutorial.jsx';
+export * from "./VideoTutorial.jsx";
