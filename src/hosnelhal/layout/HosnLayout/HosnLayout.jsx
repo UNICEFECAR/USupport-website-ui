@@ -19,7 +19,7 @@ import {
 import { cmsSvc } from "@USupport-components-library/services";
 import { ThemeContext } from "@USupport-components-library/utils";
 
-import { HOSN_LANGUAGES, HOSN_RTL_LANGUAGES } from "../../config";
+import { HOSN_COUNTRY, HOSN_LANGUAGES, HOSN_RTL_LANGUAGES } from "../../config";
 import { useHosnPath } from "../../hooks/useHosnPath";
 
 import logoHosnElHal from "../../assets/logo-hosnelhal.png";
@@ -84,6 +84,14 @@ export const HosnLayout = ({ children }) => {
   const dir = HOSN_RTL_LANGUAGES.includes(language) ? "rtl" : "ltr";
 
   useFavicon(favicon);
+
+  // Visitors on the Hosn host may not have a country yet; events need XH
+  useEffect(() => {
+    if (localStorage.getItem("country") !== HOSN_COUNTRY) {
+      localStorage.setItem("country", HOSN_COUNTRY);
+      window.dispatchEvent(new Event("countryChanged"));
+    }
+  }, []);
 
   useEffect(() => {
     if (i18n.language !== language) i18n.changeLanguage(language);
