@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Page, WeHelp, OurPartners, ContactUs, About } from "#blocks";
+import { Page, WeHelp, OurPartners, ContactUs } from "#blocks";
 import { RadialCircle } from "@USupport-components-library/src";
 import { ThemeContext } from "@USupport-components-library/utils";
 

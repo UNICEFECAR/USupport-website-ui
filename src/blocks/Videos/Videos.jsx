@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 
@@ -16,7 +16,6 @@ import {
 import {
   destructureVideoData,
   useWindowDimensions,
-  createArticleSlug,
   getLikesAndDislikesForContent,
 } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
@@ -43,7 +42,6 @@ const getGridSpanForIndex = (index, pattern = [3, 3, 3]) => {
 };
 
 export const Videos = ({ debouncedSearchValue }) => {
-  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const { width } = useWindowDimensions();
   const { i18n, t } = useTranslation("blocks", { keyPrefix: "articles" });
@@ -52,7 +50,6 @@ export const Videos = ({ debouncedSearchValue }) => {
   const [usersLanguage, setUsersLanguage] = useState(i18n.language);
 
   const IS_PS = localStorage.getItem("country") === "PS";
-  const IS_RTL = localStorage.getItem("language") === "ar";
 
   const [categories, setCategories] = useState();
   const [selectedCategory, setSelectedCategory] = useState();
@@ -323,14 +320,6 @@ export const Videos = ({ debouncedSearchValue }) => {
       newSearchParams.delete("videoId");
       setSearchParams(newSearchParams, { replace: true });
     }
-  };
-
-  const handleRedirect = (id, name) => {
-    navigate(
-      `/${localStorage.getItem(
-        "language",
-      )}/information-portal/video/${id}/${createArticleSlug(name)}`,
-    );
   };
 
   const isLoading =

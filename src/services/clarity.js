@@ -14,17 +14,16 @@ const CLARITY_COOKIE_NAMES = [
 const CLARITY_STORAGE_KEY = "_cltk";
 
 /**
- * Clarity runs only for a production build that has a project id and is
- * not being served from local or staging. Leave the env var unset elsewhere.
+ * Clarity runs for staging or production builds with a configured project id.
+ * Localhost stays disabled. Leave the env var unset to disable an environment.
  */
 const isClarityEnabled = () => {
   if (!CLARITY_PROJECT_ID) return false;
-  if (import.meta.env.MODE !== "production") return false;
+  if (!["staging", "production"].includes(import.meta.env.MODE)) return false;
   if (typeof window === "undefined") return false;
 
   const host = window.location.hostname;
   if (host === "localhost" || host === "127.0.0.1") return false;
-  if (host.includes("staging")) return false;
   return true;
 };
 
