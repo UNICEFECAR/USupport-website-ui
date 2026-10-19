@@ -54,7 +54,7 @@ import { userSvc } from "@USupport-components-library/services";
 
 import { useClarity, useEventListener } from "#hooks";
 import { isPlayAndHeal } from "./playandheal/config";
-import { isHosnElHal } from "./hosnelhal/config";
+import { HOSN_COUNTRY, isHosnElHal } from "./hosnelhal/config";
 
 // Play and Heal (PS) has its own design system and pages
 const PlayAndHealRoutes = lazy(() => import("./playandheal"));
@@ -209,7 +209,13 @@ const LanguageLayout = () => {
 
   useQuery(
     ["hosnelhal-visit"],
-    () => userSvc.addCountryEvent({ eventType: "hosnelhal_visit" }),
+    () => {
+      // Visit fires before HosnLayout mounts; country header must be XH
+      if (localStorage.getItem("country") !== HOSN_COUNTRY) {
+        localStorage.setItem("country", HOSN_COUNTRY);
+      }
+      return userSvc.addCountryEvent({ eventType: "hosnelhal_visit" });
+    },
     { enabled: IS_HOSN }
   );
 
