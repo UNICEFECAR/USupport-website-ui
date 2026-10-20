@@ -2,6 +2,9 @@
 
 export const HOSN_PROGRAM = "hosnelhal";
 
+// Pseudo-country for visit / engagement events (see masterDB country XH)
+export const HOSN_COUNTRY = "XH";
+
 export const HOSN_LANGUAGES = [
   { value: "en", label: "EN", name: "English", dir: "ltr" },
   { value: "ar", label: "العربية", name: "العربية", dir: "rtl" },

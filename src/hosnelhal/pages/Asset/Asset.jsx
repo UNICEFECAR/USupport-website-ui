@@ -15,6 +15,7 @@ import { cmsSvc } from "@USupport-components-library/services";
 
 import { AssetViewer } from "../../blocks/AssetViewer/AssetViewer";
 import { HOSN_RTL_LANGUAGES } from "../../config";
+import { useHosnTrackView } from "../../hooks/useHosnTrackView";
 import { useHosnAsset } from "../../hooks/useHosnAssets";
 import { useHosnPath } from "../../hooks/useHosnPath";
 import { getLengthLabel } from "../../utils/assets";
@@ -32,11 +33,15 @@ export const Asset = () => {
   const { id } = useParams();
   const { t } = useTranslation("hosnelhal");
   const toPath = useHosnPath();
+  const trackView = useHosnTrackView();
   const { data: asset, isLoading, isError } = useHosnAsset(id);
 
   useEffect(() => {
-    if (asset?.id) cmsSvc.addHosnAssetViewCount(asset.id).catch(() => {});
-  }, [asset?.id]);
+    if (!asset?.id) return;
+    // Lifetime counter in CMS + dated engagement event for country admin
+    cmsSvc.addHosnAssetViewCount(asset.id).catch(() => {});
+    trackView(asset.id);
+  }, [asset?.id, trackView]);
 
   const backLink = (
     <HHBackLink to={toPath("resources")}>{t("asset.back")}</HHBackLink>
