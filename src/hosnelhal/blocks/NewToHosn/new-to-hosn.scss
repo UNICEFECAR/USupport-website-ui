@@ -1,0 +1,87 @@
+@import "../../styles/hosn";
+
+.hosn-new-to-hosn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $spacing_2_0;
+  padding: $spacing_2_8 $spacing_2_4;
+  overflow: hidden;
+  border-radius: 2.4rem;
+  background: var(--hh-color-hero);
+  color: var(--hh-color-on-hero);
+
+  // Soft circle and leaf outline, as in the design
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+  }
+
+  &::before {
+    inset-inline-end: -6rem;
+    top: -10rem;
+    width: 32rem;
+    height: 32rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  &::after {
+    inset-inline-end: 28%;
+    bottom: -3rem;
+    width: 16rem;
+    height: 9rem;
+    border: 0.15rem solid rgba(255, 255, 255, 0.25);
+    border-radius: 0 100% 0 100%;
+    transform: rotate(-12deg);
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  @include hh-tablet-up {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacing_3_2;
+    padding: $spacing_3_2 $spacing_4_0;
+  }
+
+  &__copy {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_0_4;
+    max-width: 64rem;
+  }
+
+  &__title {
+    font-size: var(--hh-font-size-section);
+    font-weight: $font_bold;
+    color: var(--hh-color-on-hero);
+
+    @include hh-tablet-up {
+      font-size: var(--hh-font-size-heading);
+    }
+  }
+
+  &__subtitle {
+    font-size: var(--hh-font-size-lead);
+    font-weight: $font_semi_bold;
+    color: var(--hh-color-on-hero);
+  }
+
+  &__text {
+    font-size: var(--hh-font-size-body);
+    line-height: 1.5;
+    color: var(--hh-color-hero-text);
+  }
+
+  .hosn-home__pill {
+    flex-shrink: 0;
+  }
+}

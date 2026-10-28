@@ -17,6 +17,7 @@
     "footer_links_label": "Site links",
     "footer_support": "When you need more support",
     "footer_support_description": "Find resources and guidance to help you take the next step.",
+    "footer_feedback": "Share your feedback",
     "footer_copyright": "© 2026 Hosn El Hal. All rights reserved.",
     "privacy_policy": "Privacy Policy",
     "terms_of_use": "Terms of Use",
@@ -35,10 +36,10 @@
     "thumbnail": "Visual message"
   },
   "open": {
-    "video": "Watch →",
-    "audio": "Listen →",
-    "worksheet": "View PDF →",
-    "thumbnail": "View →"
+    "video": "Take this moment →",
+    "audio": "Take this moment →",
+    "worksheet": "View resource →",
+    "thumbnail": "View resource →"
   },
   "card": {
     "minutes": "{{count}} min",
@@ -76,14 +77,39 @@
     "school_text": "Integrate a resource into a meeting, training, orientation or other professional learning/support space."
   },
   "home": {
-    "title": "Welcome to Hosn el Hal",
-    "subtitle": "Taking Time for Teachers’ Wellbeing",
+    "welcome": "Welcome to Hosn el Hal",
+    "headline": "A little moment for you.",
     "lead": [
-      "In emergencies, teachers care for and support children while often facing the same challenges, stress and uncertainty themselves. Their wellbeing matters, too.",
-      "Hosn el Hal is a collection of practical, accessible wellbeing resources designed for teachers and education personnel. Through simple tools, guided moments and gentle reminders, it offers opportunities to pause, reflect, reconnect and care for themselves, so they can continue caring for others."
+      "You spend so much of your day caring for others.",
+      "Here is a space to pause, reconnect with yourself, and care for your own wellbeing.",
+      "One small moment at a time."
     ],
-    "explore": "Explore Hosn el Hal",
-    "view_all": "View all ›"
+    "explore_cta": "Explore Resources →",
+    "feeling_title": "How are you feeling today?",
+    "feeling_subtitle": "What would feel helpful for you right now?",
+    "feeling_hint": "There's no right or wrong answer. Simply choose what feels closest to what you need today.",
+    "feeling_calm_title": "I need a moment of calm",
+    "feeling_calm_text": "Take a little time to pause and breathe.",
+    "feeling_energy_title": "I need a little more energy",
+    "feeling_energy_text": "Find a gentle boost to help you through your day.",
+    "feeling_reconnect_title": "I want to reconnect with myself",
+    "feeling_reconnect_text": "Take a moment to notice how you're feeling.",
+    "feeling_supported_title": "I want to feel supported",
+    "feeling_supported_text": "Find a little comfort and encouragement.",
+    "explore_title": "A few moments to explore",
+    "explore_lead": "Sometimes, a small moment is all we need to pause and reconnect.",
+    "explore_hint": "Here are a few resources you might like to explore. Take your time, and choose whatever feels right for you.",
+    "view_all": "View All Resources →",
+    "matter_title": "You matter, too.",
+    "matter_lead": [
+      "Every day, you give so much of yourself to others.",
+      "Your wellbeing deserves care and attention, too.",
+      "Take a moment for yourself, in whatever way feels right for you."
+    ],
+    "new_title": "New to Hosn el Hal?",
+    "new_subtitle": "Wondering where to start?",
+    "new_text": "Discover the different ways you can explore and use Hosn el Hal resources, whether for yourself, with colleagues, or within your everyday work.",
+    "new_cta": "See How to Use Hosn el Hal →"
   },
   "resources": {
     "eyebrow": "Resources · حسن الحال",
@@ -124,15 +150,115 @@
     "browse": "Browse resources"
   },
   "about": {
-    "eyebrow": "About Hosn el Hal · حسن الحال",
-    "title": "About Hosn El Hal",
-    "lead": "Simple, practical wellbeing resources for teachers and education personnel.",
-    "background_title": "Supporting teacher wellbeing",
-    "background_text_1": "Hosn el Hal is a teacher wellbeing resource developed by UNICEF to support teachers and education personnel in caring for their own wellbeing.",
-    "background_text_2": "It brings together short, practical and accessible resources in different formats, including videos, audio, visual messages and PDFs. The resources offer simple moments for reflection, self-awareness, regulation and connection, and can be used flexibly depending on what feels useful at the time.",
-    "background_text_3": "Hosn el Hal was developed with input from teachers and education professionals across the region, helping ensure that the resources are relevant, relatable and grounded in their everyday realities.",
-    "hub_title": "A simple, accessible space",
-    "hub_text": "This hub brings all Hosn el Hal resources together in one place. There is no required sequence and no need to complete everything. Explore the resources, choose what feels useful to you, and return whenever you need a moment for your wellbeing.",
+    "eyebrow": "About Hosn el Hal",
+    "title": "Taking time for teachers’ wellbeing",
+    "name_word": "حُسن الحال",
+    "name_text": "Hosn el Hal is Arabic for wellness",
+    "lead": "In emergencies, teachers are often deeply affected by the crisis, and yet we ask so much of them in supporting children to return safely to the classroom. Hosn el Hal offers dedicated, accessible mental health and psychosocial support resources for teachers as they support children during and after emergencies.",
+    "nav_label": "On this page",
+    "nav": {
+      "why": "Why teachers’ wellbeing matters",
+      "how": "How it came together",
+      "different": "What makes it different",
+      "design": "About our design",
+      "support": "When you need more support"
+    },
+    "why": {
+      "eyebrow": "Why it matters",
+      "title": "Teachers care for children through crisis. Their wellbeing matters too.",
+      "body": [
+        "There is ample evidence that after an emergency, one of the most stabilising and healing experiences for children is returning to the routines and opportunities of a learning environment. Regular, predictable and nurturing care from teachers and education staff helps children feel safe to express and process distressing and potentially traumatic experiences.",
+        "Yet until now, too little attention has been paid to the mental health and psychosocial wellbeing of the adults who create these spaces for children.",
+        "Teachers’ wellbeing is essential for nurturing, responsive care. Workplace stress, burnout, compassion fatigue and exhaustion affect the quality of the support they can give. If they are not addressed, they can lead to long-term challenges such as students dropping out, difficulty keeping teachers and lower learning outcomes.",
+        "Studies show that when educators and facilitators take part in training and receive ongoing support to build their mental health literacy, they are better able to support their students’ mental health and psychosocial wellbeing. This can improve students’ outcomes in many areas, particularly learning and self-confidence."
+      ],
+      "aside_title": "Teachers are part of the affected community",
+      "aside_items": [
+        "They may have their own traumatic experiences of the emergency.",
+        "They are often caring for their own children and families.",
+        "They often face the same deprivation, grief, loss, fears and concerns as the children in their care."
+      ]
+    },
+    "how": {
+      "eyebrow": "How it came together",
+      "title": "A regional partnership",
+      "body": [
+        "In response to multiple ongoing and compounding crises in the region, an inter-agency group of education and mental health specialists came together in Amman to share what we had, what we knew, and what we could do, to support teacher mental health and psychosocial wellbeing. Accessibility was key – how could we reach teachers within their busy schedules? How could we sustain engagement with shrinking budgets? How could we do better, together?",
+        "UNICEF convened practitioners from the Norwegian Refugee Council, Save the Children, UNRWA, and War Child who generously gave their insights, experiences, and resources which were distilled into the Hosn el Hal pillars and concept. Over the next year, UNRWA staff and teachers from Jordan, Lebanon, Palestine and Syria shared their ideas and reactions to designs and drafts, while expert feedback from each agency further improved and refined the assets.",
+        "The result is a series of resources that carry our original intent – to be used, to be shared, to be owned by anyone who is in a place to help teachers feel appreciated and supported. We hope that Hosn el Hal will help you do that."
+      ],
+      "partners_label": "Partners",
+      "partners": {
+        "unicef": "UNICEF",
+        "nrc": "Norwegian Refugee Council",
+        "save_the_children": "Save the Children",
+        "unrwa": "UNRWA",
+        "war_child": "War Child"
+      },
+      "team_title": "",
+      "team": [
+        {
+          "label": "Hosn el Hal co-creation team",
+          "value": "Enas Barhoum, NRC; Johanna Cunningham, UNICEF; Kamal Jabr, UNRWA; Hanan al-Kanash, UNRWA; Camila Lodi, NRC; Marta Petagna, SCI; Jason McGaughey, SCI; Kate McClellan, War Child"
+        },
+        {
+          "label": "Project Manager and Lead Content Creator",
+          "value": "Riwa Maktabi, UNICEF"
+        },
+        {
+          "label": "Design team",
+          "value": "Led by Jessica Hanna, Lapis"
+        }
+      ],
+      "contact_label": "For queries or comments",
+      "thanks": "Thank you to the teachers and reviewers from UNICEF and UNRWA offices in Jordan, Lebanon, Palestine and Syria, and to all the teachers who nurture children each day."
+    },
+    "different": {
+      "eyebrow": "Our approach",
+      "title": "What makes Hosn el Hal different",
+      "items": [
+        {
+          "title": "It complements what already exists",
+          "text": "Hosn el Hal does not duplicate or replace existing approaches or packages. It offers complementary support that can be reached through alternative, innovative channels. This matters most in acute emergencies, where access barriers can limit the impact of more traditional programmes."
+        },
+        {
+          "title": "It builds on what we know works in the region",
+          "text": "We gathered lessons learned from education and mental health resources already developed in the region. This helped us move quickly to create content that is effective, acceptable and speaks to teachers’ own needs."
+        },
+        {
+          "title": "It is designed to be accessible",
+          "text": "Teachers are hard to reach for long, in-person training, and chronic stress affects how adults learn. So the content is easy to take in, strengths-based and inviting. It uses mixed media to suit different learning styles and time the teachers might have."
+        },
+        {
+          "title": "Teachers experience it first, then share it",
+          "text": "Teachers are central to children’s emotional recovery. It works best when they benefit from this support themselves and then model it for students and bring it into their own teaching."
+        }
+      ]
+    },
+    "design": {
+      "eyebrow": "Our design",
+      "title": "About our design",
+      "theme_label": "Theme idea",
+      "theme_name": "Grounded Earth",
+      "theme_tagline": "Finding solid ground",
+      "theme_body": [
+        "A design rooted in the shared landscape of Syria, Jordan, Lebanon and Palestine, where earth tones convey stability, warmth and a sense of place. The composition reflects balance and structure: a steady ground to stand on. Subtle olive-inspired elements emerge within this foundation, evoking resilience, connection and community. Not about pushing through, but about finding your footing, together."
+      ],
+      "palette_label": "",
+      "palette_alt": "The Hosn el Hal colours on linen with olive leaves: olive green (#6B7F4A), silver sage (#A8B5A0), warm earth (#9C7C5C), terracotta (#C4704D) and warm sand (#EBDCC4).",
+      "logo_title": "The logo",
+      "logo_body": [
+        "The Hosn el Hal logo draws from the architectural poetry of regional tilework, where repetition and geometry create quiet beauty. Built on a grid, the design reflects balance, structure and a sense of stability: a steady ground to stand on.",
+        "Within this foundation, a circular olive branch appears, gently connecting the four tiles. The form introduces a layer of movement and continuity, symbolising resilience, growth and the strength of community. The olives, positioned in a continuous loop, evoke connection: individuals held together within a shared space.",
+        "The interplay between structure and organic form creates a visual language that feels both grounded and alive. In this way, the identity brings together clarity and care, translating cultural familiarity into a sense of calm, connection and collective wellbeing."
+      ],
+      "logo_alt": "The Hosn el Hal logo mark: four tiles in terracotta, olive green, sand and earth brown, joined by a circular olive branch"
+    },
+    "hub": {
+      "title": "A simple, accessible space",
+      "text": "This hub brings all Hosn el Hal resources together in one place: short videos, audio, visual messages and PDFs. There is no required sequence and no need to complete everything. Explore the resources, choose what feels useful to you, and return whenever you need a moment for your own wellbeing.",
+      "closing": "Remember, you matter too."
+    },
     "explore": "Explore resources →"
   },
   "support_note": {
@@ -186,5 +312,16 @@
     "playback_mode": "Playback",
     "with_visuals": "Video",
     "listen_only": "Listen only (uses less data)"
+  },
+  "feedback": {
+    "tab": "Share feedback",
+    "question": "Have you used the Hosn el Hal resources? Would you recommend them to a friend?",
+    "yes": "Yes, I would recommend them",
+    "no": "No, I wouldn't recommend them",
+    "invite": "We’d love to hear more about your experience! If you have two minutes, click here to share your thoughts and help us improve.",
+    "cta": "Share your thoughts →",
+    "later": "Maybe later",
+    "thanks": "Thank you!",
+    "close": "Close"
   }
 }

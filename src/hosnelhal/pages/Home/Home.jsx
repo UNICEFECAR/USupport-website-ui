@@ -1,68 +1,67 @@
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import { HHPageIntro, HHSectionHeader } from "@USupport-components-library/src/hosnelhal";
+import { HHSectionHeader } from "@USupport-components-library/src/hosnelhal";
 
-import { ResourceFilters } from "../../blocks/ResourceFilters/ResourceFilters";
+import { FeelingPicker } from "../../blocks/FeelingPicker/FeelingPicker";
+import { HomeHero } from "../../blocks/HomeHero/HomeHero";
+import { NewToHosn } from "../../blocks/NewToHosn/NewToHosn";
 import { ResourceGrid } from "../../blocks/ResourceGrid/ResourceGrid";
-import { UsageGuidance } from "../../blocks/UsageGuidance/UsageGuidance";
-import { HOSN_FEATURED_COUNT, HOSN_LIBRARY_PATH } from "../../config";
+import { YouMatter } from "../../blocks/YouMatter/YouMatter";
+import { HOSN_HOME_FEATURED, HOSN_LIBRARY_PATH } from "../../config";
 import { useHosnAssets } from "../../hooks/useHosnAssets";
 import { useHosnPath } from "../../hooks/useHosnPath";
-import { FILTER_KEYS, toSearchString } from "../../hooks/useResourceFilters";
 
-const NO_FILTERS = Object.fromEntries(FILTER_KEYS.map((key) => [key, ""]));
+import "./home.scss";
 
 /**
  * Home
  *
- * Introduction, search, the latest resources and how to use the hub.
- * Searching or filtering continues on the full library.
+ * Welcome, "How are you feeling today?", a few featured resources and the
+ * way into How to Use
  *
  * @returns {JSX.Element}
  */
 export const Home = () => {
   const { language } = useParams();
-  const navigate = useNavigate();
   const toPath = useHosnPath();
   const { t } = useTranslation("hosnelhal", { keyPrefix: "home" });
 
+  const featuredIds = HOSN_HOME_FEATURED[language] || [];
   const { data, isLoading, isError } = useHosnAssets({
     locale: language,
-    limit: HOSN_FEATURED_COUNT,
+    ids: featuredIds,
   });
 
-  const goToResources = (filters) =>
-    navigate(`${toPath(HOSN_LIBRARY_PATH)}${toSearchString(filters)}`);
-
   return (
-    <div className="hh__container hh__stack">
-      <HHPageIntro
-        variant="hero"
-        title={t("title")}
-        subtitle={t("subtitle")}
-        lead={t("lead", { returnObjects: true })}
-      />
+    <div className="hh__container hh__stack hosn-home">
+      <HomeHero />
 
-      <ResourceFilters filters={NO_FILTERS} onChange={goToResources} onReset={() => {}} />
+      <FeelingPicker />
 
-      <section className="hh__stack" aria-labelledby="hosn-explore-title">
-        <HHSectionHeader
-          id="hosn-explore-title"
-          title={t("explore")}
-          action={{ to: toPath(HOSN_LIBRARY_PATH), label: t("view_all") }}
-        />
+      <section className="hh__stack hosn-home__featured" aria-labelledby="hosn-explore-title">
+        <div className="hosn-home__featured-intro">
+          <HHSectionHeader
+            id="hosn-explore-title"
+            title={t("explore_title")}
+            action={{ to: toPath(HOSN_LIBRARY_PATH), label: t("view_all") }}
+          />
+          <p className="hosn-home__featured-lead">{t("explore_lead")}</p>
+          <p className="hosn-home__featured-lead">{t("explore_hint")}</p>
+        </div>
         <ResourceGrid
           assets={data}
           isLoading={isLoading}
           isError={isError}
           labelledBy="hosn-explore-title"
-          skeletonCount={HOSN_FEATURED_COUNT}
+          skeletonCount={featuredIds.length}
         />
       </section>
 
-      <UsageGuidance />
+      <YouMatter />
+
+      <NewToHosn />
     </div>
   );
 };
