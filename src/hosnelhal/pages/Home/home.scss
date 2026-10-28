@@ -1,0 +1,41 @@
+@import "../../styles/hosn";
+
+.hosn-home {
+  // The last banner sits above the footer band like the other pages' panels
+  padding-bottom: $spacing_1_6;
+
+  &__featured-intro {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_0_4;
+  }
+
+  &__featured-lead {
+    font-size: var(--hh-font-size-body);
+    color: var(--hh-color-text-muted);
+  }
+
+  // The link drops under the title on phones instead of squeezing it
+  .hh-section-header {
+    flex-wrap: wrap;
+  }
+
+  .hh-section-header__action {
+    color: var(--hh-color-text);
+    text-decoration: underline;
+    text-underline-offset: 0.4rem;
+  }
+}
+
+// Cream pill button on the olive banners
+.hh-button.hosn-home__pill {
+  padding: $spacing_1_2 $spacing_2_4;
+  border-radius: 999px;
+  background: var(--hh-color-cream);
+  color: var(--hh-color-text);
+
+  &:hover {
+    filter: none;
+    background: #fff;
+  }
+}

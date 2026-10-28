@@ -1,0 +1,82 @@
+@import "../../styles/hosn";
+
+.hosn-home-hero {
+  display: flex;
+  align-items: center;
+  min-height: 28rem;
+  padding: $spacing_2_8 $spacing_2_4;
+  overflow: hidden;
+  // Wider than the rounding drawn into the illustration, so its white
+  // corners stay hidden
+  border-radius: 3.2rem;
+  // Phones show the olive side only; the illustration's own colour as fallback
+  background: #666d42 url("../../assets/home/hero.webp") left center / cover
+    no-repeat;
+
+  [dir="rtl"] & {
+    background-image: url("../../assets/home/hero-rtl.webp");
+    background-position: right center;
+  }
+
+  @include hh-tablet-up {
+    min-height: 34rem;
+    padding: $spacing_4_0 $spacing_4_8;
+    background-size: auto 100%;
+  }
+
+  @include hh-desktop-up {
+    // The whole illustration; the olive side holds about half the width
+    aspect-ratio: 2154 / 713;
+    min-height: 0;
+    background-size: cover;
+  }
+
+  &__copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing_1_0;
+    max-width: 52rem;
+
+    @include hh-tablet-up {
+      max-width: 50%;
+    }
+
+    @include hh-desktop-up {
+      max-width: 44%;
+    }
+  }
+
+  &__eyebrow {
+    font-size: var(--hh-font-size-eyebrow);
+    font-weight: $font_semi_bold;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--hh-color-hero-text);
+
+    [dir="rtl"] & {
+      letter-spacing: 0;
+    }
+  }
+
+  &__title {
+    font-size: var(--hh-font-size-page);
+    font-weight: $font_bold;
+    line-height: 1.15;
+    color: var(--hh-color-on-hero);
+
+    @include hh-desktop-up {
+      font-size: 4.8rem;
+    }
+  }
+
+  &__lead {
+    font-size: var(--hh-font-size-lead);
+    line-height: 1.5;
+    color: var(--hh-color-on-hero);
+  }
+
+  &__cta {
+    margin-top: $spacing_1_2;
+  }
+}

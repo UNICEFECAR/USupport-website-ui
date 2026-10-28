@@ -12,10 +12,11 @@ import iconSchool from "../../assets/icon-school.svg";
 
 import "./usage-guidance.scss";
 
+// Each way sits on one of the soft card backgrounds from the home page
 const ITEMS = [
-  { key: "me", icon: iconMe },
-  { key: "team", icon: iconTeam },
-  { key: "school", icon: iconSchool },
+  { key: "me", icon: iconMe, tint: "reconnect" },
+  { key: "team", icon: iconTeam, tint: "supported" },
+  { key: "school", icon: iconSchool, tint: "energy" },
 ];
 
 /**
@@ -34,16 +35,20 @@ export const UsageGuidance = ({ title }) => {
       <h2 className="hosn-usage-guidance__title" id="hosn-usage-title">
         {title || t("title")}
       </h2>
-      <div className="hosn-usage-guidance__items">
-        {ITEMS.map(({ key, icon }) => (
-          <HHGuidanceItem
+      <ul className="hosn-usage-guidance__items">
+        {ITEMS.map(({ key, icon, tint }) => (
+          <li
             key={key}
-            icon={icon}
-            title={t(`${key}_title`)}
-            text={t(`${key}_text`)}
-          />
+            className={`hosn-usage-guidance__item hosn-usage-guidance__item--${tint}`}
+          >
+            <HHGuidanceItem
+              icon={icon}
+              title={t(`${key}_title`)}
+              text={t(`${key}_text`)}
+            />
+          </li>
         ))}
-      </div>
+      </ul>
     </HHPanel>
   );
 };

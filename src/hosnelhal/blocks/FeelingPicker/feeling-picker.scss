@@ -1,0 +1,187 @@
+@import "../../styles/hosn";
+
+$feelings: (
+  calm: (#e2e1c6, #767b4b),
+  energy: (#f9e2c9, #cd7b47),
+  reconnect: (#f6dad0, #bb6f5c),
+  supported: (#d0e4df, #69775e),
+);
+
+.hosn-feelings {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing_2_4;
+  padding: $spacing_2_4 $spacing_1_6;
+  border-radius: 2.4rem;
+  background: var(--hh-color-warm-panel);
+
+  @include hh-tablet-up {
+    padding: $spacing_3_2;
+  }
+
+  &__intro {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_0_6;
+  }
+
+  &__title {
+    font-size: var(--hh-font-size-heading);
+    font-weight: $font_bold;
+    line-height: 1.25;
+  }
+
+  &__subtitle {
+    font-size: var(--hh-font-size-subtitle);
+    font-weight: $font_semi_bold;
+    color: var(--hh-color-text);
+  }
+
+  &__hint {
+    font-size: var(--hh-font-size-body);
+    color: var(--hh-color-text-muted);
+  }
+
+  &__cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing_1_6;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    @include hh-tablet-up {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include hh-desktop-up {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    > li {
+      display: flex;
+    }
+  }
+
+  &__resources {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing_1_6;
+    padding-top: $spacing_0_8;
+
+    > .hh-card-grid,
+    > .hosn-resource-grid__status {
+      align-self: stretch;
+    }
+  }
+
+  &__resources-title {
+    font-size: var(--hh-font-size-section);
+    font-weight: $font_semi_bold;
+  }
+
+  &__support-link.hh-button--text {
+    font-size: var(--hh-font-size-lead);
+    color: var(--hh-color-warm-link);
+  }
+}
+
+.hosn-feeling-card {
+  @include hh-reset-button;
+  @include hh-focus-ring;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $spacing_0_4;
+  width: 100%;
+  min-height: 17rem;
+  // Room for the arrow button in the bottom corner
+  padding: $spacing_1_6 $spacing_2_0 $spacing_5_6;
+  border: 0.2rem solid transparent;
+  border-radius: 1.6rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: start;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-0.2rem);
+    box-shadow: 0 0.6rem 1.6rem rgba(37, 42, 32, 0.12);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+
+  &__icon {
+    width: 5.2rem;
+    height: 5.2rem;
+    margin-bottom: $spacing_0_6;
+    object-fit: contain;
+  }
+
+  &__title {
+    font-size: var(--hh-font-size-card-title);
+    font-weight: $font_semi_bold;
+    line-height: 1.3;
+    color: var(--hh-color-text);
+  }
+
+  &__text {
+    font-size: var(--hh-font-size-body);
+    line-height: 1.45;
+    color: var(--hh-color-text-muted);
+  }
+
+  &__arrow {
+    position: absolute;
+    inset-inline-end: $spacing_1_6;
+    bottom: $spacing_1_6;
+    display: grid;
+    place-items: center;
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: 50%;
+    color: #fff;
+    transition: transform 0.2s ease;
+
+    [dir="rtl"] & svg {
+      transform: scaleX(-1);
+    }
+  }
+
+  // Open: the arrow turns to point at the resources below
+  &--selected &__arrow {
+    transform: rotate(90deg);
+
+    [dir="rtl"] & {
+      transform: rotate(-90deg);
+    }
+  }
+
+  @each $key, $colors in $feelings {
+    &--#{$key} {
+      background-color: nth($colors, 1);
+      background-image: url("../../assets/home/feeling-#{$key}.webp");
+
+      [dir="rtl"] & {
+        background-image: url("../../assets/home/feeling-#{$key}-rtl.webp");
+      }
+
+      &.hosn-feeling-card--selected {
+        border-color: nth($colors, 2);
+      }
+
+      .hosn-feeling-card__arrow {
+        background: nth($colors, 2);
+      }
+    }
+  }
+}

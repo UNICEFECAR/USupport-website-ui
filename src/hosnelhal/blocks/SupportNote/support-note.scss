@@ -6,9 +6,17 @@
   gap: $spacing_1_6;
 
   h2 {
+    display: flex;
+    align-items: center;
+    gap: $spacing_1_0;
     font-size: var(--hh-font-size-section);
     font-weight: $font_semi_bold;
     line-height: 1.45;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    color: var(--hh-color-warm-link);
   }
 
   &__body {

@@ -1,108 +1,79 @@
 @import "../../styles/hosn";
 
+// Background colours of the soft card illustrations (assets/home)
+$tints: (
+  reconnect: #f6dad0,
+  supported: #d0e4df,
+  energy: #f9e2c9,
+);
+
 .hosn-usage-guidance {
-  // Contained card. The olive fill stays inside the page column instead of
-  // painting a band across the viewport.
   // When this card closes the page, keep the page background visible before
   // the footer band.
   .hh__stack > &:last-child {
     margin-bottom: $spacing_4_0;
   }
 
+  // Warm sand panel, as "How are you feeling today?" on the home page
   &.hh-panel {
-    position: relative;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     gap: $spacing_2_2;
-    padding: $spacing_2_4;
-    border-radius: 2rem;
-    background: var(--hh-color-hero);
-    color: var(--hh-color-on-hero);
+    padding: $spacing_2_4 $spacing_1_6;
+    border: none;
+    border-radius: 2.4rem;
+    background: var(--hh-color-warm-panel);
 
     @include hh-tablet-up {
-      padding: $spacing_3_2 $spacing_4_0;
+      padding: $spacing_3_2;
     }
-  }
-
-  > * {
-    position: relative;
-    z-index: 1;
-  }
-
-  &__title,
-  .hh-guidance-item__title {
-    color: var(--hh-color-on-hero);
-  }
-
-  .hh-guidance-item__text {
-    color: var(--hh-color-sand-text);
   }
 
   &__title {
     font-size: var(--hh-font-size-section);
     font-weight: $font_semi_bold;
+    color: var(--hh-color-text);
   }
 
   &__items {
     display: grid;
     grid-template-columns: 1fr;
-    gap: $spacing_2_4;
+    gap: $spacing_1_6;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 
     @include hh-desktop-up {
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      column-gap: $spacing_3_2;
     }
   }
 
-  // Organic shapes sit on the card edges and are clipped by the radius.
-  // The file is faint, so it is drawn twice.
-  &::before,
-  &::after {
-    content: none;
-  }
+  &__item {
+    display: flex;
+    min-height: 15rem;
+    padding: $spacing_2_0;
+    border-radius: 1.6rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 
-  @include hh-desktop-up {
-    &::before,
-    &::after {
-      content: "";
-      position: absolute;
-      z-index: 0;
-      top: 0;
-      bottom: 0;
-      background-image: url("../../assets/how-to-vine-right.png"),
-        url("../../assets/how-to-vine-right.png");
-      background-repeat: no-repeat;
-      pointer-events: none;
+    @each $tint, $color in $tints {
+      &--#{$tint} {
+        background-color: $color;
+        background-image: url("../../assets/home/feeling-#{$tint}.webp");
+
+        [dir="rtl"] & {
+          background-image: url("../../assets/home/feeling-#{$tint}-rtl.webp");
+        }
+      }
     }
 
-    &::before {
-      left: 0;
-      width: min(28rem, 24%);
-      background-position: left center;
-      background-size: auto 120%;
-      transform: scaleX(-1);
+    .hh-guidance-item__title {
+      color: var(--hh-color-text);
     }
 
-    &::after {
-      right: 0;
-      width: min(48rem, 38%);
-      background-position: right center;
-      background-size: auto 100%;
+    .hh-guidance-item__text {
+      color: var(--hh-color-text-muted);
     }
-  }
-}
-
-.hh[dir="rtl"] .hosn-usage-guidance {
-  &::before {
-    left: auto;
-    right: 0;
-    transform: none;
-  }
-
-  &::after {
-    right: auto;
-    left: 0;
-    transform: scaleX(-1);
   }
 }
