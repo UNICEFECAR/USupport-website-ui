@@ -20,7 +20,12 @@ import { cmsSvc } from "@USupport-components-library/services";
 import { ThemeContext } from "@USupport-components-library/utils";
 
 import { FeedbackWidget } from "../../blocks/FeedbackWidget/FeedbackWidget";
-import { HOSN_COUNTRY, HOSN_LANGUAGES, HOSN_RTL_LANGUAGES } from "../../config";
+import {
+  HOSN_COUNTRY,
+  HOSN_FEEDBACK,
+  HOSN_LANGUAGES,
+  HOSN_RTL_LANGUAGES,
+} from "../../config";
 import { useHosnPath } from "../../hooks/useHosnPath";
 
 import logoHosnElHal from "../../assets/logo-hosnelhal.png";
@@ -207,19 +212,23 @@ export const HosnLayout = ({ children }) => {
             description: t("footer_support_description"),
             label: t("footer_support"),
           }}
-          secondaryAction={{
-            label: t("footer_feedback"),
-            onClick: openFeedback,
-            buttonProps: {
-              "aria-controls": "hosn-feedback-card",
-              "aria-expanded": isFeedbackOpen,
-            },
-          }}
+          secondaryAction={
+            HOSN_FEEDBACK.enabled
+              ? {
+                  label: t("footer_feedback"),
+                  onClick: openFeedback,
+                  buttonProps: {
+                    "aria-controls": "hosn-feedback-card",
+                    "aria-expanded": isFeedbackOpen,
+                  },
+                }
+              : undefined
+          }
           copyright={t("footer_copyright")}
         />
 
         {/* Kept clear of the cookie banner, which sits in the same corner */}
-        {!cookieState.isBannerOpen && (
+        {HOSN_FEEDBACK.enabled && !cookieState.isBannerOpen && (
           <FeedbackWidget
             isOpen={isFeedbackOpen}
             onOpen={openFeedback}
