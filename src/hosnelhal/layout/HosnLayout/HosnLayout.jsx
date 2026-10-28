@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import {
   Link,
   matchPath,
@@ -19,6 +19,7 @@ import {
 import { cmsSvc } from "@USupport-components-library/services";
 import { ThemeContext } from "@USupport-components-library/utils";
 
+import { FeedbackWidget } from "../../blocks/FeedbackWidget/FeedbackWidget";
 import { HOSN_COUNTRY, HOSN_LANGUAGES, HOSN_RTL_LANGUAGES } from "../../config";
 import { useHosnPath } from "../../hooks/useHosnPath";
 
@@ -82,6 +83,10 @@ export const HosnLayout = ({ children }) => {
   const toPath = useHosnPath();
 
   const dir = HOSN_RTL_LANGUAGES.includes(language) ? "rtl" : "ltr";
+
+  const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
+  const openFeedback = useCallback(() => setIsFeedbackOpen(true), []);
+  const closeFeedback = useCallback(() => setIsFeedbackOpen(false), []);
 
   useFavicon(favicon);
 
@@ -202,8 +207,25 @@ export const HosnLayout = ({ children }) => {
             description: t("footer_support_description"),
             label: t("footer_support"),
           }}
+          secondaryAction={{
+            label: t("footer_feedback"),
+            onClick: openFeedback,
+            buttonProps: {
+              "aria-controls": "hosn-feedback-card",
+              "aria-expanded": isFeedbackOpen,
+            },
+          }}
           copyright={t("footer_copyright")}
         />
+
+        {/* Kept clear of the cookie banner, which sits in the same corner */}
+        {!cookieState.isBannerOpen && (
+          <FeedbackWidget
+            isOpen={isFeedbackOpen}
+            onOpen={openFeedback}
+            onClose={closeFeedback}
+          />
+        )}
 
         {cookieState.isBannerOpen && (
           <HHCookieBanner

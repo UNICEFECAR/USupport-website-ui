@@ -1,0 +1,146 @@
+@import "../../styles/hosn";
+
+// Sits in the bottom corner, under the cookie banner and above the page
+.hosn-feedback {
+  position: fixed;
+  z-index: 900;
+  inset-inline-end: $spacing_1_6;
+  bottom: $spacing_1_6;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: $spacing_1_0;
+  max-width: calc(100vw - #{$spacing_3_2});
+  pointer-events: none;
+
+  > * {
+    pointer-events: auto;
+  }
+
+  &__tab {
+    @include hh-reset-button;
+    @include hh-focus-ring;
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing_0_6;
+    padding: $spacing_1_0 $spacing_1_6;
+    border-radius: 999px;
+    background: var(--hh-color-hero);
+    box-shadow: 0 0.4rem 1.4rem rgba(37, 42, 32, 0.22);
+    font-size: var(--hh-font-size-action);
+    font-weight: $font_semi_bold;
+    color: var(--hh-color-on-hero);
+
+    &:hover {
+      filter: brightness(0.94);
+    }
+  }
+
+  &__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_1_4;
+    width: 32rem;
+    max-width: 100%;
+    padding: $spacing_2_0 $spacing_2_0 $spacing_1_8;
+    border: 1px solid var(--hh-color-border);
+    border-radius: 1.6rem;
+    background: var(--hh-color-warm-panel);
+    box-shadow: 0 0.8rem 2.4rem rgba(37, 42, 32, 0.18);
+    animation: hosn-feedback-in 0.2s ease-out;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+
+  &__close {
+    @include hh-reset-button;
+    @include hh-focus-ring;
+    position: absolute;
+    top: $spacing_0_6;
+    inset-inline-end: $spacing_0_8;
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 50%;
+    font-size: 2.2rem;
+    line-height: 1;
+    color: var(--hh-color-text-muted);
+
+    &:hover {
+      background: rgba(37, 42, 32, 0.06);
+    }
+  }
+
+  &__question {
+    padding-inline-end: $spacing_2_4;
+    font-size: var(--hh-font-size-body);
+    font-weight: $font_semi_bold;
+    line-height: 1.5;
+    color: var(--hh-color-text);
+  }
+
+  &__votes {
+    display: flex;
+    gap: $spacing_1_2;
+  }
+
+  // Colours of the calm and reconnect cards on the home page
+  &__vote {
+    @include hh-reset-button;
+    @include hh-focus-ring;
+    display: grid;
+    place-items: center;
+    width: 5.2rem;
+    height: 5.2rem;
+    border-radius: 50%;
+    transition: transform 0.15s ease;
+
+    &:hover {
+      transform: scale(1.06);
+    }
+
+    &--up {
+      background: #e2e1c6;
+      color: #5c6138;
+    }
+
+    &--down {
+      background: #f6dad0;
+      color: #9a5545;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $spacing_1_2;
+  }
+
+  &__cta.hh-button {
+    padding: $spacing_1_0 $spacing_2_0;
+    border-radius: 999px;
+    background: var(--hh-color-hero);
+    color: var(--hh-color-on-hero);
+  }
+
+  &__thanks {
+    font-size: var(--hh-font-size-body);
+    font-weight: $font_semi_bold;
+    color: var(--hh-color-primary);
+  }
+}
+
+@keyframes hosn-feedback-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.8rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

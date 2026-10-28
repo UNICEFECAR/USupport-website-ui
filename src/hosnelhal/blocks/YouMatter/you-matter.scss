@@ -1,0 +1,73 @@
+@import "../../styles/hosn";
+
+.hosn-you-matter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 26rem;
+  // Phones: the whole strip along the bottom, faded into the sky colour, with
+  // the text above it
+  padding: $spacing_3_2 $spacing_2_4 $spacing_10_0;
+  overflow: hidden;
+  border-radius: 2.4rem;
+  background: #f5e9d6;
+  text-align: center;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    aspect-ratio: 2133 / 515;
+    background: url("../../assets/home/you-matter.webp") center / 100% auto
+      no-repeat;
+    mask-image: linear-gradient(to bottom, transparent, #000 50%);
+    pointer-events: none;
+  }
+
+  @include hh-tablet-up {
+    padding: $spacing_4_0 $spacing_4_8;
+    background: #f5e9d6 url("../../assets/home/you-matter.webp") center / cover
+      no-repeat;
+
+    &::after {
+      display: none;
+    }
+  }
+
+  @include hh-desktop-up {
+    aspect-ratio: 2133 / 515;
+    min-height: 0;
+    padding: $spacing_2_4 22%;
+  }
+
+  &__copy {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_0_6;
+    max-width: 60rem;
+    // Keeps the text readable where it crosses the hills on small screens
+    text-shadow: 0 0 1.2rem rgba(245, 233, 214, 0.9);
+  }
+
+  &__title {
+    margin-bottom: $spacing_0_4;
+    font-size: var(--hh-font-size-heading);
+    font-weight: $font_bold;
+    line-height: 1.2;
+    color: var(--hh-color-text);
+
+    @include hh-tablet-up {
+      font-size: 3.6rem;
+    }
+  }
+
+  &__lead {
+    font-size: var(--hh-font-size-lead);
+    line-height: 1.5;
+    color: var(--hh-color-text-nav);
+  }
+}

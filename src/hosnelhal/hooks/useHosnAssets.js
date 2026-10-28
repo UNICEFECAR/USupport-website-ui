@@ -8,10 +8,19 @@ import { toAsset } from "../utils/assets";
  * @param {object} query - see cmsSvc.getHosnAssets
  */
 export const useHosnAssets = (query) => {
-  return useQuery(["hosn-assets", query], async () => {
-    const { data } = await cmsSvc.getHosnAssets(query);
-    return data.data.map(toAsset);
-  });
+  return useQuery(
+    ["hosn-assets", query],
+    async () => {
+      const { data } = await cmsSvc.getHosnAssets(query);
+      const assets = data.data.map(toAsset);
+      // A list of ids is a curated selection - keep its order
+      if (!query.ids) return assets;
+      return query.ids
+        .map((id) => assets.find((asset) => asset.id === id))
+        .filter(Boolean);
+    },
+    { enabled: !query.ids || query.ids.length > 0 }
+  );
 };
 
 /**

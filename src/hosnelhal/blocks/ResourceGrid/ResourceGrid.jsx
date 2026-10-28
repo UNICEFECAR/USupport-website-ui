@@ -13,6 +13,13 @@ import { getLengthLabel } from "../../utils/assets";
 
 import "./resource-grid.scss";
 
+const FORMAT_ICONS = {
+  video: "video",
+  audio: "headphones",
+  worksheet: "document",
+  thumbnail: "image",
+};
+
 /**
  * ResourceGrid
  *
@@ -68,7 +75,9 @@ export const ResourceGrid = ({
           to={toPath(`resources/${asset.id}`)}
           image={asset.image}
           label={t(`formats.${asset.format}`)}
+          labelIcon={FORMAT_ICONS[asset.format]}
           meta={getLengthLabel(asset, t)}
+          metaIcon={asset.durationMinutes ? "clock" : undefined}
           title={asset.title}
           description={asset.description}
           openLabel={t(`open.${asset.format}`)}
