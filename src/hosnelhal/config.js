@@ -60,8 +60,10 @@ export const HOSN_CONTACT_EMAILS = ["jcunningham@unicef.org", "rmaktabi@unicef.o
 
 // Feedback card, opened from the footer button or the sticky tab. The survey
 // links come from UNICEF (one per language); without one the card just says
-// thank you after the vote.
+// thank you after the vote. Hidden until UNICEF picks one of the two entry
+// points - set `enabled` to true to show both again.
 export const HOSN_FEEDBACK = {
+  enabled: false,
   surveyUrls: { en: "", ar: "" },
 };
 
