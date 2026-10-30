@@ -212,18 +212,6 @@ export const HosnLayout = ({ children }) => {
             description: t("footer_support_description"),
             label: t("footer_support"),
           }}
-          secondaryAction={
-            HOSN_FEEDBACK.enabled
-              ? {
-                  label: t("footer_feedback"),
-                  onClick: openFeedback,
-                  buttonProps: {
-                    "aria-controls": "hosn-feedback-card",
-                    "aria-expanded": isFeedbackOpen,
-                  },
-                }
-              : undefined
-          }
           copyright={t("footer_copyright")}
         />
 
