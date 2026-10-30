@@ -1,5 +1,12 @@
 // Hosn El Hal configuration
 
+import logoUnicef from "./assets/partners/unicef.webp";
+import logoNrcEn from "./assets/partners/nrc-en.webp";
+import logoNrcAr from "./assets/partners/nrc-ar.webp";
+import logoSaveTheChildrenEn from "./assets/partners/sc-en.webp";
+import logoSaveTheChildrenAr from "./assets/partners/sc-ar.webp";
+import logoWarChild from "./assets/partners/war-child.webp";
+
 export const HOSN_PROGRAM = "hosnelhal";
 
 // Pseudo-country for visit / engagement events (see masterDB country XH)
@@ -46,25 +53,31 @@ export const HOSN_HOME_FEELINGS = [
 // Cards shown for each category on the resources overview
 export const HOSN_CATEGORY_PREVIEW = 4;
 
-// About page partners, in the order of the credits. Shown as names until
-// UNICEF sends the logos - then set `logo` to the imported image.
+// About page partners, in the order of the credits. `logo` is one image or
+// one per language; a partner without a logo is shown by name.
 export const HOSN_PARTNERS = [
-  { key: "unicef", logo: null },
-  { key: "nrc", logo: null },
-  { key: "save_the_children", logo: null },
-  { key: "unrwa", logo: null },
-  { key: "war_child", logo: null },
+  { key: "unicef", logo: logoUnicef },
+  { key: "nrc", logo: { en: logoNrcEn, ar: logoNrcAr } },
+  { key: "save_the_children", logo: { en: logoSaveTheChildrenEn, ar: logoSaveTheChildrenAr } },
+  // Hidden until UNICEF sends the UNRWA logo
+  // { key: "unrwa", logo: null },
+  { key: "war_child", logo: logoWarChild },
 ];
 
 export const HOSN_CONTACT_EMAILS = ["jcunningham@unicef.org", "rmaktabi@unicef.org"];
 
-// Feedback card, opened from the footer button or the sticky tab. The survey
-// links come from UNICEF (one per language); without one the card just says
-// thank you after the vote. Hidden until UNICEF picks one of the two entry
-// points - set `enabled` to true to show both again.
+// Feedback card in the bottom corner of every page (UNICEF's option A),
+// closed until the sticky tab is clicked. "Share my thoughts" leads to UNICEF's Microsoft Form
+// (one form for both languages); without a link the card just says thank you.
+const SURVEY_URL =
+  "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=lQFBd-EUuE-QS6sYkgI2Z41ris7PmxZIomOpjH8gZB1UNk9CWUJXSzBMRE5SWVhGUDk4M0NBUDJCWS4u";
+
 export const HOSN_FEEDBACK = {
-  enabled: false,
-  surveyUrls: { en: "", ar: "" },
+  enabled: true,
+  surveyUrls: {
+    en: SURVEY_URL,
+    ar: SURVEY_URL,
+  },
 };
 
 // Full library. The overview at /resources links here with ?topic= preselected.

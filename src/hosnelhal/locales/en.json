@@ -154,7 +154,7 @@
     "title": "Taking time for teachers’ wellbeing",
     "name_word": "حُسن الحال",
     "name_text": "Hosn el Hal is Arabic for wellness",
-    "lead": "In emergencies, teachers are often deeply affected by the crisis, and yet we ask so much of them in supporting children to return safely to the classroom. Hosn el Hal offers dedicated, accessible mental health and psychosocial support resources for teachers as they support children during and after emergencies.",
+    "lead": "In emergencies, teachers are often deeply affected by the crisis, and yet we ask so much of them in supporting children and young people to return safely to the classroom. Hosn el Hal offers dedicated, accessible mental health and psychosocial support resources for teachers as they support children and young people during and after emergencies.",
     "nav_label": "On this page",
     "nav": {
       "why": "Why teachers’ wellbeing matters",
@@ -165,10 +165,10 @@
     },
     "why": {
       "eyebrow": "Why it matters",
-      "title": "Teachers care for children through crisis. Their wellbeing matters too.",
+      "title": "Supporting children and young people through crisis starts with supporting teachers.",
       "body": [
-        "There is ample evidence that after an emergency, one of the most stabilising and healing experiences for children is returning to the routines and opportunities of a learning environment. Regular, predictable and nurturing care from teachers and education staff helps children feel safe to express and process distressing and potentially traumatic experiences.",
-        "Yet until now, too little attention has been paid to the mental health and psychosocial wellbeing of the adults who create these spaces for children.",
+        "There is ample evidence that after an emergency, one of the most stabilising and healing experiences for children and young people is returning to the routines and opportunities of a learning environment. Regular, predictable and nurturing care from teachers and education staff helps them feel safe to express and process distressing and potentially traumatic experiences.",
+        "Yet until now, too little attention has been paid to the mental health and psychosocial wellbeing of the adults who create these spaces for children and young people.",
         "Teachers’ wellbeing is essential for nurturing, responsive care. Workplace stress, burnout, compassion fatigue and exhaustion affect the quality of the support they can give. If they are not addressed, they can lead to long-term challenges such as students dropping out, difficulty keeping teachers and lower learning outcomes.",
         "Studies show that when educators and facilitators take part in training and receive ongoing support to build their mental health literacy, they are better able to support their students’ mental health and psychosocial wellbeing. This can improve students’ outcomes in many areas, particularly learning and self-confidence."
       ],
@@ -176,7 +176,7 @@
       "aside_items": [
         "They may have their own traumatic experiences of the emergency.",
         "They are often caring for their own children and families.",
-        "They often face the same deprivation, grief, loss, fears and concerns as the children in their care."
+        "They often face the same deprivation, grief, loss, fears and concerns as the children and young people in their care."
       ]
     },
     "how": {
@@ -184,7 +184,7 @@
       "title": "A regional partnership",
       "body": [
         "In response to multiple ongoing and compounding crises in the region, an inter-agency group of education and mental health specialists came together in Amman to share what we had, what we knew, and what we could do, to support teacher mental health and psychosocial wellbeing. Accessibility was key – how could we reach teachers within their busy schedules? How could we sustain engagement with shrinking budgets? How could we do better, together?",
-        "UNICEF convened practitioners from the Norwegian Refugee Council, Save the Children, UNRWA, and War Child who generously gave their insights, experiences, and resources which were distilled into the Hosn el Hal pillars and concept. Over the next year, UNRWA staff and teachers from Jordan, Lebanon, Palestine and Syria shared their ideas and reactions to designs and drafts, while expert feedback from each agency further improved and refined the assets.",
+        "UNICEF convened practitioners from the Norwegian Refugee Council, Save the Children, UNRWA, and War Child Alliance who generously gave their insights, experiences, and resources which were distilled into the Hosn el Hal pillars and concept. Over the next year, UNRWA staff and teachers from Jordan, Lebanon, Palestine and Syria shared their ideas and reactions to designs and drafts, while expert feedback from each agency further improved and refined the assets.",
         "The result is a series of resources that carry our original intent – to be used, to be shared, to be owned by anyone who is in a place to help teachers feel appreciated and supported. We hope that Hosn el Hal will help you do that."
       ],
       "partners_label": "Partners",
@@ -193,13 +193,13 @@
         "nrc": "Norwegian Refugee Council",
         "save_the_children": "Save the Children",
         "unrwa": "UNRWA",
-        "war_child": "War Child"
+        "war_child": "War Child Alliance"
       },
       "team_title": "",
       "team": [
         {
           "label": "Hosn el Hal co-creation team",
-          "value": "Enas Barhoum, NRC; Johanna Cunningham, UNICEF; Kamal Jabr, UNRWA; Hanan al-Kanash, UNRWA; Camila Lodi, NRC; Marta Petagna, SCI; Jason McGaughey, SCI; Kate McClellan, War Child"
+          "value": "Enas Barhoum, NRC; Johanna Cunningham, UNICEF; Kamal Jabr, UNRWA; Hanan al-Kanash, UNRWA; Camila Lodi, NRC; Marta Petagna, SCI; Jason McGaughey, SCI; Kate McLennan, War Child Alliance"
         },
         {
           "label": "Project Manager and Lead Content Creator",
@@ -211,7 +211,7 @@
         }
       ],
       "contact_label": "For queries or comments",
-      "thanks": "Thank you to the teachers and reviewers from UNICEF and UNRWA offices in Jordan, Lebanon, Palestine and Syria, and to all the teachers who nurture children each day."
+      "thanks": "Thank you to the teachers and reviewers from UNICEF and UNRWA offices in Jordan, Lebanon, Palestine and Syria, and to all the teachers who nurture children and young people each day."
     },
     "different": {
       "eyebrow": "Our approach",
@@ -231,7 +231,7 @@
         },
         {
           "title": "Teachers experience it first, then share it",
-          "text": "Teachers are central to children’s emotional recovery. It works best when they benefit from this support themselves and then model it for students and bring it into their own teaching."
+          "text": "Teachers are central to the emotional recovery of children and young people. It works best when they benefit from this support themselves and then model it for students and bring it into their own teaching."
         }
       ]
     },
@@ -318,8 +318,8 @@
     "question": "Have you used the Hosn el Hal resources? Would you recommend them to a friend?",
     "yes": "Yes, I would recommend them",
     "no": "No, I wouldn't recommend them",
-    "invite": "We’d love to hear more about your experience! If you have two minutes, click here to share your thoughts and help us improve.",
-    "cta": "Share your thoughts →",
+    "invite": "Thank you! We’d love to hear more about your experience. If you have two minutes, share your thoughts and help us improve.",
+    "cta": "Share my thoughts",
     "later": "Maybe later",
     "thanks": "Thank you!",
     "close": "Close"
