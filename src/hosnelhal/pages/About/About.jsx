@@ -1,4 +1,5 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { HHButton } from "@USupport-components-library/src/hosnelhal";
@@ -49,6 +50,7 @@ const SectionHeading = ({ id, eyebrow, title }) => (
  * @returns {JSX.Element}
  */
 export const About = () => {
+  const { language } = useParams();
   const { t } = useTranslation("hosnelhal", { keyPrefix: "about" });
   const toPath = useHosnPath();
   const list = (key) => t(key, { returnObjects: true });
@@ -123,15 +125,18 @@ export const About = () => {
         <div className="hosn-about__partners">
           <h3>{t("how.partners_label")}</h3>
           <ul>
-            {HOSN_PARTNERS.map(({ key, logo }) => (
-              <li key={key} className={logo ? "hosn-about__partner-logo" : undefined}>
-                {logo ? (
-                  <img src={logo} alt={t(`how.partners.${key}`)} />
-                ) : (
-                  t(`how.partners.${key}`)
-                )}
-              </li>
-            ))}
+            {HOSN_PARTNERS.map(({ key, logo }) => {
+              const src = typeof logo === "object" && logo ? logo[language] || logo.en : logo;
+              return (
+                <li key={key} className={src ? "hosn-about__partner-logo" : undefined}>
+                  {src ? (
+                    <img src={src} alt={t(`how.partners.${key}`)} loading="lazy" />
+                  ) : (
+                    t(`how.partners.${key}`)
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </div>
 
