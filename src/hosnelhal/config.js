@@ -5,6 +5,7 @@ import logoNrcEn from "./assets/partners/nrc-en.webp";
 import logoNrcAr from "./assets/partners/nrc-ar.webp";
 import logoSaveTheChildrenEn from "./assets/partners/sc-en.webp";
 import logoSaveTheChildrenAr from "./assets/partners/sc-ar.webp";
+import logoUnrwa from "./assets/partners/unrwa.webp";
 import logoWarChild from "./assets/partners/war-child.webp";
 
 export const HOSN_PROGRAM = "hosnelhal";
@@ -59,8 +60,7 @@ export const HOSN_PARTNERS = [
   { key: "unicef", logo: logoUnicef },
   { key: "nrc", logo: { en: logoNrcEn, ar: logoNrcAr } },
   { key: "save_the_children", logo: { en: logoSaveTheChildrenEn, ar: logoSaveTheChildrenAr } },
-  // Hidden until UNICEF sends the UNRWA logo
-  // { key: "unrwa", logo: null },
+  { key: "unrwa", logo: logoUnrwa },
   { key: "war_child", logo: logoWarChild },
 ];
 

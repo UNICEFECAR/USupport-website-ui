@@ -25,3 +25,4 @@ export * from "./useCustomNavigate.js";
 export * from "./useAddSosCenterClick.js";
 export * from "./useAddContentEngagement.js";
 export * from "./useClarity.js";
+export * from "./useAddCountryEvent.js";
