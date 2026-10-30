@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 
 import { HHButton } from "@USupport-components-library/src/hosnelhal";
 
+import { useAddCountryEvent } from "#hooks";
+
 import { HOSN_FEEDBACK } from "../../config";
 
 import "./feedback-widget.scss";
@@ -62,6 +64,7 @@ export const FeedbackWidget = ({ isOpen, onOpen, onClose, showTab = true }) => {
   const { t } = useTranslation("hosnelhal", { keyPrefix: "feedback" });
   const [vote, setVote] = useState(null);
   const cardRef = useRef(null);
+  const addCountryEventMutation = useAddCountryEvent();
 
   const surveyUrl = HOSN_FEEDBACK.surveyUrls[language];
 
@@ -111,7 +114,10 @@ export const FeedbackWidget = ({ isOpen, onOpen, onClose, showTab = true }) => {
                   type="button"
                   className="hosn-feedback__vote hosn-feedback__vote--up"
                   aria-label={t("yes")}
-                  onClick={() => setVote("up")}
+                  onClick={() => {
+                    setVote("up");
+                    addCountryEventMutation.mutate({ eventType: "hosnelhal_feedback_up" });
+                  }}
                 >
                   <ThumbIcon />
                 </button>
@@ -119,7 +125,10 @@ export const FeedbackWidget = ({ isOpen, onOpen, onClose, showTab = true }) => {
                   type="button"
                   className="hosn-feedback__vote hosn-feedback__vote--down"
                   aria-label={t("no")}
-                  onClick={() => setVote("down")}
+                  onClick={() => {
+                    setVote("down");
+                    addCountryEventMutation.mutate({ eventType: "hosnelhal_feedback_down" });
+                  }}
                 >
                   <ThumbIcon down />
                 </button>
@@ -139,6 +148,11 @@ export const FeedbackWidget = ({ isOpen, onOpen, onClose, showTab = true }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hosn-feedback__cta"
+                  onClick={() =>
+                    addCountryEventMutation.mutate({
+                      eventType: "hosnelhal_feedback_survey_click",
+                    })
+                  }
                 >
                   {t("cta")}
                 </HHButton>
