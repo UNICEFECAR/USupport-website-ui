@@ -58,9 +58,9 @@ export const HOSN_CATEGORY_PREVIEW = 4;
 // one per language; a partner without a logo is shown by name.
 export const HOSN_PARTNERS = [
   { key: "unicef", logo: logoUnicef },
+  { key: "unrwa", logo: logoUnrwa },
   { key: "nrc", logo: { en: logoNrcEn, ar: logoNrcAr } },
   { key: "save_the_children", logo: { en: logoSaveTheChildrenEn, ar: logoSaveTheChildrenAr } },
-  { key: "unrwa", logo: logoUnrwa },
   { key: "war_child", logo: logoWarChild },
 ];
 
