@@ -27,7 +27,14 @@ const isClarityEnabled = () => {
   return true;
 };
 
-const installClarity = () => {
+/**
+ * Inject Clarity and queue the consent signal before the tag runs.
+ * Without analytics consent Clarity stays in cookieless mode (heatmaps /
+ * fragmented page recordings). With consent it sets cookies and full sessions.
+ *
+ * @param {boolean} hasAcceptedCookies
+ */
+const installClarity = (hasAcceptedCookies) => {
   if (document.getElementById(SCRIPT_ID)) return;
 
   (function (c, l, a, r, i, t, y) {
@@ -36,10 +43,11 @@ const installClarity = () => {
       function () {
         (c[a].q = c[a].q || []).push(arguments);
       };
-    // Queue consent before the tag loads so Clarity does not start without it.
+    // Queue consent before the tag loads so cookies are never set without it.
+    const storage = hasAcceptedCookies ? "granted" : "denied";
     c[a]("consentv2", {
-      ad_Storage: "granted",
-      analytics_Storage: "granted",
+      ad_Storage: storage,
+      analytics_Storage: storage,
     });
     t = l.createElement(r);
     t.async = 1;
@@ -77,25 +85,21 @@ const clearClarityCookies = () => {
 };
 
 /**
- * Load Clarity after Accept all, or stop it and drop its cookies after Reject all.
- * The script is not added until consent is given.
+ * Keep Clarity loaded on staging/production. Accept all → full cookie tracking;
+ * reject / no choice yet → cookieless mode only (no _clck/_clsk, fragmented sessions).
  *
  * @param {boolean} hasAcceptedCookies
  */
 export const syncClarityConsent = (hasAcceptedCookies) => {
   if (!isClarityEnabled()) return;
 
-  if (hasAcceptedCookies) {
-    if (document.getElementById(SCRIPT_ID)) {
-      setConsent(true);
-      return;
-    }
-    installClarity();
-    return;
+  if (!document.getElementById(SCRIPT_ID)) {
+    installClarity(hasAcceptedCookies);
+  } else if (typeof window.clarity === "function") {
+    setConsent(hasAcceptedCookies);
   }
 
-  if (typeof window.clarity === "function") {
-    setConsent(false);
+  if (!hasAcceptedCookies) {
+    clearClarityCookies();
   }
-  clearClarityCookies();
 };
