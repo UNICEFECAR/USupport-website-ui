@@ -5,19 +5,23 @@
   inset: 0;
   z-index: $z_index_modal;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   padding: 1.6rem;
-  overflow-y: auto;
+  overflow: hidden;
   background: var(--ph-overlay);
 
   @include ph-tablet-up {
-    padding: 8rem 3.2rem;
+    padding: 3.2rem;
   }
 
   &__dialog {
     width: 100%;
     max-width: 88rem;
+    max-height: calc(100dvh - 3.2rem);
+    margin: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -26,6 +30,7 @@
     background: var(--ph-background);
 
     @include ph-tablet-up {
+      max-height: calc(100dvh - 6.4rem);
       padding: 3.2rem;
     }
   }
