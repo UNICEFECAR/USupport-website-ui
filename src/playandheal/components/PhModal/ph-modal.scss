@@ -5,13 +5,10 @@
   inset: 0;
   z-index: $z_index_modal;
   display: flex;
-  // Center when the dialog fits. "safe" falls back to the start edge when it
-  // does not, so overflow-y can scroll to the top instead of clipping it.
-  align-items: safe center;
-  justify-content: safe center;
+  align-items: center;
+  justify-content: center;
   padding: 1.6rem;
-  overflow-y: auto;
-  overscroll-behavior: contain;
+  overflow: hidden;
   background: var(--ph-overlay);
 
   @include ph-tablet-up {
@@ -21,7 +18,10 @@
   &__dialog {
     width: 100%;
     max-width: 88rem;
-    flex: 0 0 auto;
+    max-height: calc(100dvh - 3.2rem);
+    margin: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -30,6 +30,7 @@
     background: var(--ph-background);
 
     @include ph-tablet-up {
+      max-height: calc(100dvh - 6.4rem);
       padding: 3.2rem;
     }
   }
