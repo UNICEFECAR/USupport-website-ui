@@ -16,7 +16,7 @@ const INITIAL_VALUES = { fullName: "", email: "", location: "" };
  * PhWaitlistModal
  *
  * "A community, in the making" - facilitators network waiting list form.
- * Submission is a placeholder for now - see services/waitlist.js.
+ * Submissions are stored by services/waitlist.js.
  *
  * @param {boolean} isOpen
  * @param {function} onClose
